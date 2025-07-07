@@ -1,0 +1,146 @@
+/*americadigital*/
+
+:root {
+    --primary: #3BC1CD;
+    --secondary: #0081A4;
+    --tertiary: #646c9a;
+    --light: #FFF;
+}
+
+/*Login*/
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 10%;
+}
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+        max-width: 460px;
+        width: 100%;
+    }
+
+
+    .logotipo-desktop {
+        max-width: 300px;
+        margin: auto;
+    }
+
+
+
+.box-america {
+    padding: 1rem;
+    text-transform: uppercase;
+    border: 1px solid var(--primary);
+    margin: 2rem auto;
+    border-radius: 10px;
+}
+
+.form-group .ms-label {
+    text-align: left;
+}
+
+.logo-convenios {
+    justify-content: center;
+    margin-top: 28px;
+}
+.mensaje-cuenta h4 {
+    text-transform: uppercase;
+    margin-top: 42px;
+    margin-bottom: 8px;
+}
+
+.kt-login__link {
+    color: #5867dd !important;
+}
+
+.logotipo-img {
+    margin-top: 0;
+}
+
+
+/* Imágenes Login */
+.img1 {
+    background-image: url(../../img/americadigital/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/americadigital/login/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/americadigital/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/americadigital/login/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/americadigital/login/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/americadigital/login/960x978.jpg);
+}
+
+
+@media (max-width: 668px) {
+
+}
+
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/americadigital/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/americadigital/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/americadigital/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/americadigital/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/americadigital/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/americadigital/login/548x850.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+        margin-top: 0;
+    }
+
+    .img1 {
+        background-image: url(../../img/americadigital/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/americadigital/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/americadigital/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/americadigital/login/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/americadigital/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/americadigital/login/960x978.jpg);
+    }
+}

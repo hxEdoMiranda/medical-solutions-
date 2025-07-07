@@ -1,0 +1,349 @@
+/*Resumen Atencion*/
+
+:root {
+    --primary-color: #3BC1CD;
+    --secondary-color: #8A94B3;
+    --tertiary-color: #0282A6;
+    --gray-color: #666;
+    --accent-color: #FF7415;
+    --light-color: #FFF;
+    --hover-color: #0282A6;
+    --transition: all .3s ease-out;
+}
+
+.cont-informe {
+    max-width: 1600px;
+}
+
+.card-informe {
+    width: 100%;
+    max-width: 360px;
+    height: 486px;
+    border: 1px solid rgba(59, 193, 205, 0.3);
+    border-radius: 8px;
+    background-color: #FFF;
+    padding: 2rem;
+    margin-bottom: 1rem;
+    position: relative;
+    /*overflow-y: auto;*/
+}
+
+.card-informe.informe {
+    max-width: 720px;
+}
+
+.item-resumen {
+    border-bottom: 1px solid #C4ECF0;
+    padding: 1rem 0;
+}
+
+    .item-resumen:last-child {
+        border-bottom: none;
+    }
+
+
+.legend-resumen {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    color: #0282A6;
+}
+
+.item-resumen .nombre-paciente,
+.item-resumen .nombre-profesional,
+.item-resumen .especialidad,
+.item-resumen .rut-paciente {
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--secondary-color)
+}
+
+.item-resumen .nombre-profesional {
+    text-align: left;
+    margin: 0;
+}
+.item-resumen .especialidad {
+    font-weight: 500;
+}
+
+.archivos-atencion ul {
+    list-style-type: none;
+    padding-left: 0;
+    max-height: 390px;
+    overflow-y: auto;
+    margin-bottom: 0;
+}
+
+    .archivos-atencion ul li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: .25rem .5rem;
+        border-bottom: 1px solid #C4ECF0;
+        transition: var(--transition);
+        color: var(--primary-color);
+    }
+
+
+    .archivos-atencion ul li:hover {
+        background-color: rgba(59, 193, 205, 0.3);
+    }
+
+
+        .archivos-atencion ul li:last-child {
+            /*border-bottom: none;*/
+        }
+
+.archivos-atencion .btn-archivo {
+    border: 1px solid transparent;
+    padding: .5rem;
+    background-color: transparent;
+    border-radius: 4px;
+    color: #b30b00;
+    transition: var(--transition);
+}
+
+    .archivos-atencion .btn-archivo i {
+        font-size: 22px;
+    }
+
+    .archivos-atencion .btn-archivo:hover {
+        /*background-color: var(--tertiary-color);*/
+        color: var(--tertiary-color);
+    }
+
+
+.certificados {
+    height: 132px;
+    overflow-y: auto;
+}
+
+/*Scroll Farmacias*/
+
+
+    /* width */
+    .certificados::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    /* Track */
+    .certificados::-webkit-scrollbar-track {
+        background: rgba(2, 92, 116, 0.2);
+        width: 6px;
+        height: 50px;
+        border-radius: 8px;
+    }
+
+
+    /* Handle */
+    .certificados::-webkit-scrollbar-thumb {
+        background: rgba(2, 92, 116, 0.5);
+        transition: all .3s ease-out;
+        border-radius: 8px;
+        transition: all .1s ease-out;
+    }
+
+        /* Handle on hover */
+        .certificados::-webkit-scrollbar-thumb:hover {
+            background: rgba(59, 193, 205, 0.6);
+        }
+
+
+
+.card-informe h4 {
+    font-size: 16px;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #C4ECF0;
+}
+
+.card-informe .btn {
+    
+    right: 2rem;
+    position: absolute;
+    bottom: 2rem;
+
+}
+
+.card-informe .lista-medicamentos li {
+    padding: .2rem 0;
+}
+
+.columna-paciente {
+    max-height: 428px;
+    overflow-y: auto;
+}
+
+.columna-archivos {
+    border-left: 1px dashed #C4ECF0;
+    padding-left: 32px;
+    max-height: 440px;
+    overflow-y: auto;
+}
+
+.columna-archivos .legend-resumen {
+    margin-top: 20px;
+}
+
+.columna-paciente,
+.columna-archivos {
+    overflow-y: auto;
+}
+
+
+/* width */
+    .columna-paciente::-webkit-scrollbar,
+    .columna-archivos::-webkit-scrollbar {
+        width: 6px;
+    }
+
+/* Track */
+.columna-paciente::-webkit-scrollbar-track,
+.columna-archivos::-webkit-scrollbar-track {
+    background: rgba(2, 92, 116, 0.2);
+    width: 6px;
+    height: 50px;
+    border-radius: 8px;
+}
+
+
+/* Handle */
+.columna-paciente::-webkit-scrollbar-thumb,
+.columna-archivos::-webkit-scrollbar-thumb {
+    background: rgba(2, 92, 116, 0.5);
+    transition: all .3s ease-out;
+    border-radius: 8px;
+    transition: all .1s ease-out;
+}
+
+    /* Handle on hover */
+    .columna-paciente::-webkit-scrollbar-thumb:hover,
+    .columna-archivos::-webkit-scrollbar-thumb:hover {
+        background: rgba(59, 193, 205, 0.6);
+    }
+
+.caja-profesional.card-informe {
+    min-height: 0;
+    /*margin: auto;*/
+}
+
+
+.caja-profesional.card-informe .calificacion {
+    display: none;
+}
+
+.caja-profesional.card-informe .especialidad-profesional {
+    position: static;
+    display: block;
+    margin: auto;
+}
+
+.cajaInfoMedico .caja-profesional.card-informe .front {
+    position: static;
+}
+
+.caja-profesional.card-informe .btn {
+    position: static;
+    display: block;
+    margin: auto;
+}
+
+.caja-profesional.card-informe .btn-outline-primary {
+    border: none;
+    text-transform: none;
+    color: #0081A4;
+}
+
+    .caja-profesional.card-informe .btn-outline-primary:hover {
+        color: #FFF;
+    }
+
+    .caja-profesional.card-informe .front-fecha-atencion {
+        position: static;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+.caja-profesional.card-informe .cont-data {
+    flex-direction: column;
+}
+
+.caja-profesional.card-informe .especialidad-profesional {
+    position: static;
+}
+
+.horarios-disponibles {
+    position: static;
+    border: 1px solid red;
+    display: block;
+}
+
+
+@media (max-width: 1024px) {
+    .card-informe {
+        height: auto;
+    }
+
+    .columna-archivos {
+        border-left: none !important;
+        padding-left: 0;
+        margin-top: 2rem;
+    }
+
+    .columna-archivos .legend-resumen {
+        padding-left: 1rem;
+    }
+
+    .card-informe .btn {
+        position: static;
+        width: 100%;
+    }
+
+    .cont-informe .titulo-seccion {
+        margin-top: 2rem;
+    }
+
+        .cont-informe .titulo-seccion:first-child {
+            margin-top: 3rem;
+        }
+    .caja-profesional.card-informe .especialidad-profesional {
+       width: 100%;
+       text-align: center;
+    }
+
+    .caja-profesional.card-informe .cont-data {
+        width: 100%;
+    }
+
+    .caja-profesional.card-informe .data-atencion .nombre-profesional {
+        max-width: 100%;
+    }
+
+    .caja-profesional.card-informe .data-atencion .nombre-profesional span {
+        max-width: 100%;
+        width: 100%;
+        text-align: center;
+    }
+
+    .caja-profesional.card-informe .front-fecha-atencion {
+        text-align: center;
+       border: 1px solid #3BC1CD;
+       border-radius: 8px;
+    }
+
+    .caja-profesional.card-informe img {
+        width: 80px;
+        height: 80px;
+        margin: auto;
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+}
+
+@media (min-width: 1025px) {
+    .card-informe.informe {
+        min-width: 720px;
+    }
+}

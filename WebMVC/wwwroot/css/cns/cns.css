@@ -1,0 +1,540 @@
+/*cns*/
+
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');*/
+
+:root {
+    --primary: #003DA5;
+    --secondary: #84BD00;
+    --tertiary: #8A94B3;
+    --accent: #FDB727;
+    --light: #FFF;
+    --font-family: 'Mulish', sans-serif;
+}
+
+body {
+    /* font-family: var(--font-family) !important;*/
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family) !important;
+}
+/*Login*/
+.logotipo-desktop {
+    background-image: url(../../img/cns/logotipo.svg);
+    background-size: 260px;
+    background-position: left;
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/cns/logotipo.svg);
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+        color: var(--primary);
+        font-weight: 400 !important;
+        font-size: 36px;
+        line-height: 50px;
+    }
+
+.form-group .ms-label {
+    color: var(--primary) !important;
+}
+
+a#kt_login_forgot {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+button#kt_login_signin_submit {
+    font-weight: 700;
+}
+
+
+
+.btn-primary {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+    .btn-primary:hover {
+        background-color: var(--primary);
+        border-color: var(--primary);
+    }
+
+.btn-guardar-info, .btn-success {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    
+}
+
+.btn-guardar-info:hover, .btn-success:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--primary)
+}
+
+.btn.btn-outline-secondary {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--primary)
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+}
+
+#reporte:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+
+.divider-medismart {
+    display: flex !important;
+    margin-bottom: 2rem;
+}
+
+.logo-convenios {
+    /* display: none;*/
+    margin-bottom: 2rem;
+    justify-content: space-between !important;
+}
+
+/* Im�genes Login */
+.img1 {
+    background-image: url(../../img/cns/login/960x978.jpg) !important;
+}
+
+.img2 {
+    background-image: url(../../img/cns/login/960x978.jpg) !important;
+}
+
+.img3 {
+    background-image: url(../../img/cns/login/960x978.jpg) !important;
+}
+
+.img4 {
+    background-image: url(../../img/cns/login/960x978.jpg) !important;
+}
+
+.img5 {
+    background-image: url(../../img/cns/login/960x978.jpg) !important;
+}
+
+.img6 {
+    background-image: url(../../img/cns/login/960x978.jpg) !important;
+}
+
+.body-home {
+    background: #003DA6 !important;
+    background-blend-mode: multiply;
+    /*background-position: right 90%;*/
+}
+
+    .body-home .logo-home img {
+        /*width: 130px;*/
+        width: 84px;
+    }
+
+.top-banner .legend {
+    font-weight: 500;
+}
+
+.menu-top .item-menu-top i,
+.menu-top .label-menu,
+.menu-top .label-menu-pac {
+    color: var(--secondary);
+}
+
+.menu-top .item-menu-top:hover i,
+.menu-top .item-menu-top:hover .label-menu,
+.menu-top .item-menu-top:hover .label-menu-pac {
+    color: var(--primary) !important;
+}
+
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--primary)
+}
+
+    .kt-menu__item a .ms-label-menu {
+        color: var(--primary)
+    }
+
+.kt-menu__item:hover a, .kt-menu__item:hover i {
+    color: var(--secondary) !important;
+}
+
+.accesible-btn button {
+    color: var(--secondary);
+    border: 1px solid var(--secondary);
+}
+
+    .accesible-btn button:hover {
+        background-color: var(--primary);
+        border-color: var(--primary)
+    }
+
+.busqueda-profesionales {
+    border: 2px solid var(--secondary);
+}
+
+    .busqueda-profesionales i {
+        color: var(--secondary)
+    }
+
+    .busqueda-profesionales .btn-outline-primary {
+        color: var(--secondary)
+    }
+
+.caja-especialidad.active {
+    background-color: var(--primary);
+}
+
+.caja-especialidad {
+    background-color: var(--secondary);
+}
+
+.inner-especialidad strong {
+    color: var(--light)
+}
+
+.step.active .step-icon {
+    background-color: var(--primary);
+}
+
+.stepper {
+    background-image: url(../../img/cns/fondo-banner2.svg);
+}
+
+    .stepper .flecha {
+        color: var(--primary)
+    }
+
+    .stepper img {
+        border-color: var(--primary)
+    }
+
+.step.active .label-step {
+    color: var(--primary)
+}
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: var(--primary)
+}
+
+.caja-profesional .fecha-atencion {
+    color: var(--secondary)
+}
+
+.front-fecha-atencion {
+    border: 1px solid rgba(35,33, 114, .3)
+}
+
+    .front-fecha-atencion strong:before {
+        color: var(--secondary);
+        font-weight: 900;
+    }
+
+.especialidad-profesional {
+    color: var(--tertiary)
+}
+
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+
+.top-banner {
+    background-image: url(../../img/cns/fondo-banner.svg);
+}
+
+    .top-banner img {
+        border-color: rgba(255, 255, 255, .3)
+    }
+
+    .top-banner .legend {
+        color: var(--secondary)
+    }
+
+.banner_topsc .legend .text-warning {
+    color: var(--primary) !important;
+}
+
+.top-banner.banner_topsc {
+    background-image: url(../../img/cns/fondo-banner2.svg);
+}
+
+.text-warning {
+    color: var(--light) !important;
+}
+
+.menu-top .item-menu-top .logotipo-mobile {
+    width: 110px !important;
+}
+/*Sala espera*/
+.hotspot-icon .cont-icon {
+    background-color: var(--primary)
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+.cont-icon.hotspot-redes {
+    background-color: #000;
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+}
+
+#hs-g .cont-icon {
+    background-color: var(--secondary);
+}
+
+#hs-g:hover .cont-icon {
+    background-color: var(--primary);
+}
+
+.toolbar-option {
+    color: var(--primary)
+}
+
+    .toolbar-option.active {
+        color: var(--secondary)
+    }
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--primary)
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--secondary)
+}
+
+.btn-sala:hover {
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion, .cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+    .cont-btn-panel .btn-atencion:hover, .cont-btn-vc .btn-atencion:hover {
+        background-color: rgba(237, 110, 0, 0.1);
+        color: var(--primary);
+    }
+
+.hotspot-icon {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+    .hotspot-icon i {
+        text-shadow: none;
+    }
+
+    .hotspot-icon:hover {
+        color: #FFF;
+    }
+
+
+/*Nuevos Estilos*/
+.body-home .card-plan .costo, .body-home .card-plan .pronto-card {
+    position: absolute;
+    top: -1px;
+    right: -1.5px;
+    width: 40%;
+    height: 25px;
+    font-size: 11px;
+    font-weight: 900;
+    background-color: #006BFF;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 16px 0px 16px;
+    text-transform: uppercase;
+}
+
+.body-home .pronto {
+    left: auto;
+    bottom: auto;
+    font-size: 10px;
+    text-transform: uppercase;
+    background-color: #006BFF;
+    color: #FFF;
+    border-radius: 0 16px 0px 16px;
+    width: 40%;
+    top: -1px;
+    right: -1.5px;
+    font-weight: 700;
+    padding: 0.25rem;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+@media (max-width: 668px) {
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .top-banner .legend {
+        text-align: left;
+        font-size: 1.3rem;
+    }
+}
+
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/cns/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/cns/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/cns/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/cns/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/cns/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/cns/login/548x850.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/cns/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/cns/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/cns/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/cns/login/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/cns/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/cns/login/960x978.jpg);
+    }
+}
+
+
+/*Prohome*/
+
+.prehome__plans {
+    height: 200px;
+}
+
+.prehome__plan {
+    width: 100%;
+    padding: 0;
+}
+
+    .prehome__plan ul {
+        list-style-image: url('../../img/cns/bullet.svg');
+        margin-top: 32px;
+        height: 350px;
+        font-size: 16px;
+        display: none;
+    }
+
+.prehome__title {
+    color: #FFF;
+}
+
+.kt-login__extra.registro {
+    display: none;
+}
+
+.logo-convenios.convenioChile + hr {
+    display: none;
+}
+
+.kt-login.kt-login--v3.kt-login--signin .kt-login__signin .titulo-card-farmacia {
+    text-align: left;
+    color: #0282A6 !important;
+}
+
+.prehome__card {
+    background-image: url(../../img/cns/spacer.svg);
+    background-position: center 0;
+    background-repeat: repeat-y;
+}
+
+.prehome__plan {
+    border-right: none;
+}
+
+@media (max-width: 991.98px) {
+    .prehome__plans {
+        height: auto;
+    }
+    .prehome__plan {
+        margin: auto;
+        padding-bottom: 2rem;
+        padding-top: 2rem;
+    }
+        .prehome__plan h2 {
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            width: 100%;
+        }
+
+    .prehome__card {
+        padding-top: 0;
+        padding-bottom: 0;
+        background-image: none;
+    }
+
+    .prehome {
+        /* margin-top: 3rem;*/
+    }
+
+}

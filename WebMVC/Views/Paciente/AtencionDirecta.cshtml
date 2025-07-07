@@ -1,0 +1,91 @@
+﻿@model WebMVC.Models.AtencionViewModel
+
+@{
+    ViewBag.Title = "Medical";
+    Layout = "_LayoutPaciente";
+    ViewData["view"] = Roles.Paciente;
+    ViewData["idEntidad"] = Model.Atencion.Id;
+    ViewData["codEntidad"] = Entidades.ATENCIONES;
+    ViewData["uid"] = ViewBag.uid;
+
+}
+@section Styles  {
+    <link href="~/Toasty.js-master/assets/toasty-custom-styles.css" rel="stylesheet" />
+    <link href="~/Toasty.js-master/assets/prism/prism.css" rel="stylesheet" />
+
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <style>
+        .kt-timeline-v2:before {
+            content: '';
+            position: absolute;
+            left: 2rem;
+            width: 0.214rem;
+            top: 5px;
+            bottom: 5px;
+            height: calc(100% - 5px);
+            background-color: #E7E9F5;
+        }
+
+        .swal-wide {
+            width: 550px !important;
+        }
+
+        .swal-wide-edit {
+            width: 750px !important;
+        }
+    </style>
+}
+
+
+
+<partial name="~/Views/Shared/_Atencion.cshtml" model="Model" view-data="ViewData" />
+<input type="hidden" id="headName2" />
+
+
+
+
+
+
+@section Scripts {
+    <link href="~/Toasty.js-master/dist/toasty.css" rel="stylesheet" />
+    <script src="~/Toasty.js-master/dist/toasty.js"></script>
+    <script src="~/Toasty.js-master/assets/prism/prism.js"></script>
+    @*<script src="~/Toasty.js-master/assets/main.js"></script>*@
+
+    <script src="~/metronic_demo7/assets/js/pages/components/extended/toastr.js"></script>
+
+    <script src="~/opentok/opentok.min.js"></script>
+
+    <script src="~/signal/signalr.min.js"></script>
+    <script src="~/js/Shared/atencionEspera.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/Shared/archivos-adjuntos.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/Shared/chat.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/atencion-directa.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+            var canal = '@ViewBag.canal';
+            window.canal = canal;
+            var idCliente = @ViewBag.idCliente;
+            window.idCliente = idCliente;
+        })()
+    </script>
+
+    <script>
+        // Warning before leaving the page (back button, or outgoinglink)
+        window.onbeforeunload = function () {
+            return "Seguro que quieres dejar la página, estas en medio de una atención?";
+            //if we return nothing here (just calling return;) then there will be no pop-up question at all
+            //return;
+        };
+    </script>
+    <!--<script src="~/js/sala.js"></script>--><!-- script sala -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+   
+}
+

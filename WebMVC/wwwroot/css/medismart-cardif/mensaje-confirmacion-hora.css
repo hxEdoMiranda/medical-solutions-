@@ -1,0 +1,346 @@
+/* Mensaje confimación hora*/
+
+.mensaje-confirmacion.caja-base {
+    padding: 2rem 2rem;
+    max-width: 730px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    padding: 32px 24px;
+    padding-bottom: 1.5rem;
+    /*background-image: url('../../img/check-confirmacion.svg');*/
+    background-repeat: no-repeat;
+    background-position: 95% 76%;
+    background-size: 140px;
+}
+
+    .mensaje-confirmacion.caja-base:has(.caja-pago-normal) {
+        background-position: 75% 79%;
+    }
+
+    .mensaje-confirmacion.caja-base .card {
+        border: none;
+        background-color: #F7F7F7;
+        width: 280px;
+        border-radius: 16px;
+        padding: 20px;
+    }
+    .mensaje-confirmacion.caja-base .caja-profesional:hover {
+        box-shadow: none;
+    }
+
+
+    .mensaje-confirmacion.caja-base .mensaje h3 {
+        font-size: 18px;
+        color: #0282A6;
+        margin-bottom: 2rem;
+    }
+
+    .mensaje-confirmacion.caja-base .caja-profesional .titulo-profesional {
+        font-size: 14px;
+    }
+
+    .mensaje-confirmacion.caja-base .caja-profesional .fecha-atencion {
+        margin-top: 1rem;
+        font-weight: 900;
+    }
+
+        .mensaje-confirmacion.caja-base .caja-profesional .fecha-atencion::before {
+            content: 'TU Próxima Atención';
+            display: block;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #3BC1CD;
+            font-size: 11px;
+        }
+
+
+
+    .mensaje-confirmacion ul {
+        font-size: 16px;
+        text-align: left;
+        padding-left: 20px;
+    }
+
+.mensaje-confirmacion ul li{
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.hora-confirmacion {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+}
+
+    .hora-confirmacion strong {
+        font-size: 2rem;
+    }
+
+.mensaje-confirmacion strong {
+    color: #0282A6;
+}
+
+.mensaje-confirmacion p {
+    font-size: 15px;
+    /*text-align: justify;*/
+}
+
+.mensaje-confirmacion h4 {
+    font-size: 16px;
+    margin-top: 18px;
+}
+
+.mensaje-confirmacion .caja-profesional {
+    /*border: 1px solid #EEE;*/
+    min-height: 0;
+    /*box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);*/
+}
+
+    .mensaje-confirmacion .caja-profesional:hover {
+        /*box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);*/
+    }
+
+    .mensaje-confirmacion .caja-profesional img {
+        width: 80px;
+        height: 80px;
+    }
+
+.mensaje-confirmacion .nombre-profesional {
+    font-size: 16px;
+}
+
+.mensaje-confirmacion .cont-convenios {
+    justify-content: space-evenly;
+}
+
+.mensaje-confirmacion .valor-consulta {
+    border-top: none;
+    font-size: 2rem;
+}
+
+.header-mensaje {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-mensaje .logotipo {
+    max-width: 200px;
+    margin-bottom: 3rem;
+}
+.header-mensaje i {
+    font-size: 3rem;
+    color: #FFAF36;
+}
+
+.mensaje .body-mensaje {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+    .mensaje .body-mensaje p {
+        margin-bottom: 0;
+    }
+
+    .mensaje .body-mensaje i {
+        font-size: 68px;
+        color: #FFAF36;
+        margin-left: auto;
+    }
+
+.mensaje-confirmacion .caja-opciones {
+    display: none;
+}
+
+
+@media (max-width: 1024px) {
+    .mensaje-confirmacion .fecha-atencion,
+    .mensaje-confirmacion .hora-atencion,
+    .mensaje-confirmacion .header-aviso-atencion {
+        display: none !important;
+    }
+
+    .mensaje-confirmacion .caja-profesional {
+        border: none;
+        justify-content: space-between;
+    }
+
+    .mensaje-confirmacion .caja-profesional img {
+        width: 60px;
+        height: 60px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        display: inline-block;
+        margin-right: 1rem;
+        border-radius: 50px;
+        margin-top: 0;
+    }
+
+    .mensaje-confirmacion .card {
+        /*flex-direction: row;
+        margin-bottom: 2rem;*/
+    }
+
+    .mensaje-confirmacion .card:hover {
+        box-shadow: none;
+    }
+
+    .mensaje-confirmacion .card-body {
+        padding: 0;
+        justify-content: flex-start;
+    }
+
+    .mensaje-confirmacion .cont-convenios {
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+    }
+    .mensaje-confirmacion .custom-radio {
+        margin-bottom: 2rem;
+    }
+    .mensaje-confirmacion .custom-radio:last-child {
+        margin-bottom: 1rem;
+    }
+    .mensaje-confirmacion .caja-profesional {
+        box-shadow: none;
+    }
+
+    .header-mensaje {
+        border-top: 1px solid rgba(59, 193, 205, 0.3);
+    }
+
+    .header-mensaje .logotipo {
+        margin-top: 2rem;
+    }
+
+    .mensaje-confirmacion ul li {
+        /* width: 74%;*/
+        margin-bottom: 1rem;
+    }
+    .mensaje-confirmacion.caja-base .mensaje h3 {
+        font-size: 16px;
+    }
+
+    .mensaje-confirmacion p {
+        font-size: 14px;
+    }
+
+}
+
+.cont-icon-confirma {
+    text-align: right;
+}
+
+    .cont-icon-confirma .icon-confirma {
+        font-size: 5rem;
+    }
+
+.mensaje-confirmacion .caja-profesional-img {
+    width: 80px;
+    height: 80px;
+}
+
+.cont-confirmacion {
+    /* align-items: center;*/
+}
+
+.cont-confirmacion .card {
+    border: none;
+}
+
+    .cont-confirmacion .cont-icon-confirma {
+        text-align: right !important;
+    }
+
+.linea-voucher.total {
+    margin-top: auto;
+    /* border-top: 1px solid #DDD;*/
+    padding-top: 2rem;
+}
+
+.caja-pago-normal .mensaje {
+    width: 100%;
+    height: 100%;
+    
+}
+
+.caja-pago-normal .linea-voucher.total {
+    text-align: right;
+    margin-top: 3rem;
+    text-align: right;
+}
+
+.mensaje-confirmacion .caja-pago-normal .mensaje .valor-consulta {
+    font-size: 3rem;
+    text-align: right;
+}
+.caja-pago-normal .mensaje .header-mensaje {
+    display: none;
+}
+
+
+@media (max-width: 768px) {
+    .header-mensaje {
+        display: none;
+    }
+    .cont-icon-confirma {
+        text-align: center;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .mensaje-confirmacion .caja-profesional {
+        flex-direction: row;
+        border: none;
+        align-items: center;
+       margin: 0;
+       margin-bottom: 2rem;
+       
+    }
+
+
+    .mensaje-confirmacion p {
+        /*font-size: 1rem;*/
+    }
+    .calificacion2 {
+        text-align: left;
+    }
+
+    .mensaje-confirmacion .nombre-profesional {
+        margin-left: 0;
+    }
+    .mensaje-confirmacion.caja-base {
+        width: 98%;
+    }
+
+        .mensaje-confirmacion.caja-base {
+            padding: 32px 24px;
+            padding-bottom: 1.5rem;
+            /* background-position: center center;*/
+        }
+
+        .mensaje-confirmacion.caja-base .card {
+            margin-top: 0;
+            width: 100%;
+            padding: 16px;
+        }
+
+        .mensaje-confirmacion.caja-base .nombre-profesional {
+            max-width: 100%;
+        }
+
+        .mensaje-confirmacion.caja-base  .caja-profesional .cont-data {
+            width: 100%;
+        }
+        .caja-pago-normal .linea-voucher.total {
+            margin-top: 0;
+            margin-bottom: 1rem;
+
+        }
+
+        .mensaje-confirmacion.caja-base:has(.caja-pago-normal) {
+            background-position: 12% 63%;
+        }
+}

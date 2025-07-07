@@ -1,0 +1,150 @@
+﻿@model LoginViewModel
+
+@{
+    Layout = null;
+    
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @*<title>@ViewData["Title"] - Medical</title>*@
+
+    <base href="">
+    <meta charset="utf-8" />
+    <title>Medical | Sitio Contralor</title>
+    <meta name="description" content="Latest updates and statistic charts">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- #region metronic-template -->
+    <!--begin::Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,600,700">
+    <!--end::Fonts -->
+
+    <link href="~/metronic_demo7/assets/css/pages/login/login-3.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+
+    <!--begin::Global Theme Styles(used by all pages) -->
+    <link href="~/metronic_demo7/assets/plugins/global/plugins.bundle.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/metronic_demo7/assets/css/style.bundle.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <!--end::Global Theme Styles -->
+    <!-- #endregion -->
+
+    <link rel="shortcut icon" href="~/metronic_demo7/assets/media/logos/favicon.ico" />
+
+</head>
+<body class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--transparent kt-aside--enabled kt-aside--fixed kt-aside--minimize kt-page--loading">
+    <!-- begin:: Page -->
+    <div class="kt-grid kt-grid--ver kt-grid--root kt-page">
+        <div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v3 kt-login--signin" id="kt_login">
+            <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" style="background-image: url(/metronic_demo7/assets/media/bg/bg-3.jpg);">
+                <div class="kt-grid__item kt-grid__item--fluid kt-login__wrapper">
+                    <div class="kt-login__container">
+                        <div class="kt-login__logo">
+                            <a href="#">
+                                <img alt="Logo" src="~/metronic_demo7/assets/media/logos/logo.png" />
+                            </a>
+                        </div>
+                        <div class="kt-login__signin">
+                            <div class="kt-login__head">
+                                <h3 class="kt-login__title">Login Contralor</h3>
+                            </div>
+                            <form class="kt-form" method="post" role="form">
+                                <div class="input-group">
+                                    <input class="form-control" type="text" placeholder="Email" autocomplete="off" asp-for="Username">
+                                </div>
+                                <div class="input-group">
+                                    <input class="form-control" type="password" placeholder="Password" asp-for="Password">
+                                </div>
+                                <input hidden name="rol" value="@Roles.Contralor" />
+                                <input hidden name="returnUrl" value="@ViewData["ReturnUrl"]" />
+                                <div class="row kt-login__extra">
+                                    <div class="col kt-align-right">
+                                        <a href="javascript:;" id="kt_login_forgot" class="kt-login__link">¿Olvidaste contrase&ntilde;a?</a>
+                                    </div>
+                                </div>
+                                <div class="kt-login__actions">
+                                    @*<button type="submit" class="btn btn-default">Log in</button>*@
+                                    <button id="kt_login_signin_submit" class="btn btn-brand btn-elevate kt-login__btn-primary">Iniciar sesion</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="kt-login__forgot">
+                            <div class="kt-login__head">
+                                <h3 class="kt-login__title">¿Olvidaste contrase&ntilde;a?</h3>
+                                <div class="kt-login__desc">Ingresa tu correo para reiniciar tu contrase&ntilde;a:</div>
+                            </div>
+                            <form class="kt-form" asp-controller="Account" asp-action="PageReset" method="post">
+                                <div class="input-group">
+                                    <input class="form-control" type="text" placeholder="Email" id="kt_email" autocomplete="off" asp-for="Username">
+                                    <input hidden name="rol" value="@Model.rol" />
+                                </div>
+                                <div class="kt-login__actions">
+                                    <button id="kt_login_forgot_submit" class="btn btn-brand btn-elevate kt-login__btn-primary">Reiniciar clave</button>&nbsp;&nbsp;
+                                    <button id="kt_login_forgot_cancel" class="btn btn-light btn-elevate kt-login__btn-secondary">Cancelar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="kt-reset__password">
+                            <div class="kt-login__head">
+                                <h3 class="kt-login__title">Ingresa tu nueva contraseña</h3>
+                            </div>
+                            <form class="kt-form" method="post" role="form">
+
+                                <div class="input-group">
+                                    <input class="form-control" type="password" placeholder="Password" asp-for="Password">
+                                </div>
+                                <div class="input-group">
+                                    <input class="form-control" type="password" placeholder="Repetir Password" asp-for="RepeatPassword">
+                                </div>
+                                <input hidden name="rol" value="@Model.rol" />
+                                <input hidden name="ActivationCode" value="@Model.ActivationCode" />
+                                <input hidden name="username" value="@Model.Username" />
+                                <input hidden name="returnUrl" value="@ViewData["ReturnUrl"]" />
+
+                                <div class="kt-login__actions">
+                                    @*<button type="submit" class="btn btn-default">Log in</button>*@
+                                    <button id="kt_password_reset_submit" class="btn btn-brand btn-elevate kt-login__btn-primary">Modificar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #region metronic-template -->
+    <!-- begin::Global Config(global config for global JS sciprts) -->
+    <script>
+        var KTAppOptions = {
+            "colors": {
+                "state": {
+                    "brand": "#22b9ff",
+                    "light": "#ffffff",
+                    "dark": "#282a3c",
+                    "primary": "#5867dd",
+                    "success": "#34bfa3",
+                    "info": "#36a3f7",
+                    "warning": "#ffb822",
+                    "danger": "#fd3995"
+                },
+                "base": {
+                    "label": ["#c5cbe3", "#a1a8c3", "#3d4465", "#3e4466"],
+                    "shape": ["#f0f3ff", "#d9dffa", "#afb4d4", "#646c9a"]
+                }
+            }
+        };
+    </script>
+    <!-- end::Global Config -->
+    <!--begin::Global Theme Bundle(used by all pages) -->
+    <script src="~/metronic_demo7/assets/plugins/global/plugins.bundle.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>
+    <script src="~/metronic_demo7/assets/js/scripts.bundle.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>
+    <!--end::Global Theme Bundle -->
+    <!-- #endregion -->
+
+    <script src="~/metronic_demo7/assets/js/pages/custom/login/login-general.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>
+    <script src="~/js/validator-messages-es.js?rnd=@NumeroRandom.GetRandom()"></script> <!-- traducción del validador -->
+
+</body>
+</html>

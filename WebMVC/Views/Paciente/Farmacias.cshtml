@@ -1,0 +1,1172 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    ViewData["Title"] = "Farmacias";
+    Layout = "_LayoutPaciente";
+
+}
+
+@section PageStyles  {
+    <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    @*@switch (ViewBag.idCliente)
+        {
+            case "148":
+                <link href="~/css/colmena/colmena.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+                ;
+                break;
+            case "176":
+                <link href="~/css/vidacamara/vidacamara.css" rel="stylesheet" type="text/css" />
+                ;
+                break;
+            case "204":
+                <link href="~/css/claro/claro.css" rel="stylesheet" type="text/css" />
+                ;
+                break;
+
+        }*@
+}
+
+
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+    <!--Begin::App-->
+
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+        
+        <div class="container-fluid farmacia">
+            @{
+
+                if(ViewBag.idCliente == "108")
+                {
+                    <div class="row">
+                    <div class="col">
+                        <div class="top-banner justify-content-between">
+                            <h1 class="legend order-2 order-md-1 fuente-accesible">
+                            <span class="legend-primera-frase fuente-accesible" metadata="homeHola">¡Hola,  </span>
+                            <span class="saludo-usuario text-warning text-capitalize fuente-accesible" id="saludoPaciente"></span>! 
+                            <span metadata="homeHola2" class="saludo-ayuda-usuario">Tus medicamentos al mejor precio</span>
+                            </h1>
+                            <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+                        </div>
+                    </div>
+                    </div>
+                }
+                 else if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+                {
+
+                    <div class="top-banner_scotiabank">
+                          <img src="~/img/scotiabank/home/doctora.png" alt="Doctora" class="order-1 order-md-2">
+                           <h1 class="legend order-2 order-md-1 fuente-accesible">
+                                <span class="legend-primera-frase fuente-accesible" metadata="homeHola">¡Hola,  </span>
+                                <span class="saludo-usuario text-warning text-capitalize fuente-accesible" id="saludoPaciente"></span>! 
+                                <span metadata="homeHola2" class="saludo-ayuda-usuario">Tus medicamentos al mejor precio</span>
+                           </h1> 
+                    </div>                     
+                }
+                else
+                {
+                     <div class="row ">
+                        <div class="col">
+                            <div class="top-banner justify-content-between">
+                                <h1 class="legend order-2 order-md-1">¡Hola  <span class="saludo-usuario text-warning text-capitalize" id="saludoPaciente"></span>! Tus medicamentos al mejor precio</h1>
+                                <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+                            </div>
+                        </div>
+                    </div>
+                }             
+            }
+
+            <div class="cont-component">
+                <div class="farm-header">
+                    <h1 class="farm-titulo">FARMACIA</h1>
+                    <div class="farm-btnes-encabezado">
+                        @{
+                        var todos = ViewBag.filter == "todos" ? "active" : "mes";
+                        var mes = ViewBag.filter == "mes" ? "active" : "mes";
+                        var año = ViewBag.filter == "año" ? "active" : "mes";
+                        }
+                        <a class="farm-boton-encabezado @todos" href="@Url.Action("Farmacias", "Paciente", new { page = 1, filter = "todos" })">Todos</a>
+                        <a class="farm-boton-encabezado @mes" href="@Url.Action("Farmacias", "Paciente", new { page = 1, filter = "mes" })">Úlltimo mes</a>
+                        <a class="farm-boton-encabezado @año" href="@Url.Action("Farmacias", "Paciente", new { page = 1, filter = "año" })">Último año</a>
+                    </div>
+                </div>
+        @if (ViewBag.historialAtencionesFarmacia.Count != 0)
+                {
+                    <div class="farm-container-atenciones">
+                        <div class="farm-contenedor-ultimo">
+                            @{
+                                DateTime fechaActualPrincipal = DateTime.Now;
+                                DateTime fechaAtencionPrincipal = ViewBag.historialAtencionesFarmacia[0].FechaCreacion;
+                                int diferenciaDiasPrincipal = (int)(fechaActualPrincipal - fechaAtencionPrincipal).TotalDays;
+                            }
+                            <h3 class="farm-subtitulo">Última Atención</h3>
+                            <div class="farm-container-ultima-atencion">
+                                <div class="farm-ultima-atencion">
+                                    <p class="farm-fecha-tarj">
+                                        <i class="fal fa-calendar-alt farm-fecha-tarj"></i> @ViewBag.historialAtencionesFarmacia[0].FechaCreacion.ToShortDateString()
+                                    </p>
+                                    <div class="farm-seccion-dr">
+                                        <h2 class="farm-nom-dr interlineado nombre-profesional ">@ViewBag.historialAtencionesFarmacia[0].NombrePaciente</h2>
+                                        @*<h2 class="farm-nom-dr interlineado">Alberto Santelices S.</h2>*@
+                                        <h3 class="especialidad farm-subtitulo-tarj interlineado">@ViewBag.historialAtencionesFarmacia[0].Especialidad</h3>
+                                        @*<h3 class="farm-subtitulo-tarj interlineado">Medicina General</h3>*@
+                                    </div>
+                                   
+                                    <div class="farm-medicamentos">
+                                        <h2 class="farm-subtitulo-tarj">Medicamentos</h2>
+                                        <ul class="lista-medicamentos farm-subtitulo-tarj interlineado">
+                                            @foreach (var medi in ViewBag.medicamentosAtenciones)
+                                            {
+                                                @if (ViewBag.historialAtencionesFarmacia[0].Id == medi.Id)
+                                                {
+                                                    <li class="exam-subtitulo-tarj interlineado text-align-li"> <img class="exam-ticket" src="~/img/examenes/check.png">
+                                                        @{
+                                                            int posicionInicial = 0;
+                                                            int posicionFinal = 35;
+                                                            int subcadena;
+                                                            string dataViewMedi;
+                                                            if (medi.GlosaCom != null)
+                                                            {
+                                                                if (medi.GlosaCom.Length >= posicionFinal)
+                                                                {
+                                                                    subcadena = posicionFinal;
+                                                                }
+                                                                else
+                                                                {
+                                                                    subcadena = medi.GlosaCom.Length;
+                                                                }
+                                                                dataViewMedi = medi.GlosaCom;
+                                                            }
+                                                            else
+                                                            {
+                                                                if (medi.Glosa.Length >= posicionFinal)
+                                                                {
+                                                                    subcadena = posicionFinal;
+                                                                }
+                                                                else
+                                                                {
+                                                                    subcadena = medi.Glosa.Length;
+                                                                }
+                                                                dataViewMedi = medi.Glosa;
+                                                            }
+
+                                                        }
+                                                        @dataViewMedi.Substring(0, subcadena)
+                                                    </li>
+                                                }
+                                            }
+
+                                            @* @foreach (var med in @ViewBag.medicamentosAtenciones)
+                                    {
+                                        @if (med.Id == @ViewBag.historialAtencionesFarmacia[0].Id)
+                                        {
+                                            @if (med.IsComercial == 1)
+                                            {
+                                                <li>@med.GlosaCom</li>
+                                            }
+                                            else
+                                            {
+                                                <li>@med.Glosa</li>
+                                            }
+                                        }
+                                    }*@
+                                        </ul>
+                                        @if (@ViewBag.historialAtencionesFarmacia[0] == null)
+                                        {
+                                            <h3 class="subtitulo-card-farmacia">
+                                                Compra Lista
+                                            </h3>
+                                        }
+                                        @if (diferenciaDiasPrincipal > 120)
+                                        {
+                                            <div class="farm-receta-no-vigente">
+                                                <p class="farm-recetanovigente interlineado">Receta No vigente</p>
+                                            </div>
+                                        }
+                                        @*<ul class="farm-lista-items">
+                                    <li class="farm-subtitulo-tarj interlineado">Paracetamol 500mg comprimido</li>
+                                </ul>*@
+                                    </div>
+                                    @if (ViewBag.codigoTelefono == "CL")
+                                    {
+                                        <div class="farm-cont-farmacia-online">
+                                            <h2 class="farm-subtitulo-tarj">Farmacias en línea</h2>
+                                            <div class="farm-container-farmazon">
+                                                <img src="~/img/farmacias/logo-farmazon-v2.svg" alt="" alt="">
+                                                <div class="text-container-farmazon interlineado">
+                                                    <h2 class="farm-subtitulo-tarj farm-letra-12">Compra en nuestra red de farmacias</h2>
+                                                    <h3 class="farm-subtitulo2-tarj interlineado farm-letra-12">
+                                                        ¡Recibe tus medicamentos en un click!
+                                                    </h3>
+                                                    @if (diferenciaDiasPrincipal > 120)
+                                                    {
+                                                        <button class="farm-btn-tarj-ult-aten" onclick="openModalRenovar(@ViewBag.historialAtencionesFarmacia[0].Id, @ViewBag.historialAtencionesFarmacia[0].IdEspecialidad)">RENOVAR RECETA</button>
+                                                    }
+                                                    else
+                                                    {
+                                                        <button class="farm-btn-tarj-ult-aten" onclick="redirectAtencion(@ViewBag.historialAtencionesFarmacia[0].Id)">COMPRAR TUS MEDICAMENTOS</button>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (@ViewBag.historialAtencionesFarmacia[0].LinkYapp != null)
+                                    {
+                                        <div class="farm-cont-cotizador">
+                                            <h2 class="farm-subtitulo-tarj">Cotizador de Medicamentos</h2>
+                                            <div class="farm-container-yapp">
+                                                <img src="~/img/farmacias/logo-yapp-v2.svg" alt="">
+                                                <div class="text-container-yapp">
+                                                    <h3 class="farm-subtitulo2-tarj farm-letra-12">Cotiza en nuestra amplia red de farmacias</h3>
+
+                                                    @if (diferenciaDiasPrincipal > 120)
+                                                    {
+                                                        <button class="farm-btn-tarj-ult-aten" onclick="openModalRenovar(@ViewBag.historialAtencionesFarmacia[0].Id, @ViewBag.historialAtencionesFarmacia[0].IdEspecialidad)">RENOVAR RECETA</button>
+                                                    }
+                                                    else
+                                                    {
+                                                        <button class="farm-btn-tarj-ult-aten" onclick="redirectAtencion(@ViewBag.historialAtencionesFarmacia[0].Id)">COMPRAR TUS MEDICAMENTOS</button>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (@ViewBag.historialAtencionesFarmacia[0].LinkPharol != null)
+                                    {
+                                        <div class="farm-cont-cotizador">
+                                            <h2 class="farm-subtitulo-tarj">Cotizador de Medicamentos</h2>
+                                            <div class="farm-container-yapp">
+                                                <img src="~/img/farmacias/logo-pharol.svg" alt="">
+                                                <div class="text-container-yapp">
+                                                    <h3 class="farm-subtitulo2-tarj farm-letra-12">Cotiza en nuestra amplia red de farmacias</h3>
+
+                                                    @if (diferenciaDiasPrincipal > 120)
+                                                    {
+                                                        <button class="farm-btn-tarj-ult-aten" onclick="openModalRenovar(@ViewBag.historialAtencionesFarmacia[0].Id, @ViewBag.historialAtencionesFarmacia[0].IdEspecialidad)">RENOVAR RECETA</button>
+                                                    }
+                                                    else
+                                                    {
+                                                        <button class="farm-btn-tarj-ult-aten" onclick="redirectAtencion(@ViewBag.historialAtencionesFarmacia[0].Id)">COMPRAR TUS MEDICAMENTOS</button>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (@ViewBag.historialAtencionesFarmacia[0].LinkFarmalisto != null)
+                                    {
+                                        <div class="farm-cont-cotizador">
+                                            <h2 class="farm-subtitulo-tarj">Cotizador de Medicamentos</h2>
+                                            <div class="farm-container-yapp">
+                                                <img src="~/img/farmacias/logo-farmalisto.png" alt="">
+                                                <div class="text-container-yapp">
+                                                    <h3 class="farm-subtitulo2-tarj farm-letra-12">Cotiza en nuestra amplia red de farmacias</h3>
+
+                                                    @if (diferenciaDiasPrincipal > 120)
+                                                    {
+                                                        <button class="farm-btn-tarj-ult-aten" onclick="openModalRenovar(@ViewBag.historialAtencionesFarmacia[0].Id, @ViewBag.historialAtencionesFarmacia[0].IdEspecialidad)">RENOVAR RECETA</button>
+                                                    }
+                                                    else
+                                                    {
+                                                        <button class="farm-btn-tarj-ult-aten" onclick="openLinkFarma("@ViewBag.historialAtencionesFarmacia[0].LinkFarmalisto")">COMPRAR TUS MEDICAMENTOS</button>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (@ViewBag.historialAtencionesFarmacia[0].LinkVitau != null)
+                                    {
+                                        <div class="farm-cont-cotizador">
+                                            <h2 class="farm-subtitulo-tarj">Cotizador de Medicamentos</h2>
+                                            <div class="farm-container-yapp">
+                                                <img src="~/img/farmacias/logo-vitau.svg" alt="">
+                                                <div class="text-container-yapp">
+                                                    <h3 class="farm-subtitulo2-tarj farm-letra-12">Cotiza en nuestra amplia red de farmacias</h3>
+
+                                                    @if (diferenciaDiasPrincipal > 120)
+                                                    {
+                                                        <button class="farm-btn-tarj-ult-aten" onclick="openModalRenovar(@ViewBag.historialAtencionesFarmacia[0].Id, @ViewBag.historialAtencionesFarmacia[0].IdEspecialidad)">RENOVAR RECETA</button>
+                                                    }
+                                                    else
+                                                    {
+                                                        <button class="farm-btn-tarj-ult-aten" onclick="openLinkFarma("@ViewBag.historialAtencionesFarmacia[0].LinkVitau")">COMPRAR TUS MEDICAMENTOS</button>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="farm-contendor-anteriores">
+                            <h3 class="farm-subtitulo">Atenciones Anteriores</h3>
+                            <div class="farm-container-atenciones-anteriores">
+                                @foreach (var atencion in Model)
+                                {
+                                    <div class="farm-atencion-anterior">
+                                        @{
+                                            DateTime fechaActual = DateTime.Now;
+                                            DateTime fechaAtencion = atencion.FechaCreacion;
+                                            int diferenciaDias = (int)(fechaActual - fechaAtencion).TotalDays;
+                                        }
+                                        <p class="farm-fecha-tarj">
+                                            <i class="fal fa-calendar-alt"></i> @atencion.FechaCreacion.ToShortDateString()
+                                        </p>
+                                        <div class="farm-profesional">
+                                            <h2 class="nombre-profesional farm-nom-dr interlineado">@atencion.NombrePaciente</h2>
+                                            <h3 class="especialidad farm-subtitulo-tarj interlineado">@atencion.Especialidad</h3>
+                                            @*<h2 class="farm-nom-dr interlineado">Alberto Santelices S.</h2>
+                                <h3 class="farm-subtitulo-tarj interlineado">Medicina General</h3>*@
+                                        </div>
+                                      
+                                        <div class="farm-contenedor-ver-medicamento">
+                                            <div class="farm-btn-tarjeta-ver-medicamento">
+                                                <div class="farm-contenedor-btn-ver-medicamento">
+                                                    <div class="farm-container-img-ojo">
+                                                        <div class="farm-img-ojo">
+                                                            @{
+                                                                List<AtencionMedicamentos> viewDataMedi = ViewBag.medicamentosAtenciones;
+                                                                var mediData = viewDataMedi.FindAll(x => x.Id == atencion.Id).ToList();
+                                                            }
+                                                            <img class="farm-ojo" src="~/img/farmacias/ojo.svg" alt="">
+                                                            <button class="farm-btn-blanco" id="@atencion.Id" onclick="viewListItems('@atencion.Id')" data-obj='@Html.Raw(Json.Serialize(mediData))'>
+                                                                Ver Medicamentos
+                                                            </button>
+                                                            @*<ul class="lista-medicamentos">
+                                                        @foreach (var med in @ViewBag.medicamentosAtenciones)
+                                                        {
+                                                            @if (med.Id == atencion.Id)
+                                                            {
+
+                                                                @if (med.IsComercial == 1)
+                                                                {
+                                                                    <li>@med.GlosaCom</li>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <li>@med.Glosa</li>
+                                                                }
+                                                            }
+                                                        }
+                                                    </ul>
+
+                                                    <h3 class="subtitulo-card-farmacia">
+                                                        Compra Lista
+                                                    </h3>
+                                                    <ul class="lista-proveedores">
+                                                        @if (ViewBag.HostURL.ToString().Contains("segurossura."))
+                                                        {
+                                                            <li>
+                                                                <div class="btn-proveedor">
+                                                                    <a href="https://sura.yapp.cl/?utm_source=link_Medismart&utm_medium=boton&utm_campaign=Derivacion_SURA_Medismart/" target="_blank"><img src="~/img/farmacias/logo-yapp.svg" alt="Yapp" /></a>
+                                                                </div>
+                                                                <div class="leyenda-proveedor">
+                                                                    <a href="https://sura.yapp.cl/?utm_source=link_Medismart&utm_medium=boton&utm_campaign=Derivacion_SURA_Medismart/" target="_blank">Revisa todas nuestras ofertas</a>
+                                                                </div>
+                                                            </li>
+                                                        }
+                                                        else
+                                                        {
+                                                            @if (@atencion.LinkYapp != null && @atencion.LinkYapp != "error")
+                                                            {
+                                                                <li>
+                                                                    <div class="btn-proveedor">
+                                                                        <a href="@atencion.LinkYapp" target="_blank"><img src="~/img/farmacias/logo-yapp.svg" alt="Yapp" /></a>
+                                                                    </div>
+                                                                    <div class="leyenda-proveedor">
+                                                                        <a href="@atencion.LinkYapp" target="_blank">Revisa todas nuestras ofertas</a>
+                                                                    </div>
+                                                                </li>
+                                                            }
+                                                        }
+                                                        @if (@atencion.LinkPharol != null)
+                                                        {
+                                                            <li>
+                                                                <div class="btn-proveedor">
+                                                                    <a href="@atencion.LinkPharol" target="_blank"><img src="~/img/farmacias/logo-pharol.svg" alt="Pharol" /></a>
+                                                                </div>
+                                                                <div class="leyenda-proveedor">
+                                                                    <a href="@atencion.LinkPharol" target="_blank">Despacho Gratis con codigo: MEDISMART</a>
+                                                                </div>
+                                                            </li>
+                                                        }
+                                                        @if (@atencion.LinkFarmalisto != null)
+                                                        {
+                                                            <li class="d-none">
+                                                                <div class="btn-proveedor">
+                                                                    <a href="@atencion.LinkFarmalisto" target="_blank"><img src="~/img/farmacias/logo-farmalisto.png" alt="Pharol" /></a>
+                                                                </div>
+                                                                <div class="leyenda-proveedor">
+                                                                    <a href="@atencion.LinkFarmalisto" target="_blank">Despacho Gratis con codigo: MEDISMART</a>
+                                                                </div>
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                   else
+                                                    {
+                                                    <div class="col-12 col-md-auto">
+
+                                                        <div class="caja-atencion mensaje-no-atencion" id="divSinAtenciones">
+                                                            <div class="d-flex">
+                                                                <img src="~/img/icono-atencion.svg" alt="Icono No Atención">
+                                                                <h1>Aún no tienes <strong>recetas médicas asociadas a tus atenciones.</strong>  </h1>
+                                                            </div>
+
+                                                            <a href="/Paciente/Agendar" class="btn btn-primary btn-sm ml-auto">Agendar</a>
+                                                        </div>
+
+                                                    </div>
+                                                    }*@
+                                                        </div>
+                                                        @if (diferenciaDias > 120)
+                                                        {
+                                                            <div class="farm-receta-no-vigente">
+                                                                <p class="farm-recetanovigente interlineado">Receta No vigente</p>
+                                                            </div>
+                                                        }
+
+                                                    </div>
+                                                    <div class="farm-container-btn-tarjeta-dos">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="farm-container-btn-cotizar">
+                                                @if (diferenciaDias > 120)
+                                                {
+                                                    <button class="farm-btn-tarj" onclick="openModalRenovar(@atencion.Id, @atencion.IdEspecialidad)">RENOVAR RECETA</button>
+                                                }
+                                                else
+                                                {
+                                                    <button class="farm-btn-tarj btn-blue-color" onclick="redirectAtencion(@atencion.Id)">COMPRAR TUS MEDICAMENTOS</button>
+                                                }
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                            @* <div class="farm-atencion-anterior">
+                            <p class="farm-fecha-tarj">
+                                <img src="./assets/imagenes/calendario.png" alt=""> 27 de Junio |
+                                12:00
+                            </p>
+                            <div class="farm-profesional">
+                                <h2 class="farm-nom-dr interlineado">Alberto Santelices S.</h2>
+                                <h3 class="farm-subtitulo-tarj interlineado">Medicina General</h3>
+                            </div>
+                            <div class="farm-diagnostico">
+                                <h2 class="farm-subtitulo-tarj">Diagnóstico</h2>
+                                <h3 class="farm-subtitulo-tarj interlineado">82272006 - Síndrome de lunanova</h3>
+                            </div>
+                            <div class="farm-contenedor-ver-medicamento">
+                                <div class="farm-btn-tarjeta-ver-medicamento">
+                                    <div class="farm-contenedor-btn-ver-medicamento">
+                                        <div class="farm-container-img-ojo">
+                                            <div class="farm-img-ojo">
+                                                <img src="./assets/imagenes/ojo.png" alt="">
+                                                <button class="farm-btn-blanco">
+                                                    Ver Medicamentos
+                                                </button>
+                                            </div>
+                                            <div class="farm-receta-no-vigente">
+                                                <p class="farm-recetanovigente interlineado">Receta No vigente</p>
+                                            </div>
+                                        </div>
+                                        <div class="farm-container-btn-tarjeta-dos">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="farm-container-btn-cotizar">
+                                    <button class="farm-btn-tarj">Cotizar Medicamento</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="farm-atencion-anterior">
+                            <p class="farm-fecha-tarj">
+                                <img src="./assets/imagenes/calendario.png" alt=""> 27 de Junio |
+                                12:00
+                            </p>
+                            <div class="farm-profesional">
+                                <h2 class="farm-nom-dr interlineado">Alberto Santelices S.</h2>
+                                <h3 class="farm-subtitulo-tarj interlineado">Medicina General</h3>
+                            </div>
+                            <div class="farm-diagnostico">
+                                <h2 class="farm-subtitulo-tarj">Diagnóstico</h2>
+                                <h3 class="farm-subtitulo-tarj interlineado">82272006 - Síndrome de lunanova</h3>
+                            </div>
+                            <div class="farm-contenedor-ver-medicamento">
+                                <div class="farm-btn-tarjeta-ver-medicamento">
+                                    <div class="farm-contenedor-btn-ver-medicamento">
+                                        <div class="farm-container-img-ojo">
+                                            <div class="farm-img-ojo">
+                                                <img src="./assets/imagenes/ojo.png" alt="">
+                                                <button class="farm-btn-blanco">
+                                                    Ver Medicamentos
+                                                </button>
+                                            </div>
+                                            <div class="farm-receta-no-vigente">
+                                                <p class="farm-recetanovigente interlineado">Receta No vigente</p>
+                                            </div>
+                                        </div>
+                                        <div class="farm-container-btn-tarjeta-dos">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="farm-container-btn-cotizar">
+                                    <button class="farm-btn-tarj">Cotizar Medicamento</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="farm-atencion-anterior">
+                            <p class="farm-fecha-tarj">
+                                <img src="./assets/imagenes/calendario.png" alt=""> 27 de Junio |
+                                12:00
+                            </p>
+                            <div class="farm-profesional">
+                                <h2 class="farm-nom-dr interlineado">Alberto Santelices S.</h2>
+                                <h3 class="farm-subtitulo-tarj interlineado">Medicina General</h3>
+                            </div>
+                            <div class="farm-diagnostico">
+                                <h2 class="farm-subtitulo-tarj">Diagnóstico</h2>
+                                <h3 class="farm-subtitulo-tarj interlineado">82272006 - Síndrome de lunanova</h3>
+                            </div>
+                            <div class="farm-contenedor-ver-medicamento">
+                                <div class="farm-btn-tarjeta-ver-medicamento">
+                                    <div class="farm-contenedor-btn-ver-medicamento">
+                                        <div class="farm-container-img-ojo">
+                                            <div class="farm-img-ojo">
+                                                <img src="./assets/imagenes/ojo.png" alt="">
+                                                <button class="farm-btn-blanco">
+                                                    Ver Medicamentos
+                                                </button>
+                                            </div>
+                                            <div class="farm-receta-no-vigente">
+                                                <p class="farm-recetanovigente interlineado">Receta No vigente</p>
+                                            </div>
+                                        </div>
+                                        <div class="farm-container-btn-tarjeta-dos">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="farm-container-btn-cotizar">
+                                    <button class="farm-btn-tarj">Cotizar Medicamento</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="farm-atencion-anterior">
+                            <p class="farm-fecha-tarj">
+                                <img src="./assets/imagenes/calendario.png" alt=""> 27 de Junio |
+                                12:00
+                            </p>
+                            <div class="farm-profesional">
+                                <h2 class="farm-nom-dr interlineado">Alberto Santelices S.</h2>
+                                <h3 class="farm-subtitulo-tarj interlineado">Medicina General</h3>
+                            </div>
+                            <div class="farm-diagnostico">
+                                <h2 class="farm-subtitulo-tarj">Diagnóstico</h2>
+                                <h3 class="farm-subtitulo-tarj interlineado">82272006 - Síndrome de lunanova</h3>
+                            </div>
+                            <div class="farm-contenedor-ver-medicamento">
+                                <div class="farm-btn-tarjeta-ver-medicamento">
+                                    <div class="farm-contenedor-btn-ver-medicamento">
+                                        <div class="farm-container-img-ojo">
+                                            <div class="farm-img-ojo">
+                                                <img src="./assets/imagenes/ojo.png" alt="">
+                                                <button class="farm-btn-blanco">
+                                                    Ver Medicamentos
+                                                </button>
+                                            </div>
+                                            <div class="farm-receta-no-vigente">
+                                                <p class="farm-recetanovigente interlineado">Receta No vigente</p>
+                                            </div>
+                                        </div>
+                                        <div class="farm-container-btn-tarjeta-dos">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="farm-container-btn-cotizar">
+                                    <button class="farm-btn-tarj">Cotizar Medicamento</button>
+                                </div>
+                    </div>
+                        </div>
+                    </div>*@
+                        </div>
+                    </div>
+                    <div class="farm-navegador">
+                        @if (Model.PageNumber > 1)
+                        {
+                            <a href="@Url.Action("Farmacias", "Paciente", new { page = Model.PageNumber - 1, filter = ViewBag.filter })" class="farm-navegador-item">&lt;</a>
+                        }
+                        <a href="@Url.Action("Farmacias", "Paciente", new { page = 1, filter = ViewBag.filter })" class="farm-navegador-item">Inicio</a>
+                        @for (int i = Model.PageNumber - 1; i <= Model.PageNumber + 1; i++)
+                        {
+                            if (i > 0 && i <= Model.PageCount)
+                            {
+                                if (i == Model.PageNumber)
+                                {
+                                    <a class="farm-navegador-item">@i</a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Farmacias", "Paciente", new { page = i, filter = ViewBag.filter })" class="farm-navegador-item">@i</a>
+                                }
+                            }
+                        }
+                        <a href="@Url.Action("Farmacias", "Paciente", new { page = Model.PageCount, filter = ViewBag.filter })" class="farm-navegador-item">Fin</a>
+                        @if (Model.PageNumber < Model.PageCount)
+                        {
+                            <a href="@Url.Action("Farmacias", "Paciente", new { page = Model.PageNumber + 1, filter = ViewBag.filter })" class="farm-navegador-item">&gt;</a>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p>No tienes ningun medicamento en este momento</p>
+                }
+            </div>
+
+            <div class="modal modal-paciente fade" id="modalActualizacionPaciente" data-backdrop="static" name="kt_modal_crear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl kt-grid kt-grid--hor kt-grid--root kt-login kt-login--v3 kt-login--signin" role="document" id="kt_login">
+                    @*
+                    <div class="modal-content">
+                    *@
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>-->
+                            <br />
+                        </div>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <img src="~/img/invitado/foto1.png" class="img-modal-paciente" alt="" />
+                                </div>
+                                <div class="col-md-6">
+                                    <!--<i class="fal fa-user" id="idicono"></i>-->
+                                    <h5 class="modal-title" id="exampleModalLabel">
+                                        Creación de Usuario
+                                        <small>Campo requerido*</small>
+                                    </h5>
+                                    <form id="form_crea_user">
+                                        <div class="form-group">
+                                            <label for="Identificador" class="form-label">Identificador <span style="color:red">*</span></label>
+                                            <input class="form-control" type="text" maxlength="12" required="required" id="Identificador" name="Identificador" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Nombres <span style="color: red">*</span></label>
+                                            <input class="form-control" type="text" maxlength="50" required="required" id="Nombre" name="Nombre" autocomplete="off" value="@ViewBag.name" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="ApellidoPaterno" class="form-label">Apellido paterno <span style="color: red">*</span></label>
+                                            <input class="form-control" type="text" maxlength="50" required="required" id="ApellidoPaterno" name="ApellidoPaterno" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="ApellidoMaterno" class="form-label">Apellido materno</label>
+                                            <input class="form-control" type="text" maxlength="50" required="required" id="ApellidoMaterno" name="ApellidoMaterno" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Correo" class="form-label">Correo <span style="color: red">*</span></label>
+                                            <input class="form-control" type="email" maxlength="60" required="required" id="Correo" name="Correo" value="@ViewBag.userMail" disabled />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Telefono" class="form-label">Telefono <span style="color: red">*</span></label>
+                                            <input class="form-control" type="text" maxlength="60" required="required" id="Telefono" name="Telefono" />
+                                            <input hidden name="uidFirebase" value="@ViewBag.uidFirebase">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary d-none" id="btnCerrar" data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-primary ml-auto" id="btnActualizar" @* data-dismiss="modal"*@>Actualizar Información</button>
+                                        </div>
+                                    </form>
+                                    <div class="kt-login__signin" id="loginPost1" style="display:none !important">
+                                        <form class="kt-form" asp-controller="Account" asp-action="GuestLogin" method="post" role="form" id="loginPost">
+                                            <h5 class="modal-title">
+                                                Ingreso de Usuario
+                                                <small>Campo requerido *</small>
+                                            </h5>
+                                            <div class="" id="modalBody">
+                                                <div class="form-group">
+                                                    <label class="d-block ms-label fuente-accesible" id="labelIdentificador">Ingresa tu E-MAIL o RUT</label>
+                                                    <input class="form-control" type="text" id="kt_firebase" placeholder="tucorreo@gmail.com o 111111111" autocomplete="off" name="Username">
+                                                    <input class="form-control" type="hidden" id="JsonData" name="JsonData">
+                                                    <input class="form-control" type="hidden" name="UrlAgendar" value="@ViewData["UrlAgendar"]">
+                                                </div>
+                                                <input hidden name="rol" value="@Roles.Paciente">
+                                                <input hidden name="returnUrl" value="@ViewData["ReturnUrl"]">
+                                                <div class="form-group">
+                                                    <label class="d-block ms-label fuente-accesible">Clave</label>
+                                                    <input type="password" class="form-control" required="required" name="Password">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="modal-footer">
+                                                    <a href="javascript:;" id="kt_login_forgot" class="fuente-accesible">¿Olvidaste tu clave?</a>
+                                                    <button type="button" class="btn btn-primary" style="align-self: flex-end" id="kt_login_signin_submit">Ingresar</button>
+                                                </div>
+                                                <div class="modal-footer ">
+                                                    <button type="button" class="btn btn-light btn-elevate kt-login__btn-secondary d-none" id="kt_login_forgot_cancel" data-dismiss="modal">Cancelar</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <form class="kt-form d-none" asp-controller="Account" asp-action="PageReset" id="pageReset" method="post">
+                                        <h5 class="modal-title">¿Olvidaste tu clave?</h5>
+                                        <div class="form-group">
+                                            <label class="d-block ms-label fuente-accesible" id="labelIdentificadorReset">Documento identidad</label>
+                                            <input class="form-control" type="text" placeholder="" id="identificadorReset" autocomplete="off" name="Username">
+                                            <input hidden name="rol" value="@Roles.Paciente" />
+                                        </div>
+                                        <div class="kt-login__actions mt-0">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-12 col-md px-0 pr-md-1">
+                                                        <button id="kt_login_forgot_cancel" class="btn btn-light btn-elevate kt-login__btn-secondary btn-block mb-3 mb-md-0 d-none">Cancelar</button>
+                                                    </div>
+                                                    <div class="col-12 col-md px-0 pl-md-1">
+                                                        <button id="kt_login_forgot_submit" class="btn btn-primary btn-elevate kt-login__btn-primary btn-block">Reiniciar clave</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <form class="kt-form d-none" method="post" role="form" id="cambioClave">
+                                        <h5 class="modal-title">Ingresa tu nueva clave</h5>
+                                        <div class="form-group mb-2">
+                                            <label class="d-block ms-label fuente-accesible" id="labelIdentificadorReset">Clave</label>
+                                            <input class="form-control" type="password" placeholder="Escribe tu nueva clave" name="Password">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label class="d-block ms-label fuente-accesible" id="labelIdentificadorReset">Repetir clave</label>
+                                            <input class="form-control" type="password" placeholder="Vuelve a escribir tu nueva clave" name="RepeatPassword">
+                                        </div>
+                                        <input hidden name="rol" value="@Roles.Paciente" />
+                                        <input hidden name="ActivationCode" value="" />
+                                        <input hidden name="username" value="" />
+                                        <input hidden name="returnUrl" value="@ViewData["ReturnUrl"]" />
+                                        <div class="text-left">
+                                            <p style="font-size:12px !important">
+                                                <strong>La clave debe tener :</strong><br /><br />
+                                                - Entre 8 a 15 caracteres. <br />
+                                                - Al menos una letra mayúscula / Al menos una letra minúscula / Al menos un número <br />
+                                            </p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary d-none" id="kt_password_reset_cancel">Cancelar</button>
+                                            <button id="kt_password_reset_submit" class="btn btn-primary ml-auto">Modificar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--FIN MODAL CREACION DE USUARIO-->
+
+
+
+            @*ANTIGUO*@
+            @*<div class="cont-farmacias ">
+                <div class="row">
+                    @if(ViewBag.existeHistorial==1){
+                    <div class="col-12 col-md-auto">
+                            <h3 class="farm-subtitulo">Última Atención</h3>
+                        
+
+                        <div class="card-farmacia ultima-atencion">
+                            <div class="inner-card-farmacia">
+                            <div class="header-card-farmacia">
+                                
+                                <div class="fecha-atencion">
+                                    <i class="fal fa-calendar-alt"></i> @ViewBag.historialAtencionesFarmacia[0].FechaCreacion.ToShortDateString()
+                                </div>
+                                <div class="nombre-profesional">@ViewBag.historialAtencionesFarmacia[0].NombrePaciente</div>
+
+
+                                <div class="especialidad">@ViewBag.historialAtencionesFarmacia[0].Especialidad</div>
+
+                            </div>
+                            <div class="body-card-farmacia">
+                                <h3 class="titulo-card-farmacia">
+                                    Medicamentos
+                                </h3>
+                                <ul class="lista-medicamentos">
+                                    @foreach (var med in @ViewBag.medicamentosAtenciones)
+                                    {
+                                        @if (med.Id == @ViewBag.historialAtencionesFarmacia[0].Id)
+                                        {
+                                            @if (med.IsComercial == 1)
+                                            {
+                                                        <li>@med.GlosaCom</li>
+                                            }
+                                            else 
+                                            {
+                                                        <li>@med.Glosa</li>
+                                            }
+                                        }
+                                    }
+                                </ul>
+                                 @if (@ViewBag.historialAtencionesFarmacia[0] == null)
+                                {
+                                    <h3 class="subtitulo-card-farmacia">
+                                        Compra Lista
+                                    </h3>
+                                }
+                                <ul class="lista-proveedores">
+                                   @if (ViewBag.HostURL.ToString().Contains("segurossura."))
+                                   {
+                                      <li>
+                                              <div class="btn-proveedor">
+                                                        <a href="https://sura.yapp.cl/?utm_source=link_Medismart&utm_medium=boton&utm_campaign=Derivacion_SURA_Medismart/" target="_blank"><img src="~/img/farmacias/logo-yapp.svg" alt="Yapp" /></a>
+                                               </div>
+                                              <div class="leyenda-proveedor">
+                                                        <a href="https://sura.yapp.cl/?utm_source=link_Medismart&utm_medium=boton&utm_campaign=Derivacion_SURA_Medismart/" target="_blank">Revisa todas nuestras ofertas</a>
+                                               </div>
+                                          </li>
+                                            }
+                                    else
+                                    {
+                                       @if (@ViewBag.historialAtencionesFarmacia[0].LinkYapp != null && @ViewBag.historialAtencionesFarmacia[0].LinkYapp != "error")
+                                       {
+                                          <li>
+                                              <div class="btn-proveedor">
+                                                 <a href="@ViewBag.historialAtencionesFarmacia[0].LinkYapp" target="_blank"><img src="~/img/farmacias/logo-yapp.svg" alt="Yapp" /></a>
+                                               </div>
+                                              <div class="leyenda-proveedor">
+                                                  <a href="@ViewBag.historialAtencionesFarmacia[0].LinkYapp" target="_blank">Revisa todas nuestras ofertas</a>
+                                               </div>
+                                          </li>
+                                        }
+                                     }
+                                    @if (@ViewBag.historialAtencionesFarmacia[0].LinkPharol != null)
+                                    {
+                                        <li>
+                                            <div class="btn-proveedor">
+                                                    <a href="@ViewBag.historialAtencionesFarmacia[0].LinkPharol" target="_blank"><img src="~/img/farmacias/logo-pharol.svg" alt="Pharol" /></a>
+                                            </div>
+                                            <div class="leyenda-proveedor">
+                                                <a href="@ViewBag.historialAtencionesFarmacia[0].LinkPharol" target="_blank">Despacho preferente con codigo: MEDISMART</a>
+                                            </div>
+                                        </li>
+                                    }
+                                    @if (@ViewBag.historialAtencionesFarmacia[0].LinkFarmalisto != null && @ViewBag.historialAtencionesFarmacia[0].LinkFarmalisto != "error")
+                                    {
+                                        <li >
+                                            <div class="btn-proveedor">
+                                                    <a href="@ViewBag.historialAtencionesFarmacia[0].LinkFarmalisto" target="_blank"><img src="~/img/farmacias/logo-farmalisto.png" alt="Yapp" /></a>
+                                            </div>
+                                            <div class="leyenda-proveedor">
+                                                <a href="@ViewBag.historialAtencionesFarmacia[0].LinkFarmalisto" target="_blank">Revisa todas nuestras ofertas</a>
+                                            </div>
+                                        </li>
+                                    }
+                                    @if (@ViewBag.historialAtencionesFarmacia[0].LinkVitau != null)
+                                    {
+                                        <li>
+                                            <div class="btn-proveedor">
+                                                    <a href="@ViewBag.historialAtencionesFarmacia[0].LinkVitau" target="_blank"><img src="~/img/farmacias/logo-vitau.svg" alt="Vitau" /></a>
+                                            </div>
+                                            <div class="leyenda-proveedor">
+                                                <a href="@ViewBag.historialAtencionesFarmacia[0].LinkVitau" target="_blank">Revisa todas nuestras ofertas</a>
+                                            </div>
+                                        </li>
+                                    }
+                                    </ul>
+                            </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                        <div class="col-12 col-md">
+                            <h3 class="mb-3 titulo-seccion">Atenciones Anteriores</h3>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    @foreach(var atencion in @ViewBag.historialAtencionesFarmacia){
+                                        @if(@ViewBag.historialAtencionesFarmacia[0].Id == atencion.Id)
+                                        {
+                                            continue;
+                                        }
+                                        <div class="col-auto">
+                                        <!--Card farmacia-->
+                                        <div class="card-farmacia">
+                                            <div class="inner-card-farmacia">
+                                                <div class="header-card-farmacia">
+                                                    <div class="fecha-atencion">
+                                                        <i class="fal fa-calendar-alt"></i> @atencion.FechaCreacion.ToShortDateString()
+                                                    </div>
+                                                    <div class="nombre-profesional">@atencion.NombrePaciente</div>
+                                                    <div class="especialidad">@atencion.Especialidad</div>
+                                                </div>
+                                                <div class="body-card-farmacia">
+                                                    <h3 class="titulo-card-farmacia">
+                                                        Medicamentos
+                                                    </h3>
+                                                    <ul class="lista-medicamentos">
+                                                        @foreach (var med in @ViewBag.medicamentosAtenciones)
+                                                        {
+                                                            @if (med.Id == atencion.Id)
+                                                            {
+
+                                                               @if (med.IsComercial == 1)
+                                                                {
+                                                                     <li>@med.GlosaCom</li>
+                                                                }
+                                                               else 
+                                                                {
+                                                                    <li>@med.Glosa</li>
+                                                                }
+                                                            }
+                                                        }
+                                                    </ul>
+
+                                                <h3 class="subtitulo-card-farmacia">
+                                                    Compra Lista
+                                                </h3>
+                                                <ul class="lista-proveedores">
+                                                        @if (ViewBag.HostURL.ToString().Contains("segurossura."))
+                                                         {
+                                                            <li>
+                                                                <div class="btn-proveedor">
+                                                                        <a href="https://sura.yapp.cl/?utm_source=link_Medismart&utm_medium=boton&utm_campaign=Derivacion_SURA_Medismart/" target="_blank"><img src="~/img/farmacias/logo-yapp.svg" alt="Yapp" /></a>
+                                                                </div>
+                                                                <div class="leyenda-proveedor">
+                                                                        <a href="https://sura.yapp.cl/?utm_source=link_Medismart&utm_medium=boton&utm_campaign=Derivacion_SURA_Medismart/" target="_blank">Revisa todas nuestras ofertas</a>
+                                                                </div>
+                                                             </li>
+                                                        }
+                                                        else{
+                                                            @if (@atencion.LinkYapp != null && @atencion.LinkYapp != "error")
+                                                            {
+                                                                <li>
+                                                                    <div class="btn-proveedor">
+                                                                       <a href="@atencion.LinkYapp" target="_blank"><img src="~/img/farmacias/logo-yapp.svg" alt="Yapp" /></a>
+                                                                    </div>
+                                                                    <div class="leyenda-proveedor">
+                                                                       <a href="@atencion.LinkYapp" target="_blank">Revisa todas nuestras ofertas</a>
+                                                                    </div>
+                                                                 </li>
+                                                            }
+                                                        }
+                                                        @if (@atencion.LinkPharol != null)
+                                                        {
+                                                            <li>
+                                                                <div class="btn-proveedor">
+                                                                    <a href="@atencion.LinkPharol" target="_blank"><img src="~/img/farmacias/logo-pharol.svg" alt="Pharol" /></a>
+                                                                </div>
+                                                                <div class="leyenda-proveedor">
+                                                                    <a href="@atencion.LinkPharol" target="_blank">Despacho Gratis con codigo: MEDISMART</a>
+                                                                </div>
+                                                            </li>
+                                                        }
+                                                         @if (@atencion.LinkFarmalisto != null)
+                                                        {
+                                                            <li class="d-none">
+                                                                <div class="btn-proveedor">
+                                                                    <a href="@atencion.LinkFarmalisto" target="_blank"><img src="~/img/farmacias/logo-farmalisto.png" alt="Pharol" /></a>
+                                                                </div>
+                                                                <div class="leyenda-proveedor">
+                                                                    <a href="@atencion.LinkFarmalisto" target="_blank">Despacho Gratis con codigo: MEDISMART</a>
+                                                                </div>
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>   
+                                    }
+                                    </div>
+                                </div>
+
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-12 col-md-auto">
+
+                            <div class="caja-atencion mensaje-no-atencion" id="divSinAtenciones">
+                                <div class="d-flex">
+                                    <img src="~/img/icono-atencion.svg" alt="Icono No Atención">
+                                    <h1>Aún no tienes <strong>recetas médicas asociadas a tus atenciones.</strong>  </h1>
+                                </div>
+
+                                <a href="/Paciente/Agendar" class="btn btn-primary btn-sm ml-auto">Agendar</a>
+                            </div>
+
+                        </div>
+                    }
+                </div>
+            </div>
+         </div>
+            </div>*@
+        </div>
+        </div>
+    <!--End::App-->
+</div>
+</div>
+@section Scripts{
+    <script type="module">
+        var farmacia = true;
+        window.farmacia = farmacia;
+        import { saludoPaciente } from '../js/shared/info-user.js?rnd=@NumeroRandom.GetRandom()';
+        import { putAgendarMedicosHoras } from '../js/apis/agendar-fetch.js';
+        window.onload = saludoPaciente();
+        window.AgendarMedicos = putAgendarMedicosHoras;
+    </script>
+        @if (ViewBag.historialAtencionesFarmacia.Count != 0)
+        {
+            <script type="text/javascript">
+                function redirectAtencion(idAtencion) {
+                window.location.href = location.origin + "/ResumenAtencionCustom?idAtencion=" + idAtencion;
+            }
+                function openLinkFarma(url){
+                    window.open(url)
+                }
+            function openModalRenovar(idAtencion, idEspecialidad) {
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success btn-bg-green',
+                        cancelButton: 'btn btn-outline-danger'
+                    },
+                    buttonsStyling: false
+                })
+                swalWithBootstrapButtons.fire({
+                    title: '<strong style="width: 39em; text-align:start; color:#0282A6">Te informamos</strong>',
+                    html:
+                        '<p style="text-align: initial;">¡Hola ' + '@ViewBag.historialAtencionesFarmacia[0].NombrePaciente' + '! , Te informamos que tu receta de medicamentos tiene una vigencia de 6 meses.<br><br> ' +
+                        ' Para garantizar tu seguridad y comprobar que recibas el tratamiento adecuado, es necesario que ' +
+                        '<strong style="color:#0282A6;">agendes una hora con un médico general para renovar tu or   den.</strong></p > ',
+                    showCloseButton: true,
+                    showCancelButton: true,
+                    focusConfirm: false,
+                    confirmButtonText:
+                        'QUIERO RENOVAR MI RECETA',
+                    cancelButtonText:
+                        'AHORA NO',
+                    reverseButtons: true
+                }).then(async function(result){
+                    if (result.hasOwnProperty('value')) {
+                        if (result.value == true) {
+                         if (idEspecialidad == 1) {
+                                var idConvenio = 0;
+                                var sessionPlataforma = 'MEDISMART';
+                                if (idCliente == 148) {
+                                    sessionPlataforma = 'COLMENA';
+                                }
+
+
+                                switch (idCliente) {
+                                    case 0:
+                                        sessionPlataforma = 'MEDISMART';
+                                        if ("@ViewBag.codigoTelefono".includes("CO")) {
+                                            sessionPlataforma = "COLOMBIA_DIRECTO";
+                                            idCliente = window.idClienteSesion;
+                                        }
+                                        else if ("@ViewBag.codigoTelefono".includes("MX")) {
+                                            sessionPlataforma = "MEXICO_DIRECTO";
+                                            idCliente = window.idClienteSesion;
+                                        }
+                                        else if ("@ViewBag.codigoTelefono".includes("PE")) {
+                                            sessionPlataforma = "PERU_DIRECTO";
+                                            idCliente = window.idClienteSesion;
+                                        }
+                                        else if ("@ViewBag.codigoTelefono".includes("EC")) {
+                                            sessionPlataforma = "ECUADOR_DIRECTO";
+                                            idCliente = window.idClienteSesion;
+                                        }
+                                        break;
+                                    case 148:
+                                        window.location.href = url;
+                                        break;
+                                    case 108:
+                                        sessionPlataforma = "MEDISMART";
+                                        break;
+                                    case 204:
+                                        sessionPlataforma = "MEDISMART";
+                                        break;
+                                    case 244:
+                                        sessionPlataforma = "MEDISMART";
+                                        break;
+                                    case 236:
+                                        sessionPlataforma = "MEDISMART";
+                                        break;
+                                    case 241:
+                                        sessionPlataforma = "MEDISMART";
+                                        break;
+                                    case 206:
+                                        sessionPlataforma = "COLOMBIA_DIRECTO";
+                                        break;
+                                    case 255:
+                                        sessionPlataforma = "AECSA";
+                                        break;
+                                    case 256:
+                                        sessionPlataforma = "RAPPI";
+                                        break;
+                                    default:
+                                        sessionPlataforma = 'MEDISMART';
+                                        break;
+
+                                }
+                                let agendar = {
+                                    id: 0,
+                                    idBloqueHora: 596,
+                                    idPaciente: parseInt(uid),
+                                    IdMedicoHora: 189086,
+                                    Estado: 'P',
+                                    idCliente: parseInt(idCliente),
+                                    idEspecialidadFilaUnica: parseInt(idEspecialidad),
+                                    idSesionPlataformaExterna: sessionPlataforma
+                                };
+                                let valida = await window.AgendarMedicos(agendar, 0, uid);
+
+                                if (valida !== 0) {
+                                    var url = `/Paciente/Agenda_3?idMedicoHora=${valida.infoAtencion.idHora}&idMedico=${valida.infoAtencion.idMedico}&idBloqueHora=${valida.atencionModel.idBloqueHora}&fechaSeleccion=${valida.infoAtencion.fecha}&hora=${valida.infoAtencion.horaDesdeText}&horario=True&idAtencion=${valida.infoAtencion.idAtencion}&m=1&r=1&c=${idConvenio}&tipoatencion=I&especialidad=${idEspecialidad}`
+                                    window.location.href = url;
+                                }
+                            }else{
+                                window.location.href = location.origin + "/Paciente/Agendar"
+                            }
+                            
+                        }
+                    }
+
+                })
+           } 
+           function viewListItems(data){
+                var obj = $('#' + data).data('obj');
+                var listHtml = '<ul style="text-align: initial; ">';
+                obj.forEach((data) => {
+                listHtml += '<li style="text - align: initial; ">' + data.glosa + '</li>'
+                });
+                listHtml += '</ul>';
+                Swal.fire({
+                    title: '<strong style="color:#0282A6"><u>MEDICAMENTOS</u></strong>',
+                    html: listHtml,
+                    showCloseButton: true,
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                })
+            }
+        </script>
+            <script>
+                @*scroll dentro de div con mousewheel*@
+                    $('.farm-ultima-atencion').bind('mousewheel', function (e) {
+
+                        $(this).scrollTop($(this).scrollTop() - e.originalEvent.wheelDeltaY);
+
+                        //prevent page fom scrolling
+                        return false;
+
+                    });
+            </script>
+        }
+}

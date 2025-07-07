@@ -1,0 +1,109 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+
+    <section class="container-fluid note-section library featured" id="nota4">
+        <div class="container">
+            <div class="row">
+                <div class="col-auto">
+                    <div class="cont-icons">
+                        <div class="icon account-type">
+                            <i class="fal fa-heart"></i>
+                        </div>
+                        <div class="icon">
+                            <i class="fal fa-file-alt"></i>
+                        </div>
+                    </div>
+
+                    <h1 class="title-section">
+                        ¡Hidratación! En verano es clave
+                    </h1>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <p>
+                        La recomendación general es consumir 2 litros de agua al día; sin embargo, esta recomendación puede ser variable según la edad, la cantidad de actividad física que se realiza, 
+                        el nivel de sudoración de cada persona o la temperatura a la que estemos expuestos.
+                    </p>
+                    <p>
+                        Nuestro cuerpo está compuesto por un 66% de agua, por lo que mantenernos hidratados es vital para nuestro funcionamiento. Sin embargo, pese a que poseemos diversos mecanismos 
+                        para regular y controlarla, perdemos líquido constantemente en funciones básicas como orinar, sudar o, incluso, respirar.
+                        ¿Qué pasa en verano cuando los termómetros de muchas regiones del país superan los 25°? ¿Cómo es posible mantener hidratado nuestro organismo con las altas temperaturas 
+                        y la exposición al sol de esta época?
+
+                    </p>
+                    <p>
+                        Aquí van unos consejos:
+
+                    </p>
+
+                    <ul>
+                        <li>
+                            Es importante que prioricemos el agua como nuestra principal fuente de hidratación versus las bebidas azucaradas
+                        </li>
+                        <li>
+                            <strong>Empieza el día con un vaso de agua,</strong> te ayudará a reponer las pérdidas de líquido producidas durante la noche.
+
+                        </li>
+                        <li>
+                            <strong>Hidratarse en forma constante durante el día.</strong> Tener una botella de agua siempre a la mano que puedes ir rellenando e ir 
+                            tomando en forma constante y en pequeñas cantidades a lo largo del día.
+                        </li>
+                        <li>
+                            <strong>Ingiere alimentos ricos en agua como frutas y verduras.</strong> Son parte de una dieta sana, por lo que además de favorecer tu 
+                            hidratación ayudarán a cuidar tu estado de salud en general.
+
+                        </li>
+                        <li>
+                        No esperes a tener sed para beber agua. La sed es un signo de deshidratación, por lo tanto, ¡adelántate!
+                        </li>
+                        <li>
+                            <strong>Cuida el consumo de exceso de alcohol y bebidas de fantasía.</strong> Prefiere agua y si vas a tomar alcohol, procura hidratarte previamente con agua, al igual que durante y después.
+                        </li>
+
+                    </ul>
+                    <p>
+                        Si tienes dudas, necesitas orientación médica, crea tu cuenta y recibe atención de nuestro equipo profesional.
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+
+                    </div>
+
+                    <partial name="~/Views/Biblioteca/_ColumnasNotas.cshtml" model="Model" view-data="ViewData" />
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}

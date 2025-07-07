@@ -1,0 +1,277 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@using WebMVC.Controllers
+@using Microsoft.AspNetCore.Http;
+@using System.Security.Claims;
+@using WebMVC.Models;
+@using Microsoft.Extensions.Configuration
+@using System.Web;
+@using System;
+@using System.Security.Cryptography;
+@using System.Text;
+@using System.Text.Json;
+@inject IConfiguration Configuration
+@{
+    Layout = "_LayoutPaciente";
+    var ServicesUrl = Configuration["ServicesUrl"];
+    var codigoPais = ViewBag.codigoTelefono;
+}
+
+
+<!--Vista 1-->
+
+
+<div id="datos-paciente" class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="container-fluid cont-examenes-preventivos cont-medicina-preventiva">
+                 <div class="breadcrumb-medismart">Home > <strong>Chequeo Preventivo</strong></div>
+                <div class="row">
+                    <div class="col">
+                       
+                             <div class="header-opcion-interior">
+                   <img src="~/img/medicina-preventiva/icon-chequeo.svg" alt="" class="">
+                    <h2 class="titulo-examenes-preventivos">
+                    
+                     Chequeo de <br /> Exámenes Preventivos
+                    </h2>
+                </div>
+                    </div>
+                </div>
+                <div class="row">
+                    
+                    <div class="col-12 col-md">
+                        <!--Paso 1-->
+                        <div class="card-examen-preventivo">
+                            <div class="paso">
+                                 Paso 1
+                            </div>
+                            <h4>¿Qué edad tienes?</h4>
+                            <label>Edad(años):</label>
+                            <input class="form-control datos-prev" type="number" id="edadExamenesPreventivos" name="edadExamenesPreventivos" value="" placeholder="Ingresa tu edad"/>
+                        
+                        </div>
+                        <!--end:: Paso 1-->
+                    </div>
+                    <div class="col-12 col-md">
+                        <!--Paso 2-->
+                        <div class="card-examen-preventivo">
+                            <div class="paso">
+                                 Paso 2
+                            </div>
+                            <h4>¿Cuánto mides?</h4>
+                            <label>Estatura(cm):</label>
+                            <input class="form-control" type="number" id="estaturaExamenesPreventivos" name="estaturaExamenesPreventivos" value="" max="999" placeholder="Ingresa tu estatura"/>
+                        </div>
+                        <!--end::Paso 2-->
+
+                    </div>
+                    <div class="col-12 col-md">
+                        <!--Paso 3-->
+                        <div class="card-examen-preventivo">
+                            <div class="paso">
+                                 Paso 3
+                            </div>
+                            <h4>¿Cuánto pesas?</h4>
+                            <label>Peso(kg):</label>
+                            <input class="form-control" type="number" id="pesoExamenesPreventivos" name="pesoExamenesPreventivos" value="" placeholder="Ingresa tu peso" />
+                        </div>
+                        <!--end::Paso 3-->
+                    </div>
+                    <div class="col-12 col-md">
+                        <!--Paso 4-->
+                        <div class="card-examen-preventivo">
+                            <div class="paso">
+                                 Paso 4
+                            </div>
+                            <h4>Selecciona tu género*</h4>
+                            <label>Género:</label>
+                            <select id="genero" class="form-control">
+                                <option value="F">Femenino</option>
+                                <option value="M">Masculino</option>
+                            </select>
+                            
+                        </div>
+                        <!--end::Paso 4-->
+                    </div>
+                </div>
+                @{
+                    var textoButton = "Solicitar exámen";
+                    if(ViewBag.HostURL.Contains("vivetuseguro.")
+                   || ViewBag.HostURL.Contains("cardif.wedoctorsmx."))
+                    {
+                        textoButton = "SOLICITAR MI ORDEN MEDICA";
+                    }
+                }
+                <div class="col-12 text-center">
+                    <button id="btnCheckExamenes" class="btn btn-primary btn-chequeo">@textoButton</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--end:: Vsita 1-->
+<!--Vista 2-->
+
+<div id ="resultExamenes"  class="container-fluid d-none cont-caracteristicas cont-medicina-preventiva">
+    
+    <div class="container cont-recomendacion">
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="titulo-examenes-preventivos">Según tus características recomendamos:</h3>
+                <div class="card-medicina-preventiva card-m">
+                    <div class="icono-recomendacion">
+                    <div class="icono">
+                        <i class="fal fa-file-pdf"></i>
+                    </div>
+                    <h4>
+                        Exámenes Preventivos
+                    </h4>
+                </div>
+
+                <span>Según tu perfil te recomentados los siguientes exámenes</span>
+                    <div id="listaExamenes" class="lista-examenes">
+                   
+                </div>
+                <div class="mensaje-inferior">*Puedes seleccionar y eliminar si hay alguno que no requieras.</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h3 class="titulo-examenes-preventivos">Orden médica:</h3>
+                <div id="vista-examen" class="card-medicina-preventiva">
+                    <div class="modal-body d-none" id="modalBody">
+                        <div class="row" style="border-bottom-style: groove;">
+                            <div id="informe" class="col-lg-6">Informe Médico</div>
+                            <div class="col-lg-6 text-right">
+                                <span id="fechaInforme">x</span>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-lg-6">
+                                @{
+                                    var srcLogoReporte = "https://qa.services.medismart.live/upload/foto_convenio/26/file[0]_20210111235050_kiijhwp3okf.jpg";
+                                }
+                                @if (ViewBag.HostURL.ToString().Contains("wedoctorsmx.")){
+                                    srcLogoReporte = "https://salud.wedoctorsmx.mx/img/mexico/logo_wedoctors.png";
+                                }
+                                <img id="logoConvenio" src="@srcLogoReporte">
+                            </div>
+                            <div class="col-lg-6 text-right">
+                                <div>
+                                    <span id="nombreMedico">x</span>
+                                </div>
+                                <div>
+                                    <span id="especialidadMedico">x</span>
+                                </div>
+                                <div>
+                                    RUT: <span id="rutMedico">x</span>
+                                </div>
+                                <div>
+                                    <span id="regMedico">x</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-lg-8">
+                                <div>Nombre Paciente: <span id="nombrePaciente">x</span></div>
+                                <div>Domicilio: <span id="domicilioPaciente">x</span></div>
+                                <div>Rut: <span id="rutPaciente">x</span></div>
+                                <div>Edad: <span id="edadPaciente">x</span></div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-lg-12">
+                                <div >
+                                    Ex.
+                                    <ul id="listaExamenesfinal">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cont-orden-medica" id="modalBodyPre">
+                        <h3>Selecciona los exámenes que necesites.</h3>
+                    </div>
+                     <button id="btnGetExamenes" class="btn btn-outline-primary btn-sm btn-block">
+                        Generar
+                    </button>
+
+                    <!--
+                    <button id="btn-agendar-examenes" class="btn btn-primary btn-sm btn-block">
+                        Agenda tus Exámenes
+                    </button>-->
+                     @{
+                    var codTelefono = ((ClaimsIdentity)User.Identity).GetSpecificClaim("CodigoTelefono");
+                    var idCliente = ((ClaimsIdentity)User.Identity).GetSpecificClaim("primarysid");
+                    }
+                    
+                    
+                    @*@if (codTelefono == "CL" && idCliente != "330")
+                    {
+                        <div class="input-group btn-img mt-4">
+                            <div class="logo-farmacia">
+                                <img src="~/img/examenes/logo-examedi.png" alt="">
+                            </div>
+                            <div class="input-group-append">
+                                <button id="btn-agendar-examenes" class="btn btn-primary btn-sm">
+                                    Agenda tus Exámenes
+                                </button>
+                            </div>
+                        </div>
+                    }*@
+                    <div class="mensaje-inferior">*Paciente puede solicitar como MÁXIMO 2 órdenes de exámenes al año.</div>
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+    <div class="container cont-encuestas">
+        <div class="encuestas">
+            <div class="leyenda-encuesta">
+                <p>
+                    Para seguir profundizando en tu  salud te sugerimos contestar una de estas breves encuestas
+                </p>
+            </div>
+            <div class="icono-encuesta">
+                <div class="icono">
+                    <i class="fal fa-dumbbell"></i>
+                </div>
+                Actividad Física
+            </div>
+            <div class="icono-encuesta">
+                <div class="icono">
+                    <i class="fal fa-glass-whiskey-rocks"></i>
+                </div>
+                Actividad Física
+            </div>
+            <div class="icono-encuesta">
+                <div class="icono">
+                    <i class="fal fa-heartbeat"></i>
+                </div>
+                Actividad Física
+            </div>
+        </div>
+    </div>
+
+    <iframe id="pdfExamen" style="display:none;"></iframe>  <!--SE USA PARA PODER DESCARGAR EL ARCHIVO EN LA MISMA PANTALLA CON JS-->
+</div>
+
+<!--end::ista 2-->
+
+
+@section Scripts {
+     <script type="module">
+        var urlDescarga = '@ServicesUrl';
+        window.urlDescarga = urlDescarga;
+        window.codigoTelefono = '@codigoPais';
+        import { init } from '../../js/Paciente/examenes-preventivos.js?rnd=${@NumeroRandom.GetRandom()}';
+        init()
+    </script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}

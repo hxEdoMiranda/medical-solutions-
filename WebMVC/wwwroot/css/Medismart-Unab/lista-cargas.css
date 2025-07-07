@@ -1,0 +1,207 @@
+/*Lista Cargas*/
+
+.top-cargas {
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 3rem;
+}
+
+.cont-cargas {
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 3rem;
+}
+
+.card.card-carga {
+    max-width: 360px;
+}
+
+.card-carga {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(59, 193, 205, .3);
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    transition: all .3s ease-out;
+    cursor: pointer;
+}
+
+
+    .card-carga:hover {
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+        border: 1px solid #3BC1CD;
+    }
+
+
+    .card-carga .icon {
+        text-align: center;
+        padding: 1rem;
+        background-color: #F0F0F0;
+        width: 130px;
+        height: 130px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 100px;
+        margin-bottom: 2rem;
+    }
+
+        .card-carga .icon i {
+            font-size: 64px;
+        }
+
+
+.data-carga {
+    font-size: 1rem;
+    text-align: center;
+}
+
+
+    .data-carga .nombre {
+        margin-bottom: 1rem;
+        font-size: 1.8rem;
+        font-weight: 700;
+    }
+
+    .data-carga i {
+        display: inline-block;
+        margin-right: 1rem;
+    }
+
+    .data-carga .nombre small {
+        display: block;
+    }
+
+.toolbar-cargas {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+
+    .toolbar-cargas .btn-icon {
+        background-color: transparent;
+        padding: .5rem;
+        border: none;
+        display: inline-block;
+        border-radius: 10px;
+        color: #3BC1CD;
+    }
+
+        .toolbar-cargas .btn-icon.btn-danger {
+            color: #EB5757;
+        }
+
+            .toolbar-cargas .btn-icon.btn-danger:active,
+            .toolbar-cargas .btn-icon.btn-info:active {
+                color: #FFF !important;
+            }
+
+    .toolbar-cargas .btn-danger:not(:disabled):not(.disabled):active:focus {
+        color: #FFF !important;
+    }
+
+.btn-outline-danger {
+    border-color: #F42534;
+}
+
+    .btn-outline-danger:hover {
+        background-color: #F42534;
+        border-color: #F42534;
+        color: #FFF !important;
+    }
+
+#div-cargas .input-group .btn-outline-danger:hover i,
+#div-cargas .input-group .btn-outline-primary:hover i {
+    color: #FFF;
+}
+
+.tabset {
+    max-width: 1600px;
+    margin: 4rem auto;
+    margin-bottom: 0;
+}
+
+.toolbar-cargas .btn-icon.btn-info {
+    margin-right: 0;
+}
+
+.buscador-beneficiarios {
+    width: 100%;
+    /* max-width: 360px;*/
+    margin: 2rem 0;
+    display: flex;
+    align-items: center;
+    /*justify-content: space-between;*/
+}
+
+    .buscador-beneficiarios button {
+        margin-left: 1rem;
+    }
+
+/*Tabs Cargas*/
+
+#div-cargas .input-group {
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+#div-cargas .input-group-append {
+    gap: 1rem;
+}
+
+
+#div-cargas .input-group .btn-outline-primary i {
+    color: #3BC1CD;
+}
+
+
+#div-cargas .input-group .btn-outline-danger i {
+    color: #F42534;
+}
+
+#div-cargas .btn.btn-sm i, #div-cargas .btn-group-sm > .btn i {
+    margin-right: auto;
+}
+
+#div-cargas .input-group:hover i {
+    /*color: #FFF;*/
+}
+
+#div-cargas .input-group-append .btn {
+    padding: 0.625rem 1.5rem !important
+}
+
+    #div-cargas .input-group-append .btn:first-child {
+        margin-right: .5rem;
+    }
+
+
+
+
+@media (max-width: 1024px) {
+    .card-carga {
+        margin-bottom: 1rem;
+    }
+
+    .cont-cargas {
+        margin-top: 2rem;
+    }
+
+    .cont-guardar-info .btn {
+        display: block;
+        width: 100%;
+    }
+
+        .cont-guardar-info .btn:first-child {
+            margin-bottom: .5rem;
+            max-width: 300px;
+            margin-right: 0;
+            margin-left: auto;
+            margin-bottom: 2rem;
+        }
+}

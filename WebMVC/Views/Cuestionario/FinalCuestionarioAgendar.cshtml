@@ -1,0 +1,71 @@
+﻿@using Microsoft.Extensions.Configuration
+@model WebMVC.Models.PersonasViewModel
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Configuracion";
+    Layout = "_LayoutPaciente";
+
+}
+
+
+@{
+    ViewData["idEntidad"] = ViewBag.uid;
+    ViewData["uid"] = int.Parse(ViewBag.uid);
+}
+@{
+    ViewData["view"] = Roles.Paciente;
+}
+
+@section Styles  {
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/css/Mexico/mexico.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    
+}
+
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid configuracion-paciente">
+    <!--Begin::App-->
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+
+        <!--Begin:: App Aside Mobile Toggle-->
+        <button class="kt-app__aside-close" id="kt_user_profile_aside_close">
+            <i class="la la-close"></i>
+        </button>
+        <!--End:: App Aside Mobile Toggle-->
+        <!--End:: App Aside Mobile Toggle-->
+
+        <div class="finalbox_inner_nom035">
+
+                <div class="planaccion_img_nom035"></div>
+                <p>Tu prueba se ha realizado satisfactoriamente</p>
+                <p>Hemos detectado que <span>requieres un plan de acción</span> </p><br />
+                <p>Agenda tu atención en medicina general, <br />nutrición y psicología </p><br />
+                <button class="btn btn-primary btn-block btn-sm" id="Siguiente">Comienza Aquí </button>
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/Usuario/config.js?9rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script type="module">
+        import { init } from '../../js/Cuestionario/FinalizarCuestionario.js?rnd=@NumeroRandom.GetRandom()';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+
+            var uid = @ViewBag.uid;
+
+            window.uid = uid;
+             var idCliente = '@ViewBag.idCliente';
+            window.idCliente = idCliente;
+            window.host = '@ViewBag.HostURL';
+
+        })()
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    
+}
+

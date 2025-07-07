@@ -1,0 +1,38 @@
+/*Scotia Colaboradores*/
+
+/*Login*/
+
+.logotipo-desktop {
+    background-image: url(../../img/scotiaco/logo.svg);
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/scotiaco/logo.svg);
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+.logo-convenios {
+    justify-content: space-between;
+    margin-top: 3rem;
+}
+.body-home {
+    background-image: url(../../img/scotiaco/logo-fondo.svg), linear-gradient(180deg, #0081a4 0%, rgba(47, 152, 181, 1) 100%) !important;
+}
+
+.accesible-tools {
+    display: block;
+}
+
+@media (max-width: 668px) {
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+}

@@ -1,0 +1,48 @@
+﻿@using Microsoft.Extensions.Configuration;
+@using WebMVC.Models;
+@model WebMVC.Models.AtencionViewModel
+
+<style>
+    .view_cuestionario span {
+        font-weight: 600
+    }
+</style>
+<div class="view_cuestionario">
+    <div class="form-group ps-form-group">
+        <div class="form-group ps-form-group col">
+            <div class="col">
+                <span for="inputFirstname">Edad</span>
+                <br />
+                <p>@Model.programaSaludCuestionario.Edad</p>
+            </div>
+            <div class="col">
+                <span>Sexo</span>
+                <br />
+                <p>@Model.programaSaludCuestionario.Sexo</p>
+            </div>
+            <div class="col">
+                <span id="Cuestionario__Peso">Peso (Kg)</span>
+                <br />
+                <p>@Model.programaSaludCuestionario.Peso</p>
+            </div>
+            <div class="col">
+                <span for="inputAddressLine2">Altura (cm)</span>
+                <p>@Model.programaSaludCuestionario.Altura</p>
+            </div>
+        </div>
+        <div class="form-group ps-form-group col">
+            <div class="col">
+                <span>Tabaco</span>
+                <br />
+                <p>@(Model.programaSaludCuestionario.Tabaco? "Si":"No")</p>
+            </div>
+            <div class="col">
+                <span>Actividad fisica</span>
+                <br />
+                <p>@(Model.programaSaludCuestionario.Actividad ? "Si" : "No")</p>
+                <br />
+                <p><span>Actividad especifica:</span><br /> @Model.programaSaludCuestionario.Especificar</p>
+            </div>
+        </div>
+    </div>
+</div>

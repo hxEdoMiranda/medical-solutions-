@@ -1,0 +1,33 @@
+﻿@model WebMVC.Models.AtencionViewModel
+@{
+    ViewData["Title"] = "InformeAtencion";
+    Layout = "_Layout";
+    
+}
+
+
+@{
+    ViewData["view"] = Roles.Medico;
+}
+
+@section Styles  {
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+<partial name="~/Views/Shared/_InformeAtencion.cshtml" model="Model" view-data="ViewData" />
+
+@section Scripts {
+    <script src="~/metronic_demo7/assets/js/pages/components/extended/sweetalert2.js?rnd=@NumeroRandom.GetRandom()"></script>
+     <script type="module">
+        import { init } from '../../js/Medico/informeatencion.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+         var uid = @ViewBag.uid;
+           window.uid = uid;
+         var estadoEniax =  '@ViewBag.sendInforme';
+         window.estadoEniax = estadoEniax;
+        })()
+    </script>
+}

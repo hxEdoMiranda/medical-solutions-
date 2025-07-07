@@ -1,0 +1,662 @@
+/*On Assist*/
+
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --primary: #00C5F2;
+    --secondary: #008FF7;
+    --tertiary: #00285F;
+    --accent: #35d5cf;
+    --light: #fff;
+    --font-family: 'Mulish', sans-serif;
+}
+
+body {
+    /* font-family: var(--font-family) !important;*/
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family) !important;
+}
+
+/*Login*/
+
+.bkg-login {
+    background-color: #f6f7fb;
+}
+
+    .bkg-login #imgLogin {
+        background-size: cover;
+        background-position: top left;
+    }
+
+.logotipo-desktop {
+    background-image: url(../../img/onassist/logotipo.svg);
+    width: 412px;
+    background-position: center center;
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/onassist/logotipo.svg);
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+        font-size: 36px;
+        color: var(--tertiary);
+        font-family: 'Mulish', sans-serif !important;
+        font-weight: 400 !important;
+    }
+
+.form-group .ms-label {
+    color: var(--tertiary) !important;
+}
+
+.btn-primary {
+    background-color: #00285F !important;
+    border-color: #00285F !important;
+}
+
+    .btn-primary:hover {
+        background-color: #008FF7 !important;
+        border-color: #008FF7 !important;
+    }
+
+.divider-medismart {
+    display: flex !important;
+    margin-bottom: 2rem;
+}
+
+.logo-convenios {
+    /* display: none;*/
+    margin-bottom: 2rem;
+}
+
+/* Imágenes Login */
+.img1 {
+    background-image: url(../../img/onassist/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/onassist/login/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/onassist/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/onassist/login/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/onassist/login/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/onassist/login/960x978.jpg);
+}
+
+.asistencia-paciente {
+    display: none; /*Remover esta condicion si se requiere mostrar el elemento*/
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 auto 15px auto;
+}
+
+.asistencia-paciente a {
+    color: #0282a6;
+}
+
+.asistencia-paciente a img {
+    width: 20px;
+    margin-right: 5px;
+}
+
+.body-home {
+    /*background-image: linear-gradient(190deg, #00285F -24.14%, #008FF7 118.78%);*/
+    background-image: linear-gradient(180deg, #FFF 20.58%, #008FF7 81.49%, #00285F 133.72%);
+    background-blend-mode: multiply;
+}
+
+    .body-home .logo-home img {
+        width: 200px !important;
+    }
+
+    .body-home #btnOrientacion .pronto {
+        display: none;
+    }
+
+    .body-home .cont-card h1 {
+        color: var(--tertiary);
+        font-family: 'Roboto', sans-serif !important;
+    }
+
+    .body-home .top-banner .legend {
+        font-weight: 500;
+        color: var(--tertiary) !important;
+    }
+        .body-home .top-banner .legend #saludoPaciente {
+            color: var(--tertiary) !important;
+        }
+
+        .menu-top .item-menu-top i,
+        .menu-top .label-menu {
+            color: var(--tertiary) !important;
+        }
+
+.body-home .footer-home {
+    flex-direction: column;
+    margin: 1rem auto 0 auto;
+}
+
+.menu-top .item-menu-top:hover i, .menu-top .item-menu-top:hover .label-menu, .menu-top .item-menu-top:hover .label-menu-pac {
+    color: var(--accent) !important;
+}
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--primary)
+}
+
+    .kt-menu__item a .ms-label-menu {
+        color: var(--tertiary)
+    }
+
+    .kt-menu__item:hover a, .kt-menu__item:hover i {
+        color: var(--secondary) !important;
+    }
+
+.accesible-btn button {
+    color: var(--tertiary);
+    border: 1px solid var(--tertiary);
+}
+
+    .accesible-btn button:hover {
+        background-color: var(--tertiary);
+        border-color: var(--tertiary);
+    }
+
+.busqueda-profesionales {
+    border: 2px solid var(--tertiary);
+}
+    .busqueda-profesionales i {
+        color: var(--tertiary)
+    }
+    .busqueda-profesionales .btn-outline-primary {
+        color: var(--tertiary)
+    }
+    .btn.btn-outline-primary.dropdown-toggle.itemEspecialidad:hover {
+        color: var(--secondary) !important;
+    }
+
+.stepper {
+    margin-bottom: 0;
+}
+
+div#items-peru {
+    justify-content: center;
+}
+
+.caja-especialidad.active {
+    background-color: var(--secondary);
+}
+
+.caja-especialidad {
+    background-color: var(--primary);
+}
+
+.inner-especialidad strong {
+    color: var(--light)
+}
+
+.step.active .step-icon {
+    background-color: var(--tertiary);
+}
+
+.stepper {
+    background-image: url(../../img/onassist/fondo-banner2.svg);
+}
+
+    .stepper .flecha {
+        color: var(--primary)
+    }
+
+    .stepper img {
+        border-color: var(--primary)
+    }
+
+.step.active .label-step {
+    color: var(--primary)
+}
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: var(--tertiary)
+}
+
+.caja-profesional .fecha-atencion {
+    color: var(--secondary)
+}
+
+.front-fecha-atencion {
+    border: 1px solid rgba(35,33, 114, .3)
+}
+
+    .front-fecha-atencion strong:before {
+        color: var(--secondary);
+        font-weight: 900;
+    }
+
+.especialidad-profesional {
+    color: var(--tertiary)
+}
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+
+.top-banner {
+    background-image: url(../../img/onassist/fondo-banner.svg);
+}
+    .top-banner img {
+        border-color: rgba(255, 255, 255, .3)
+    }
+    .top-banner .legend {
+        color: var(--tertiary) !important;
+    }
+
+.banner_topsc .legend .text-warning {
+    color: var(--primary) !important;
+}
+
+.top-banner.banner_topsc {
+    background-image: url(../../img/onassist/fondo-banner2.svg);
+}
+
+.text-warning {
+    color: var(--light) !important;
+}
+
+.menu-top .item-menu-top .logotipo-mobile {
+    width: 110px !important;
+}
+
+.sala-espera-mobile.sala-espera-consalud {
+    gap: 8rem;
+}
+/*Sala espera*/
+.hotspot-icon .cont-icon {
+    background-color: #080707;
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+.cont-icon.hotspot-redes {
+    background-color: #000;
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+}
+
+.btn-guardar-info, .btn-success {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    
+}
+
+.btn-guardar-info:hover, .btn-success:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--primary)
+}
+
+.btn.btn-outline-secondary {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--primary)
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+}
+
+#reporte:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+#hs-g .cont-icon {
+    background-color: var(--primary);
+}
+
+#hs-g:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+.toolbar-option {
+    color: var(--primary)
+}
+
+.toolbar-option.active {
+    color: var(--secondary)
+}
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--tertiary)
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--secondary)
+}
+
+.btn-sala:hover {
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion, .cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+    .cont-btn-panel .btn-atencion:hover, .cont-btn-vc .btn-atencion:hover {
+        background-color: rgba(237, 110, 0, 0.1);
+        color: var(--primary);
+    }
+
+.hotspot-icon {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+    .hotspot-icon i {
+        text-shadow: none;
+    }
+
+    .hotspot-icon:hover {
+        color: #FFF;
+    }
+
+@media (max-width: 668px) {
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+}
+
+.prehome__plan li {
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 20%);
+    /* padding: 1rem 0; */
+    list-style-position: inside;
+    height: 38px;
+}
+}
+
+@media (max-width: 991.98px) {
+    .top-banner .legend {
+        text-align: left;
+        font-size: 1.3rem;
+    }
+
+
+}
+
+
+
+    @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+        .img1 {
+            background-image: url(../../img/onassist/login/548x850.jpg);
+        }
+
+        .img2 {
+            background-image: url(../../img/onassist/login/548x850.jpg);
+        }
+
+        .img3 {
+            background-image: url(../../img/onassist/login/548x850.jpg);
+        }
+
+        .img4 {
+            background-image: url(../../img/onassist/login/548x850.jpg);
+        }
+
+        .img5 {
+            background-image: url(../../img/onassist/login/548x850.jpg);
+        }
+
+        .img6 {
+            background-image: url(../../img/onassist/login/548x850.jpg);
+        }
+    }
+
+    @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+        .img1 {
+            background-image: url(../../img/onassist/login/960x978.jpg);
+        }
+
+        .img2 {
+            background-image: url(../../img/onassist/login/960x978.jpg);
+        }
+
+        .img3 {
+            background-image: url(../../img/onassist/login/960x978.jpg);
+        }
+
+        .img4 {
+            background-image: url(../../img/onassist/login/960x978.jpg);
+        }
+
+        .img5 {
+            background-image: url(../../img/onassist/login/960x978.jpg);
+        }
+
+        .img6 {
+            background-image: url(../../img/onassist/login/960x978.jpg);
+        }
+    }
+
+
+    /*Prehome*/
+
+    .prehome__plans {
+        height: 450px;
+    }
+
+    .prehome__plan {
+        width: 80%;
+        padding: 0;
+    }
+
+
+        .prehome__plan h2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            width: 90%;
+            height: 84px;
+            text-align: center;
+            font-family: 'Mulish', sans-serif !important;
+            font-size: 1.75rem;
+            font-weight: 900;
+            padding-bottom: 2rem;
+            margin-top: 1rem;
+        }
+
+
+.prehome__title {
+    color: #00285F;
+    text-align: center;
+    font-family: Mulish;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.prehome__card {
+    border-radius: 32px;
+    border: 1px solid #008FF7;
+    background: #F5F5F5;
+}
+
+.prehome__plan ul {
+    list-style-image: url(../../img/onassist/bullet.svg);
+    margin-top: 32px;
+    height: 350px;
+    font-size: 16px;
+    padding-left: 2.5rem;
+}
+
+    .prehome__plan .btn {
+        max-width: 80%;
+        margin: auto auto 0;
+        border: 2px solid var(--tertiary) !important;
+        background: #fff !important;
+        color: var(--tertiary);
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .kt-login__extra.registro {
+        display: none;
+    }
+
+    .logo-convenios.convenioChile + hr {
+        display: none;
+    }
+
+    .kt-login.kt-login--v3.kt-login--signin .kt-login__signin .titulo-card-farmacia {
+        text-align: center;
+    }
+
+.menu-top .label-menu-pac {
+    color: var(--primary);
+}
+
+
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--tertiary);
+}
+
+
+
+
+
+@media (max-width: 991.98px) {
+    .prehome__plans {
+            height: auto;
+        }
+    }
+
+    .falp-modal-contenedor {
+        display: flex;
+        background-color: #FFFFFF;
+        border: none;
+        border-radius: 32px;
+        width: 660px;
+        height: 354px;
+        background-image: url(../../img/falp/dr-modal.png);
+        background-repeat: no-repeat, repeat;
+        background-position: 4% 2rem, 0;
+        flex-direction: row;
+    }
+
+    .modal-paciente .modal-content {
+        margin: auto;
+        margin-top: 8rem;
+        border: none;
+        padding: 5px 32px;
+    }
+
+    .falp-modal-contenedor-titulos {
+        padding: 2rem 0rem 0rem 14rem;
+    }
+
+    .falp-modal-dr {
+        height: 23rem;
+        width: 29rem;
+    }
+
+    .falp-modal-logo {
+        padding: 1rem 0rem 1rem 0rem;
+    }
+
+
+    .falp-modal-contenedor-imagen {
+        padding: 0rem;
+    }
+
+.falp-modal-titulo-uno {
+    color: #004E91;
+    font-family: 'Mulish', sans-serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    padding-bottom: 0.5rem;
+}
+
+
+.falp-modal-titulo-dos {
+    color: #004E91;
+    font-family: 'Mulish', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    padding-bottom: 0.5rem;
+}
+
+@media (max-width: 1024px) {
+    .body-home .logo-home img {
+        width: 170px !important;
+        margin-bottom: 0;
+    }
+
+    .prehome__plan {
+        width: 100%;
+        margin: auto;
+        border-bottom: none;
+    }
+
+        .prehome__plan ul {
+            height: auto;
+            min-height: 0;
+        }
+
+    .prehome__plan .btn {
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+    }
+
+        .prehome__plan h2 {
+            height: auto;
+        }
+}
+
+.btn-primary-prehome-externo {
+    display: none !important;
+}

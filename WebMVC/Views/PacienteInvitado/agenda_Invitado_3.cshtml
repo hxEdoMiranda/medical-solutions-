@@ -1,0 +1,1018 @@
+﻿@using System.Security.Claims
+@model WebMVC.Models.FichaMedicoViewModel
+@{
+ViewData["Title"] = "Agendar";
+Layout = "_LayoutPacienteInvitado";
+}
+@section PageStyles  {
+   <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" /> 
+   <link href="~/metronic_demo7/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+}
+@{
+ViewData["idEntidad"] = ViewBag.idAtencion;
+ViewData["codEntidad"] = Entidades.ATENCIONES;
+ViewData["uid"] = int.Parse(ViewBag.uid);
+ViewData["view"] = Roles.PacienteInvitado;
+}
+@section Styles  {
+<link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+<style>
+   .swal2-popup.swal2-modal.swal2-show {
+   width: 450px !important;
+   }
+</style>
+}
+
+
+@Html.Hidden("idEntidad", ViewData["idEntidad"])
+@Html.Hidden("codEntidad", ViewData["codEntidad"])
+@Html.Hidden("uid", ViewData["uid"])
+
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+   <!--Begin::App-->
+   <!-- Start:: Stepper-->
+   <!-- Stepper -->
+   @{
+   var hiddenDirecta = "";
+   var hiddenAgenda = "hidden";
+   if (ViewBag.tipoatencion != "I")
+   {
+   hiddenDirecta = "hidden";
+   hiddenAgenda = "";
+   }
+   }
+   <div class="row">
+      <div class="col">
+         @{
+         if(ViewBag.idCliente == "108")
+         {
+                         <h1 class="titulo-servicio mb-4">Agendar atención</h1>
+         }
+         }
+      </div>
+   </div>
+   <!-- MedismartBASE -->
+   <div class="stepper d-none" @hiddenAgenda>
+      <div class="init-step"></div>
+      <div class="cont-steps">
+         <!-- Step1 -->
+         <div class="step passed">
+            <div class="step-icon">
+               <i class="fal fa-user-md"></i>
+            </div>
+            <div class="label-step fuente-accesible">
+               1. Selección
+            </div>
+         </div>
+         <i class="fas fa-chevron-right flecha"></i>
+         <!-- Step2 -->
+         <div class="step passed">
+            <div class="step-icon">
+               <i class="fal fa-calendar-edit"></i>
+            </div>
+            <div class="label-step fuente-accesible">
+               2. Agendamiento
+            </div>
+         </div>
+         <i class="fas fa-chevron-right flecha"></i>
+         <!-- Step3 -->
+         <div class="step active">
+            <div class="step-icon">
+               <i class="fal fa-check-circle"></i>
+            </div>
+            <div class="label-step fuente-accesible">
+               3. Confirmación
+            </div>
+         </div>
+      </div>
+      <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+   </div>
+   <!-- MedismartBASE End: -->
+   <!-- MedismartBASE Invitado-->
+
+<div class="header-stepper">
+
+             @if (ViewBag.HostURL.ToString().Contains("clini."))
+                {
+                    <img src="~/img/clini/logotipo.svg" alt="" />
+                    
+                }
+                else
+                {
+                    <img src="~/img/logo-mlive.svg" alt="" />
+                }
+
+
+                <!-- Menu iconos-->
+
+                <div class="logo-home d-flex">
+
+        <div class="kt-header__topbar menu-top ml-auto">
+
+            <!--begin:: Accesibilidad-->
+
+            <div class="dropdown item-menu-top d-none d-md-none" data-toggle="tooltip" title="Accesibilidad">
+                <div class="kt-header__topbar-wrapper" data-toggle="dropdown">
+
+
+                        <a>
+                        <i class="fal fa-universal-access d-block" aria-hidden="true"></i>
+                        <span class="text-uppercase label-menu">Accesibilidad</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-sm" id="dropdown-accesible">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <h1 class="titulo-dropdown">Accesibilidad</h1>
+                                        <div class="accesible-tools accesible-tools-mobile">
+                                            <div class="accesible-btn">
+                                                <button id="increase-font">A+</button>
+                                                <button id="normal-font">A</button>
+                                                <button id="decrease-font">A-</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+            <!--end:: Accesibilidad-->
+
+
+
+
+
+            <!--begin: Ayuda -->
+        
+                    <div class="dropdown item-menu-top" id="item-ayuda">
+                        <div data-toggle="dropdown">
+
+                            <a data-close="true">
+
+
+                                    <i class="fal fa-question-circle" aria-hidden="true"></i>
+                                <span class="text-uppercase label-menu">Ayuda</span>
+                                
+                            </a>
+
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-sm">
+                            <div class="container opcion-ayuda">
+                                <div class="row">
+                                    <div class="col">
+                                        <h1 class="titulo-dropdown">Ayuda</h1>
+
+                                            <ul>
+                                                <li>
+                                                    <a href="https://wa.me/56948042543?text=Asistencia%20al%20Paciente" target="_blank"><i class="fab fa-whatsapp" aria-hidden="true"></i> Whatsapp</a>
+
+                                                </li>
+                                                <li>
+                                                    <a href="https://www.facebook.com/Medismartchile" target="_blank"><i class="fab fa-facebook" aria-hidden="true"></i> Facebook</a>
+
+                                                </li>
+                                                <li>
+                                                    <a href="https://www.instagram.com/medismartchile/" target="_blank"><i class="fab fa-instagram" aria-hidden="true"></i> Instagram</a>
+
+                                                </li>
+                                                <li>
+                                                    <a href="mailto:contacto@medismart.live" target="_blank"><i class="fal fa-envelope" aria-hidden="true"></i> Mail</a>
+
+                                                </li>
+
+
+                                            </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end: Ayuda -->
+            <!--begin: Salir -->
+            <div class="item-menu-top" id="item-salir" data-toggle="tooltip" title="" data-placement="bottom" data-original-title="Salir">
+                <div class="kt-header__topbar-wrapper">
+
+                    <a data-close="true" href="/Account/Logout?rol=Paciente">
+
+                            <i class="fal fa-sign-out" aria-hidden="true"></i>
+                        <span class="text-uppercase label-menu">Salir</span>
+                    </a>
+
+                </div>
+            </div>
+            <!--end: Salir-->
+        </div>
+
+    </div>
+
+
+                <!-- Menu iconos-->
+          
+            
+            </div>
+            
+
+
+            <!-- end:: MedismartBASE Invitado-->
+   <!-- Stepper -->
+   <!-- Stepper -->
+   <div class="stepper stepper-sv" @hiddenDirecta>
+      <div class="init-step"></div>
+      <div class="cont-steps">
+         <!-- Step3 -->
+         <div class="step step-triage">
+            <div class="titulo-step">
+               Triage Médico
+            </div>
+            <div class="step-icon">
+               <i class="fal fa-check-circle"></i>
+            </div>
+            <div class="label-step fuente-accesible">
+               Etapa 1 de 1
+            </div>
+         </div>
+         <!-- Step3 -->   
+      </div>
+      <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+   </div>
+   <!-- End:: Stepper-->
+   <!-- Confirmación Hora -->
+   <div class="container-fluid caja-base caja-confirmacion-hora d-none">
+      <div class="row">
+         <div class="col-12 px-0 px-lg-4 col-lg">
+            <div class="formulario-confirma-hora">
+               <h1> Confirmación</h1>
+               <div class="header-formulario">
+                  @if(ViewBag.especialidad != 77)
+                  {
+                  <i class="fal fa-check-circle"></i>
+                  }
+                  <p class="fuente-accesible" id="textoTriage">
+                     Por favor ingresa información médica relevante para tu atención y confirma tu hora para el <span id="fechaTextInfo"></span> a las <span id="bloqueHoraText"></span> horas.
+                  </p>
+               </div>
+               <div class="body-formulario">
+                  <!-- Form -->
+                  <form action="" class="container-fluid p-0">
+                     <div class="form-group row">
+                        @{
+                        if(ViewBag.especialidad == 77)
+                        {
+                                        <select class="btn btn-outline-primary dropdown-toggle itemEspecialidad"  @(ViewBag.tipoEspecialidad=="examenes"?"disabled":"") id="motivoConsulta">
+                                           @foreach (var lista in ViewBag.opcionesOrientacion)
+                           {
+                                           <option class="dropdown-item" data-id="@lista.Codigo" value="@lista.Codigo">@lista.Detalle</option>
+                           }
+                                        </select>
+                        }                                    
+                                        <div class="col-12 p-0 @(ViewBag.especialidad != 77?"":"d-none")">
+                                        <p class="fuente-accesible">
+                                           Cuéntame ¿cuál es tu molestia o necesidad de atención?
+                                        </p>
+                                        <textarea class="form-control" rows="3" placeholder="Escribe un comentario" maxlength="140" id="triageObservacion" name="triageObservacion"></textarea>
+                                        <p style="font-size:12px;">Caracteres ingresados: <span id="counter"></span></p>
+                                        <script type="text/javascript">
+                                           function count() {
+                                               document.getElementById("counter").textContent = document.getElementById("triageObservacion").value.length;
+                                           }
+                                           document.getElementById("triageObservacion").addEventListener("input", count);
+                                        </script>
+                                     </div>
+                     }
+               </div>
+               <div class="form-group row mb-lg-0">
+               <div class="col-12 p-0">
+               <p class="fuente-accesible">
+               Cuéntame, ¿Tienes antecedentes médicos previos?
+               </p>
+               <textarea class="form-control" rows="3" placeholder="Escribe tus diagnósticos y medicamentos en uso" maxlength="140" id="antecedentesMedicos" name="antecedentesMedicos"></textarea>
+               <p style="font-size:12px;">Caracteres ingresados: <span id="counter2"></span></p>
+               <script type="text/javascript">
+                  function count() {
+                      document.getElementById("counter2").textContent = document.getElementById("antecedentesMedicos").value.length;
+                  }
+                  document.getElementById("antecedentesMedicos").addEventListener("input", count);
+               </script>
+               </div>
+               </div> 
+               <!--Check-->
+               </form>
+               <!-- Form -->
+            </div>
+         </div>
+      </div>
+      <div class="col">
+         <div class="carga-archivos">
+            <h3>¿Deseas subir un archivo?</h3>
+            <div class="cont-carga-archivos" @*d-none d-md-block*@>
+            <div class="dropzone dropzone-default dropzone-brand" id="kt_dropzone_0">
+               <div class="dropzone-msg dz-message needsclick">
+                  <h3 class="dropzone-msg-title fuente-accesible">Haz clic o arrastra un archivo</h3>
+                  <span class="dropzone-msg-desc fuente-accesible">Receta, imagen o radiografía</span>
+               </div>
+            </div>
+         </div>
+         <div class="container-fluid p-0">
+            <div class="row">
+               <div class="col-12">
+                  <div id="ejemImg" class="row d-none ml-2 mt-2">
+                     <p class="mr-2 fuente-accesible" style="font-style: italic; font-size: 14px;">Ejemplo: Antígeno</p>
+                     <div class="input-group-append" id="input-info">
+                        <span class=""><i class="fal fa-2x fa-question-circle"></i></span>
+                     </div>
+                     <div class="tip-documento" id="tipDoc">
+                        <button class="btn-close"><i class="fal fa-times" id="btnClose"></i></button>
+                        <img src="~/img/ImgExamen.jpeg" alt="">
+                     </div>
+                  </div>
+                  <div class="kt-portlet__body">
+                     <div id="lista_archivos" class="kt-widget4 lista-archivos">
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-12 col-md-6  mb-md-0 order-last order-md-first">
+                  <button class="btn btn-outline-secondary btn-block btn-sm mt-auto" id="btnCancelarAtencion1">
+                  Cancelar
+                  </button>
+               </div>
+               <div class="col-12 col-md-6">
+                  <button class="btn mb-3 btn-primary btn-block btn-sm" id="btnConfirmar1">
+                  Confirmar
+                  </button>
+               </div>
+            </div>
+         </div>
+         <div class="" id="checks"></div>
+         <input type="hidden" id="correoUsuario"/>
+         <input type="hidden" id="genero"/>
+         <input type="hidden" id="fechaNacimiento"/>
+      </div>
+   </div>
+
+</div>
+</div>
+
+ <!-- Confirmación Hora Invitado -->
+
+    <!-- -->
+
+    <div class="container-fluid sub-header-invitado">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-auto">
+                        <h1 class="titulo-servicio mb-4">Resumen de reserva </h1>
+            </div>
+        
+            
+
+            <div class="col col-md-auto header-ms">
+			<div class="stepper-ms">
+				<div class="step">
+					<div class="cont-icon-step">
+						<div class="num-step">
+							1</div>
+						
+					</div>
+					<div class="divider-step"></div>
+				</div>
+				<div class="step">
+					<div class="cont-icon-step">
+						<div class="num-step">
+							2</div>
+						
+					</div>
+					<div class="divider-step"></div>
+				</div>
+				<div class="step active">
+					<div class="cont-icon-step">
+						<div class="num-step">
+							3</div>
+						
+					</div>
+					<div class="divider-step"></div>
+				</div>
+				<div class="step">
+					<div class="cont-icon-step">
+						<div class="num-step">
+							4</div>
+						
+					</div>
+					
+				</div>
+                        
+			</div>
+		</div>
+        </div>
+
+    </div>
+
+
+    <!-- -->
+
+    <!-- Resumen de reserva -->
+    
+    @{
+        var visibleCajaNormal = "";
+        var visibleCajaDirecta = "hidden";
+        var hiddenDisclaimer = "hidden";
+        var resta = 0;
+        if (ViewBag.idCliente == "148" && ViewBag.c == "21")
+        {
+            visibleCajaNormal = "hidden";
+            visibleCajaDirecta = "";
+        }
+    }
+    <div class="resumen-reserva">
+        <img src="~/img/invitado/foto.jpg" alt="" class="reserva-img"/>
+        <div class="data-resumen-reserva">
+
+            <img  id="fotoProfesional" alt="image" class="foto-perfil"> 
+            <div class="data-reserva">
+                <div class="nombre-pro">
+                    <span  id="nombre-profesional" >  </span> 
+                    <span id="apellidos-profesional"></span>
+                    <div class="icono-nombre-pro">
+                        <i class="fal fa-info-circle"></i>
+                    </div>
+                    <div class="sub-nombre-pro">
+                        @Model.personasDatos.AlmaMater - @Model.personasDatos.NumeroRegistro - @Model.personasDatos.Especialidad
+                    </div>
+                </div>
+                <div class="data-reserva-inner">
+                    <div class="header-data-reserva">
+                         <i class="fal fa-calendar"></i><small>Reserva</small>
+                        
+                    </div>
+                    <span id="fecha-reserva"></span> - <span id="hora-reserva"></span>
+                </div>
+                
+
+                @if (ViewBag.idCliente == "148" && Model.ValorizacionExcepciones != null)
+                {
+                    <div class="col">
+
+                        <h3 class="title-voucher">
+                            <i class="fal fa-calendar-check"></i> Confirma la reserva para tu atención
+                        </h3>
+                        <div class="linea-voucher">
+                            Valor Consulta Particular
+
+                            <span class=""><strong> @Html.Raw("$ " + String.Format(System.Globalization.CultureInfo.CreateSpecificCulture("es-CL"), "{0:N0}", Convert.ToDecimal(@Model.ValorizacionExcepciones.ValorConsulta)))</strong></span>
+                        </div>
+                        <div class="linea-voucher">
+                            Bonificación Plan de Salud
+                            <span class="">- <strong> @Html.Raw("$ " + String.Format(System.Globalization.CultureInfo.CreateSpecificCulture("es-CL"), "{0:N0}", Convert.ToDecimal(@Model.ValorizacionExcepciones.ValorCobertura)))</strong></span>
+
+                        </div>
+                        @if (Model.ValorizacionExcepciones.TipoProducto == 0)
+                        {
+
+                            hiddenDisclaimer = "";
+                        }
+                        else
+                        {
+                            resta = (Model.ValorizacionExcepciones.ValorConsulta - Model.ValorizacionExcepciones.ValorCobertura);
+                            <div class="linea-voucher">
+                                Bonificación Producto Adicional
+
+                                <span class="">- <strong> @Html.Raw("$ " + String.Format(System.Globalization.CultureInfo.CreateSpecificCulture("es-CL"), "{0:N0}", Convert.ToDecimal(resta)))</strong></span>
+
+                            </div>
+                        }
+                        <div class="linea-voucher total">
+                            <div class="total-legend">
+                                Valor a pagar (copago)
+                            </div>
+
+
+                            <div class="valor-suma"><strong>$ </strong><strong id="valorAtencionDirecta"> @Html.Raw(String.Format(System.Globalization.CultureInfo.CreateSpecificCulture("es-CL"), "{0:N0}", Convert.ToDecimal(@Model.ValorizacionExcepciones.ValorAtencion)))</strong></div>
+
+                        </div>
+                        <p class="mt-4" @hiddenDisclaimer>
+                            @*<strong>Esta consulta podría haber sido gratuita si tuvieras contratado nuestro producto adicional&nbsp;<span>Doctor Online.&nbsp;</span> Para más información ingresa a <a href="www.colmena.cl">www.colmena.cl</a></strong>*@
+                        </p>
+                        <br />
+                    </div>
+                }
+                else
+                {
+                    bool fonasa = Convert.ToBoolean(ViewBag.isFonasa);
+                    resta = (Model.especialidad.MontoTotal - Model.especialidad.MontoTotalCopago);
+                    @if (fonasa)
+                    {
+
+                       @* <div class="suma-reserva">
+                            <div class="item-suma">
+                                <div class="legend-suma">
+                                    Valor Consulta
+                                </div>
+                                <div class="valor-suma">
+                                    $ 12.990
+                                </div>
+                            </div>
+
+                            <div class="item-suma">
+                                <div class="legend-suma">
+                                    Bonificación Plan de salud
+                                </div>
+                                <div class="valor-suma">
+                                    $ 5.000
+                                </div>
+                            </div>
+                            <div class="total-valor-suma">
+                                <div class="legend-suma">
+                                    Valor a pagar
+                                </div>
+                                <div class="valor-suma">
+                                    <small>$</small>  17.990
+                                </div>
+                            </div>
+                        </div>
+*@
+                        <h3 class="title-voucher">
+                            <i class="fal fa-calendar-check"></i> Confirma la reserva para tu atención
+                        </h3>
+                        <div class="linea-voucher">
+                            Valor Consulta Fonasa
+
+                            <span class=""><strong> @Html.Raw("$ " + String.Format(System.Globalization.CultureInfo.CreateSpecificCulture("es-CL"), "{0:N0}", Convert.ToDecimal(@Model.especialidad.MontoTotal)))</strong></span>
+                        </div>
+                        <div class="linea-voucher">
+                            Bonificación Plan de Salud
+                            <span class="">- <strong> @Html.Raw("$ " + String.Format(System.Globalization.CultureInfo.CreateSpecificCulture("es-CL"), "{0:N0}", Convert.ToDecimal(resta)))</strong></span>
+
+                        </div>
+                        <div class="linea-voucher total">
+                            <div class="total-legend">
+                                Valor a pagar (copago)
+                            </div>
+
+
+                            <div class="total-valor"><strong>$ </strong><strong id="valorAtencionDirecta"> @Html.Raw(String.Format(System.Globalization.CultureInfo.CreateSpecificCulture("es-CL"), "{0:N0}", Convert.ToDecimal(@Model.especialidad.MontoTotalCopago)))</strong></div>
+
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="total-valor-suma">
+                            <div class="legend-suma">
+                                Valor a pagar
+                            </div>
+                            <div class="valor-suma">
+                                <small>$</small> <strong id="valorAtencionDirecta"> @Html.Raw(String.Format(System.Globalization.CultureInfo.CreateSpecificCulture("es-CL"), "{0:N0}", Convert.ToDecimal(@Model.personasDatos.ValorAtencion)))</strong>
+                            </div>
+                        </div>
+                        <p class="mt-4" @hiddenDisclaimer>
+                            @*<strong>Esta consulta podría haber sido gratuita si tuvieras contratado nuestro producto adicional&nbsp;<span>Doctor Online.&nbsp;</span> Para más información ingresa a <a href="www.colmena.cl">www.colmena.cl</a></strong>*@
+                        </p>
+                        <br />
+
+
+                    }
+
+                }
+                <button class="btn btn-primary" id="btnConfirmar"> Aceptar y registrarse </button>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-outline-primary mt-4" id="btnCancelarAtencion"> Volver</button>
+
+    <!-- Resumen de reserva -->
+
+
+
+<div class="container-fluid caja-confirmacion-hora caja-confirmacion-hora-invitado d-none">
+   <div class="row">
+      <div class="col-12 col-md">
+         <div class="caja-base">
+            <div class="data-reserva">
+               <div class="fecha-reserva" id="fechaTextInfo">
+                  @*25 de abril de 2023*@
+                  Fecha: 
+                  <span id="fecha-reserva"></span>
+               </div>
+               <div class="hora-reserva" id="bloqueHoraText">
+                  @*hora: 20:45*@
+                  Hora: 
+                  <span id="hora-reserva"></span>
+               </div>
+                
+            </div>
+            <div class="modalidad-consulta">
+               Modalidad consulta: <strong>Online</strong>
+            </div>
+            <div class="modificar-reserva d-none">
+               <a href="#">Modificar</a>
+            </div>
+         </div>
+      </div>
+      <div class="col-12 col-md">
+         <div class="perfil-profesional">
+            <div class="header-perfil">       
+              <img  id="fotoProfesional" alt="image" class="foto-profesional"> 
+               <div class="data">
+                
+                  <span class="titulo-profesional">@Model.personasDatos.PrefijoDetalle</span>
+                    <span  id="nombre-profesional"  class="nombre-profesional">  </span> 
+                    <span id="apellidos-profesional"class="nombre-profesional"></span>
+                     <span>  @Model.personasDatos.AlmaMater - @Model.personasDatos.NumeroRegistro </span>
+                  <span class="titulo-profesional"> @Model.personasDatos.Especialidad</span>
+
+                 
+               </div>
+            </div>
+            <div class="body-profesional">
+               <div class="valor-consulta">
+                  <span class="label-valor">
+                  Valor Consulta Particular* 
+                  </span>
+                  <span class="valor">
+                  <small>$</small> 
+                  <label>@Model.personasDatos.ValorAtencion</label>
+                  </span>
+               </div>
+            </div>
+            <div class="mensaje-valor">
+                *Recuerda que todas tus consultas las puedes reembolsar en tu Isapre con la boleta que te enviamos al correo.
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="btnbar-confirmacion">
+       <button class="btn btn-outline-primary" id="btnCancelarAtencion"> Volver</button>
+       <button class="btn btn-primary" id="btnConfirmar"> Aceptar y registrarse </button>
+  </div>
+        <div class="" id="checks"></div>
+        <input type="hidden" id="correoUsuario"/>
+        <input type="hidden" id="genero"/>
+        <input type="hidden" id="fechaNacimiento"/>
+</div>
+
+   <!-- Confirmación Hora Invitado -->
+
+    <div class="col-md col-lg-4">
+       <div id="divPerfilProfesional"></div>
+       <div class="accesible-tools mb-3 d-none">
+          <div class="accesible-btn">
+             <button id="increase-font">A+</button>
+             <button id="normal-font">A</button>
+             <button id="decrease-font">A-</button>
+          </div>
+       </div>
+    </div>
+</div>
+<!--INICIO MODAL CREACION DE USUARIO-->
+<div class="modal modal-paciente fade" id="modalCreacionPaciente"  data-backdrop="static" name="kt_modal_crear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-xl kt-grid kt-grid--hor kt-grid--root kt-login kt-login--v3 kt-login--signin" role="document" id="kt_login">
+@*	
+<div class="modal-content">
+   *@
+   <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+      </div>
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col-md-6">
+               <img src="~/img/invitado/foto1.png" class="img-modal-paciente" alt="" />
+            </div>
+            <div class="col-md-6">
+               <!--<i class="fal fa-user" id="idicono"></i>-->
+               <h5 class="modal-title" id="exampleModalLabel">
+                  Creación de Usuario 
+                  <small>Campo requerido*</small>
+               </h5>
+               <form id="form_crea_user">
+                  <div class="form-group">
+                     <label class="form-label">@("CL" == "CO" ? "Documento de identidad" : "Cédula de identidad") <span style="color:red">*</span></label> 
+                     @if (ViewData["view"].Equals(Roles.PacienteInvitado)) 
+                     { 
+                     <input class="form-control" type="text" maxlength="12" required="required" id="Identificador" name="Identificador" />  
+                     } 
+                     else 
+                     {
+                     <input class="form-control" type="text" maxlength="12" required="required" id="Identificador" name="Identificador" /> 
+                     } 
+                     @Html.Hidden("idEntidad", ViewData["idEntidad"]) @Html.Hidden("codEntidad", ViewData["codEntidad"]) @Html.Hidden("uid", (object)ViewBag.uid)
+                  </div>
+                  <div class="form-group valida">
+                     <label class="form-label">Nombres <span style="color:red">*</span></label>
+                     <input class="form-control" type="text" maxlength="50" required="required" id="Nombre" name="Nombre" />                  
+                  </div>
+                  <div class="form-group">
+                     <label  class="form-label">Apellido paterno <span style="color:red">*</span></label> 
+                     <input class="form-control" type="text" maxlength="50" required="required" id="ApellidoPaterno" name="ApellidoPaterno"  />
+                  </div>
+                  <div class="form-group">
+                     <label class="form-label">Apellido materno  <span style="color:red">*</span></label> 
+                     <input class="form-control" type="text" maxlength="50" required="required" id="ApellidoMaterno" name="ApellidoMaterno" />
+                  </div>
+                  <div class="form-group">
+                     <label for="Correo" class="form-label">Correo <span style="color:red">*</span></label> 
+                     @if (ViewBag.idCliente == "108" || ViewBag.idCliente == "233")
+                     { 
+                     <input class="form-control" type="email" maxlength="60" required="required" id="Correo" name="Correo" /> 
+                     }
+                     else
+                     {
+                     <input class="form-control" type="email" maxlength="60" required="required" id="Correo" name="Correo" />
+                     }
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary d-none" id="btnCerrar" data-dismiss="modal">Cancelar</button>
+                     <button type="submit" class="btn btn-primary ml-auto" id="btnCrear"@* data-dismiss="modal"*@>Registrarse y pagar</button>
+                  </div>
+               </form>
+               <div class="kt-login__signin" id="loginPost1" style="display:none !important">
+                  <form class="kt-form" asp-controller="Account" asp-action="GuestLogin" method="post" role="form"  id="loginPost">
+                     <h5 class="modal-title">
+                        Ingreso de Usuario
+                        <small>Campo requerido *</small>
+                     </h5>
+                     <div class="" id="modalBody">
+                        <div class="form-group">
+                           <label class="d-block ms-label fuente-accesible" id="labelIdentificador">Ingresa tu E-MAIL o RUT</label>
+                           <input class="form-control" type="text" id="kt_rut" required placeholder="tucorreo@gmail.com o 111111111" autocomplete="off" name="Username">
+                           <input class="form-control" type="hidden" id="JsonData" name="JsonData">
+                           <input class="form-control" type="hidden" name="UrlAgendar" value="@ViewData["UrlAgendar"]">                        
+                        </div>
+                        <input hidden name="rol" value="@Roles.Paciente">
+                        <input hidden name="returnUrl" value="@ViewData["ReturnUrl"]">
+                        <div class="form-group">
+                           <label class="d-block ms-label fuente-accesible">Clave</label>
+                           <input type="password" class="form-control" required="required" name="Password">		
+                        </div>
+                     </div>
+                     <div>
+                        <div class="modal-footer">
+                           <a href="javascript:;" id="kt_login_forgot" class="fuente-accesible">¿Olvidaste tu clave?</a>
+                           <button type="button" class="btn btn-primary" style="align-self: flex-end" id="kt_login_signin_submit">Ingresar</button>
+                        </div>
+                        <div class="modal-footer ">
+                           <button type="button" class="btn btn-light btn-elevate kt-login__btn-secondary d-none" id="kt_login_forgot_cancel"  data-dismiss="modal">Cancelar</button>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+               <form class="kt-form d-none" asp-controller="Account" asp-action="PageReset" id="pageReset" method="post">
+                  <h5 class="modal-title">¿Olvidaste tu clave?</h5>
+                  <div class="form-group">
+                     <label class="d-block ms-label fuente-accesible" id="labelIdentificadorReset">Documento identidad</label>
+                     <input class="form-control" type="text" placeholder="" id="identificadorReset" autocomplete="off" name="Username">
+                     <input hidden name="rol" value="@Roles.Paciente" />
+                  </div>
+                  <div class="kt-login__actions mt-0">
+                     <div class="container">
+                        <div class="row">
+                           <div class="col-12 col-md px-0 pr-md-1">
+                              <button id="kt_login_forgot_cancel" class="btn btn-light btn-elevate kt-login__btn-secondary btn-block mb-3 mb-md-0 d-none">Cancelar</button>
+                           </div>
+                           <div class="col-12 col-md px-0 pl-md-1">
+                              <button id="kt_login_forgot_submit" class="btn btn-primary btn-elevate kt-login__btn-primary btn-block">Reiniciar clave</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </form>
+               <form class="kt-form d-none" method="post" role="form" id="cambioClave">
+                  <h5 class="modal-title">Ingresa tu nueva clave</h5>
+                  <div class="form-group mb-2">
+                     <label class="d-block ms-label fuente-accesible" id="labelIdentificadorReset">Clave</label>
+                     <input class="form-control" type="password" placeholder="Escribe tu nueva clave" name="Password">
+                  </div>
+                  <div class="form-group mb-3">
+                     <label class="d-block ms-label fuente-accesible" id="labelIdentificadorReset">Repetir clave</label>
+                     <input class="form-control" type="password" placeholder="Vuelve a escribir tu nueva clave" name="RepeatPassword">
+                  </div>
+                  <input hidden name="rol" value="@Roles.Paciente" />
+                  <input hidden name="ActivationCode" value="" />
+                  <input hidden name="username" value="" />
+                  <input hidden name="returnUrl" value="@ViewData["ReturnUrl"]" />
+                  <div class="text-left">
+                     <p style="font-size:12px !important">
+                        <strong>La clave debe tener :</strong><br /><br />
+                        - Entre 8 a 15 caracteres. <br />
+                        - Al menos una letra mayúscula / Al menos una letra minúscula / Al menos un número <br />
+                     </p>
+                  </div>
+                  <div class="modal-footer">
+                     <button class="btn btn-secondary d-none" id="kt_password_reset_cancel">Cancelar</button>
+                     <button id="kt_password_reset_submit" class="btn btn-primary ml-auto">Modificar</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!--FIN MODAL CREACION DE USUARIO-->
+<!--INICIO MODAL LOGIN USUARIO EXISTENTE-->
+<div class="modal modal-paciente fade" id="modalLogin" data-backdrop="static" name="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-login">
+      @*
+      <div class="modal-content">
+         *@
+         <div class="kt-login__signin">
+            <form class="kt-form" asp-controller="Account" asp-action="GuestLogin" method="post" role="form">
+               <div class="modal-header">
+                  <i class="fal fa-user"></i>
+                  <h5 class="modal-title" align="center">
+                     Ingreso de Usuario
+                     <small>login</small>
+                  </h5>
+               </div>
+               <div class="modal-body" id="modalBody">
+                  <div class="form-group">
+                     <label class="d-block ms-label fuente-accesible" id="labelIdentificador">Ingresa tu E-MAIL o RUT</label>
+                     <input class="form-control" type="text" id="kt_rut" required placeholder="tucorreo@gmail.com o 111111111" autocomplete="off" name="Username">
+                     <input class="form-control" type="hidden" id="JsonData" name="JsonData">
+                     <input class="form-control" type="hidden" name="UrlAgendar" value="@ViewData["UrlAgendar"]">                        
+                  </div>
+                  <input hidden name="rol" value="@Roles.Paciente">
+                  <input hidden name="returnUrl" value="@ViewData["ReturnUrl"]">
+                  <div class="form-group">
+                     <label class="d-block ms-label fuente-accesible">Clave</label>
+                     <input type="password" class="form-control" required="required" name="Password">		
+                  </div>
+               </div>
+               <div>
+                  <div class="modal-footer">
+                     <a href="javascript:;" id="kt_login_forgot" class="fuente-accesible d-none" style="margin-left: auto">¿Olvidaste tu clave?</a>
+                     <button type="button" class="btn btn-primary" style="align-self: flex-end" id="kt_login_signin_submit">Ingresar</button>
+                  </div>
+                  <div class="modal-footer d-none">
+                     <button type="button" class="btn btn-light btn-elevate kt-login__btn-secondary" id="kt_login_forgot_cancel"  data-dismiss="modal">Cancelar</button>
+                  </div>
+               </div>
+            </form>
+         </div>
+         <div class="kt-reset__password">
+            <div class="kt-login__head">
+               <h3 class="kt-login__title">Ingresa tu nueva clave</h3>
+            </div>
+            <form class="kt-form" method="post" role="form">
+               <div class="input-group mb-2">
+                  <input class="form-control" type="password" placeholder="Clave" name="Password">
+               </div>
+               <div class="input-group mb-3">
+                  <input class="form-control" type="password" placeholder="Repetir Clave" name="RepeatPassword">
+               </div>
+               <input hidden name="rol" value="@Roles.Paciente" />
+               <input hidden name="ActivationCode" value="" />
+               <input hidden name="username" value="" />
+               <input hidden name="returnUrl" value="@ViewData["ReturnUrl"]" />
+               <div class="text-left">
+                  <p style="font-size:12px !important">
+                     <strong>La clave debe tener :</strong><br /><br />
+                     - Entre 8 a 15 caracteres. <br />
+                     - Al menos una letra mayúscula / Al menos una letra minúscula / Al menos un número <br />
+                  </p>
+               </div>
+               <div class="kt-login__actions mt-0">
+                  <button id="kt_password_reset_submit" class="btn btn-brand btn-elevate kt-login__btn-primary">Modificar</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+<!--FIN MODAL LOGIN USUARIO EXISTENTE-->
+
+
+<div class="modal fade" id="modalTerminos" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Términos y condiciones</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+         </div>
+         <div class="modal-body" id="modalBody">
+            @*terminos y condiciones se cargan de forma dinamica*@
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="btnCerrar" data-dismiss="modal">Cerrar</button>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="modal fade" id="modalConsentimiento" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Consentimiento Informado</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+         </div>
+         <div class="modal-body" id="modalBodyConsentimiento">
+            @*terminos y condiciones se cargan de forma dinamica*@
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="btnCerrarConsentimiento" data-dismiss="modal">Cerrar</button>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="modal fade" id="modalDeberes" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Deberes y Derechos</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+         </div>
+         <div class="modal-body" id="modalBodyDeberes">
+            @*terminos y condiciones se cargan de forma dinamica*@
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="btnCerrarDeberes" data-dismiss="modal">Cerrar</button>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+
+
+<!-- end:: Content -->
+<!-- end:: Page -->
+<!-- begin::Scrolltop -->
+<div id="kt_scrolltop" class="kt-scrolltop">
+   <i class="fa fa-arrow-up"></i>
+</div>
+<!-- end::Scrolltop -->
+ <script src="https://cdn.jsdelivr.net/gh/bigdatacloudapi/js-api-client@latest/bigdatacloud_api_client.min.js" type="text/javascript"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/bigdatacloudapi/js-client-ip-client@latest/bigdatacloud_client_ip.min.js" type="text/javascript"></script>
+<!-- begin::Global Config(global config for global JS sciprts) -->
+@section PageScripts {
+<script src="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
+<script src="~/js/Shared/archivos-agenda-3.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+<script src="~/js/jquery.rut.js?rnd=@NumeroRandom.GetRandom()"></script>
+@*<script src="~/metronic_demo7/assets/js/pages/custom/login/login-unico-invitado.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+*@
+}
+@section Scripts {
+<script src="~/signal/signalr.min.js"></script>
+
+<script type="module">
+   import { init } from '../../js/PacienteInvitado/agendaInvitado_3.js?rnd=${@NumeroRandom.GetRandom()}';
+   init(@Html.Raw(Json.Serialize(Model)))
+</script>
+<script type="text/javascript">
+   (function () {   
+       var uid = @ViewBag.uid;
+       var idMedico = @ViewBag.idMedico;
+       var idMedicoHora = @ViewBag.idMedicoHora;
+       var idAtencion = @ViewBag.idAtencion;
+       var idBloqueHora =@ViewBag.idBloqueHora;
+       var fechaSeleccion = '@ViewBag.fechaSeleccion';
+       var fechaText = '@ViewBag.fechaText';
+       var horaText = '@ViewBag.horaText';
+       var horario = @ViewBag.horario.ToString().ToLower();
+       var textoMarca = '@ViewBag.textoMarca';
+       var especialidad = @ViewBag.especialidad;
+       var tipoEspecialidad = '@ViewBag.tipoEspecialidad';
+       var m = '@ViewBag.m';
+       var r = '@ViewBag.r';
+       var c = '@ViewBag.c';
+       var host = '@ViewBag.HostURL';
+       var fechaAgenda2 = '@ViewBag.fechaAgenda2';
+       var host = '@ViewBag.HostURL';
+       window.host = host;
+       window.textoMarca = textoMarca;         
+       window.uid = uid;
+       window.idMedico = idMedico;
+       window.idMedicoHora = idMedicoHora;
+       window.idAtencion = idAtencion;
+       window.idBloqueHora = idBloqueHora;
+       window.fechaSeleccion = fechaSeleccion;
+       window.fechaText = fechaText;
+       window.horaText = horaText;
+       window.horario = horario;
+       window.host = host;
+       window.especialidad = especialidad;
+       window.tipoEspecialidad = tipoEspecialidad;
+       window.fechaAgenda2 = fechaAgenda2;
+       window.m = m;
+       window.r = r;
+       window.c = c;
+       var tipoatencion = '@ViewBag.tipoatencion';
+       window.tipoatencion = tipoatencion;
+       var idCliente = @ViewBag.idCliente;
+       window.idCliente = idCliente;
+       var especialidadFila = @ViewBag.especialidad;
+       window.especialidadFila = especialidadFila;
+   })()
+
+</script>
+
+}
+
+       <style>
+   .claseImportante {
+      display: none!important
+
+       }
+       </style>

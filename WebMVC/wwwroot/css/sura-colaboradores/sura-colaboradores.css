@@ -1,0 +1,755 @@
+/*sura*/
+
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');*/
+
+
+:root {
+    --primary: #0033A0;
+    --secondary: #00AEC7;
+    --tertiary: #241F20;
+    --accent: #FDB727;
+    --light: #FFF;
+    --font-family: 'Mulish', sans-serif;
+}
+
+body {
+    /* font-family: var(--font-family) !important;*/
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-family) !important;
+}
+
+/*Login*/
+.logotipo-desktop {
+    background-image: url(../../img/sura/logotipo.png);
+    background-size: 160px;
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/sura/logotipo.png);
+    /* display: none;*/
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: var(--primary);
+    font-weight: 700 !important;
+    font-size: 36px;
+}
+
+.form-group .ms-label {
+    color: var(--primary) !important;
+    font-size: 16px;
+}
+
+.btn-primary {
+    background-color: #00AEC7;
+    border-color: #00AEC7;
+}
+
+.asistencia-pcte {
+    color: #343A40;
+    margin-left: 1rem;
+    font-size: 16px;
+}
+
+.logo-medismart-sura{
+    margin-left: 10rem;
+   
+    margin-top: 2rem
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.divider-medismart {
+    display: flex !important;
+    margin-bottom: 2rem;
+}
+
+.logo-convenios {
+    align-items: center !important;
+    justify-content: space-between !important;
+    margin: 2rem auto;
+}
+
+/* Imágenes Login */
+.img1 {
+    background-image: url(../../img/sura-colaboradores/login/960x978.jpg) !important;
+}
+
+.img2 {
+    background-image: url(../../img/sura-colaboradores/login/960x978.jpg) !important;
+}
+
+.img3 {
+    background-image: url(../../img/sura-colaboradores/login/960x978.jpg) !important;
+}
+
+.img4 {
+    background-image: url(../../img/sura-colaboradores/login/960x978.jpg) !important;
+}
+
+.img5 {
+    background-image: url(../../img/sura-colaboradores/login/960x978.jpg) !important;
+}
+
+.img6 {
+    background-image: url(../../img/sura-colaboradores/login/960x978.jpg) !important;
+}
+
+
+/*Home*/
+
+.body-home {
+    background-image: linear-gradient(191.03deg, #0033A0 3.62%, rgba(0, 174, 199, 0.72) 134.57%);
+    background-blend-mode: multiply;
+    /*background-position: right 90%;*/
+}
+
+.body-home .logo-home img {
+    width: 210px;
+}
+
+
+
+.body-home .footer-home {
+    flex-direction: column;
+    margin: 3rem auto 0 auto;
+}
+
+
+.body-home .footer-home .accesible-tools-desktop {
+    width: auto;
+    margin: 0 auto;
+}
+
+.body-home .footer-home .accesible-tools-desktop .accesible-btn {
+    display: block;
+    /*margin-top: 0;*/
+}
+
+/*Menu Home expandido - con 8 servicios o más*/
+@media (min-width: 1200px) {
+    .body-home .container-colmena .col-12.col-md-4.col-lg-3.p-0 {
+        max-width: 20%;
+    }
+}
+
+.top-banner .legend {
+    font-weight: 500;
+}
+
+.menu-top .item-menu-top i,
+.menu-top .label-menu {
+    color: var(--secondary);
+}
+
+.menu-top .item-menu-top:hover i,
+.menu-top .item-menu-top:hover .label-menu {
+    color: var(--secondary) !important;
+}
+
+.kt-menu__item a,
+.kt-menu__item i {
+    color: var(--secondary) !important;
+}
+
+    .kt-menu__item a .ms-label-menu {
+        color: #00AEC7;
+    }
+
+.card {
+    border: 1px solid #0033A0;
+}
+
+.kt-menu__item:hover a,
+.kt-menu__item:hover i {
+    color: var(--primary) !important;
+    transition: all .3s ease-in-out;
+}
+
+.accesible-btn button {
+    color: #00AEC7;
+    border: 1px solid #00AEC7;
+}
+
+.accesible-btn button:hover {
+    background-color: var(--primary);
+    border-color: var(--primary)
+}
+
+.busqueda-profesionales {
+    border: 2px solid #0033A0;
+}
+
+    .busqueda-profesionales i {
+        color: #0033A0
+    }
+
+    .busqueda-profesionales .btn-outline-primary {
+        color: #0033A0
+    }
+
+.caja-especialidad.active {
+    background-color: #00AEC7;
+}
+
+.caja-especialidad {
+    background-color: var(--secondary);
+}
+
+.inner-especialidad strong {
+    color: var(--light)
+}
+
+.step.active .step-icon {
+    background-color: #00AEC7;
+}
+
+.stepper {
+    background-image: url(../../img/sura-colaboradores/fondo-banner2.svg);
+}
+.accesible-tools-desktop .accesible-btn {
+   
+    justify-content: center !important;
+}
+.stepper .flecha {
+    color: var(--primary)
+}
+
+.terminos a {
+    color:#fff;
+}
+
+.terminos {
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+}
+
+    .stepper img {
+        border-color: #00AEC7
+    }
+
+.step.active .label-step {
+    color: var(--primary)
+}
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: #555555
+}
+
+.caja-profesional .fecha-atencion {
+    color: #0033A0;
+}
+
+.front-fecha-atencion {
+    border: 1px solid #0033A0;
+}
+
+    .front-fecha-atencion strong:before {
+        color: #0033A0;
+        font-weight: 900;
+    }
+
+.especialidad-profesional {
+    color: #555555
+}
+
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+
+.top-banner {
+    background-image: url(../../img/sura-colaboradores/fondo-banner.svg);
+}
+
+.top-banner img {
+    border-color: rgba(255, 255, 255, .3)
+}
+
+.top-banner .legend {
+    color: var(--secondary)
+}
+
+.banner_topsc .legend .text-warning {
+    color: var(--primary) !important;
+}
+
+.top-banner.banner_topsc {
+    background-image: url(../../img/sura/fondo-banner2.svg);
+}
+
+.text-warning {
+    color: #fff !important;
+}
+
+.body-home .pronto {
+    display: none
+}
+
+.body-home .card-plan .costo::after, .body-home .card-plan .pronto-card::after {
+    
+    color: #fff
+}
+
+.alerta-luft{
+    display: none !important
+}
+
+.body-home .menu-top .item-menu-top i, .body-home .menu-top .item-menu-top .label-menu {
+    color: #fff;
+}
+
+.menu-top .item-menu-top .logotipo-mobile {
+    width: 110px !important;
+    position: relative;
+    top: 10px;
+}
+
+
+/*Paciente*/
+
+
+
+.kt-aside__brand-logo a {
+    margin-top: 4rem;
+}
+
+.hotspot-icon .cont-icon {
+    background-color: #333;
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: var(--secondary) !important;
+}
+
+.cont-icon.hotspot-redes {
+    background-color: #000;
+}
+
+#reporte .cont-icon {
+    background-color: var(--tertiary);
+}
+
+#hs-g .cont-icon {
+    background-color: var(--secondary);
+}
+
+#hs-g:hover .cont-icon {
+    background-color: var(--primary);
+}
+
+.toolbar-option {
+    color: var(--primary)
+}
+
+.toolbar-option.active {
+    color: var(--secondary)
+}
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--tertiary)
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--secondary)
+}
+
+.btn-sala:hover {
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion,
+.cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion:hover,
+.cont-btn-vc .btn-atencion:hover {
+    background-color: rgba(237, 110, 0, 0.1);
+    color: var(--primary);
+}
+
+.hotspot-icon {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.hotspot-icon i {
+    text-shadow: none;
+}
+
+.hotspot-icon:hover {
+    color: #FFF;
+}
+
+@media (max-width: 668px) {
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .top-banner .legend {
+        text-align: left;
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/sura-colaboradores/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/sura-colaboradores/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/sura-colaboradores/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/sura-colaboradores/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/sura-colaboradores/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/sura-colaboradores/login/548x850.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/sura-colaboradores/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/sura-colaboradores/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/sura-colaboradores/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/sura-colaboradores/login/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/sura-colaboradores/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/sura-colaboradores/login/960x978.jpg);
+    }
+}
+
+
+/* preHome */
+
+.prehome.double-plan {
+    max-width: 900px;
+}
+
+.prehome__title {
+    color: #FFF;
+    font-weight: 700;
+}
+
+.prehome__card {
+    background-color: transparent;
+    padding: 0;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.prehome__plans {
+    display: flex;
+    justify-content: center;
+    height: auto;
+}
+
+/*.prehome__plan {
+    width: 100%;
+    padding: 0;
+}*/
+
+.prehome__plan {
+    background: #fff;
+    padding: 2rem;
+    /*margin: 0 1rem;*/
+    border-radius: 2rem;
+    max-width: 410px;
+    height: 466px;
+}
+
+.prehome__plan h2 {
+    font-size: 21px;
+    width: 100%;
+}
+
+.prehome__plan h2:nth-child(odd) {
+    color: #4A4A4A;
+    font-weight: 900;
+}
+
+.prehome__plan h2:nth-child(even) {
+    color: var(--primary);
+    font-weight: 900;
+    font-size: 28px;
+}
+
+.prehome__plan h3 {
+    margin: 0 auto;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--secondary);
+}
+
+
+.prehome__plan ul {
+    list-style-image: none;
+    list-style-type: none;
+    margin-top: 32px;
+    height: 180px;
+    font-size: 16px;
+    min-height: 0;
+}
+
+.prehome__plan ul li {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+.prehome__plan .btn {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.prehome__plan .btn:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.prehome__plan .btn.btn-default {
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+}
+
+.prehome__plan .btn.btn-default:hover {
+    color: var(--accent);
+}
+
+.powered {
+    display: none;
+}
+
+
+.kt-login__extra.registro {
+    display: none;
+}
+
+.logo-convenios.convenioChile+hr {
+    display: none;
+}
+
+.kt-login.kt-login--v3.kt-login--signin .kt-login__signin .titulo-card-farmacia {
+    text-align: center;
+}
+
+.header-plan {
+    height: 140px;
+    text-align: center;
+
+}
+
+.prehome__plan .btn {
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+
+.caracteristicas__plan img {
+    margin-right: .5rem;
+}
+
+/*Scroll*/
+
+/* width */
+.caracteristicas__plan::-webkit-scrollbar,
+.modal-sura .lista-especialidades::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+.modal-sura .lista-especialidades::-webkit-scrollbar-track,
+.caracteristicas__plan::-webkit-scrollbar-track {
+    background: rgba(2, 92, 116, 0.2);
+    width: 6px;
+    height: 80px;
+    border-radius: 8px;
+}
+
+
+/* Handle */
+.caracteristicas__plan::-webkit-scrollbar-thumb,
+.modal-sura .lista-especialidades::-webkit-scrollbar-thumb {
+    background: rgba(2, 92, 116, 0.5);
+    transition: all .3s ease-out;
+    border-radius: 8px;
+    transition: all .1s ease-out;
+}
+
+/* Handle on hover */
+.caracteristicas__plan::-webkit-scrollbar-thumb:hover,
+.modal-sura .lista-especialidades::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 193, 205, 0.6);
+}
+
+.body-home2 .accesible-btn button {
+    color: #08395B;
+    border: 1px solid #08395B;
+    border: none;
+}
+
+.body-home2 .accesible-btn button:hover {
+    color: #FFF;
+}
+
+.modal-sura .prehome__plan ul.lista-especialidades {
+    list-style-image: url(../../img/sura/bullet.svg);
+    height: 300px;
+}
+
+.modal-sura .close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+}
+
+.modal.modal-sura .modal-content {
+    border-radius: 32px !important;
+}
+
+.modal-sura .prehome__plan {
+    margin: auto;
+    height: auto;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+@media (max-width: 991.98px) {
+
+
+    .prehome__plans {
+        height: auto;
+    }
+
+    .prehome__plan {
+        /*margin: 0;*/
+        margin-bottom: 1rem;
+        height: auto;
+    }
+
+    .header-plan {
+        height: auto;
+    }
+
+    .prehome__plan ul {
+        padding-left: 0;
+        padding-right: 0;
+        height: auto;
+        min-height: 0;
+    }
+
+    .prehome__plan ul li {
+        text-align: left;
+        display: flex;
+        align-items: start;
+    }
+
+    .caracteristicas__plan img {
+        margin-bottom: 0;
+    }
+
+
+
+
+    /*
+    .container-login {
+        margin-top: 12rem;
+    }
+
+    .kt-grid.kt-grid--hor:not(.kt-grid--desktop):not(.kt-grid--desktop-and-tablet):not(.kt-grid--tablet):not(.kt-grid--tablet-and-mobile):not(.kt-grid--mobile).kt-grid--root {
+        background-image: url(../../img/sura/fondo-mobile.jpg);
+        background-size: 100%;
+    }*/
+
+}
+
+
+.body-home .card-plan .preferente::after {
+    content: 'Costo Preferente';
+    font-weight: 700;
+}
+
+.body-home .card-plan .preferente {
+    background-color: var(--primary);
+    color: var(--light-color);
+}
+
+.body-home .cont-card h1 {
+    font-size: 12px;
+}
+@media (max-width: 1024px) {
+    .leyenda-card-home {
+        text-align: left;
+        margin-top: .9rem;
+    }
+}
+
+
+.kt-aside__brand-logo a {
+    
+    width: 75px !important;
+   
+}

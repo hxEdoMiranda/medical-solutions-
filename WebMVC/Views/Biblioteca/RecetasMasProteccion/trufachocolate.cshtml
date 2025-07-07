@@ -1,0 +1,107 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+    
+    
+    
+    <section class="container-fluid note-section library featured" id="nota3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    
+                    <div class="cont-titulo-receta">
+                        <div class="cont-logo">
+                            <img src="~/img/cajalosandes/recetas/logo.svg" alt="" />
+                            <h1 class="title-section">
+                                Trufas de chocolate y d&aacute;tiles
+                            </h1>
+                        </div>
+                        <img src="~/img/scotiabank/recetas/food.png" alt="trufa_chocolate" />
+                    
+                    </div>
+                    
+                    
+                </div>
+
+            </div>
+        </div>
+    </section>
+  
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <h2 class="subtitulo-receta">
+                        Ingredientes:
+                    </h2>
+
+                    <ol>
+                        
+                         <li>160 grs dátiles sin hueso</li>
+                         <li>80 grs almendras laminadas</li>
+                         <li>20 grs cacao en polvo</li>
+                         <li>Jugo de naranja</li>
+                         <li>1 pizca de sal</li>
+                        <li>Frutos secos</li>
+                        
+
+
+                       
+
+                    </ol>
+                   
+                    <h2 class="subtitulo-receta">
+                        Preparación
+                    </h2>
+                    <ol>
+                        
+                        
+                        <li> Pica los dátiles y pásalos por la juguera. Añade almendras, sal y jugo de naranja hasta conseguir una textura húmeda y ligeramente pegajosa.</li>
+                        <li> En un bol pin el cacao en polvo y los frutos seos picados.</li>
+                        <li> Con una cuchara sopera, toma una pequeña porción de la masa y haz una bolita con las manos. Mételo al bol y recúbrelo con la mezcla de cacao- frutos secos.</li>
+                        <li> Deja las bolitas en la nevera y deja que se enfríen.</li>
+
+
+                       
+
+
+
+                    </ol>
+                   
+                     
+                    
+                    <p>
+                        <a href="@Url.Action("Descargar", new { file = ViewBag.codigoNota})">
+                            Descargar PDF
+                        </a>
+                        
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}

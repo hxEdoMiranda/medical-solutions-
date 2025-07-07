@@ -1,0 +1,114 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+    
+    
+    
+    <section class="container-fluid note-section library featured" id="nota3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    
+                    <div class="cont-titulo-receta">
+                        <div class="cont-logo">
+                            <img src="~/img/cajalosandes/recetas/logo.svg" alt="" />
+                            <h1 class="title-section">
+                                Galletitas saladas de queso
+                            </h1>
+                        </div>
+                        <img src="~/img/scotiabank/recetas/food.png" alt="trufa_chocolate" />
+                    
+                    </div>
+                    
+                    
+                </div>
+
+            </div>
+        </div>
+    </section>
+  
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <h2 class="subtitulo-receta">
+                        Ingredientes:
+                    </h2>
+
+                    <ol>
+                        
+                        
+                        <li>1 1/3 taza de harina de trigo</li>
+                        <li>1 cdta sal</li>
+                        <li>½ cdta ajo en polvo</li>
+                        <li>½ cdta de cebolla en polvo </li>
+                        <li>6 cdtas mantequilla sin sal</li>
+                        <li>200 grs queso cheddar rallado</li>
+                        <li>2 yemas de huevo</li>
+                        
+                        
+
+
+                       
+
+                    </ol>
+                   
+                    <h2 class="subtitulo-receta">
+                        Preparación
+                    </h2>
+                    <ol>
+                        
+                        
+                        <li>Mezcla la harina con la sal, el ajo y la cebolla. Añade la mantequilla y mezcla hasta integrarla. Incorpora las yemas de huevo y 1 cucharadas de agua fría y sigue mezclando.</li>
+                        <li>Agrega el queso y amasa con las manos hasta obtener una pasta elástica. Divídela por la mitad, forma dos bolas, reserva una en el refrigerador envuelta en film transparente.</li>
+                        <li>Pon la otra entre dos hojas de papel de horno y estírala con el rodillo hasta obtener una plancha de dos milímetros de grosor.</li>
+                        <li>Despega le papel superior y corta la masa con un molde de galletas.</li>
+                        <li>Ponlas en la lata del horno forrada con papel mantequilla, separada entre sí. Déjalas en el refrigerador 30 minutos.</li>
+                        <li>Realiza el mismo procedimiento con la bola de masa que dejaste en el refrigerador.</li>
+                        <li>Precalienta el horno a 180ºC</li>
+                        <li>Lleva las galletas al horno por unos 20 minutos, hasta que estén doraditas.</li>
+
+
+                       
+
+
+
+                    </ol>
+                   
+                     
+                    
+                    <p>
+                        <a href="@Url.Action("Descargar", new { file = ViewBag.codigoNota})">
+                            Descargar PDF
+                        </a>
+                        
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}

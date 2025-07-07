@@ -1,0 +1,918 @@
+/*compara*/
+
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+    --primary: #003380;
+    --secondary: #54ACC7;
+    --tertiary: #FFA83D;
+    --accent: #F9D324;
+    --light: #FFF;
+    --font-family: 'Mulish', sans-serif;
+}
+
+body {
+    /* font-family: var(--font-family) !important;*/
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-family) !important;
+}
+
+/*Login*/
+.logotipo-desktop {
+    background-image: url(../../img/master-descuentos/logotipo.svg);
+    max-width: 292px;
+    height: 19rem;
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/master-descuentos/logotipo.svg);
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: #000;
+    font-family: Mulish;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.login-info--tooltip~.tooltip-inner {
+    text-align: left !important;
+    background-color: red !important;
+}
+
+.login-info--tooltip i {
+    color: #ccc;
+    font-size: 20px;
+    margin-left: 10px;
+    text-align: left !important;
+}
+
+.form-group .ms-label {
+    color: #000 !important;
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.tooltip.show p {
+    text-align: left;
+}
+
+.registrate {
+    color: #000;
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.no-tienes-cta {
+    color: #000;
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.proveedor_box{
+    display: none !important;
+}
+
+
+.btn-primary {
+    border-radius: 4px;
+    background-color: #F45757;
+    box-shadow: 4px 4px 16px 0px rgba(88, 103, 221, 0.25);
+    color: #FFF;
+    font-family: Mulish;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    /* 125% */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 10px 58px;
+    border-color: #EE3F61;
+}
+
+.body-home .footer-home .terminos a {
+    color: #761C74;
+    display: inline-block;
+    margin-left: 1rem;
+}
+
+.body-home .footer-home {
+    color: #761C74;
+
+}
+
+.body-home .cont-card h1 {
+    color: #761c74;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 900;
+    padding: 0 2rem;
+}
+
+.body-home .cont-card .card .card-body {
+    border-radius: 16px;
+    background: #761C74;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+    border-color: #761C74;
+}
+
+.btn-primary:hover {
+    background-color: #761C74;
+    border-color: #761C74;
+}
+
+.divider-medismart {
+    display: flex !important;
+    margin-bottom: 2rem;
+}
+
+.logo-convenios {
+    /* display: none;*/
+    margin-bottom: 2rem;
+}
+
+/* Imágenes Login */
+.img1 {
+    background-image: url(../../img/master-descuentos/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/master-descuentos/login/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/master-descuentos/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/master-descuentos/login/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/master-descuentos/login/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/master-descuentos/login/960x978.jpg);
+}
+
+
+.body-home .logo-home img {
+    width: 130px;
+}
+
+.top-banner .legend {
+    font-weight: 500;
+}
+
+.menu-top .item-menu-top i,
+.menu-top .label-menu,
+.menu-top .item-menu-top .label-menu-pac {
+    color: #761C74;
+}
+
+.menu-top .item-menu-top:hover i,
+.menu-top .item-menu-top:hover .label-menu,
+.menu-top .item-menu-top:hover .label-menu-pac {
+    color: #54ACC7 !important;
+}
+
+.kt-menu__item a,
+.kt-menu__item i {
+    color: var(--accent)
+}
+
+.kt-menu__item a .ms-label-menu {
+    color: #761C74;
+}
+
+.kt-menu__item:hover a,
+.kt-menu__item:hover i {
+    color: var(--secondary) !important;
+}
+
+.accesible-btn button {
+    border-radius: 8px;
+    border: 1px solid #F45757;
+    background: #F45757;
+    color: #FFF;
+    text-align: center;
+    font-family: Mulish;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+.accesible-btn button:hover {
+    background-color: #54ACC7;
+    border-color: #54ACC7;
+}
+
+.busqueda-profesionales {
+    border: 2px solid var(--secondary);
+}
+
+.busqueda-profesionales i {
+    color: var(--secondary)
+}
+
+.busqueda-profesionales .btn-outline-primary {
+    color: var(--secondary)
+}
+
+.caja-especialidad.active {
+    background-color: var(--primary);
+}
+
+.caja-especialidad {
+    background-color: var(--secondary);
+}
+
+.inner-especialidad strong {
+    color: var(--light)
+}
+
+.step.active .step-icon {
+    background-color: var(--primary);
+}
+
+.stepper {
+    background-image: url(../../img/compara/fondo-banner2.svg);
+}
+
+.stepper .flecha {
+    color: var(--primary)
+}
+
+.stepper img {
+    border-color: #761C74;
+}
+
+.step.active .label-step {
+    color: var(--primary)
+}
+
+#btnConfirmar {
+    background: #3BC1CD;
+    border-color: #3BC1CD;
+}
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: var(--tertiary)
+}
+
+.caja-profesional .fecha-atencion {
+    color: var(--secondary)
+}
+
+.front-fecha-atencion {
+    border: 1px solid rgba(35, 33, 114, .3)
+}
+
+.front-fecha-atencion strong:before {
+    color: var(--secondary);
+    font-weight: 900;
+}
+
+.especialidad-profesional {
+    color: var(--tertiary)
+}
+
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+
+.top-banner {
+    background-image: url(../../img/master-descuentos/banner.svg);
+}
+
+.top-banner img {
+    border-color: rgba(255, 255, 255, .3)
+}
+
+.top-banner .legend {
+    color: var(--secondary)
+}
+
+.banner_topsc .legend .text-warning {
+    color: var(--primary) !important;
+}
+
+.top-banner.banner_topsc {
+    background-image: url(../../img/prestasalud/fondo-banner2.svg);
+}
+
+.text-warning {
+    color: #761C74 !important;
+    font-family: Mulish;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.menu-top .item-menu-top .logotipo-mobile {
+    width: 110px !important;
+}
+
+/*Sala espera*/
+
+.titulo-sala {
+    width: auto;
+}
+.hotspot-icon .cont-icon {
+    background-color: #761c74;
+    color: #FFFFFF;
+}
+
+#btnAbandonarAtencion .cont-icon {
+    background-color: #761C74;
+}
+
+#hs-b .cont-icon {
+    background-color: #761C74;
+}
+
+.footer-home .terminos {
+    margin-top: -6rem;
+}
+
+    .footer-home .terminos a {
+        font-family: Mulish;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+
+.hotspot-icon:hover .cont-icon {
+    background-color: var(--primary);
+    color: #EB7F63;
+}
+
+.cont-icon.hotspot-redes {
+    background-color: #761C74;
+}
+
+.fila-unica.alerta-sala-new .container-fila-tiempo {
+    height: 37px;
+}
+
+#horaFila-desk-new {
+    width: 100%;
+    margin-top: -6px;
+}
+
+.copy {
+    color: #761C74;
+    text-align: center;
+    font-family: Mulish;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-left: 6rem;
+}
+
+.reporte2 {
+    background-color: #EE3F61 !important;
+    color: #FFFFFF !important;
+}
+}
+.footer-home .terminos {
+    width: 100%;
+    display: flex;
+}
+.cons-chile{
+    display:none;
+}
+#hs-b .cont-icon {
+    background-color: #EB7F63;
+}
+
+#hs-b:hover .cont-icon:hover {
+    color: #761C74 !important;
+}
+
+.color-letras-salaespera {
+    background: #EE3F61 !important;
+    color: #ffffff !important;
+    border: 1px solid #EE3F61 !important;
+}
+
+    .color-letras-salaespera:hover {
+        background: #EB7F63 !important;
+        color: #ffffff !important;
+        border: 1px solid #EB7F63 !important;
+    }
+
+.footer-home #terminosFooter {
+    margin-left: 11.5rem;
+    margin-right: -92px;
+}
+
+#reporte {
+    
+    display: none;
+}
+
+.footer-home #politicas {
+    margin-right: 19.5rem;
+}
+
+
+#reporte .cont-icon {
+    background-color: #FFFFFF;
+    color: #15385D;
+}
+
+#hs-g .cont-icon {
+    background-color: var(--secondary);
+}
+
+#hs-g:hover .cont-icon {
+    background-color: var(--primary);
+}
+
+.toolbar-option {
+    color: #761C74;
+}
+
+.toolbar-option.active {
+    color: var(--secondary)
+}
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: #FFFFFF;
+    color: var(--secondary)
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--primary)
+}
+
+.btn-sala:hover {
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion,
+.cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion:hover,
+.cont-btn-vc .btn-atencion:hover {
+    background-color: rgba(237, 110, 0, 0.1);
+    color: var(--primary);
+}
+
+.hotspot-icon {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.hotspot-icon i {
+    text-shadow: none;
+}
+
+.hotspot-icon:hover {
+    color: #FFF;
+}
+
+@media (max-width: 668px) {
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none !important;
+        margin-top: 4rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .top-banner .legend {
+        text-align: left;
+        font-size: 1.3rem;
+    }
+
+    #reporte-m{
+        display: none;
+    }
+
+    .copy {
+        margin-left: 0rem;
+    }
+
+    .body-home .footer-home .terminos a {
+        
+        margin-left: -19rem;
+    }
+
+    .accesible-tools-desktop .accesible-btn {
+
+        margin-top: 0 !important;
+    }
+}
+
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/master-descuentos/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/master-descuentos/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/master-descuentos/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/master-descuentos/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/master-descuentos/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/master-descuentos/login/548x850.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/master-descuentos/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/master-descuentos/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/master-descuentos/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/master-descuentos/login/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/master-descuentos/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/master-descuentos/login/960x978.jpg);
+    }
+}
+
+
+/*Prehome*/
+
+.prehome__card {
+    padding: 2rem 2rem;
+}
+
+.prehome__plans {
+    height: 450px;
+}
+
+.prehome__plan {
+    width: 100%;
+    padding: 0;
+}
+
+.prehome__plan ul {
+    list-style-image: url('../../img/compara/bullet.svg');
+    margin-top: 32px;
+    height: 350px;
+    font-size: 16px;
+}
+
+.prehome__plan ul::webkit-scrollbar {
+
+}
+
+[hidden] {
+    display: none !important;
+}
+
+#reporte2 {
+    display: block !important;
+    margin-left: 100rem;
+    margin-top: -23rem;
+}
+
+#innerMensaje {
+    display: none !important;
+}
+
+.prehome__title {
+    color: #EE3F61;
+}
+
+.kt-login__extra.registro {
+    display: none;
+}
+
+.logo-convenios.convenioChile+hr {
+    display: none;
+}
+
+.kt-login.kt-login--v3.kt-login--signin .kt-login__signin .titulo-card-farmacia {
+    text-align: center;
+}
+
+@media (max-width: 991.98px) {
+    .prehome__plans {
+        height: auto;
+    }
+
+    
+
+    .footer-home #terminosFooter {
+        margin-left: 18.5rem;
+        margin-right: -92px;
+    }
+
+    .footer-home .terminos {
+        margin-top: 0rem;
+    }
+
+    .row {
+        margin-top: 8rem;
+    }
+
+    .body-home .top-banner .legend {
+        text-align: inherit !important;
+    }
+}
+
+.login-footer .terminos {
+    margin-bottom: 2rem;
+    display: flex;
+    margin-top: 2rem;
+    gap: 1rem;
+    margin-left: 1rem;
+}
+
+.stepper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    background-image: url(../../img/master-descuentos/banner.svg);
+    background-repeat: repeat-x;
+    background-position: left 10px;
+    margin-bottom: 2.5rem;
+    margin-top: 2.5rem;
+}
+
+.category-button:hover,
+.category-button.active {
+    background-color: var(--important) !important;
+    color: var(--important) !important;
+}
+
+.kt-menu__item:hover a,
+.kt-menu__item:hover i {
+    color: var(--primary) !important;
+}
+
+
+
+.kt-menu__item:hover a .ms-label-menu {
+    color: var(--primary);
+}
+
+.mt-5,
+.my-5 {
+    margin-top: 3rem !important;
+    display: none;
+}
+
+.logo-convenios img {
+    width: 150px;
+    height: auto;
+    display: none;
+}
+
+a {
+    color: #000;
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.body-home {
+    background: #F9C078 !important;
+    background-repeat: no-repeat, repeat;
+    background-position: 40% 0, 0;
+
+}
+
+.body-home .menu-top .item-menu-top i,
+.body-home .menu-top .item-menu-top .label-menu {
+    color: #761C74;
+}
+
+.body-home .logo-home img {
+    width: 130px !important;
+
+}
+
+.kt-grid.kt-grid--ver-desktop.kt-grid--desktop {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+
+}
+
+.accesible-tools-desktop .accesible-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.accesible-tools-desktop .accesible-btn button {
+
+    margin: 0.5rem;
+}
+
+.kt-menu__item a,
+.kt-menu__item i {
+    color: #761C74;
+}
+
+.letras-sala-espera {
+    display: none !important;
+    flex-direction: column !important;
+
+}
+
+@media (max-width: 1024px) {
+
+    div#kt_wrapper {
+        margin-top: 0 !important;
+    }
+
+    .body-home .cont-card .card {
+        border-radius: 16px;
+        width: 160px;
+        height: 160px;
+        transition: all .3s ease-out;
+        cursor: pointer;
+        display: block;
+        margin: auto;
+        background: #54ACC7 !important;
+    }
+
+    .body-home .top-banner .legend {
+        color: #EE3F61;
+        text-align: center;
+        font-family: Mulish;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+
+    .body-home .cont-card h1 {
+        color: #761C74;
+        text-align: center;
+        font-family: Roboto;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+
+    .menu-top .label-menu,
+    .menu-top .label-menu-pac {
+        display: none;
+    }
+
+    .hotspot-icon .cont-icon {
+        background-color: #761C74;
+    }
+
+    .hotspot-icon:hover .cont-icon {
+        background-color: #EB7F63;
+        transform: scale(1.2);
+    }
+
+    .hotspot-icon:hover {
+        color: white;
+    }
+
+    /*.body-home .menu-top .item-menu-top .label-menu .atenciones-vive {
+        display: none !important;
+    }
+    */
+
+    @media (max-width: 991.98px) {
+
+        .body-home .cont-card .card {
+            width: 90% !important;
+            height: 100px !important;
+            margin: auto !important;
+            margin-bottom: 1rem !important;
+        }
+    }
+
+    #menu-agendamiento {
+        display: none;
+    }
+
+    /* 
+    
+    Login > Reglas CSS para reorganizar el formulario de ingreso y 
+    evitar el scroll vertical en desktop y tablets en orientacion apaisada.
+
+*/
+    @media screen and (min-device-width: 992px) and (max-device-width: 1400px) and (orientation: landscape) {
+
+        #imgLogin {
+            background-size: contain;
+            background-color: #761b74;
+            background-position: top center;
+        }
+
+        .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+            margin-top: 0% !important;
+        }
+
+            .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__logo {
+                margin: 0 auto;
+                text-align: center;
+            }
+
+        .logotipo-desktop {
+            max-width: 230px;
+            height: 16rem;
+        }
+
+        h3.kt-login__title {
+            margin-top: 0 !important;
+        }
+
+
+        .columna-examenes {
+            display: none;
+        }
+
+        .columna-medicamentos {
+            display: none;
+        }
+  
+       

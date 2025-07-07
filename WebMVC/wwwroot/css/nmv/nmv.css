@@ -1,0 +1,56 @@
+/* Isapre Nueva Mas Vida*/
+
+.logo-convenios {
+    align-items: center;
+    justify-content: start;
+}
+
+    .logo-convenios .isotipo {
+        width: 60px;
+        height: 60px;
+        background-image: url(../../img/isotipo.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+.kt-aside__brand-logo.iso-nmv a {
+    background-image: url(../../img/nmv/isotipo.png);
+}
+
+
+.logo-nmv {
+    background-image: url(../../img/nmv/logo_prensa.png);
+    background-position: 0;
+}
+
+
+
+.logo-convenios .iso-nmv {
+    background-image: url(../../img/nmv/isotipo.png);
+    margin-right: 1rem;
+}
+
+/* Imágenes Login */
+.img1 {
+    background-image: url(../../img/nmv/telemedicina1.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/nmv/telemedicina2.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/nmv/telemedicina1.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/nmv/telemedicina1.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/nmv/telemedicina1.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/nmv/telemedicina1.jpg);
+}

@@ -1,0 +1,160 @@
+﻿@using Microsoft.Extensions.Configuration
+@model WebMVC.Models.PersonasViewModel
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Configuracion";
+    Layout = "_LayoutPaciente";
+
+}
+
+
+@{
+    ViewData["idEntidad"] = ViewBag.uid;
+    ViewData["uid"] = int.Parse(ViewBag.uid);
+}
+@{
+    ViewData["view"] = Roles.Paciente;
+}
+
+@section Styles  {
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/css/Mexico/mexico.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+
+    
+}
+
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid configuracion-paciente">
+    <ul class="nav nav-tabs" id="tabNom" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="perfil-tab" data-toggle="tab" href="#perfil" role="tab" aria-controls="perfil" aria-selected="true">Cuestionario</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="opinion-tab" data-toggle="tab" href="#opinion" role="tab" aria-controls="opinion" aria-selected="false">Buzón Anónimo</a>
+        </li>
+    </ul>
+
+
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="perfil" role="tabpanel" aria-labelledby="perfil-tab">
+
+             <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+
+            <!--Begin:: App Aside Mobile Toggle-->
+            <button class="kt-app__aside-close" id="kt_user_profile_aside_close">
+                <i class="la la-close"></i>
+            </button>
+            <!--End:: App Aside Mobile Toggle-->
+            <!--End:: App Aside Mobile Toggle-->
+
+            <div class="box_inner_nom035 card-init">
+                <div class="box_img_nom035"></div>
+                <div class="box_inner_text">
+                    <h2>Tu salud y cuidado es lo más importante</h2>
+                    <p>Hola, tu salud y cuidado es importante, con este cuestionario identificaremos si has estado expuesto a acontecimientos traumáticos y severos en el entorno laboral.   </p>
+                    <button class="btn btn-primary btn-block btn-sm" id="SiguienteHome">Comenzar</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+
+        <div class="tab-pane fade" id="opinion" role="tabpanel" aria-labelledby="opinion-tab">
+            <!-- Aquí va el textarea para la opinión -->
+            <div class="buzon-opinion">
+                <div class="buzon-opinion-img">
+                    <img src="~/img/img-buzon-anonimo.jpg" alt="imgbuzon">
+
+                </div>
+
+                <div class="buzon-opinion-content">
+
+                    <h1 class="buzon-opinion-title">Buzón Anónimo</h1>
+                    <p>Si tienes alguna solicitud, queja u observación no dudes en comunicarla a través de este formulario.</p>
+
+                    <div class="form-group">
+                        <label for="opinion">Solicitud / Queja / Observación</label>
+                        <textarea class="form-control" id="opinionArea" rows="3" placeholder="Escribe tu solicitud, queja u observación..."></textarea>
+                    </div>
+                    <div class="d-flex justify-content-end">
+
+                        <button type="button" id="btn_guardar_opinion" class="btn btn-success">Enviar</button>
+                    </div>
+
+                </div>
+
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+       @* <!-- Spinner -->
+        <div class="d-flex justify-content-center bakg_loading"><div class="spinner-border" role="status"><span class="sr-only">Un momento por favor...</span></div></div>
+        <!-- Spinner -->*@
+    <!--Begin::App-->
+
+
+   
+</div>
+
+
+@section Scripts {
+    <script src="~/js/Usuario/config.js?9rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script type="module">
+        import { init, showTabInIdCliente } from '../../js/Cuestionario/Home035.js?rnd=@NumeroRandom.GetRandom()';
+        init(@Html.Raw(Json.Serialize(Model)))
+        let id_Cliente = await showTabInIdCliente()
+        //console.log('desde html id cliente', id_Cliente)
+        if (id_Cliente === null) {
+            //console.log("id cliente SI es null", id_Cliente)
+            document.getElementById('opinion-tab').style.display = 'none';
+        }
+        else {
+            console.log("id cliente NO es null", id_Cliente)
+        }
+
+    </script>
+@*    <script>
+        debugger;
+       
+    </script>*@
+    <script type="text/javascript">
+        (function () {
+
+            var uid = @ViewBag.uid;
+
+            window.uid = uid;
+             var idCliente = '@ViewBag.idCliente';
+            window.idCliente = idCliente;
+            window.host = '@ViewBag.HostURL';
+
+        })()
+    </script>
+@*   <script>
+        debugger;
+        var id_Cliente = localStorage.getItem('id_Cliente');
+        if (id_Cliente === "null") {
+            document.getElementById('opinion-tab').style.display = 'none';
+        }
+    </script>*@
+
+    <script type="module">
+        window.ocupacional = '@ViewBag.ocupacional';;
+        import { init } from '../../js/Cuestionario/PacienteDatosBasicos.js?rnd=@NumeroRandom.GetRandom()';
+       
+
+        document.addEventListener("DOMContentLoaded", function () {
+            init(@Html.Raw(Json.Serialize(Model)));
+        });
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    
+}
+

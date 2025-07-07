@@ -1,0 +1,250 @@
+/* Stepper */
+
+.stepper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    background-image: url(../../img/fondo-banner.svg);
+    background-repeat: repeat-x;
+    background-position: left 10px;
+    margin-bottom: 2.5rem;
+    margin-top: 2.5rem;
+}
+
+    .stepper img {
+        width: 100px;
+        height: 100px;
+        border: 3px solid rgba(59,193,205,.5);
+    }
+
+.init-step {
+    /*width: calc(50% - 442px);*/
+}
+
+.cont-steps {
+    width: 342px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #f9f9fc;
+}
+
+.step-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: #C4C4C4;
+    color: #FFF;
+    border-radius: 2rem;
+    margin: 0 auto;
+    margin-bottom: .5rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*.step.passed .step-icon {
+    background-color: #3BC1CD;
+}*/
+
+.step.active .step-icon {
+    background-color: #FFAF36;
+}
+
+.label-step {
+    color: #666;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.step.active .label-step {
+    color: #FFAF36;
+}
+/*
+.step.passed .label-step {
+    color: #3BC1CD;
+}*/
+
+.stepper .flecha {
+    margin-top: -20px;
+    color: #3BC1CD;
+}
+
+
+/*Stepper*/
+.header-ms {
+    margin-left: auto;
+    max-width: 460px;
+    width: 100%;
+}
+
+.stepper-ms {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    .stepper-ms .step {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .stepper-ms .num-step {
+        display: flex;
+        align-items: center;
+        /* justify-content: center;*/
+        background-color: #D9D9D9;
+        border-radius: 50%;
+        height: 36px;
+        width: 36px;
+        color: #FFF;
+        font-weight: 700;
+        font-size: 18px;
+        flex-direction: column;
+    }
+
+    .stepper-ms .divider-step {
+        background-color: #D9D9D9;
+        width: calc(100% - 36px);
+        display: inline-block;
+        height: 8px;
+    }
+
+    .stepper-ms .step.active .num-step {
+        background-color: #3BC1CD;
+    }
+
+    .stepper-ms .step.active .num-step,
+    .stepper-ms .step.passed .num-step {
+        background-color: #3BC1CD;
+    }
+
+    .stepper-ms .step.passed .divider-step {
+        background-color: #3BC1CD;
+    }
+
+    .stepper-ms .step:last-child .divider-step {
+        display: none;
+    }
+
+.stepper-labels {
+    display: flex;
+    width: 100%;
+    max-width: 580px;
+    justify-content: space-between;
+}
+
+    .stepper-labels .label-step {
+        font-size: 14px;
+        text-transform: none;
+        text-align: center;
+        width: 82px;
+        font-weight: 500;
+        color: #3BC1CD;
+    }
+
+.num-step {
+    padding-top: .25rem;
+}
+
+    .num-step::after {
+        content: '';
+        display: block;
+        color: #B3B3B3;
+        font-weight: 500;
+        text-align: center;
+        font-size: 14px;
+        margin-top: 16px;
+    }
+
+.step:nth-of-type(1) .num-step::after {
+    content: 'Agenda';
+}
+
+.step:nth-of-type(2) .num-step::after {
+    content: 'Reserva';
+}
+
+.step:nth-of-type(3) .num-step::after {
+    content: 'Resumen';
+}
+
+.step:nth-of-type(4) .num-step::after {
+    content: 'Registro';
+}
+
+.step.active .num-step::after {
+    color: #3BC1CD;
+}
+
+.stepper-ms .step:last-child {
+    width: auto !important;
+}
+
+
+@media (max-width: 1024px) {
+    .cont-steps {
+        background-color: transparent;
+        margin-top: 2rem;
+    }
+
+    .stepper {
+        justify-content: center;
+        background-image: none;
+        margin-top: 1rem;
+    }
+
+    .init-step {
+        display: none;
+    }
+
+    .stepper .rounded-circle {
+        display: none;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .stepper {
+        background-image: none;
+        margin-bottom: 2rem;
+        margin-top: 4rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .stepper-medismart {
+        margin-top: 8rem;
+    }
+}
+
+.stepper-sv {
+}
+
+    .stepper-sv .step-icon {
+        background-color: #0081A4;
+    }
+
+    .stepper-sv .label-step {
+        color: #0081A4;
+        text-align: center;
+        text-transform: none;
+        font-size: 12px;
+    }
+
+    .stepper-sv .titulo-step {
+        color: #0081A4;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: .5rem;
+        font-size: 12px;
+    }
+
+    .stepper-sv .cont-steps {
+        width: 106px;
+    }

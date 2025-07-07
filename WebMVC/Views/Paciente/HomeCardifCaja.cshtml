@@ -1,0 +1,702 @@
+@model WebMVC.Models.AtencionViewModel;
+@using Microsoft.AspNetCore.Http.Extensions
+@using WebMVC.Controllers
+@using Microsoft.AspNetCore.Http;
+@using System.Security.Claims;
+@using WebMVC.Models;
+@using Microsoft.Extensions.Configuration
+@using System.Web;
+@using System;
+@using System.Security.Cryptography;
+@using System.Text;
+@using System.Text.Json;
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Paciente";
+    Layout = "";    
+    var ClienteMasproteccion = Configuration["MASPROTECCION"];
+    var ClientePrevencion = Configuration["CAJALOSANDES"];
+    var idCliente = ((ClaimsIdentity)User.Identity).GetSpecificClaim("primarysid");
+    var _layout = new LayoutController(Configuration);
+    var nombreServicio = ViewBag.nombreServicio;
+
+
+    var imgServicios = ViewBag.imgServicios;
+    var numFooter = await _layout.GetNumAsistencia(Convert.ToInt32(idCliente), "NUM_FOOTER");
+  
+}
+
+
+
+@{
+   
+    var codigoGoogleAnalytics = "GTM-T3GQHL7";
+    var hiddencardif = "";
+    if ((ViewBag.HostURL.ToString().Contains("clinicamundoscotia.") || ViewBag.HostURL.ToString().Contains("masproteccionsalud.") || ViewBag.HostURL.ToString().Contains("prevenciononcologica.") || ViewBag.HostURL.ToString().Contains("saludproteccion.")))
+        hiddencardif = "hidden";
+    if (ViewBag.HostUrl.Contains("saludproteccion"))
+        codigoGoogleAnalytics = "GTM-PR4C236";
+
+   
+}
+
+@*nuevo html*@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google Tag Manager -->
+    @if (ViewBag.HostURL.ToString().Contains("masproteccionsalud."))
+    {
+        <script>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || []; w[l].push({
+                    'gtm.start':
+
+                        new Date().getTime(), event: 'gtm.js'
+                }); var f = d.getElementsByTagName(s)[0],
+
+                    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+
+                        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+
+            })(window, document, 'script', 'dataLayer', 'GTM-WGQBMR9R');
+        </script>
+    }
+
+
+    <!-- End Google Tag Manager -->
+
+    <link href="~/metronic_demo7/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/metronic_demo7/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/masproteccionsalud_nuevo/masproteccionsalud-nuevo.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <title>+ Protección | Sitio Paciente </title>
+</head>
+
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    @if (ViewBag.HostURL.ToString().Contains("masproteccionsalud."))
+    {
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WGQBMR9R"
+                    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
+    }
+    <!-- End Google Tag Manager (noscript) -->
+@{
+     var auth = "";
+        auth = ((ClaimsIdentity)User.Identity).GetSpecificClaim("authentication");
+        if (string.IsNullOrEmpty(auth))
+        {
+            auth = "-1";
+        }
+        var host = Configuration["ServicesUrl"];
+        var c = "";
+        //var btncargaPersonas = "hidden";
+        c = ((ClaimsIdentity)User.Identity).GetSpecificClaim("nameidentifier");
+        if (string.IsNullOrEmpty(c))
+        {
+            c = "-1";
+        }
+}
+    <div class="caja-andes-header">
+    
+            <div class="iconos" onclick="window.location.href='/Paciente/PlanSalud';">
+            <img class="caja-andes-icono-caja" src="~/img/masproteccionsalud-nuevo/iconos-nuevo-look/logo-caja.svg" alt="">
+            <img class="caja-andes-icono-cardif" src="~/img/masproteccionsalud-nuevo/iconos-nuevo-look/logo-cardif.svg" alt="">
+            </div>
+    
+            <button id="menu-toggle" class="menu-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        
+    
+        <div class="caja-andes-menu-header" id="menu">
+
+            <!--begin: Ayuda -->
+
+            
+            <!--end: Ayuda -->
+            <a href="/paciente/faq2">
+            <div class="icono-menu">
+                <img src="~/img/masproteccionsalud-nuevo/iconos-nuevo-look/icono-consulta.svg" alt="" class="icono-menu-header">
+                Preguntas frecuentes
+            </div>
+            </a>
+            <div class="caja-andes-vertical-bar-nav"></div>
+    
+            <div class="icono-menu">
+                <img src="~/img/masproteccionsalud-nuevo/iconos-nuevo-look/icono-user.svg"  alt="" class="icono-menu-header">
+                <a asp-controller="Paciente" asp-action="Index" class="kt-menu__link ms-menu__link">Mis agendas</a>
+            </div>
+            <div class="caja-andes-vertical-bar-nav"></div>
+            <div class="icono-menu">
+            <a asp-controller="Paciente" asp-action="Configuracion" id="btnPerfil" class="toolbar-option text-center icono-menu">
+                        <img src="~/img/masproteccionsalud-nuevo/iconos-nuevo-look/icono-user-rounded.svg" alt="" class="icono-menu-header">
+                        Mi perfil
+            </a>
+               
+            </div>
+            <a asp-controller="Account" asp-action="Logout" asp-route-rol="Paciente" data-close="true" >
+                <button>
+                    Cerrar Sesión
+                </button>
+            </a>
+          
+
+            @*<div class="item-menu-top" id="item-salir" data-toggle="tooltip" title="Salir" data-placement="bottom">
+                <div class="kt-header__topbar-wrapper">
+                </div>
+            </div>*@
+        </div>
+    </div>
+    
+    <div class="caja-andes-subheader" id="subheader">
+    <div class="cont-item-subheader">
+            <div class="caja-andes-vertical-bar"></div>
+
+            <p>@nombreServicio</p>
+    </div>
+        
+
+        <h1>Accede a tus servicios cuando y donde quieras.</h1>
+    </div>
+    <div class="caja-andes-container">
+
+    <!-- Fusion Sidebar -->
+        <div class="caja-andes-sidebar" onclick="window.location.href='/Paciente/PlanSalud';">
+            <div class="caja-andes-saludo-sidebar">
+
+                <h1>¡Hola, </h1>
+                <h1><span id="saludoPaciente"></span>!</h1>
+
+                <p>Estos son tus beneficios:</p>
+            </div>
+            
+            <div class="caja-andes-sidebar-menu">
+                <div class="caja-andes-caja-menu" onclick="window.location.href='/Paciente/PlanSalud';" style="cursor: pointer;">
+                    <img src="~/img/masproteccionsalud-nuevo/iconos-nuevo-look/icono-estetoscopio.svg" alt="">
+                    <b>
+                        <p class="p-salud-caja-menu">Salud</p>
+                    </b>
+                </div>
+                <!--<div class="caja-andes-caja-menu">
+                    <img src="~/img/masproteccionsalud-nuevo/iconos-nuevo-look/icono-estetoscopio.svg" alt="">
+                   <b>
+                        <p>Salud + Oncológico</p>
+                    </b>
+                </div>
+                 <div class="caja-andes-caja-menu">
+                    <img src="~/img/masproteccionsalud-nuevo/iconos-nuevo-look/icono-estetoscopio.svg" alt="">
+                    <b>
+                        <p>Salud + Oncológico + Hospitalizacion</p>
+                    </b>
+                </div>-->
+            </div>
+
+        </div>
+        <!-- end:: Fusion Sidebar -->
+        <!-- Fusion Content -->
+        
+        <div class="caja-andes-content">
+
+            <div class="caja-andes-box-content">
+
+                <!-- Menu Superior -->
+                
+                <div class="caja-andes-menu-content" >
+                  
+
+                    @if (nombreServicio.Split(' ').Length > 3)
+                    {
+                        <p><b onclick="window.location.href='/Paciente/PlanSalud';" style="cursor:pointer;">@nombreServicio.Split(' ')[0]</b> @nombreServicio.Split(' ')[1] @nombreServicio.Split(' ')[2] @nombreServicio.Split(' ')[3]</p>
+
+                    } else
+                    {
+                        <p><b onclick="window.location.href='/Paciente/PlanSalud';" style="cursor:pointer;">@nombreServicio.Split(' ')[0]</b> @nombreServicio.Split(' ')[1] @nombreServicio.Split(' ')[2]</p>
+
+                    }
+
+
+                </div>
+                <!-- end:: Menu Superior -->
+
+                <!-- Volver -->
+                <div class="caja-andes-volver">
+                    <img src="~/img/masproteccionsalud-nuevo/iconos-nuevo-look/volver.svg" onclick="window.location.href='/Paciente/PlanSalud';" alt="">
+                    <span>Volver a Inicio</span>
+                 
+                   
+                </div>
+                <!-- end:: Volver -->
+
+            </div>
+                
+                <div class="caja-andes-imagen-salud">
+                    <div class="caja-andes-img">
+                        <img class="caja-andes-img-salud" src="@imgServicios" alt="">
+                   
+
+                    </div>
+                    <div class="caja-andes-detalles-beneficios">
+                        <h1>Estos son tus beneficios:</h1>
+                        <p>Estos son los servicios asociados a tu seguro que estarán disponibles para usar cuando quieras </p>
+                    </div>
+                </div>
+
+
+                
+            <div class="caja-andes-contend-box">
+                                       
+                          <div class="caja-andes-box @("nroPlan=" + @idCliente)" id="divMG" @ViewBag.visibleAtencionmg>
+                                        <a class="btnAtencionDirectaGeneral @("nroPlan=" + @idCliente)">
+                                            <img src="@ViewBag.imgAtencionmg" alt="">
+                            <!--<img src="~/img/masproteccionsalud-nuevo/iconos-nuevo-look/estetoscopio.svg" alt="">-->
+                                            <p>@ViewBag.textoAtencionmg</p>
+                                </a>
+                          </div>
+
+                          <div class="caja-andes-box @("nroPlan=" + @idCliente)" @ViewBag.visibleSuscripcion>
+                             <a id="susCardif" class="@("nroPlan=" + @idCliente)" href="javascript:;">
+                                <img src="@ViewBag.imgSuscripcion" alt="">
+                            <!--<img src="~/img/masproteccionsalud-nuevo/iconos-nuevo-look/maletin.svg" alt="">-->
+                                <p>@ViewBag.textoSuscripcion</p>
+                             </a>
+                          </div>
+
+
+                            <!-- Oncología-->
+
+                          <div class="caja-andes-box @("nroPlan=" + @idCliente)" @ViewBag.visibleOncologia>
+                            <a id="oncoCardif" class="@("nroPlan=" + @idCliente)" href="@ViewBag.AccionOncologia">
+                                <img src="@ViewBag.ImgOncologia" alt="">
+                            <!--<img src="~/img/masproteccionsalud-nuevo/iconos-nuevo-look/onco.svg" alt="">-->
+                                <p>@ViewBag.textoOncologia</p>
+                            </a>
+                          </div>
+                            <!-- Oncología-->
+                            <!-- Psicología-->
+                          <div class="caja-andes-box @("nroPlan=" + @idCliente)" @ViewBag.visiblePsicologia>
+                                     <a id="susPsico" class="@("nroPlan=" + @idCliente)" href="@ViewBag.AccionPsicologia">
+                                              <img src="@ViewBag.imgPsicologia" alt="">
+                            <!--<img src="~/img/masproteccionsalud/iconos_home/psicologia.svg" alt="">-->
+                                            <p>@ViewBag.textoPsicologia</p>
+                                     </a>
+                          </div>
+
+                             <!--Asesorías PlanSalud-->
+                          <div class="caja-andes-box @("nroPlan=" + @idCliente)" @ViewBag.visibleAsistenciaSalud>
+                                    <a href="javascript:void(0)" id="btnAsesoriaCaja" class="@("nroPlan=" + @idCliente)">
+                                          <img src="@ViewBag.imgAsistenciaSalud" alt="">
+                            <!--<img src="~/img/masproteccionsalud-nuevo/iconos-nuevo-look/asesoria.svg" alt="">-->
+                                            <p>@ViewBag.textoAsistenciaSalud</p>
+                                    </a>
+                          </div>
+                            <!--VidaSana-->
+
+                          <div class="caja-andes-box @("nroPlan=" + @idCliente)" @ViewBag.VisibleBiblioteca>
+                                    <a href="@ViewBag.AccionWikidoc" id="btnBiblioteca" class="@("nroPlan=" + @idCliente)">
+                                            <img src="@ViewBag.imgBiblioteca" alt="">
+                            <!--<img src="~/img/masproteccionsalud-nuevo/iconos-nuevo-look/vidasana.svg" alt="">-->
+                                        <p>@ViewBag.textoBiblioteca</p>
+                                    </a>
+                          </div>
+                            <!--VidaSana-->
+                            <!--05-->
+                          <div class="caja-andes-box @("nroPlan=" + @idCliente)" @ViewBag.visiblePortalFarmacias>
+                                <a href="javascript:void(0)" id="btnFarmacia" class="@("nroPlan=" + @idCliente)">
+                                            <img src="@ViewBag.imgPortalFarmacias" alt="">
+                                            <p>@ViewBag.textoPortalFarmacias</p>
+                                </a>
+                          </div>
+                            <!--07-->
+                          <div class="caja-andes-box @("nroPlan=" + @idCliente)" @ViewBag.visibleOrientacionEnfermeria>
+                                <a href="javascript:void(0);" id="btnExamenes" class="@("nroPlan=" + @idCliente)">
+                                            <img src="@ViewBag.imgOrientacionEnfermeria" alt="">
+                            <!--<img src="~/img/masproteccionsalud-nuevo/iconos-nuevo-look/archivo.svg" alt="">-->
+                                            <p>@ViewBag.textoOrientacionEnfermeria</p>
+                                </a>
+                          </div>
+                            <!--Contactodeemergencia -->
+
+                          <div class="caja-andes-box @("nroPlan=" + @idCliente)" @ViewBag.visibleContactoEmergencia>
+                                <a id="susCargas" class="@("nroPlan=" + @idCliente)" href="@ViewBag.AccionContactoEmergencia">
+                                            <img src="@ViewBag.ImgContactoEmergencia" alt="CONTACTOS DE EMERGENCIA">
+                                            <p>@ViewBag.textoContactoEmergencia</p>
+                                </a>
+                          </div>
+                            <!--Contactodeemergencia -->
+
+            <!--CAJADELOSANDES-->
+           
+
+            <!-- end:: Cajas Fusion-->
+            </div>
+             @if (ViewBag.preHome == true)
+                {
+            <div class="caja-andes-contrata-seguro">
+
+                <button class="btn-caja-fusion @("nroPlan=" + @idCliente)" onclick="window.location.href='/Paciente/PlanSalud';">
+                        Volver
+                    </button>
+               
+            </div>
+          
+                }
+             <div class="caja-andes-content-contacto">
+                    <div class="caja-andes-box-contacto">
+                        <div class="caja-andes-box-phone-email">
+                            <img src="~/img/masproteccionsalud-nuevo/iconos-nuevo-look/fono.svg" alt="">
+                            <div>
+                            <p>Llama a nuestra línea de atención: <br /> <b>@(numFooter == "" || numFooter == null ? "+56 224293526" : numFooter)</b></p>
+                            </div>
+                        </div>
+                        <div class="caja-andes-vertical-bar"></div>
+                        <div class="caja-andes-box-phone-email">
+                            <img src="~/img/masproteccionsalud-nuevo/iconos-nuevo-look/email.svg" alt="">
+                            <div>
+                                <p>Atención por email</p>
+                                <p><b><a href="mailto:contacto@masproteccion.cajalosandes.cl" class="@("nroPlan=" + @idCliente)">contacto@masproteccion.cajalosandes.cl</a></b></p> 
+                            </div>
+                        </div>
+                    </div>
+
+             </div>
+
+            <!-- end:: Fonos -->
+
+
+            <!-- Footer -->
+
+            <div class="caja-andes-footer">
+                <div class="caja-andes-content-footer">
+                    <div class="caja-andes-logos-footer">
+                        <img src="~/img/masproteccionsalud-nuevo/iconos-nuevo-look/logo-caja.svg" alt="">
+                        <img src="~/img/masproteccionsalud-nuevo/iconos-nuevo-look/logo-cardif.svg" alt="">
+                    </div>
+
+                    <div class="caja-andes-terminos-pregunta">
+                        <div class="terminos">
+                            <h3>Servicio al cliente</h3>
+                            <a href="#" id="terminosFooter">Términos y condiciones</a>
+                            <a href="#" id="politicas">Políticas de privacidad</a>
+                        </div>
+                        <div class="caja-andes-footer-servicio-cliente">
+                            <p class="">En caso de requerir información adicional o presentar algún inconveniente</p>
+                            <div class="caja-andes-footer-preguntas">
+                                <img src="~/img/masproteccionsalud-nuevo/iconos-nuevo-look/icono-consulta-azul.svg" alt="">
+                                <a href="~/paciente/faq2">
+                                    <h3 class="multiline-heading">Visita preguntas frecuentes</h3>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- end:: Footer -->
+
+            <!-- Footer Inferior-->
+
+            <div class="footer-dos">
+                <p>
+                    © 2024 BNP Paribas Cardif todos los derechos reservados. <br />
+                    La Compañía se reserva el derecho de modificar y/o reemplazar las asistencias que forman parte de la plataforma digital, sin previo aviso a sus asegurados.
+                </p>
+            </div>
+
+            <!-- end::Footer Inferior-->
+   
+
+        </div>
+
+       
+
+    </div>
+
+    <!--Modal Terminos-->
+    <div class="modal fade" id="modalTerminos" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" metadata="layoutModTerms">Términos y condiciones</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalTerminosBody">
+                    @*terminos y condiciones se cargan de forma dinamica*@
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btnCerrar" data-dismiss="modal" metadata="layoutModTermsClose">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal Politicas-->
+    <div class="modal fade" id="modalPoliticas" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" metadata="layoutModPolitycs">Políticas de privacidad</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalPoliticasBody">
+                    @*politicas de privacidad se cargan de forma dinamica*@
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btnCerrar" data-dismiss="modal" metadata="layoutModPolitycsClose">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+                
+
+    <!--begin: Atenciones -->
+
+    <div class="dropdown item-menu-top dropdownAgendada" id="item-atenciones" @hiddencardif>
+        <div class="kt-header__topbar-wrapper" data-toggle="dropdown">
+            <a data-close="false">
+                <span class="circulo-alerta-agendada" style="display: none;">
+                    <span class="circulo-alerta-numero-agendada">0</span>
+                </span>
+                <i class="fal fa-calendar" id="icon-atenciones"></i>
+                <span class="text-uppercase label-menu">Atenciones</span>
+            </a>
+            <span class="kt-hidden kt-badge kt-badge--danger"></span>
+        </div>
+        <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-xl dropdown-wow" id="drop-mensajes-turno">
+            <form>
+                <!--begin: Head -->
+                <div class="header-notificaciones">
+                    <h1 class="titulo-notificaciones">
+                        ATENCIONES AGENDADAS
+                    </h1>
+                    <a class="btn-close btn-close-agendada">
+                        <i class="fal fa-times"></i>
+                    </a>
+                </div>
+                <!--end: Head -->
+                <div class="tab-content">
+                    <div class="tab-pane active show" id="topbar_notifications_notifications" role="tabpanel">
+                        <div @*class="col-lg-6 col-xl-5" data-scroll="true" data-height="300" data-mobile-height="200" *@>
+                            <!--Begin:: Aviso Atención-->
+                            <div class="caja-atencion mensaje-no-atencion" id="divSinAtenciones" hidden style="text-align:center;">
+                                <i class="fal fa-calendar-exclamation" aria-hidden="false"></i>
+                                <h1>
+                                    <span metadata="indexProxAtencionInfo">EN ESTE MOMENTO </span>
+                                    <strong metadata="indexProxAtencionInfo2">NO TIENES</strong>
+                                    <strong metadata="indexProxAtencionInfo2">ATENCIONES AGENDADAS</strong>
+                                </h1>
+                                @if (ViewBag.HostURL.Contains("medical."))
+                                {
+                                    <a href="/Paciente/Agendar" class="btn btn-primary btn-sm" metadata="indexAgendar">Agendar Atención</a>
+                                }
+                            </div>
+                            <div id="atenciones"></div>
+                            <!--atenciones hoy-->
+                            <div class="tab-pane active" id="kt_widget2_tab1_content"></div>
+                            <!--atenciones próximas-->
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--end: Atenciones -->
+
+
+@*fin nuevo html*@
+
+
+
+@if (ViewBag.ChatGpt == true)
+{
+    <!--Chat GPT-->
+
+    <div id="concierge-chat" class="cont-chat">
+        <div class="cont-asistente">
+            <img src="~/img/chatgpt/asistente.png" alt="Asistente Salud">
+        </div>
+        <div class="cont-btn-chat">
+            <button class="btn-chat" id="bot-toggle" onclick="toggleBot()">
+                Asistente de Salud en Medismart.live
+            </button>
+            <div class="cont-conversacion" id="bot-chat">
+                <div class="cont-asistente">
+                    <div class="contain-close"><span class="x-close" onclick="toggleBot()">X<span></span></div>
+                    <img src="~/img/chatgpt/chat-superior.png" class="chat-superior" alt="Asistente Salud">
+                </div>
+
+                <div class="conversacion" id="conversacion">
+                    <div class="intro">
+                        <p>
+                            ¡Hola Soy Leonor!, Asistente de Salud vía Inteligencia Artificial de Medismart.live
+                        </p>
+                        <p>
+                            <strong>
+
+                                ¿En qué te puedo ayudar?
+                            </strong>
+                        </p>
+                    </div>
+
+                    <div class="cuerpo-conversacion" id="bot-messages">
+                    </div>
+
+                </div>
+
+                <div class="input-chat">
+                    <input type="text" id="user-input" placeholder="Escribir mensaje...">
+                    <button class="btn-enviar" id="send-button" onclick="sendMessage()">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Chat GPT-->
+}
+
+  
+
+    <script>
+        var KTAppOptions = {
+            "colors": {
+                "state": {
+                    "brand": "#22b9ff",
+                    "light": "#ffffff",
+                    "dark": "#282a3c",
+                    "primary": "#5867dd",
+                    "success": "#34bfa3",
+                    "info": "#36a3f7",
+                    "warning": "#ffb822",
+                    "danger": "#fd3995"
+                },
+                "base": {
+                    "span": ["#c5cbe3", "#a1a8c3", "#3d4465", "#3e4466"],
+                    "shape": ["#f0f3ff", "#d9dffa", "#afb4d4", "#646c9a"]
+                }
+            }
+        };
+    </script>
+    <!-- end::Global Config -->
+    <!--begin::Global Theme Bundle(used by all pages) -->
+    <script src="~/signal/signalr.min.js"></script>
+    <script src="~/metronic_demo7/assets/plugins/global/plugins.bundle.js?4" type="text/javascript"></script>
+    <script src="~/metronic_demo7/assets/js/scripts.bundle.js?1" type="text/javascript"></script>
+    <script src="~/metronic_demo7/assets/js/pages/components/extended/sweetalert2.js"></script>
+    <script src="~/js/inputmask.min.js"></script>
+    <script src="../../js/Shared/layout.js?rand=@NumeroRandom.GetRandom()"></script>
+<script src="https://cdn.jsdelivr.net/gh/bigdatacloudapi/js-api-client@latest/bigdatacloud_api_client.min.js" type="text/javascript"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/bigdatacloudapi/js-client-ip-client@latest/bigdatacloud_client_ip.min.js" type="text/javascript"></script>
+<!--Modal Wellness-->
+    <script src="~/signal/signalr.min.js"></script>
+    <script src="~/js/detectRTC.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/accesible.js"></script>
+    <script src="~/js/modal.js"></script>
+    <script src="~/js/terminos.js"></script>
+   
+    <script type="text/javascript">
+     (function () {
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+            var visibleVet = "@ViewBag.visibleVet";
+            window.visibleVet = visibleVet;
+            var idCliente = @ViewBag.idCliente;
+            window.idCliente = idCliente;
+            var chatGptId = '@ViewBag.chatGptId';
+            window.chatGptId = chatGptId;
+            var visibleNotice = "@ViewBag.VisibleNotice";
+            window.visibleNotice = visibleNotice;
+            var activaBlanco = @ViewBag.activaBlanco;
+            window.activaBlanco = activaBlanco
+            var codigoTelefono = "@ViewBag.codigoTelefono";
+            window.codigoTelefono = codigoTelefono
+            var host = '@ViewBag.HostURL';
+            window.host = host;
+            var idClienteSesion = @ViewBag.idClienteSesion;
+            window.idClienteSesion = idClienteSesion;
+            var isNewUserFirebase = "@ViewBag.isNewUserFirebase";
+            window.isNewUserFirebase = isNewUserFirebase;
+
+            var isNewUser = "@ViewBag.isNewUser";
+            window.isNewUser = isNewUser;
+
+
+
+
+        })()
+    </script>
+     <script type="text/javascript">
+        (function () {
+            var auth = "@auth";
+            var uid = @c;
+            window.uid = uid;
+            window.auth = auth;
+            window.hasTitle = "@ViewBag.hasTitleLayout";
+            window.host = "@ViewBag.HostURL";
+        })()
+    </script>
+        <script>
+
+            const menuToggle = document.getElementById("menu-toggle");
+            const menu = document.getElementById("menu");
+
+            menuToggle.addEventListener("click", () => {
+                menu.classList.toggle("active");
+            });
+        </script>
+    <script type="module">
+        import { personaFotoPerfil, saludoPaciente } from '../../js/shared/info-user.js?rnd=${@NumeroRandom.GetRandom()}';
+        if (window.hasTitle == "1")
+            saludoPaciente();
+        window.onload = personaFotoPerfil();
+    </script>
+
+
+
+    <script type="module">
+        import { init } from '../../js/Paciente/home.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)));
+    </script>
+    @{
+        string pageUrl = "";
+
+        switch (idCliente)
+        {
+            case "817": // Enfermedades graves
+                pageUrl = "/cla/enfermedades-graves";
+                break;
+            case "787": // Escolar
+                pageUrl = "/cla/escolar";
+                break;
+            case "679": // Hospitalización
+                pageUrl = "/cla/hospitalizacion";
+                break;
+            case "260": // Oncológico
+                pageUrl = "/cla/oncologico";
+                break;
+            case "359": // Vida Familiar
+                pageUrl = "/cla/vida-familiar";
+                break;
+        }
+    }
+
+    <script>
+        if (window.location.hostname.includes('masproteccionsalud.cl')) {
+            window.dataLayer.push({
+                'event': 'vpv-medismart',
+                'page': '@pageUrl'
+            });
+        }
+    </script>
+</body>
+
+</html>
+<!--end: Modal Orientación-->

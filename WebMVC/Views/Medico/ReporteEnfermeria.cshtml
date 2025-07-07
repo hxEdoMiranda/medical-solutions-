@@ -1,0 +1,117 @@
+﻿@model AdminProfesionales
+@{
+    ViewData["Title"] = "ListaAtencionPaciente";
+    Layout = "_Layout";
+
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+    <div class="kt-portlet kt-portlet--mobile">
+        <div class="kt-portlet__head kt-portlet__head--lg">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">
+                    Reporte Enfermería
+                </h3>
+            </div>
+
+        </div>
+
+        <div class="kt-portlet__body">
+
+            <!--begin: Search Form -->
+            <div class="kt-form kt-form--label-right kt-margin-b-10">
+                <div class="row align-items-center">
+
+                    <div class="col-xl-12 order-2 order-xl-1">
+                        <div class="row align-items-center mt-4">
+                            <div class="col-md-5 kt-margin-b-20-tablet-and-mobile">
+                                <div class="kt-input-icon kt-input-icon--left">
+                                    <label style="font-weight:bold">Buscar Paciente</label>
+                                    <div class="typeahead">
+                                        <input class="form-control" id="input_codigo" type="text" dir="ltr" autocomplete="off">
+                                    </div>
+                                    <span class="kt-input-icon__icon kt-input-icon__icon--left">
+                                        <span><i class="la la-search"></i></span>
+                                    </span>
+                                    <div class="form-text text-muted">Busca por nombre, apellido y rut(ingrese min. 3 caracteres)</div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-2 kt-margin-b-20-tablet-and-mobile">
+
+                                <a href="#" class="btn btn-brand btn-elevate btn-icon-sm pull-right" style="width: 80%" id="btnBuscar">
+                                    Limpiar
+                                </a>
+                            </div>
+                            <div class="col-md-2 kt-margin-b-20-tablet-and-mobile">
+
+                                <a href="#" class="btn btn-brand btn-elevate btn-icon-sm pull-right" style="width: 80%" id="btnNuevoReporte">
+                                    <i class="la la-file-text"></i>
+                                    Nuevo reporte
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!--end: Search Form -->
+        </div>
+        <div class="kt-portlet__body kt-portlet__body--fit">
+
+            <!--begin: Datatable -->
+            <div class="kt-datatable" id="json_data"></div>
+
+            <!--end: Datatable -->
+        </div>
+
+        <div class="modal fade" id="kt_modal_3" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Informe Médico</h5>
+                    </div>
+                    <div class="modal-body" id="modalBody">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="btnCerrar" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+
+<!-- end:: Page -->
+<!-- begin::Scrolltop -->
+<div id="kt_scrolltop" class="kt-scrolltop">
+    <i class="fa fa-arrow-up"></i>
+</div>
+
+@section Scripts {
+
+    <script type="module">
+        import { init } from '../../js/Medico/reporte-enfermeria.js?rnd=${@NumeroRandom.GetRandom()}';
+        init()
+    </script>
+
+    <script type="text/javascript">
+        (function () {
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+        })()
+    </script>
+
+}

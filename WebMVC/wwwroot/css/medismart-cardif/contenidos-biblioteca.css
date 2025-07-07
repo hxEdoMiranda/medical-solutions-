@@ -1,0 +1,115 @@
+/*Contenidos biblioteca*/
+
+
+#nota1.note-section.featured {
+    background-image: url(../../biblioteca/notas/nota1/top.jpg);
+}
+
+
+#nota2.note-section.featured {
+    background-image: url(../../biblioteca/notas/nota2/top.jpg);
+}
+
+#nota3.note-section.featured {
+    background-image: url(../../biblioteca/notas/nota3/top.jpg);
+}
+
+#nota4.note-section.featured {
+    background-image: url(../../biblioteca/notas/nota4/top.jpg);
+}
+
+#nota5.note-section.featured {
+    background-image: url(../../biblioteca/notas/nota5/top.jpg);
+}
+
+#nota6.note-section.featured {
+    background-image: url(../../biblioteca/notas/nota6/top.jpg);
+}
+
+/*Charlas*/
+
+.charla-thumb-1 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(242, 153, 74, 0.5)), to(rgba(242, 153, 74, 0.9))), url(../../biblioteca/charlas/charla1/thumb.jpg);
+    /* background-image: url(../../biblioteca/charlas/charla1/thumb.jpg) !important;*/
+}
+
+.charla-thumb-2 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(242, 153, 74, 0.5)), to(rgba(242, 153, 74, 0.9))), url(../../biblioteca/charlas/charla2/thumb.jpg);
+}
+
+.charla-thumb-3 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(242, 153, 74, 0.5)), to(rgba(242, 153, 74, 0.9))), url(../../biblioteca/charlas/charla3/thumb.jpg);
+}
+
+/*Notas*/
+.nota-thumb-1 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(47, 128, 237, 0.5)), to(rgba(47, 128, 237, 0.9))), url(../../biblioteca/notas/nota1/thumb.jpg);
+}
+.nota-thumb-2 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(47, 128, 237, 0.5)), to(rgba(47, 128, 237, 0.9))), url(../../biblioteca/notas/nota2/thumb.jpg);
+}
+.nota-thumb-3 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(47, 128, 237, 0.5)), to(rgba(47, 128, 237, 0.9))), url(../../biblioteca/notas/nota3/thumb.jpg);
+}
+
+.nota-thumb-4 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(47, 128, 237, 0.5)), to(rgba(47, 128, 237, 0.9))), url(../../biblioteca/notas/nota4/thumb.jpg);
+}
+
+.nota-thumb-5 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(47, 128, 237, 0.5)), to(rgba(47, 128, 237, 0.9))), url(../../biblioteca/notas/nota5/thumb.jpg);
+}
+
+.nota-thumb-6 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(47, 128, 237, 0.5)), to(rgba(47, 128, 237, 0.9))), url(../../biblioteca/notas/nota6/thumb.jpg);
+}
+
+/*Capsulas*/
+
+.capsula-thumb-1 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(235, 87, 87, 0.5)), to(rgba(235, 87, 87, 0.9))), url(../../biblioteca/capsulas/capsula1/thumb.jpg);
+}
+
+.capsula-thumb-2 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(235, 87, 87, 0.5)), to(rgba(235, 87, 87, 0.9))), url(../../biblioteca/capsulas/capsula2/thumb.jpg);
+}
+
+.capsula-thumb-3 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(235, 87, 87, 0.5)), to(rgba(235, 87, 87, 0.9))), url(../../biblioteca/capsulas/capsula3/thumb.jpg);
+}
+
+.capsula-thumb-4 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(235, 87, 87, 0.5)), to(rgba(235, 87, 87, 0.9))), url(../../biblioteca/capsulas/capsula4/thumb.jpg);
+}
+
+.capsula-thumb-5 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(235, 87, 87, 0.5)), to(rgba(235, 87, 87, 0.9))), url(../../biblioteca/capsulas/capsula5/thumb.jpg);
+}
+
+.capsula-thumb-6 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(235, 87, 87, 0.5)), to(rgba(235, 87, 87, 0.9))), url(../../biblioteca/capsulas/capsula6/thumb.jpg);
+}
+
+.capsula-thumb-7 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(235, 87, 87, 0.5)), to(rgba(235, 87, 87, 0.9))), url(../../biblioteca/capsulas/capsula7/thumb.jpg);
+}
+
+.capsula-thumb-8 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(235, 87, 87, 0.5)), to(rgba(235, 87, 87, 0.9))), url(../../biblioteca/capsulas/capsula8/thumb.jpg);
+}
+
+.capsula-thumb-9 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(235, 87, 87, 0.5)), to(rgba(235, 87, 87, 0.9))), url(../../biblioteca/capsulas/capsula9/thumb.jpg);
+}
+
+.capsula-thumb-10 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(235, 87, 87, 0.5)), to(rgba(235, 87, 87, 0.9))), url(../../biblioteca/capsulas/capsula10/thumb.jpg);
+}
+
+.capsula-thumb-11 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(235, 87, 87, 0.5)), to(rgba(235, 87, 87, 0.9))), url(../../biblioteca/capsulas/capsula11/thumb.jpg);
+}
+
+.capsula-thumb-12 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(235, 87, 87, 0.5)), to(rgba(235, 87, 87, 0.9))), url(../../biblioteca/capsulas/capsula12/thumb.jpg);
+}

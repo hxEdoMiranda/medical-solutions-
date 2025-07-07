@@ -1,0 +1,65 @@
+<div class="icon-bar">
+    <a asp-controller="Biblioteca" asp-action="Index" class="btn-icon color-library">
+        <div class="inner-btn bg-library">
+            <i class="fal fa-books"></i>
+        </div>
+        Inicio
+    </a>
+    
+    @if (ViewBag.HostURL.Contains("clinicamundoscotia."))
+    {
+        <a asp-controller="Biblioteca" asp-action="CapsulasScotia" class="btn-icon color-blue">
+            <div class="inner-btn bg-blue">
+                <i class="fal fa-file-alt"></i>
+            </div>
+            Notas
+        </a>
+        <a  href="@Url.Action("Descargar", new { file = "calendarioActividades"})" class="btn-icon color-red">
+            <div class="inner-btn bg-red">
+                <i class="fal fa-calendar"></i>
+            </div>
+            Actividades
+        </a>
+    }else if (ViewBag.HostURL.Contains("prevenciononcologica."))
+             {
+                 <a asp-controller="Biblioteca" asp-action="CapsulasScotia" class="btn-icon color-blue">
+                     <div class="inner-btn bg-blue">
+                         <i class="fal fa-file-alt"></i>
+                     </div>
+                     Vida Sana
+                 </a>
+                
+             }
+    else if (ViewBag.HostURL.Contains("masproteccionsalud."))
+    {
+        <a asp-controller="Biblioteca" asp-action="CapsulasMasProteccion" class="btn-icon color-blue">
+            <div class="inner-btn bg-blue">
+                <i class="fal fa-file-alt"></i>
+            </div>
+            Vida Sana
+        </a>
+                
+    }
+    else
+    {
+        <a asp-controller="Biblioteca" asp-action="Charlas" class="btn-icon color-orange">
+            <div class="inner-btn bg-orange">
+                <i class="fal fa-microphone"></i>
+            </div>
+            Charlas
+        </a>  
+        <a asp-controller="Biblioteca" asp-action="Notas" class="btn-icon color-blue">
+            <div class="inner-btn bg-blue">
+                <i class="fal fa-file-alt"></i>
+            </div>
+            Notas
+        </a>
+        <a asp-controller="Biblioteca" asp-action="Capsulas" class="btn-icon color-red">
+            <div class="inner-btn bg-red">
+                <i class="fal fa-podium-star"></i>
+            </div>
+            C&aacute;psulas
+        </a>
+    }
+   
+</div>

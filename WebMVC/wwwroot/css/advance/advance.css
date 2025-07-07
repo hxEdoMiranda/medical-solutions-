@@ -1,0 +1,964 @@
+/*compara*/
+
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap');
+
+:root {
+    --primary: #000000;
+    --secondary: #1DEBB4;
+    --tertiary: #FFFFFF;
+    --accent: #F9D324;
+    --light: #FFF;
+    --font-family: 'Mulish', sans-serif;
+}
+
+body {
+    /* font-family: var(--font-family) !important;*/
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family) !important;
+}
+/*Login*/
+.logotipo-desktop {
+    background-image: url(../../img/advance/logotipo.svg);
+    max-width: 292px;
+    height: 10rem;
+    display:block !important;
+}
+
+
+.logotipo-mobile {
+    background-image: url(../../img/advance/logo-blanco.svg);
+    height: 8rem;
+    margin-top:4rem !important;
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+        color: var(--primary);
+        font-family: Mulish !important;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+.login-info--tooltip ~ .tooltip-inner {
+    text-align: left !important;
+    background-color: red !important;
+}
+    .login-info--tooltip i {
+        color: #ccc;
+        font-size: 20px;
+        margin-left: 10px;
+        text-align: left !important;
+    }
+
+.form-group .ms-label {
+    color: var(--primary) !important;
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.tooltip.show p {
+    text-align: left;
+}
+
+.registrate {
+    color: #000;
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.no-tienes-cta {
+    color: #000;
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+
+.btn-primary {
+    border-radius: 4px;
+    background: var(--secondary);
+    box-shadow: 4px 4px 16px 0px rgba(88, 103, 221, 0.25);
+    color: #FFF;
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 125% */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 10px 58px;
+    border-color: var(--secondary);
+}
+
+.body-home .footer-home .terminos a {
+    color: var(--primary);
+    display: inline-block;
+    margin-left: 1rem;
+    text-align: center;
+    font-family: Mulish;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.body-home .footer-home {
+    color: var(--primary);
+}
+
+.body-home .cont-card .card .card-body {
+    border-radius: 16px;
+    background: #056DCB;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+    border-color: #056DCB;
+}
+
+.btn-primary:hover {
+    background-color: #056DCB;
+    border-color: #056DCB;
+}
+
+.divider-medismart {
+    display: flex !important;
+    margin-bottom: 2rem;
+}
+
+.logo-convenios {
+    /* display: none;*/
+    margin-bottom: 2rem;
+}
+
+/* Imágenes Login */
+.img1 {
+    background-image: url(../../img/advance/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/advance/login/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/advance/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/advance/login/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/advance/login/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/advance/login/960x978.jpg);
+}
+
+.menu-top .label-menu-pac {
+    
+    color: var(--primary);
+    
+}
+
+
+    .body-home .logo-home img {
+        width: 130px;
+    }
+
+    .top-banner .legend {
+        font-weight: 500;
+    }
+
+.menu-top .item-menu-top i,
+.menu-top .label-menu {
+    color: var(--primary);
+}
+
+.menu-top .item-menu-top:hover i, .menu-top .item-menu-top:hover .label-menu {
+    color: var(--secondary) !important;
+}
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--accent)
+}
+
+    .kt-menu__item a .ms-label-menu {
+        color: var(--primary);
+    }
+
+    .kt-menu__item:hover a, .kt-menu__item:hover i {
+        color: var(--secondary) !important;
+    }
+
+.accesible-btn button {
+    border-radius: 8px;
+    border: 1px solid var(--secondary);
+    background: var(--secondary);
+    color: #FFF;
+    text-align: center;
+    font-family: Mulish;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+    .accesible-btn button:hover {
+        background-color: #54ACC7;
+        border-color: #54ACC7;
+    }
+
+.busqueda-profesionales {
+    border: 2px solid var(--secondary);
+}
+    .busqueda-profesionales i {
+        color: var(--secondary)
+    }
+    .busqueda-profesionales .btn-outline-primary {
+        color: var(--secondary)
+    }
+
+.caja-especialidad.active {
+    background-color: var(--primary);
+}
+
+.caja-especialidad {
+    background-color: var(--secondary);
+}
+
+.inner-especialidad strong {
+    color: var(--light)
+}
+
+.step.active .step-icon {
+    background-color: var(--primary);
+}
+
+.stepper {
+    background-image: url(../../img/compara/fondo-banner2.svg);
+}
+
+    .stepper .flecha {
+        color: var(--primary)
+    }
+
+    .stepper img {
+        border-color: var(--secondary);
+    }
+
+.step.active .label-step {
+    color: var(--primary)
+}
+
+#btnConfirmar {
+    background: #3BC1CD;
+    border-color: #3BC1CD;
+}
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: var(--secondary)
+}
+
+.caja-profesional .fecha-atencion {
+    color: var(--secondary)
+}
+
+.front-fecha-atencion {
+    border: 1px solid rgba(35,33, 114, .3)
+}
+
+    .front-fecha-atencion strong:before {
+        color: var(--secondary);
+        font-weight: 900;
+    }
+
+.especialidad-profesional {
+    color: var(--secondary)
+}
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+
+.top-banner {
+    background-image: url(../../img/advance/fondo-banner.svg);
+}
+    .top-banner img {
+        border-color: rgba(255, 255, 255, .3)
+    }
+    .top-banner .legend {
+        color: var(--secondary)
+    }
+
+.banner_topsc .legend .text-warning {
+    color: var(--primary) !important;
+}
+
+.top-banner.banner_topsc {
+    background-image: url(../../img/prestasalud/fondo-banner2.svg);
+}
+
+.text-warning {
+    color: var(--secondary) !important;
+    font-family: Mulish;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.menu-top .item-menu-top .logotipo-mobile {
+    width: 110px !important;
+}
+/*Sala espera*/
+.hotspot-icon .cont-icon {
+    background-color: #FFFFFF;
+    color: #FFFFFF;
+}
+
+#btnAbandonarAtencion .cont-icon {
+    background-color: #fff;
+    color: #056DCB;
+}
+
+#hs-b .cont-icon {
+    background-color: var(--secondary);
+    color: #FFEEF5;
+}
+
+.footer-home .terminos {
+    margin-top: -6rem;
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: var(--primary);
+    color: #EB7F63;
+}
+
+.cont-icon.hotspot-redes {
+    background-color: #222;
+}
+
+#reporte .cont-icon {
+    background-color: var(--secondary);
+    color: #FFEEF5;
+}
+
+#hs-g .cont-icon {
+    background-color: var(--secondary);
+}
+
+#hs-g:hover .cont-icon {
+    background-color: #056DCB;
+    color: #ffffff;
+}
+
+.toolbar-option {
+    color: #056DCB !important;
+}
+
+.powered {
+   display: none;
+}
+@media (max-width: 768px) {
+    .kt-footer .kt-container {
+        padding-left: 0;
+        display: none;
+    }
+
+    .kt-footer .kt-footer__copyright {
+        color: #ffffff;
+        margin-top: 1.5rem;
+    }
+
+    .terminos-login {
+        display: block !important;
+    }
+
+    .menu-top .item-menu-top i, .menu-top .label-menu {
+        color: #ffffff;
+    }
+
+    
+
+    .container-login {
+        border-top-left-radius: 2rem;
+        border-top-right-radius: 2rem;
+        min-height: calc(100vh - 150px);
+        background-color: #056DCB;
+    }
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+        color: #ffffff;
+        margin-top: 1.5rem;
+        font-family: Mulish !important;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400 !important;
+        line-height: normal;
+    }
+
+    .form-group .ms-label {
+        color: #ffffff !important;
+        font-family: Mulish !important;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700 !important;
+        line-height: normal;
+    }
+
+    a {
+        color: #ffffff !important;
+    }
+
+    hr {
+        border-top: 1px solid #ffffff;
+    }
+
+    .footer-salaespera {
+        display: none !important;
+        
+    }
+
+    .body-home .top-banner .legend {
+        color: #056DCB !important;
+    }
+
+    .body-home .menu-top .item-menu-top i, .body-home .menu-top .item-menu-top .label-menu {
+        color: #056DCB !important;
+    }
+    p.fuente-accesible {
+        text-align: inherit; 
+    }
+    .pt-4, .py-4 {
+        margin-top: -10rem;
+    }
+
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+        margin-top: -2rem !important;
+    }
+
+
+    .body-home .powered, .body-home .powered strong {
+        color: #056DCB;
+    }
+    .footer-home #terminosFooter {
+        color: #056DCB !important;
+    }
+    .body-home .footer-home .terminos a {
+        color: #056DCB !important;
+    }
+
+    .leyenda-card-home {
+        color: #ffffff;
+        
+    }
+    .fondo {
+        background: #056DCB;
+    }
+
+    .consentimiento{
+        color: var(--primary) !important;
+    }
+
+    .no-tienes-cta {
+        color: #ffffff;
+        font-family: Mulish !important;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400 !important;
+        line-height: normal;
+    }
+
+    .registrate {
+        color: #ffffff;
+        font-family: Mulish !important;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700 !important;
+        line-height: normal;
+    }
+    .accesible-btn button {
+        display: none !important;
+        border-radius: 8px;
+        border: 1px solid #ffffff;
+        background: #ffffff;
+        color: #056DCB;
+        text-align: center;
+        font-family: Mulish;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: uppercase;
+        margin-left: 0.5rem;
+        margin-top: -1rem;
+    }
+    .divider-medismart {
+        display: none !important;
+       
+    }
+    .logo-convenios img {
+       display:none;
+    }
+    .logo-medismart-blanco {
+        display: block !important;
+        margin-left: 3rem !important;
+    }
+    .prehome__plan .btn {
+        /* max-width: 108px; */
+        margin: auto auto 0;
+        margin-left: 7rem !important;
+        margin-bottom: 1rem !important;
+    }
+}
+
+.footer-salaespera {
+    display: flex;
+    justify-content: end;
+}
+
+
+.prehome__plan h2 {
+    /* text-align: center; */
+    font-weight: 700;
+    width: 81%;
+    margin: 0 auto;
+    /* margin-top: 3rem; */
+    margin-left: 0;
+}
+.sala-espera-mobile.sala-espera-consalud {
+    margin-top: 5rem;
+}
+.logo-medismart-blanco{
+    display:none;
+}
+
+.prehome__plan .btn {
+    /* max-width: 108px; */
+    margin: auto auto 0;
+    margin-left: 4rem;
+}
+
+@media (max-width: 1024px) {
+    .kt-header-mobile--fixed .kt-header__topbar {
+        height: auto;
+        padding: 0.75rem 0;
+        padding-top: 0.5rem;
+        background: #056DCB;
+    }
+}
+.toolbar-option.active {
+    color: var(--secondary)
+}
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--secondary);
+    color: #ffffff;
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: #056DCB;
+    color: #ffffff;
+}
+
+.btn-sala:hover {
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion, .cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+    .cont-btn-panel .btn-atencion:hover, .cont-btn-vc .btn-atencion:hover {
+        background-color: rgba(237, 110, 0, 0.1);
+        color: var(--primary);
+    }
+
+.hotspot-icon {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+    .hotspot-icon i {
+        text-shadow: none;
+    }
+
+    .hotspot-icon:hover {
+        color: #FFF;
+    }
+
+@media (max-width: 668px) {
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none !important;
+        margin-top: 4rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .top-banner .legend {
+        text-align: left;
+        font-size: 1.3rem;
+    }
+    .accesible-tools-desktop .accesible-btn {
+       
+        margin-top: 0 !important;
+        
+    }
+}
+
+
+ @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/advance/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/advance/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/advance/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/advance/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/advance/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/advance/login/548x850.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/advance/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/advance/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/advance/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/advance/login/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/advance/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/advance/login/960x978.jpg);
+    }
+}
+
+
+/*Prehome*/
+
+.prehome__plans {
+    height: 450px;
+}
+
+.prehome__plan {
+    width: 100%;
+    padding: 0;
+}
+
+.prehome__plan ul {
+    list-style-image: url('../../img/compara/bullet.svg');
+   
+    margin-top: 32px;
+    height: 350px;
+    font-size: 16px;
+}
+
+.prehome__title {
+    color: var(--primary);
+}
+
+.kt-login__extra.registro {
+    display: none;
+}
+
+.logo-convenios.convenioChile + hr {
+    display: none;
+}
+
+.kt-login.kt-login--v3.kt-login--signin .kt-login__signin .titulo-card-farmacia {
+    text-align: center;
+}
+
+@media (max-width: 991.98px) {
+    .prehome__plans {
+        height: auto;
+    }
+    .footer-home .terminos {
+        margin-top: 0rem;
+    }
+    .row {
+       
+        margin-top: 6rem;
+    }
+    .btn-mobile-advance {
+        margin-top: -3rem;
+    }
+    .body-home .top-banner .legend {
+        text-align: inherit !important;
+    }
+
+
+}
+.body-home .card-plan .preferente {
+    background-color: var(--secondary);
+    color: #056DCB;
+}
+
+
+.login-footer .terminos {
+    margin-bottom: 2rem;
+    display: flex;
+    margin-top: 2rem;
+    gap: 1rem;
+    margin-left: 1rem;
+}
+.stepper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    background-image: url(../../img/advance/fondo-banner.svg);
+    background-repeat: repeat-x;
+    background-position: left 10px;
+    margin-bottom: 2.5rem;
+    margin-top: 2.5rem;
+}
+.menu-top .label-menu-pac {
+    color: var(--primary)
+}
+
+.category-button:hover, .category-button.active {
+    background-color: var(--important) !important;
+    color: var(--important) !important;
+}
+
+.kt-menu__item:hover a, .kt-menu__item:hover i {
+    color: var(--primary) !important;
+}
+
+.menu-top .item-menu-top:hover .label-menu-pac {
+    color: var(--secondary) !important;
+}
+
+.kt-menu__item:hover a .ms-label-menu {
+    color: var(--primary);
+}
+
+.mt-5, .my-5 {
+    margin-top: 5rem !important;
+    display: block;
+}
+
+.alianza {
+    color: var(--primary);
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+.logo-convenios img {
+    width: 212px;
+    height: 47px;
+    margin-left: 8rem;
+    margin-top: 0.5rem;
+}
+
+a {
+    color: #000;
+    font-family: Mulish;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.body-home {
+    background:#ffffff !important;
+    background-repeat: no-repeat, repeat;
+    background-position: 40% 0, 0;
+    
+}
+
+
+
+    .body-home .menu-top .item-menu-top i, .body-home .menu-top .item-menu-top .label-menu {
+        color: var(--primary);
+       
+    }
+
+    .body-home .logo-home img {
+        width: 130px;
+       
+    }
+
+.kt-grid.kt-grid--ver-desktop.kt-grid--desktop {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    
+}
+
+.accesible-tools-desktop .accesible-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+    .accesible-tools-desktop .accesible-btn button {
+        
+        margin: 0.5rem;
+    }
+
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--primary);
+}
+
+.kt-menu__item a:hover, .kt-menu__item i:hover {
+    color: var(--secondary) !important;
+}
+
+
+.letras-sala-espera{
+    display:flex;
+    flex-direction:column !important;
+
+}
+
+@media (max-width: 1024px) {
+    margin-top: 0 !important;
+}
+
+ .body-home .cont-card .card {
+        border-radius: 16px;
+        width: 160px;
+        height: 160px;
+        transition: all .3s ease-out;
+        cursor: pointer;
+        display: block;
+        margin: auto;
+        background: #54ACC7 !important;
+    }
+
+.body-home .top-banner .legend {
+    color: var(--primary);
+    text-align: center;
+    font-family: Mulish;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.body-home .cont-card h1 {
+    color: var(--primary);
+    text-align: center;
+    font-family: Roboto !important;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    width: 10rem;
+}
+
+.hotspot-icon .cont-icon {
+    background-color: var(--secondary);
+    color: #FFEEF5;
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: #056DCB !important;
+    color: #ffffff;
+    transform: scale(1.2);
+}
+
+.hotspot-icon:hover {
+    color: white;
+}
+
+@media (max-width: 991.98px) {
+
+    .body-home .cont-card .card {
+        width: 90% !important;
+        height: 100px !important;
+        margin: auto !important;
+        margin-bottom: 1rem !important;
+    }
+}
+
+#menu-agendamiento {
+    display: block;
+}
+
+.letras-triage{
+    display: none !important;
+}
+
+.kt-aside--minimize .kt-aside-menu .kt-menu__nav > .kt-menu__item.kt-menu__item--here {
+    height: 45px;
+}
+
+#reporte {
+    
+    display: none;
+}

@@ -1,0 +1,655 @@
+/*FarmaciasV2*/
+
+body {
+    font-family: 'Mulish', sans-serif;
+}
+
+:root {
+    --primary-color: #3BC1CD;
+    --secondary-color: #8A94B3;
+    --tertiary-color: #0282A6;
+    --gray-color: #666;
+    --accent-color: #FF7415;
+    --light-color: #FFF;
+    --hover-color: var(--tertiary-color);
+    --transition: all .3s ease-out;
+}
+
+* {
+    transition: var(--transition);
+}
+
+.cont-component {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4%;
+    margin-bottom: 10%;
+}
+
+.farm-header {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    margin-bottom: 2rem
+}
+
+.farm-btnes-encabezado {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    max-width: 420px;
+    justify-content: flex-end;
+}
+
+.farm-titulo {
+    color: var(--tertiary-color);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: 0.16px;
+    border: none;
+    /*background-color: #f9f9fc;*/
+}
+
+.farm-cont-farmacia-online {
+    display: auto;
+}
+
+.farm-boton-encabezado {
+    cursor: pointer;
+    margin: 2px;
+    width: 187px;
+    font-size: 16px;
+    color: var(--tertiary-color);
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--tertiary-color);
+    border-radius: 4px;
+    background-color: var(--light-color);
+    text-align: center;
+    text-transform: capitalize !important;
+}
+
+    .farm-boton-encabezado.active {
+        color: var(--light-color);
+        background-color: var(--tertiary-color);
+    }
+
+.mes {
+    color: var(--tertiary-color);
+    background-color: #ffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-align: center;
+    height: max-content;
+}
+
+    .mes:hover {
+        background: var(--tertiary-color);
+        color: var(--light-color);
+    }
+
+.año {
+    color: var(--tertiary-color);
+    background-color: #F5F5F5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-align: center;
+    height: max-content;
+}
+
+
+
+.farm-container-subtitulos {
+    display: flex;
+    justify-content: space-between;
+    color: var(--tertiary-color);
+    font-size: 20px;
+}
+
+.farm-subtitulo {
+    color: var(--tertiary-color);
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    margin-left: 5px;
+}
+
+.farm-container-atenciones {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    /*gap: .5rem;
+     height: 600px;
+    border: 1px solid red;
+    height: 660px;*/
+}
+
+.farm-contenedor-ultimo {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    
+}
+
+.farm-container-ultima-atencion {
+    display: flex;
+    height: 100%;
+}
+
+.farm-ultima-atencion {
+    padding: 32px;
+    width: 100%;
+    border: 1px solid var(--primary-color);
+    border-radius: 16px;
+    background-image: url(/img/farmacias/pills.svg), linear-gradient(180deg, #DAF4F6 0%, #F9FDFD 100%);
+    background-repeat: no-repeat, repeat;
+    background-position: 98% .5rem, 0;
+    min-height: 39.5rem;
+    /*max-height: 600px;*/
+    max-height: 39.5rem;
+    max-width: 512px;
+    overflow: auto;
+    /*Custom scrollbar - Firefox browser*/
+    scrollbar-color: #0282A6;
+    scrollbar-width: 7px;
+}
+
+    .farm-ultima-atencion > * {
+        margin-bottom: 5px;
+    }
+
+/*Custom Scrollbar*/
+    .farm-ultima-atencion::-webkit-scrollbar {
+        width: 7px;
+    }
+
+    .farm-ultima-atencion::-webkit-scrollbar-track {
+        /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+        background-color: #f1f1f1;
+        border-radius: 7px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-right: 3px;
+    }
+
+    .farm-ultima-atencion::-webkit-scrollbar-thumb {
+        border-radius: 7px;
+        background-color: #0282A6;
+        /*    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); */
+    }
+
+.farm-contendor-anteriores {
+    width: 100%;
+}
+
+.farm-ultima-atencion:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.farm-fecha-tarj {
+    color: #646C9A;
+    font-size: 14px;
+    margin-top: 0;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.farm-nom-dr {
+    color: #646C9A;
+    font-size: 20px;
+    font-weight: 900;
+    opacity: 0.8999999761581421;
+}
+
+.farm-lista-items {
+    list-style-type: none;
+    padding-left: 1rem;
+    margin-top: 0;
+}
+
+.farm-lista-items {
+    list-style-type: none;
+    padding-left: 1rem;
+    margin-top: 0;
+    min-height: 10rem;
+}
+
+.farm-ojo {
+    vertical-align: middle;
+    border-style: none;
+    margin-right: 0;
+}
+
+
+.farm-container-atenciones img {
+    vertical-align: middle;
+    border-style: none;
+    margin-right: 1rem;
+}
+
+.exam-img-ojo img {
+    margin-right: 0;
+}
+
+
+.farm-subtitulo-tarj {
+    color: #646C9A;
+    font-size: 14px;
+    margin-bottom: .3rem;
+    margin-top: 1rem;
+}
+
+h2.farm-subtitulo-tarj {
+    text-transform: uppercase;
+}
+
+.interlineado {
+    margin: 0;
+    padding: 0;
+}
+
+
+.farm-subtitulo2-tarj {
+    color: #646C9A;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 16px;
+}
+
+.farm-container-farmazon {
+    display: flex;
+}
+
+.farm-container-farmazon {
+    display: flex;
+    align-items: center;
+}
+
+    .farm-container-farmazon img {
+        margin-right: 10px;
+        width: 100px;
+    }
+
+.text-container-farmazon {
+    flex: 1;
+}
+
+.farm-container-yapp {
+    display: flex;
+    align-items: center;
+}
+
+    .farm-container-yapp img {
+        margin-right: 10px;
+        width: 100px;
+    }
+
+.text-container-yapp {
+    flex: 1;
+}
+
+.farm-contenedor-ver-medicamento {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.farm-recetanovigente {
+    color: #E15241;
+    font-size: 12px;
+    font-family: Mulish;
+    font-style: normal;
+    font-weight: 700;
+    display: flex !important;
+    justify-content: end;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.farm-medicamentos .farm-recetanovigente {
+    justify-content: flex-start;
+    margin-bottom: 2rem;
+}
+
+
+.farm-container-atenciones-anteriores {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: auto;
+    gap: 1rem;
+}
+
+.farm-atencion-anterior {
+    flex: 1 1 300px;
+    background-color: #ffff;
+    border: 1px solid #3BC1CD;
+    border-radius: 16px;
+    padding: 32px;
+    background-image: url(/img/farmacias/pills.svg);
+    background-repeat: no-repeat;
+    background-position: 98% .5rem;
+    max-width: 330px;
+    max-height: 308px;
+}
+
+    .farm-atencion-anterior:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    }
+
+
+.farm-btn-tarjeta-ver-medicamento {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.farm-container-img-ojo {
+    display: flex;
+    flex-direction: column;
+}
+
+.farm-img-ojo {
+    display: flex;
+    flex-direction: row;
+    width: 100% !important;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.farm-contenedor-ver-medicamento {
+    display: flex;
+    flex-direction: row;
+}
+
+.farm-btn-blanco {
+    color: var(--tertiary-color);
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 700;
+    margin-bottom: 0;
+    background-color: var(--light-color);
+    border: 1px solid transparent;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 4px;
+    height: 26px;
+    width: 8.5rem;
+    padding: 0;
+}
+
+.farm-letra-12 {
+    font-size: 12px;
+}
+
+.farm-container-btn-cotizar {
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+.farm-btn-blanco:hover {
+    background-color: #F2F7FB;
+    border: 1px solid var(--tertiary-color)
+}
+
+.farm-btn-blanco i {
+    font-size: 16px;
+}
+
+.farm-btn-tarj {
+    cursor: pointer;
+    color: #ffff;
+    font-size: 10px;
+    /*height: 26px;*/
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 4px;
+    border: 1px solid var(--tertiary-color);
+    background: var(--light-color);
+    margin: 2px;
+    text-transform: uppercase;
+    color: var(--tertiary-color);
+    min-width: 100px;
+}
+
+.farm-btn-tarj-ult-aten {
+    cursor: pointer;
+    color: #ffff;
+    font-size: 10px;
+    height: 26px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 4px;
+    border: 1px solid var(--tertiary-color);
+    background: var(--light-color);
+    margin: 2px;
+    text-transform: uppercase;
+    color: var(--tertiary-color);
+    min-width: 170px;
+}
+
+    .farm-btn-tarj:hover {
+        background: var(--tertiary-color);
+        color: var(--light-color);
+    }
+
+
+.farm-navegador {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.farm-navegador-item {
+    margin: 0 5px;
+    margin-top: 15px;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: var(--tertiary-color);
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+    .farm-navegador-item:hover {
+        background-color: #D9D9D9;
+        color: #fff;
+        font-weight: bolder;
+    }
+
+.farm-nom-dr.nombre-profesional {
+    font-size: 16px;
+    display: block;
+    line-height: 1.2;
+    font-weight: 900;
+    text-align: left;
+    /*color: #8A94B3;*/
+    max-width: 90%;
+    /*margin: 0 auto;*/
+    max-height: 100px;
+    text-transform: capitalize;
+}
+
+.container-fluid, .container-sm, .container-md, .container-lg, .container-xl {
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+@media screen and (max-width: 640px) and (min-width: 375px) {
+    /*body {
+        margin-top: 75px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }*/
+
+    .farm-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0;
+    }
+
+    .farm-header .farm-header button {
+        margin: 0 0 1rem 0;
+        padding-left: 0;
+    }
+
+    .farm-btnes-encabezado {
+        gap: 0;
+        margin-top: 3%;
+    }
+
+    .todos .mes .año {
+        width: auto;
+    }
+
+    .farm-subtitulo-tarj.interlineado,
+    .farm-container-farmazon,
+    .farm-container-yapp {
+        display: none;
+    }
+
+    .farm-container-atenciones {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+
+    .farm-contenedor-ultimo {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .farm-ultima-atencion {
+        border-radius: 16px;
+        background: linear-gradient(180deg, rgba(59, 193, 205, 0.19) 0%, rgba(232, 250, 255, 0.00) 100%);
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        padding: 20px;
+        width: 100%;
+        margin-right: 5px;
+        min-height: 20rem;
+    }
+
+    .farm-atencion-anterior {
+        /*padding: 0px;*/
+    }
+}
+
+.btn-blue-color {
+    background-color: #0282A6 !important;
+    color: white !important;
+}
+
+.btn-bg-green {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.swal2-modal {
+    width: 39em !important;
+}
+
+.text-align-li {
+    text-align: left;
+}
+
+.farm-medicamentos .lista-medicamentos {
+    height: auto;
+    margin: 1rem 0;
+}
+
+.farm-ultima-atencion .farm-medicamentos {
+    max-height: 224px;
+    overflow-y: auto;
+}
+
+.farm-subtitulo-tarj {
+    font-weight: 500;
+    max-height: 50px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+.farmacia .top-banner {
+    display: none;
+}
+
+@media (max-width: 1024px) {
+    .container-fluid.farmacia {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .farm-ultima-atencion {
+        margin-right: auto;
+    }
+
+    .farm-ultima-atencion {
+        min-height: 0;
+        height: auto;
+    }
+
+    .farm-btnes-encabezado {
+        gap: .5rem;
+        /* flex-direction: column;*/
+    }
+
+    .farm-boton-encabezado {
+        width: 100%;
+        color: var(--tertiary-color);
+        background-color: #ffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        text-align: center;
+        height: max-content;
+    }
+    .farm-btnes-encabezado .mes {
+        width: 100%;
+        font-size: 15px;
+        margin: 0;
+    }
+
+    .farm-btn-blanco {
+        text-align: left;
+    }
+    .farm-container-atenciones-anteriores {
+        height: auto;
+    }
+
+    .farm-contendor-anteriores {
+        margin-top: 2rem;
+    }
+
+    .farm-container-atenciones {
+        height: auto;
+    }
+}

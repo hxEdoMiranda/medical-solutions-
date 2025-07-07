@@ -1,0 +1,273 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@model WebMVC.Models.AtencionViewModel
+@{
+    ViewData["Title"] = "Exámenes";
+    Layout = "_LayoutPaciente";
+
+}
+
+@section PageStyles  {
+    <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    @*@switch (ViewBag.idCliente)
+        {
+            case "148":
+                <link href="~/css/colmena/colmena.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+                ;
+                break;
+            case "176":
+                <link href="~/css/vidacamara/vidacamara.css" rel="stylesheet" type="text/css" />
+                ;
+                break;
+            case "204":
+                <link href="~/css/claro/claro.css" rel="stylesheet" type="text/css" />
+                ;
+                break;
+
+        }*@
+}
+
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+    <!--Begin::App-->
+
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+        
+        <div class="container-fluid">
+
+             @if (ViewBag.idCliente == "108")
+                {
+                    <div class="row ">
+                        <div class="col">
+                            <div class="top-banner justify-content-between">
+                                <h1 class="legend order-2 order-md-1">Hola  <span class="saludo-usuario text-warning text-capitalize" id="saludoPaciente"></span>! Tus exámenes a domicilio en un click!</h1>
+                                <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+                            </div>
+                        </div>
+                    </div>
+
+
+                 }
+                  else if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+                {
+                     <div class="top-banner_scotiabank">
+                          <img src="~/img/scotiabank/home/doctora.png" alt="Doctora" class="order-1 order-md-2">
+                           <h1 class="legend order-2 order-md-1">Hola  <span class="saludo-usuario text-warning text-capitalize" id="saludoPaciente"></span>!Tus exámenes a domicilio en un click!</h1>
+                    </div> 
+
+                }
+
+
+
+            <div class="cont-farmacias ">
+                <div class="row">
+                    @if(ViewBag.existeHistorial==1){
+                        <div class="col-12 col-md-auto">
+                            <h3 class="mb-3 titulo-seccion">Última Atención</h3>
+
+
+                            <div class="card-farmacia ultima-atencion">
+                                <div class="header-card-farmacia">
+                                    <div class="fecha-atencion">
+                                        <i class="fal fa-calendar-alt"></i> 
+                                        @if(ViewBag.historialAtencionesExamenes[0].FechaCreacion!= null){
+                                            @ViewBag.historialAtencionesExamenes[0].FechaCreacion.ToShortDateString()
+                                        }else{
+                                            @ViewBag.historialAtencionesExamenes[0].Fecha.ToShortDateString()
+                                        }
+                                    </div>
+                                <div class="nombre-profesional">@ViewBag.historialAtencionesExamenes[0].NombrePaciente</div>
+
+
+                                <div class="especialidad">@ViewBag.historialAtencionesExamenes[0].Especialidad</div>
+
+                            </div>
+                            <div class="body-card-farmacia">
+                                <h3 class="titulo-card-farmacia">
+                                    Exámenes
+                                </h3>
+                                <ul class="lista-medicamentos">
+                                    @foreach (var ex in @ViewBag.examenesAtenciones)
+                                    {
+                                        @if (ex.IdAtencion == @ViewBag.historialAtencionesExamenes[0].Id)
+                                        {
+
+                                            <li>@ex.Nombre</li>
+                                        }
+                                    }
+                                </ul>
+                                @if (ViewBag.codigoTelefono != "CO")
+                                {
+                                <h3 class="subtitulo-card-farmacia">
+                                     Exámenes en línea
+                                </h3>
+                                    <ul class="lista-proveedores">
+                                        <li>
+                                   
+                                            @if (ViewBag.HostURL.ToString().Contains("mx.medical"))
+                                            {
+                                                <a href="https://examedi.com/widget/medismartmx/" target="_blank">
+                                                    <div class="btn-proveedor"><img src="~/img/examenes/logo-examedi.png" alt="Examedi"/></div>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="https://examedi.com/widget/medismart/" target="_blank">
+                                                    <div class="btn-proveedor"><img src="~/img/examenes/logo-examedi.png" alt="Examedi"/></div>
+                                                </a>
+                                            }
+
+                                            <div class="leyenda-proveedor">
+                                                <a href="https://examedi.com/widget/medismart/" target="_blank">Cotiza tus exámenes de laboratorio</a>
+                                            </div>
+                                   
+                                        </li>
+                                        @if(ViewBag.activaBlanco == 1 && ViewBag.HostURL.ToString().Contains("co.")){
+                                            <li>
+                                   
+                                            <a href="/asistenciatomaexamenes/asistenciaExamenes">
+                                                <div class="btn-proveedor"><img src="~/img/examenes/logo-blanco.png" alt="Blanco"/></div>
+                                            </a>
+                                            <div class="leyenda-proveedor">
+                                                <a href="/asistenciatomaexamenes/asistenciaExamenes">Realiza de forma presencial tus exámenes</a>
+                                            </div>
+                                   
+                                            </li>
+                                        }
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                     
+                                        <a href="../InformeAtencion/@ViewBag.historialAtencionesExamenes[0].Id">
+                                            <ul class="lista-proveedores">
+                                                <li style="color:white" >
+                                                    Ver detalle de la atención
+                                                </li>
+                                            </ul>
+                                        </a>
+                                    }
+                                </div>
+                        </div>
+
+                    </div>
+                        <div class="col-12 col-md">
+                            <h3 class="mb-3 titulo-seccion">Atenciones Anteriores</h3>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    @foreach(var atencion in @ViewBag.historialAtencionesExamenes){
+                                        @if(@ViewBag.historialAtencionesExamenes[0].Id == atencion.Id)
+                                        {
+                                            continue;
+                                        }
+                                        <div class="col-auto">
+                                        <!--Card farmacia-->
+                                        <div class="card-farmacia">
+                                            <div class="header-card-farmacia">
+                                                <div class="fecha-atencion">
+                                                    @if(atencion.FechaCreacion!= null){
+                                                         <i class="fal fa-calendar-alt"></i> @atencion.FechaCreacion.ToShortDateString()
+                                                    }else{
+                                                       <i class="fal fa-calendar-alt"></i> @atencion.Fecha.ToShortDateString()
+                                                    }
+                                                </div>
+                                                <div class="nombre-profesional">@atencion.NombrePaciente</div>
+                                                <div class="especialidad">@atencion.Especialidad</div>
+                                            </div>
+                                            <div class="body-card-farmacia">
+                                                <h3 class="titulo-card-farmacia">
+                                                    Exámenes
+                                                </h3>
+                                                    <ul class="lista-medicamentos">
+                                                        @foreach (var ex in  @ViewBag.examenesAtenciones)
+                                                        {
+                                                            @if(ex.IdAtencion == atencion.Id){
+
+                                                                <li>@ex.Nombre</li>
+                                                            }
+                                                        }
+                                                    </ul>
+                                                    
+                                                @if (ViewBag.codigoTelefono != "CO")
+                                                {
+                                                    <h3 class="subtitulo-card-farmacia">
+                                                        Exámenes en línea
+                                                    </h3>
+                                                    <ul class="lista-proveedores">
+                                                            <li>
+                                                                <a href="https://examedi.com/widget/medismart/" target="_blank">
+                                                                        <div class="btn-proveedor"><img src="~/img/examenes/logo-examedi.png" alt="Yapp" /></div>
+                                                                </a>
+                                                                <div class="leyenda-proveedor">
+                                                                    <a href="https://examedi.com/widget/medismart/" target="_blank">Cotiza tus exámenes de laboratorio</a>
+                                                                </div>
+                                                            </li>
+                                                            @if(ViewBag.activaBlanco == 1 && ViewBag.codigoTelefono.ToString().Contains("CL")){
+                                                                <li>
+                                                                    <a href="/asistenciatomaexamenes/asistenciaExamenes" >
+                                                                        <div class="btn-proveedor"><img src="~/img/examenes/logo-blanco.png" alt="Blanco"/></div>
+                                                                    </a>
+                                                                    <div class="leyenda-proveedor">
+                                                                        <a href="/asistenciatomaexamenes/asistenciaExamenes" >Realiza de forma presencial tus exámenes</a>
+                                                                    </div>
+
+                                                                </li>
+                                                            }
+
+                                                    </ul>
+                                                }
+                                                else
+                                                {
+                                                    <a href="../InformeAtencion/@atencion.Id">
+                                                        <ul class="lista-proveedores">
+                                                            <li style="color:deepskyblue" >
+                                                                Ver detalle de la atención
+                                                            </li>
+                                                        </ul>
+                                                    </a>
+                                                }
+                                            </div>
+
+                                        </div>
+                                    </div>   
+                                    }
+                                    </div>
+                                </div>
+
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-12 col-md-auto">
+
+                            <div class="caja-atencion mensaje-no-atencion" id="divSinAtenciones">
+                                <div class="d-flex">
+                                    <img src="~/img/icono-atencion.svg" alt="Icono No Atención">
+                                    <h1>Aún no tienes <strong>exámenes asociadas a tus atenciones.</strong>  </h1>
+                                </div>
+
+                                <a href="/Paciente/Agendar" class="btn btn-primary btn-sm ml-auto">Agendar</a>
+                            </div>
+
+                        </div>
+                    }
+                </div>
+            </div>
+         </div>
+    </div>
+    
+
+    <!--End::App-->
+</div>
+@section Scripts{
+    <script type="module">
+        import { saludoPaciente } from '../js/shared/info-user.js?rnd=@NumeroRandom.GetRandom()';
+        window.onload = saludoPaciente();
+    </script>
+}

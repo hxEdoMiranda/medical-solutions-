@@ -1,0 +1,64 @@
+/*Rappi*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+:root {
+    --step--2: clamp(0.91rem, calc(0.77rem + 0.72vw), 1.28rem);
+    --step--1: clamp(1.09rem, calc(0.90rem + 0.99vw), 1.60rem);
+    --step-0: clamp(1.31rem, calc(1.04rem + 1.34vw), 2.00rem);
+    --step-1: clamp(1.58rem, calc(1.21rem + 1.80vw), 2.50rem);
+    --step-2: clamp(1.89rem, calc(1.41rem + 2.41vw), 3.13rem);
+    --step-3: clamp(2.27rem, calc(1.63rem + 3.20vw), 3.91rem);
+    --step-4: clamp(2.72rem, calc(1.88rem + 4.22vw), 4.88rem);
+    --step-5: clamp(3.27rem, calc(2.16rem + 5.54vw), 6.10rem);
+    --primary-color: #354360;
+    --secondary-color: #FFEEF5;
+    --tertiary-color: #354360;
+    --accent-color: #E81E2B;
+    --light-color: #FFF;
+    --dark-color: #333;
+    --font-family: 'Poppins', sans-serif;
+    --base-font-size: 16px;
+    --background-ui: #E5E5E5;
+    --menu-color: #364F6B;
+    --transition: all .3s ease-out;
+}
+
+
+body {
+    font-family: var(--font-family) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family);
+}
+
+/*Login*/
+
+#kt_login_signin_submit {
+    margin-top: 1rem !important;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    border-color: var(--light-color);
+}
+
+.logotipo-desktop {
+    background-image: url(../../img/rappi/logo.svg);
+    background-position: 0 0;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: var(--primary-color)
+}
+
+.form-group .ms-label {
+    color: var(--primary-color) !important
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+}
+

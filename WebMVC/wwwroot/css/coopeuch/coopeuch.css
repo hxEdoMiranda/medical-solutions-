@@ -1,0 +1,3671 @@
+/* Coopeuch */
+
+
+/*@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');*/
+
+
+/******************************/
+
+/*../../img/colmena/isotipo.png*/
+/* ubuntu-300 - latin */
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    src: url('../../fonts/coopeuch/ubuntu-v19-latin-300.eot'); /* IE9 Compat Modes */
+    src: local(''), url('../../fonts/coopeuch/ubuntu-v19-latin-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../../fonts/coopeuch/ubuntu-v19-latin-300.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../../fonts/coopeuch/ubuntu-v19-latin-300.woff') format('woff'), /* Modern Browsers */
+    url('../../fonts/coopeuch/ubuntu-v19-latin-300.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../../fonts/coopeuch/ubuntu-v19-latin-300.svg#Ubuntu') format('svg'); /* Legacy iOS */
+}
+/* ubuntu-regular - latin */
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../../fonts/coopeuch/ubuntu-v19-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local(''), url('../../fonts/coopeuch/ubuntu-v19-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../../fonts/coopeuch/ubuntu-v19-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../../fonts/coopeuch/ubuntu-v19-latin-regular.woff') format('woff'), /* Modern Browsers */
+    url('../../fonts/coopeuch/ubuntu-v19-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../../fonts/coopeuch/ubuntu-v19-latin-regular.svg#Ubuntu') format('svg'); /* Legacy iOS */
+}
+/* ubuntu-500 - latin */
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 500;
+    src: url('../../fonts/coopeuch/ubuntu-v19-latin-500.eot'); /* IE9 Compat Modes */
+    src: local(''), url('../../fonts/coopeuch/ubuntu-v19-latin-500.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../../fonts/coopeuch/ubuntu-v19-latin-500.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../../fonts/coopeuch/ubuntu-v19-latin-500.woff') format('woff'), /* Modern Browsers */
+    url('../../fonts/coopeuch/ubuntu-v19-latin-500.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../../fonts/coopeuch/ubuntu-v19-latin-500.svg#Ubuntu') format('svg'); /* Legacy iOS */
+}
+/* ubuntu-700 - latin */
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/coopeuch/ubuntu-v19-latin-700.eot'); /* IE9 Compat Modes */
+    src: local(''), url('../fonts/coopeuch/ubuntu-v19-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../../fonts/coopeuch/ubuntu-v19-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../../fonts/coopeuch/ubuntu-v19-latin-700.woff') format('woff'), /* Modern Browsers */
+    url('../../fonts/coopeuch/ubuntu-v19-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../../fonts/coopeuch/ubuntu-v19-latin-700.svg#Ubuntu') format('svg'); /* Legacy iOS */
+}
+
+
+/****************************/
+
+
+:root {
+    --primary-color: #F42534;
+    --secondary-color: #007DB7;
+    --tertiary-color: #666;
+    --accent-color: #E81E2B;
+    --light-color: #FFF;
+    --dark-color: #333;
+    --font-family: 'Ubuntu', sans-serif;
+    --base-font-size: 16px;
+    --background-ui: #E5E5E5;
+    --menu-color: #364F6B;
+    --transition: all .3s ease-out;
+}
+
+/*************************Links Generales********************************/
+
+html a:hover, html a:active, html a:focus, body a:hover, body a:active, body a:focus {
+    /*text-decoration: underline !important;*/
+}
+/**********************************************************************/
+.kt-reset__password .alert.alert-danger .alert-close i {color: #e81e2b; font-size: 14px !important;}
+.kt-login__divider {margin-top: 0px !important;}
+.kt-login__extra {margin-bottom: 8px!important;}
+#kt_header {
+    /*background-color: var(--background-ui);*/
+    background-color: var(--primary-color);
+    height: 80px;
+}
+
+.kt-grid.kt-grid--hor-desktop.kt-grid--desktop > .kt-grid__item {
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.kt-header--fixed:not(.kt-subheader--fixed) .kt-header {
+    border-bottom: none !important;
+}
+
+.kt-aside .kt-aside-menu {
+    width: 100%;
+}
+
+.kt-aside__brand-logo a {
+    width: 38px;
+    height: 38px;
+    margin-top: 0;
+}
+
+.iniciales {
+    background-color: var(--light-color);
+    color: var(--primary-color);
+}
+
+
+#nombreCompleto, #page {
+    color: var(--light-color);
+    font-weight: 700;
+    font-size: 22px;
+    text-align: left;
+}
+
+#imgLogin {
+    background-color: #f2f3f3;
+    background-size: contain;
+}
+
+#imgLogin {
+    height: 100vh;
+    width: 50vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.img1 {
+    background-image: url(../../img/coopeuch/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/coopeuch/login/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/coopeuch/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/coopeuch/login/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/coopeuch/login/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/coopeuch/login/960x978.jpg);
+}
+
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    /*margin-left: 13rem;*/
+}
+
+body {
+    font-family: var(--font-family) !important;
+    font-size: var(--base-font-size) !important;
+    /* background: var(--background-ui) !important;*/
+    background: #F2F3F3 !important;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, a, button, span, label, .btn {
+    font-family: var(--font-family) !important;
+}
+
+
+#kt_footer {
+    display: none;
+}
+
+.form-group .ms-label {
+    color: var(--tertiary-color) !important;
+    font-size: 24px;
+    font-weight: 400 !important;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .form-control {
+    border: 1px solid #000;
+    background: #FFF;
+    color: var(--tertiary-color);
+    border-radius: 0;
+    height: 40px;
+    font-size: 24px;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head {
+    margin-bottom: 2rem;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form {
+    margin: 32px 0;
+}
+
+
+.kt-aside__brand-logo.iso-coopeuch a {
+    background-image: url(../../img/colmena/isotipo.png);
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__extra .kt-login__link {
+    text-decoration: underline;
+}
+
+
+.kt-login__forgot .kt-login__link {
+    color: var(--tertiary-color);
+    text-decoration: underline;
+    font-size: 20px;
+}
+
+    .kt-login__forgot .kt-login__link:hover {
+        color: var(--primary-color);
+        text-decoration: underline !important;
+    }
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__actions {
+        text-align: left;
+    }
+
+.btn btn-primary btn-elevate kt-login__btn-primary {
+    width: 254px;
+    font-size: 24px;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__extra .kt-login__link {
+    color: var(--tertiary-color);
+    font-size: 24px;
+    text-decoration: underline;
+}
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__extra .kt-login__link:hover {
+        color: var(--primary-color);
+        text-decoration: underline;
+    } 
+
+
+    .btn-primary.disabled, .btn-primary:disabled {
+        background-color: #C4C4C4 !important;
+        border-color: #C4C4C4 !important;
+    }
+.btn-brand:not(:disabled):not(.disabled):active, .btn-brand:not(:disabled):not(.disabled).active, .show > .btn-brand.dropdown-toggle {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__actions .kt-login__btn-secondary, 
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__actions .kt-login__btn-primary {
+    max-width: 254px;
+    font-size: 20px;
+    height: auto !important;
+    background-color: #C4c4c4;
+    border-color: #C4c4c4;
+    
+}
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__actions .kt-login__btn-secondary:hover,
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__actions .kt-login__btn-primary:hover {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+
+.btn.btn-primary.btn-elevate {
+    background-color: #C4c4c4;
+    border-color: #C4c4c4;
+    width: 254px;
+    font-size: 24px;
+}
+
+#btnBuscar.btn.btn-primary.btn-elevate {
+    width: 200px;
+    font-size: 12px;
+    margin-left: .5rem;
+    background-color: #007DB7;
+    border-color: #007DB7;
+}
+
+#btnBuscar.btn.btn-primary.btn-elevate:hover {
+    background-color: #007DB7;
+    border-color: #007DB7;
+}
+
+.btn.btn-primary.btn-elevate:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+
+
+
+    .logotipo-img {
+        margin: 0;
+    }
+
+
+.logo-coopeuch {
+    background-image: url(../../img/coopeuch/logo.png);
+    background-position: 0;
+}
+
+
+.logotipo-desktop {
+    background-image: url(../../img/coopeuch/logo-salud-proteccion.svg);
+    max-width: 354px;
+    margin-top: 6rem;
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/coopeuch/logos/salud-proteccion.svg);
+    max-width: 191px;
+    margin: auto;
+    
+    margin-bottom: 18px;
+}
+
+.logo-convenios img {
+    width: 100%;
+}
+
+.logo-convenios .iso-coopeuch {
+    /*background-image: url(../../img/logotipo.svg);
+    margin-right: 1rem;
+    width: 200px;
+    height: 90px;
+    background-repeat: no-repeat;*/
+}
+
+/*C�digo verificaci�n*/
+
+.mensaje-envio p {
+    font-size: 24px;
+    color: var(--tertiary-color);
+    text-align: left;
+    margin-bottom: 1.2rem;
+}
+
+.codigo-verificacion label {
+    font-size: 24px;
+    color: var(--tertiary-color) !important;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.mensaje-envio a {
+    color: var(--primary-color) !important;
+    text-decoration: underline;
+}
+
+.codigo-verificacion input {
+    border: 1px solid #000;
+    background: #FFF;
+    color: var(--tertiary-color);
+    border-radius: 0;
+    width: 49px;
+    height: 62px;
+    text-align: center;
+    font-size: 24px;
+}
+
+.cont-codigo {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.codigo-no-valido {
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    gap: 1rem;
+    padding: 2rem 0;
+    padding-bottom: 0;
+}
+
+
+   /*Mensaje validacion*/
+
+.mensaje-validacion {
+    padding: 1rem;
+}
+
+.mensaje-validacion .item-mensaje {
+    font-size: 16px;
+    color: var(--tertiary-color);
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+}
+
+    .mensaje-validacion .item-mensaje::before {
+        width: 20px;
+        height: 20px;
+        content: '';
+        display: inline-block;
+        margin-right: .5rem;
+        border-radius: 20px;
+        background-image: url(../../img/coopeuch/login/circulo.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+
+    .mensaje-validacion .item-mensaje.valido {
+        color: #1DA70C;
+    }
+
+    .mensaje-validacion .item-mensaje.valido::before {
+        
+        background-image: url(../../img/coopeuch/login/check.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+    }
+
+.label-reset {
+    font-weight: 700;
+    color: var(--tertiary-color);
+}
+
+
+.codigo-verificacion {
+    width: 566px;
+}
+
+.toolbar-reset-clave {margin-bottom: 2rem;margin-top: 45px;align-items: center;}
+.alert.alert-danger .alert-close i {color: #eb5757!important;}
+.indica-dia.actual {background:#0081a4!important;}
+    .toolbar-reset-clave a {
+        color: #666;
+        text-decoration: underline;
+        font-size: 24px;
+    }
+
+        .toolbar-reset-clave a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+        /**/
+        /*Modal Exito*/
+        .modal-exito {
+            max-width: 886px;
+            padding-bottom: 80px;
+        }
+
+    .modal-exito .modal-body {
+        text-align: center;
+        color: var(--tertiary-color);
+    }
+
+        .modal-exito .modal-body button {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        
+            width: 254px;
+            height: 62px;
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+
+    .modal-exito .modal-content {
+        border-radius: 40px;
+    }
+
+    .modal-exito .modal-header {
+        border-bottom: none;
+    }
+
+    .modal-exito img {
+        width: 188px;
+        margin-top: 0;
+    }
+
+    .modal-exito h3 {
+        font-size: 36px;
+        font-weight: 700;
+    }
+
+    .modal-exito p {
+        font-size: 24px;
+        text-align: center;
+    }
+
+.modal .modal-content .modal-header .close:before {
+    font-weight: 700;
+    font-size: 2rem;
+    display: none;
+}
+
+.modal .modal-content .modal-header .close {
+    color: var(--primary-color) !important;
+}
+/**/
+.accesible-btn {
+    display: none;
+}
+
+.logo-convenios {
+    justify-content: center;
+    gap: 1rem;
+}
+
+.usuario-sin-cuenta {
+    text-align: center;
+    color: #666;
+    font-weight: 700;
+    border-top: 1px solid #000;
+}
+
+    .usuario-sin-cuenta a {
+        color: var(--primary-color);
+    }
+
+.divider-medismart {
+    display: none;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    max-width: 566px;
+    width: auto;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: var(--dark-color);
+    font-weight: 400 !important;
+    font-size: 24px;
+}
+
+
+
+.body-home .top-banner {
+    margin-bottom: 0;
+}
+
+    .body-home .top-banner .legend .text-warning {
+        color: var(--tertiary-color) !important;
+        font-weight: 700;
+        font-size: 24px;
+        
+    }
+
+.top-banner .legend {
+    color: var(--tertiary-color) !important;
+}
+
+.body-home .top-banner {
+    margin-top: 5rem;
+}
+
+
+
+
+/*Home COOPEUCH*/
+
+.container-coopeuch {
+    max-width: 1189px;
+}
+
+
+.form-group label {
+    color: #747474;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.body-home .legend {
+    font-weight: 400;
+    font-size: 18px;
+    margin-left: 0;
+    margin-bottom: 40px;
+}
+
+.body-home .toolbar {
+    max-width: 1189px;
+    margin: auto;
+    text-align: right;
+    margin-top: 24px;
+}
+
+.body-home .legend-primera-frase {
+    margin-bottom: 22px;
+}
+
+.legend-primera-frase {
+    /*display: block;*/
+    font-size: 24px;
+    font-weight: 700;
+    display: inline-block;
+    /*margin-bottom: 24px;*/
+    margin-bottom: 0;
+}
+
+
+
+.container-coopeuch .card-home {
+    max-width: 1189px;
+    padding: 40px;
+    border-radius: 8px;
+    background-color: var(--light-color);
+    /*margin-top: 20px;*/
+}
+
+    .container-coopeuch .card-home h3 {
+        margin-bottom: 1.2rem;
+        font-weight: 700;
+    }
+
+.cont-card-home {
+    max-width: 1026px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: max(1rem, 2rem, 4rem);
+}
+
+.container-coopeuch .card-home h3 {
+    color: var(--tertiary-color);
+    font-size: 18px;
+}
+
+.card-coopeuch {
+    width: 210px;
+    border: 2px solid #E7E7E7;
+    border-radius: 16px;
+    align-items: center;
+    justify-content: center;
+    height: 112px;
+    cursor: pointer;
+    flex-direction: column;
+    transition: var(--transition);
+}
+
+    .card-coopeuch:hover {
+        /*   background-color: #007DB7; 
+        border: 2px solid #007DB7;
+        color: var(--light-color);
+         */
+    }
+
+      .card-coopeuch:hover .legend {
+       color: var(--secondary-color);
+    }
+    
+        .body-home .top-banner .legend span:last-child {
+            font-weight: 400;
+            font-size: 18px;
+        }
+
+.card-coopeuch-click {
+    background-color: #007DB7;
+    border: 2px solid #007DB7;
+    color: var(--light-color);
+}
+
+    .card-coopeuch-click .legend {
+        color: var(--light-color) !important;
+    }
+
+.card-coopeuch .legend {
+    text-align: center;
+    font-weight: 700;
+    font-size: 14px;
+    color: #333;
+}
+
+.card-coopeuch img {
+    margin: auto;
+    display: block;
+}
+
+.saludo-ayuda-usuario {
+    display: block;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.body-home {
+    background: var(--primary-color);
+    background-image: none;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+    .body-home .logo-home {
+        padding: .7rem;
+        align-items: center;
+    }
+
+        .body-home .logo-home img {
+            width: 38px;
+        }
+
+        .body-home .logo-home .item-menu-top img {
+            margin-bottom: .5rem;
+        }
+
+
+    .body-home .cont-card .card img {
+        max-width: 216px;
+        max-height: 216px;
+    }
+
+    .body-home .container-coopeuch {
+        min-height: 540px;
+    }
+
+    .body-home .fecha-atencion {
+        color: var(--primary-color);
+    }
+
+  
+
+    .body-home .btn-icon {
+        color: var(--primary-color);
+    }
+
+    .body-home .pronto {
+        color: var(--light-color);
+        background-color: var(--primary-color);
+    }
+
+    .body-home .cont-card h1,
+    .body-home .cont-card h1 small {
+        color: var(--dark-color);
+        font-weight: 700;
+    }
+
+    .body-home .menu-top .item-menu-top i,
+    .body-home .menu-top .item-menu-top .label-menu {
+        color: rgba(255,255,255, .7) !important;
+        text-transform: none;
+    }
+
+    .body-home .menu-top .item-menu-top {
+        text-align: center
+    }
+
+
+        .body-home .menu-top .item-menu-top:hover i,
+        .body-home .menu-top .item-menu-top:hover .label-menu {
+            color: #ffb822 !important;
+        }
+
+        .body-home .menu-top .item-menu-top .opcion-ayuda,
+        .body-home .menu-top .item-menu-top .opcion-ayuda i {
+            color: var(--primary-color);
+            !important;
+        }
+
+    .body-home .opcion-ayuda a {
+        color: var(--primary-color);
+        !important;
+    }
+
+        .body-home .opcion-ayuda a:hover {
+            color: #ffb822 !important;
+        }
+
+.opcion-ayuda a:hover {
+    color: var(--primary-color);
+}
+
+
+.item-menu-top .btn-accesible {
+    width: 55px;
+    height: 55px;
+    border: 1px solid #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.item-menu-top:last-child {
+    /*margin-left: 68px;*/
+    margin-left: 0;
+}
+
+    .item-menu-top:last-child .label-menu {
+        text-transform: none !important;
+    }
+
+.menu-top .item-menu-top * {
+    text-align: center;
+}
+
+.menu-top .item-menu-top img {
+    margin-bottom: .5rem;
+}
+
+
+
+
+@media (max-width: 1024px) {
+
+
+
+    .btn.btn-primary.btn-elevate {
+        width: 134px;
+        font-size: 16px;
+    }
+
+    .toolbar-reset-clave a {
+        font-size: 12px;
+    }
+
+    .codigo-verificacion label {
+        font-size: 12px;
+    }
+
+    .codigo-verificacion {
+        width: 300px;
+    }
+    .mensaje-envio p {
+        font-size: 12px;
+    }
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__extra .kt-login__link {
+        font-size: 12px;
+    }
+
+    .caja-profesional {
+        max-width: 100% !important;
+        margin: auto;
+    }
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+        margin-left: auto;
+    }
+
+    .cont-steps {
+        gap: 8px;
+    }
+
+    .modal-exito {
+        margin: 2rem;
+    }
+
+    .body-home .cont-card .card img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .body-home .container-coopeuch {
+        min-height: auto !important;
+    }
+
+    .body-home .top-banner .legend {
+        line-height: 1.6;
+    }
+
+        .body-home .top-banner .legend span:last-child {
+            font-weight: 500;
+        }
+
+    .cont-toolbar-options li a {
+        color: var(--primary-color);
+    }
+
+    .container-coopeuch .card-home {
+        border-radius: 0;
+        padding: 32px;
+    }
+
+        .container-coopeuch .card-home br {
+            display: none;
+        }
+
+    .cont-card-home {
+        gap: 20px;
+    }
+
+    .card-coopeuch {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        height: auto;
+    }
+
+        .card-coopeuch img {
+            display: inline-block;
+            width: 100px;
+        }
+
+        .card-coopeuch .legend {
+            text-align: left;
+            display: inline-block;
+            width: auto;
+            font-size: 14px;
+            color: #333;
+        }
+
+    .footer-coopeuch {
+        display: none;
+    }
+    .body-home h1 {
+        margin-bottom: 0;
+    }
+    .legend-primera-frase {
+        display: inline-block;
+        margin-right: .5rem;
+        /*font-size: 18px;*/
+        font-size: 24px;
+    }
+    .menu-top .item-menu-top:first-child {
+        margin-right: 8px;
+    }
+
+    .btn-asistencia {
+        margin: auto;
+    }
+
+    .legend-primera-frase {
+        margin-bottom: 12px;
+    }
+
+    .body-home .legend-primera-frase {
+        margin-bottom: 0;
+    }
+
+    .body-home .item-menu-top .btn-accesible {
+        width: 41px !important;
+        height: 41px !important;
+    }
+    .body-home .toolbar {
+        margin-top: 1rem;
+    }
+}
+
+
+/* Buttons*/
+
+.btn {
+    text-transform: none;
+    border-radius: 8px;
+}
+
+.btn-primary, .btn-success {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    color: var(--light-color);
+}
+
+
+    .btn-primary:hover {
+        background-color: #96111A;
+        border-color: #96111A;
+    }
+
+
+.accesible-btn button {
+    border: 1px solid var(--primary-color) !important;
+    color: var(--primary-color);
+}
+
+
+    .accesible-btn button:hover {
+        background-color: var(--primary-color) !important;
+        border-color: var(--primary-color) !important;
+    }
+
+.kt-aside--minimize .kt-aside-menu .kt-menu__nav
+.accesible-tools-desktop .accesible-btn button {
+    border-color: transparent !important;
+}
+
+.logo-home .btn-home {
+    color: rgba(255, 255, 255, .8);
+    cursor: pointer;
+}
+
+#btnSelectBeneficiario {
+    /*margin-right: 2rem;*/
+}
+
+
+.atencion-toolbar .btn-atencion {
+    font-weight: 500;
+    text-transform: none;
+    font-size: 14px;
+}
+
+.opcion-ayuda .titulo-dropdown {
+    color: var(--tertiary-color);
+    text-align: left !important;
+}
+
+.body-home .accesible-btn {
+    display: none;
+}
+
+.body-home .item-menu-top .btn-accesible {
+    background-color: var(--accent-color);
+    color: var(--light-color);
+    font-size: 14px;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--light-color);
+    border-radius: 8px;
+    transition: all .3s ease-out;
+}
+
+    .body-home .item-menu-top .btn-accesible:hover {
+        background-color: var(--primary-color)
+    }
+/*Agendar*/
+
+
+.label-especialidades {
+    display: block;
+    font-size: 18px;
+    font-weight: 500;
+    color: #666;
+}
+
+.stepper .flecha {
+    color: var(--secondary-color)
+}
+
+.busqueda-profesionales {
+    margin-left: 0;
+}
+
+#checks label {
+    font-size: 14px;
+    margin-left: .5rem;
+    font-weight: 700;
+    color: #999;
+}
+
+#checks a {
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.front-fecha-atencion .especialidad-profesional {
+    position: static;
+    font-size: 14px;
+    color: #005D8F;
+    font-weight: 400;
+}
+/*Stepper*/
+.stepper-sv .cont-steps {
+    background-color: transparent;
+    width: auto;
+    min-width: 350px;
+    margin: auto;
+}
+
+.cont-steps {
+    background-color: transparent;
+    margin: auto;
+    width: 100%;
+    gap: 74px;
+}
+
+
+.cont-steps {
+    gap: 8px;
+}
+
+
+.stepper {
+    background-image: none;
+    width: 100%;
+    /* max-width: 1537px;*/
+    margin: auto;
+}
+
+
+
+.step {
+    width: 100%;
+    border-top: 2px solid #D4D4D4;
+    position: relative;
+    padding-top: 20px;
+}
+
+
+    .step.active {
+        border-top: 2px solid var(--primary-color);
+    }
+
+
+.stepper-sv .titulo-step {
+    font-size: 14px;
+}
+
+.step {
+    /* background-image: url(../../img/coopeuch/iconos/stepper/seleccion.svg);*/
+}
+
+    .step .step-icon,
+    /*.step .label-step,*/
+    .stepper .flecha,
+    .stepper img,
+    .stepper .init-step {
+        display: none;
+    }
+
+    .step .label-step {
+        text-transform: none;
+        font-weight: 700;
+        padding-left: 1rem;
+        font-size: 1rem;
+    }
+
+
+    .step .titulo-step {
+        color: var(--primary-color);
+        text-transform: none;
+        padding-left: 1rem;
+    }
+
+    .step::before {
+        content: '';
+        display: inline-block;
+        color: var(--primary-color);
+        width: 42px;
+        height: 26px;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: absolute;
+        top: -16px;
+        background-color: #F2F3F3 !important;
+        /*background-color: var(--background-ui);*/
+    }
+
+    /* .step.active::before {
+            background-image: url(../../img/coopeuch/iconos/stepper/seleccion.svg);
+        }*/
+
+    .step::before {
+        background-image: url(../../img/coopeuch/iconos/stepper/agendamiento.svg);
+    }
+
+    .step.active::before {
+        background-image: url(../../img/coopeuch/iconos/stepper/confirmacion.svg);
+    }
+/*end Stepper*/
+.titulo-seccion {
+    color: var(--primary-color);
+}
+
+
+.stepper .flecha {
+}
+
+
+.caja-confirmacion-hora .row {
+    max-width: 952px;
+    margin: auto;
+}
+
+
+.cont-banner img {
+    border: 1px solid #AED1ED;
+}
+
+.caja-busqueda .dropdown {
+    width: 100%;
+}
+
+
+.busqueda-profesionales {
+    border: 1px solid var(--tertiary-color);
+    min-width: 200px;
+    width: 406px;
+}
+
+    .busqueda-profesionales i {
+        color: var(--secondary-color);
+        display: none;
+    }
+
+    .busqueda-profesionales .dropdown .btn {
+        color: var(--tertiary-color)
+    }
+
+
+    .caja-especialidad {
+        background-color: var(--secondary-color);
+    }
+
+.btn-outline-primary {
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color)
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--light-color);
+}
+
+.btn.btn-outline-primary.dropdown-toggle.itemEspecialidad:hover {
+    color: var(--primary-color) !important;
+}
+
+.caja-profesional .hora-atencion {
+    color: var(--primary-color);
+}
+
+.front-fecha-atencion {
+    color: var(--primary-color);
+    border: 1px solid #AED1ED;
+}
+
+    .front-fecha-atencion strong:before {
+        color: #005D8F;
+        text-transform: none !important;
+        font-size: 14px;
+        font-weight: 700;
+        display: block;
+    }
+
+        .caja-profesional:hover {
+            border: 1px solid #AED1ED;
+        }
+
+.data-atencion  {
+    margin-bottom: 1rem;
+}
+
+.cont-banner video {
+    border-radius: 16px;
+    margin: 0 auto;
+}
+
+.front .btn-primary {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    padding: 1rem 1.5rem !important;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+    .front .btn-primary:hover {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+
+.front-fecha-atencion {
+    bottom: 7.4rem;
+}
+
+.caja-especialidad {
+    font-weight: 500;
+}
+
+.inner-especialidad strong {
+    color: #FFF;
+    font-weight: 400
+}
+
+.caja-profesional {
+    border: 1px solid #E7E7E7;
+}
+
+/**/
+
+/*Caja Reserva*/
+
+.caja-reserva {
+    background-color: transparent;
+    padding-left: 0;
+    padding-right: 0;
+    border: none;
+}
+
+    .caja-reserva h4,
+    .caja-reserva p {
+        color: #000;
+    }
+
+.titulo-servicio {
+    font-weight: 600;
+    color: #747474;
+    font-size: 22px;
+    text-align: left;
+}
+
+.caja-reserva .btn-am,
+.caja-reserva .btn-pm {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+    .caja-reserva .btn-am:hover, .caja-reserva .btn-pm:hover {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+
+    .caja-reserva .btn-am {
+        width: 82px;
+    }
+
+.caja-reserva .btn-pm {
+    width: 67px;
+}
+
+.caja-reserva .btn-pill {
+   font-size: 12px !important;
+}
+
+
+.datepicker.datepicker-inline {
+    background-color: var(--light-color);
+}
+
+.estado-hora small {
+    width: 120px;
+}
+
+.hora.disponible .detalle-hora {
+    font-weight: 900;
+    color: var(--secondary-color);
+}
+
+.hora.ocupado small {
+    background-color: #D4D4D4;
+    color: #FFF;
+    font-size: 18px;
+    border-radius: 0;
+}
+
+.hora.ocupado .detalle-hora {
+    font-weight: 900 !important;
+}
+
+
+.hora.seleccionado small {
+    background-color: var(--secondary-color);
+    color: #FFF;
+    font-size: 18px;
+    border-radius: 0;
+    
+}
+
+.hora.seleccionado .detalle-hora {
+    font-weight: 900;
+    color: var(--secondary-color);
+}
+
+
+.hora-top {
+    color: var(--secondary-color);
+}
+
+.titulo-data-horario {
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+    background-color: #FFF;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 16px;
+    
+}
+
+.data-horario .rango-horario {
+    font-size: 12px;
+}
+
+
+.hora.disponible small {
+    background-color: #C0E9FD;
+    color: var(--secondary-color);
+    font-size: 18px;
+    border-radius: 0;
+}
+
+.check-aceptacion a {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.perfil-profesional {
+    border: 1px solid rgba(59, 193, 205, 0.3);
+}
+
+
+.perfil-profesional .btn-primary.btn-block {
+    width: 155px;
+    margin: auto;
+    color: #FFF;
+    border: none;
+}
+
+
+.selector-horas i {
+    color: var(--secondary-color);
+}
+
+.cont-volver .btn.btn-outline-secondary {
+    color: var(--primary-color);
+    background-color: transparent;
+    font-size: 14px;
+    font-weight: 700;
+    box-shadow: none;
+}
+
+
+    .cont-volver .btn.btn-outline-secondary::before {
+        content: '<';
+        display: inline-block;
+        font-weight: 700;
+        margin-right: .5rem;
+        color: var(--primary-color)
+    }
+
+.perfil-profesional .btn-primary {
+    color: var(--primary-color);
+    border-color: var(--secondary-color);
+}
+
+.header-formulario i {
+    color: var(--primary-color);
+}
+
+.carga-archivos h3 {
+    color: var(--secondary-color);
+}
+
+.carga-archivos .btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/*Mensaje confirmacion agendar*/
+
+.mensaje-confirmacion strong {
+    color: #666;
+}
+
+
+.mensaje-confirmacion .caja-profesional .titulo-profesional {
+    color: #007DB7;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+
+.mensaje-confirmacion .caja-profesional strong {
+    color: #007DB7 !important;
+}
+
+.mensaje-confirmacion .btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.icon-confirma {
+    color: var(--primary-color);
+}
+
+.kt-app .titulo-seccion {
+    font-weight: 900;
+    color: var(--tertiary-color);
+}
+
+.link-aviso .aviso-atencion {
+    background-color: var(--secondary-color)
+}
+
+.atencion-toolbar .btn-atencion {
+    color: var(--primary-color);
+}
+/*.atencion-toolbar .btn-atencion:nth-of-type(1) {
+    color: var(--primary-color) !important;
+}*/
+/*Sala de espera*/
+.titulo-sala {
+    width: 100%;
+    text-shadow: none;
+    color: #666666;
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: none;
+}
+
+.hotspot-icon {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+    .hotspot-icon .cont-icon {
+        background-color: transparent;
+        transition: all .3s ease-out !important;
+    }
+
+    .hotspot-icon:hover .cont-icon {
+        background-color: transparent;
+    }
+
+
+#btnAbandonarAtencion {
+    top: 35%;
+    left: 19%;
+}
+
+.sala-medismart #hs-c {
+    top: 20%;
+    left: 40%;
+}
+
+.sala-medismart #hs-d {
+    top: 20%;
+    left: 49%;
+}
+
+.sala-medismart #hs-e {
+    top: 20%;
+    left: 59%;
+}
+
+.sala-medismart #hs-g {
+    top: 35%;
+    left: 77%;
+}
+
+.sala-medismart #hs-b {
+    top: 73%;
+    left: 46%;
+}
+
+.hotspot-icon .cont-icon {
+    width: 58px;
+    height: 58px;
+}
+
+.hotspot-icon {
+    color: #364F6B;
+    text-transform: none;
+    font-weight: 700;
+}
+
+#hs-b .cont-icon,
+#btnAbandonarAtencion .cont-icon {
+    /*background-color: rgba(0,61,92,.3) !important;*/
+}
+
+.cont-icon.hotspot-redes {
+    background-color: #000 !important;
+}
+
+
+.ab-content .btnConfirmar {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+#reporte .cont-icon {
+    background-color: var(--accent-color);
+}
+
+
+/*Sala espera mobile*/
+
+.sala-espera-mobile {
+    /* min-height: 440px;*/
+    min-height: 482px;
+}
+
+    .sala-espera-mobile .btn-sala {
+        font-weight: 500;
+        font-size: 13px;
+        text-shadow: none;
+        color: #364F6B;
+    }
+
+    .sala-espera-mobile #reporte-m {
+        display: none;
+    }
+
+    .sala-espera-mobile img {
+        margin-top: 0;
+    }
+
+    .sala-espera-mobile .btn-sala .cont-icon {
+        background-color: transparent;
+        width: 50px;
+        height: 50px;
+    }
+
+        .sala-espera-mobile .btn-sala .cont-icon img {
+            margin-top: 0;
+        }
+
+    .sala-espera-mobile .btn-sala span {
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+.sala-espera #contacto,
+.sala-espera #facebook,
+.sala-espera #instagram {
+    display: none;
+}
+
+
+/**/
+
+.tab-pane .btn-primary {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.body-home .top-banner {
+    background-image: none;
+}
+
+    .body-home .top-banner .rounded-circle {
+        display: none;
+    }
+
+.card.card-carga {
+    max-width: 275px;
+}
+
+
+@media (max-width: 991.98px) {
+
+
+    .top-cargas.top-banner {
+        margin-top: 3rem;
+    }
+
+    #btn-agregar {
+        margin-top: 0;
+        margin-bottom: 4rem;
+        width: 100%;
+    }
+
+    #btn-agregar .btn-primary {
+        width: 100%;
+    }
+    .buscador-beneficiarios {
+        margin: 0;
+    }
+
+    #btnBuscar.btn.btn-primary.btn-elevate {
+        width: 100%;
+        font-size: 12px;
+    }
+    .container-login {
+        min-height: calc(100vh - 108px);
+        padding: 2.2rem;
+    }
+
+    .kt-form .form-group {
+        margin-bottom: 24px !important;
+    }
+}
+
+@media (max-width: 1024px) {
+
+    .body-home .powered, .body-home .powered strong {
+        color: #666666;
+        display: none;
+    }
+
+    .powered {
+        display: none;
+    }
+
+        .powered strong {
+            width: 100%;
+        }
+
+        .kt-header--fixed.kt-aside--minimize .kt-header {
+            padding-top: 0 !important;
+        }
+
+    .kt-login__forgot .kt-login__link {
+        font-size: 12px;
+    }
+
+    .logo-convenios {
+        margin-top: 2rem;
+    }
+
+    .logotipo {
+        margin-top: 0;
+    }
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__actions .kt-login__btn-secondary,
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__actions .kt-login__btn-primary {
+        max-width: 134px;
+        font-size: 16px;
+    }
+
+    .codigo-verificacion input {
+        width: 38px;
+        height: 34px;
+    }
+
+    .cont-logo-mobile {
+        height: 214px;
+        background-image: url(../../img/coopeuch/login/login-02.jpg);
+        background-size: cover;
+        background-position: center -50px;
+    }
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .form-control {
+        height: 34px;
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    .form-group .ms-label {
+        font-size: 12px;
+    }
+
+    .cont-form-beneficiario {
+        margin-top: 3rem;
+    }
+
+    .item-menu-top {
+        margin-right: 8px;
+    }
+
+        .item-menu-top:last-child {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+    .kt-header__topbar img {
+        width: 32px;
+    }
+
+    #menu-accesible {
+        display: none;
+    }
+
+    .menu-top .item-menu-top i {
+        margin-bottom: 0;
+    }
+
+    .menu-top .item-menu-top .logotipo-mobile {
+        width: 38px !important;
+        height: 38px !important;
+    }
+
+    .toolbar-bottom-mobile .label-options {
+        text-transform: none;
+        color: #364F6B;
+        font-weight: 700;
+    }
+
+    .toolbar-option {
+        color: var(--secondary-color) !important;
+    }
+
+        .toolbar-option.active {
+            color: var(--primary-color) !important;
+        }
+
+    .top-banner {
+        background-image: none;
+        height: auto;
+        /*margin-bottom: 2rem;*/
+        margin-bottom: 0;
+    }
+
+    .kt-app .titulo-seccion {
+        font-size: 16px;
+    }
+
+    .saludo-usuario.text-warning {
+        color: var(--tertiary-color);
+    }
+
+    .top-banner .legend {
+        text-align: left;
+        font-weight: 900 !important;
+        font-size: 20px;
+    }
+
+    .body-home .top-banner .legend {
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+
+    .top-banner img {
+        margin-right: .5rem;
+        display: none;
+        
+        height: auto;
+    }
+
+    .kt-header .kt-header__topbar {
+        background-color: var(--accent-color);
+        margin-top: 0;
+        gap: 1.5rem;
+    }
+
+    .menu-top .item-menu-top i {
+        color: #FFF !important;
+    }
+
+    .menu-top .label-menu-pac {
+        color: #FFF;
+    }
+
+    .front-fecha-atencion {
+        border: none;
+    }
+
+    .titulo-servicio {
+        font-size: 21px;
+        font-weight: 700;
+    }
+
+
+    .powered {
+        display: none;
+    }
+
+    .body-home .top-banner {
+        margin-top: 0;
+        margin-bottom: 1rem;
+        height: auto;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .toolbar-bottom-mobile i {
+        color: #364F6B;
+        font-size: 28px;
+    }
+
+
+}
+
+.saludo-usuario.text-warning {
+    color: var(--tertiary-color) !important;
+    font-weight: 700 !important;
+    font-size: 24px;
+}
+
+/*Aviso Atencion*/
+
+.aviso-atencion {
+    background-color: var(--primary-color);
+}
+
+/*Caja Profesional*/
+.caja-profesional .header-aviso-atencion,
+.caja-profesional .header-aviso-atencion i {
+    color: var(--primary-color);
+}
+
+.caja-opciones a {
+    color: var(--primary-color);
+}
+
+/*Box Atencion*/
+
+.cont-btn-panel .btn-atencion, .cont-btn-vc .btn-atencion {
+    border: 1px solid var(--primary-color);
+    !important;
+    color: var(--primary-color);
+    !important;
+}
+
+.kt-portlet .kt-portlet__head .kt-portlet__head-label .kt-portlet__head-title {
+    color: #747474;
+}
+
+/*Voucher*/
+
+.title-voucher {
+    display: inline-block;
+    font-size: 24px;
+    color: var(--primary-color);
+    !important;
+    margin-top: 0;
+    font-weight: 900;
+}
+
+    .title-voucher i {
+        font-size: 22px;
+        color: var(--primary-color);
+        margin-bottom: 2rem;
+    }
+
+.linea-voucher {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--secondary-color);
+    font-size: 18px;
+    margin-bottom: .5rem;
+}
+
+.valor-voucher {
+    font-size: 24px;
+}
+
+.linea-voucher strong {
+    font-weight: 900;
+    color: var(--secondary-color);
+    font-size: 18px;
+}
+
+small.resta::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 4px;
+    background-color: var(--secondary-color);
+    margin-right: .5rem;
+}
+
+.linea-voucher.total {
+    color: var(--primary-color);
+    font-size: 22px;
+    border-top: 1px solid rgba(0, 117, 201, .5);
+    margin-top: 1rem;
+    font-weight: 900;
+}
+
+.linea-final {
+    border-bottom: 1px solid rgba(0, 117, 201, .5);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.legend-voucher {
+    font-size: 16px;
+}
+
+.valor-voucher {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.total-legend {
+    text-transform: uppercase;
+}
+
+.total-valor {
+    font-weight: 900;
+}
+
+
+    .total-valor small {
+        font-weight: 900;
+        font-size: 26px;
+    }
+
+    .total-valor strong {
+        font-size: 32px;
+        color: var(--primary-color);
+    }
+
+.label-atencion {
+    border-radius: .5rem;
+    border: 1px solid var(--primary-color);
+    padding: 1rem;
+    font-size: 16px;
+    text-align: center;
+    color: var(--primary-color);
+    width: 174px;
+}
+
+    .label-atencion strong {
+        color: var(--primary-color);
+    }
+
+
+
+
+@media (max-width: 668px) {
+
+    /*************************cssnew********************************/
+
+
+
+    div#drop-mensajes {margin: 0 auto;left: 50% !important;transform: translate(-62%, 20%) !important;}
+    .dropdown-menu.dropdown-menu-fit.dropdown-menu-right.dropdown-menu-anim.dropdown-menu-sm.show {left: 50% !important;transform: translate(-90%, 28%) !important;}
+    .formulario-confirma-hora {width: 100% !important;}
+    .toma-examenes-coopeuch .nota-asistencia {margin-bottom: 0; margin-top: 24px !important;}
+    
+    #btnCancelarAtencion {margin-bottom: 28px;}
+    .kt-container.kt-container--fluid {padding-bottom: 50px;}
+    .card-carga {margin: 0 auto 1rem;}
+    .mensaje-confirmacion .btn-primary {margin: 0 auto;}
+    .card-body {padding:0px;}
+    .btn-sala#wsp-m {bottom: 17%!important;}
+    .toolbar {margin: 1rem;padding: 1rem;}
+    #checks label {margin-left: 18px; padding: 0;}
+    .cont-logo-mobile {height: 300px!important;}
+    .kt-login.kt-login--v3 .kt-login__wrapper { max-width: 100%;margin-top: 2.5rem;}
+    .btn.btn-primary.btn-elevate {width: 90%;}
+    .toma-examenes-coopeuch .nota-asistencia .btn { width: 100%!important;margin-bottom: 0px; }
+    .toma-examenes-coopeuch .nota-asistencia:last-child .btn {
+        width: 100% !important;
+        margin-bottom: 40px;
+    }
+    .codigo-verificacion input {height: 46px;}
+    .codigo-verificacion {width: 335px;}
+    .input-group {flex-direction: column; align-content: center; display: flex;}
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .form-control { height: 40px;font-size: 18px;}
+    .input-group-append { position: absolute;margin-left: 0!important; right:1px; height:35px;bottom:1px; z-index: 100000;}
+    .container-login .form-group .ms-label {font-size: 16px;}
+    div#recaptcha_v {display: flex;justify-content: center;width: 100%;}
+    .kt-login__extra { width: 100%; margin: 0 auto;}
+    a#kt_login_forgot {font-size: 13px;}
+  /*************************cssnew********************************/
+
+    .img-voucher {
+        margin: 0 auto;
+        max-width: 100px;
+        display: block
+    }
+
+    .label-atencion {
+        margin: 0 auto;
+        margin-bottom: 2rem;
+        margin-top: 0;
+    }
+
+    .title-voucher {
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+
+        .title-voucher i {
+            font-size: 16px;
+        }
+
+    .linea-voucher {
+        font-size: 12px;
+    }
+
+    small.resta::before {
+        width: 12px;
+    }
+
+    .linea-voucher.total {
+        font-size: 12px;
+    }
+}
+
+.body-home .card-plan .costo {
+    display: none;
+}
+
+.body-home .cont-card .card {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.body-home .logo-home {
+    background-color: var(--accent-color);
+}
+
+
+.label-step {
+    font-weight: 400;
+}
+
+.step.active .step-icon {
+    background-color: var(--primary-color);
+}
+
+.step.active .label-step {
+    color: var(--primary-color);
+}
+
+
+.kt-menu__item:hover a, .kt-menu__item:hover .ms-label-menu {
+    color: var(--primary-color) !important;
+}
+
+.kt-menu__item:hover a, .kt-menu__item:hover i {
+    color: var(--menu-color) !important
+}
+
+
+.menu-top .item-menu-top:hover i,
+.menu-top .item-menu-top:hover .label-menu {
+    color: #FFAF36;
+}
+
+/*Menu Lateral*/
+
+.kt-aside-menu img {
+    width: 30px;
+    height: auto;
+    margin: auto;
+    margin-bottom: 1rem;
+}
+
+.kt-aside--minimize .kt-aside-menu .kt-menu__nav > .kt-menu__item {
+    margin-bottom: 82px;
+}
+
+/*.kt-menu__item--here:nth-of-type(5),*/
+.kt-menu__item--here:nth-of-type(6),
+.kt-menu__item--here:nth-of-type(7) {
+    display: none !important;
+}
+
+
+/*Sala de Espera*/
+@media (min-width: 1921px) {
+    /*  .hotspots {
+        width: 100%;
+        height: 960px;
+        background-image: url(../../img/fondo-sala-coopeuch.jpg);
+        background-size: cover;
+    }*/
+
+    .hotspots img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+
+.hotspot-icon#reporte {
+    display: none;
+}
+/*Agendar Atenci�n*/
+
+
+
+
+.caja-busqueda {
+    min-width: 100%;
+}
+
+.carga-archivos h3 {
+    font-size: 18px;
+}
+.formulario-confirma-hora {
+    width: 452px;
+}
+
+.formulario-confirma-hora .header-formulario i {
+    display: none;
+}
+
+.formulario-confirma-hora .header-formulario p {
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: -.5px;
+    text-align: justify;
+    color: #666;
+}
+
+
+
+.caja-base {
+    border: 1px solid #e7e7e7;
+}
+
+.caja-confirmacion-hora {
+    /* max-width: 1593px;*/
+    max-width: 100%;
+    width: 100%;
+}
+
+    .caja-confirmacion-hora p {
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
+    .caja-confirmacion-hora .body-formulario p {
+        margin-top: 1rem;
+    }
+
+
+    /*Carga Horas Caja confirmacion*/
+
+    .caja-confirmacion-hora .dropzone-msg-desc::after {
+        content: '';
+        display: block;
+        border-radius: 8px;
+        border: 1px solid var(--secondary-color);
+        height: 60px;
+        width: 222px;
+        margin: auto;
+        padding-top: 1.4rem;
+        color: var(--secondary-color);
+        margin-top: 1rem;
+        font-size: 18px;
+        font-weight: 500;
+        background-image: url(../../img/coopeuch/iconos/circulo-subir-archivo.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+
+    }
+
+
+
+.caja-profesional .titulo-profesional {
+    color: var(--tertiary-color);
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.nombre-profesional {
+    color: var(--tertiary-color);
+    font-weight: 700;
+    font-size: 18px;
+}
+
+    .nombre-profesional small {
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+.especialidad-profesional {
+    /* display: none;*/
+}
+
+.front .data-atencion .calificacion {
+    position: static;
+}
+
+.caja-profesional {
+    /* max-width: 198px;*/
+    margin: auto;
+}
+
+.caja-profesional .fecha-atencion {
+    background-color: #C0E9FD;
+    color: #005D8F;
+    border: 1px solid #C0E9FD;
+}
+
+.cont-logo-coopeuch {
+    margin-bottom: 22px;
+    display: block !important;
+}
+
+    .cont-logo-coopeuch img {
+        width: 155px;
+    }
+
+.cont-icon-confirma {
+    display: none;
+}
+
+.mensaje-confirmacion .caja-profesional .fecha-atencion {
+    margin: 1rem;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+@media only screen and (min-width: 1025px) {
+    .mensaje-superior {
+        color: var(--light-color) !important;
+    }
+
+        .mensaje-superior .inner-mensaje {
+            border: 1px solid rgba(255,255,255, .4)
+        }
+
+    .kt-menu__item a, .kt-menu__item i {
+        color: var(--menu-color) !important;
+    }
+
+
+    .menu-top .item-menu-top i {
+        color: var(--menu-color) !important;
+    }
+    .menu-top .label-menu-pac {
+        color: var(--menu-color) !important;
+    }
+    .menu-top .item-menu-top i {
+        margin-bottom:.9rem;
+    }
+
+    .menu-top .item-menu-top .opcion-ayuda i {
+        color: var(--secondary-color);
+    }
+
+    .menu-top .label-menu {
+        color: var(--light-color) !important;
+    }
+
+    .opcion-ayuda a, .wp_box h3 {
+        color: var(--menu-color);
+    }
+
+    .item-menu-top:hover i {
+        /*color: #FFAF36 !important;*/
+    }
+
+    .item-menu-top:hover .label-menu {
+        color: #FFAF36 !important;
+    }
+
+    #kt_aside_menu_wrapper {
+        background-color: var(--light-color);
+        height: calc(100% - 180px);
+        margin-bottom: auto;
+    }
+
+    .kt-header--fixed:not(.kt-subheader--fixed) .kt-header {
+        border-bottom: none;
+        background-color: var(--accent-color);
+    }
+
+    .kt-aside--minimize .kt-aside-menu .kt-menu__nav {
+        margin-top: 0;
+    }
+
+    .kt-aside--minimize .kt-aside-menu .kt-menu__nav {
+        background-color: var(--light-color);
+    }
+
+    .kt-aside .kt-aside-menu {
+        padding: 50px 0px;
+    }
+
+    .ms-aside {
+        border-right: none !important;
+        background-color: var(--background-ui);
+    }
+
+    .ms-label-menu {
+        font-weight: 500;
+    }
+
+
+    .kt-aside--minimize .kt-aside-menu .kt-menu__nav .ms-label-menu {
+        color: var(--menu-color);
+        font-weight: 900;
+        font-size: 12px;
+        text-transform: none;
+    }
+
+    .accesible-tools-desktop {
+        display: none;
+    }
+
+    .kt-header--fixed.kt-header--minimize .kt-header {
+        height: 80px;
+    }
+}
+
+/*Footer*/
+
+.footer-coopeuch {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--light-color);
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 800;
+}
+
+    .footer-coopeuch .cont-logos {
+        max-width: 726px;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
+        margin-left: 44px;
+    }
+
+        .footer-coopeuch .cont-logos img {
+            filter: grayscale(100%);
+            width: 130px;
+            height: auto;
+        }
+
+.footer-home .copy,
+.footer-home .terminos {
+    display: none;
+}
+
+.body-home .footer-home {
+    max-width: 1189px;
+    justify-content: flex-end;
+}
+
+/*Perfil*/
+
+.cont-guardar-info {
+    padding-top: 0;
+}
+
+.card-profile h3 {
+    color: #747474;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.icono-editar-perfil {
+    width: 60px;
+    height: 60px;
+    background-color: #007DB7;
+}
+
+.card-profile .btn-success {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+}
+
+    .card-profile .btn-success:hover {
+        background-color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+    }
+
+.card-profile,
+.kt-portlet {
+    border: 1px solid #e7e7e7;
+}
+
+.card-profile {
+    width: 100%;
+    /*max-width: 880px;*/
+    max-width: 100%;
+}
+
+    #cargaFoto {
+        height: 100%;
+        width: 100%;
+    }
+
+/*Orientacion*/
+
+.cont-orientacion h1 {
+    color: var(--tertiary-color);
+}
+
+.btn-asistencia {
+    background-color: var(--primary-color);
+    text-transform: none;
+}
+
+    .btn-asistencia:hover {
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color)
+    }
+
+    .lista-orientacion {
+        color: var(--tertiary-color);
+        font-weight: 700;
+    }
+
+    /*Cargas*/
+
+.card-profile .form-group label {
+    color: #747474;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+
+.top-cargas .legend {
+    margin-left: 0;
+    font-size: 22px;
+    margin-bottom: 0;
+}
+
+.card-carga {
+    border: 1px solid #DDD;
+    height: 410px;
+    max-width: 275px;
+}
+
+.data-carga .nombre {
+    font-size: 23px !important;
+    line-height: 1.1;
+}
+
+    .data-carga .nombre small {
+        font-size: 18px !important;
+        font-weight: 500;
+    }
+
+    .card-carga:hover {
+        border: 1px solid #DDD;
+    }
+
+.cont-cargas {
+    margin-top: 0;
+}
+
+    .cont-cargas p {
+        padding-left: 0;
+        font-size: 16px;
+        font-weight: 400;
+        color: #666;
+    }
+
+    .cont-cargas .btn-primary,
+    #btn_guardar_am,
+    #btn_guardar_pw {
+        background-color: var(--secondary-color);
+        border: 1px solid var(--secondary-color);
+        color: var(--light-color);
+    }
+
+    #btn_guardar_pw:hover,
+    #btn_guardar_am:hover,
+    #btn_guardar_pw:hover {
+        background-color: var(--primary-color);
+        border: 1px solid var(--primary-color);
+    }
+
+
+.card-carga .icon i {
+    color: var(--tertiary-color);
+}
+
+.data-carga {
+    color: #747474;
+    text-align: center;
+    font-weight: 500;
+    font-size: 13px;
+    width: 100%;
+}
+
+.data-carga i {
+    display: none;
+}
+
+.top-cargas {
+    max-width: 100%;
+    margin-top: 0;
+}
+
+    .top-cargas.top-banner {
+        margin: auto;
+        margin-top: 5rem;
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    .cont-cargas {
+        max-width: 1200px;
+        width: 100%;
+    }
+
+
+.toolbar-cargas .btn-icon.btn-danger:active, .toolbar-cargas .btn-icon.btn-info:active {
+    color: var(--primary-color) !important;
+}
+
+
+.toolbar-cargas .btn-icon {
+    text-transform: none;
+    font-size: 16px;
+    color: var(--primary-color) !important;
+    display: flex;
+    align-items: center;
+}
+
+.toolbar-cargas .btn-danger:not(:disabled):not(.disabled):active:focus {
+    color: var(--primary-color) !important;
+}
+
+
+.toolbar-cargas .btn-icon i {
+    display: none;
+    margin-right: .5rem !important;
+}
+
+
+    .toolbar-cargas .btn-icon::before {
+        content: '';
+        display: inline-block;
+        background-image: url(../../img/coopeuch/iconos/editar.svg);
+        background-repeat: no-repeat;
+        background-position: center center;
+        width: 24px;
+        height: 24px;
+    }
+    .toolbar-cargas .btn-icon.btn-danger.btn-dlt::before {
+
+        background-image: url(../../img/coopeuch/iconos/basura.svg);
+    }
+
+
+    .toolbar-cargas .btn-icon.btn-danger:active,
+    .toolbar-cargas .btn-icon.btn-info:active {
+        background-color: #F0F0F0;
+        border-color: #F0F0F0 !important;
+        color: var(--primary-color)
+    }
+
+
+
+    .toolbar-cargas .btn-danger:not(:disabled):not(.disabled):active,
+    .toolbar-cargas .btn-danger:not(:disabled):not(.disabled).active,
+    .toolbar-cargas .show > .toolbar-cargas .btn-danger.dropdown-toggle {
+        background-color: #F0F0F0;
+        border-color: #F0F0F0 !important;
+        color: var(--primary-color)
+    }
+
+
+.toolbar-cargas .btn-info:not(:disabled):not(.disabled):active,
+.toolbar-cargas .btn-info:not(:disabled):not(.disabled).active,
+.toolbar-cargas .show > .toolbar-cargas .btn-info.dropdown-toggle {
+    background-color: #F0F0F0;
+    border-color: #F0F0F0 !important;
+    color: var(--primary-color)
+}
+
+/*Atenciones*/
+.caja-atencion {
+    border: 1px solid #E7E7E7;
+}
+
+    .caja-atencion .header-aviso-atencion {
+        color: var(--tertiary-color);
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .caja-atencion .titulo-profesional {
+        color: var(--tertiary-color);
+    }
+
+    .caja-atencion .fecha-atencion {
+        color: #000;
+        font-weight: 500;
+    }
+
+        .caja-atencion .fecha-atencion::after {
+            content: '|';
+            display: inline-block;
+            margin: 0 .5rem;
+        }
+
+        .caja-atencion .nombre-profesional {
+            font-size: 20px;
+        }
+
+.caja-atencion .calificacion i {
+    font-size: 12px;
+}
+
+    .caja-atencion .data-atencion {
+        margin-bottom: 1rem;
+    }
+
+    .caja-atencion .datos-fecha {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .caja-atencion .hora-atencion {
+        font-size: 24px;
+        /* margin-left: 1rem;*/
+        color: #000;
+    }
+
+.atencion-toolbar.atencion-proxima-toolbar {
+    border-top: 1px solid #DDD;
+}
+
+.data-historial .nombre-profesional {
+    font-size: 20px;
+}
+
+.datos-diagnostico {
+    color: var(--secondary-color);
+    border-top: 1px dashed #DDD;
+}
+
+.caja-atencion .header-aviso-atencion i {
+    color: var(--tertiary-color);
+}
+
+.tipo-archivo a {
+    color: var(--primary-color)
+}
+
+/*Resumen Atencion*/
+
+.card-informe {
+    border: 1px solid #e8e8e8;
+}
+
+.item-resumen {
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.archivos-atencion ul li {
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.legend-resumen {
+    color: #747474;
+    font-weight: 700;
+    text-transform: none;
+    font-size: 14px;
+}
+
+.item-resumen .nombre-paciente, 
+.item-resumen .nombre-profesional, 
+.item-resumen .especialidad, 
+.item-resumen .rut-paciente {
+    color: #747474
+}
+
+.info-resumen .kt-widget1__desc {
+    color: var(--tertiary-color)
+}
+
+.info-resumen {
+    color: var(--tertiary-color)
+}
+
+/*Scroll columna paciente*/
+
+/* Track */
+.columna-paciente::-webkit-scrollbar-track,
+.columna-archivos::-webkit-scrollbar-track {
+    background: rgba(80, 80, 80, 0.2);
+}
+
+
+/* Handle */
+.columna-paciente::-webkit-scrollbar-thumb,
+.columna-archivos::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+    /* Handle on hover */
+    .columna-paciente::-webkit-scrollbar-thumb:hover,
+    .columna-archivos::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    /*Certificados*/
+
+
+
+/* Track */
+.certificados::-webkit-scrollbar-track {
+    background: rgba(80, 80, 80, 0.2);
+}
+
+
+/* Handle */
+.certificados::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+    /* Handle on hover */
+    .certificados::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    /*Medicamentos*/
+
+/* Track */
+.lista-medicamentos::-webkit-scrollbar-track {
+    background: rgba(80, 80, 80, 0.2);
+}
+
+
+/* Handle */
+.lista-medicamentos::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+    /* Handle on hover */
+    .lista-medicamentos::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+
+    /*Top Banner*/
+
+.top-banner {
+    background-image: none;
+    margin-top: 0;
+}
+
+.top-banner img {
+    display: none;
+}
+
+    
+
+.titulo-seccion {
+    font-size: 18px;
+}
+
+.kt-login__title br {
+    display: none;
+}
+
+
+/* ----------- Non-Retina Screens ----------- */
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+    .logotipo-desktop {
+        margin-top: 2rem;
+        margin-bottom: 0.938rem;
+    }
+
+    .img1 {
+        background-image: url(../../img/coopeuch/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/coopeuch/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/coopeuch/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/coopeuch/login/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/coopeuch/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/coopeuch/login/960x978.jpg);
+    }
+
+    #imgLogin {
+        /*position: fixed;*/
+    }
+
+    .footer-coopeuch {
+        position: static;
+        margin-top: 2rem;
+    }
+    .body-home .top-banner {
+        margin-top: 2rem;
+    }
+    .container-coopeuch .card-home {
+        margin-top: 14px;
+    }
+    .body-home .footer-home {
+        padding: 0;
+    }
+
+    #imgLogin {
+        background-color: #f2f3f3;
+        background-size: cover;
+    }
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+        margin-left: auto;
+    }
+
+    .kt-aside--minimize .kt-aside-menu .kt-menu__nav > .kt-menu__item {
+        margin-bottom: 40px;
+    }
+    .cont-accesible-tools {
+        display: none;
+    }
+
+    .body-home .container-coopeuch {
+        min-height: 0;
+    }
+    .body-home .toolbar {
+        margin-top: 1rem;
+    }
+
+    .top-banner .legend {
+        font-size: 24px;
+        font-weight: 700;
+    }
+    /*Sala de espera*/
+    .hotspot-icon .cont-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+    .sala-espera-externa .titulo-fila {
+        font-size: 12px;
+    }
+
+    .sala-espera-externa .dato-fila {
+        font-size: 12px;
+    }
+
+    .sala-espera-externa .alerta-sala {
+        padding: .5rem;
+        text-align: center;
+    }
+
+    #panelEstado {
+        z-index: 50 !important;
+        position: relative !important;
+        bottom: 7rem !important;
+        top: -7rem !important;
+    }
+
+    .toma-examenes-coopeuch {
+        max-width: 1400px;
+        margin: 2rem auto;
+    }
+}
+/* ----------- Retina Screens ----------- */
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+   
+}
+
+.kt-login__actions mt-0 #kt_login_signin_submit {
+    background-color: #C4C4C4 !important;
+    border-color: #C4C4C4 !important;
+}
+
+@media (max-width: 991px)  {
+    .logotipo-img.logotipo-mobile.logo-coopeuch {
+        margin-top: auto !important;
+    }
+
+    .kt-login__title {
+        margin-top: 24px;
+        text-align: center !important;
+    }
+    .kt-login__title br {
+        display: block;
+    }
+}
+
+
+@media (max-width: 1024px) {
+
+
+    .nombre-profesional > .titulo-profesional {
+        display: block;
+        max-width: 100%;
+    }
+
+    .nombre-profesional small {
+        display: block;
+    }
+
+    .caja-profesional .fecha-atencion {
+        border-radius: 8px;
+        text-align: center;
+        padding: 1rem;
+        width: 100%;
+    }
+
+    .front .data-atencion .calificacion {
+        display: block;
+        margin-bottom: 1rem;
+    }
+
+    .caja-profesional img {
+        height: 72px;
+        width: 72px;
+    }
+
+    .caja-profesional .cont-data {
+        max-width: 192px;
+        width: 100%;
+        margin: auto;
+    }
+
+    .front .data-atencion .especialidad-profesional {
+        padding-left: 0;
+    }
+
+    .busqueda-profesionales {
+        width: auto !important;
+    }
+
+    .toma-examenes-coopeuch .titulo-toma-examenes {
+        display: block !important;
+        text-align: left;
+        margin-bottom: 50px;
+    }
+
+    .toma-examenes-coopeuch {
+        margin-top: 32px;
+        padding-left: 26px;
+        padding-right: 26px;
+        margin: auto;
+    }
+
+        .toma-examenes-coopeuch h1 {
+            display: none;
+        }
+
+        .toma-examenes-coopeuch img {
+            max-width: 684px;
+            margin-right: auto !important;
+            width: 100%;
+        }
+
+        .toma-examenes-coopeuch .nota-asistencia:first-child {
+            margin-top: 33px;
+        }
+
+        .toma-examenes-coopeuch .nota-asistencia small {
+            display: none !important;
+        }
+
+        .toma-examenes-coopeuch .cont-mensaje {
+            margin-top: 26px;
+            width: 720px;
+        }
+
+    .alerta-sala.alerta-superior {
+        width: 62%;
+        margin-right: 0;
+    }
+    .status-atencion .leyenda {
+        position: static;
+    }
+
+    .btn-atencion-accion {
+        letter-spacing: 0 !important;
+        font-size: 12px !important;
+    }
+    .saludo-usuario.text-warning {
+        font-size: 24px;
+    }
+    .header-aviso-atencion {
+        text-align: left;
+    }
+
+    .aviso-atencion .datos-fecha {
+        text-align: left;
+    }
+}
+
+
+
+
+.toma-examenes-medismart {
+    display: none;
+}
+
+.toma-examenes-coopeuch {
+    display: block;
+}
+
+    .toma-examenes-coopeuch .titulo-toma-examenes {
+        font-size: 22px;
+        font-weight: 700;
+        display: none;
+    }
+
+
+.toma-examenes-coopeuch {
+    max-width: 1600px;
+    margin: 2rem auto;
+    width: 90%;
+    margin: 4rem auto;
+    /*margin-left: 4rem;*/
+}
+
+
+    .toma-examenes-coopeuch h1 {
+        color: #747474;
+        font-size: 30px;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    .toma-examenes-coopeuch h1 small {
+        font-size: 30px;
+        font-weight: 500;
+        display: block;
+    }
+
+
+    .toma-examenes-coopeuch img {
+        max-width: 500px;
+        /*margin-right: 120px;*/
+    }
+
+.toma-examenes-coopeuch .cont-mensaje {
+    max-width: 600px;
+}
+.toma-examenes-coopeuch p {
+    font-size: 16px;
+    color: #666;
+    font-weight: 400;
+    text-align: left;
+}
+
+    .toma-examenes-coopeuch .nota-asistencia {
+        text-align: center;
+        margin-top: 55px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .toma-examenes-coopeuch .nota-asistencia small {
+        display: block;
+        width: 142px;
+        margin: auto;
+        margin-top: 17px;
+        font-size: 12px;
+        color: #666;
+    }
+
+        .toma-examenes-coopeuch .nota-asistencia .btn {
+            /* width: 170px;*/
+            width: 100%;
+            height: 40px;
+        }
+
+    .btn-volver {
+        border: none;
+        color: var(--primary-color) !important;
+        background-color: transparent !important;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+.btn-volver:hover {
+    background-color: transparent !important;
+}
+
+/*Farmacias*/
+.card-farmacia {
+    border: 1px solid #DDD;
+}
+
+    .card-farmacia .especialidad {
+        color: #666;
+    }
+
+    .card-farmacia.ultima-atencion .lista-medicamentos {
+        color: #666;
+    }
+
+.btn-proveedor {
+    border: 1px solid #DDD;
+}
+
+.leyenda-proveedor a {
+    color: #666;
+    text-decoration: underline;
+}
+
+    .leyenda-proveedor a:hover {
+        color: var(--primary-color);
+        text-decoration: underline;
+    }
+
+    .card-farmacia.ultima-atencion {
+        background-color: var(--light-color);
+    }
+
+    .card-farmacia.ultima-atencion .fecha-atencion {
+        color: var(--primary-color);
+    }
+
+    .card-farmacia.ultima-atencion .nombre-profesional, 
+    .card-farmacia.ultima-atencion .especialidad, 
+    .card-farmacia.ultima-atencion .titulo-card-farmacia, 
+    .card-farmacia.ultima-atencion .subtitulo-card-farmacia {
+        color: var(--tertiary-color);
+    }
+
+        .card-farmacia.ultima-atencion .leyenda-proveedor a {
+            color: #666;
+        }
+
+.cont-farmacias {
+    max-width: 100%;
+}
+
+.top-banner .legend {
+    margin-left: 0;
+    
+}
+.mensaje-no-atencion h1 {
+    color: #666;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.caja-atencion {
+    border: 1px solid #DDD;
+}
+.cont-farmacias .mensaje-no-atencion {
+    max-width: 500px;
+}
+
+/*Agendar paso 1*/
+
+.perfil-profesional .titulo-profesional,
+.perfil-profesional .nombre-profesional small,
+.perfil-profesional .titulo-profesional {
+    font-size: 14px;
+    font-weight: 700;
+    color: #000;
+}
+
+
+.perfil-profesional .titulo-profesional,
+    .perfil-profesional .body-profesional {
+    font-size: 13px;
+    font-weight: 700;
+    color: #000;
+}
+
+#aceptaTodo label {
+    font-size: 13px;
+}
+
+.check-aceptacion label{
+    font-weight: 700;
+    font-size: 10px;
+    color: #999;
+}
+
+.front-fecha-atencion strong {
+    color: #005D8F;
+}
+
+
+#divPerfilProfesional .nombre-profesional {
+    color: #000;
+}
+
+.leyenda-date-picker,
+.leyenda-date-color {
+    font-size: 12px;
+}
+/*Agendar Confirmacion*/
+.mensaje-confirmacion p {
+    font-size: 16px;
+    color: #666;
+}
+
+
+.mensaje-confirmacion.caja-base {
+    max-width: 100%;
+}
+
+
+#btnCancelarAtencion {
+    background-color: #D4d4d4;
+    border-color: #D4d4d4;
+    color: #FFF;
+}
+
+.mensaje-confirmacion .btn-primary {
+    max-width: 209px;
+}
+
+.cont-confirmacion {
+    max-width: 914px;
+    margin: auto;
+}
+
+.mensaje-confirmacion .titulo-servicio {
+    border-bottom: 1px solid #E7E7E7;
+    margin-top: 20px;
+    padding-bottom: 31px;
+}
+
+/* Fondo Agendamiento*/
+.fondo-agendamiento {
+    background-color: #F2F3F4 !important;
+}
+
+/*Mensaje superior agendamiento*/
+
+.mensaje-superior .inner-mensaje.hoy {
+    background-color: #FFF;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.mensaje-superior .inner-mensaje.pronto {
+    background-color: var(--secondary-color);
+
+}
+
+
+@media (max-width: 1024px) {
+
+    /*Sala Espera Mobile*/
+    #reporte-m, #ingreso-m, #wsp-m,
+    #btnAbandonarAtencionMobile,
+    #icon-sala-mobile-juegos,
+    #icon-sala-mobile-revistas,
+    #icon-sala-mobile-videos {
+        position: absolute;
+    }
+
+    #icon-sala-mobile-juegos {
+        top: 20%;
+        left: 35%;
+    }
+
+    #icon-sala-mobile-revistas {
+        top: 20%;
+        left: 56%;
+    }
+
+    #icon-sala-mobile-videos {
+        top: 20%;
+        left: 77%;
+    }
+
+    #wsp-m {
+        bottom: 7%;
+        left: 38%
+    }
+
+    #ingreso-m {
+        top: 33%;
+    }
+
+    .sala-espera-mobile .titulo-sala {
+        position: absolute;
+        font-size: 14px;
+        font-weight: 700;
+        top: 5%;
+        left: 5%;
+    }
+
+
+    .cont-consentimiento-informado {
+        position: absolute;
+        bottom: 16%;
+        left: 0;
+        right: 0;
+    }
+
+    /*Sala Espera Mobile Inmediata*/
+
+
+    .sala-espera-mobile-coopeuch #icon-sala-mobile-juegos {
+        top: 32%;
+        left: 35%;
+    }
+
+    .sala-espera-mobile-coopeuch #icon-sala-mobile-revistas {
+        top: 32%;
+        left: 56%;
+    }
+
+    .sala-espera-mobile-coopeuch #icon-sala-mobile-videos {
+        top: 32%;
+        left: 77%;
+    }
+
+    .sala-espera-mobile-coopeuch #wsp-m {
+        /*bottom: 20%;*/
+        bottom: 24%;
+        left: 38%
+    }
+
+    .sala-espera-mobile-coopeuch #ingreso-m {
+        top: 33%;
+    }
+
+    .sala-espera-mobile-coopeuch .sala-espera-mobile .titulo-sala {
+        position: absolute;
+        font-size: 14px;
+        font-weight: 700;
+        top: 5%;
+        left: 5%;
+    }
+
+}
+
+.btn.btn-primary.btn-elevate-cambio {
+    background-color: #C4c4c4;
+    border-color: #C4c4c4;
+    width: 300px;
+    font-size: 24px;
+}
+
+.toolbar-reset-clave-cambio {
+    margin-bottom: 2rem;
+    margin-top: 20px;
+    align-items: center;
+}
+    .toolbar-reset-clave-cambio a {
+        color: #666;
+        text-decoration: underline;
+        font-size: 24px;
+    }
+
+        .toolbar-reset-clave-cambio a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+
+
+        .alerta-sala {
+            background-color: rgba(232, 30, 43, .8);
+        }
+
+            
+.text-danger {
+    color: var(--primary-color) !important;
+}
+
+
+.condiciones-validacion-clave {
+    color: #747474 !important;
+}
+.configuracionAntMedicosInfTexto {
+    color: #747474 !important;
+}
+.configuracionAntMedicosInfTexto {
+    color: #747474 !important;
+}
+
+/*Atencion Inmediata*/
+
+.stepper-sv .label-step {
+    color: #000;
+}
+
+
+/*Swal Styles*/
+
+.swal2-styled.swal2-confirm {
+    background-color: var(--primary-color);
+    border-radius: 8px;
+}
+
+.swal2-actions:not(.swal2-loading) .swal2-styled:active {
+    background-color: var(--primary-color);
+}
+
+
+.swal2-popup .btn.btn-warning {
+    background-color: #666;
+    border-color: #666;
+    color: #FFF;
+    border-radius: 8px;
+}
+
+.swal2-popup .btn.btn-info {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #FFF;
+    border-radius: 8px;
+}
+/*Checkbox*/
+input[type="checkbox"] {
+    accent-color: var(--primary-color);
+}
+
+.caja-busqueda .dropdown .dropdown-item, .caja-busqueda .dropdown .dropdown-item:hover {
+    color: #666;
+}
+
+
+/*Sala espera inmediata*/
+
+.titulo-fila {
+    text-transform: none
+}
+
+.posicion-fila .leyenda-fila,
+.leyenda-fila {
+    text-transform: none;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.hotspot-icon:hover {
+    color: var(--primary-color)
+}
+
+.footer-aviso .btn-secondary {
+    background-color: #D4D4D4;
+    border: 1px solid #D4D4D4;
+    color: var(--light-color);
+}
+
+
+    .footer-aviso .btn-secondary:hover {
+        background-color: var(--secondary-color);
+        border: 1px solid var(--secondary-color);
+        color: var(--light-color);
+    }
+
+.modal-header-aviso h4,
+.modal-header-aviso h2 {
+    color: #666;
+}
+
+.cont-aviso-modal h2, .cont-aviso-modal p {
+    color: #666;
+}
+
+.cont-aviso-modal .hora-atencion {
+    color: #666;
+}
+
+.modal-header h2 {
+    color: #666;
+}
+
+#horaAtencionModal {
+    color: #FFF !important;
+}
+
+.modal-header h4 #nombreprofesional {
+    color: #666;
+}
+
+.mensaje .header-mensaje img {
+    display: none;
+}
+
+.mensaje-superior {
+    display:none
+}
+
+.mensaje-superior {
+    bottom: initial !important;
+    top: 1rem;
+    position: fixed;
+    z-index: 999;
+    display: flex;
+    right: 18rem;
+}
+
+
+.top-banner .legend {
+
+}
+
+.status-atencion .leyenda {
+    background-color: transparent;
+}
+
+.aviso-atencion .status-atencion, .aviso-atencion:hover .status-atencion {
+    background-color: #5b99b5;
+    width: auto;
+    min-width: 135px;
+}
+
+.mensaje-superior .inner-mensaje {
+    border-radius: 8px;
+    background-color: transparent;
+    border: 1px solid #FFF;
+    display: block;
+}
+    /*Sala Espera*/
+    @media (max-width: 1024px) {
+        .panel-medios {
+        height: calc(100vh - 70px);
+        margin-top: 70px;
+    }
+        .mensaje-superior {
+            display: none;
+        }
+
+        .titulo-servicio {
+            margin-top: 3rem;
+        }
+        .card.caja-profesional {
+            padding-top: 2rem;
+            padding-bottom: 1rem;
+        }
+        .cont-iso-plataforma {
+            margin-right: auto;
+        }
+        .menu-top .item-menu-top img {
+            margin-bottom: 0;
+        }
+        .step .label-step {
+            font-size: .9rem;
+        }
+        .front .btn-primary {
+            margin-top: 10rem !important;
+        }
+        .caja-profesional .fecha-atencion {
+            position: absolute;
+            width: auto;
+            left: 1.5rem;
+            right: 1.5rem;
+            bottom: 6rem;
+        }
+        .top-banner {
+            margin-top: 3rem;
+        }
+
+        .cont-form-beneficiario {
+            margin-top: 5rem;
+        }
+
+        .cont-form-beneficiario .card-profile h3 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cont-form-beneficiario .card.card-profile {
+            margin-top: 1rem;
+        }
+}
+
+.wp_box {
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+}
+.menu-top .item-menu-top .opcion-ayuda i {
+    color: #E81E2B !important;
+}
+
+.menu-top .item-menu-top h3 {
+    margin-bottom: 0;
+    color: #666;
+}
+
+.menu-top .titulo-notificaciones {
+    color: #E81E2B !important;
+}
+
+.slide-wiki {
+    display: none;
+}
+
+.top-banner .legend {
+    font-size: 24px;
+}
+
+.form-check-input {
+    margin-left: 0rem;
+}

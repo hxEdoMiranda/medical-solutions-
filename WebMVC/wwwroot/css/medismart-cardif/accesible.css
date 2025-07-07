@@ -1,0 +1,98 @@
+.accesible-tools {
+    text-align: right;
+}
+
+.acessibilidad {
+    font-size: inherit;
+}
+
+.accesible-btn {
+
+}
+
+    .accesible-btn button {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #3BC1CD;
+        font-weight: 700;
+        font-size: 1.2rem;
+        border-radius: .5rem;
+        color: #2E98B5;
+        transition: all .3s ease-out;
+        background-color: #FFF;
+    }
+
+        .accesible-btn button:hover {
+            background-color: #3BC1CD;
+            color: #FFF;
+        }
+
+.cont-home .accesible-tools {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.container-sala .accesible-tools {
+  margin-bottom: 1rem;
+}
+
+.kt-login__container .accesible-tools {
+    text-align: center;
+    margin: 18px 0;
+}
+
+
+.accesible-tools {
+    display: none;
+}
+
+.accesible-tools-desktop {
+    display: block;
+    margin-top: 10rem;
+}
+
+    .accesible-tools-desktop .accesible-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+        .accesible-tools-desktop .accesible-btn button {
+            margin-bottom: .5rem;
+        }
+
+
+#dropdown-accesible {
+    width: 140px;
+    padding: 1rem 0;
+}
+#dropdown-accesible .accesible-btn {
+    display: flex;
+    max-width: 100%px;
+    justify-content: center;
+    gap: 1rem;
+}
+
+
+@media (max-width: 768px) {
+    .accesible-tools-desktop {
+        display: none;
+    }
+
+
+
+    .accesible-tools {
+        display: block;
+        text-align: center;
+        width: 100%;
+        margin-top: auto;
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+    .accesible-tools-desktop {
+        margin-top: 0;
+    }
+}
+

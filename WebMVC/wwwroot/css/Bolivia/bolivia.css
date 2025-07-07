@@ -1,0 +1,111 @@
+/*Estilos para Medismart Bolivia*/
+
+
+/*
+    Login
+*/
+
+.logo-convenios {
+    justify-content: center;
+}
+
+.kt-login.kt-login--v3 
+.kt-login__wrapper 
+.kt-login__container 
+.kt-login__head {
+    margin-top: 50px;
+}
+
+.kt-login__head {
+    display: flex;
+    align-items: center;
+}
+
+.kt-login__head .pais {
+    margin-right: 1rem;
+    width: 100px;
+    height: 100px;
+    border-radius: 80px;
+    overflow: hidden;
+    object-fit: cover;
+  }
+
+
+.kt-login.kt-login--v3 
+.kt-login__wrapper 
+.kt-login__container 
+.kt-login__head 
+.kt-login__title {
+    margin-top: 0;
+}
+
+.kt-login__head .pais img {
+    max-width: 50px;
+}
+
+.logo-convenios {
+   align-items: center;
+   justify-content: start;
+}
+
+    .logo-convenios .pais {
+        background-image: url('../../img/bolivia/bolivia.svg');
+        background-size: contain;
+        width: 60px;
+        height: 40px;
+        margin-left: 1.5rem;
+        /*box-shadow: 0 7px 30px -10px rgba(150,170,180, 1);*/
+    }
+
+.pais-flotante {
+    position: absolute;
+    width: 60px !important;
+    top: 1rem;
+    right: 5rem;
+
+}
+
+.isotipo {
+    width: 60px;
+    height: 60px;
+    background-image: url('../../img/isotipo.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/* Imágenes Login */
+.img1 {
+    background-image: url(../../img/bolivia/bo1.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/bolivia/bo2.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/bolivia/bo3.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/bolivia/bo1.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/bolivia/bo2.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/bolivia/bo3.jpg);
+}
+
+/*Prehome*/
+
+.prehome__title {
+    color: #FFF;
+}
+
+@media (max-width: 768px) {
+    .pais-flotante {
+        top: 10rem;
+    }
+}

@@ -1,0 +1,155 @@
+﻿@model WebMVC.Models.Atenciones
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Agendar";
+    Layout = "_LayoutPacienteInvitado";
+
+}
+
+@section PageStyles  {
+    <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <style>
+        /*.swal2-styled.swal2-cancel{
+                position: absolute !important;
+                left: 75px !important;
+            }
+            .swal2-styled.swal2-confirm {
+                    position: absolute !important;
+                    right: 50px !important;
+        }*/
+
+    </style>
+}
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+    <!--Begin::App-->
+    <!-- Start:: Stepper-->
+    <!-- Stepper -->
+    <div class="stepper">
+        <div class="init-step"></div>
+        <div class="cont-steps">
+            <!-- Step1 -->
+            <div class="step passed">
+                <div class="step-icon">
+                    <i class="fal fa-user-md"></i>
+                </div>
+                <div class="label-step">
+                    Selección
+                </div>
+            </div>
+
+            <i class="fas fa-chevron-right flecha"></i>
+
+            <!-- Step2 -->
+            <div class="step passed">
+                <div class="step-icon">
+                    <i class="fal fa-calendar-edit"></i>
+                </div>
+                <div class="label-step">
+                    Agendamiento
+                </div>
+            </div>
+
+            <i class="fas fa-chevron-right flecha"></i>
+
+            <!-- Step3 -->
+            <div class="step active">
+                <div class="step-icon">
+                    <i class="fal fa-check-circle"></i>
+                </div>
+                <div class="label-step">
+                    Confirmación
+                </div>
+            </div>
+        </div>
+        <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+    </div>
+
+
+   
+
+        <div class="container caja-base mensaje-confirmacion">
+            <div class="row">
+                
+                <div class="col">
+                    <div class="mensaje">
+                        <div class="header-mensaje">
+                            
+                            <img src="~/img/logotipo.png" class="logotipo" alt="">
+                        </div>
+                        <h3 class="text-danger my-3"><i class="fal fa-exclamation-triangle"></i> Pago no procesado</h3>
+                        <p>
+                            Estimado(a) paciente: <strong>@Model.NombrePaciente</strong> . El pago de tu atención no ha sido procesado correctamente.
+                            Le agradecemos por confiar en la plataforma de <strong>Medismart.live</strong>
+                        </p>
+                        <p>
+                            Le recordamos que, a través de <strong>Medismart.live</strong>, podrás acceder al registro de la transacción, horas agendadas, documentación médica y realizar otras gestiones.
+                        </p>
+
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col offset-lg-9">
+                    <button class="btn btn-primary btn-block btn-sm" id="volverInicio">
+                        Volver al Inicio
+                    </button>
+                </div>
+            </div>
+        </div>
+   
+
+
+
+</div>
+<div class="modal fade" id="modalBono" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tituloBono"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="modalBodyBono">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarConsentimiento" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- begin::Scrolltop -->
+<div id="kt_scrolltop" class="kt-scrolltop">
+    <i class="fa fa-arrow-up"></i>
+</div>
+
+<!-- end::Scrolltop -->
+<!-- begin::Global Config(global config for global JS sciprts) -->
+@section Scripts {
+
+    <script src="~/signal/signalr.min.js"></script>
+    <script type="module">
+        import { init } from '../../js/PacienteInvitado/confirmarPagoInvitadoNP.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+            // var idCliente = @ViewBag.idCliente;
+            //window.idCliente = idCliente;
+            //var uid = @ViewBag.uid;
+            //window.uid = uid;
+            var idAtencionNP = @ViewBag.idAtencionNP;
+            window.idAtencionNP = idAtencionNP;
+           var tipoatencion = '@ViewBag.tipoatencion';
+            window.tipoatencion = tipoatencion;
+        })()
+    </script>
+}

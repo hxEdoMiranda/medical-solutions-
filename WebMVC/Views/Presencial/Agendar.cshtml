@@ -1,0 +1,543 @@
+﻿@model WebMVC.Models.AgendaViewModel
+@{ ViewData["Title"] = "Agendar";
+
+    Layout = "_LayoutPaciente";
+}
+
+@section PageStyles  {
+    <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <style>
+        /*.swal2-styled.swal2-cancel{
+                position: absolute !important;
+                left: 75px !important;
+            }
+            .swal2-styled.swal2-confirm {
+                    position: absolute !important;
+                    right: 50px !important;
+        }*/
+
+    </style>
+
+}
+
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+    <!--Begin::App-->
+    <!-- Start:: Banner-->
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+        <div class="col-md-12">
+
+            <!--
+            <div class="mensaje-mobile d-md-none">
+                <span class="saludo-usuario">"¡Hola  <span id="saludoPaciente1"></span>!</span> ¿En que te podemos ayudar?.
+
+            </div>
+                -->
+            <div class="top-banner justify-content-between d-none">
+                <h1 class="legend order-2 order-md-1">¡Hola  <span class="saludo-usuario text-warning" id="saludoPaciente"></span>! ¿En qué te podemos ayudar?</h1>
+                <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- End:: Banner-->
+    <!-- Start:: Stepper-->
+    <!-- Stepper -->
+    <div class="stepper">
+        <div class="init-step"></div>
+        <div class="cont-steps">
+            <!-- Step1 -->
+            <div class="step active">
+                <div class="step-icon">
+                    <i class="fal fa-user-md"></i>
+                </div>
+                <div class="label-step fuente-accesible">
+                    Selección
+                </div>
+            </div>
+
+            <i class="fas fa-chevron-right flecha"></i>
+
+            <!-- Step2 -->
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fal fa-calendar-edit"></i>
+                </div>
+                <div class="label-step fuente-accesible">
+                    Agendamiento
+                </div>
+            </div>
+
+            <i class="fas fa-chevron-right flecha"></i>
+
+            <!-- Step3 -->
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fal fa-check-circle"></i>
+                </div>
+                <div class="label-step fuente-accesible">
+                    Confirmación
+                </div>
+            </div>
+        </div>
+        <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+    </div>
+    <!-- Stepper -->
+    <!-- End:: Stepper-->
+
+
+    <div class="container-fluid agenda_psection">
+        <div class="row">
+            <div class="col">
+                <h2 class="titulo-servicio mb-4">Modalidad de Atención</h2>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item">Seleccione Región</li>
+                    <li class="breadcrumb-item">Comuna</li>
+                    <li class="breadcrumb-item">Área</li>
+                    <li class="breadcrumb-item">Servicio</li>
+
+                  </ol>
+                </nav>
+            </div>
+        </div>
+        <div class="row align-items-center">
+
+            <div class="col-12 row agenda_presencial">
+
+                <div class="col-12 col-lg-auto">
+                    <div class="busqueda-regiones selector-activo" id="containerRegiones">
+                        <i class="fa fa-map-marker"></i>
+                        <div class="caja-busqueda-regiones">
+                            <div class="location_cont01">Donde</div>
+                            <div class="dropdown">
+                                <select class="btn btn-outline-primary dropdown-toggle itemRegiones" id="regiones">
+                                </select>
+                            </div>
+                            <input type="hidden" id="regionSeleccionada" value="0" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-auto">
+                    <div class="busqueda-comunas" id="containerLocalidades">
+                        <i class="fa fa-thumb-tack"></i>
+                        <div class="caja-busqueda-comunas">
+                             <div class="location_cont01">En que comuna</div>
+                            <h2 class="mb-2">
+                                Buscar Comunas
+                            </h2>
+                            <div class="dropdown">
+                                <select class="btn btn-outline-primary dropdown-toggle itemLocalidades" id="comunas">
+                                </select>
+                            </div>
+                            <input type="hidden" id="localidadSeleccionada" value="0" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-auto">
+                    <div class="busqueda-profesionales" id="containerEspecialidades">
+                        <i class="fa fa-user-md" aria-hidden="true"></i>
+                        <div class="caja-busqueda-comunas">
+                             <div class="location_cont01">Área</div>
+                            <h2 class="mb-2">
+                                Buscar Especialidad
+                            </h2>
+                            <div class="dropdown">
+                                <select class="btn btn-outline-primary dropdown-toggle itemEspecialidad" id="especialidades">
+                                </select>
+                            </div>
+                            <input type="hidden" id="especialidadSeleccionada" value="0" />
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 col-lg-auto">
+                    <div class="busqueda-servicios" id="containerServicios">
+                       <i class="fa fa-medkit" aria-hidden="true"></i>
+                        <div class="caja-busqueda-servicios">
+                             <div class="location_cont01">Servicio</div>
+                            <h2 class="mb-2">
+                                Buscar tipo de servicio
+                            </h2>
+                            <div class="dropdown">
+                                <select class="btn btn-outline-primary dropdown-toggle itemServicios" id="servicios">
+                                </select>
+
+                            </div>
+                            <input type="hidden" id="serviciosSeleccionada" value="0" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accesible-tools">
+                <div class="accesible-btn">
+                    <button id="increase-font">A+</button>
+                    <button id="normal-font">A</button>
+                    <button id="decrease-font">A-</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-xl-9 mt-4">
+
+                <div class="presencial_box">
+                    <div class="pbox_image">
+                        <img src="/img/cita_presencial.svg" />
+                    </div>
+                    <div class="pbox_text">
+                        <h2>Modalidad de atención presencial </h2>
+                        <p>Busca tu región, tu comuna, area de especialidad y servicio que necesites, de esta manera tendras la atención más cercana.</p>
+                         <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">Seleccione Región</li>
+                                <li class="breadcrumb-item">Comuna</li>
+                                <li class="breadcrumb-item">Área</li>
+                                <li class="breadcrumb-item">Servicio</li>
+                            </ol>
+                            </nav>
+                    </div>
+                </div>
+                <div class="row mb-4" id="divProfesionales"></div>
+
+
+
+
+
+            </div>
+
+            @if (ViewBag.IdClientePlataforma != "148")
+            {
+                <div class="col-md-2 col-xl-3 pl-0 pl-lg-2 mt-4" id="perfilProfesional">
+
+                    <div class="cont-banner" @ViewBag.visibleBanners>
+                        <a href="javascript:void(0);" target="_blank" data-toggle="modal" data-target="#modal-medicamentos">
+                            <img src="~/img/banners/banner-01.png" class="mb-4" alt="" />
+                        </a>
+                        <a href="https://enroll.medismart.live/pago" target="_blank">
+                            <img src="~/img/banners/banner-02.png" class="mb-4" alt="" />
+                        </a>
+
+                        <img src="~/img/banners/banner-03.png" class="mb-4" alt="" id="bannerVete" hidden />
+
+
+                    </div>
+
+                    @*<div style="display: none" id="divPerfilProfesional" >*@
+                    <div id="divPerfilProfesional">
+
+
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-2 col-xl-3 pl-0 pl-lg-2 mt-4" id="perfilProfesional">
+
+
+                    <div class="cont-banner" @ViewBag.visibleBanners>
+
+                        <div id="image-slider" class="splide">
+                            <div class="splide__track">
+                                <ul class="splide__list">
+                                    <li class="splide__slide">
+                                        <img src="~/img/colmena/banner-01.jpg" class="" alt="" />
+                                    </li>
+                                    <li class="splide__slide">
+                                        <img src="~/img/colmena/banner-02.jpg" class="" alt="" />
+                                    </li>
+                                    <li class="splide__slide">
+                                        <img src="~/img/colmena/banner-03.jpg" class="" alt="" />
+                                    </li>
+                                    <li class="splide__slide">
+                                        <img src="~/img/colmena/banner-04.jpg" alt="" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    @*<div style="display: none" id="divPerfilProfesional" >*@
+                    <div id="divPerfilProfesional">
+
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+    <!--Old UI-->
+
+
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app d-none">
+
+        <!--Begin:: App Aside Mobile Toggle-->
+        <button class="kt-app__aside-close" id="kt_user_profile_aside_close">
+            <i class="la la-close"></i>
+        </button>
+        <!--End:: App Aside Mobile Toggle-->
+
+        <div class="col-md-5">
+            <!--Begin:: App Aside-->
+            <!--begin:: Widgets/Applications/User/Profile1-->
+            <div class="kt-portlet kt-portlet--tabs kt-portlet--height-fluid">
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                            Ingresar datos de atención
+                        </h3>
+                    </div>
+
+                </div>
+                <div class="kt-portlet__body">
+
+                    <!--begin::Widget -->
+                    <div class="kt-widget kt-widget--user-profile-1">
+                        <div>
+
+                        </div>
+
+                        <div>
+                            <br>
+                            <input class="form-control" type="date" value="" id="fechaBusqueda" name="fechaBusqueda">
+
+                        </div>
+
+                        <div>
+                            <br>
+                            <select class="form-control" id="bloquesHora" name="bloquesHora">
+                                <option value="0">Seleccionar Hora</option>
+                            </select>
+
+                        </div>
+
+
+                    </div>
+
+                    <!--begin:: Widgets/New Users-->
+                    <!--end:: Widgets/New Users-->
+                </div>
+            </div>
+            <!--end:: Widgets/Applications/User/Profile1-->
+            <!--End:: App Aside-->
+        </div>
+
+        <div class="col-md-7">
+            <div class="kt-portlet kt-portlet--tabs kt-portlet--height-fluid">
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                            Médicos disponibles
+                        </h3>
+                    </div>
+
+                </div>
+                <div id="pnlMedicos" class="align-self-center" style="display:none">
+                    <div class="row">
+                        <div class="col-lg-12 kt-align-center">
+                            <img src="~/metronic_demo7/assets/media/sinResultado.PNG" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h5>No hay médicos disponibles con los datos seleccionados</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-portlet__body" style="display:block;" id="listaMedicos">
+                    <div class="tab-content" id="tab-content">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input type="hidden" id="genero" />
+        <input type="hidden" id="fechaNacimiento" />
+
+
+
+
+
+
+
+
+    </div>
+
+    <!--End::App-->
+</div>
+
+
+<form asp-action="agenda_1" class="container-fluid" id="formSubmit">
+    <input type="hidden" id="idMedico" name="idMedico" />
+    <input type="hidden" id="valorizacion" name="valorizacion" />
+</form>
+
+<div id="kt_scrolltop" class="kt-scrolltop">
+    <i class="fa fa-arrow-up"></i>
+</div>
+
+
+
+<div class="modal fade" id="modal-validacion" tabindex="-1" aria-labelledby="modal-validacion" data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-validacion">
+
+                <h4 class="mt-2" id="nombreUsuarioModalValidacion"></h4>
+                <p>
+                    Por favor, necesitamos que valides tu mail y teléfono para continuar. La información de salud será enviada por el médico al correo que decidas.
+                </p>
+
+
+
+                <div class="container-fluid">
+
+                    <div class="row align-items-center datos-validacion">
+                        <div class="col-11 col-lg-6">
+                            <label for="">Correo Electrónico</label>
+                            <input type="text" class="form-control" id="correoMedical" required />
+                        </div>
+                        <div class="col-11 col-sm-6 col-lg pt-lg-0">
+                            <label for="">Teléfono</label>
+                            <input type="text" class="form-control" id="telefonoMedical" required />
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="container-fluid py-2">
+                    <div class="row">
+
+                    </div>
+                    <div class="cont-btns mt-4" style="text-align :right">
+                        <button type="button" id="btnModificarTelefonoEmail" class="btn btn-primary btn-sm btn-validacion">Guardar</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--Modal Medicamentos-->
+
+<div class="modal fade" id="modal-medicamentos" tabindex="-1" role="dialog" aria-labelledby="modal-medicamentos-label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title only-pc"><b>Cómo comprar los medicamentos recetados por tu doctor en </b><b style="color: red;">Pharol?</b><b> MUY FÁCIL</b></h2>
+                <!-- <h5 class="modal-title only-cel"><b>Cómo comprar los medicamentos recetados por tu doctor en </b><b style="color: red;">Pharol?</b></h5> -->
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body only-pc">
+                <div class="card-group my-4">
+                    <div class="card text-center bg-transparent border-0 col-md">
+                        <img src="~/img/medicamentos/Paso1.png" class="card-img" alt="...">
+                        <div class="card-body cards ">
+                            <div class='number'>
+                                <p><b>1</b></p>
+                            </div>
+                            <div class='text-card'>
+                                <p>Recibiras un <b>Whatsapp</b> de nuestras  <b>Ejecutivas Virtuales</b> con: Link de Compra. Medicamentos y Código de Descuento Depacho</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card text-center bg-transparent border-0 d-flex col-md">
+                        <img src="~/img/medicamentos/Paso2.png" class="card-img" alt="...">
+                        <div class="card-body cards ">
+                            <div class='number'>
+                                <p><b>2</b></p>
+                            </div>
+                            <div class='text-card'>
+                                <p><b>Elige</b> en Pharol, la opción de <b>medicamentos</b> de tu preferencia. Siempre te mostraremos los más economicos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card text-center bg-transparent border-0 d-flex col-md">
+                        <img src="~/img/medicamentos/Paso3.png" class="card-img" alt="...">
+                        <div class="card-body cards ">
+                            <div class='number'>
+                                <p><b>3</b></p>
+                            </div>
+                            <div class='text-card'>
+                                <p>Incorpora tus datos personales, dirección de despacho y <b>Código de Descuento: MEDISMART</b> Luego, del pago te llegará un mail de confirmación de la compra!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card text-center bg-transparent border-0 d-flex col-md">
+                        <img src="~/img/medicamentos/Paso4.png" class="card-img" alt="...">
+                        <div class="card-body cards ">
+                            <div class='number'>
+                                <p><b>4</b></p>
+                            </div>
+                            <div class='text-card'>
+                                <p><b>Y Listo!!!<br></b> Muy pronto iremos a dejar los medicamentos<b> a tu casa!</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<!--end. Modal Medicamentos-->
+<!-- end::Scrolltop -->
+<!-- begin::Global Config(global config for global JS sciprts) -->
+@section PageScripts {
+    <script src="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
+
+}
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.3/signalr.min.js?rnd=@NumeroRandom.GetRandom()"></script>
+
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/accesible.js"></script>
+    <script src="~/js/carrusel.js"></script>
+
+
+    <script type="module">
+
+        import { init } from '../../js/Presencial/agenda_presencial.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+
+
+    </script>
+    <script type="text/javascript">
+        (function () {
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+            var idCliente = @ViewBag.IdClientePlataforma;
+            window.idCliente = idCliente;
+            var tipo = "@ViewBag.tipo";
+            window.tipo = tipo;
+        })()
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+   
+}

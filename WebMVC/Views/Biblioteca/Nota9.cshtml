@@ -1,0 +1,159 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+
+    <section class="container-fluid note-section library featured" id="nota9">
+        <div class="container">
+            <div class="row">
+                <div class="col-auto">
+                    <div class="cont-icons">
+                        <div class="icon account-type">
+                            <i class="fal fa-heart"></i>
+                        </div>
+                        <div class="icon">
+                            <i class="fal fa-file-alt"></i>
+                        </div>
+                    </div>
+
+                    <h1 class="title-section">
+                        "Nutrición en la vida real: Cómo tu día a día moldea tu dieta"
+                    </h1>
+                    
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    
+                    <p>
+                        La relación entre nuestro estilo de vida y nuestra alimentación es profunda y compleja. Lo que comemos y cómo lo 
+                        hacemos están influenciados por una serie de factores relacionados con nuestra forma de vivir. En este blog, 
+                        explicaremos cómo nuestro estilo de vida puede tener un impacto significativo en nuestras elecciones alimenticias y, 
+                        a su vez, en nuestra salud.
+
+                    </p> <br />
+                    <strong>
+                        Cómo el estilo de vida afecta nuestra dieta:
+
+                        </strong>
+                    <p>
+                        Horarios ocupados y comidas rápidas: En un mundo donde el tiempo es escaso, es común recurrir a alimentos rápidos 
+                        y procesados. La falta de tiempo para cocinar puede llevar a una dieta menos equilibrada y nutritiva. Una recomendación 
+                        clave aquí es planificar las comidas con anticipación y buscar recetas sencillas y saludables que se adapten a nuestro 
+                        ritmo de vida.
+
+                    </p><br />
+                    
+                    <ol>
+                        <br />
+                        <li>
+                            <strong>Entorno social:</strong> Las interacciones sociales y las ocasiones especiales a menudo giran en torno a
+                            la comida. Esto puede resultar en excesos y elecciones alimenticias menos saludables. Una estrategia efectiva es 
+                            equilibrar estos momentos especiales con elecciones conscientes en otras áreas de nuestra dieta y mantener el control
+                            de las porciones.
+                        </li>
+                        <br />
+                        <li>
+                            <strong>Estrés y emociones:</strong> El estrés y las emociones pueden desencadenar comportamientos alimenticios impulsivos. 
+                            Practicar técnicas de manejo del estrés y encontrar formas saludables de lidiar con las emociones puede ayudar a evitar 
+                            la sobreingesta emocional.
+                        </li>
+                        <br />
+                        <li>
+                            <strong>Sedentarismo vs. Actividad física:</strong> Nuestra cantidad de actividad física diaria también tiene un impacto 
+                            directo en nuestras necesidades calóricas y en la elección de alimentos. Mantener un equilibrio adecuado entre la actividad 
+                            física y la ingesta calórica es esencial para una nutrición óptima.
+
+                        </li>
+                                                                  
+                    </ol>                   
+                    <br />
+                    <strong>
+                        Recomendaciones para mejorar la nutrición en la vida real:
+                    </strong> <br />
+                    <p>
+                        Nuestra nutrición en la vida real está estrechamente vinculada a cómo vivimos cada día. Al ser conscientes de cómo 
+                        nuestros hábitos y elecciones afectan nuestra dieta, podemos tomar medidas para mejorar nuestra salud y bienestar a 
+                        través de una alimentación más equilibrada y saludable. Recuerda que pequeños cambios en tu estilo de vida pueden 
+                        tener un gran impacto en tu dieta y, en última instancia, en tu calidad de vida.
+                    </p> <br />
+
+                    <ol>
+                        <br />
+                        <li>
+                            <strong>Planificación de comidas:</strong> Dedica tiempo a planificar tus comidas semanales. Esto te permite elegir
+                            ingredientes saludables y evitar recurrir a opciones rápidas y poco saludables.
+
+                        </li>
+                        <br />
+                        <li>
+                            <strong>Equilibrio y moderación:</strong> Disfruta de las ocasiones sociales y ocasiones especiales, pero mantén el 
+                            equilibrio y la moderación en mente. Controlar las porciones y hacer elecciones conscientes puede marcar la diferencia.
+                        </li>
+                        <br />
+                        <li>
+                            <strong>Manejo del estrés:</strong> Encuentra formas saludables de manejar el estrés, como meditar, hacer ejercicio o 
+                            hablar con un amigo. Evita usar la comida como una vía de escape para las emociones.
+                        </li>
+                        <br />
+                        <li>
+                            <strong>Mantén un estilo de vida activo:</strong> Incorpora actividad física regular en tu rutina diaria. 
+                            Esto no solo te ayudará a quemar calorías, sino que también mejorará tu bienestar general.
+
+                        </li>                      
+
+                    </ol>
+                    
+                    <p>
+                        Si deseas obtener orientación específica para mejorar tu alimentación y adaptarla a tu estilo de vida, 
+                        nuestros médicos están aquí para ayudarte. Agenda una cita con nosotros y juntos trabajaremos para lograr tus 
+                        metas de salud y nutrición. No dejes que las barreras de la vida cotidiana te impidan alcanzar tu mejor versión de bienestar. 
+                        <strong> ¡Actúa ahora!</strong>
+
+                    </p>
+
+                    <div class="cont-btnNota7">
+                        <button class="btn btn-primary" onclick="location.href='/Paciente/Agendar?tipo=suscripcion'">Agendar cita</button>
+                    </div>
+                   
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+                    </div>
+                    
+
+                    <partial name="~/Views/Biblioteca/_ColumnasNotas.cshtml" model="Model" view-data="ViewData" />
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}

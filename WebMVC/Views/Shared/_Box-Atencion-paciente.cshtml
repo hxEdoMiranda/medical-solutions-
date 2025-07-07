@@ -1,0 +1,389 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@model WebMVC.Models.AtencionViewModel
+@using Microsoft.Extensions.Configuration
+@using WebMVC.Controllers
+@using System.Security.Claims;
+@inject IConfiguration Configuration
+
+@{
+    ViewData["idEntidad"] = Model.Atencion.Id;
+    @if(Model.Atencion.HoraMedico.IdEspecialidad == 77)
+        ViewData["codEntidad"] = Entidades.ATENCIONES_CERTIFICADOS;
+    ViewData["uid"] = int.Parse(ViewBag.uid);
+    var codigoTelefono = ViewBag.codigoTelefono;
+    var hiddenAchs = "";
+    @if (ViewBag.HostURL.ToString().Contains("achs."))
+    {
+        hiddenAchs = "hidden";
+    }
+
+    var _layout = new LayoutController(Configuration);
+    var host = Configuration["ServicesUrl"];
+    var idCliente = ((ClaimsIdentity)User.Identity).GetSpecificClaim("primarysid");
+    var configEmpresa = await _layout.GetConfigEmpresa(host, Convert.ToInt32(idCliente));
+    var configEmpresaBtn = await _layout.GetEmpresaConfigById(host, Convert.ToInt32(idCliente));
+    var codTelefono = ((ClaimsIdentity)User.Identity).GetSpecificClaim("CodigoTelefono");
+
+
+    <div id="divMomentoWow" hidden>
+        @Html.TextBoxFor(m => configEmpresaBtn.MomentoWow, new { id = "momentoWow", type = "text"})
+    </div>
+
+    <div id="divCodigoTelefono" hidden>
+        @Html.TextBoxFor(m => codigoTelefono, new { id = "codigoTelefono", type = "text"})
+    </div>
+}
+
+<style>
+    .kt-timeline-v2:before {
+        content: '';
+        position: absolute;
+        left: 2rem;
+        width: 0.214rem;
+        top: 5px;
+        bottom: 5px;
+        height: calc(100% - 5px);
+        background-color: #E7E9F5;
+    }
+</style>
+
+<!-- end:: Subheader -->
+<!-- begin:: Content -->
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid medismart-atencion" id="cont-vc">
+
+    <!--Begin::Dashboard 7-->
+    <!--Begin::Row-->
+
+    <div class="row">
+        <div class="col-12 col-md-8 p-0 mt-3 mt-md-0">
+            @Html.Hidden("uid", (object)ViewBag.uid)
+            @Html.Hidden("rol", ViewData["view"])
+            @Html.HiddenFor(m => m.Atencion.Id)
+            @Html.HiddenFor(m => m.Atencion.InicioAtencion)
+            @Html.HiddenFor(m => m.Atencion.SolicitaFirma)
+            @Html.HiddenFor(m => m.Atencion.IdMedicoFirmante)
+            @Html.HiddenFor(m => m.Atencion.IdCliente)
+
+            <div class="video-container" style="display:block; padding:5px;">
+                <whereby-embed background="on" room="@Model.urlVideoCall" style="height:100%;">
+                </whereby-embed>
+            </div>
+             
+        </div>
+
+            <div class="col-12 col-md-4 order-2 order-lg-1 my-4 my-lg-0">
+                <!--<div style="overflow-y: scroll; height:80vh">-->
+                <div class="cont-widgets">
+                    <!--Begin::Portlet-->
+                    <div class="kt-portlet body-widgets">
+                        <div id="divChat" style="display:none">
+                            <div class="kt-portlet__head text-center">
+
+                                <!--Titulo Chat-->
+
+                                <div class="titulo-chat">
+                                    <div class="user-chat">
+                                        <span class="nombre-profesional" id="headName"></span>
+                                        <!--<div class="status-profesional online"></div> <div class="leyenda-status">En Línea</div>-->
+                                  <div class="status-profesional offline" id="estilo"></div> <span class="leyenda-status" id="onLine">Offline</span>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="kt-portlet__body card-body h-100">
+                                <div class="scroll scroll-pull" id="scroll" style="overflow: auto;" data-height="375" data-mobile-height="300">
+
+                                    <!-- Chat -->
+
+                                    <div class="cont-chat" id="divContChat">
+
+
+                                    </div>
+
+                                    <!-- end Chat -->
+                                    <!--begin::Messages-->
+                                    <div class="messages" id="divMensaje">
+
+                                        <!--fin mensaje in-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kt-portlet__foot align-items-center">
+                                <!--begin::Compose-->
+                                <div id="txtMsj">
+                                    <textarea class="form-control border-0 p-0" id="mensaje" rows="2" placeholder="Escribe..."></textarea>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="mr-3 d-none">
+
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-end chat-tools mt-3">
+                                        <div class="kt_chat__tools d-none">
+
+                                            <a href="#"><i class="flaticon2-photograph"></i></a>
+                                            <a href="#"><i class="flaticon2-photo-camera"></i></a>
+                                        </div>
+
+                                        <button type="button" id="btnEnviar" class="btn btn-brand btn-md btn-upper btn-bold kt-chat__reply">Responder</button>
+                                    </div>
+                                </div>
+                                <!--begin::Compose-->
+                            </div>
+                            <!--end::Footer-->
+                        </div>
+                    <div class="modal fade" data-backdrop="static" id="modalConfirmarAsistencia" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false">
+                        <div class="modal-dialog modal-confirmaraAsistencia" role="document">
+                            <div class="modal-content confirmaraAsistencia">
+                                <div class="modal-body" id="modalBodyconfirmaraAsistencia">
+                                    <div class="form-group row">
+                                        <div>
+                                            <br />
+                                            <h3 id="titleModalAsistencia" style="text-align:left; margin-right: 240px; margin-top: 10px;">
+                                                <i class="fal fa-exclamation-triangle fa-2x" style="float:left; margin-right:20px; margin-left:60px;"></i>
+                                                Su médico le ha asignado asistencia de <i class="fal fa-ambulance" style="color:#0282A5"></i> Ambulancia
+                                            </h3>
+                                            <br class="d-none d-sm-block">
+                                            <button class="btn btnCerrarModal"><img id="imgCircle-x" src="~/img/circle-x.svg" /></button>
+                                            <div class="div divBtnAsistencia">
+                                                <button id="btnAceptarAsistencia" class="btn btnAceptarAsistencia" type="button"><span style="display: inline-block; text-align:center; color:#0282A5">Aceptar</span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" data-backdrop="static" id="modalConfirmarAsistenciaMed" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false">
+                        <div class="modal-dialog modal-confirmaraAsistenciaMed" role="document">
+                            <div class="modal-content confirmaraAsistencia">
+                                <div class="modal-body" id="modalBodyconfirmaraAsistencia">
+                                    <div class="form-group row">
+                                        <div>
+                                            <br />
+                                            <h3 id="titleModalAsistencia" style="text-align:left; margin-right: 240px; margin-top: 10px; font-size: 21px;">
+                                                <i class="fal fa-exclamation-triangle fa-2x" style="float:left; margin-right:20px; margin-left:60px;"></i>
+                                                Su médico le ha asignado asistencia de <i class="fal fa-user-md" style="color:#0282A5"></i> Médico a domicilio
+                                            </h3>
+                                            <br />
+                                            <button class="btn btnCerrarModalMed"><img id="imgCircle-x" src="~/img/circle-x.svg" /></button>
+                                            <div class="div divBtnAsistencia">
+                                                <button id="btnAceptarAsistencia" class="btn btnAceptarAsistencia" type="button"><span style="display: inline-block; text-align:center; color:#0282A5">Aceptar</span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Momento WOW Modal Finalización de Atención-->
+                    <div class="modal fade" data-backdrop="static" id="modalFinalizarAtencionWOW" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false">
+                        <div class="modal-dialog modal-finalizarAtencionWOW" role="document">
+
+                            <div class="modal-content finalizarAtencionWOW">
+                                <div class="wow-modal__header">
+                                    <button class="btn btnCerrarModalWow" title="Cerrar" data-toggle="modal" style="display: none">
+                                        <img class="closeWow" src="~/img/close-wow.svg" />
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="modalBodyfinalizarAtencionWOW">
+                                    <div class="wow-genera-informe">
+                                        <img id"doctor" src="~/img/momento-wow/doc2.png" class="docWow" />
+                                        <div class="wow-texto-genera-informe">
+                                            <h3 id="titleModalAsistencia" class="titleModalWow">
+                                                Generando tu informe de atención...
+                                            </h3>
+                                            <p class="textoModalWow">
+                                                En pocos segundos serás redireccionado al resumen de tu atención.
+                                            </p>
+                                            <div class="wow-loader">
+                                                <img id="spinner" src="~/img/spinner-wow.svg" class="spinnerWow">
+                                                <div class="cont-preloader">
+                                                    <div class="preloader"></div>
+                                                </div>
+                                                <div class="data-conteo">
+                                                    <div class="conteo"></div>
+                                                    <span class="segundos"><b>s</b></span>
+                                                </div>
+
+                                            </div>
+                                            <div class="wow-mensaje-loader">
+                                                <p class="subTextoModalWow">
+                                                    Ya se está preparando para ti...
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" style="display: none;">
+                                        <div class="col-12">
+                                            <h3 id="titleModalAsistencia" class="titleModalWow">
+                                                <b>Generando tu informe de atención...</b>
+                                            </h3>
+                                            <p class="textoModalWow">
+                                                En pocos segundos serás redireccionado al resumen de tu atención.
+                                            </p>
+
+
+                                            <img id"doctor" src="~/img/momento-wow/Doc-1.png" class="docWow" />
+                                        </div>
+                                        <div class="col-12">
+                                            <img id="spinner" src="~/img/spinner-wow.svg" class="spinnerWow">
+                                            <div class="preloader"></div>
+                                            <div class="conteo"></div>
+                                            <p class="segundos"><b>s</b></p>
+                                        </div>
+                                        <div class="col-12">
+                                            <p class="subTextoModalWow">
+                                                Ya se está preparando para ti...
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Momento WOW CardifMX Modal Finalización de Atención-->
+                    <div class="modal fade" data-backdrop="static" id="modalFinAtencionWowCardifMX" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false">
+                        <div class="modal-dialog modal-finalizarAtencionWOW" role="document">
+
+                            <div class="modal-content finalizarAtencionWOW">
+                                <div class="wow-modal__header">
+                                    <button class="btn btnCerrarModalWow" title="Cerrar" data-toggle="modal" style="display: none">
+                                        <img class="closeWow" src="~/img/close-wow.svg" />
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="modalBodyfinalizarAtencionWOW">
+                                    <div class="wow-genera-informe">
+                                        @*<img id"doctor" src="~/img/momento-wow/doc2.png" class="docWow" />*@
+                                        <img id="spinner" src="~/img/vivetuseguro/atencion/Spin-1.4s-200px.svg" class="spinnerWowMX">
+                                        <div class="wow-texto-genera-informe">
+                                            <h3 id="titleModalAsistencia" class="titleModalWow">
+                                                Generando tu informe de atención...
+                                            </h3>
+                                            <p class="textoModalWow">
+                                                Pronto tendrás acceso a la información como resultado de tu atención
+                                            </p>
+                                            <div class="wow-loader" hidden>
+                                                <img id="spinner" src="~/img/spinner-wow.svg" class="spinnerWow">
+                                                <div class="cont-preloader">
+                                                    <div class="preloader"></div>
+                                                </div>
+                                                <div class="data-conteo">
+                                                    <div class="conteo"></div>
+                                                    <span class="segundos"><b>s</b></span>
+                                                </div>
+
+                                            </div>
+                                            <div class="wow-mensaje-loader">
+                                                <p class="subTextoModalWowMX">
+                                                    Pronto estará disponible para descargar...
+                                                </p>
+                                            </div>
+                                            <div class="wow-button-next">
+                                                <button id="btnWowVerDespues" class="btnWowVerDespues">
+                                                    @ViewBag.HostURL.ToString().Contains("luxottica.medismart.") ? ENTENDIDO : LO VERÉ DESPUÉS
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div id="divArchivos" style="display:none">
+                            <partial name="~/Views/Shared/_ArchivosAdjuntos.cshtml" model="Model.Atencion.Archivos" view-data="ViewData" />
+                        </div>
+                        <div id="divHistorial" style="display:none">
+                            <div class="kt-portlet__head">
+                                <div class="kt-portlet__head-label">
+                                    <h3 class="kt-portlet__head-title">
+                                        Historial atenciones
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <div class="kt-portlet__body">
+                                @if (Model.HistorialAtenciones.Count == 0)
+                                {
+                                    <div id="pnlHistorial" class="align-self-center" style="display:block">
+                                        <div class="row">
+                                            <div class="col-lg-12 kt-align-center">
+                                                <img src="~/metronic_demo7/assets/media/sinResultado.PNG" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <h5>No existen atenciones anteriores</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="kt-timeline-v2">
+                                        <div class="kt-timeline-v2__items  kt-padding-top-25 kt-padding-bottom-30">
+                                            @foreach (var historialAtencion in Model.HistorialAtenciones)
+                                            {
+                                                <div class="kt-timeline-v2__item">
+                                                    <div class="kt-timeline-v2__item-cricle" style="left:0">
+                                                        <i class="fa fa-genderless kt-font-danger"></i>
+                                                    </div>
+                                                        <div class="kt-timeline-v2__item-text  kt-padding-top-5">
+                                                            @historialAtencion.FechaText @historialAtencion.HoraDesdeText.Substring(0, @historialAtencion.HoraDesdeText.LastIndexOf(":")) con Dr/a. @historialAtencion.NombreMedico   &nbsp;  <a href="/InformeAtencion/@historialAtencion.Id" target="_blank" type="button" class="btn btn-label-brand btn-bold btn-sm btn-informe">ver Informe</a>
+                                                        </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                             </div>
+                        </div>
+                     
+                    </div>
+                    <!--End::Portlet-->
+                </div>
+            </div>
+
+        
+
+            <div class="col-12 order-1 order-md-2">
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 col-md-8">
+                            <div class="cont-btn-vc">
+                               <button id="volverSalaEspera" class="btn-atencion" type="button" title="Volver a Sala de Espera"><i class="fal fa-long-arrow-left"></i> <span class="fuente-accesible">Sala de Espera</span></button>
+                               <button id="reload" class="btn-atencion" type="button" title="Recargar Atención"><i class="fal fa-sync"></i> <span class="fuente-accesible">Recargar Atención</span></button>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="cont-btn-panel">
+                                <button id="panel_archivos" class="btn-atencion" type="button" title="Adjuntos" @hiddenAchs><i class="fal fa-paperclip"></i> <span class="fuente-accesible">Adjuntos</span></button>
+                                @if (Model.Atencion.IdCliente != 1)
+                                {
+                                    <button id="panel_historial" class="btn-atencion" type="button" title="Historial" @hiddenAchs><i class="fal fa-history"></i> <span class="fuente-accesible">Historial</span></button>
+                                }
+                                else
+                                {
+                                    <button id="panel_historial" class="btn-atencion d-none" type="button" title="Historial" @hiddenAchs><i class="fal fa-history"></i> <span class="fuente-accesible">Historial</span></button>
+                                }
+                                <button id="panel_chat" href="javascript:void(0)" class="btn-atencion btn-chat ml-auto" type="button" title="Chat"><i class="fal fa-comments"></i> <span class="fuente-accesible">Chat</span> </button>
+                            <button id="panel_ConfirmarAsistenciaAmb" hidden class="btnAsistAmb">Ambulancia</button>
+                            <button id="panel_ConfirmarAsistenciaMed" hidden class="btnAsistMed">Medico</button>
+                            <button id="panel_ModalResumen" hidden class="btnAsistMed">ModalWow</button>
+                            <button id="panel_ModalResumenCardifMX" hidden class="btnAsistMed">ModalWowMX</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </div>
+</div>
+<input type="hidden" id="headName2" />
+
+
+
+

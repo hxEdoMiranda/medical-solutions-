@@ -1,0 +1,144 @@
+/*UOH*/
+
+.img1 {
+    background-image: url(../../img/uoh/login/683x768.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/uoh/login/683x768.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/uoh/login/683x768.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/uoh/login/683x768.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/uoh/login/683x768.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/uoh/login/683x768.jpg);
+}
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/uoh/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/uoh/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/uoh/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/uoh/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/uoh/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/uoh/login/548x850.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/uoh/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/uoh/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/uoh/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/uoh/login/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/uoh/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/uoh/login/960x978.jpg);
+    }
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15%;
+}
+/*Plataforma Médico*/
+.btn {
+    font-weight: 600;
+}
+
+.form-control {
+    font-weight: 600;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    font-weight: 600 !important;
+}
+
+a, .fc-unthemed .fc-toolbar .fc-button {
+    font-weight: 600 !important;
+}
+
+.kt-portlet__head {
+    background-color: #0e8bc5 !important;
+}
+
+.fc-unthemed .fc-toolbar .fc-button:focus, .fc-unthemed .fc-toolbar .fc-button:active, .fc-unthemed .fc-toolbar .fc-button.fc-button-active {
+    background-color: #0e8bc5 !important;
+    border-color: #0e8bc5 !important;
+}
+
+.kt-menu__item span {
+    font-weight: 600;
+}
+
+.kt-portlet .kt-portlet__head .kt-portlet__head-label .kt-portlet__head-title {
+    color: #FFF !important;
+}
+
+.btn-success, .btn-brand {
+    background-color: #12AFD0;
+    border-color: #12AFD0;
+}
+
+.text-muted {
+
+}
+
+.kt-datatable > .kt-datatable__pager > .kt-datatable__pager-nav > li > .kt-datatable__pager-link.kt-datatable__pager-link--disabled, .kt-datatable > .kt-datatable__pager > .kt-datatable__pager-nav > li > .kt-datatable__pager-link.kt-datatable__pager-link--disabled:hover {
+    color: #000a33;
+}
+
+.fc-unthemed .fc-axis > span {
+    font-weight: 600;
+}
+
+.form-group label {
+    font-weight: 600;
+}
+
+.cont-informe .columna-examenes {
+    display: none;
+}
+
+.cont-informe .columna-medicamentos {
+    display: none !important;
+}

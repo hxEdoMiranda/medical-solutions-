@@ -1,0 +1,159 @@
+﻿@using Microsoft.Extensions.Configuration
+@model WebMVC.Models.PersonasViewModel
+@inject IConfiguration Configuration
+
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid configuracion-paciente">
+
+    <h1 class="titulo-servicio">Perfil</h1>
+
+    <!--Begin::App-->
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app cont-perfil">
+
+        <!--Begin:: App Aside Mobile Toggle-->
+        <button class="kt-app__aside-close" id="kt_user_profile_aside_close">
+            <i class="la la-close"></i>
+        </button>
+        <!--End:: App Aside Mobile Toggle-->
+        <!--End:: App Aside Mobile Toggle-->
+
+
+
+        <div class="col-lg-7 px-0 px-md-2">
+            <partial name="~/Views/Shared/_PerfilPaciente.cshtml" model="Model" view-data="ViewData" />
+            <br />
+            @*          <partial name="~/Views/Shared/_ConfigAccountClientVC.cshtml" model="Model" view-data="ViewData" />
+            *@
+        </div>
+        <div class="col-lg-5 px-0 px-md-2">
+                <partial name="~/Views/Shared/_ConfigAccount.cshtml" model="Model" view-data="ViewData" />
+
+            <div>
+                <div class="kt-portlet cont-antecedentes-medicos mb-4">
+                    <div class="kt-portlet__head">
+                        <div class="kt-portlet__head-label">
+                            <h3 class="kt-portlet__head-title" metadata="configuracionAntMedicos">Antecedentes Médicos</h3>
+                        </div>
+
+                    </div>
+                    <form id="form_edit_am" class="kt-form kt-form--label-right">
+                        <div class="kt-portlet__body pb-0">
+                            <div class="kt-section kt-section--first pb-0 mb-0">
+                                <div class="kt-section__body">
+                                    <p class="configuracionAntMedicosInfTexto" metadata="configuracionAntMedicosInf">Para una mejor atención te pedimos completar las siguientes preguntas acerca de tu estado de salud:</p>
+                                    <div class="row pt-3">
+                                        <div class="col-lg-12">
+                                            <div class="kt-widget kt-widget--user-profile-1 mb-0 pb-0 antecedentes-medicos">
+                                                <div class="form-group">
+                                                    <div class="col-12 col-md mb-4 mb-md-0 px-0">
+                                                        <label class="form-label font-weight-bold pregunta-antecedente" metadata="configuracionAlergias">¿Alergias?</label>
+                                                        <label class="form-check-label mr-4" for="flexRadioDefault1" metadata="configuracionAlergiasSi">
+                                                            Sí
+                                                            <input class="form-check-input" type="radio" name="radioAlergia" id="radioAlergia1" value="true" />
+                                                        </label>
+                                                        
+
+                                                        <label class="form-check-label ml-3 mr-4" for="flexRadioDefault2" metadata="configuracionAlergiasNo">
+                                                            No
+                                                            <input class="form-check-input" type="radio" name="radioAlergia" id="radioAlergia2" value="false">
+                                                        </label>
+                                                        
+                                                        @Html.TextAreaFor(m => m.Alergias, new { @class = "form-control d-none", type = "text", placeholder = "Anota los medicamentos, animales u otros que te provoquen alergia.", id = "Alergias", name = "Alergias" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-12 col-md mb-4 mb-md-0 px-0">
+                                                        <label class="form-label font-weight-bold pregunta-antecedente" metadata="configuracionEnfermedades">¿Enfermedades?</label>
+                                                        <label class="form-check-label mr-4" for="flexRadioDefault1" metadata="configuracionEnfermedadesSi">
+                                                            Sí
+                                                            <input class="form-check-input" type="radio" name="radioEnfermedad" id="radioEnfermedad1" value="true">
+                                                        </label>
+                                                        
+
+                                                        <label class="form-check-label ml-3 mr-4" for="flexRadioDefault2" metadata="configuracionEnfermedadesNo">
+                                                            No
+                                                            <input class="form-check-input" type="radio" name="radioEnfermedad" id="radioEnfermedad2" value="false">
+                                                        </label>
+                                                        
+                                                        @Html.TextAreaFor(m => m.Enfermedades, new { @class = "form-control d-none", type = "text", id = "Enfermedades", placeholder = "Anota las enfermedades que padeces." })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-12 col-md mb-4 mb-md-0 px-0">
+                                                        <label class="form-label font-weight-bold pregunta-antecedente" metadata="configuracionMedicamentos">¿Medicamentos?</label>
+                                                        <label class="form-check-label mr-4" for="flexRadioDefault1" metadata="configuracionMedicamentosSi">
+                                                            Sí
+                                                            <input class="form-check-input" type="radio" name="radioMedicamento" id="radioMedicamento1" value="true">
+                                                        </label>
+                                                        
+
+                                                        <label class="form-check-label ml-3 mr-4" for="flexRadioDefault2" metadata="configuracionMedicamentosNo">
+                                                            No
+                                                            <input class="form-check-input" type="radio" name="radioMedicamento" id="radioMedicamento2" value="false">
+                                                        </label>
+                                                        
+                                                        @Html.TextAreaFor(m => m.Medicamentos, new { @class = "form-control d-none", type = "text", id = "Medicamentos", placeholder = "Anota los medicamentos que utilizas." })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="col-12 col-md mb-4 mb-md-0 px-0">
+                                                        <label class="form-label font-weight-bold pregunta-antecedente" metadata="configuracionCirugias">¿Cirugías previas?</label>
+                                                        <label class="form-check-label mr-4" for="flexRadioDefault1" metadata="configuracionCirugiasSi">
+                                                            Sí
+                                                            <input class="form-check-input" type="radio" name="radioCirugia" id="radioCirugia1" value="true">
+                                                        </label>
+                                                        
+
+                                                        <label class="form-check-label ml-3 mr-4" for="flexRadioDefault2" metadata="configuracionCirugiasNo">
+                                                            No
+                                                            <input class="form-check-input" type="radio" name="radioCirugia" id="radioCirugia2" value="false">
+                                                        </label>
+                                                        
+                                                        @Html.TextAreaFor(m => m.Cirugias, new { @class = "form-control d-none", type = "text", id = "Cirugias", placeholder = "Anota las cirugías que se te han realizado." })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-12 col-md mb-1 mb-md-0 px-0">
+                                                        <label class="form-label font-weight-bold pregunta-antecedente" metadata="configuracionDrugs">¿Tabaco, alcohol, drogas?</label>
+                                                        <label class="form-check-label mr-4" for="flexRadioDefault1" metadata="configuracionDrugsSi">
+                                                            Sí
+                                                            <input class="form-check-input" type="radio" name="radioHabito" id="radioHabito1" value="true">
+                                                        </label>
+                                                        
+
+                                                        <label class="form-check-label ml-3 mr-4" for="flexRadioDefault2" metadata="configuracionDrugsNo">
+                                                            No
+                                                            <input class="form-check-input" type="radio" name="radioHabito" id="radioHabito2" value="false">
+                                                        </label>
+                                                        
+                                                        @Html.TextAreaFor(m => m.Habitos, new { @class = "form-control d-none", type = "text", id = "Habitos", placeholder = "Anota el hábito." })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="kt-portlet__foot">
+                            <div class="kt-form__actions">
+                                <div class="row">
+                                    <div class="col-12 ml-md-auto col-md-auto">
+                                        <button type="submit" id="btn_guardar_am" class="btn btn-success btn-block" metadata="configuracionGuardar">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+

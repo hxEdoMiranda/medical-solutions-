@@ -1,0 +1,200 @@
+﻿@model WebMVC.Models.ModuloSeguroContratado;
+@using Microsoft.Extensions.Configuration
+@using System.Security.Claims;
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Paciente";
+    Layout = "_LayoutPaciente";
+}
+
+@section PageStyles  {
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    @switch (ViewBag.idCliente)
+    {
+        case "148":
+            <link href="~/css/colmena/colmena.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+            ;
+            break;
+        case "176":
+            <link href="~/css/vidacamara/vidacamara.css" rel="stylesheet" type="text/css" />
+            ;
+            break;
+        case "204":
+            <link href="~/css/claro/claro.css" rel="stylesheet" type="text/css" />
+            ;
+            break;
+
+    }
+    @if (ViewBag.HostURL.ToString().Contains("vidasecurity."))
+    {
+        <link href="~/css/vidasecurity/vidasecurity.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+}
+
+
+
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+    <!--Begin::App-->
+
+
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+
+        <div class="mensaje-mobile d-none">
+            @*<span class="saludo-usuario">¡Hola  Josefa!</span> Que tengas un excelente día.*@
+
+        </div>
+
+            <div class="col-md-12">
+                <div class="top-banner banner_topsc justify-content-between">
+                    <h1 class="legend order-2 order-md-1"><span metadata="pacienteHola">¡Hola  </span><span class="saludo-usuario text-warning text-capitalize" id="saludoPaciente"></span>! <span metadata="pacienteHola2">Tu seguro activo</span></h1>
+                    <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+                </div>
+            </div>
+      
+    </div>
+
+    <div class="container-fluid cont-caracteristicas cont-medicina-preventiva" style="padding:0px; margin:0px">
+
+        <div class="container cont-recomendacion">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card-medicina-preventiva">
+                        <div class="icono-recomendacion">
+                            <div class="icono">
+                                <img src="/img/sekure/home/iconos/escudo.svg" />
+                            </div>
+                            <h4>
+                                Condicionado
+                            </h4>
+                        </div>
+                        <div class="mt-5">
+                            <a href="@Model.detalleProducto.productDetail.ProductCover" target="_blank"><img src="/img/sekure/home/iconos/descargar-condicionado.svg" /></i></a>
+                         </div>
+                     </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-medicina-preventiva">
+                        <div class="icono-recomendacion">
+                            <div class="icono">
+                                <img src="/img/sekure/home/iconos/escudo.svg" />
+                            </div>
+                            <h4>
+                                Certificado
+                            </h4>
+                        </div>
+                       
+                        <div class="mt-5">
+                               <a href="@Model.seguroContratado.UrlCertificado" target="_blank"><img src="/img/sekure/home/iconos/descargar-certificado.svg" /></a>
+                        </div>
+                        
+                       
+                     </div>
+
+
+                </div>
+                <div class="col-md-4">
+                    <div class="card-medicina-preventiva">
+                        <div class="icono-recomendacion">
+                            <div class="icono">
+                                <img src="/img/sekure/home/iconos/chat.svg" />
+                            </div>
+                            <h4>
+                                Contacto
+                            </h4>
+                        </div>
+                        <div class="mt-5">
+                            <a href="tel:6017562323" target="_blank"><img src="/img/sekure/home/iconos/fono.svg" /><span class="ml-3">Via Telefónica</span> </a>
+                        </div>
+                        <div class="mt-5">
+                            <a href="mailto:indemnizacionesco@palig.com" target="_blank"><i class="fal fa-envelope fa-3x"></i> <span class="ml-3">Vía Email</span></a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="kt-grid kt-grid_sc kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+
+        <!--Begin:: App Aside Mobile Toggle-->
+        <button class="kt-app__aside-close" id="kt_user_profile_aside_close">
+            <i class="la la-close"></i>
+        </button>
+        <!--End:: App Aside Mobile Toggle-->
+
+       
+
+       
+
+    </div>
+    <div class="accesible-tools-desktop d-none">
+        <div class="accesible-btn">
+            <button id="increase-font-desk">A+</button>
+            <button id="normal-font-desk">A</button>
+            <button id="decrease-font-desk">A-</button>
+        </div>
+    </div>
+    <!--End::App-->
+</div>
+
+
+<!-- end:: Page -->
+<!-- begin::Scrolltop -->
+<div id="kt_scrolltop" class="kt-scrolltop">
+    <i class="fa fa-arrow-up"></i>
+</div>
+
+<!--<button onclick="playAudio()" type="button">Play Audio</button>
+<button onclick="pauseAudio()" type="button">Pause Audio</button>-->
+
+<audio id="myAudio">
+    <source src="~/metronic_demo7/assets/media/demo/sonido.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+@section Scripts {
+
+    <script src="~/signal/signalr.min.js"></script>
+    <script>
+        var x = document.getElementById("myAudio");
+
+        function playAudio() {
+            x.play();
+        }
+
+        function pauseAudio() {
+            x.pause();
+        }
+    </script>
+     <script type="module">
+        import { init } from '../../js/Paciente/detalle-seguro.js?rnd=${@NumeroRandom.GetRandom()}';
+        init()
+    </script>
+    <script type="text/javascript">
+        (function () {
+            console.log(@ViewBag.Mensaje);
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+            var externo = '@ViewBag.externo';
+            window.externo = externo;
+            var idCliente = @ViewBag.idCliente;
+            window.idCliente = idCliente;
+            var host = '@ViewBag.HostURL';
+            window.host = host;
+        })()
+    </script>
+
+    @*<script src="~/js/Paciente/index.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>*@
+    <script src="~/js/modal.js"></script>
+    <script src="~/js/moment.js"></script>
+    <script src="~/js/accesible.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+}

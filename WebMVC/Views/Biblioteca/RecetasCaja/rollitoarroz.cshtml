@@ -1,0 +1,109 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+
+    <section class="container-fluid note-section library featured" id="nota3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    
+                    <div class="cont-titulo-receta">
+                        <div class="cont-logo">
+                            <img src="~/img/cajalosandes/recetas/logo.svg" alt="" />
+                    <h1 class="title-section">
+                         Rollitos de arroz y pescado
+                    </h1>
+                        </div>
+                    <img src="~/img/cajalosandes/recetas/rollitos-arroz.png" alt="" />
+                    
+                    </div>
+                    
+                    
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <h2 class="subtitulo-receta">
+                        Ingredientes:
+                    </h2>
+
+                    <ol>
+                        <li>2 papeles de arroz</li>
+                        <li>75 gr de pescado (sin espinas)</li>
+                        <li>50 gr de arroz</li>
+                        <li>1 c/c de miel</li>
+                        <li>Aceite de oliva extra virgen</li>
+                        <li>Sal</li>
+                        <li>Pimienta</li>
+                        <li>Perejil</li>
+
+                    </ol>
+                   
+                    <h2 class="subtitulo-receta">
+                        Preparación
+                    </h2>
+                    <ol>
+                        
+                        <li> Poner el arroz sobre un colador y lavar en agua fría hasta que haya eliminado el almidón y
+                        salga transparente.</li>
+                        <li> Hervir unos 15 minutos en una olla con agua. Escurrir y estirar sobre una superficie plana para
+                        que se enfríe.</li>
+                        <li> Hidratar el papel de arroz unos segundos sobre un plato con agua hasta que esté flexible.</li>
+                        <li> Tomar delicadamente y escurrir. Disponer el papel de arroz encima de una tabla.</li>
+                        <li> Picar el perejil</li>
+                        <li> Cocer el pescado al vapor o al microondas y desmenuzarlo con una cuchara.</li>
+                        <li> Mezclar el arroz con la miel, el pescado, una pizca de perejil y salpimentar.</li>
+                        <li> Colocar la mezcla encima del papel de arroz</li>
+                        <li> Envolver el papel como si fuera un canelón</li>
+                        <li>Servir con unas gotas de aceite por encima.</li>
+                        <li>*Receta apta para personas con falta de apetito, alteración del gusto (disgeusia), llagas en la boca ( para
+                        estos casos es necesario eliminar el perejil de la receta)</li>
+
+
+
+
+                       
+                    </ol>
+                   
+                     
+                    
+                    <p>
+                        <a href="@Url.Action("DescargarCaja", new { file = ViewBag.codigoNota})">
+                            Descargar PDF
+                        </a>
+                        
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}

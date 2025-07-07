@@ -1,0 +1,508 @@
+/*sekure*/
+
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');*/
+
+:root {
+    --primary: #58B6AB;
+    --secondary: #3A5160;
+    --tertiary: #25A73A;
+    --accent: #CC542D;
+    --light: #FFF;
+    --font-family: 'Mulish', sans-serif;
+}
+
+body {
+    font-family: var(--font-family) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family) !important;
+}
+/*Login*/
+.logotipo-desktop {
+    background-image: url(../../img/sekure/logotipo.svg);
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/sekure/logotipo.svg);
+}
+
+a {
+    color: var(--accent)
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: var(--primary);
+    font-weight: 900;
+}
+
+.form-group .ms-label {
+    color: var(--primary) !important;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.btn-guardar-info, .btn-success {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    
+}
+
+.btn-guardar-info:hover, .btn-success:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--primary)
+}
+
+.btn.btn-outline-secondary {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--primary)
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+}
+
+#reporte:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+#hs-g .cont-icon {
+    background-color: var(--primary);
+}
+
+#hs-g:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+.divider-medismart {
+    display: none;
+}
+
+.logo-convenios {
+    display: none;
+}
+
+/* Im�genes Login */
+.img1 {
+    background-image: url(../../img/sekure/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/sekure/login/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/sekure/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/sekure/login/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/sekure/login/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/sekure/login/960x978.jpg);
+}
+
+.body-home {
+    background-image: url('../../img/sekure/fondo-home.svg'), linear-gradient(#FFF, #FFF), linear-gradient(var(--primary), var(--primary));
+    /* background-blend-mode: multiply;*/
+    background-size: 548px 265px, 100% 192px, 100% 900px;
+    background-position: right 90%, 0 0;
+}
+
+    .body-home .logo-home img {
+        width: 300px;
+    }
+
+    .top-banner .legend {
+        font-weight: 500;
+    }
+
+.menu-top .item-menu-top i,
+.menu-top .label-menu {
+    color: var(--secondary);
+}
+
+.accesible-tools-desktop .accesible-btn button {
+    color: var(--accent)
+
+}
+
+.menu-top .item-menu-top:hover i, .menu-top .item-menu-top:hover .label-menu {
+    color: var(--accent)
+}
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--tertiary)
+}
+
+.kt-menu__item:hover a, .kt-menu__item:hover i {
+    color: var(--secondary) !important;
+}
+
+.accesible-btn button {
+    color: var(--secondary);
+    border: 1px solid var(--primary);
+}
+
+    .accesible-btn button:hover {
+        background-color: var(--primary);
+        border-color: var(--primary)
+    }
+
+.busqueda-profesionales {
+    border: 2px solid var(--secondary);
+}
+    .busqueda-profesionales i {
+        color: var(--secondary)
+    }
+    .busqueda-profesionales .btn-outline-primary {
+        color: var(--secondary)
+    }
+
+.caja-especialidad.active {
+    background-color: var(--primary);
+}
+
+.caja-especialidad {
+    background-color: var(--secondary);
+}
+
+.inner-especialidad strong {
+    color: var(--tertiary)
+}
+
+.step.active .step-icon {
+    background-color: var(--primary);
+}
+
+.stepper {
+    background-image: url(../../img/sekure/fondo-banner2.svg);
+}
+
+    .stepper .flecha {
+        color: var(--primary)
+    }
+
+    .stepper img {
+        border-color: transparent;
+    }
+
+.step.active .label-step {
+    color: var(--primary)
+}
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: var(--primary)
+}
+
+.caja-profesional .fecha-atencion {
+    color: var(--secondary)
+}
+
+.front-fecha-atencion {
+    border: 1px solid rgba(35,33, 114, .3)
+}
+
+    .front-fecha-atencion strong:before {
+        color: var(--secondary);
+        font-weight: 900;
+    }
+
+.especialidad-profesional {
+    color: var(--tertiary)
+}
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+
+.top-banner {
+    background-image: url(../../img/sekure/fondo-banner.svg);
+}
+    .top-banner img {
+        border-color: rgba(255, 255, 255, .3)
+    }
+    .top-banner .legend {
+        color: var(--secondary)
+    }
+
+.body-home .top-banner .legend {
+    color: var(--secondary);
+}
+
+.body-home .top-banner {
+
+}
+
+.banner_topsc .legend .text-warning {
+    color: var(--accent) !important;
+}
+
+.text-warning {
+    color: var(--accent) !important;
+}
+
+.menu-top .item-menu-top .logotipo-mobile {
+    width: 110px !important;
+}
+
+.caja-profesional .titulo-profesional, .nombre-profesional {
+    color: var(--primary);
+}
+
+.front-fecha-atencion strong {
+    font-size: 12px;
+}
+/*Sala espera*/
+.hotspot-icon .cont-icon {
+    background-color: var(--primary)
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: var(--primary);
+}
+
+.cont-icon.hotspot-redes {
+    background-color: var(--secondary);
+}
+
+#panelEstado .alerta-sala {
+   background-color: var(--accent)
+}
+
+#hs-d .cont-icon {
+    background-color: var(--secondary);
+}
+
+#reporte {
+    display: none;
+}
+/*#hs-c .cont-icon {
+    background-color: var(--accent);
+}*/
+#btnAbandonarAtencion .cont-icon, #ingreso-m .cont-icon {
+    background-color: var(--accent);
+}
+
+.alerta-sala {
+    background-color: var(--primary);
+}
+
+
+.toolbar-option {
+    color: var(--primary)
+}
+
+.toolbar-option.active {
+    color: var(--secondary)
+}
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--primary)
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--secondary)
+}
+
+.cont-btn-panel .btn-atencion, .cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+    .cont-btn-panel .btn-atencion:hover, .cont-btn-vc .btn-atencion:hover {
+        background-color: rgba(237, 110, 0, 0.1);
+        color: var(--primary);
+    }
+
+.hotspot-icon {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+    .hotspot-icon i {
+        text-shadow: none;
+    }
+
+    .hotspot-icon:hover {
+        color: #FFF;
+    }
+
+.body-home .menu-top .item-menu-top i, .body-home .menu-top .item-menu-top .label-menu {
+    color: var(--secondary);
+}
+
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--secondary);
+}
+
+    .kt-menu__item a:hover .ms-label-menu, .kt-menu__item a:hover i {
+        color: var(--accent);
+    }
+
+
+
+@media (max-width: 668px) {
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .top-banner .legend {
+        text-align: left;
+        font-size: 1.3rem;
+    }
+}
+
+
+ @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/sekure/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/sekure/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/sekure/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/sekure/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/sekure/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/sekure/login/548x850.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/sekure/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/sekure/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/sekure/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/sekure/login/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/sekure/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/sekure/login/960x978.jpg);
+    }
+}
+
+
+/*Prohome*/
+
+.prehome__plans {
+    height: 450px;
+}
+
+.prehome__plan {
+    width: 100%;
+    padding: 0;
+}
+
+.prehome__plan ul {
+    list-style-image: url('../../img/sekure/bullet.svg');
+   
+    margin-top: 32px;
+    height: 350px;
+    font-size: 16px;
+}
+
+.prehome__title {
+    color: var(--light);
+    font-weight: 500;
+}
+
+.kt-login__extra.registro {
+    display: none;
+}
+
+.logo-convenios.convenioChile + hr {
+    display: none;
+}
+
+.kt-login.kt-login--v3.kt-login--signin .kt-login__signin .titulo-card-farmacia {
+    text-align: center;
+}
+
+.prehome {
+    margin-top: 0;
+}
+
+@media (max-width: 991.98px) {
+    .prehome__plans {
+        height: auto;
+    }
+}
+
+/*Modal Especialidades*/
+
+.modal-especialidad h1 {
+    color: var(--primary)
+}
+
+.modal-especialidad .btn-especialidad {
+   color: var(--tertiary);
+}
+
+    .modal-especialidad .btn-especialidad:hover {
+        border: 2px solid var(--tertiary);
+        color: var(--tertiary)
+    }

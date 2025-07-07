@@ -1,0 +1,113 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UserSecretsId>20365260-ff2e-412d-870d-226a1f6435a3</UserSecretsId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>$(DefineConstants)TRACE</DefineConstants>
+    <Optimize>False</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Optimize>True</Optimize>
+    <DefineConstants>$(DefineConstants)TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\css\NewFolder1\**" />
+    <Compile Remove="wwwroot\css\NewFolder2\**" />
+    <Compile Remove="wwwroot\images\**" />
+    <Compile Remove="wwwroot\img\NewFolder1\**" />
+    <Content Remove="wwwroot\css\NewFolder1\**" />
+    <Content Remove="wwwroot\css\NewFolder2\**" />
+    <Content Remove="wwwroot\images\**" />
+    <Content Remove="wwwroot\img\NewFolder1\**" />
+    <EmbeddedResource Remove="wwwroot\css\NewFolder1\**" />
+    <EmbeddedResource Remove="wwwroot\css\NewFolder2\**" />
+    <EmbeddedResource Remove="wwwroot\images\**" />
+    <EmbeddedResource Remove="wwwroot\img\NewFolder1\**" />
+    <None Remove="wwwroot\css\NewFolder1\**" />
+    <None Remove="wwwroot\css\NewFolder2\**" />
+    <None Remove="wwwroot\images\**" />
+    <None Remove="wwwroot\img\NewFolder1\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\css\bootstrap-select-country.min.css" />
+    <Content Remove="wwwroot\js\bootstrap-select-country.min.js" />
+    <Content Remove="wwwroot\js\bootstrap-select-country.min.js.map" />
+    <Content Remove="wwwroot\js\Paciente\config-cliente.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.95.0" />
+    <PackageReference Include="Dapper" Version="2.0.30" />
+    <PackageReference Include="Dapper.Contrib" Version="2.0.30" />
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.10.0" />
+    <PackageReference Include="ExcelDataReader" Version="3.6.0" />
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.14.0" />
+    <PackageReference Include="PagedList.MVC" Version="4.5.0" />
+    <PackageReference Include="RestSharp" Version="106.12.0" />
+    <PackageReference Include="Sentry.AspNetCore" Version="3.30.0" />
+    <PackageReference Include="Sustainsys.Saml2.AspNetCore2" Version="2.9.2" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="System.Reflection.Metadata" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Clases\" />
+    <Folder Include="Views\Biblioteca\NewFolder\" />
+    <Folder Include="wwwroot\img\fletcher\" />
+    <Folder Include="wwwroot\img\home\NewFolder\" />
+    <Folder Include="wwwroot\js\PasarelaPago\MercadoPago\" />
+    <Folder Include="wwwroot\js\Contralor\" />
+    <Folder Include="wwwroot\signal\" />
+    <Folder Include="wwwroot\upload\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\metronic_demo7\assets\plugins\jquery-datatable\buttons\buttons.bootstrap4.min.js" />
+    <None Include="wwwroot\metronic_demo7\assets\plugins\jquery-datatable\buttons\buttons.colVis.min.js" />
+    <None Include="wwwroot\metronic_demo7\assets\plugins\jquery-datatable\buttons\buttons.flash.min.js" />
+    <None Include="wwwroot\metronic_demo7\assets\plugins\jquery-datatable\buttons\buttons.html5.min.js" />
+    <None Include="wwwroot\metronic_demo7\assets\plugins\jquery-datatable\buttons\buttons.print.min.js" />
+    <None Include="wwwroot\metronic_demo7\assets\plugins\jquery-datatable\buttons\dataTables.buttons.min.js" />
+    <None Include="wwwroot\metronic_demo7\assets\plugins\jquery-datatable\dataTables.bootstrap4.min.js" />
+    <None Include="wwwroot\metronic_demo7\assets\plugins\jquery-datatable\jquery.dataTables.js" />
+    <None Include="wwwroot\metronic_demo7\assets\plugins\jquery-datatable\jquery.dataTables.min.js" />
+    <None Include="wwwroot\preguntasfrecuentes\01_PortalFarmacias.pdf" />
+    <None Include="wwwroot\preguntasfrecuentes\02_WikiDoc.pdf" />
+    <None Include="wwwroot\preguntasfrecuentes\03_GuiaBox.pdf" />
+    <None Include="wwwroot\preguntasfrecuentes\04_PortalCargas.pdf" />
+    <None Include="wwwroot\preguntasfrecuentes\05_GuiaActualizacionDatos.pdf" />
+    <None Include="wwwroot\preguntasfrecuentes\06_PedirCita.pdf" />
+    <None Include="wwwroot\preguntasfrecuentes\07_PreguntasFrecuentes.pdf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="nlog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Views\Paciente\LoginClini.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
+</Project>

@@ -1,0 +1,439 @@
+/*bonnahealth*/
+
+:root {
+    --primary: #47BBEB;
+    --secondary: #2554A2;
+    --tertiary: #00B6F2;
+    --light: #FFF;
+    --accent: #47BBEB;
+}
+
+a {
+    color: var(--primary);
+}
+
+    a#consentimiento {
+        color: var(--primary);
+        text-decoration: underline;
+    }
+    /*Login*/
+    .logotipo-desktop {
+        background-image: url(../../img/bonnahealth/logotipo.png);
+        background-size: cover;
+        background-position: center;
+    }
+
+.logotipo-mobile {
+    background-image: url(../../img/bonnahealth/logotipo-mobile.png);
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+        color: var(--primary);
+        font-weight: 900 !important;
+        font-size: 18px;
+        margin-top: 20px;
+    }
+
+        .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title:first-child {
+            margin-top: 40px;
+        }
+
+        .form-group .ms-label {
+            color: var(--tertiary) !important;
+        }
+
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+    .btn-primary:hover {
+        background-color: var(--secondary);
+        border-color: var(--secondary);
+    }
+
+    .btn-guardar-info, .btn-success {
+        background-color: var(--primary);
+        border-color: var(--primary);
+        
+    }
+    
+    .btn-guardar-info:hover, .btn-success:hover {
+        background-color: var(--secondary);
+        border-color: var(--secondary);
+        color: var(--primary)
+    }
+    
+    .btn.btn-outline-secondary {
+        background-color: var(--secondary);
+        border-color: var(--secondary);
+        color: var(--primary)
+    }
+    
+    #reporte .cont-icon {
+        background-color: var(--primary);
+    }
+    
+    #reporte:hover .cont-icon {
+        background-color: var(--secondary);
+    }
+    
+    #hs-g .cont-icon {
+        background-color: var(--primary);
+    }
+    
+    #hs-g:hover .cont-icon {
+        background-color: var(--secondary);
+    }
+
+.btn.btn-outline-secondary {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+
+.btn.btn-outline-secondary:hover {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.logo-convenios {
+    justify-content: space-between;
+    margin-top: 3rem;
+}
+
+/* Im�genes Login */
+.img1 {
+    background-image: url(../../img/bonnahealth/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/bonnahealth/login/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/bonnahealth/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/bonnahealth/login/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/bonnahealth/login/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/bonnahealth/login/960x978.jpg);
+}
+
+
+.body-home .logo-home img {
+    width: 196px;
+}
+
+.body-home {
+    background-image: url(../../img/bonnahealth/logotipo-fondo.svg), linear-gradient(180deg, #004AAD 29.06%, #00E1E2 168.53%);
+    background-repeat: no-repeat;
+    background-position: 94% 94%;
+}
+
+    .body-home .text-warning {
+        color: #50BCE9 !important;
+    }
+
+    .menu-top .item-menu-top i,
+    .menu-top .label-menu {
+        color: var(--primary);
+    }
+
+.menu-top .item-menu-top:hover i, .menu-top .item-menu-top:hover .label-menu {
+    color: var(--secondary)
+}
+
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--secondary)
+}
+
+.kt-menu__item:hover a, .kt-menu__item:hover i {
+    color: var(--secondary) !important;
+}
+
+.accesible-btn button {
+    color: var(--secondary);
+    border: 1px solid var(--secondary);
+}
+
+    .accesible-btn button:hover {
+        background-color: var(--secondary);
+        border-color: var(--secondary)
+    }
+
+
+.header-formulario i {
+    color: var(--primary);
+}
+
+.busqueda-profesionales {
+    border: 2px solid var(--secondary);
+}
+
+    .busqueda-profesionales i {
+        color: var(--secondary)
+    }
+
+    .busqueda-profesionales .btn-outline-primary {
+        color: var(--secondary)
+    }
+
+.caja-especialidad.active {
+    background-color: var(--primary);
+}
+
+.caja-especialidad {
+    background-color: var(--secondary);
+}
+
+.inner-especialidad strong {
+    color: var(--accent)
+}
+
+.step.active .step-icon {
+    background-color: var(--primary);
+}
+
+.stepper {
+    background-image: url(../../img/bonnahealth/fondo-banner2.svg);
+}
+
+    .stepper .flecha {
+        color: var(--primary)
+    }
+
+    .stepper img {
+        border-color: rgba(119,189,251,.5)
+    }
+
+.stepper-sv .step-icon {
+    background-color: var(--secondary)
+}
+
+.step.active .label-step {
+    color: var(--primary);
+}
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: var(--primary)
+}
+
+.hora.disponible small {
+    background-color: var(--primary);
+}
+
+.caja-reserva,
+.perfil-profesional,
+.caja-base {
+    border: 1px solid rgba(135, 121, 107, 0.3);
+}
+
+.hora-top,
+.hora.disponible .detalle-hora {
+    color: var(--primary)
+}
+
+
+.caja-profesional .fecha-atencion {
+    color: var(--secondary)
+}
+
+.front-fecha-atencion {
+    border: 1px solid rgba(35,33, 114, .3)
+}
+
+    .front-fecha-atencion strong:before {
+        color: var(--secondary);
+        font-weight: 900;
+    }
+
+.especialidad-profesional {
+    color: var(--tertiary)
+}
+
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+
+.body-home .top-banner {
+    background-image: url(../../img/bonnahealth/fondo-banner.svg);
+}
+
+    .body-home .top-banner img {
+        border-color: rgba(255, 255, 255, .3)
+    }
+
+.top-banner {
+    background-image: url(../../img/bonnahealth/fondo-banner2.svg);
+}
+
+    .top-banner img {
+        border-color: rgba(135, 121, 107, .3)
+    }
+
+    .top-banner .legend {
+        color: var(--secondary)
+    }
+
+.text-warning {
+    color: var(--primary) !important;
+}
+
+/*Sala espera*/
+
+#reporte .cont-icon {
+    background-color: var(--secondary)
+}
+
+.panel-sala {
+    background-color: #FFF;
+}
+
+    .panel-sala .btn-icon:hover {
+        color: #FFF !important;
+    }
+
+    .panel-sala .btn-icon {
+        background-color: var(--secondary);
+    }
+
+        .panel-sala .btn-icon:hover {
+            background-color: var(--primary);
+        }
+
+        .hotspot-icon .cont-icon {
+            background-color: var(--secondary)
+        }
+
+.hotspot-icon:hover .cont-icon {
+    background-color: var(--accent)
+}
+
+.cont-icon.hotspot-redes {
+    background-color: #021330;
+}
+
+
+.toolbar-option {
+    color: var(--primary)
+}
+
+    .toolbar-option.active {
+        color: var(--secondary)
+    }
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--primary)
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--secondary)
+}
+
+.cont-btn-panel .btn-atencion, .cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+    .cont-btn-panel .btn-atencion:hover, .cont-btn-vc .btn-atencion:hover {
+        background-color: rgba(237, 110, 0, 0.1);
+        color: var(--primary);
+    }
+
+.hotspot-icon:hover {
+    color: #FFF;
+}
+
+@media (max-width: 668px) {
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+        font-size: 20px;
+    }
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+}
+
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/bonnahealth/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/bonnahealth/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/bonnahealth/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/bonnahealth/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/bonnahealth/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/bonnahealth/login/548x850.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/bonnahealth/login/683x768.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/bonnahealth/login/683x768.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/bonnahealth/login/683x768.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/bonnahealth/login/683x768.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/bonnahealth/login/683x768.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/bonnahealth/login/683x768.jpg);
+    }
+}

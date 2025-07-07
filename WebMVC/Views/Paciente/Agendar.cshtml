@@ -1,0 +1,1613 @@
+@model WebMVC.Models.AgendaViewModel
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Agendar";
+    Layout = "_LayoutPaciente";
+    var ocultarBtns = "";
+    var ocultarBtnScotia = "";
+
+    var ClienteMasproteccion = Configuration["MASPROTECCION"];
+    var ClientePrevencion = Configuration["CAJALOSANDES"];
+}
+@section PageStyles {
+    <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet"
+          type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css">
+    <style>
+        .iti {
+            width: 100%;
+        }
+    </style>
+}
+@section Styles {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <style>
+        /*.swal2-styled.swal2-cancel{
+                        position: absolute !important;
+                        left: 75px !important;
+                    }
+                    .swal2-styled.swal2-confirm {
+                            position: absolute !important;
+                            right: 50px !important;
+                }*/
+    </style>
+}
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+    <!--Begin::App-->
+    <!-- Start:: Banner-->
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+        <div class="col-md-12">
+            <!--
+            <div class="mensaje-mobile d-md-none">
+                <span class="saludo-usuario">"¡Hola  <span id="saludoPaciente1"></span>!</span> ¿En que te podemos ayudar?.
+
+            </div>
+                -->
+            <div class="top-banner justify-content-between d-none">
+                <h1 class="legend order-2 order-md-1">¡Hola <span class="saludo-usuario text-warning" id="saludoPaciente"></span>! ¿En qué te podemos ayudar?</h1>
+                <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+            </div>
+        </div>
+    </div>
+    <!-- End:: Banner-->
+    <!-- Start:: Stepper-->
+    <!-- Stepper -->
+    @{
+        if (ViewBag.IdClientePlataforma == "108")
+        {
+            <div class="row">
+                <div class="col">
+                    <h1 class="titulo-servicio mb-4">Elige el servicio médico</h1>
+                </div>
+            </div>
+        }
+    }
+    @{
+        if (ViewBag.HostURL.ToString().Contains("saludtumundoseguro."))
+        {
+            <!--CENCOSUD-->
+            <!-- MedismartBASE -->
+            <div class="stepper stepper-cencosud">
+                <div class="init-step"></div>
+                <div class="cont-steps">
+                    <!-- Step1 -->
+                    <div class="step active">
+                        <div class="step-icon">
+
+                            <i class="fal fa-user-md"></i>
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            1. Selección
+                        </div>
+                    </div>
+
+                    <i class="fas fa-chevron-right flecha"></i>
+
+                    <!-- Step2 -->
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fal fa-calendar-edit"></i>
+
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            2. Agendamiento
+                        </div>
+                    </div>
+
+                    <i class="fas fa-chevron-right flecha"></i>
+
+                    <!-- Step3 -->
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fal fa-check-circle"></i>
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            3. Confirmación
+                        </div>
+                    </div>
+                </div>
+                <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+            </div>
+            <!-- MedismartBASE End: -->
+            <!-- CENCOSUD End: -->
+        }
+    }
+    @{
+        if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+        {
+            <!--SCOTIABANK-->
+            <div class="stepper stepper-scotiabank">
+                <div class="init-step"></div>
+                <div class="cont-steps">
+                    <!-- Step1 -->
+                    <div class="step active">
+                        <div class="step-icon">
+                            @* <i class="fal fa-user-md"></i>*@
+                            <img src="~/img/scotiabank/iconos/icon_seleccion_active.svg" />
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            1. Selección
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right flecha"></i>
+                    <!-- Step2 -->
+                    <div class="step">
+                        <div class="step-icon">
+                            @* <i class="fal fa-calendar-edit"></i>*@
+                            <img src="~/img/scotiabank/iconos/icon_agendamiento_noactive.svg" />
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            2. Agendamiento
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right flecha"></i>
+                    <!-- Step3 -->
+                    <div class="step">
+                        <div class="step-icon">
+                            @*<i class="fal fa-check-circle"></i>*@
+                            <img src="~/img/scotiabank/iconos/icon_confirmacion_noactive.svg" />
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            3. Confirmación
+                        </div>
+                    </div>
+                </div>
+                <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+            </div>
+            <!-- SCOTIABANK End: -->
+        }
+        else if (ViewBag.HostURL.ToString().Contains("prevenciononcologica.") || ViewBag.IdClientePlataforma == ClientePrevencion)
+        {
+            <!-- Cajalosandes -->
+            <div class="stepper">
+                <div class="init-step"></div>
+                <div class="cont-steps">
+                    <!-- Step1 -->
+                    <div class="step active">
+                        <div class="step-icon">
+                            <img src="~/img/cajalosandes/iconos/icon_seleccion_active.svg">
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            1. Selección
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right flecha"></i>
+                    <hr class="linea-stepper" />
+                    <!-- Step2 -->
+                    <div class="step">
+                        <div class="step-icon">
+                            <img src="~/img/cajalosandes/iconos/icon_agendamiento_noactive.svg" />
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            2. Agendamiento
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right flecha"></i>
+                    <hr class="linea-stepper" />
+                    <!-- Step3 -->
+                    <div class="step">
+                        <div class="step-icon">
+                            <img src="~/img/cajalosandes/iconos/icon_confirmacion_noactive.svg" />
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            3. Confirmación
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Cajalosandes -->
+        }
+        else @if (ViewBag.HostURL.ToString().Contains("masproteccionsalud."))
+        {
+            <!-- Cajalosandes -->
+            <div class="stepper">
+                <div class="text_clinicagenda">
+                    <h4>Sigue los siguientes pasos para agendar una atención:</h4>
+                </div>
+                <div class="init-step"></div>
+                <div class="cont-steps">
+                    <!-- Step1 -->
+                    <div class="step active">
+                        <div class="step-icon">
+                            <img src="~/img/masproteccionsalud/iconos/icon_seleccion_active.svg">
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            1. Selección
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right flecha"></i>
+                    <hr class="linea-stepper" />
+                    <!-- Step2 -->
+                    <div class="step">
+                        <div class="step-icon">
+                            <img src="~/img/cajalosandes/iconos/icon_agendamiento_noactive.svg" />
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            2. Agendamiento
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right flecha"></i>
+                    <hr class="linea-stepper" />
+                    <!-- Step3 -->
+                    <div class="step">
+                        <div class="step-icon">
+                            <img src="~/img/cajalosandes/iconos/icon_confirmacion_noactive.svg" />
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            3. Confirmación
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cajalosandes -->
+        }
+        else @if (ViewBag.HostURL.ToString().Contains("vivetuseguro."))
+        {
+            <!-- Vivetuseguro -->
+            <div class="stepper">
+                <div class="init-step"></div>
+                <div class="cont-steps">
+                    <!-- Step1 -->
+                    <div class="step active">
+                        <div class="step-icon">
+                            <img src="~/img/vivetuseguro/iconos/icon-seleccion.svg">
+
+
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            1. Selección
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right flecha"></i>
+                    <!-- Step2 -->
+                    <div class="step">
+                        <div class="step-icon">
+                            <img src="~/img/vivetuseguro/iconos/icon-agendamiento.svg">
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            2. Agendamiento
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right flecha"></i>
+                    <!-- Step3 -->
+                    <div class="step">
+                        <div class="step-icon">
+                            <img src="~/img/vivetuseguro/iconos/icon-confirmacion-2.svg">
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            3. Confirmación
+                        </div>
+                    </div>
+                </div>
+                <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+            </div>
+
+            <!-- Vivetuseguro -->
+        }
+        else
+        {
+            <!-- MedismartBASE -->
+            <div class="stepper">
+                <div class="init-step"></div>
+                <div class="cont-steps">
+                    <!-- Step1 -->
+                    <div class="step active">
+                        <div class="step-icon">
+                            <i class="fal fa-user-md"></i>
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            1. Selección
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right flecha"></i>
+                    <!-- Step2 -->
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fal fa-calendar-edit"></i>
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            2. Agendamiento
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right flecha"></i>
+                    <!-- Step3 -->
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fal fa-check-circle"></i>
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            3. Confirmación
+                        </div>
+                    </div>
+                </div>
+                <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+            </div>
+            <!-- MedismartBASE End: -->
+        }
+    }
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                @{
+                    if (ViewBag.IdClientePlataforma == "108")
+                    {
+                        <h1 class="titulo-servicio mb-4">Agendar atención</h1>
+                    }
+                    else if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia.") || @ViewBag.idCliente == "233")
+                    {
+                        <h1 class="titulo-servicio mb-4">Elige el servicio que necesitas</h1>
+                    }
+                    else
+                    {
+                        <h1 class="titulo-servicio mb-4">Elige el servicio médico</h1>
+                    }
+                }
+            </div>
+        </div>
+        <div class="row align-items-center cont-especialidades" id="items-peru">
+            @{
+                if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+                {
+                    <!--Scotiabank-->
+                    <div class="col-12 col-md-10 col-xl-auto pr-lg-0">
+                        <div class="cont-caja-especialidad ">
+                            @{
+                                if (ViewBag.IdClientePlataforma == "204")
+                                {
+                                    ViewBag.visibleSuscripcion = "hidden";
+                                }
+                            }
+                            @{
+                                if (ViewBag.IdClientePlataforma == "108")
+                                {
+                                    ocultarBtns = "hidden";
+                                }
+                                else
+                                {
+                                    ocultarBtns = "";
+                                }
+                            }
+                            <div class="caja-especialidad medicina-general fuente-accesible" @ocultarBtns id="divSuscripcion" @ViewBag.visibleSuscripcion>
+                                <div class="inner-especialidad">
+                                    @if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia.") && ViewBag.tipoEspecialidad != null)
+                                    {
+                                        <img src="~/img/scotiabank/iconos/servicio-orientacion.svg">
+                                        @if (ViewBag.tipoEspecialidad == "examenes")
+                                        {
+                                            <div class="label-caja-especialidad">
+                                                SERVICIO ASISTENCIA DE EXÁMENES
+                                                <small class="d-block">ORIENTACIÓN</small>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="label-caja-especialidad">
+                                                SERVICIO DE ORIENTACIÓN
+                                                <small class="d-block">ORIENTACIÓN</small>
+                                            </div>
+                                        }
+                                    }
+                                    else if (ViewBag.HostURL.ToString().Contains("saludtumundoseguro.") && ViewBag.tipoEspecialidad != null)
+                                    {
+                                        <img src="~/img/scotiabank/iconos/servicio-orientacion.svg">
+                                        <div class="label-caja-especialidad">
+                                            TELEMEDICINA ONCOLÓGICA
+                                            <small class="d-block">ORIENTACIÓN</small>
+                                        </div>
+
+                                    }
+                                    
+                                    else
+                                    {
+                                        <img src="~/img/scotiabank/iconos/icon_tuplanempresa_g.svg">
+                                        <div class="label-caja-especialidad">
+                                            @ViewBag.textoSuscripcion
+                                            <small class="d-block">@ViewBag.subTextoSuscripcion</small>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            @{
+                                if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia.") && (ViewBag.tipoEspecialidad == "orientacion" || ViewBag.tipoEspecialidad == "examenes"))
+                                {
+                                    ocultarBtns = "hidden";
+                                }
+                                else
+                                {
+                                    ocultarBtns = "";
+                                }
+                            }
+                            @{
+                                if (!ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+                                {
+                                    <div ocultarBtns class="caja-especialidad especialista fuente-accesible" id="divOndemand" @ViewBag.visibleOndemand>
+                                        <div class="inner-especialidad">
+                                            <img src="~/img/scotiabank/iconos/icon_medicinaespecialista_g.svg" />
+                                            <div class="label-caja-especialidad">
+                                                @ViewBag.textoOndemand
+                                                <small class="d-block">@ViewBag.subTextoOndemand</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            <div @ocultarBtns>
+                                <label class="label-especialidades">Especialidad</label>
+                                <div class="busqueda-profesionales">
+                                    <img src="~/img/scotiabank/iconos/icon_busqueda_g.svg" />
+                                    <div class="caja-busqueda">
+                                        <h2 class="mb-2">
+                                            Buscar Especialidad
+                                        </h2>
+                                        <div class="dropdown">
+                                            <select class="btn btn-outline-primary dropdown-toggle itemEspecialidad" id="especialidades">
+                                            </select>
+                                        </div>
+                                        <input type="hidden" id="especialidadSeleccionada" value="0" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--ScotiabankEnd-->
+                }
+                else
+                {
+                    <!-- START NORMAL -->
+                    <div class="col-12 col-md-8 col-lg-auto col-xl-auto pr-lg-0">
+                        <div class="cont-caja-especialidad">
+                            @{
+                                if (ViewBag.IdClientePlataforma == "204")
+                                {
+                                    ViewBag.visibleSuscripcion = "hidden";
+                                }
+                            }
+                            @{
+                                if (ViewBag.IdClientePlataforma == "108")
+                                {
+                                    ocultarBtns = "hidden";
+                                }
+                                else if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+                                {
+                                    ocultarBtnScotia = "hidden";
+                                }
+                                else if (ViewBag.HostURL.ToString().Contains("unabactiva.") || ViewBag.HostURL.ToString().Contains("activa.unab."))
+                                {
+                                    ocultarBtnScotia = "hidden";
+                                    ocultarBtns = "hidden";
+                                }
+                                else
+                                {
+                                    ocultarBtns = "";
+                                }
+                            }
+                            @if (ViewBag.HostURL.ToString().Contains("prevenciononcologica.") || ViewBag.IdClientePlataforma == ClientePrevencion)
+                            {
+                                @if (ViewBag.tipoEspecialidad != null)
+                                {
+                                    <div class="caja-especialidad medicina-general fuente-accesible" id="divEspecialidadCaja">
+                                        <div class="inner-especialidad">
+                                            @if (ViewBag.tipoEspecialidad == "oncologia")
+                                            {
+                                                <img src="~/img/cajalosandes/iconos/icon_02mobile.svg" alt="oncologia">
+                                                <div class="label-caja-especialidad">
+                                                    Telemedicina Oncológica
+                                                </div>
+                                            }
+                                            else if (ViewBag.tipoEspecialidad == "orientacion")
+                                            {
+                                                <img src="~/img/scotiabank/iconos/icon_tuplanempresa_g.svg">
+                                                <div class="label-caja-especialidad">
+                                                    Orientación de salud
+                                                    <small class="d-block">Orientación</small>
+                                                </div>
+                                            }
+                                            else if (ViewBag.tipoEspecialidad == "psicologia")
+                                            {
+                                                <img src="~/img/scotiabank/iconos/icon_tuplanempresa_g.svg">
+                                                <div class="label-caja-especialidad">
+                                                    Telemedicina Psicológica
+                                                    <small class="d-block">Psicología</small>
+                                                </div>
+                                            }
+                                            else if (ViewBag.tipoEspecialidad == "examenes")
+                                            {
+                                                <img src="~/img/scotiabank/iconos/icon_tuplanempresa_g.svg">
+                                                <div class="label-caja-especialidad">
+                                                    Asistencia de Exámenes
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else if (ViewBag.HostURL.ToString().Contains("masproteccionsalud."))
+                            {
+                                @if (ViewBag.tipoEspecialidad == null)
+                                {
+                                    <div class="caja-especialidad medicina-general fuente-accesible" @ocultarBtns id="divSuscripcion" @ViewBag.visibleSuscripcion>
+                                        <div class="inner-especialidad">
+                                            <img src="~/img/masproteccionsalud/home/iconos/atencion-agendable.svg">
+                                            <div class="label-caja-especialidad">
+                                                @ViewBag.textoSuscripcion
+                                                <small class="d-block">Medicina general y especialista</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else if (ViewBag.tipoEspecialidad == "psicologia")
+                                {
+                                    <div class="caja-especialidad medicina-general fuente-accesible" @ocultarBtns id="divSuscripcion" @ViewBag.visibleSuscripcion>
+                                        <div class="inner-especialidad">
+                                            <img src="~/img/scotiabank/iconos/icon_tuplanempresa_g.svg">
+                                            <div class="label-caja-especialidad">
+                                                TELEMEDICINA PSICOLÓGICA
+                                                <small class="d-block">@ViewBag.subTextoSuscripcion</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else if (ViewBag.tipoEspecialidad == "oncologia")
+                                {
+                                    <div class="caja-especialidad medicina-general fuente-accesible" @ocultarBtns id="divSuscripcion" @ViewBag.visibleSuscripcion>
+                                        <div class="inner-especialidad">
+                                            <img src="~/img/cajalosandes/iconos/icon_02mobile.svg">
+                                            <div class="label-caja-especialidad">
+                                                TELEMEDICINA ONCOLÓGICA
+                                                <small class="d-block">@ViewBag.subTextoSuscripcion</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else if (ViewBag.tipoEspecialidad == "examenes")
+                                {
+                                    <div class="caja-especialidad medicina-general fuente-accesible" id="divSuscripcion" @ViewBag.visibleSuscripcion>
+                                        <div class="inner-especialidad">
+                                            <img src="~/img/masproteccionsalud/iconos/icono_examenes_agendar.svg">
+                                            <div class="label-caja-especialidad">
+                                                Exámenes Médicos
+                                                <small class="d-block">Toma de exámenes</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else if (@ViewBag.HostURL.ToString().Contains("saludtumundoseguro."))
+                            {
+                                @if (ViewBag.tipoEspecialidad == "oncologia")
+                                {
+                                    <div class="caja-especialidad medicina-general fuente-accesible" @ocultarBtns id="divSuscripcion" @ViewBag.visibleSuscripcion>
+                                        <div class="inner-especialidad">
+                                            <img src="~/img/cencosud/iconos/icon_tuplanempresa_g.svg">
+                                            <div class="label-caja-especialidad">
+                                                TELEMEDICINA ONCOLÓGICA
+                                                <small class="d-block">@ViewBag.subTextoSuscripcion</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else if (ViewBag.tipoEspecialidad == "psicologia")
+                                {
+                                    <div class="caja-especialidad medicina-general fuente-accesible" @ocultarBtns id="divSuscripcion" @ViewBag.visibleSuscripcion>
+                                        <div class="inner-especialidad">
+                                            <img src="~/img/cencosud/iconos/icon_atencion-psicologica.svg">
+                                            <div class="label-caja-especialidad">
+                                                TELEMEDICINA PSICOLÓGICA
+                                                <small class="d-block">@ViewBag.subTextoSuscripcion</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else if (ViewBag.tipoEspecialidad == "examenes")
+                                {
+                                    <div class="caja-especialidad medicina-general fuente-accesible" @ocultarBtns id="divSuscripcion" @ViewBag.visibleSuscripcion>
+                                        <div class="inner-especialidad">
+                                            <img src="~/img/cencosud/iconos/icon_examenes-preventivos.svg">
+                                            <div class="label-caja-especialidad">
+                                                Exámenes Preventivos
+                                                <small class="d-block">Plan de salud</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else if (ViewBag.tipoEspecialidad == "orientacion")
+                                {
+                                    <div class="caja-especialidad medicina-general fuente-accesible" @ocultarBtns id="divSuscripcion" @ViewBag.visibleSuscripcion>
+                                        <div class="inner-especialidad">
+                                            <img src="~/img/cencosud/iconos/icon_agenda-asesorias.svg">
+                                            <div class="label-caja-especialidad">
+                                                Asesorías
+                                                <small class="d-block">GES CAEC</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                            else if (@ViewBag.HostURL.ToString().Contains("metlife."))
+                            {
+                                <div class="caja-especialidad medicina-general fuente-accesible" @ocultarBtns id="divSuscripcion" @ViewBag.visibleSuscripcion>
+                                    <div class="inner-especialidad">
+                                        <img src="~/img/metlife/agendar-medicina-especialista.svg">
+                                        <div class="label-caja-especialidad">
+                                            @ViewBag.textoSuscripcion
+                                            <small class="d-block">@ViewBag.subTextoSuscripcion</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else if (@ViewBag.HostURL.ToString().Contains("vivetuseguro.wedoctorsmx"))
+                            {
+                                <div class="caja-especialidad medicina-general fuente-accesible" @ocultarBtns id="divSuscripcion" @ViewBag.visibleSuscripcion>
+                                    <div class="inner-especialidad">
+                                        <img src="~/img/scotiabank/iconos/icon_tuplanempresa_g.svg">
+                                        <div class="label-caja-especialidad">
+                                            TU PLAN SEGURO
+                                            <small class="d-block">Medicina General y Especialista</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else if (ViewBag.HostURL.ToString().Contains("laaraucana."))
+                            {
+                                <div class="caja-especialidad medicina-general fuente-accesible" @ocultarBtns id="divSuscripcion" @ViewBag.visibleSuscripcion>
+                                    <div class="inner-especialidad">
+                                        <img src="~/img/la-araucana/iconos/especialidades-agendables--icon.svg">
+                                        <div class="label-caja-especialidad">
+                                            ESPECIALIDADES AGENDABLES
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            else
+                            {
+                                <div class="caja-especialidad medicina-general fuente-accesible" @ocultarBtns id="divSuscripcion" @ViewBag.visibleSuscripcion>
+                                    <div class="inner-especialidad">
+                                        <img src="~/img/scotiabank/iconos/icon_tuplanempresa_g.svg">
+                                        <div class="label-caja-especialidad">
+                                            @ViewBag.textoSuscripcion
+                                            <small class="d-block">@ViewBag.subTextoSuscripcion</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            @if ((@ViewBag.HostURL.ToString().Contains("prevenciononcologica.") || ViewBag.IdClientePlataforma == ClientePrevencion) && ViewBag.tipoEspecialidad == null)
+                            {
+                                <div class="caja-especialidad medicina-general fuente-accesible" id="divEspecialidadCajaOncologia" @ViewBag.visibleSuscripcion>
+                                    <div class="inner-especialidad">
+                                        <img src="/img/cajalosandes/iconos/icon_02mobile.svg" alt="oncologia">
+                                        <div class="label-caja-especialidad">
+                                            Telemedicina Oncológica
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @if (ViewBag.IdClientePlataforma != ClientePrevencion && !@ViewBag.HostURL.ToString().Contains("prevenciononcologica.") && !@ViewBag.HostURL.ToString().Contains("masproteccionsalud.") && !@ViewBag.HostURL.ToString().Contains("saludtumundoseguro."))
+                            {
+                                <div class="caja-especialidad especialista fuente-accesible" @ocultarBtnScotia id="divOndemand" @ViewBag.visibleOndemand>
+                                    <div class="inner-especialidad">
+                                        <i class="fal fa-user-md"></i>
+                                        <div class="label-caja-especialidad">
+                                            @ViewBag.textoOndemand
+                                            <small class="d-block"><strong>@ViewBag.subTextoOndemand</strong></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+                            @if (@ViewBag.HostURL.ToString().Contains("metlife."))
+                            {
+                                <div class="caja-especialidad veterinario fuente-accesible" @ocultarBtns id="divVeterinaria" @ViewBag.visibleVet>
+                                    <div class="inner-especialidad">
+                                        <img src="~/img/metlife/agendar-bienestar-integral.svg" alt="" />
+                                        <div class="label-caja-especialidad">
+                                            @ViewBag.textovet
+                                            <small class="d-block"> <strong>@ViewBag.subTextovet</strong></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else if (ViewBag.IdClientePlataforma != ClientePrevencion && !@ViewBag.HostURL.ToString().Contains("prevenciononcologica.") && !@ViewBag.HostURL.ToString().Contains("masproteccionsalud.") && !@ViewBag.HostURL.ToString().Contains("saludtumundoseguro."))
+                            {
+                                <div class="caja-especialidad veterinario fuente-accesible" @ocultarBtns id="divVeterinaria" @ViewBag.visibleVet>
+                                    <div class="inner-especialidad">
+                                        <img src="~/img/iconos/wellnes-b.svg" alt="" />
+                                        <div class="label-caja-especialidad">
+                                            @ViewBag.textovet
+                                            <small class="d-block"> <strong>@ViewBag.subTextovet</strong></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            @*REVISAR EL CAMPO VISIBLEPRESENCIAL DE EMPRESA CONFIG PARA MOSTRAR ESTE DIV, SE HACE EN DURO AHORA POR URGENCIA!!!!*@
+                            @if (ViewBag.HostUrl.ToString().Contains("medical.") && ViewBag.activaPresencial == 1)
+                            {
+                                <div ocultarBtns class="caja-especialidad presencial fuente-accesible" id="divPresencial">
+                                    <div class="inner-especialidad">
+                                        <img src="~/img/iconos/medicina-presencial.svg" />
+                                        <div class="label-caja-especialidad">
+                                            Medicina Presencial
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    @*<div class="col-12  col-md-6 col-xl-auto pl-lg-0 d-none">
+            <div class="cont-caja-especialidad">
+            REVISAR EL CAMPO VISIBLEPRESENCIAL DE EMPRESA CONFIG PARA MOSTRAR ESTE DIV, SE HACE EN DURO AHORA POR URGENCIA!!!!
+            @if(ViewBag.HostUrl.ToString().Contains("medical.")){
+            <div ocultarBtns class="caja-especialidad especialista fuente-accesible" id="divPresencial">
+            <div class="inner-especialidad">
+            <img src="~/img/scotiabank/iconos/icon_medicinaespecialista_g.svg" />
+            <div class="label-caja-especialidad">
+            Medicina Presencial
+            </div>
+            </div>
+            </div
+            }
+            </div>
+            </div>*@
+                    <div class="col-12 col-md-4 col-lg-auto col-xl-auto pl-lg-0">
+                        <label class="label-especialidades">Especialidad</label>
+                        @if (ViewBag.HostURL.ToString().Contains("prevenciononcologica.") || ViewBag.IdClientePlataforma == ClientePrevencion)
+                        {
+                            <div class="busqueda-profesionales" @(@ViewBag.tipoEspecialidad == "examenes" ? "hidden" : "")>
+                                <img src="~/img/cajalosandes/iconos/icon_select.svg" alt="Buscar">
+                                <div class="caja-busqueda">
+                                    <h2 class="mb-2">
+                                        Buscar Especialidad
+                                    </h2>
+                                    <div class="dropdown">
+                                        <select class="btn btn-outline-primary dropdown-toggle itemEspecialidad" id="especialidades">
+
+
+                                            @*@foreach (var lista in Model.vwHorasMedicos)
+                                {
+                                <option class="dropdown-item" data-id="@lista.IdEspecialidad" value="@lista.IdEspecialidad">@lista.Especialidad</option>
+                                }*@
+                                        </select>
+                                    </div>
+                                    <input type="hidden" id="especialidadSeleccionada" value="0" />
+                                </div>
+                            </div>
+                        }
+                        else @if (ViewBag.HostURL.ToString().Contains("masproteccionsalud."))
+                        {
+
+                            <div class="busqueda-profesionales" @(@ViewBag.tipoEspecialidad == "examenes" ? "hidden" : " ")>
+                                <img src="~/img/masproteccionsalud/iconos/icon_select.svg">
+                                <div class="caja-busqueda">
+                                    <h2 class="mb-2">
+                                        Buscar Especialidad
+                                    </h2>
+                                    <div class="dropdown">
+                                        <select class="btn btn-outline-primary dropdown-toggle itemEspecialidad" id="especialidades">
+                                            @*@foreach (var lista in Model.vwHorasMedicos)
+                                {
+                                <option class="dropdown-item" data-id="@lista.IdEspecialidad" value="@lista.IdEspecialidad">@lista.Especialidad</option>
+                                }*@
+                                        </select>
+                                    </div>
+                                    <input type="hidden" id="especialidadSeleccionada" value="0" />
+                                </div>
+                            </div>
+                        }
+                        else @if (ViewBag.HostURL.ToString().Contains("saludtumundoseguro."))
+                        {
+                            <div class="busqueda-profesionales" @(@ViewBag.tipoEspecialidad == "examenes" || @ViewBag.tipoEspecialidad == "orientacion" ? "hidden" : "")>
+                                <img src="~/img/cencosud/iconos/icon_search.svg">
+                                <div class="caja-busqueda">
+                                    <h2 class="mb-2">
+                                        Buscar Especialidad
+                                    </h2>
+                                    <div class="dropdown">
+                                        <select class="btn btn-outline-primary dropdown-toggle itemEspecialidad" id="especialidades">
+                                            @*@foreach (var lista in Model.vwHorasMedicos)
+                                {
+                                <option class="dropdown-item" data-id="@lista.IdEspecialidad" value="@lista.IdEspecialidad">@lista.Especialidad</option>
+                                }*@
+                                        </select>
+                                    </div>
+                                    <input type="hidden" id="especialidadSeleccionada" value="0" />
+                                </div>
+                            </div>
+                        }
+                        else @if (ViewBag.HostURL.ToString().Contains("metlife."))
+                        {
+                            <div class="busqueda-profesionales">
+                                <i class="fal fa-search"></i>
+                                <div class="caja-busqueda">
+                                    <h2 class="mb-2">
+                                        Buscar Especialidad
+                                    </h2>
+                                    <div class="dropdown">
+                                        <select class="btn btn-outline-primary dropdown-toggle itemEspecialidad" id="especialidades">
+                                            @*@foreach (var lista in Model.vwHorasMedicos)
+                                {
+                                <option class="dropdown-item" data-id="@lista.IdEspecialidad" value="@lista.IdEspecialidad">@lista.Especialidad</option>
+                                }*@
+                                        </select>
+                                    </div>
+                                    <input type="hidden" id="especialidadSeleccionada" value="0" />
+                                </div>
+                            </div>
+                        }
+
+                        else @if (ViewBag.HostURL.ToString().Contains("vivetuseguro.wedoctorsmx"))
+                        {
+                            <div class="busqueda-profesionales">
+                                <!--<img alt="Icono Doctor" src="~/img/icono-doctor.svg" class="mr-3" />-->
+                                <img src="~/img/vivetuseguro/iconos/icon-buscar.svg">
+                                <div class="caja-busqueda">
+                                    <h2 class="mb-2">
+                                        Buscar Especialidad
+                                    </h2>
+                                    <div class="dropdown">
+                                        <select class="btn btn-outline-primary dropdown-toggle itemEspecialidad" id="especialidades">
+                                            @*@foreach (var lista in Model.vwHorasMedicos)
+                                {
+                                <option class="dropdown-item" data-id="@lista.IdEspecialidad" value="@lista.IdEspecialidad">@lista.Especialidad</option>
+                                }*@
+                                        </select>
+                                    </div>
+                                    <input type="hidden" id="especialidadSeleccionada" value="0" />
+                                </div>
+                            </div>
+                        }
+
+                        else @if (ViewBag.HostURL.ToString().Contains("laaraucana."))
+                        {
+                            <div class="busqueda-profesionales">
+                                <img class="custom-icon" src="~/img/la-araucana/iconos/especialidades-agendables--icon-dark.svg">
+                                <div class="caja-busqueda">
+                                    <div class="dropdown">
+                                        <select class="form-select btn btn-outline-primary dropdown-toggle itemEspecialidad" id="especialidades"></select>
+                                    </div>
+                                    <input type="hidden" id="especialidadSeleccionada" value="0" />
+                                </div>
+                            </div>
+                        }
+
+                        else
+                        {
+                            <div class="busqueda-profesionales">
+                                <!--<img alt="Icono Doctor" src="~/img/icono-doctor.svg" class="mr-3" />-->
+                                <i class="fa fa-search-plus"></i>
+                                <div class="caja-busqueda">
+                                    <h2 class="mb-2">
+                                        Buscar Especialidad
+                                    </h2>
+                                    <div class="dropdown">
+                                        <select class="btn btn-outline-primary dropdown-toggle itemEspecialidad" id="especialidades">
+                                            @*@foreach (var lista in Model.vwHorasMedicos)
+                                {
+                                <option class="dropdown-item" data-id="@lista.IdEspecialidad" value="@lista.IdEspecialidad">@lista.Especialidad</option>
+                                }*@
+                                        </select>
+                                    </div>
+                                    <input type="hidden" id="especialidadSeleccionada" value="0" />
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <!-- END NORMAL-->
+                }
+            }
+        </div>
+        <div class="accesible-tools-desktop d-none">
+            <div class="accesible-btn">
+                <button id="increase-font">A+</button>
+                <button id="normal-font">A</button>
+                <button id="decrease-font">A-</button>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-9 col-lg-9 mt-4">
+
+
+
+                <!--Start:: Cajas de profesionales-->
+                <div class="row mb-md-4" id="divProfesionales">
+                    <!--<div class="row mb-4" id="">-->
+                    @*<div class="col-12 col-sm-6 col-lg-3 mt-3">
+                    <div class="card caja-profesional">
+                    <img src="~/img/inti.jpg" class="card-img-top" alt="Foto Médico" />
+                    <div class="card-body">
+                    <div class="cont-data">
+                    <div class="data-atencion">
+                    <span class="header-aviso-atencion">
+                    <i class="fal fa-calendar-alt"></i> Próxima Atención
+                    </span>
+                    <div class="calificacion">
+                    <i class="fas fa-star positiva"></i>
+                    <i class="fas fa-star positiva"></i>
+                    <i class="fas fa-star positiva"></i>
+                    <i class="fal fa-star"></i>
+                    <i class="fal fa-star"></i>
+                    </div>
+                    <span class="nombre-profesional">
+                    <span class="titulo-profesional">Dr.</span>
+                    Inti Paredes
+                    </span>
+                    <span class="titulo-profesional"> Médico Cirujano</span>
+                    <span class="d-block fecha-atencion"><strong>22 JUN 2020</strong> </span>
+                    <span class="d-block hora-atencion">09:30 hrs - AM</span>
+                    <span class="d-block aviso-hora">
+                    Hora más próxima
+                    </span>
+                    </div>
+                    <div class="caja-opciones">
+                    <a href="#"><i class="fal fa-search"></i></a>
+                    <a href="#"><i class="fal fa-calendar-alt"></i></a>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    *@
+                    @* <div class="col-12 col-sm-6 col-lg-3 mt-3">
+                    <div class="card caja-profesional no-flip">
+                    <img src="~/img/inti.jpg" class="card-img-top" alt="Foto Médico" />
+                    <div class="card-body">
+                    <div class="cont-data">
+                    <div class="data-atencion">
+                    <span class="header-aviso-atencion">
+                    <i class="fal fa-calendar-alt"></i> Próxima Atención
+                    </span>
+                    <div class="calificacion">
+                    <i class="fas fa-star positiva"></i>
+                    <i class="fas fa-star positiva"></i>
+                    <i class="fas fa-star positiva"></i>
+                    <i class="fal fa-star"></i>
+                    <i class="fal fa-star"></i>
+                    </div>
+                    <span class="nombre-profesional">
+                    <span class="titulo-profesional">Dr.</span>
+                    Sebastián Bustamante
+                    </span>
+                    <span class="titulo-profesional"> Médico Cirujano</span>
+                    <span class="d-block fecha-atencion"><strong>22 JUN 2020</strong> </span>
+                    <span class="d-block hora-atencion">09:30 hrs - AM</span>
+                    <span class="d-block aviso-hora">
+                    Hora más próxima
+                    </span>
+                    <a href="#" class="btn btn-primary btn-block mt-4">Agendar</a>
+                    </div>
+                    <div class="caja-opciones">
+                    <a href="#"><i class="fal fa-search"></i></a>
+                    <a href="#"><i class="fal fa-calendar-alt"></i></a>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>*@
+                </div>
+                <!--End:: Cajas de profesionales-->
+                <!-- Nueva Tarjeta-->
+                <div class="row mb-4 d-none" id="divProfesionales">
+                    @*<div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-3 cajaInfoMedico d-none">
+                    <div class="card caja-profesional no-flip">
+                    <div class="front">
+                    <div class="atencion-status-top">
+                    <div class="leyenda">
+                    Atención Pagada
+                    </div>
+                    </div>
+                    <div class="card-body">
+                    <img src="http://localhost:7000/upload/foto_perfil/3/file[0]_20200814114632_rxkm2f2qfwo.png" />
+                    <div class="cont-data">
+                    <div class="data-atencion">
+                    <span class="header-aviso-atencion"><i class="fal fa-calendar-alt" aria-hidden="true"></i><span>Próxima Atención</span></span>
+                    <span class="nombre-profesional"><span class="titulo-profesional">Dr.
+                    </span><span>Cristian Farias Lazo</span></span><span class="titulo-profesional">Urología</span>
+                    <div class="calificacion">
+                    <i class="fas fa-star positiva" aria-hidden="true"></i><i class="fas fa-star positiva" aria-hidden="true"></i><i class="fas fa-star positiva" aria-hidden="true"></i>
+                    <i class="fas fa-star positiva" aria-hidden="true"></i><i class="fas fa-star positiva" aria-hidden="true"></i>
+                    </div>
+                    <span class="d-block fecha-atencion"><strong>21 ENE. 2021</strong></span><span class="aviso-hora">Hora más próxima</span>
+                    </div>
+                    <div class="caja-opciones">
+                    <a href="#"><i class="fal fa-search" aria-hidden="true"></i></a><a href="#"><i class="fal fa-calendar-alt" aria-hidden="true"></i></a>
+                    </div>
+                    </div>
+                    <button class="btn btn-primary btn-block btn-sm my-2 btn-agendar">Agendar</button>
+                    </div>
+                    </div>
+                    <div class="back"></div>
+                    </div>
+                    </div>*@
+                </div>
+                <!-- Nueva Tarjeta-->
+            </div>
+            @if (ViewBag.IdClientePlataforma != "148" && !ViewBag.HostURL.ToString().Contains("unabactiva.") && !ViewBag.HostURL.ToString().Contains("activa.unab."))
+            {
+                <div class="col-md-3 col-lg-3 pl-0 pl-lg-2 mt-4" id="perfilProfesional">
+                    @switch (ViewBag.IdClientePlataforma)
+                    {
+                        //BANNERS VIDACAMARA
+                        case "176":
+                        case "184":
+                        case "185":
+                        case "186":
+                        case "187":
+                        case "188":
+                        case "189":
+                        case "190":
+                            <div class="cont-banner d-none d-md-block" @ViewBag.visibleBanners>
+                                <img src="~/img/vidacamara/banners/1.png" class="mb-4" alt="" />
+                                <img src="~/img/vidacamara/banners/2.png" class="mb-4" alt="" />
+                                <img src="~/img/vidacamara/banners/3.png" class="d-md-block mb-4" alt="" />
+                            </div>
+                            <!--Banners Mobile-->
+                            <div id="image-slider-vidacamara" class="d-md-none splide image-slider">
+                                <div class="splide__track">
+                                    <ul class="splide__list">
+                                        <li class="splide__slide">
+                                            <a href="javascript:void(0);" class="d-md-none">
+                                                <img src="~/img/vidacamara/banners/1.png" class="mb-4" alt="" />
+                                            </a>
+                                        </li>
+                                        <li class="splide__slide">
+                                            <a href="javascript:void(0);" class="d-md-none">
+                                                <img src="~/img/vidacamara/banners/2.png" class="mb-4" alt="" />
+                                            </a>
+                                        </li>
+                                        <li class="splide__slide">
+                                            <img src="~/img/vidacamara/banners/3.png" class="mb-4" alt="" />
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            break;
+                        <!--Inicio Banners Coopeuch -->
+                        case "108":
+                            <div class="cont-banner d-none d-md-block" @ViewBag.visibleBanners>
+                                <a target="_blank">
+                                    <img src="~/img/coopeuch/banners/banner1.jpg" class="mb-4" alt="" />
+                                </a>
+                                <a target="_blank">
+                                    <img src="~/img/coopeuch/banners/banner2.jpg" class="mb-4" alt="" />
+                                </a>
+                                <a target="_blank">
+                                    <img src="~/img/coopeuch/banners/banner2.jpg" class="mb-4" alt="" />
+                                </a>
+                                <a target="_blank">
+                                    <img src="~/img/coopeuch/banners/banner3.jpg" class="mb-4" alt="" />
+                                </a>
+                            </div>
+                            <!--Banners Mobile-->
+                            <div id="image-slider-coopeuch" class="d-block d-md-none splide image-slider" @ViewBag.visibleBanners>
+                                <div class="splide__track">
+                                    <ul class="splide__list">
+                                        <li class="splide__slide">
+                                            <a href="javascript:void(0);">
+                                                <img src="~/img/coopeuch/banners/banner1.jpg" class="mb-4" alt="" />
+                                            </a>
+                                        </li>
+                                        <li class="splide__slide">
+                                            <a href="javascript:void(0);">
+                                                <img src="~/img/coopeuch/banners/banner2.jpg" class="mb-4" alt="" />
+                                            </a>
+                                        </li>
+                                        <li class="splide__slide">
+                                            <a href="javascript:void(0);">
+                                                <img src="~/img/coopeuch/banners/banner3.jpg" class="mb-4" alt="" />
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--Fin Banners Coopeuch -->
+                            break;
+                        default:
+                            //aqui Marito
+                            @if (ViewBag.codigoTelefono == "CO")
+                            {
+                                <div @ViewBag.visibleBanners>
+                                    <div class="cont-banner d-none d-md-block">
+                                        <img src="~/img/banners/07072023/340x480-1.png" class="mb-4" alt="" />
+                                    </div>
+                                </div>
+                            }
+                            else if (ViewBag.codigoTelefono == "MX")
+                            {
+                                <div @ViewBag.visibleBanners>
+                                    <div class="cont-banner d-none d-md-block">
+                                        <img src="~/img/banners/07072023/340x480-1.png" class="mb-4" alt="" />
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div @ViewBag.visibleBanners>
+                                    <div class="cont-banner d-none d-md-block d-lg-block">
+                                        <img src="~/img/banners/07072023/340x480-1.png" class="mb-4" alt="" />
+                                        <a href="https://www.farmazon.cl/" target="_blank">
+                                            <img src="~/img/banners/07072023/340x480.png" class="mb-4" alt="" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <!--Banners Mobile-->
+                                <div @ViewBag.visibleBanners>
+                                    <div id="image-slider-medismart" class="d-md-none splide image-slider">
+                                        <div class="splide__track">
+                                            <ul class="splide__list">
+                                                <li class="splide__slide">
+                                                    <img src="~/img/banners/07072023/325x130-1.png" class="mb-4" alt="" />
+                                                </li>
+                                                <li class="splide__slide">
+                                                    <a href="" target="_blank" class="d-md-none">
+                                                        <img src="~/img/banners/07072023/325x130.png" class="mb-4" alt="" />
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            break;
+                    }
+                    <div id="divPerfilProfesional"></div>
+                </div>
+            }
+            else if (ViewBag.HostURL.ToString().Contains("unabactiva.") || ViewBag.HostURL.ToString().Contains("activa.unab."))
+            {
+                <div class="col-md-2 col-xl-3 pl-0 pl-lg-2 mt-4" id="perfilProfesional">
+                    <div class="cont-banner d-none d-md-block" @ViewBag.visibleBanners>
+                        <a href="javascript:void(0)" style="pointer-events: none; cursor: default;">
+                            <img src="~/img/unab/banners/banner1.jpg" class="mb-4" alt="" />
+                        </a>
+                        <a href="javascript:void(0)" style="pointer-events: none; cursor: default;">
+                            <img src="~/img/unab/banners/banner2.jpg" class="mb-4" alt="" />
+                        </a>
+                        <a href="javascript:void(0)" style="pointer-events: none; cursor: default;">
+                            <img src="~/img/unab/banners/banner3.jpg" class="mb-4" alt="" />
+                    </div>
+                    <!--Banners Unab-->
+                    <div id="image-slider-unab" class="d-block d-md-none splide image-slider" @ViewBag.visibleBanners>
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                <li class="splide__slide">
+                                    <img src="~/img/unab/banners/banner1.jpg" class="mb-4" alt="" />
+                                </li>
+                                <li class="splide__slide">
+                                    <img src="~/img/unab/banners/banner2.jpg" class="mb-4" alt="" />
+                                </li>
+                                <li class="splide__slide">
+                                    <img src="~/img/unab/banners/banner3.jpg" class="mb-4" alt="" />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--Fin Banners Unab -->
+                </div>
+            }
+            else
+            {
+                <div class="col-md-2 col-xl-3 pl-0 pl-lg-2 mt-4" id="perfilProfesional">
+                    <div class="cont-banner" @ViewBag.visibleBanners>
+                        <div id="image-slider" class="splide">
+                            <div class="splide__track">
+                                <ul class="splide__list">
+                                    <li class="splide__slide">
+                                        <img src="~/img/colmena/banner-01.jpg" class="" alt="" />
+                                    </li>
+                                    <li class="splide__slide">
+                                        <img src="~/img/colmena/banner-02.jpg" class="" alt="" />
+                                    </li>
+                                    <li class="splide__slide">
+                                        <img src="~/img/colmena/banner-03.jpg" class="" alt="" />
+                                    </li>
+                                    <li class="splide__slide">
+                                        <img src="~/img/colmena/banner-04.jpg" alt="" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="divPerfilProfesional">
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!--Old UI-->
+<div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app d-none">
+    <!--Begin:: App Aside Mobile Toggle-->
+    <button class="kt-app__aside-close" id="kt_user_profile_aside_close">
+        <i class="la la-close"></i>
+    </button>
+    <!--End:: App Aside Mobile Toggle-->
+    <div class="col-md-5">
+        <!--Begin:: App Aside-->
+        <!--begin:: Widgets/Applications/User/Profile1-->
+        <div class="kt-portlet kt-portlet--tabs kt-portlet--height-fluid">
+            <div class="kt-portlet__head">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">
+                        Ingresar datos de atención
+                    </h3>
+                </div>
+            </div>
+            <div class="kt-portlet__body">
+                <!--begin::Widget -->
+                <div class="kt-widget kt-widget--user-profile-1">
+                    <div>
+                    </div>
+                    <div>
+                        <br>
+                        <input class="form-control" type="date" value="" id="fechaBusqueda" name="fechaBusqueda">
+                    </div>
+                    <div>
+                        <br>
+                        <select class="form-control" id="bloquesHora" name="bloquesHora">
+                            <option value="0">Seleccionar Hora</option>
+                        </select>
+                    </div>
+                </div>
+                <!--begin:: Widgets/New Users-->
+                <!--end:: Widgets/New Users-->
+            </div>
+        </div>
+        <!--end:: Widgets/Applications/User/Profile1-->
+        <!--End:: App Aside-->
+    </div>
+    <div class="col-md-7">
+        <div class="kt-portlet kt-portlet--tabs kt-portlet--height-fluid">
+            <div class="kt-portlet__head">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">
+                        Médicos disponibles
+                    </h3>
+                </div>
+            </div>
+            <div id="pnlMedicos" class="align-self-center" style="display:none">
+                <div class="row">
+                    <div class="col-lg-12 kt-align-center">
+                        <img src="~/metronic_demo7/assets/media/sinResultado.PNG" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h5>No hay médicos disponibles con los datos seleccionados</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="kt-portlet__body" style="display:block;" id="listaMedicos">
+                <div class="tab-content" id="tab-content">
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="genero" />
+    <input type="hidden" id="fechaNacimiento" />
+</div>
+<!--End::App-->
+</div>
+<form asp-action="agenda_1" class="container-fluid" id="formSubmit">
+    <input type="hidden" id="idMedico" name="idMedico" />
+    <input type="hidden" id="valorizacion" name="valorizacion" />
+</form>
+<div id="kt_scrolltop" class="kt-scrolltop">
+    <i class="fa fa-arrow-up"></i>
+</div>
+<div class="modal fade" id="modal-validacion" tabindex="-1" aria-labelledby="modal-validacion" data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-validacion"
+                <h4 class="mt-2" id="nombreUsuarioModalValidacion"></h4>
+                <p>
+                    Por favor, necesitamos que valides tu mail y teléfono para continuar. La información de salud será
+                    enviada por el médico al correo que decidas.
+                </p>
+                <div class="container-fluid">
+                    <div class="row align-items-center datos-validacion">
+                        <div class="col-11 col-lg-6">
+                            <label for="">Correo Electrónico</label>
+                            <input type="text" class="form-control" id="correoMedical" required />
+                        </div>
+                        <div class="col-11 col-lg-6">
+                            <label for="">Teléfono</label>
+                            <input type="text" class="form-control" id="telefonoMedical" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid py-2">
+                    <div class="row">
+                    </div>
+                    <div class="cont-btns mt-4" style="text-align :right">
+                        <button type="button" id="btnModificarTelefonoEmail" class="btn btn-primary btn-sm btn-validacion">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-psiquiatria-ccu" tabindex="-1" aria-labelledby="modal-validacion" data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md">
+        <div class="modal-content">
+            <div class="top-modal">
+                <button type="button" class="close-modal mt-4 mr-3" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+            </div>
+            <div class="modal-validacion">
+                <div class="header-modal">
+                    <img src="~/img/ccu/icono-psico.svg" alt="" />
+                    <h4 class="mt-2" id="">Completa el Formulario con tus datos personales.</h4>
+                </div>
+
+
+
+                <div class="container-fluid">
+                    <div class="row align-items-center datos-validacion">
+                        <div class="col-11 col-lg-12 mb-3">
+                            <label for="">Nombre: </label>
+                            <input type="text" class="form-control" id="nombreMC" disabled />
+                        </div>
+                        <div class="col-11 col-lg-12 mb-3">
+                            <label for="">Rut: </label>
+                            <input type="text" class="form-control" id="rutMC" required disabled />
+                        </div>
+
+                        <div class="col-11 col-lg-12 mb-3">
+                            <label for="">Correo Electrónico</label>
+                            <input type="text" class="form-control control-editable" id="correoMC" required placeholder="nombre@gmail.com" />
+                        </div>
+                        <div class="col-11 col-sm-12 mb-3">
+                            <label for="">Teléfono</label>
+                            <input type="text" class="form-control control-editable" id="telefonoMC" required />
+                        </div>
+
+                    </div>
+                </div>
+                <div class="container-fluid">
+
+                    <div class="cont-btns">
+                        <button type="button" id="btnEnviarSac" class="btn btn-primary col-lg-12 btn-validacion">Agendar Hora</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Atencion Pediatrica -->
+<div class="modal fade " id="modalAlertaPediatria" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="top-modal">
+                <img class="logo-modal-ped" src="~/img/isotipo.png" /> &nbsp;&nbsp;&nbsp;&nbsp;
+                <h5>Indicaciones</h5>
+                <button type="button" class="close-modal" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <span id="mensajePediatrico"></span>
+                <strong>
+                    <br /><br />
+                    <span>Por favor, inicia sesión con sus datos para poder agendar su cita médica y disfrutar de una experiencia de atención óptima.</span>
+                </strong>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-lg" id="btnCerrar" data-dismiss="modal">Entiendo, continuar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin Modal Atencion Pediatrica -->
+<!--Modal Medicamentos-->
+<div class="modal fade" id="modal-medicamentos" tabindex="-1" role="dialog" aria-labelledby="modal-medicamentos-label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title only-pc"><b>Cómo comprar los medicamentos recetados por tu doctor en </b><b style="color: red;">Pharol?</b><b> MUY FÁCIL</b></h2>
+                <!-- <h5 class="modal-title only-cel"><b>Cómo comprar los medicamentos recetados por tu doctor en </b><b style="color: red;">Pharol?</b></h5> -->
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body only-pc">
+                <div class="card-group my-4">
+                    <div class="card text-center bg-transparent border-0 col-md">
+                        <img src="~/img/medicamentos/Paso1.png" class="card-img" alt="...">
+                        <div class="card-body cards ">
+                            <div class='number'>
+                                <p><b>1</b></p>
+                            </div>
+                            <div class='text-card'>
+                                <p>
+                                    Recibiras un <b>Whatsapp</b> de nuestras <b>Ejecutivas Virtuales</b> con: Link de
+                                    Compra. Medicamentos y Código de Descuento Depacho
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card text-center bg-transparent border-0 d-flex col-md">
+                        <img src="~/img/medicamentos/Paso2.png" class="card-img" alt="...">
+                        <div class="card-body cards ">
+                            <div class='number'>
+                                <p><b>2</b></p>
+                            </div>
+                            <div class='text-card'>
+                                <p>
+                                    <b>Elige</b> en Pharol, la opción de <b>medicamentos</b> de tu preferencia. Siempre
+                                    te mostraremos los más economicos
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card text-center bg-transparent border-0 d-flex col-md">
+                        <img src="~/img/medicamentos/Paso3.png" class="card-img" alt="...">
+                        <div class="card-body cards ">
+                            <div class='number'>
+                                <p><b>3</b></p>
+                            </div>
+                            <div class='text-card'>
+                                <p>
+                                    Incorpora tus datos personales, dirección de despacho y <b>
+                                        Código de Descuento:
+                                        MEDISMART
+                                    </b> Luego, del pago te llegará un mail de confirmación de la compra!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card text-center bg-transparent border-0 d-flex col-md">
+                        <img src="~/img/medicamentos/Paso4.png" class="card-img" alt="...">
+                        <div class="card-body cards ">
+                            <div class='number'>
+                                <p><b>4</b></p>
+                            </div>
+                            <div class='text-card'>
+                                <p>
+                                    <b>Y Listo!!!<br></b> Muy pronto iremos a dejar los medicamentos<b> a tu casa!</b>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="modal-body only-cel">
+                <div class="group">
+                    <div class="cel-mod" style= "width: 20rem;"></div>
+                        <img src="assets/img/pop-up/Paso1.png" class="cel-img" alt="...">
+                        <div class="cel-body">
+                            <div class='number'>
+                                <p><b>1</b></p>
+                            </div>
+                            <div class='text-card'>
+                                <p>Recibiras un <b>Whatsapp</b> de nuestras <b>ejecutivas <br> virtuales</b> con: Link de <br> Compra. Medicamentos<br> y Código de Descuento Depacho</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
+<!--end. Modal Medicamentos-->
+<!--Modal Invierno Informativo-->
+
+<div class="modal fade" id="modal-invierno" tabindex="-1" aria-labelledby="modal-invierno" data-backdrop="static"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm modal-invierno">
+        <div class="modal-content">
+
+            <img src="~/img/modal-invierno/1.jpg" alt="" />
+            <h2>Antes de agendar...</h2>
+            <p>
+                Es fundamental <b>contar con el documento de identidad a mano</b> y asegurarse de que esté <b>vigente</b> para llevar a cabo la consulta. 
+            </p>
+            <div class="modal-footer">
+
+                <button class="btn btn-primary" data-dismiss="modal">Entendido</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--Modal Invierno Informativo-->
+<!--Modal Psiquiatria-->
+<div class="modal fade" id="modal-psiquiatria" tabindex="-1" aria-labelledby="modal-psiquiatria" data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm modal-psiquiatria">
+        <div class="modal-content">
+            <img src="~/img/modal-psiquiatria/alert-icon.svg" alt="Atencion" />
+            <div class="modal-description">
+                <div>
+                    <p>Para agendar una consulta en especialidad <b>Psiquiatría</b> debes ser derivado por un profesional de psicología Medismart.</p>
+                    <p>si no tienes una hora agendada de psicología puedes hacerlo aquí. </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-agenda-ps" class="btn btn-primary" data-dismiss="modal">AGENDAR CONSULTA PSICOLOGÍA</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal Psiquiatria-->
+<!--Modal confirmación Hora envio sac-->
+<div class="modal fade" id="modal-envio-sac" tabindex="-1" aria-labelledby="modal-envio-sac" data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="top-modal">
+                <button type="button" class="close-modal mt-4 mr-3" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+            </div>
+            <div class="modal-validacion">
+                <div class="header-modal">
+                    <h4 class="" id="">¡Tus datos han sido enviados con éxito!</h4>
+                </div>
+                <div class="modal-description">
+                    <p>Nos pondremos en contacto contigo a la brevedad.</p>
+                    <p>¡Esperamos atenderte pronto!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal confirmación Hora envio sac-->
+    <!-- end::Scrolltop -->
+    <!-- begin::Global Config(global config for global JS sciprts) -->
+    @section PageScripts {
+        <script src="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
+    }
+    @section Scripts {
+        <script src="~/signal/signalr.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+        <script src="~/js/splide.min.js"></script>
+        <script src="~/js/accesible.js"></script>
+        <script src="~/js/carrusel.js"></script>
+        <script src="~/js/modal.js"></script>
+
+
+        <script type="module">
+            import { init } from '../../js/Paciente/agendar.js?rnd=${@NumeroRandom.GetRandom()}';
+            init(@Html.Raw(Json.Serialize(Model)))
+        </script>
+        <script type="text/javascript">
+            (function () {
+                var uid = @ViewBag.uid;
+                window.uid = uid;
+                var idCliente = @ViewBag.IdClientePlataforma;
+                window.idCliente = idCliente;
+                var tipo = "@ViewBag.tipo";
+                window.tipo = tipo;
+                window.host = "@ViewBag.HostURL";
+                var tipoEspecialidad = "@ViewBag.tipoEspecialidad";
+                var codigoTelefono = "@ViewBag.codigoTelefono";
+                window.codigoTelefono = codigoTelefono;
+                window.tipoEspecialidad = tipoEspecialidad;
+            })()
+
+
+        </script>
+        <script type="text/javascript">
+            (function () {
+                var hostURL = '@ViewBag.HostURL';
+
+                var elemento = document.getElementById("items-peru");
+                var condicion = hostURL.includes("peru.");
+                console.log(condicion);
+
+                if (condicion) {
+                    elemento.classList.add("peru");
+                }
+            })();
+        </script>
+
+
+
+
+
+
+
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+    }

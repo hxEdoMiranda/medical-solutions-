@@ -1,0 +1,129 @@
+﻿@using Microsoft.Extensions.Configuration
+@model WebMVC.Models.PersonasDatosLaboral
+@inject IConfiguration Configuration
+
+
+@*<!--Nuevo Perfil-->*@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col p-0">
+            <div class="nom035form_inner card-profile">
+                <form id="form_edit_perfil">
+                    <div class="card-body py-0">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h3>Datos Laborales</h3>
+                                
+                               <div class="row">
+                                       <div class="col">
+                                        <div class="form-group">
+                                            <label class="form-label">Experiencia Laboral (Años) <span style="color:red">*</span></label>
+                                            @Html.HiddenFor(m => m.IdPersona)
+                                            @Html.TextBoxFor(m => m.Experiencia_Laboral, new { @class = "form-control", maxlength = "2", required = "required", type = "number" , min = "0" })
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="form-label">Fecha de ingreso Empresa<span style="color:red">*</span></label>
+                                            @Html.TextBoxFor(m => m.Fecha_Ingreso, "{0:dd/MM/yyyy}", new { @class = "form-control", type = "text", required = "required" })
+                                         </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col">
+                                        <div class="form-group">
+                                         <label class="form-label">Area<span style="color:red">*</span></label>
+                                            @Html.DropDownListFor(m => m.Id_Area, Model.ObtenerAreas(), new { @class = "form-control m-input",required = "required", title = "Ingresa tu Area" })
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                             <label class="form-label">Puesto<span style="color:red">*</span></label>
+                                            @Html.DropDownListFor(m => m.Id_Puesto, Model.ObtenerPuestos(), new { @class = "form-control m-input", required = "required" , title = "Ingresa tu Puesto" })
+                                        </div>
+                                    </div>
+                                </div>                                                             
+@*                               <div class="row">
+                                   <div class="col">
+                                        <div class="form-group">
+                                            <label class="form-label">Fecha de inicio función<span style="color:red">*</span></label>
+                                            @Html.TextBoxFor(m => m.Fecha_Ingreso_Puesto, "{0:dd/MM/yyyy}", new { @class = "form-control", type = "text", required = "required" })
+                                        </div>
+                                    </div>
+                                   <div class="col">
+                                        <div class="form-group">
+                                            <label class="form-label">Tipo de Contrato<span style="color:red">*</span></label>
+                                            @Html.DropDownListFor(m => m.Id_Tipo_Contrato, Model.ObtenerTipoContrato(), new { @class = "form-control m-input",required = "required" })
+                                        </div>
+                                    </div>
+                                </div>  *@
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="form-label">Fecha de inicio función<span style="color:red">*</span></label>
+                                            @Html.TextBoxFor(m => m.Fecha_Ingreso_Puesto, "{0:dd/MM/yyyy}", new { @class = "form-control", type = "text", required = "required", title = "Ingresa una fecha valida" })
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="form-label">Tipo de Contrato<span style="color:red">*</span></label>
+                                            @Html.DropDownListFor(m => m.Id_Tipo_Contrato, Model.ObtenerTipoContrato(), new { @class = "form-control m-input",required = "required", title = "Ingresa el tipo de contrato" })
+                                        </div>
+                                    </div>
+                                </div>                               
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                             <label class="form-label">Tipo de Jornada <span style="color:red">*</span></label>
+                                            @Html.DropDownListFor(m => m.Id_Tipo_Jornada, Model.ObtenerTipoJornada(), new { @class = "form-control m-input",required = "required" , title = "Ingresa la Jornada"})
+                                        </div>
+                                    </div>
+                                     <div class="col">
+                                        <div class="form-group">
+                                            <label class="form-label">Rotación de Turnos<span style="color:red">*</span></label>
+                                            @Html.DropDownListFor(m => m.Rotacion_Turno, Model.ObtenerRotacionTurno(), new { @class = "form-control m-input",required = "required" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col cont-guardar-info">
+                                <button type="submit" id="btn_guardar_info" class="btn btn-success btn-guardar-info">Siguiente</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--end::Nuevo Perfil-->
+
+
+
+@section Scripts {
+    <script src="~/js/Usuario/config.js?9rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script type="module">
+        import { init } from '../../js/Cuestionario/PacienteDatosLaboral.js';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+
+            var uid = @ViewBag.uid;
+
+            window.uid = uid;
+             var idEdit = @ViewBag.idEdit;
+                window.idEdit = idEdit;
+             var idCliente = '@ViewBag.idCliente';
+            window.idCliente = idCliente;
+
+        })()
+    </script>
+}

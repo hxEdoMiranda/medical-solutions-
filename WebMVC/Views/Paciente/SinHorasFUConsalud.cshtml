@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Fila Unica";
+    Layout = "_LayoutExterno";
+
+}
+@section Styles  {
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+
+}
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+    <div class="cont-cargas">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                   <div class="text-center">
+                       <h2>Recuerda que el horario de atención para Pediatría Atención Inmediata es de Lunes a Domingo de @ViewBag.HoraInicio a @ViewBag.HoraFin  hrs.</h2>
+                       <a class="btn btn-warning mt-5" href="https://clientes.consalud.cl/clickdoctor/">Volver</a>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+ 
+    <script>       
+
+          var HoraInicio = @ViewBag.HoraInicio;            
+            window.HoraInicio = HoraInicio;   
+            var HoraFin = @ViewBag.HoraFin;
+            window.HoraFin = HoraFin;
+    </script>
+   
+}

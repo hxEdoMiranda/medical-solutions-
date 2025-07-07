@@ -1,0 +1,5396 @@
+﻿/*@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
+
+:root {
+    --step--2: clamp(0.91rem, calc(0.77rem + 0.72vw), 1.28rem);
+    --step--1: clamp(1.09rem, calc(0.90rem + 0.99vw), 1.60rem);
+    --step-0: clamp(1.31rem, calc(1.04rem + 1.34vw), 2.00rem);
+    --step-1: clamp(1.58rem, calc(1.21rem + 1.80vw), 2.50rem);
+    --step-2: clamp(1.89rem, calc(1.41rem + 2.41vw), 3.13rem);
+    --step-3: clamp(2.27rem, calc(1.63rem + 3.20vw), 3.91rem);
+    --step-4: clamp(2.72rem, calc(1.88rem + 4.22vw), 4.88rem);
+    --step-5: clamp(3.27rem, calc(2.16rem + 5.54vw), 6.10rem);
+    --primary-color: #EF7C00;
+    --secondary-color: #0069B6;
+    --tertiary-color: #564B52;
+    --accent-color: #E81E2B;
+    --light-color: #FFF;
+    --dark-color: #333;
+    --font-family: 'Nunito', sans-serif !important;
+    --base-font-size: 16px;
+    --background-ui: #E5E5E5;
+    --menu-color: #364F6B;
+    --transition: all .3s ease-out;
+}
+
+body {
+    font-family: var(--font-family) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-family) !important;
+}
+
+.body-home .cont-card h1 {
+    display: none;
+}
+
+.body-home .cont-card .card {
+    width: 96%;
+    margin: auto;
+    margin-bottom: 51px;
+    height: 188px;
+    background-color: var(--light-color) !important;
+    border: 2px solid var(--tertiary-color) !important;
+}
+
+.body-home .footer-home {
+    color: var(--tertiary-color);
+    margin-bottom: 64px;
+}
+
+.body-home .footer-home .terminos a {
+    color: var(--tertiary-color);
+}
+
+container.container-colmena {
+    max-width: 1306px;
+}
+
+/* cencosud */
+/* Imágenes Login */
+.img1 {
+    background-image: url(../../img/cencosud/login/960x978.jpg) !important;
+}
+
+.img2 {
+    background-image: url(../../img/cencosud/login/960x978.jpg) !important;
+}
+
+.img3 {
+    background-image: url(../../img/cencosud/login/960x978.jpg) !important;
+}
+
+.img4 {
+    background-image: url(../../img/cencosud/login/960x978.jpg) !important;
+}
+
+.img5 {
+    background-image: url(../../img/cencosud/login/960x978.jpg) !important;
+}
+
+.img6 {
+    background-image: url(../../img/cencosud/login/960x978.jpg) !important;
+}
+
+/* Imagenes Login */
+
+/* Logo */
+.logotipo-desktop {
+    max-width: 430px;
+    background-image: url(../../img/cencosud/logos/logo-cencosud-scotia.svg) !important;
+    height: 98px !important;
+}
+
+/* Logo */
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    font-size: 38px !important;
+    color: #FF7D00 !important;
+    font-family: var(--font-family);
+    font-weight: 700;
+}
+
+p {
+    font-family: var(--font-family) !important;
+}
+
+ul,
+ol {
+    font-family: var(--font-family);
+    text-align: justify;
+}
+
+.kt-login__head {
+    display: flex;
+    justify-content: center !important;
+}
+
+.kt-form .form-group .ms-label {
+    color: #564B52 !important;
+    text-transform: uppercase !important;
+    font-size: 20px !important;
+    font-family: var(--font-family);
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .form-control {
+    height: 45px;
+    border: 1px solid #564B52 !important;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    background: rgba(235, 237, 242, 0.4);
+}
+
+a#kt_login_forgot {
+    color: #564B52 !important;
+    text-decoration: underline !important;
+}
+
+button#kt_login_signin_submit.btn-primary,
+button#kt_login_forgot_submit.btn-primary {
+    background: linear-gradient(90deg, #FD5C00 -9.17%, #FD8000 112.78%);
+    color: #FFF;
+    height: 60px !important;
+    font-size: 20px !important;
+    font-weight: bold;
+    border: 1px solid #FF7D00 !important;
+    font-family: var(--font-family);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    border-radius: 25px !important;
+}
+
+button#kt_login_signin_submit.btn-primary:hover,
+button#kt_login_forgot_submit.btn-primary:hover {
+    background: #FD8000;
+    background-color: #FD8000;
+    border: 1px solid #FD8000;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .form-control {
+    background: #FFF;
+}
+
+.kt-login__container .form-group {
+    margin-top: 40px;
+}
+
+.kt-login__container .accesible-tools {
+    margin-top: 56px !important;
+}
+
+.logotipo {
+    text-align: center;
+}
+
+.logo-convenios {}
+
+.logo-convenios .logotipo {
+    justify-content: center;
+    display: flex;
+    gap: 56px;
+    margin-bottom: 2rem;
+}
+
+/* button */
+button#kt_login_signin_submit.btn-primary {
+    border-radius: 5px !important;
+    max-width: 247px;
+    margin: auto;
+    margin-top: 53px !important;
+}
+
+button#kt_login_forgot_submit.btn-primary,
+button#kt_login_forgot_cancel {
+    width: 88%;
+    margin: 40px auto 0 !important;
+}
+
+button#kt_login_forgot_cancel {
+    border: 2px solid #E30000;
+    color: #E20714;
+    border-radius: 20px;
+    height: 60px !important;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* button */
+.kt-reset__password .alert.alert-danger .alert-close i {
+    color: #e81e2b;
+    font-size: 14px !important;
+}
+
+.kt-login__divider {
+    margin-top: 0px !important;
+}
+
+.kt-login__extra {
+    margin-bottom: 8px !important;
+    border-top: 1px solid #C8C8C8 !important;
+    margin-top: 20px !important;
+}
+
+.fuente-accesible span {
+    color: #564B52;
+    font-size: 13px;
+}
+
+
+span#fechaTextInfo {
+    color: #564B52;
+    font-size: 13px;
+}
+
+
+a#kt_login_account {
+    color: #564B52;
+}
+
+.accesible-btn button {
+    width: 40px !important;
+    height: 40px !important;
+    border: 1px solid var(--secondary-color);
+    font-weight: 500 !important;
+    font-size: 1.2rem !important;
+    border-radius: 4px;
+    color: var(--secondary-color);
+    transition: all .3s ease-out !important;
+    background-color: #FFF;
+}
+
+.accesible-tools-desktop {
+    margin-top: 4rem;
+}
+
+.accesible-btn button:hover {
+    color: var(--light-color);
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.logo-convenios {
+    display: flex;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-top: 0rem !important;
+    margin-top: 100px !important;
+}
+
+.logo-convenios img {
+    width: auto;
+    height: auto;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    width: 560px !important;
+    margin: 0 auto !important;
+}
+
+.login-footer .terminos {
+    justify-content: space-evenly !important;
+    margin-bottom: 2rem !important;
+    display: flex !important;
+}
+
+.login-footer .terminos a {
+    display: inline-block;
+    margin-left: 0;
+    color: #564B52;
+}
+
+.logotipo {
+    width: 100%;
+    height: auto;
+}
+
+/* End Imagenes Login */
+/******************************/
+/* Home */
+.body-home {
+    background-image: none;
+}
+
+.body-home .logo-home {
+    padding: 0rem;
+    box-shadow: 0px 4px 23px rgba(0, 0, 0, 0.25);
+    z-index: 1000;
+}
+
+.logo-home img {
+    /* width: 65% !important;*/
+    width: 315px;
+    padding: 5px !important;
+}
+
+.body-home .logo-home img {
+    width: 250px;
+}
+
+.body-home .menu-top {
+    /* width: 50%;*/
+    background: transparent;
+    padding: 20px 30px;
+    /*min-width: 500px;*/
+    max-width: 510px !important;
+    width: 100%;
+    margin-left: auto;
+}
+
+div#item-alertas a img,
+div#item-ayuda a img,
+div#item-salir img {
+    max-width: 40px !important;
+    width: 100% !important;
+    padding: 5px;
+}
+
+.dropdown item-menu-top img {
+    max-width: 24px !important;
+    width: 100% !important;
+}
+
+.menu-top .item-menu-top {
+    text-align: center;
+}
+
+.mensaje-superior label {
+    margin-bottom: 0px !important;
+    font-size: .8rem !important;
+}
+
+.item-menu-top .label-menu {
+    color: var(--tertiary-color) !important;
+    font-size: 12px !important;
+    text-transform: uppercase !important;
+}
+
+.item-menu-top:hover .label-menu {
+    color: var(--primary-color) !important;
+}
+
+.mensaje-superior {
+
+}
+
+    .mensaje-superior .inner-mensaje {
+        padding: 1rem;
+        border: 2px solid var(--primary-color) !important;
+        border-radius: 5px !important;
+        margin-right: 2rem;
+        animation-name: anima-mensaje;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        box-shadow: none !important;
+        text-transform: uppercase;
+        color: var(--tertiary-color);
+        display: block;
+        min-width: 250px;
+        max-width: 400px;
+        width: 100%;
+        font-family: Nunito, sans-serif;
+    }
+
+
+.container_sbh {
+    background-color: #f4f4f5;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.top-banner {
+    margin-bottom: 0px !important;
+}
+
+.top-banner {
+    display: flex;
+    width: 85%;
+    background-image: none !important;
+    gap: 25px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-start;
+    margin: 0 auto;
+}
+
+.top-banner img {
+    width: auto !important;
+    height: auto;
+    border: 0 !important;
+    display: none !important;
+}
+
+.top-banner .legend,
+.top-banner .legend_2 {
+    font-weight: bold !important;
+    font-size: 30px !important;
+    color: #564B52 !important;
+    margin-left: 0px !important;
+}
+
+.text-warning {
+    color: var(--light-color) !important;
+}
+
+.top-banner p {
+    font-size: 20px;
+    color: #564B52;
+    margin-bottom: 0;
+    font-weight: 300;
+}
+
+.banner-mensaje-superior {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 24px;
+    box-shadow: 0px 4px 11px rgba(95, 95, 95, 0.25);
+}
+
+.banner-mensaje-agendamiento {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    top: 120px;
+    background: linear-gradient(180deg, #E4E4E4 0%, #FFFFFF 25.26%);
+    background-color: #FFF;
+}
+
+.cont-card_cencosud {
+    max-width: 1026px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: max(1rem, 2rem, 3rem);
+    justify-content: center;
+}
+
+.card_cencosud {
+    width: 280px;
+    border-radius: 5px;
+    cursor: pointer;
+    background: linear-gradient(to right, var(--primary-color) 27%, #9677D8 27%, #9677D8 27%);
+}
+
+.card-sbbody {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.card-sbbody h1 {
+    font-size: 15px !important;
+    font-weight: 700;
+    margin: 0 0 0 20px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.container_cencosud h2 {
+    font-size: var(--step-0) !important;
+    font-weight: bold;
+    margin: 100px 85px;
+}
+
+.card_cencosud img {
+    width: 24%;
+    padding-right: 5px;
+}
+
+.footer_cencosud {
+    width: 100%;
+    position: static;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 800;
+}
+
+.box_sbfooter,
+.box_sbfooter a {
+    display: flex;
+    justify-content: space-between;
+    color: #564B52;
+    padding: 20px 0px;
+    font-weight: bold;
+}
+
+.box_sbfooter {
+    width: 100%;
+    max-width: 1026px;
+    justify-content: space-around;
+    margin: auto;
+}
+
+
+.footer_cencosud_logos {
+    width: 100%;
+    background-color: #E20714;
+    padding: 15px 100px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: auto;
+}
+
+.footer_contlogos {
+    max-width: 726px;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer_contlogos img:nth-of-type(1) {
+    width: 142px;
+}
+
+.footer_contlogos img:nth-of-type(2) {
+    width: 170px;
+}
+
+.footer_contlogos img:nth-of-type(3) {
+    width: 190px;
+}
+
+
+.call {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.call h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    margin: 5px 0px 0px 0px;
+}
+
+.call img {
+    width: 5%;
+}
+
+.copy {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.container_cencosud .accesible-tools {
+    display: block;
+    margin: 3rem 0;
+}
+
+.container_cencosud .accesible-btn button {
+    border: 1px solid var(--primary-color) !important;
+    color: var(--primary-color) !important;
+    background-color: #FFF !important;
+}
+
+.toolbar-cargas a.btn-icon.btn-info {
+    background-color: transparent !important;
+    color: #564b52 !important;
+}
+
+
+.swal2-container.swal2-shown {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.swal2-icon.swal2-warning {
+    border-color: rgb(227 0 0 / 30%) !important;
+    color: var(--primary-color);
+     !important;
+}
+
+.card.card-profile {
+    color: #564B52 !important;
+    border: 1px solid rgba(86, 75, 82, 0.2) !important;
+    border-radius: 10px !important;
+    background-color: #fff !important;
+    max-width: 100% !important;
+}
+
+
+.text-danger {
+    color: #e30000 !important;
+}
+
+.alert.alert-success,
+.btn-brand {
+    background: var(--primary-color) !important;
+    border: 1px solid var(--primary-color) !important;
+    color: var(--light-color);
+}
+
+
+
+
+/* End Home */
+/******************************/
+/* Paciente */
+
+#aceptaTodo {
+    margin-right: .5rem;
+}
+
+#btnAceptar {
+    max-width: 200px;
+    margin: auto;
+}
+
+.check-aceptacion {
+    border-top: 1px solid #DDDBDC !important;
+    display: flex;
+    align-items: self-start;
+}
+
+div#kt_header {
+    padding: 20px 5px !important;
+    border: 0px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 800;
+    height: fit-content;
+    border-bottom: none !important;
+}
+
+.iniciales {
+    background-color: var(--primary-color);
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+
+.stepper {
+    display: none;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    height: 160px;
+    background-image: none !important;
+    background-repeat: no-repeat !important;
+    background-position: unset !important;
+    background-color: #EF7C00;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    margin-bottom: 4rem;
+    margin-top: 13rem;
+}
+
+.stepper.stepper-cencosud {
+    display: flex;
+}
+
+.stepper .init-step {
+    width: 100px;
+    display: none;
+}
+
+.stepper img {
+    display: none;
+}
+
+.stepper .flecha {
+    display: none
+}
+
+.cont-steps {
+    width: 100% !important;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly !important;
+    background-color: transparent !important;
+    margin: 0 auto;
+    max-width: 1300px;
+}
+
+.cont-steps img {
+    display: block;
+}
+
+.step {
+    display: flex;
+    gap: 1.5rem;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.step.active .step-icon {
+    background-color: transparent !important;
+}
+
+.cont-steps img {
+    width: 66px !important;
+    height: 66px !important;
+    border: 0px !important;
+}
+
+.label-step {
+    font-size: 20px;
+    text-transform: uppercase;
+    min-width: 142px;
+    color: var(--light-color);
+    font-weight: 500;
+}
+
+.step.active .label-step {
+    color: var(--light-color);
+}
+
+.titulo-servicio {
+    font-size: 23px !important;
+    font-weight: bold;
+    margin: 0;
+    color: #564B52 !important;
+}
+
+.cont-caja-especialidad {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.caja-especialidad {
+    display: flex !important;
+    justify-content: center;
+    min-width: 260px;
+    width: 100%;
+    min-height: 80px;
+    border-radius: 5px !important;
+    padding: 12px 0.6rem !important;
+    margin-right: 0 !important;
+    color: #FFF;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .3s ease-out;
+    justify-content: center;
+    border: 2px solid var(--primary-color);
+    background-color: var(--light-color);
+    color: var(--primary-color);
+    /*height: 95px;*/
+    margin-left: 0;
+    font-size: 14px;
+    margin-left: 0;
+}
+
+    .caja-especialidad.active {
+        background-color: var(--primary-color);
+        color: var(--light-color);
+        
+    }
+
+    .medicina-general {
+    }
+
+.especialista {
+    
+}
+
+.caja-especialidad:hover {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+}
+
+.inner-especialidad {
+    display: flex !important;
+    width: 98% !important;
+    align-items: center !important;
+    justify-content: flex-start;
+    gap: 20px !important;
+}
+
+.inner-especialidad img {
+    max-width: 55px;
+    width: 100%;
+}
+
+.busqueda-profesionales {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0.6rem !important;
+    margin-left: 1rem !important;
+    min-width: 280px !important;
+    max-width: 300px;
+    min-height: 80px;
+    background-color: #FFF;
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--tertiary-color) !important;
+}
+
+    .busqueda-profesionales i {
+        color: var(--tertiary-color);
+    }
+
+    .busqueda-profesionales .dropdown .btn {
+        width: 100% !important;
+        border: none;
+        font-weight: 700 !important;
+        font-size: 1rem !important;
+        letter-spacing: 0px;
+        color: #564B52 !important;
+        padding: 0 !important;
+    }
+
+.busqueda-profesionales img {
+    width: auto !important;
+    height: auto !important;
+}
+
+.busqueda-profesionales i {
+    color: var(--tertiary-color) !important;
+}
+
+.caja-busqueda {
+    min-width: 220px !important;
+}
+
+.kt-header--fixed .kt-wrapper {
+    padding-top: 0px !important;
+}
+
+.formulario-confirma-hora h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #564B52 !important;
+    margin-bottom: 25px;
+}
+
+#divSinHorasDisponibles {}
+
+/*.kt-menu__item--here img {width: 70%!important;margin: 0 auto;}*/
+.kt-menu__item--here img {
+    width: 50% !important;
+    margin: 0 auto;
+}
+
+.ms-label-menu {
+    font-size: 10px !important;
+}
+
+.kt-menu__item a,
+.kt-menu__item i {
+    color: #999999 !important;
+}
+
+.kt-aside--minimize .kt-aside-menu .kt-menu__nav {
+    max-height: 78vh;
+    margin-top: 115px;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.ms-link-icon {
+    font-size: 30px !important;
+}
+
+.kt-aside--minimize .kt-aside-menu .kt-menu__nav > .kt-menu__item {
+    /* margin-bottom: 40px !important;*/
+}
+
+.selector-horas i {
+    color: #564b52 !important;
+}
+
+/* EndPaciente */
+/******************************/
+/* PacienteAgenda */
+.swal2-styled.swal2-confirm {
+    border: 0;
+    border-radius: 5px !important;
+    background: initial;
+    background-color: var(--primary-color);
+     !important;
+}
+
+.swal2-icon.swal2-question::before {
+    content: "?";
+    color: var(--primary-color);
+}
+
+.swal2-icon.swal2-question {
+    border-color: var(--primary-color);
+    color: #48465B;
+}
+
+.caja-base {
+    background-color: #FFF;
+    color: #564B52 !important;
+    border: 1px solid rgba(86, 75, 82, 0.2);
+    padding: 2rem !important;
+}
+
+.formulario-confirma-hora .header-formulario p {
+    margin-bottom: 0;
+    font-weight: 700 !important;
+    letter-spacing: 0px !important;
+    text-align: left;
+    font-size: 18px !important;
+    color: #564B52;
+}
+
+.caja-confirmacion-hora p {
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+}
+
+.header-formulario i {
+    color: var(--secondary-color) !important;
+    font-size: 3rem;
+}
+
+.dropzone.dropzone-default.dropzone-brand {
+    border-color: var(--secondary-color);
+}
+
+.btn.btn-outline-secondary {
+    color: var(--tertiary-color);
+    border: 2px solid var(--primary-color);
+    background-color: var(--light-color);
+    font-size: 14px !important;
+    border-radius: 5px !important;
+    font-weight: 700 !important;
+    
+}
+
+.btn {
+    line-height: 1;
+}
+
+.btn-primary {
+    color: #fff !important;
+    background-color: var(--primary-color);
+    font-size: 14px !important;
+    border-radius: 5px !important;
+    font-weight: 700 !important;
+    border: 1px solid var(--primary-color);
+    margin-bottom: 0;
+}
+
+.stepper-sv .titulo-step {
+    color: #E30000 !important;
+    text-transform: uppercase;
+    /*margin-bottom: 0.5rem !important;*/
+    font-size: 14px !important;
+    font-weight: 900 !important;
+}
+
+.step {
+    padding: 8px 16px;
+    border-radius: 5px;
+}
+
+.step.active {
+    border: 2px solid var(--light-color);
+}
+
+.step-icon {
+    background-color: transparent;
+    gap: 16px;
+}
+
+.step-icon i {
+    font-size: 32px;
+}
+
+.stepper-sv .step {
+    display: flex !important;
+    flex-direction: row-reverse !important;
+}
+
+.carga-archivos h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #564B52 !important;
+}
+
+.box_step {
+    text-align: left;
+}
+
+.stepper-sv .label-step {
+    text-align: left !important;
+    color: #E30000 !important;
+    text-transform: uppercase;
+    font-size: 10px;
+}
+
+.dropzone.dropzone-default .dropzone-msg-desc {
+    color: #666666 !important;
+    font-size: 1rem !important;
+}
+
+.check-aceptacion a {
+    color: var(--secondary-color) !important;
+    text-decoration: underline;
+    font-weight: 700;
+}
+
+h3.dropzone-msg-title.fuente-accesible::before {
+    content: "\f055";
+    display: block;
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 300;
+    font-size: 30px;
+    color: var(--secondary-color);
+}
+
+.caja-reserva,
+.perfil-profesional {
+    transition: all ease-out .3s;
+    background-color: #fff;
+    margin: 0 auto;
+    color: #564B52 !important;
+    border: 1px solid rgba(86, 75, 82, 0.2) !important;
+    border-radius: 10px !important;
+    padding: 2rem !important;
+}
+
+.caja-reserva h4.fuente-accesible {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #564B52 !important;
+}
+
+p {
+    color: #656565;
+}
+
+.btn.btn-pill {
+    border-radius: 5px !important;
+}
+
+/*.caja-reserva .btn-am {
+    background-color: #E30000 !important;
+    border-color: #E30000 !important;
+}*/
+
+
+.caja-reserva .btn-am,
+.caja-reserva .btn-pm {
+    background-color: #F7BE80;
+    border-color: #F7BE80;
+    color: #FFF;
+    border-radius: 10px;
+}
+
+    .caja-reserva .btn-am.active,
+    .caja-reserva .btn-pm.active {
+        background-color: #EF7C00;
+        border-color: #EF7C00;
+    }
+
+.indica-dia.actual {
+    background: rgb(0 129 164) !important;
+}
+
+.leyenda-date-color {
+    line-height: 25px !important;
+}
+
+.titulo-data-horario {
+    border: 2px solid #0069B6 !important;
+    color: #0069B6 !important;
+    border-radius: 1rem !important;
+    padding: 1.3rem !important;
+    width: 100%;
+    max-width: 285px;
+}
+
+.hora-top {
+    color: #564B52 !important;
+    font-weight: 500;
+}
+
+.estado-hora small {
+    font-size: 1rem !important;
+    padding: 0.8rem !important;
+    text-align: center;
+    border-radius: 10px !important;
+    width: inherit !important;
+    display: inline-block;
+    font-weight: 700 !important;
+}
+
+.lista-horas .hora {
+    border-top: 1px solid rgba(86, 75, 82, 0.2) !important;
+}
+
+.perfil-profesional .header-perfil {
+    flex-direction: row !important;
+}
+
+.perfil-profesional .titulo-profesional {
+    color: #564B52 !important;
+}
+
+.cont-aviso .data-atencion .nombre-profesional {
+    color: #FFF !important;
+}
+
+.caja-atencion.caja-atencion-historial .nombre-profesional {
+    color: #564B52 !important;
+    font-size:22px;
+    font-weight: 700;
+}
+
+.caja-atencion.caja-atencion-historial .tipo-archivo {
+    width: auto !important;
+}
+
+.card {
+    max-width: 560px;
+    color: #564B52 !important;
+    border: 0 !important;
+    border-radius: 10px !important;
+    background-color: #FFF !important;
+    border: 1px solid rgba(86, 75, 82, 0.2) !important;
+}
+
+.caja-profesional .titulo-profesional {
+    color: #564B52 !important;
+}
+
+.caja-profesional img {
+    border: 1px solid rgba(59, 193, 205, 0) !important;
+}
+
+.front-fecha-atencion strong:before,
+.caja-profesional .fecha-atencion,
+.especialidad-profesional,
+.hora.disponible small {
+    color: var(--primary-color);
+}
+
+    .hora.disponible small {
+        background-color: var(--primary-color);
+        color: var(--light-color);
+    }
+
+    .front-fecha-atencion strong:before {
+        color: var(--tertiary-color);
+    }
+
+.especialidad-profesional {
+    font-weight: 500;
+    color: var(--tertiary-color),
+}
+
+.nombre-profesional,
+.nombre-profesional small {
+    font-weight: 500;
+}
+
+.hora.disponible .detalle-hora {
+    color: #564B52 !important;
+}
+
+.front-fecha-atencion strong {
+    font-weight: 500;
+    color: var(--secondary-color);
+}
+
+.hora.seleccionado small {
+    background-color: #DDD !important;
+    color: #999;
+    padding: .8rem !important;
+}
+
+.hora.seleccionado .detalle-hora {
+    color: #DDD !important;
+}
+
+
+.mensaje-superior .inner-mensaje.pronto,
+.mensaje-superior .inner-mensaje.hoy {
+    /*color: #FFF;*/
+    background-color: transparent !important;
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary-color) !important;
+}
+
+.mensaje-confirmacion p {
+    font-size: 1.25rem;
+    text-align: left !important;
+}
+
+.swal2-popup .swal2-content {
+    width: 100%;
+}
+
+.kt-portlet {
+    border-radius: 10px !important;
+    box-shadow: none;
+    border: 1px solid #564B52;
+    padding: 1.5rem;
+}
+
+
+.kt-portlet .form-label {
+    color: #564B52;
+    font: normal 400 15px/24px;
+}
+
+.kt-portlet .form-label .input-group {
+    color: #9093A4;
+    font: normal 400 14px/19px;
+}
+
+.card .form-group label,
+.card .form-group-input label {
+    color: #564B52;
+    font: normal 400 15px/24px;
+}
+
+.card .form-group input.form-control {
+    color: #9093A4;
+    font: normal 400 14px/19px;
+}
+
+.icono-editar-perfil {
+    background-color: #EF7C00 !important;
+}
+
+.icono-editar-perfil:hover {
+    background-color: #0069B6;
+}
+
+.btn-success {
+    padding: 10px;
+    background: linear-gradient(90deg, #FD5C00 -9.17%, #FD8000 112.78%);
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px
+}
+
+.kt-portlet .kt-portlet__head .kt-portlet__head-label .kt-portlet__head-title {
+    color: #0069B6 !important;
+    font: normal 700 17px/23px;
+}
+
+/*Perfil > antecedentes medicos*/
+.kt-portlet.cont-antecedentes-medicos .configuracionAntMedicosInfTexto {
+    font: normal 400 14px;
+}
+
+.kt-portlet.cont-antecedentes-medicos .pregunta-antecedente {
+    font: normal 700 14px;
+    color: #564B52;
+}
+
+/*Administracion de beneficiarios*/
+#div-cargas .input-group .btn-outline-primary {
+    background-color: #fff;
+    transition: all 0.3s;
+}
+
+/*Contrasenha*/
+#show_hide_password,
+#show_hide_rpassword {
+    color: #9093A4;
+    font: normal 400 14px/19px;
+}
+
+#show_hide_password i,
+#show_hide_rpassword i {
+    color: var(--primary-color);
+}
+
+#div-cargas .input-group .btn-outline-primary i {
+    color: var(--secondary-color) !important;
+    transition: all 0.3s;
+}
+
+#div-cargas .input-group .btn-outline-primary:hover {
+    background-color: var(--secondary-color);
+}
+
+#div-cargas .input-group .btn-outline-primary:hover i {
+    color: var(--light-color) !important;
+}
+
+.cont-aviso-modal .datos-fecha .fecha-atencion {
+    color: var(--primary-color) !important;
+}
+
+.modal-header.modal-header-aviso h2 {
+    font-size: 23px !important;
+    color: #564B52 !important;
+    font-weight: 700 !important;
+}
+
+.cont-aviso-modal strong {
+    color: var(--primary-color) !important;
+}
+
+.titulo-seccion {
+    color: #564B52 !important;
+}
+
+.ms-label-menu::before {
+    display: inline-block;
+    content: "";
+    border-top: 0.1rem solid #999999;
+    width: 5rem;
+    margin: 0 1rem;
+    transform: translateY(2rem);
+}
+
+.ms-label-menu {
+    line-height: 0px !important;
+    width: 100%;
+    text-align: center;
+    color: var(--tertiary-color);
+}
+
+.kt-grid.kt-grid_sc.kt-grid--desktop.kt-grid--ver.kt-grid--ver-desktop.kt-app {
+    display: flex;
+    flex-direction: column;
+}
+
+.top-banner_cencosud {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    height: 165px !important;
+    background-color: #f4f4f5;
+    margin-bottom: 4rem;
+    margin-top: 8rem;
+    gap: 30px;
+    flex-direction: row-reverse;
+    padding: 0px 20px
+}
+
+.top-banner_cencosud h1 {
+    font-weight: bold;
+    font-size: var(--step-0);
+    color: #564B52;
+}
+
+h3.mb-3.titulo-seccion,
+.header-atenciones h3.mt-5.mt-lg-0.titulo-seccion {
+    color: #564B52 !important;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    font-size: var(--step-0) !important;
+    margin: auto;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 16px;
+    margin-left: 32px;
+    margin-top: 32px !important;
+}
+
+h3.mb-3.titulo-seccion::before,
+.header-atenciones h3.mt-5.mt-lg-0.titulo-seccion::before {
+    content: "";
+    display: block;
+    background-image: url(/img/cencosud/iconos/icon_proximatencion.svg);
+    height: 50px;
+    width: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.aviso-atencion {
+    background-color: var(--secondary-color);
+    color: #FFF;
+    /*border: 1px solid rgb(131 88 221) !important;*/
+    border-radius: 10px 10px 0px 0px !important;
+    transition: all .3s ease-out;
+    height: 100%;
+    padding: 1rem !important;
+}
+
+.aviso-atencion .data-atencion .nombre-profesional {
+    text-align: left;
+    color: #FFF;
+    max-width: 100%;
+}
+
+.aviso-atencion .titulo-profesional {
+    max-width: 100%;
+}
+
+a.btn-atencion {
+    color: #564B52 !important;
+    font-weight: 700 !important;
+}
+
+.caja-atencion {
+    border: 1px solid rgba(86, 75, 82, 0.2);
+}
+
+.atencion-toolbar.atencion-proxima-toolbar {
+    margin-top: 1rem;
+    border-top: 1px solid rgba(86, 75, 82, 0.2) !important;
+}
+
+.atencion-toolbar {
+    justify-content: flex-start;
+    max-width: 600px
+}
+
+.caja-atencion .datos-fecha {
+    text-align: right;
+}
+
+.caja-atencion .header-aviso-atencion,
+.caja-atencion .header-aviso-atencion i {
+    color: var(--primary-color) !important;
+    /*display: none;*/
+}
+
+.caja-atencion .fecha-atencion {
+    color: var(--primary-color);
+    font-size: var(--step-0) !important;
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.caja-atencion .hora-atencion {
+    color: var(--tertiary-color) !important;
+    display: inline-block;
+    font-size: 24px;
+}
+
+.cont-icon-confirma {
+    text-align: left !important;
+}
+
+.caja-atencion .status-atencion {
+    background-color: #e30000 !important;
+    color: #ffffff !important;
+}
+
+.card.card-profile {
+    color: var(--tertiary-color) !important;
+    border: 1px solid var(--tertiary-color) !important;
+    border-radius: 10px !important;
+    background-color: var(--light-color) !important;
+    max-width: 100% !important;
+    padding: 2rem 0;
+}
+
+.datos-identidad .col {
+    padding-left: 0;
+}
+
+.datos-identidad .row {
+    margin-left: 0;
+    margin-right: 0
+}
+
+h1.legend.order-2.order-md-1.fuente-accesible span {
+    font-size: var(--step-0);
+}
+
+.mensaje-superior .inner-mensaje.ahora {
+    background-color: #ad0000 !important;
+}
+
+/*Biblioteca*/
+
+.card-content {
+    font-family: var(--font-family);
+}
+
+.card-content .date {
+    font-size: 12px;
+}
+
+.title-section-biblioteca {
+    font-size: var(--step-1) !important;
+    font-weight: 500;
+    color: var(--primary-color);
+    max-width: 254px;
+}
+
+.title-section-biblioteca span {
+    font-weight: 700;
+    display: block;
+    text-transform: uppercase
+}
+
+.cont-title p {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    color: #564B52 !important;
+    font-size: 18px !important;
+    text-align: left
+}
+
+.cont-icon-bar .btn-icon,
+.cont-icon-bar .btn-icon:hover {
+    color: var(--primary-color) !important;
+}
+
+.cont-icon-bar .icon-bar .inner-btn {
+    background-color: #F4A44D !important;
+}
+
+.cont-icon-bar .icon-bar .inner-btn:focus,
+.cont-icon-bar .icon-bar .inner-btn:hover,
+.cont-icon-bar .icon-bar .inner-btn:active {
+    background-color: var(--primary-color) !important;
+}
+
+.inner-btn {
+    background-color: #A378FF !important;
+}
+
+.body-home .btn-icon {
+    color: var(--primary-color);
+    font-family: var(--font-family) !important;
+}
+
+.body-home .btn-icon:hover {
+    color: var(--primary-color);
+    font-family: var(--font-family) !important;
+}
+
+.btn-icon:hover {
+    color: var(--secondary-color) !important;
+}
+
+.dropdown-biblioteca {
+    background-image: url(../../img/cencosud/iconos/icono_documento.svg) !important;
+}
+
+.stepper .flecha {
+    color: #e30000 !important;
+}
+
+.dropdown-biblioteca .btn-secondary {
+    border: 2px solid var(--primary-color) !important;
+    color: var(--primary-color) !important;
+}
+
+.swal2-icon.swal2-success [class^=swal2-success-line] {
+    background-color: #e30000 !important;
+}
+
+.swal2-icon.swal2-success .swal2-success-ring {
+    border: 0.25em solid rgb(227 0 0 / 30%) !important;
+}
+
+.swal2-icon.swal2-info {
+    border-color: rgb(227 0 0 / 30%) !important;
+    color: var(--primary-color);
+     !important;
+}
+
+.nav-tabs.nav-tabs-line.nav-tabs-line-brand.nav.nav-tabs .nav-link:hover,
+.nav-tabs.nav-tabs-line.nav-tabs-line-brand.nav.nav-tabs .nav-link.active,
+.nav-tabs.nav-tabs-line.nav-tabs-line-brand a.nav-link:hover,
+.nav-tabs.nav-tabs-line.nav-tabs-line-brand a.nav-link.active {
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.nav-tabs.nav-tabs-line.nav-tabs-line-brand.nav-tabs-line-2x,
+.nav-tabs.nav-tabs-line.nav-tabs-line-brand.nav-tabs-line-3x {
+    border-bottom-color: rgb(227 0 0 / 10%);
+}
+
+.menu-top .item-menu-top i {
+    color: var(--tertiary-color) !important;
+}
+
+.menu-top .item-menu-top:hover i,
+.menu-top .item-menu-top:hover label,
+.menu-top .item-menu-top:hover .label-menu-pac {
+    color: var(--primary-color) !important;
+}
+
+.body-home .menu-top .item-menu-top i,
+.body-home .menu-top .item-menu-top .label-menu {
+    color: var(--tertiary-color) !important;
+}
+
+.body-home .menu-top .item-menu-top .label-menu {
+    font-weight: 500;
+}
+
+.item-menu-top .dropdown-menu {
+    border: 1px solid rgba(86, 75, 82, 0.2) !important;
+}
+
+.titulo-dropdown {
+    color: var(--primary-color);
+}
+
+.opcion-ayuda a {
+    color: #564b52 !important;
+}
+
+.dropzone.dropzone-default .dropzone-msg-title {
+    text-align: center !important;
+}
+
+.order-last {
+    order: 0;
+}
+
+div#checks .check-aceptacion a,
+a#consentimiento {
+    color: var(--secondary-color) !important;
+}
+
+.fuente-accesible span#fechaTextInfo,
+.fuente-accesible span#bloqueHoraText {
+    font-size: 18px;
+    color: #564B52;
+}
+
+.kt-menu__item:hover a,
+.kt-menu__item:hover i {
+    color: #818181 !important;
+}
+
+.body-home .fecha-atencion {
+    text-align: center;
+    color: var(--tertiary-color);
+    width: 192px;
+}
+
+.body-home .btn-icon.danger {
+    color: var(--accent-color);
+}
+
+.body-home .iconos-atencion {
+    max-width: 25rem !important
+}
+
+.body-home .btn-icon {
+    margin: 0 0.4rem !important;
+    font-weight: 700;
+}
+
+.btn-outline-primary {
+    color: #666666 !important;
+    border-color: #E2E5EC !important;
+}
+
+.carga-archivos {
+    border-left: 1px solid rgba(59, 193, 205, 0.0) !important;
+}
+
+.body-home .btn-icon .leyenda-icono {
+    font-size: 0.9rem !important;
+}
+
+.body-home .datos-atencion {
+    color: #564B52;
+}
+
+.btn_volver button#btnCerrar {
+    display: flex;
+    gap: 8px;
+}
+
+.btn_volver button#btnCerrar::before,
+.cont-btn-volver a::before {
+    content: "";
+    background-image: url(../../img/cencosud/iconos/icon_volver.svg) !important;
+    height: 30px;
+    width: 30px;
+    display: block;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.cont-btn-volver a {
+    display: flex;
+    gap: 8px;
+    width: 168px;
+}
+
+.cont-btn-volver a:hover {
+    background-color: #564B52 !important;
+    border-color: #564B52 !important;
+}
+
+.card-content .title-card,
+.card-content .tags {
+    font-family: var(--font-family);
+}
+
+.condiciones-validacion-clave h6,
+.condiciones-validacion-clave ul {
+    font: normal 400 14px/19px;
+    padding: 0 15px;
+}
+
+    .condiciones-validacion-clave ul {
+        padding-left: 1rem;
+        text-align: left;
+        
+    }
+
+        .condiciones-validacion-clave ul li {
+            list-style-type: circle;
+        }
+
+        .condiciones-validacion-clave ul li::marker {
+            display: none !important;
+            color: transparent;
+        }
+
+.btn {
+    font-family: var(--font-family);
+    font-size: 14px;
+    padding: 0.625rem 2rem !important
+}
+
+.perfil-profesional input[type='checkbox'] {
+    width: 14px !important;
+    height: 14px !important;
+}
+
+.file-select::before {
+    display: contents !important;
+}
+
+.btn-info {
+    background-color: #564B52 !important;
+    border-color: #564B52 !important;
+}
+
+.btn-warning {
+    background-color: #E30000 !important;
+    border-color: #E30000 !important;
+    color: #ffffff !important;
+}
+
+select#motivoConsulta:hover {
+    background-color: #FFF !important;
+    border-color: #FFF !important;
+    color: #615152 !important;
+}
+
+/* Ajuste */
+.kt-container {
+    padding: 0px;
+}
+
+.row {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+/* Ajuste */
+
+/* EndPacienteAgenda */
+/*@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');*/
+/******************************/
+/*../../img/colmena/isotipo.png*/
+
+
+/*************************Links Generales********************************/
+
+html a:hover,
+html a:active,
+html a:focus,
+body a:hover,
+body a:active,
+body a:focus {
+    /*text-decoration: underline !important;*/
+}
+
+/**********************************************************************/
+
+
+
+/*Mario ALvarez 14062022*/
+
+body {
+    background-color: #FFF !important;
+    font-family: var(--font-family), sans-serif !important;
+}
+
+.btn-info:focus,
+.btn-info.focus {
+    box-shadow: none;
+}
+
+.text-danger {
+    color: #E30000 !important;
+}
+
+/*Stepper*/
+
+
+.step:last-child::after {
+    display: none;
+}
+
+.btn-primary:hover {
+    background-color: #564B52 !important;
+    border-color: #564B52 !important;
+    transition: all .3s ease-out;
+}
+
+.body-home .container_cencosud .accesible-btn {
+    gap: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.body-home .container_cencosud .accesible-btn button {
+    border-radius: 0 !important;
+}
+
+
+.front-fecha-atencion {
+    border: 1px solid var(--secondary);
+}
+
+.iniciales-usuario {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin-left: 80px;
+}
+
+.foto-usuario {
+    flex-shrink: 0;
+}
+
+.control-atencion.turnero-desktop {
+    display: none !important;
+}
+
+.iniciales-usuario .foto-usuario img {
+    padding: 0 !important;
+    width: 100% !important;
+    object-fit: cover;
+}
+
+.iniciales-usuario #nombreCompleto,
+#nombreCompleto {
+    font-size: 20px;
+    font-family: var(--font-family);
+    color: #564B52;
+}
+
+.logo-home>a {
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+}
+
+.kt-login__container .accesible-tools .accesible-btn button {
+    color: #FF7D00 !important;
+    border-color: #FF7D00 !important;
+    border-radius: 0 !important;
+}
+
+.kt-login__container .accesible-tools .accesible-btn button:hover {
+    background-color: red !important;
+    border-color: #FF7D00 !important;
+    color: #FFF !important;
+}
+
+.logo-convenios {
+    display: flex;
+    justify-content: space-around !important;
+    align-items: center !important;
+    margin-top: 0rem !important;
+    margin-top: 60px !important;
+}
+
+.convenioChile {
+    display: none;
+}
+
+.cont-informe {
+    margin-top: 12rem;
+}
+
+.card-informe {
+    border: 1px solid #ABA5A9;
+}
+
+.cont-caja-especialidad-cencosud {
+    display: block;
+}
+
+.toolbar-option {
+    color: var(--primary-color);
+}
+
+.toolbar-bottom-mobile a:first-child {
+    /* display: none;*/
+}
+
+
+/*Asistencia Toma Exámenes*/
+.cont-toma-examenes {
+    margin-top: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 1200px;
+}
+
+    .cont-toma-examenes .row {
+        gap: 56px;
+    }
+
+    .cont-toma-examenes .card {
+        padding: 64px 50px;
+        border: 1px solid #ABA5A9;
+        max-width: 450px;
+        background-color: #FFF !important;
+    }
+
+.cont-toma-examenes #form label {
+    font-size: 16px;
+    font-weight: 700;
+    color: #564B52 !important;
+    margin-bottom: 28px;
+    margin-top: 24px;
+}
+
+.typeahead .form-control.tt-input {
+    border: 1px solid #E2E5EC;
+    color: #495057;
+    font-size: 16px;
+}
+
+.file-select::before {
+    color: var(--secondary-color);
+}
+
+.icon_input {
+    position: relative;
+    right: auto;
+    bottom: 27px;
+    display: block;
+    left: 90%;
+}
+
+.cont-ilustracion {
+    width: 100%;
+    max-width: 313px;
+    min-height: 313px;
+    background-image: url(../../img/cencosud/examenes/foto.jpg);
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: contain;
+}
+
+.acontent_box .acontent_ti {
+    align-items: flex-start;
+    margin-top: 0;
+}
+
+.box_tex {
+    margin-top: 0;
+}
+
+.acontent_box .box_tex {
+    max-width: 800px;
+}
+
+
+
+.acontent_box .acontent_ti h2 {
+    font-size: var(--step-0);
+    font-weight: 700;
+    color: var(--primary-color);
+    max-width: 415px;
+    font-size: 32px;
+    font-family: 'Nunito', sans-serif !important;
+}
+
+.acontent_box .acontent_ti h2 span {
+    display: none;
+}
+
+.acontent_box .acontent_ti h2 br {
+    display: none;
+}
+
+.acontent_box .acontent_ti h2::before {
+    content: '¡Estamos contigo!';
+    display: block;
+    color: #564B52;
+    font-weight: 400;
+}
+
+.acontent_box .box_tex p {
+    color: #564B52;
+    font-size: 14px;
+}
+
+.nota-asistencia .btn {
+    width: auto;
+}
+
+.nota-asistencia .btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    font-weight: 700;
+    font-size: 20px;
+    transition: all .3s ease-out;
+    width: 245px;
+    font-size: var(--step-0);
+}
+
+.nota-asistencia .btn-primary:hover {
+    background-color: #564B52;
+    border-color: #564B52;
+}
+
+
+.nota-asistencia small.data-asistencia {
+    color: #564B52;
+    font-size: 14px;
+}
+
+.typaehead .icon-input {
+    display: none !important;
+}
+
+i#icon-atenciones {
+    padding-top: 5px;
+}
+
+.circulo-alerta-numero-agendada {
+    background-color: #5867dd;
+}
+
+.card-box .typeahead {
+    max-width: 370px;
+}
+
+#drop-mensajes i {
+    color: #0282A6 !important;
+    font-size: 16px;
+}
+
+#drop-mensajes .atencion-proxima-toolbar a:first-child,
+#drop-mensajes .atencion-proxima-toolbar a:first-child i {
+    color: #EB5757 !important;
+}
+
+.nombre-profesional {
+    color: #564B52;
+}
+
+#drop-mensajes .mensaje-no-atencion h1,
+#drop-mensajes .mensaje-no-atencion i {
+    color: rgba(255, 255, 255, .8) !important;
+}
+
+#drop-mensajes {
+    /* background-color: #a70404;*/
+}
+
+.nota-asistencia .col-md-6 {
+    text-align: center;
+    width: auto;
+    max-width: 256px;
+}
+
+.nota-asistencia .col-md-6 small {
+    max-width: 196px;
+    margin: auto;
+    margin-top: 32px;
+    text-align: center;
+}
+
+/*Descuentos Farmacia*/
+
+.tabla-valores-sb {
+    width: 100%;
+    /*max-width: 850px;*/
+}
+
+.tabla-valores-sb tr {
+    border-bottom: 1px solid #DDD;
+}
+
+.tabla-valores-sb tr:last-child {
+    border-bottom: none;
+}
+
+.tabla-valores-sb td {
+    /* font-size: 25px;*/
+    font-size: var(--step--1);
+    color: #564B52;
+    line-height: 1.8;
+}
+
+.tabla-valores-sb b {
+    font-weight: 700;
+}
+
+.toma-examenes-cardif {
+    max-width: 1200px;
+    width: 100%;
+    margin: auto;
+    margin-top: 0;
+}
+
+.cont-toma-examenes .card .form-control {
+    max-width: 100%;
+}
+
+.toma-examenes-cardif p {
+    width: 100%;
+}
+
+.toma-examenes-cardif p b {
+    font-size: var(--step--1);
+    font-weight: 700;
+    color: #564B52;
+    /*max-width: 850px;*/
+    display: block;
+}
+
+.toma-examenes-cardif .titulo-toma-examenes {
+    display: none;
+}
+
+.toma-examenes-cardif .cont-ilustracion {
+    width: 607px;
+    height: 607px;
+    background-image: url(../../img/cencosud/farmacia/ilustracion.svg);
+    background-size: contain;
+}
+
+.toma-examenes-cardif .col-md-auto img {
+    display: none;
+}
+
+.toma-examenes-cardif .cont-mensaje h1 {
+    /*font-size: 40px;*/
+    font-size: var(--step-1);
+    font-weight: 400;
+    color: #564B52;
+    display: flex;
+    align-items: center;
+    /* max-width: 880px;*/
+    font-weight: 400;
+}
+
+.toma-examenes-cardif .cont-mensaje h1 img {
+    width: 102px;
+    height: 102px;
+    margin: 20px;
+}
+
+.toma-examenes-cardif .cont-mensaje h1 small {
+    display: none;
+}
+
+.toma-examenes-cardif .cont-mensaje small:first-child {
+    /* display: none;*/
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #564B52;
+    display: block;
+    border-top: 1px solid #DDD;
+    padding-top: 32px;
+    /*max-width: 850px;*/
+}
+
+.toma-examenes-cardif .nota-asistencia {
+    width: auto;
+    margin-top: 32px;
+    /*max-width: 380px*/
+}
+
+.toma-examenes-cardif .nota-asistencia .btn {
+    width: 100%;
+    max-width: 444px;
+    margin: auto;
+}
+
+.data-asistencia+.row {
+    /*max-width: 850px;*/
+}
+
+.toma-examenes-cardif .nota-asistencia .data-asistencia {
+    max-width: 285px;
+    display: block;
+    margin: auto;
+    margin-top: 2rem;
+}
+
+.toma-examenes-cardif .toolbar-farmacia {
+    /*max-width: 850px;*/
+    margin: auto;
+}
+
+.toma-examenes-cardif .row .nota-asistencia:last-child .data-asistencia {
+    max-width: 260px;
+}
+
+/*Agendamiento*/
+
+/*Sala de Espera*/
+
+.sala-espera {}
+
+.titulo-sala {
+    display: none;
+}
+
+#reporte {
+    display: none;
+}
+
+.cont-consentimiento-informado {
+    display: none !important;
+}
+
+
+.hotspots .fondo-sala {
+    height: calc(100vh - 161px);
+    margin-top: 46px;
+    width: 100%;
+}
+
+.cont-alerta-sala {
+    display: none;
+}
+
+
+.cont-icon.hotspot-redes {
+    background-color: var(--primary-color);
+}
+
+.hotspot-icon:hover .cont-icon {
+    /*background-color: #564B52;*/
+}
+
+#contVolver {
+    display: none;
+}
+
+/*Hotspots*/
+.hotspot-icon {
+    background: #b17933;
+    border-radius: 10px;
+    width: 180px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    filter: drop-shadow(0px 3.70668px 12.9734px rgba(0, 0, 0, 0.35));
+    transition: all .3s ease-out;
+    border: 4px solid transparent;
+}
+
+
+.hotspot-icon .cont-icon {
+    background: transparent;
+    border-radius: 0;
+    height: auto;
+}
+
+.hotspot-icon .cont-icon i {
+    font-size: 5.5rem;
+}
+
+.hotspot-icon:hover {
+    border: 4px solid #f7f7f7;
+    color: #FFF;
+    background: var(--primary-color);
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: transparent;
+    transform: none;
+}
+
+.sala-medismart #hs-c {
+    left: 33%;
+    top: 40%
+}
+
+.sala-medismart #hs-d {
+    left: 45%;
+    top: 40%
+}
+
+.sala-medismart #hs-e {
+    left: 57%;
+    top: 40%
+}
+
+.hotspot-icon#btnAbandonarAtencion,
+.hotspot-icon#hs-g {
+    top: 40%;
+    background-color: rgba(255, 255, 255, .9);
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    color: var(--primary-color);
+}
+
+.hotspot-icon#btnAbandonarAtencion .cont-icon i,
+.hotspot-icon#hs-g .cont-icon i {
+    font-size: 4.5rem;
+}
+
+.hotspot-icon#btnAbandonarAtencion .cont-icon,
+.hotspot-icon#hs-g .cont-icon {
+    font-size: 20px;
+    margin-bottom: 0;
+    background-color: transparent;
+}
+
+.hotspot-icon#btnAbandonarAtencion:hover,
+.hotspot-icon#hs-g:hover {
+    background-color: var(--primary-color);
+    color: #FFF;
+}
+
+.sala-medismart #hs-b {
+    top: 90%;
+    left: 5%;
+}
+
+.sala-medismart #hs-g {
+    left: 80%
+}
+
+
+.hotspot-icon#hs-b {
+    width: 350px;
+    height: 56px;
+    text-align: center;
+    color: var(--primary-color);
+    background-color: rgba(255, 255, 255, .9);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 16px;
+    padding: 1rem 2rem;
+}
+
+.hotspot-icon#hs-b:hover {
+    background-color: var(--primary-color);
+    color: #FFF;
+}
+
+.hotspot-icon#hs-b .cont-icon {
+    width: auto;
+    margin-bottom: 0;
+}
+
+.hotspot-icon#hs-b .cont-icon i {
+    font-size: 30px;
+    margin-right: .5rem;
+}
+
+/*Iconos redes sociales*/
+
+.hotspot-icon#contacto,
+.hotspot-icon#facebook,
+.hotspot-icon#instagram {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.hotspot-icon#contacto i,
+.hotspot-icon#facebook i,
+.hotspot-icon#instagram i {
+    font-size: 24px;
+}
+
+.cont-icon.hotspot-redes {
+    width: auto;
+    margin-bottom: 0;
+}
+
+#cont-vc {
+    margin-top: 14rem;
+}
+
+.cont-btn-panel .btn-atencion,
+.cont-btn-vc .btn-atencion {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--light-color);
+}
+
+    .cont-btn-panel .btn-atencion:hover,
+    .cont-btn-vc .btn-atencion:hover {
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
+        color: var(--light-color);
+    }
+
+#volverSalaEspera {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    border-color: var(--primary-color);
+}
+
+.modal .modal-content .modal-header .modal-title {
+    font-weight: 900;
+    color: var(--primary-color);
+}
+
+/*Sala de espera > Panel Medios*/
+.panel-medios {
+    /*margin: 0 auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -31%);
+    padding: 5rem;*/
+}
+
+/*.panel-medios__body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    max-height: 55vh;
+    overflow-y: auto;
+}*/
+
+.panel-medios iframe {
+        min-height: 55vh;
+        height: auto;
+    }
+
+#listaBeneficiarios .card {
+    max-width: 287px;
+    width: 100%;
+    margin-bottom: 1rem;
+    /*min-width: 287px;*/
+    /*height: 416px;*/
+}
+
+/*Vida Sana*/
+
+.library-videos {
+    margin-top: 8rem;
+}
+
+
+.library-videos .titulo-seccion {
+    padding-left: 2rem;
+}
+
+.card-library.featured:hover {
+    background-image: url(../../img/cencosud/logos/cencosud-b.svg), linear-gradient(180deg, #FF7D00 0%, #0069B9 100%);
+    background-size: 100px 100px, cover;
+    background-position: 96% bottom, left top;
+}
+
+.card-library:hover {
+    background-image: url(../../img/cencosud/logos/cencosud-b.svg), linear-gradient(180deg, #FF7D00 0%, #0069B9 100%);
+    background-size: 100px 100px, cover;
+    background-position: 94% bottom, left top;
+}
+
+.note-section h1,
+.note-section p {
+    color: #FFF;
+}
+
+/*Adicionales*/
+
+.kt-container.kt-container--fluid.kt-grid__item.kt-grid__item--fluid .cont-cargas h2 {
+    text-align: center !important;
+    margin-top: 12rem;
+}
+
+.cont-cargas h2 {
+    text-align: center !important;
+}
+
+.cont-cargas #btnBuscar {
+    width: 120px;
+    color: var(--light-color);
+    background: linear-gradient(90deg, #FD5C00 -9.17%, #FD8000 112.78%);
+    font-size: 14px !important;
+    border-radius: 5px !important;
+    font-weight: 700 !important;
+    border: 1px solid var(--primary-color) !important;
+    padding: 0;
+}
+
+.cont-cargas #btnBuscar i {
+    display: none;
+}
+
+.data-carga i {
+    font-size: 14px;
+    color: #646C9A;
+}
+
+.data-carga .nombre {
+    font-size: var(--step--2);
+    font-weight: 900;
+    min-height: 80px;
+}
+
+.data-carga .nombre small {
+    font-size: 18px;
+}
+
+.card-carga .icon i {
+    color: #646C9A;
+}
+
+.toolbar-cargas .btn-icon.btn-danger {
+    color: #EB5757 !important;
+    font-family: var(--font-family);
+    background-color: transparent !important;
+}
+
+.toolbar-cargas .btn-icon.btn-info {
+    color: var(--primary-color) !important;
+    font-family: var(--font-family);
+}
+
+
+.data-carga .email,
+.data-carga .fono,
+.data-carga .movil {
+    /*text-transform: none;
+    text-align: center;*/
+}
+
+/*Adicionales*/
+
+.cont-form-beneficiario {
+    margin-top: 18rem;
+}
+
+.cont-form-beneficiario .titulo-seccion {
+    padding-left: 2rem;
+}
+
+.cont-form-beneficiario .btn.btn-outline-secondary {
+    background: linear-gradient(90deg, #FD5C00 -9.17%, #FD8000 112.78%) !important;
+    color: var(--light-color);
+}
+
+
+/*Historial*/
+#atenciones .atencion-toolbar {
+    justify-content: flex-start;
+}
+
+
+
+#atenciones .atencion-toolbar .btn-atencion:nth-of-type(1) {
+    color: #EB5757 !important;
+}
+
+.caja-atencion-historial {
+    max-width: 314px;
+}
+
+.caja-atencion-historial .header-aviso-atencion,
+.caja-atencion-historial .header-aviso-atencion i {
+    color: #564B52 !important
+}
+
+.datos-diagnostico {
+    color: #8757CD;
+    border-top: none;
+}
+
+.caja-atencion .titulo-profesional {
+    color: #564B52;
+    font-weight: 700;
+}
+
+.titulo-card-farmacia,
+.subtitulo-card-farmacia {
+    color: var(--secondary-color);
+}
+
+/*Resumen Atencion*/
+
+h3.mb-3.titulo-seccion.titulo-informe {
+    color: var(--primary-color) !important;
+    font-size: var(--step--1) !important;
+}
+
+.titulo-seccion.titulo-informe::before {
+    display: none !important;
+}
+
+.item-resumen .nombre-paciente,
+.item-resumen .nombre-profesional,
+.item-resumen .especialidad,
+.item-resumen .rut-paciente {
+    text-transform: uppercase;
+    color: #564B52 !important;
+    font-weight: 700 !important;
+}
+
+.info-resumen {
+    font-size: 16px;
+    color: #564B52 !important;
+}
+
+.legend-resumen {
+    color: var(--primary-color)
+}
+
+.leyenda-proveedor a {
+    color: var(--primary-color)
+}
+
+.item-resumen {
+    border-bottom: 1px solid #564B52
+}
+
+.archivos-atencion ul li {
+    color: var(--primary-color);
+    border-bottom: 1px solid #564B52
+}
+
+.card-informe h4 {
+    color: #564B52;
+    border-bottom: 1px solid #564B52;
+}
+
+
+.columna-examenes h3.mb-3.titulo-seccion {
+    color: var(--primary-color) !important;
+    font-size: var(--step--1) !important;
+}
+
+
+.columna-examenes h3.mb-3.titulo-seccion::before {
+    display: none;
+}
+
+
+
+
+
+/*Header top especial*/
+.kt-header-menu {
+    margin-left: 0;
+}
+
+.header-top {
+    display: inline-block;
+    height: 80px;
+    max-width: 250px;
+    min-width: 250px;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('/img/cencosud/logos/logo-cencosud-scotia.svg');
+    background-position: 0;
+    margin-right: 57px;
+    cursor: pointer;
+    margin-left: 32px;
+}
+
+#page {
+    font-size: 20px;
+    font-family: sans-serif;
+    color: var(--tertiary-color);
+}
+
+/*Asesorias cencosud*/
+
+
+.asesorias-cencosud {
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 280px;
+    display: flex;
+    gap: 56px;
+    /*width: calc(100% - 100px);
+    margin-left: 100px;*/
+}
+
+.asesorias-cencosud .cont-asesorias {
+    max-width: 800px;
+}
+
+.asesorias-cencosud .cont-ilustracion {
+    max-width: 620px;
+    width: 100%;
+    background-image: url(../../img/cencosud/asesorias/foto.jpg);
+    background-size: contain;
+}
+
+.asesorias-cencosud .cont-ilustracion img {
+    width: 100%;
+    height: auto;
+}
+
+.asesorias-cencosud .cont-asesorias {
+    font-size: var(--step--2);
+}
+
+.asesorias-cencosud .cont-asesorias h1 {
+    font-size: var(--step-0);
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+}
+
+.asesorias-cencosud .cont-asesorias p {
+    margin-bottom: 1.75rem;
+}
+
+
+.asesorias-cencosud .cont-asesorias h1 small {
+    display: block;
+    margin-bottom: 16px;
+    font-weight: 400;
+    color: #564B52;
+}
+
+.asesorias-cencosud .cont-btn {
+    padding: 0;
+}
+
+.asesorias-cencosud .cont-btn {
+    padding-left: 0;
+}
+
+.asesorias-cencosud .cont-btn .row {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.asesorias-cencosud .cont-btn small {
+    display: block;
+    color: #564B52;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.asesorias-cencosud .cont-btn .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+   max-width: 245px;
+   height: 40px;
+   font-size: 22px;
+}
+
+.top-cargas {
+    margin-top: 10rem;
+}
+
+.top-cargas img {
+    display: none;
+}
+
+/*Wikidoc - Vida Sana*/
+.library {
+    margin-top: 13rem;
+    height: 300px;
+    background: url(../../img/cencosud/vida-sana/hero-image-tiny.png) no-repeat top left;
+    display: flex;
+    align-items: center;
+    background-size: cover;
+}
+
+.title-section-biblioteca span {
+    text-transform: uppercase;
+}
+
+.hero-library .cont-title h1,
+.hero-library .cont-title p {
+    color: #fff !important;
+}
+
+.configuracion-paciente .titulo-servicio {
+    margin: 16px auto 32px auto;
+    font-size: 28px !important;
+    padding-left: 2rem;
+    font-family: 'Nunito', sans-serif !important;
+}
+
+
+/*Scrollbar*/
+
+/*Scroll columna paciente*/
+
+/* Track */
+.columna-paciente::-webkit-scrollbar-track,
+.columna-archivos::-webkit-scrollbar-track {
+    background: rgba(80, 80, 80, 0.2);
+}
+
+
+/* Handle */
+.columna-paciente::-webkit-scrollbar-thumb,
+.columna-archivos::-webkit-scrollbar-thumb {
+    background: #9677D8;
+}
+
+/* Handle on hover */
+.columna-paciente::-webkit-scrollbar-thumb:hover,
+.columna-archivos::-webkit-scrollbar-thumb:hover {
+    background: #9677D8;
+}
+
+/*Certificados*/
+
+
+
+/* Track */
+.certificados::-webkit-scrollbar-track {
+    background: #CCDEE3;
+}
+
+
+/* Handle */
+.certificados::-webkit-scrollbar-thumb {
+    background: #679DAB;
+}
+
+/* Handle on hover */
+.certificados::-webkit-scrollbar-thumb:hover {
+    background: #679DAB;
+}
+
+/*Medicamentos*/
+
+/* Track */
+.lista-medicamentos::-webkit-scrollbar-track {
+    background: rgba(80, 80, 80, 0.2);
+}
+
+
+/* Handle */
+.lista-medicamentos::-webkit-scrollbar-thumb {
+    background: #9677D8;
+}
+
+/* Handle on hover */
+.lista-medicamentos::-webkit-scrollbar-thumb:hover {
+    background: #9677D8;
+}
+
+.cont-aviso-modal .aviso-atencion #fechaAtencionModal {
+    color: rgba(255, 255, 255, .8) !important;
+}
+
+
+/*Recetas Vida Sana*/
+
+.subtitulo-receta {
+    font-size: 20px;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.subtitulo-receta+ol {
+    font-weight: 500;
+    font-size: 1.2rem;
+
+}
+
+.subtitulo-receta+ol li {
+    margin-bottom: 1rem;
+}
+
+.subtitulo-receta+ol li p {
+    line-height: 1.6;
+}
+
+.note-section.featured {
+    background-image: url(../../img/cencosud/recetas/fondo-top.png) !important;
+    margin-top: 12rem;
+    padding: 0;
+}
+
+.sidebar-nota .cont-icon-bar {
+    /* display: none;*/
+}
+
+.note-section h1 {
+    text-shadow: none;
+    color: #989898;
+    border-bottom: 5px solid var(--primary-color);
+    font-size: 40px;
+    font-weight: 900;
+}
+
+.cont-titulo-receta {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: auto;
+    justify-content: space-between
+}
+
+.cont-titulo-receta .cont-logo {
+    width: 100%;
+}
+
+.cont-titulo-receta .cont-logo img {
+    margin-bottom: 28px;
+}
+
+.sidebar.sidebar-nota {
+    /* display: none !important;*/
+}
+
+.footer-receta {
+    width: 100%;
+    height: 30px;
+    background-color: red;
+}
+
+/*************************Mediaquerys********************************/
+@media (max-width: 991.98px) {
+
+    /*Login*/
+    .logo-convenios {
+        margin-top: 0 !important;
+        flex-wrap: wrap;
+        justify-content: center !important;
+    }
+
+    .logo-convenios .logotipo {
+        width: 50%;
+        text-align: center;
+    }
+
+    .logotipo img {
+        width: 100% !important;
+        max-width: 124px;
+    }
+
+
+    .logotipo:first-child img {
+        max-width: 104px;
+    }
+
+    .logotipo:nth-of-type(2n) img {
+        max-width: 104px;
+    }
+
+    .logotipo:nth-of-type(3n) img {
+        max-width: 124px !important;
+    }
+
+
+    button #kt_login_signin_submit.btn-primary {
+        display: inline-block;
+    }
+
+
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head {
+        margin-top: 30px !important;
+    }
+
+    .cont-logo-mobile {
+        height: 100vh;
+        background-color: #FFF;
+        background-image: url('../../img/cencosud/login/login-mobile.jpg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 0 83px;
+        margin-top: 0 !important;
+        width: 100%;
+        margin: 1rem auto 1rem;
+        margin-top: 0;
+    }
+
+    .logotipo-img.logotipo-desktop {
+        margin-top: 106px !important;
+    }
+
+    .acontent_box {
+        margin: 0;
+    }
+
+    .logotipo-mobile {
+        background-image: url('../../img/cencosud/logos/logo-cencosud-scotia.svg') !important;
+    }
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+        font-size: 22px !important;
+    }
+
+    .kt-form .form-group .ms-label {
+        font-size: 12px !important;
+    }
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+        width: 100% !important;
+    }
+
+    button#kt_login_signin_submit.btn-primary,
+    button#kt_login_forgot_submit.btn-primary {
+        border-radius: 4px !important;
+        font-size: 14px !important;
+        width: 100%;
+        max-width: 200px;
+        height: auto !important;
+    }
+
+    button#kt_login_forgot_submit.btn-primary,
+    button#kt_login_forgot_cancel {
+        margin-top: 22px !important;
+    }
+
+    button#kt_login_forgot_cancel {
+        border-radius: 4px;
+        font-size: 14px;
+        height: auto;
+        max-width: 200px;
+        letter-spacing: 0;
+        height: auto !important;
+    }
+
+    .container-login {
+        position: absolute;
+        top: 272px;
+    }
+
+    button#kt_login_signin_submit.btn-primary {
+        width: 145px;
+        height: auto !important;
+        margin: 0;
+        margin-top: 0 !important;
+    }
+
+    .kt-login__extra {
+        border-top: none !important;
+    }
+
+    .row.kt-login__extra_02.align-items-center.mt-0 {
+        margin-top: 27px !important;
+    }
+
+    /*Home*/
+
+    .iniciales-usuario {
+        display: none;
+    }
+
+
+    .top-banner {
+        flex-wrap: nowrap;
+        height: 97px;
+        margin: auto;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+
+
+    .body-home .menu-top {
+        width: auto;
+        max-width: 160px;
+    }
+
+    .logo-home>a {
+        padding-left: 10px;
+    }
+
+    .logo-home img {
+        width: 100% !important;
+    }
+
+    .cont-card_cencosud .card-cencosud {
+        width: 100% !important;
+    }
+
+
+    .body-home .top-banner .legend {
+        text-align: left;
+        font-size: 18px !important;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding: 0;
+        border-radius: 0;
+    }
+
+    .top-banner img {
+        margin: 0;
+        width: 78px !important;
+    }
+
+    .kt-header__topbar img {
+        width: auto;
+    }
+
+    .kt-header__topbar.menu-top.ml-auto img {
+        width: auto !important;
+    }
+
+    .top-banner p {
+        /*display: none;*/
+    }
+
+    .body-home .logo-home img {
+        margin-bottom: 0;
+    }
+
+    div#item-alertas a img,
+    div#item-ayuda a img,
+    div#item-salir img {
+        margin-bottom: 0;
+    }
+
+    .container_cencosud h2 {
+        margin: 28px 0;
+        font-size: 18px;
+        color: var(--primary-color);
+    }
+
+    .card_cencosud img {
+        width: 43px;
+        margin-bottom: 0;
+    }
+
+    .cont-card_cencosud {
+        gap: 12px;
+        justify-content: center;
+    }
+
+    .card-sbbody h1 {
+        font-size: 14px !important;
+        width: 100%;
+        text-align: center;
+        margin-left: auto;
+    }
+
+    .card-sbbody h1 small {
+        display: none !important;
+    }
+
+    .card_cencosud {
+        background: linear-gradient(to right, var(--primary-color) 24%, #9677D8 17%, #9677D8 27%);
+        border-radius: 6px;
+    }
+
+    .footer_cencosud_logos {
+        display: none;
+    }
+
+    .footer_cencosud {
+        display: none;
+    }
+
+
+    div#kt_header {
+        bottom: auto;
+        top: 0;
+        background: none;
+        padding: 0 !important;
+    }
+
+    select#motivoConsulta {
+        width: 100%;
+    }
+
+    .btn.btn-outline-secondary {
+        margin: 15px 0px;
+        justify-content: center;
+        width: 100%;
+    }
+
+    #kt_content {
+        /*display: none;*/
+    }
+
+    .menu-top .item-menu-top .logotipo-mobile {
+        width: 130px !important;
+        background-position: center;
+    }
+
+    .kt-header-mobile--fixed .kt-header__topbar {
+        /*background: linear-gradient(to right, #ffffff 50%, #E30000 50%);*/
+    }
+
+    .powered:first-child {
+        display: none;
+    }
+
+    .stepper {
+        margin-top: 8rem !important;
+        margin-bottom: 1rem !important;
+        height: 140px;
+    }
+
+    .caja-base {
+        width: 90%;
+    }
+
+    .step {
+        flex-direction: column;
+        text-align: center;
+        /* max-width: 110px;*/
+    }
+
+    .step.step-triage {
+        max-width: none;
+    }
+
+    .step.step-triage .box-step {
+        width: 100%;
+    }
+
+    .step.step-triage .step {
+        max-width: none;
+    }
+
+
+
+    .step-icon {
+        width: 37px !important;
+        height: 37px !important;
+        border-radius: 11px;
+        flex-shrink: 0;
+    }
+
+    .step.step-triage .step-icon {
+        max-width: none;
+        width: 60px !important;
+        height: 60px !important;
+    }
+
+    .cont-steps img {
+        max-width: 40px !important;
+        width: 100%;
+        height: auto !important;
+        border: 0px !important;
+    }
+
+    .busqueda-profesionales img {
+        width: 30px !important;
+    }
+
+    select#especialidades {
+        font-size: 10px !important;
+        text-align: center;
+    }
+
+    .cont-toma-examenes {
+        margin-top: 80px;
+        margin-left: 0px;
+        max-width: 1200px;
+    }
+
+    .cont-toma-examenes .card {
+        padding: 20px;
+        max-width: 360px;
+    }
+
+    .typeahead .twitter-typeahead {
+        display: block !important;
+        width: auto;
+    }
+
+    .card_box {
+        flex-direction: row;
+    }
+
+    .form-control {
+        height: 40px;
+    }
+
+    .typeahead .twitter-typeahead input#input_codigoRegion {
+        width: 100%;
+    }
+
+    .cont-ilustracion {
+        display: none;
+    }
+
+    .asesorias-cencosud {
+        flex-direction: column;
+    }
+
+    .toma-examenes-cardif .cont-ilustracion {
+        max-width: 607px;
+        height: 235px;
+        width: 98%;
+    }
+
+    .asesorias-cencosud .cont-ilustracion {
+        display: block;
+        border-radius: 10px;
+        background-size: cover;
+    }
+
+    .asesorias-cencosud .cont-btn small {
+        margin-top: 16px;
+        margin-bottom: 32px;
+    }
+
+    .toma-examenes-cardif {
+        margin-top: 80px;
+        margin-bottom: 40px;
+    }
+
+    .home-library,
+    .library {
+        margin-top: 35px;
+    }
+
+    .nota-asistencia .btn {
+        max-width: 240px;
+        width: 100%;
+        font-size: 1rem !important;
+    }
+
+    h3.mb-3.titulo-seccion::before,
+    .header-atenciones h3.mt-5.mt-lg-0.titulo-seccion::before {
+        display: none;
+    }
+
+    .header-atenciones {
+        align-items: center;
+        justify-content: flex-start;
+        margin-left: 1rem;
+    }
+
+    .top-banner_cencosud {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .caja-atencion-historial {
+        max-width: 354px;
+    }
+
+    .toma-examenes-cardif {
+        margin-left: 0px !important;
+    }
+
+    .nota-asistencia {
+        padding-top: 15px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nota-asistencia .col-md-6 small {
+        max-width: initial;
+        margin: auto;
+        margin-top: 16px;
+        margin-bottom: 0;
+        text-align: center;
+    }
+
+    .titulo-notificaciones {
+        font-size: 1.2rem;
+        text-align: left;
+        padding: 1rem;
+        margin: 1rem 0;
+        color: #E30000;
+        font-weight: 700;
+    }
+
+
+    /*Perfil*/
+    .configuracion-paciente .titulo-servicio {
+        margin-bottom: 0;
+    }
+
+    .card.card-profile {
+        padding: 0px;
+        margin-top: 0;
+    }
+
+    .kt-portlet {
+        width: 90%;
+        margin: auto;
+    }
+
+
+
+    .caja-especialidad {
+        min-width: 0;
+        max-width: 96px;
+        /*height: 88px;*/
+        padding: 1rem 0;
+        margin-right: auto !important;
+    }
+
+    .cont-caja-especialidad {
+        justify-content: flex-start !important;
+    }
+
+    .inner-especialidad {
+        flex-direction: column;
+        gap: 10px !important;
+    }
+
+    .caja-especialidad img {
+        width: 30px;
+        height: auto;
+    }
+
+    /*Tarjetas agendamiento*/
+    .fonasa-atencion {
+        display: none;
+    }
+
+    .atencion-fonasa .front .nombre-profesional::after {
+        display: none;
+    }
+
+    .front-fecha-atencion {
+        border: none;
+    }
+
+    .cajaInfoMedico .card {
+        margin-top: 12px;
+        padding-top: 18px;
+        padding-bottom: 18px;
+        background-color: #FFF !important;
+    }
+
+    .caja-profesional .cont-data {
+        width: 210px;
+    }
+
+    /*Atención Inmediata*/
+
+
+    .cont-btn-panel .btn-atencion {
+        width: 100%;
+        margin: 10px 0px;
+    }
+
+    .dropzone.dropzone-default .dropzone-msg-title {
+        text-align: center;
+    }
+
+    h3.dropzone-msg-title.fuente-accesible::before {
+        text-align: center;
+        margin-bottom: 24px;
+    }
+
+
+
+    /*Sala de espera*/
+    .sala-espera-mobile.sala-espera-consalud .alerta-sala {
+        display: none;
+    }
+
+    .sala-espera-mobile.sala-espera-consalud .alerta-sala:last-child {
+        display: none;
+    }
+
+    .powered {
+        display: none;
+    }
+
+    .sala-espera-mobile img {
+        margin-top: 0;
+        height: 100%;
+    }
+
+    #reporte-m {
+        display: none;
+    }
+
+    .cont-fondo-mobile {
+        height: 100vh;
+        max-height: none;
+    }
+
+    .terminos {
+        display: none;
+    }
+
+    .toolbar-bottom-mobile {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    .sala-espera-mobile .btn-sala {
+        border-radius: 5px;
+        filter: drop-shadow(3.89132px 3.89132px 7.78263px rgba(0, 0, 0, 0.25));
+        background-color: #B27B35;
+        color: var(--light-color);
+        height: 100px;
+        text-shadow: none;
+        border: 2px solid transparent;
+        text-transform: uppercase;
+    }
+
+    .sala-espera-mobile .btn-sala:hover {
+        border: 2px solid #FFF;
+        background-color: var(--primary-color);
+    }
+
+    .sala-espera-mobile .btn-sala .cont-icon {
+        background-color: transparent;
+        font-size: 3rem;
+        margin-bottom: 10px;
+    }
+
+    .btn-sala .cont-icon {
+        height: auto;
+    }
+
+
+    .sala-espera-mobile .card-sala.card-media {
+        justify-content: space-around;
+        margin-top: 18rem;
+    }
+
+
+    .sala-espera-mobile .card-sala.card-function {
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .sala-espera-mobile .btn-sala#wsp-m,
+    .sala-espera-mobile .btn-sala#ingreso-m {
+        height: 82px;
+        height: 82px;
+        color: var(--primary-color);
+        background-color: #FFF;
+        border-radius: 50%;
+        font-weight: 500;
+        font-size: 10px;
+        letter-spacing: 0;
+    }
+
+    .sala-espera-mobile .btn-sala#wsp-m i,
+    .sala-espera-mobile .btn-sala#ingreso-m i {
+        color: var(--primary-color);
+        font-size: 2.4rem;
+    }
+
+    .sala-espera-mobile .btn-sala#wsp-m .cont-icon,
+    .sala-espera-mobile .btn-sala#ingreso-m .cont-icon {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .sala-espera-mobile .btn-sala#wsp-m {
+        order: 1;
+    }
+
+    .sala-espera-mobile .btn-sala#ingreso-m {
+        order: 2;
+    }
+
+    #cont-vc {
+        margin-top: 6rem;
+    }
+
+    /*Historial*/
+    .atencion-toolbar.atencion-proxima-toolbar {
+        margin-top: 0;
+    }
+
+    .cont-cargas #btnBuscar {
+        width: 100%;
+    }
+
+    .caja-atencion {
+        max-width: 314px;
+    }
+
+    .inner-card-historial .certificados {
+        display: none;
+    }
+
+    .inner-card-historial .data-atencion .nombre-profesional {
+        color: #564B52 !important;
+        font-weight: 700 !important;
+        border-right: 1px solid #564B52;
+       font-size: 14px;
+    }
+
+    .caja-atencion-historial .diagnostico {
+        font-size: 12px;
+    }
+
+    .inner-card-historial .cont-aviso {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding: 0 !important;
+    }
+
+    .cont-aviso .col-12.col-md-12.pr-0 {
+        width: 30% !important;
+        max-width: 138px;
+    }
+
+    .cont-aviso .col-12.col-md-12 {
+        width: 30% !important;
+        max-width: 150px;
+    }
+
+
+    .caja-atencion-historial .inner-card-historial .header-aviso-atencion,
+    .caja-atencion-historial .inner-card-historial .header-aviso-atencion i {
+        color: var(--secondary-color) !important;
+        font-size: 12px;
+        margin-bottom: 3px;
+    }
+
+    .datos-diagnostico small {
+        display: none;
+    }
+
+
+    /*Resumen de Atención*/
+
+    .cont-informe {
+        margin-top: 6rem;
+    }
+
+
+
+    .card-informe.informe {
+        padding: 2rem 1rem;
+    }
+
+    .card-informe informe .row {
+        margin-right: -1rem;
+        margin-left: -1rem;
+    }
+
+    .card-informe.informe .container-fluid {
+        padding: 0
+    }
+
+
+
+    .info-resumen .nombre-profesional {
+        font-size: 16px !important;
+    }
+
+    .info-resumen {
+        font-size: 16px;
+        color: #564B52 !important;
+    }
+
+
+    /*Farmacias*/
+
+    .btn-proveedor {
+        border: 1px solid #ABA5A9;
+    }
+
+    /*Mensaje Confirmacion*/
+
+    .mensaje-confirmacion .card.caja-profesional {
+        background-color: transparent !important;
+        border: none !important;
+        margin-bottom: 0;
+    }
+
+    .caja-base.mensaje-confirmacion {
+        width: 90%;
+        margin: auto;
+        box-shadow: none;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+
+
+    .cont-icon-confirma img {
+        display: none;
+    }
+
+    .cont-icon-confirma .icon-confirma {
+        display: block;
+        margin-top: 36px;
+        margin-bottom: 36px;
+        text-align: center;
+        font-size: 4rem;
+        color: var(--primary-color);
+    }
+
+    .mensaje-confirmacion p:last-child {
+        margin-bottom: 100px;
+    }
+
+    #kt_widget2_tab1_content .caja-atencion {
+        max-width: none;
+    }
+
+    /*Adicionales*/
+
+    #listaBeneficiarios .card.card-carga {
+        width: 100% !important;
+        margin: auto;
+    }
+
+    .data-carga .nombre {
+        font-size: 18px;
+    }
+
+    form#form_edit_perfil .card-body {
+        padding: 0px;
+    }
+
+    form#form_edit_perfil {
+        padding: 20px 0px;
+    }
+
+    .buscador-beneficiarios {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /*Biblioteca */
+
+    .card-content .date {
+        text-align: left;
+    }
+}
+
+
+
+@media (max-width: 668px) {
+
+    .lista-horas .hora {
+        border-top: none !important;
+    }
+
+    .lista-horas {
+        border-top: 1px solid rgb(227 0 0 / 14%) !important;
+    }
+
+    .inner-btn {
+        margin: 0.8rem auto !important;
+    }
+
+    a.js-filterable {
+        width: 100%;
+    }
+
+    .cont-cards {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .card_cencosud img {
+        width: 48px !important;
+    }
+
+    .asesorias-cencosud {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .label-caja-especialidad {
+        width: 100% !important;
+    }
+
+    .pull-right {
+        width: 20px;
+    }
+
+    .step::after {
+        width: 40px;
+        min-width: 0;
+        position: relative;
+        top: -80px;
+        left: 70px;
+    }
+
+    h1.legend_2.order-2.order-md-1 {
+        font-size: 18px !important;
+        margin-top: 3rem !important;
+    }
+
+    .top-banner_cencosud {
+        margin-top: 6rem;
+    }
+
+    .home-library,
+    .library {
+        margin-top: 60px !important;
+    }
+
+    .cont-steps {
+        text-align: center;
+    }
+
+    .stepper.stepper-cencosud {
+        width: 100% !important;
+        /*display: inline-flex !important;*/
+    }
+
+    .logo-convenios.conveniocencosud img {
+        padding: 0px 5px;
+    }
+
+    .logo-convenios.conveniocencosud {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+    .cont-toma-examenes .cont-ilustracion {
+        display: block;
+        margin-bottom: 24px;
+    }
+}
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+
+    .body-home .mensaje-superior {
+        display: none;
+    }
+
+    .mensaje-superior {
+        display: none;
+    }
+
+    #imgLogin {
+        position: fixed;
+    }
+
+    .cont-banner-login {
+        display: none;
+    }
+
+    .img1 {
+        background-image: url(../../img/cencosud/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/cencosud/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/cencosud/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/cencosud/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/cencosud/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/cencosud/login/548x850.jpg);
+    }
+}
+
+
+
+
+@media (max-width: 1369px) {
+    .container_cencosud h2 {
+        /* margin: 100px 0px !important;*/
+    }
+
+    .body-home .mensaje-superior {
+        display: none;
+    }
+}
+
+
+
+.container_cencosud h2 {
+    margin: 0px 0px 85px 85px !important;
+    color: var(--primary-color);
+}
+
+
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+
+    .banner-mensaje-agendamiento {
+        top: 115px;
+    }
+
+    .body-home .iniciales-usuario {
+        margin-left: 120px;
+    }
+
+    .header-top {
+        height: 56px;
+    }
+
+    .container_cencosud h2 {
+        margin: 100px 0px 85px 85px;
+    }
+
+    /*Img Login*/
+    #imgLogin {
+        background-size: contain;
+    }
+
+    .img1 {
+        background-image: url(../../img/cencosud/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/cencosud/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/cencosud/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/cencosud/login/960x978.jpg);
+    }
+
+    div#kt_content {
+        /*margin-top: 60px;*/
+        margin-top: 0;
+    }
+
+    /*Agendamiento*/
+
+    .caja-especialidad.medicina-general {
+        max-width: 350px;
+        min-width: 300px;
+    }
+
+    /*Adicionales*/
+
+    #listaBeneficiarios .card {
+        min-width: 0;
+        width: auto;
+    }
+
+    .body-home .menu-top {
+        /*width: 46%;*/
+        width: 100%;
+        /*max-width: 550px;*/
+        max-width: 680px;
+    }
+
+    .stepper {
+        /*margin-bottom: 8rem !important;
+        margin-top: 8rem !important;*/
+        margin-top: 13rem;
+    }
+
+    .wp_box {
+        border-bottom: none;
+    }
+
+    .body-home .menu-top .item-menu-top .opcion-ayuda i {
+        color: #8159df !important;
+    }
+
+    .wp_box h3 {
+        color: #8159df;
+    }
+
+    .titulo-servicio {
+        margin: 50px 0;
+        margin-top: 0;
+    }
+
+    .kt-aside--minimize .kt-aside-menu .kt-menu__nav {
+        margin-top: 110px;
+    }
+
+    .mensaje-superior {
+        /*max-width: 300px;*/
+        max-width: 422px;
+        margin-right: 0px;
+    }
+
+
+    div#kt_header {
+        background: linear-gradient(to right, #fff 50%, #fff 50%);
+        padding: 10px 5px !important
+    }
+
+    .header-top {
+        margin: 20px;
+        max-width: 200px;
+    }
+
+    .toma-examenes-cardif {
+        margin-top: 6rem;
+        margin-left: 4rem;
+        margin-top: 230px;
+    }
+
+    .toma-examenes-cardif .nota-asistencia .btn {
+        font-size: 11px !important;
+    }
+
+    .cont-toma-examenes {
+        margin-top: 230px;
+        margin-left: 32px;
+        max-width: 1200px;
+    }
+
+    .cont-toma-examenes .card {
+        max-width: 400px;
+        margin-right: 55px;
+        margin-top: 50px;
+    }
+
+    .cont-toma-examenes .card .form-control {}
+
+    .toma-examenes-cardif .cont-ilustracion {
+        width: 380px;
+    }
+
+    .cont-toma-examenes .cont-ilustracion {
+        height: 260px;
+    }
+
+    .cont-toma-examenes .acontent_box {
+        width: 100%;
+        margin-top: 50px;
+    }
+
+    /*Sala de espera*/
+
+    .hotspot-icon#btnAbandonarAtencion,
+    .hotspot-icon#hs-g {
+        width: 120px;
+        height: 120px;
+    }
+
+    .hotspot-icon#btnAbandonarAtencion .cont-icon i,
+    .hotspot-icon#hs-g .cont-icon i {
+        font-size: 3.5rem;
+    }
+
+    .hotspot-icon {
+        font-size: 16px;
+        width: 120px;
+        height: 160px;
+    }
+
+    .hotspot-icon .cont-icon i {
+        font-size: 3.5rem;
+    }
+
+    .hotspot-icon#hs-b {
+        font-size: 16px;
+        width: 260px;
+    }
+
+    .sala-medismart #hs-b {
+        top: 85%;
+    }
+
+    #contacto {
+        left: 76%;
+    }
+
+    #facebook {
+        left: 83%;
+    }
+
+    .sala-medismart #hs-d {
+        left: 46%;
+    }
+
+
+    .sala-medismart #hs-e {
+        left: 59%;
+    }
+
+    .sala-medismart #hs-c {
+        top: 38%
+    }
+
+    .sala-medismart #hs-d {
+        top: 38%
+    }
+
+    .sala-medismart #hs-e {
+        top: 38%
+    }
+
+    .hotspot-icon#btnAbandonarAtencion,
+    .hotspot-icon#hs-g {
+        top: 38%;
+    }
+
+    /*Asesorias cencosud*/
+    .asesorias-cencosud {
+        margin-top: 60px;
+        align-items: flex-start;
+    }
+
+    /*Vida Sana*/
+
+    .main .inner-section {
+        padding-top: 32px;
+    }
+
+    .main .inner-section {
+        margin-top: 0;
+    }
+
+    .toma-examenes-cardif {
+        
+    }
+
+    /*    Iframe Juegos*/
+
+    .footer-cencosud {
+        padding: 16px 32px !important;
+    }
+    .kt-header-menu .kt-menu__nav #page {
+        font-size: 14px;
+    }
+    
+}
+
+#drop-mensajes .btn-close i {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.body-home .mensaje-superior {
+    bottom: initial !important;
+    top: 2.5rem;
+    position: static;
+    z-index: 99999;
+    display: flex;
+    right: 25rem;
+    margin-left: 0;
+}
+
+
+.mensaje-superior {
+    color: #0081A4;
+    width: auto !important;
+    text-align: center;
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+    margin-left: auto;
+    position: fixed;
+    bottom: initial;
+    right: 17rem;
+    background-color: transparent;
+    z-index: 999;
+    top: 3rem;
+}
+
+.menu-top .label-menu-pac {
+    color: var(--tertiary-color);
+}
+
+.btn-outline-primary:hover {
+    color: var(--primary-color) !important;
+}
+
+
+.mensaje-superior .inner-mensaje {
+    background-color: transparent;
+}
+
+.mensaje-confirmacion.caja-base {
+    max-width: 960px;
+    margin: auto;
+    width: 96%;
+}
+
+.con-icon-confirma {
+    display: none;
+}
+
+.cont-confirmacion .cont-icon-confirma {
+    text-align: left !important;
+    margin-bottom: 2rem;
+}
+
+.cont-confirmacion {
+    justify-content: space-evenly;
+}
+
+/*Sala Espera*/
+@media (max-width: 1024px) {
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form {
+        margin-bottom: 0 !important; 
+    }
+
+    .kt-login__container .accesible-tools {
+        margin-top: 24px !important;
+    }
+
+    .kt-login__container .form-group {
+        margin-top: 24px;
+    }
+
+    .mensaje-confirmacion .btn {
+        max-width: 278px;
+        margin: auto;
+    }
+
+    .data-atencion .nombre-profesional {
+        font-size: 16px;
+    }
+
+    .titulo-servicio {
+        margin-top: 24px;
+        text-align: left;
+    }
+
+    .panel-medios {
+        height: calc(100vh - 70px);
+        margin-top: 70px;
+        padding: 3rem;
+    }
+
+    .panel-medios__title {
+        color: var(--primary-color);
+    }
+
+    .body-home .menu-top {
+        min-width: 0;
+    }
+
+    .formulario-confirma-hora .header-formulario p {
+        font-size: 12px !important;
+    }
+    .banner-mensaje-superior {
+        display: none;
+    }
+    .intro-cencosud {
+        padding: 32px 24px 24px 24px !important;
+        padding-bottom: 0 !important;
+    }
+
+    .intro-cencosud  h1 {
+        text-align: left;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 0;
+    }
+
+    .body-home .powered, .body-home .powered strong {
+        display: none;
+    }
+
+    .body-home .footer-cencosud img {
+        max-width: 100%;
+        margin-bottom: 0;
+    }
+
+    .footer-cencosud {
+        flex-direction: column;
+        padding: 32px 16px !important;
+        gap: 1rem;
+    }
+
+    .busqueda-profesionales {
+        height: 48px;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        max-width: 400px;
+    }
+
+    #form_change_pw .kt-portlet__body {
+        padding: 0 !important;
+    }
+    #form_change_pw .kt-portlet {
+        padding: 0 !important;
+    }
+}
+
+
+#form_change_pw .kt-portlet__body {
+    padding: 0 !important;
+}
+
+.cont-checks-anura #checks .check-aceptacion {
+    width: 50%;
+}
+
+.cont-checks-anura #checks .check-aceptacion+div {
+    width: 50%;
+    border-top: 1px solid rgb(227 0 0 / 30%) !important;
+}
+
+#atenciones {
+    width: 100%;
+    max-width: 1122px;
+    margin: auto;
+    box-shadow: 1px 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.atencion-toolbar.atencion-proxima-toolbar {
+    border-top: none !important;
+}
+
+.header-atenciones {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.caja-atencion.container-fluid.cont-atencion-proxima {
+    width: 100%;
+    max-width: 1122px;
+    margin: auto;
+}
+
+#kt_widget2_tab1_content {
+    text-align: left;
+}
+
+.inputs-order-width {
+    margin-right: 0%;
+    margin-left: 0%; 
+}
+
+.passw-input{
+    padding: 0% 3px;
+}
+
+.kt-portlet .kt-portlet__body {
+    padding: 2rem 5px;
+}
+
+@media screen and (min-device-width: 1920px) {
+    .mensaje-superior {
+        right: 17rem;
+        top: 3rem;
+    }
+
+    /*Home*/
+    /*#drop-mensajes.dropdown-menu.dropdown-menu-xl {
+            width: 320px;
+            transform: translate3d(-262px, 53px, 0px) !important;
+    height: calc(100vh - 67px);
+    }*/
+    #drop-mensajes-turno.dropdown-menu.dropdown-menu-xl {
+        width: 320px;
+        transform: translate3d(-90px, 100px, 0px) !important;
+        height: 100vh;
+    }
+
+    .top-banner.top-cargas {
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 12rem;
+        justify-content: flex-start;
+    }
+
+    div#kt_header {
+        box-shadow: 0px 4px 11px rgba(95, 95, 95, 0.25);
+    }
+
+    div#kt_content {
+        margin-top: 0;
+    }
+
+    .cont-checks-anura #checks .check-aceptacion {}
+
+    .cont-aviso.row.h-100 align-items-center {}
+
+
+    .body-home .menu-top {
+        /*width: 32%;*/
+    }
+
+    .footer_cencosud_logos {
+        bottom: auto;
+    }
+
+    .caja-busqueda {
+        width: 100%;
+    }
+
+    .cont-caja-especialidad {
+        max-width: 1342px;
+        justify-content: flex-start;
+    }
+
+    .caja-especialidad {
+        max-width: 435px;
+        width: 98%;
+        margin: auto;
+    }
+
+    .container_cencosud h2 {
+        margin: 50px 85px 75px 85px !important;
+    }
+
+    .cont-caja-especialidad .busqueda-profesionales {
+        /*min-width: 435px !important;*/
+    }
+}
+
+.cont-atencion-proxima .cont-aviso .data-atencion .nombre-profesional {
+    color: #564B52 !important;
+}
+
+/*Turno*/
+
+.modal-atenciones .modal-body {
+    background-color: #FFF;
+    color: #564B52;
+}
+
+.btn-outline-success {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn.btn-outline-primary.dropdown-toggle.itemEspecialidad:hover {
+    color: #564B52 !important;
+}
+
+.caja-busqueda .dropdown .dropdown-item,
+.caja-busqueda .dropdown .dropdown-item:hover {
+    color: #564B52 !important;
+}
+
+
+.aviso-atencion .data-atencion {
+    margin-left: 0;
+    text-align: left;
+    width: 100%;
+}
+
+.wp_box {
+    border-bottom: none;
+}
+
+.aviso-atencion .status-atencion {
+    background-color: var(--primary-color);
+    /*display: none;*/
+}
+
+.cont-aviso .status-atencion .leyenda {
+    background-color: transparent;
+    width: 100%;
+    text-align: center;
+    padding-top: .75rem;
+}
+
+.cont-aviso {
+    width: 100%;
+}
+
+.cont-aviso .col-12.col-md-auto.col-xl.pl-0.pl-md-3.pr-md-0 {
+    width: auto;
+}
+
+.cont-aviso .col-12.col-md-auto.col-xl-auto.pr-md-3 {
+    margin-left: auto;
+}
+
+
+.caja-atencion.mensaje-no-atencion {
+    border: 2px solid var(--primary-color);
+    max-width: 1124px;
+    margin: auto;
+}
+
+.mensaje-no-atencion h1 {
+    color: var(--primary-color);
+    font-size: 18px;
+    font-weight: 500 !important;
+    font-family: var(--font-family);
+}
+
+.caja-atencion.mensaje-no-atencion .d-flex {
+    align-items: center;
+}
+
+.mensaje-no-atencion img {
+    width: 52px;
+}
+
+@media (max-width: 1024px) {
+    .iniciales-usuario {
+        max-width: 300px;
+    }
+
+    .header-aviso-atencion i {
+        display: none;
+    }
+
+    .body-home .menu-top {
+        max-width: 400px;
+    }
+
+    .mensaje-superior .inner-mensaje {
+        width: 100%;
+        max-width: 150px;
+    }
+
+    .btn.btn-outline-primary.dropdown-toggle.itemEspecialidad:hover {
+        color: #564B52 !important
+    }
+
+    .aviso-atencion .datos-fecha {
+        text-align: left;
+        padding-left: 1rem;
+    }
+
+    .aviso-atencion .status-atencion {
+        /* display: none;*/
+        margin-right: -.5rem;
+    }
+
+    .cont-aviso .status-atencion .leyenda {
+        position: static;
+    }
+
+
+    .menu-top .item-menu-top {
+        min-width: 40px;
+    }
+
+    .aviso-atencion {
+        padding-bottom: 0 !important;
+    }
+
+    .cont-home-medismart .col-12.col-md-4.col-lg-3.p-0 {
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+    }
+
+    .body-home .cont-card .card {
+        margin: 18px;
+        max-width: 100%;
+        height: auto;
+        min-height:114px;
+        border: 1px solid var(--tertiary-color) !important;
+        margin: .5rem;
+
+    }
+        .body-home .cont-card .card .card-body {
+            flex-direction: column !important;
+        }
+
+
+    .leyenda-card-home {
+        font-size: 12px;
+    }
+    .label-caja-especialidad {
+        font-size: 9px;
+    }
+    .kt-margin-b-20-tablet-and-mobile {
+        margin-bottom: 0 !important;
+    }
+
+}
+
+@media (max-width: 991.98px) {
+    .header-atenciones {
+        margin-top: 0;
+    }
+
+
+    .aviso-atencion .data-atencion {
+        margin-left: -2rem;
+    }
+
+    /* #item-salir {
+        margin-right: auto;
+    }*/
+
+    .body-home .mensaje-superior {
+        display: none;
+    }
+
+    .body-home .menu-top {
+        gap: 1.1rem;
+        padding: 20px 14px;
+        max-width: 160px;
+        justify-content: space-around;
+        gap: 0;
+    }
+
+    .body-home .logo-home img {
+        max-width: 140px;
+        margin-left: 1rem;
+    }
+
+
+    .logo-home > a {
+    }
+
+    .container_cencosud h2 {
+        margin: 0px 0px 32px 32px !important;
+    }
+
+    .mensaje-superior {
+        display: none;
+    }
+
+    .caja-atencion.mensaje-no-atencion {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .cont-toma-examenes .card {
+        padding: 32px 24px !important;
+    }
+
+    #listaTipoExamen {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        top: 0;
+        right: 0;
+    }
+
+    #btnAdd {
+        margin-left: .5rem;
+    }
+
+    .cont-toma-examenes #form label {
+        margin-bottom: .5rem;
+        margin-top: 1rem;
+    }
+
+    .acontent_box .acontent_ti h2 {
+        text-align: left;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        font-size: 22px;
+    }
+
+    .acontent_box .acontent_ti h2 br {
+        display: none;
+    }
+
+    .cont-jornadas {
+        justify-content: center;
+    }
+
+    .titulo-data-horario {
+        margin-right: .5rem;
+    }
+
+    .btn.btnAhoraNo {
+        width: auto;
+        padding: .5rem 1rem !important;
+        letter-spacing: 0;
+    }
+
+    #modalReagendar {
+        margin-top: 0;
+    }
+
+    .caja-reserva {
+        padding: 2rem 0 !important;
+    }
+
+    #modalReagendar .modal-body {
+        padding: 0;
+    }
+
+    .btn.btnConfirmaAtencionx {
+        width: auto;
+        letter-spacing: 0;
+        padding: .5rem 1rem !important;
+    }
+
+    .caja-atencion .status-atencion {
+        background-color: #999 !important;
+        max-width: 140px;
+    }
+
+    .atencion-toolbar .btn-atencion:nth-of-type(1) {
+        color: #EB5757 !important;
+    }
+
+    .note-section h1 {
+        font-size: 24px;
+    }
+
+    .library .cont-titulo-receta img {
+        display: none;
+    }
+
+    .library .cont-titulo-receta .cont-logo img {
+        display: block;
+    }
+}
+
+
+
+
+.body-home .card-plan .costo, .body-home .card-plan .pronto-card, .body-home .pronto {
+    display: none;
+}
+
+.tipo-archivo a {
+    color: #989898;
+    font-weight: 500 !important;
+}
+
+.acontent_box .box_tex {
+    margin-top: 0;
+}
+
+#divSuscripcion .inner-especialidad img {
+    max-width: 60px;
+    margin-right: 0;
+    max-height: 54px;
+}
+
+#divSuscripcion .inner-especialidad {
+    gap: 8px !important;
+}
+
+#btnConfirmar,
+#btnCancelarAtencion {
+    padding: 18px 69px !important;
+}
+
+.remove_field {
+    display: block;
+    margin-top: .5rem;
+}
+
+.form-text.text-muted {
+    display: block;
+    margin-bottom: 1rem;
+    margin-top: .5rem;
+}
+
+.btnAdd {
+    margin-top: -20px;
+}
+
+.card_box {
+    align-items: flex-start;
+}
+
+.cont-toma-examenes #form label {
+    margin-top: 0;
+}
+
+.cont-toma-examenes .card {
+    padding: 34px 48px;
+    margin-top: 4px;
+}
+
+.cont-toma-examenes #form label {
+    margin-top: 0;
+}
+
+.body-home .label-confirma-atencion {
+    background: #0069B6;
+}
+
+.btn-outline-success:hover {
+    color: #ffffff;
+    background-color: #1dc9b7;
+    border-color: #1dc9b7;
+}
+
+.slide-wiki {
+    display: none;
+}
+
+.wp_box h3 {
+    color: var(--tertiary-color);
+}
+
+/*19052023*/
+
+
+.top-banner {
+    display: none;
+}
+
+.top-banner.top-banner-cencosud {
+    display: block;
+    width: 100%;
+    background-image: linear-gradient(90deg, #FD5C00 -9.17%, #FD8000 112.78%) !important;
+    padding: 48px;
+    text-align: center;
+}
+
+.top-banner.top-banner-cencosud .legend,
+.top-banner.top-banner-cencosud p {
+    color: var(--light-color) !important;
+}
+
+
+.intro-cencosud {
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--tertiary-color);
+    width: 100%;
+    padding: 80px 206px;
+    padding-bottom: 0;
+}
+
+.footer-cencosud {
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #F7F7F7;
+}
+
+.footer-cencosud .fono {
+    display: flex;
+    color: #222D4B;
+    gap: 24px;
+}
+
+
+.body-home .card-plan .costo,
+.body-home .card-plan .pronto-card,
+.body-home .pronto {
+    border-radius: 0 6px 0 16px;
+    top: 1px;
+    right: 1px;
+}
+
+/*.kt-aside--minimize .kt-aside-menu .kt-menu__nav {
+}*/
+
+.kt-menu__item:nth-of-type(9n),
+.kt-menu__item:nth-of-type(10n) {
+    display: none !important;
+}
+
+/*.kt-aside--fixed .kt-aside {
+     position: static;
+}*/
+
+.front .data-atencion .calificacion {
+    bottom: 12.8rem;
+}
+
+.especialidad-profesional {
+    bottom: 16.8rem;
+}
+
+.kt-footer, #kt_footer {
+    display: none;
+}
+
+.leyenda-card-home.d-md-none {
+    display: block !important;
+}
+
+.leyenda-card-home {
+    margin-left: 0;
+    text-align: center;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.leyenda-card-home small {
+    color: var(--tertiary-color);
+    font-weight: 500;
+}
+
+.check-aceptacion label {
+    padding-left: 1.2rem;
+    max-width: 340px;
+}
+
+
+.footer-cencosud.footer-paciente {
+    margin-left: 100px;
+    width: calc(100% - 100px);
+}
+
+
+.body-home .card-atencion {
+    max-width: 1140px;
+}
+
+/****WoW Historial****/
+
+.wow__historial {
+    margin-top: 18rem;
+}
+
+
+
+
+@media (max-width:1024px) {
+    .top-banner.top-banner-cencosud {
+        padding: 16px 24px;
+        background-position: 0 0;
+        height: auto;
+        border-radius: 0 !important;
+
+    }
+
+        .top-banner.top-banner-cencosud .legend, .top-banner.top-banner-cencosud p {
+            font-size: 12px;
+            text-align: left;
+        }
+
+    .body-home .logo-home {
+        padding-bottom: 1rem;
+    }
+
+    .label-step {
+        font-size: 10px;
+    }
+
+    .step-icon i {
+        font-size: 24px;
+    }
+    .footer-cencosud {
+        flex-direction: column;
+        
+    }
+
+        .footer-cencosud img {
+            max-width: 100%;
+        }
+
+        .footer-cencosud.footer-paciente {
+            margin-left: 0;
+            width: 100%;
+            padding-bottom: 8rem !important;
+        }
+    .kt-grid.kt-grid--hor:not(.kt-grid--desktop):not(.kt-grid--desktop-and-tablet):not(.kt-grid--tablet):not(.kt-grid--tablet-and-mobile):not(.kt-grid--mobile) > .kt-grid__item.kt-grid__item--fluid, .kt-grid.kt-grid--hor:not(.kt-grid--desktop):not(.kt-grid--desktop-and-tablet):not(.kt-grid--tablet):not(.kt-grid--tablet-and-mobile):not(.kt-grid--mobile) > .kt-grid__item.kt-grid__item--fluid {
+        margin-bottom: 0;
+    }
+
+    .footer-cencosud .fono {
+        gap: 1rem;
+    }
+
+    .footer-cencosud .fono img {
+        width: 20px;
+    }
+
+    .asesorias-cencosud {
+        gap: 28px;
+    }
+
+    .asesorias-cencosud .cont-asesorias h1 {
+        text-align: left;
+        font-size: 22px;
+        margin-bottom: 0;
+    }
+
+        .asesorias-cencosud .cont-asesorias h1 small {
+            font-size: 18px;
+            margin-bottom: 0;
+        }
+
+        .asesorias-cencosud .cont-asesorias p {
+            font-size: 1rem;
+        }
+
+        .asesorias-cencosud .cont-btn .btn {
+            width: 100%;
+        }
+    .toma-examenes-cardif {
+        margin-top: 120px;
+    }
+    .cont-toma-examenes .row {
+        gap: 24px;
+    }
+
+    .nota-asistencia.row {
+        flex-direction: row;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .data-asistencia {
+        display: none !important;
+    }
+    #btnConfirmar,
+    #btnCancelarAtencion {
+        padding: 18px 16px !important;
+        font-size: 12px !important;
+    }
+    .caja-especialidad {
+        margin: auto;
+    }
+
+    .cont-especialidades {
+        flex-direction: column;
+    }
+
+    .header-top {
+        margin: 20px;
+        max-width: 200px;
+        min-width: 0;
+    }
+
+    /* #item-salir {
+        margin-right: 0;
+    }*/
+
+    .check-aceptacion label {
+        max-width: 240px;
+    }
+
+}
+
+.mensaje-superior .inner-mensaje.hoy {
+    color: var(--tertiary-color);
+}
+
+@media only screen and (device-width: 1180px) and (max-device-height: 820px) and (orientation : landscape) {
+    .kt-menu__item.kt-menu__item--active {
+        
+    }
+
+    .header-top {
+        min-width: 150px;
+        max-width: 180px;
+    }
+
+    .kt-header-menu .kt-menu__nav #page {
+        font-size: 14px;
+    }
+
+    .hotspot-icon .cont-icon i {
+        font-size: 2rem;
+    }
+
+    .hotspot-icon {
+        font-size: 16px;
+        width: 130px;
+        height: 200px;
+    }
+    .sala-medismart #hs-e {
+        left: 60%;
+    }
+
+    .sala-medismart #hs-c {
+        left: 30%;
+    }
+
+}
+    @media (max-width:968px) {
+        /* #item-salir {
+        margin-right: auto;
+    }*/
+    }
+
+    #btnAtencionDirectaGeneralMenuMobile {
+        color: var(--primary-color);
+    }
+
+    #btnPerfil {
+        display: none;
+    }
+
+    #item-atenciones {
+        display: none;
+    }
+
+
+    .cont-cargas {
+        margin-top: 14rem;
+    }
+
+    .col-lg-6.col-xl-5:has(.titulo-seccion) {
+        width: 100%;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .col-xl-6.offset-xl-1:has(.titulo-seccion) {
+        width: 100%;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .diagnostico {
+        color: var(--secondary-color);
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 14px;
+    }
+
+    .datos-diagnostico small {
+        color: var(--tertiary-color);
+    }
+
+    .datos-diagnostico small {
+        font-size: 10px;
+    }
+
+    .mensaje-confirmacion.caja-base .caja-profesional .fecha-atencion::before {
+        display: none;
+    }
+
+    .header-aviso-atencion {
+        display: none;
+    }
+
+    .cont-aviso .col-12.col-md-auto.col-xl-auto.pr-md-3 .hora-atencion,
+    .cont-aviso .col-12.col-md-auto.col-xl-auto.pr-md-3 .fecha-atencion {
+        display: inline-block;
+        margin-right: 1rem;
+        font-weight: 500;
+    }
+
+    .mensaje-superior .inner-mensaje.hoy {
+        color: var(--tertiary-color);
+    }
+
+    .body-home .cont-card .card img {
+        margin-bottom: 24px;
+    }
+
+    .cont-especialidades {
+        display: flex;
+        justify-content: flex-start !important;
+        flex-wrap: nowrap;
+    }
+
+        .cont-especialidades .col-12.col-md-12.col-lg-12.col-xl-auto.pr-lg-0 {
+            width: auto !important;
+            flex: 0 0 0 !important;
+        }
+
+        .cont-especialidades .col-12.col-md-12.col-lg-12.col-xl-auto.pl-lg-0 {
+            width: auto !important;
+            flex: 0 0 0 !important;
+        }
+
+    .kt-grid.kt-grid_sc.kt-grid--desktop.kt-grid--ver.kt-grid--ver-desktop.kt-app {
+    }
+
+    .cardif-desktop {
+        margin-top: 14rem !important;
+    }
+
+    .cont-icon-confirma .icon-confirma {
+        color: var(--secondary-color);
+    }
+
+    .mensaje-confirmacion.caja-base .card {
+        background-color: #F3F3F3 !important;
+        border: 1px solid transparent !important;
+    }
+
+    .mensaje-superior .inner-mensaje.pronto {
+        color: var(--tertiary-color);
+    }
+
+    .configuracion-paciente {
+        margin-top: 16rem !important;
+    }
+
+    @media (max-width: 1024px) {
+        .configuracion-paciente {
+            margin-top: 12rem !important;
+        }
+
+        .cont-especialidades .col-12.col-md-12.col-lg-12.col-xl-auto.pr-lg-0 {
+            flex: 0 0 100% !important;
+            width: 100% !important;
+            padding: 0;
+        }
+
+        .cont-especialidades .col-12.col-md-12.col-lg-12.col-xl-auto.pl-lg-0 {
+            flex: 0 0 100% !important;
+            width: 100% !important;
+            padding: 0;
+        }
+
+        .kt-grid.kt-grid_sc.kt-grid--desktop.kt-grid--ver.kt-grid--ver-desktop.kt-app {
+            margin-top: 8rem !important;
+        }
+
+        .col-auto.cont-foto-profesional.p-0.cont-foto-profesional {
+            width: 56px;
+            height: 56px;
+            display: inline-block;
+            border-radius: 50% !important;
+            margin-bottom: -50px;
+        }
+
+            .col-auto.cont-foto-profesional.p-0.cont-foto-profesional img {
+                object-fit: cover;
+                width: 100% !important
+            }
+
+        .col-12.col-md-auto.col-xl.pl-0.pl-md-3.pr-md-0 .data-atencion {
+            margin-left: 0;
+        }
+
+        .col-12.col-md-auto.col-xl-auto.pr-md-3 .fecha-atencion {
+            border-right: 1px solid rgba(255, 255, 255, .5);
+            padding-right: 1rem;
+        }
+
+        .btn-success {
+            font-size: 12px;
+        }
+
+        .col.p-0 .card.card-profile.card-cargas {
+            margin-top: 0;
+        }
+
+        .col-lg-12 .cont-form-beneficiario {
+            margin-top: 8rem;
+        }
+
+        h3.mb-3.titulo-seccion, .header-atenciones h3.mt-5.mt-lg-0.titulo-seccion {
+            margin-left: 0;
+        }
+
+        .cont-guardar-info .btn:first-child {
+            margin-bottom: 0;
+        }
+
+        .step {
+            padding: 8px;
+            max-width: 110px;
+        }
+    }
+
+
+    .kt-notification .kt-notification__item:hover .kt-notification__item-details .kt-notification__item-title {
+        color: var(--secondary-color);
+    }
+
+    .titulo-notificaciones {
+        color: var(--tertiary-color);
+    }
+
+    .inner-section p a, .inner-section ul a, .inner-section ol a {
+        color: var(--primary-color);
+    }
+
+
+
+    .configuracion-paciente .titulo-servicio {
+        width: 100%;
+        max-width: 1200px;
+        margin: auto;
+        margin-bottom: 24px;
+    }
+
+    .cont-perfil {
+        width: 100%;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+
+    .col-md-3.cont-foto-profesional.d-none.d-md-block {
+        display: block;
+    }
+
+    h3.mb-3.titulo-seccion, .header-atenciones h3.mt-5.mt-lg-0.titulo-seccion {
+        margin-left: 0;
+    }
+
+    .col-auto.cont-foto-profesional.p-0 img {
+        width: 100% !important;
+        border-radius: 50% !important;
+        object-fit: cover;
+    }
+
+    .col-auto.cont-foto-profesional.p-0 {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+    }
+
+.sala-medismart {
+    margin-top: 13rem;
+}
+
+
+.antecedentes-medicos .form-check-input {
+    margin-left: .5rem;
+}
+
+.panel-medios__title {
+    color: #EF7C00;
+}
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .busqueda-profesionales {
+            max-width: 300px;
+            
+        }
+    .footer-cencosud.footer-paciente {
+        position: static;
+        bottom: 80px;
+        padding-bottom: 2rem !important;
+        margin-top: auto;
+        }
+
+    .cont-btn-panel .btn-atencion {
+        margin-top: 0;
+        max-width: 100px;
+    }
+
+    .cont-btn-vc .btn-atencion {
+        max-width: 210px;
+    }
+    .cont-btn-vc {
+        flex-direction: row;
+    }
+
+    .cont-btn-panel {
+        margin-top: 0;
+    }
+
+    .btn-atencion i {
+        margin-bottom: 0;
+    }
+
+
+    }
+
+
+    /**/

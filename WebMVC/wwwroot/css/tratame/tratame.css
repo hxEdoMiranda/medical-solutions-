@@ -1,0 +1,684 @@
+/*tratame*/
+
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');*/
+
+:root {
+    --primary: #8E5FF0;
+    --secondary: #56B3F7;
+    --tertiary: #111;
+    --accent: #1F61F7;
+    --light: #FFF;
+    --font-family: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--font-family) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family) !important;
+}
+/*Login*/
+.logotipo-desktop {
+    background-image: url(../../img/tratame/logotipo.svg);
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/tratame/logotipo.avg);
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: var(--tertiary);
+    font-weight: 900;
+}
+
+.form-group .ms-label {
+    color: var(--tertiary) !important;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.btn-guardar-info, .btn-success {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    
+}
+
+.btn-guardar-info:hover, .btn-success:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--primary)
+}
+
+.btn.btn-outline-secondary {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--primary)
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+}
+
+#reporte:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+#hs-g .cont-icon {
+    background-color: var(--primary);
+}
+
+#hs-g:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+.divider-medismart {
+    display: none;
+}
+
+.logo-convenios {
+    display: none;
+}
+
+/* Im�genes Login */
+.img1 {
+    background-image: url(../../img/tratame/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/tratame/login/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/tratame/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/tratame/login/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/tratame/login/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/tratame/login/960x978.jpg);
+}
+
+.body-home {
+    background-image: linear-gradient(71.19deg, rgba(205, 30, 156, 0.8) -46.85%, rgba(86, 179, 247, 0.8) 94.85%), url(../../img/tratame/fondo-home.jpg);
+    background-position: 0 0, center;
+    /*background-position: right 90%;*/
+}
+
+    .body-home .logo-home img {
+        width: 265px;
+    }
+
+    .top-banner .legend {
+        font-weight: 500;
+    }
+
+.menu-top .item-menu-top i,
+.menu-top .label-menu {
+    
+    color: var(--primary);
+}
+
+.menu-top .item-menu-top:hover i, .menu-top .item-menu-top:hover .label-menu {
+    color: var(--primary) !important;
+}
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--primary)
+}
+
+    .kt-menu__item a .ms-label-menu {
+        color: var(--tertiary)
+    }
+
+    .kt-menu__item:hover a, .kt-menu__item:hover i {
+        color: var(--secondary) !important;
+    }
+
+.accesible-btn button {
+    color: var(--secondary);
+    border: 1px solid var(--secondary);
+}
+
+    .accesible-btn button:hover {
+        background-color: var(--primary);
+        border-color: var(--primary)
+    }
+
+.busqueda-profesionales {
+    border: 2px solid var(--secondary);
+}
+    .busqueda-profesionales i {
+        color: var(--secondary)
+    }
+    .busqueda-profesionales .btn-outline-primary {
+        color: var(--secondary)
+    }
+
+.caja-especialidad.active {
+    background-color: var(--primary);
+}
+
+.caja-especialidad {
+    background-color: var(--secondary);
+}
+
+.inner-especialidad strong {
+    color: var(--light)
+}
+
+.step.active .step-icon {
+    background-color: var(--primary);
+}
+
+.stepper {
+    background-image: url(../../img/tratame/fondo-banner2.svg);
+}
+
+    .stepper .flecha {
+        color: var(--primary)
+    }
+
+    .stepper img {
+        border-color: #BBCCE8;
+    }
+
+.step.active .label-step {
+    color: var(--primary)
+}
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: var(--tertiary)
+}
+
+.caja-profesional .fecha-atencion {
+    color: var(--secondary)
+}
+
+.front-fecha-atencion {
+    border: 1px solid rgba(35,33, 114, .3)
+}
+
+    .front-fecha-atencion strong:before {
+        color: var(--secondary);
+        font-weight: 900;
+    }
+
+.especialidad-profesional {
+    color: var(--tertiary)
+}
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+
+ .body-home .top-banner .legend {
+    margin: auto;
+}
+
+.top-banner img {
+    border: 3px solid #BBCCE8;
+}
+
+.body-home .top-banner {
+    background-image: url(../../img/tratame/fondo-banner.svg);
+    background-position: center bottom;
+    background-size: 70% auto;
+    background-repeat: no-repeat;
+    height: 80px;
+}
+.body-home .top-banner img {
+    border-color: rgba(255, 255, 255, .3);
+    display: none;
+}
+    .top-banner .legend {
+        color: var(--secondary)
+    }
+
+.banner_topsc .legend .text-warning {
+    color: var(--primary) !important;
+}
+
+.top-banner.banner_topsc {
+    background-image: url(../../img/tratame/fondo-banner2.svg);
+}
+
+.text-warning {
+    color: var(--light) !important;
+}
+
+.menu-top .item-menu-top .logotipo-mobile {
+    width: 110px !important;
+}
+/*Sala espera*/
+.hotspot-icon .cont-icon {
+    background-color: var(--primary)
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+.cont-icon.hotspot-redes {
+    background-color: #000;
+}
+
+
+.toolbar-option {
+    color: var(--primary)
+}
+
+.toolbar-option.active {
+    color: var(--secondary)
+}
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--tertiary)
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--secondary)
+}
+
+.btn-sala:hover {
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion, .cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+    .cont-btn-panel .btn-atencion:hover, .cont-btn-vc .btn-atencion:hover {
+        background-color: rgba(237, 110, 0, 0.1);
+        color: var(--primary);
+    }
+
+.hotspot-icon {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+    .hotspot-icon i {
+        text-shadow: none;
+    }
+
+    .hotspot-icon:hover {
+        color: #FFF;
+    }
+
+@media (max-width: 668px) {
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .top-banner .legend {
+        text-align: left;
+        font-size: 1.3rem;
+    }
+}
+
+
+ @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/tratame/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/tratame/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/tratame/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/tratame/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/tratame/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/tratame/login/548x850.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/tratame/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/tratame/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/tratame/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/tratame/login/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/tratame/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/tratame/login/960x978.jpg);
+    }
+}
+
+
+/*Prohome*/
+
+.prehome__plans {
+    height: 450px;
+}
+
+.prehome__plan {
+    width: 100%;
+    padding: 0;
+}
+
+.prehome__plan ul {
+    list-style-image: url('../../img/tratame/bullet.svg');
+   
+    margin-top: 32px;
+    height: 350px;
+    font-size: 16px;
+}
+
+.prehome__title {
+    color: #FFF;
+}
+
+.kt-login__extra.registro {
+    display: none;
+}
+
+.logo-convenios.convenioChile + hr {
+    display: none;
+}
+
+.kt-login.kt-login--v3.kt-login--signin .kt-login__signin .titulo-card-farmacia {
+    text-align: center;
+}
+
+@media (max-width: 991.98px) {
+    .prehome__plans {
+        height: auto;
+    }
+}
+/*Home Tratame*/
+
+.cont-tratame {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.opciones-tratame {
+    display: flex;
+    gap: 64px;
+}
+
+.header-tratame h1 {
+    color: var(--light);
+    font-size: 34px;
+    text-align: center;
+}
+
+.body-tratame {
+    display: flex;
+    margin-top: 88px;
+    gap: 64px;
+}
+
+.card-tratame {
+    border-radius: 16px;
+    padding: 24px;
+    background-color: var(--secondary);
+    color: var(--light);
+    text-transform: uppercase;
+    font-size: 24px;
+    display: flex;
+    max-width: 330px;
+    align-items: flex-end;
+    gap: 24px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    height: 140px;
+}
+
+.bajada-tratame {
+    font-size: 20px;
+    max-width: 330px;
+    margin-top: 32px;
+    color: var(--light);
+}
+
+.bajada-tratame strong {
+    display: block;
+}
+
+.card-tratamiento {
+    max-width: 540px;
+    padding: 24px 40px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.nombre-tratamiento {
+    text-transform: uppercase;
+    font-size: 24px;
+    color: var(--light);
+}
+
+.content-tratamiento {
+    display: flex;
+    color: var(--light);
+    margin-top: 40px;
+    gap: 24px;
+}
+
+.content-tratamiento ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+    .content-tratamiento li {
+        margin-bottom: 12px;
+        font-size: 20px,
+    }
+
+.footer-tratame {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin-top: 42px;
+    padding: 42px;
+}
+
+.cont-timeline-tratame {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1648px;
+    margin: auto;
+    background-image: url(../../img/tratame/linea.svg);
+    background-repeat: repeat-x;
+    background-position: 0 46%;
+}
+.legend-hito {
+    color: var(--light);
+    max-width: 150px;
+    text-align: center;
+}
+
+    .legend-hito::after {
+        content: '';
+        display: block;
+        width: 10px;
+        height: 10px;
+        border-radius: 10px;
+        background-color: #FF317B;
+        margin: 14px auto;
+    }
+
+    .legend-hito strong {
+        display: block;
+    }
+
+.hito-tratame {
+    
+}
+
+.icono-legend-hito {
+    text-align: center;
+}
+
+
+/*Opcion Ayuda*/
+.wp_box {
+    border-bottom: none;
+}
+
+.wp_box h3 {
+    color: var(--primary);
+}
+
+.opcion-ayuda a {
+    color: var(--primary);
+}
+
+.titulo-dropdown {
+    color: var(--secondary)
+}
+
+.body-home .footer-home {
+    margin-top: 0;
+}
+
+.terminos-tratame .accesible-tools {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-home #terminosFooter {
+    margin-left: inherit;
+}
+
+
+@media (max-width: 991.98px) {
+    .opciones-tratame {
+        flex-direction: column;
+        width: 90%;
+        margin: auto;
+        gap: 1rem;
+    }
+
+    .body-tratame {
+        margin-top: 0;
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .icono-tratame img {
+        max-width: 50px;
+        margin-bottom: 0;
+    }
+
+    .card-tratame {
+        font-size: 18px;
+        align-items: center;
+        margin: auto;
+    }
+    .bajada-tratame {
+        margin-top: 1rem;
+        font-size: 1rem;
+    }
+    .card-tratamiento {
+        width: 90%;
+        margin: auto;
+    }
+    .nombre-tratamiento {
+        font-size: 18px;
+    }
+
+    .cont-timeline-tratame {
+        flex-direction: column;
+        background-image: none;
+    }
+
+    .footer-tratame {
+        width: 90%;
+        margin: auto;
+        margin-top: 1rem;
+        border-radius: 10px;
+    }
+
+    .hito-tratame {
+        width: 90%;
+        margin: auto;
+        text-align: center;
+        border-bottom: 1px solid rgba(255,255,255,.3);
+        padding-bottom: 1rem;
+    }
+
+        .hito-tratame:last-child {
+            border-bottom: none;
+        }
+
+    .legend-hito {
+        margin: auto;
+        margin-top: 1rem;
+    }
+
+    .terminos-tratame .accesible-tools, .terminos
+    {
+        display: none !important;
+    }
+    .body-home .logo-home img {
+        width: 130px
+    }
+}

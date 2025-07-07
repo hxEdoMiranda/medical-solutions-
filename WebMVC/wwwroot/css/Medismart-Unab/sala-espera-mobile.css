@@ -1,0 +1,207 @@
+.sala-espera-mobile {
+    /* background-image: url(../../img/sala-espera/sala-espera1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center -160px;*/
+    width: 100%;
+    min-height: 600px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    position: relative;
+}
+
+    .sala-espera-mobile img {
+        width: 100%;
+        object-fit: cover;
+        margin-top: -160px;
+        
+    }
+
+.cont-fondo-mobile {
+    width: 100%;
+    height: calc(100vh + 80px);
+    /*max-height: 580px;*/
+    z-index: -1;
+    overflow: hidden;
+    position: absolute;
+}
+
+        .cont-fondo-mobile img {
+
+        }
+
+        .sala-espera-mobile.sala-espera-consalud {
+            /*background-image: url(../../img/sala-espera/sala-espera-consalud.jpg);
+        background-position: center -200px;*/
+        }
+
+        .sala-espera-mobile.sala-espera-consalud .alerta-sala {
+            margin-bottom: 3rem;
+            margin-top: 2rem;
+        }
+
+.sala-espera-mobile-colmena {
+    /*background-image: url(../../img/fondo-sala-colmena.jpg);
+            background-repeat: no-repeat;*/
+    background-size: cover;
+    width: 100%;
+    min-height: 540px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+    .sala-espera-mobile.sala-espera-consalud .alerta-sala:last-child {
+        margin-top: 3rem;
+        margin-bottom: 2rem;
+    }
+.card-sala {
+    width: 100%;
+    /*max-width: 350px;*/
+    border: 2px solid rgba(255,255,255,.3);
+    border-radius: .5rem;
+    margin: .5rem auto;
+    display: flex;
+    align-items: start;
+    padding: 0;
+    justify-content: space-between;
+}
+
+.card-sala-inferior {
+    justify-content: start;
+    gap: 2.2rem;
+}
+
+
+
+.sala-espera-mobile .card-sala:nth-of-type(3n) {
+   
+   gap: 3rem;
+    display: flex;
+    justify-content: left;
+    margin-bottom: 3rem;
+}
+
+.sala-espera-mobile .card-sala:nth-of-type(4n) {
+    /*margin-top: auto;
+    justify-content: flex-start;*/
+    margin-top: 10rem;
+}
+
+.sala-espera-mobile .card-sala.card-media {
+    /* margin-bottom: calc( 10% + 80px);*/
+}
+
+.btn-sala {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    color: #FFF;
+    width: 80px;
+}
+
+.btn-sala:hover {
+  color: #FFAF36;
+}
+
+.btn-sala:hover .cont-icon {
+  transform: scale(1.2);
+}
+
+    .btn-sala .cont-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: rgba(0, 61, 92, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        transition: all .3s ease-out;
+        color: #FFF;
+    }
+
+
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: rgba(0, 61, 92, 0.8);
+    font-size: 2rem;
+}
+
+.sala-espera-mobile .card-sala {
+    border: none;
+}
+
+
+    .sala-espera-mobile .titulo-sala {
+        position: static;
+        font-size: 1.4rem;
+        margin-bottom: 0;
+        font-weight: 900;
+        margin-top: 2rem;
+        display: none;
+    }
+
+    .sala-espera-mobile .titulo-sala small {
+        font-size: 1.4rem;
+    }
+
+.sala-espera-mobile .btn-sala {
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .8);
+}
+
+.sala-espera-mobile-colmena .mensaje-mobile {
+    font-size: .8rem !important;
+}
+
+.sala-espera-mobile-colmena .alerta-sala {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    margin-bottom: 2rem;
+}
+
+.sala-espera-mobile-colmena .titulo-fila {
+    font-size: 18px;
+    padding-right: 1rem;
+}
+
+.sala-espera-mobile-colmena .posicion-fila {
+    margin-left: 1rem;
+}
+
+.sala-espera-mobile-colmena .titulo-sala {
+    position: static;
+    margin-bottom: 2rem;
+}
+
+.sala-espera-mobile-colmena .card-sala {
+    border: none;
+}
+
+.sala-espera-mobile-colmena .btn-sala .cont-icon {
+    background-color: rgba(0, 61, 92, 0.8);
+    font-size: 2rem;
+}
+
+.kt-footer {
+    background: transparent;
+}
+
+@media (min-width: 1921px) {
+    /*  .sala-espera-mobile-colmena img {
+        width: 100%;
+        height: auto;
+    }
+      */
+}

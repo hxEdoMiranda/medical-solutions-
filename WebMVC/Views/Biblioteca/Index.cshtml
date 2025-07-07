@@ -1,0 +1,69 @@
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+
+<div class="fade-in home-library">
+
+    <section class="container-fluid library">
+        <div class="container inner-section">
+            <partial name="~/Views/Biblioteca/_Header.cshtml" model="Model" view-data="ViewData" />
+        </div>
+    </section>
+
+    <section class="container-fluid main">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12">
+                    
+                    <partial name="~/Views/Biblioteca/_Menu-contenidos.cshtml" model="Model" view-data="ViewData" />
+                </div>
+            </div>
+            @if (ViewBag.HostURL.Contains("clinicamundoscotia."))
+            {
+                <partial name="~/Views/Biblioteca/RecetasScotia/_CardsCapsulas.cshtml" model="Model" view-data="ViewData" />
+            }
+            else if (ViewBag.HostURL.Contains("prevenciononcologica."))
+            {
+                <partial name="~/Views/Biblioteca/RecetasCaja/_CardsCapsulas.cshtml" model="Model" view-data="ViewData" />
+            }
+            else if (ViewBag.HostURL.Contains("saludtumundoseguro."))
+            {
+                <partial name="~/Views/Biblioteca/RecetasMundoSeguro/_CardsCapsulas.cshtml" model="Model" view-data="ViewData" />
+            }
+            else if (ViewBag.HostURL.Contains("masproteccionsalud."))
+            {
+                <partial name="~/Views/Biblioteca/RecetasMasProteccion/_CardsCapsulas.cshtml" model="Model" view-data="ViewData" />
+            }
+            else
+            {
+            <partial name="~/Views/Biblioteca/_CardsInicio.cshtml" model="Model" view-data="ViewData" />
+            }
+        </div>
+    </section>
+
+</div>
+ <script type="module">
+    new Splide('#image-slider-biblioteca', {
+		type: 'loop',
+		perPage: 1,
+		autoplay: true,
+		pagination: true,
+		arrows: false,
+		interval: 20000
+	}).mount();
+</script>
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>    
+    <script src="~/js/Biblioteca/biblioteca.js"></script>
+
+
+
+
+}

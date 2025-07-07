@@ -1,0 +1,34 @@
+﻿@model WebMVC.Models.AtencionViewModel
+@{
+    ViewData["Title"] = "InformeAtencion";
+    Layout = "_LayoutExterno";
+
+}
+
+
+@{
+    ViewData["view"] = Roles.Paciente;
+}
+
+@section Styles  {
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+<partial name="~/Views/Shared/_InformeAtencion.cshtml" model="Model" view-data="ViewData" />
+
+@section Scripts {
+
+    <script src="~/signal/signalr.min.js"></script>
+    <script src="~/js/Paciente/informeatencion.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    @*<script src="~/js/Shared/archivos-adjuntos.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>*@
+    <script type="text/javascript">
+        (function () {
+         var uid = @ViewBag.uid;
+
+            window.uid = uid;
+             var canal = '@ViewBag.canal';
+            window.canal = canal;
+
+        })()
+    </script>
+}

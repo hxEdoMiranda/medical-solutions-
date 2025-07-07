@@ -1,0 +1,204 @@
+/*Smartcheck*/
+
+.mensaje-anura {
+    display: flex;
+    flex-direction: column;
+    
+    background-repeat: no-repeat;
+    height: 400px;
+    padding-left: 240px;
+    margin-bottom: 2rem;
+    background-position: 0 0;
+}
+
+.atencion-agendable {
+    background-image: url(../../img/anura/atencion-agendable1.png);
+}
+
+.atencion-inmediata {
+    background-image: url(../../img/anura/atencion-inmediata1.png);
+}
+
+    .mensaje-anura p {
+        font-size: 24px;
+        color: #666;
+    }
+
+    .mensaje-anura img {
+        width: 70px;
+        height: 70px;
+        margin-top: 6rem;
+        margin-left: 0;
+        margin-bottom: 2rem;
+    }
+
+
+    /*Modal Smartcheck*/
+
+.modal-smartcheck {
+    width: 90%;
+    max-width: 660px;
+}
+
+    .modal-smartcheck .modal-body {
+        padding: 32px;
+    }
+
+    .modal-smartcheck h2 {
+        font-size: 32px;
+        font-weight: 900;
+        color: #0081A4;
+    }
+
+.modal-smartcheck p{
+    font-size: 18px;
+    color: #333;
+}
+
+    .modal-smartcheck i {
+        font-size: 48px;
+        color: #FFB822;
+    }
+
+.puntaje-smartcheck {
+    /*margin-bottom: 32px;*/
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.puntaje-smartcheck h5 {
+    font-size: 20px;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #DDD;
+    margin-bottom: 2rem;
+}
+
+/*grafica smartcheck*/
+.divIndicador {
+    width: 250px;
+    background: rgb(225,82,65);
+    background: linear-gradient(90deg, rgba(225,82,65,1) 0%, rgba(226,148,143,1) 19%, rgba(249,236,161,1) 33%, rgba(249,236,161,1) 65%, rgba(36,115,60,1) 88%);
+    border-radius: 5px;
+}
+
+.divCero {
+    color: #e15241;
+    text-align: left;
+}
+
+.divCien {
+    color: #24733c;
+    text-align: right;
+    float: right;
+}
+
+.grafico-smartcheck {
+    width: 250px;
+}
+
+/* fin grafica smartcheck*/
+
+.iconos-confirmacion {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.cont-confirmacion.atencion-agendable {
+    background-repeat: no-repeat;
+    padding-left: 230px;
+    height: 400px;
+}
+
+.btn-ir-atencion {
+    max-width: 230px;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.logo-medismart-confirmacion {
+    max-width: 272px;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.mensaje-confirmacion.caja-base.confirmacion-smartcheck {
+    max-width: 1080px;
+}
+
+
+
+@media (max-width: 991.98px) {
+    .mensaje-anura {
+        background-image: none;
+        padding-left: 0;
+        padding-right: 0;
+        height: auto;
+        flex-direction: row;
+        margin-bottom: 1rem;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .mensaje-anura img {
+        margin: 0;
+        width: 50px;
+        
+    }
+
+    .cont-confirmacion.atencion-agendable {
+        background-image: none;
+        padding-left: 0;
+        height: auto;
+    }
+
+        .cont-confirmacion.atencion-agendable .caja-profesional .fecha-atencion,
+        .cont-confirmacion.atencion-agendable .caja-profesional .hora-atencion {
+            padding-left: 0;
+            display: block !important;
+            text-align: left;
+        }
+
+            .cont-confirmacion.atencion-agendable .caja-profesional .hora-atencion {
+                margin-bottom: 0;
+            }
+
+            .cont-confirmacion.atencion-agendable .mensaje-confirmacion .caja-profesional {
+                align-items: flex-start;
+            }
+        .cont-confirmacion.atencion-agendable .caja-profesional .data-atencion .titulo-profesional {
+            display: block;
+            margin-left: 0;
+        }
+        /*
+        .cont-confirmacion.atencion-agendable .caja-profesional .data-atencion .titulo-profesional {
+            display: block;
+            margin: 0;
+        }*/
+        .cont-confirmacion.atencion-agendable .caja-profesional .calificacion2 {
+            display: none;
+        }
+
+
+    .iconos-confirmacion {
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+    }
+    .btn-ir-atencion {
+        width: 100%;
+        max-width: none;
+    }
+
+    .btnAhoraNo {
+        width: 120px;
+    }
+    .btnConfirmaAtencionx {
+        width: 120px;
+    }
+
+    .btnAnulaAtencionx {
+        width: 120px;
+    }
+}

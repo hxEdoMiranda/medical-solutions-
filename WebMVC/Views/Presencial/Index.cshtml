@@ -1,0 +1,123 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions
+
+@model String
+
+@{
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @*<title>@ViewData["Title"] - Medical</title>*@
+
+    <base href="">
+    <meta charset="utf-8" />
+    <title>Medical | Sitio Paciente</title>
+    <meta name="description" content="Latest updates and statistic charts">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- #region metronic-template -->
+    <!--begin::Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Mulish&display=swap" rel="stylesheet">
+    <!--end::Fonts -->
+
+    <link href="~/metronic_demo7/assets/css/pages/login/login-3.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+
+    <!--begin::Global Theme Styles(used by all pages) -->
+    <link href="~/metronic_demo7/assets/plugins/global/plugins.bundle.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/metronic_demo7/assets/css/style.bundle.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <!--end::Global Theme Styles -->
+    <!--begin::Global Medismart Styles -->
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <!--end::Global Medismart Styles -->
+    <!-- #endregion -->
+    <link rel="shortcut icon" href="~/css/assets/media/logos/logoFavicon.ico" />
+
+
+    @if (Context.Request.GetEncodedUrl().ToUpper().Contains("ABODOC"))
+    {
+        <link rel="shortcut icon" href="~/img/abodoc/favicon.ico" />
+        <link href="~/css/abodoc/abodoc.css?rand=@NumeroRandom.GetRandom()" rel="stylesheet" />
+    }
+
+</head>
+<body class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--transparent kt-aside--enabled kt-aside--fixed kt-aside--minimize kt-page--loading">
+
+
+    <!-- begin:: Page -->
+    <div class="kt-grid kt-grid--ver kt-grid--root kt-page">
+        <div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v3 kt-login--signin" id="kt_login">
+            <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+                <div class="kt-login__logo mb-0 d-md-none d-block text-center cont-logo-mobile">
+                    <a href="#" class="px-0 logotipo-img logotipo-mobile">
+                        <!--<img alt="Logo" class="logotipo" src="~/img/logotipo.png" />-->
+                    </a>
+                </div>
+                <div class="container-fluid container-login">
+                    <div class="row align-items-center row-eq-height justify-content-center">
+                        <div class="col-md-6 bkg-login d-none d-md-block">
+                            <div id="imgLogin" class="imgLogin"></div>
+                            <!--<img alt="Medismart.live" src="~/img/login6.png" id="imgLogin" />-->
+                            <!--<img src="~/img/login4.jpg" alt="Medismart.live"/>-->
+                        </div>
+                        <div class="col col-md-6">
+                            <div class="kt-login__wrapper">
+                                <div class="kt-login__container">
+                                    <div class="kt-login__logo mb-0 d-none d-md-block">
+                                        <a href="#" class="px-0 logotipo-img logotipo-desktop">
+                                            <!--<img alt="Logo" class="logotipo" src="~/img/logotipo.png" />-->
+                                        </a>
+                                    </div>
+                                    <div class="kt-login__signin">
+                                        <div class="kt-login__head">
+                                            <h3 class="kt-login__title">Error</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #region metronic-template -->
+    <!-- begin::Global Config(global config for global JS sciprts) -->
+    <script>
+        var KTAppOptions = {
+            "colors": {
+                "state": {
+                    "brand": "#22b9ff",
+                    "light": "#ffffff",
+                    "dark": "#282a3c",
+                    "primary": "#5867dd",
+                    "success": "#34bfa3",
+                    "info": "#36a3f7",
+                    "warning": "#ffb822",
+                    "danger": "#fd3995"
+                },
+                "base": {
+                    "label": ["#c5cbe3", "#a1a8c3", "#3d4465", "#3e4466"],
+                    "shape": ["#f0f3ff", "#d9dffa", "#afb4d4", "#646c9a"]
+                }
+            }
+        };
+    </script>
+    <!-- end::Global Config -->
+    <!--begin::Global Theme Bundle(used by all pages) -->
+    <script src="~/metronic_demo7/assets/plugins/global/plugins.bundle.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>
+    <script src="~/metronic_demo7/assets/js/scripts.bundle.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>
+    <script src="~/js/jquery.rut.js?rnd=@NumeroRandom.GetRandom()"></script>
+    <!--end::Global Theme Bundle -->
+    <!-- #endregion -->
+
+
+    <script src="~/js/validator-messages-es.js?rnd=@NumeroRandom.GetRandom()"></script> <!-- traducción del validador -->
+    <script src="~/js/random-image.js?rnd=@NumeroRandom.GetRandom()"></script><!-- random image login -->
+
+</body>
+</html>

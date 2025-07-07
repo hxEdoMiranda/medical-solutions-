@@ -1,0 +1,1581 @@
+﻿:root {
+    --primary-color: #3BC1CD;
+    --secondary-color: #8A94B3;
+    --tertiary-color: #0282A6;
+    --gray-color: #666;
+    --accent-color: #FF7415;
+    --light-color: #FFF;
+    --title-color: #646C9A;
+    --image-border: #4DC5D4;
+    --background-body-color: #F5F5F5;
+    --hover-color: var(--tertiary-color);
+    --transition: all .3s ease-out;
+}
+
+
+
+.sala-espera {
+    position: relative;
+    overflow: hidden;
+    /*max-width: 1700px;*/
+}
+
+.panel-sala-espera {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    z-index: 51;
+}
+
+    .panel-sala-espera ul {
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+   
+
+/*  .panel-sala-espera li {
+        background-color: #3BC1CD;
+        width: 100px;
+        height: 100px;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        margin: 1rem 0;
+        transition: all .3s ease-out;
+        cursor: pointer;
+    }
+
+        .panel-sala-espera li:hover {
+            background-color: #005066;
+            transform: scale(1.2);
+        }
+
+    .panel-sala-espera a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        font-size: .8rem;
+        text-align: center;
+        line-height: 1;
+    }
+
+        .panel-sala-espera a i {
+            font-size: 2rem;
+            margin-bottom: .5rem;
+        }*/
+
+.titulo-sala {
+    position: absolute;
+    color: #FFF;
+    z-index: 10;
+    left: 2rem;
+    top: 2rem;
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: 300;
+    width: 150px;
+    line-height: 1.2;
+    text-shadow: 3px 3px 2px #333333;
+}
+
+    .titulo-sala small {
+        /* font-size: 2rem;*/
+    }
+
+.hotspots {
+    position: relative;
+}
+
+    .hotspots img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+    }
+
+.hotspot {
+    position: absolute;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+    font-size: 1rem;
+    color: #FFF;
+    text-align: left;
+    width: 150px;
+    line-height: 1;
+    text-shadow: 3px 3px 2px #333333;
+}
+
+    .hotspot:hover {
+        text-decoration: none;
+        color: orange;
+    }
+
+        .hotspot:hover::before {
+            transform: scale(2);
+            border: 2px solid orange;
+        }
+
+    .hotspot small {
+        display: block;
+    }
+
+    .hotspot::before {
+        content: "";
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: block;
+        margin: -21px auto 1rem 3px;
+        border: 4px solid rgba(255, 255, 255, 0.8);
+        transition: all .3s ease-out;
+    }
+
+/* Hotspot Icon */
+.hotspot-icon {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    color: #FFF;
+    text-decoration: none;
+    transition: all .3s ease-out !important;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+    .hotspot-icon:hover {
+        text-decoration: none;
+        color: #FFAF36;
+    }
+
+        .hotspot-icon:hover .cont-icon {
+            background-color: rgba(0, 61, 92, 0.8);
+            transform: scale(1.2);
+        }
+
+    .hotspot-icon .cont-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 61, 92, 0.5);
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        text-decoration: none;
+        transition: all .3s ease-out;
+        margin-bottom: 1rem;
+        cursor: pointer;
+    }
+
+        .hotspot-icon .cont-icon i {
+            font-size: 2.5rem;
+        }
+
+#hs-a {
+    top: 35%;
+    left: 17%;
+}
+
+#hs-b {
+    top: 63%;
+    left: 44%;
+}
+
+#hs-c {
+    top: 35%;
+    left: 44%;
+}
+
+#hs-d {
+    top: 35%;
+    left: 53%;
+}
+
+#hs-e {
+    top: 35%;
+    left: 62%;
+}
+
+#hs-f {
+    top: 60%;
+    left: 36%;
+    display: none;
+}
+
+#hs-g {
+    top: 35%;
+    left: 71%;
+}
+
+
+#btnAbandonarAtencion {
+    top: 55%;
+    left: 5%;
+}
+
+#reporte {
+    top: 6%;
+    left: 88%;
+}
+
+#btnIngresoSala {
+    top: 75%;
+    left: 50%;
+}
+
+#contacto {
+    top: 85%;
+    left: 80%;
+}
+
+
+#facebook {
+    top: 85%;
+    left: 85%;
+}
+
+
+#instagram {
+    top: 85%;
+    left: 90%;
+}
+
+
+.cont-icon.hotspot-redes {
+    height: 60px;
+    width: 60px;
+    border-radius: 40px;
+    background-color: #000;
+}
+
+    .cont-icon.hotspot-redes i {
+        font-size: 2rem;
+    }
+
+.cont-datos {
+    padding: 1rem;
+    border: 1px solid #DDD;
+    margin: 1rem 0;
+    border-radius: .5rem;
+    transition: all .3s ease-out;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+    .cont-datos.datos-activos {
+        border: 2px solid #3BC1CD;
+        background-color: #f7f7f7;
+    }
+
+    .cont-datos:last-child {
+        margin-right: 0;
+    }
+
+.datos-personales {
+    font-weight: 300;
+    text-transform: uppercase;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: #3BC1CD;
+}
+
+    .datos-personales .custom-control-label {
+        color: #3BC1CD !important;
+    }
+
+
+.panel-sala-espera .cont-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3BC1CD;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all .3s ease-out;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+
+    .panel-sala-espera .cont-icon i {
+        font-size: 3rem;
+        color: #FFF;
+    }
+
+
+    .panel-sala-espera .cont-icon:hover {
+        background-color: #005066;
+        transform: scale(1.2);
+    }
+
+.panel-sala-espera span {
+    text-transform: uppercase;
+    display: block;
+    color: #FFF;
+    font-weight: 700;
+    width: 94px;
+    text-align: center;
+}
+
+.panel-sala .nav-tabs a.active {
+    color: orange;
+    border-bottom: 2px solid;
+    padding-bottom: 7px;
+}
+
+
+#swal2-checkbox {
+    margin-top: -70px;
+}
+
+
+.modal-body .calificacion::after {
+    content: '';
+    border-top: none;
+}
+
+.modal-body .card-img-top {
+    width: 150px;
+    height: 150px;
+    border-radius: 80px;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.cont-revistas-mobile {
+    display: none !important;
+}
+
+/*Fila �nica*/
+
+/*
+
+.fila-unica {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    max-width: 660px !important;
+}
+
+.fila-unica {
+
+}
+
+.titulo-fila {
+    font-size: 24px;
+    text-transform: uppercase;
+}
+
+    .titulo-fila i {
+        font-size: 20px;
+        margin-right: .5rem;
+    }
+
+.tiempo-atencion, .posicion-fila, .titulo-fila {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-right: 1px solid rgba(255,255,255, .5);
+    padding-right: 2rem;
+    height: 50px;
+}
+
+    .posicion-fila {
+        border-right: none;
+        padding-right: 0;
+    }
+
+    .dato-fila {
+        font-size: 40px;
+        font-weight: 700;
+        margin-right: 1rem;
+    }
+
+    .leyenda-fila {
+        font-size: 11px;
+        text-transform: uppercase;
+        width: 108px;
+        text-align: left;
+        line-height: 1;
+    }
+
+.posicion-fila .leyenda-fila {
+    width: 78px;
+}
+
+.disclaimer-fila-unica {
+    max-width: 800px !important;
+}
+
+.alerta-sala.minSalaEspera {
+    width: 25% !important;
+}
+
+
+@media (max-width: 991.98px) {
+    .titulo-sala {
+        top: 10rem;
+        left: 3rem;
+        text-shadow: 1px 1px 2px #000;
+        width: auto !important;
+    }
+
+    .titulo-sala small {
+        font-size: 2rem;
+    }
+
+    .cont-revistas-desk {
+        display: none !important;
+    }
+    .cont-revistas-mobile {
+        display: flex !important;
+    }
+
+    .sala-espera-mobile .alerta-sala {
+        width: 100%;
+        margin-top: 3rem;
+        display: block;
+        padding: 1rem;
+    }
+
+        .sala-espera-mobile .alerta-sala.mensaje-mobile {
+            margin-top: 0;
+            
+        }
+
+            .sala-espera-mobile .alerta-sala.mensaje-mobile p {
+                font-size: .9rem;
+            }
+
+            .sala-espera-mobile .titulo-fila {
+                display: block;
+                border-right: none;
+                height: auto;
+            }
+
+    .sala-espera-mobile .tiempo-atencion,
+    .sala-espera-mobile .posicion-fila {
+        width: auto !important;
+        border-right: none;
+        height: auto;
+        display: inline-block;
+        --width: 48%;
+        margin-top: .5rem;
+        padding-right: 0;
+    }
+    .sala-espera-mobile .titulo-fila {
+        font-size: 1rem;
+        padding-right: 0;
+        width: 100%;
+        border-bottom: 1px solid rgba(255,255,255,.3);
+        padding-bottom: .5rem;
+        text-align: center;
+    }
+
+        .sala-espera-mobile .titulo-fila i {
+            font-size: 1rem;
+            margin-right: .2rem;
+        }
+
+        .sala-espera-mobile .dato-fila {
+            font-size: 1.6rem;
+            text-align: left;
+        }
+
+    .sala-espera-mobile .dato-fila,
+    .sala-espera-mobile .leyenda-fila {
+        margin-right: .5rem;
+    }
+
+    .sala-espera-mobile .tiempo-atencion {
+        padding-right: .5rem;
+        margin-right: .5rem;
+        border-right: 1px solid rgba(255,255,255,.3);
+    }
+    .sala-espera-mobile .posicion-fila .leyenda-fila {
+        width: 56px;
+    }
+
+
+}
+
+*/
+
+.sala-medismart #hs-b {
+    top: 66%;
+    left: 44%;
+}
+
+.sala-medismart #hs-g {
+    top: 54%;
+    left: 88%;
+}
+
+
+.sala-medismart #hs-e {
+    top: 38%;
+    left: 71%;
+}
+
+.sala-medismart #hs-d {
+    top: 38%;
+    left: 62%;
+}
+
+.sala-medismart #hs-c {
+    top: 38%;
+    left: 53%;
+}
+
+@media (min-width: 1921px) {
+
+    /*  .hotspots {
+        width: 100%;
+        height: 960px;
+        background-image: url(../../img/fondo-sala.jpg);
+        background-size: cover;
+    }
+
+        .hotspots img {
+            display: none;
+        }
+
+      */
+
+    .hotspots img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+#hs-g .cont-icon {
+    background-color: #0282A6;
+}
+
+
+
+/*Fila �nica new*/
+
+
+.fila-unica {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    max-width: 660px !important;
+    height: 65px;
+    border-right: 1px solid rgba(255,255,255, .5);
+}
+
+.fila-unica {
+}
+
+.titulo-fila {
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+    .titulo-fila i {
+        font-size: 20px;
+        margin-right: .5rem;
+    }
+
+.tiempo-atencion, .posicion-fila, .titulo-fila {
+    /*display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 2rem;
+    height: 50px;
+    padding: 10px;*/
+}
+
+.posicion-fila {
+    /*border-right: none;
+    padding-right: 0;
+    margin-left: 1rem;
+    padding-left: 0;*/
+}
+
+.dato-fila {
+    /*font-size: 22px;
+    font-weight: 700;
+    margin-right: 1rem;*/
+}
+
+.leyenda-fila {
+    font-size: 11px;
+    text-transform: uppercase;
+    width: 108px;
+    text-align: left;
+    line-height: 1;
+}
+
+.posicion-fila .leyenda-fila {
+    /*width: 78px;*/
+}
+
+.disclaimer-fila-unica {
+    max-width: 800px !important;
+}
+
+.alerta-sala.minSalaEspera {
+    width: 25% !important;
+}
+
+
+@media (max-width: 991.98px) {
+    .titulo-sala {
+        top: 10rem;
+        left: 3rem;
+        text-shadow: 1px 1px 2px #000;
+        width: auto !important;
+    }
+
+        .titulo-sala small {
+            font-size: 2rem;
+        }
+
+    .cont-revistas-desk {
+        display: none !important;
+    }
+
+    .cont-revistas-mobile {
+        display: flex !important;
+    }
+
+    .sala-espera-mobile .alerta-sala {
+        width: 100%;
+        margin-top: 3rem;
+        display: block;
+        padding: 1rem;
+    }
+
+        .sala-espera-mobile .alerta-sala.mensaje-mobile {
+            margin-top: 0;
+        }
+
+            .sala-espera-mobile .alerta-sala.mensaje-mobile p {
+                font-size: .9rem;
+            }
+
+    .sala-espera-mobile .titulo-fila {
+        display: block;
+        border-right: none;
+        height: auto;
+    }
+
+    .sala-espera-mobile .tiempo-atencion,
+    .sala-espera-mobile .posicion-fila {
+        width: auto !important;
+        border-right: none;
+        height: auto;
+        display: inline-block;
+        margin-top: .5rem;
+        padding-right: 0;
+    }
+
+    .sala-espera-mobile .titulo-fila {
+        font-size: 1rem;
+        padding-right: 0;
+        width: 100%;
+        border-bottom: 1px solid rgba(255,255,255,.3);
+        padding-bottom: .5rem;
+        text-align: center;
+    }
+
+        .sala-espera-mobile .titulo-fila i {
+            font-size: 1rem;
+            margin-right: .2rem;
+        }
+
+    .sala-espera-mobile .dato-fila {
+        font-size: 1.6rem;
+        text-align: left;
+    }
+
+    .sala-espera-mobile .dato-fila,
+    .sala-espera-mobile .leyenda-fila {
+        margin-right: .5rem;
+    }
+
+    .sala-espera-mobile .tiempo-atencion {
+        padding-right: .5rem;
+        margin-right: .5rem;
+        border-right: 1px solid rgba(255,255,255,.3);
+    }
+
+    .sala-espera-mobile .posicion-fila .leyenda-fila {
+        width: 56px;
+    }
+
+
+    /*Turnero Mobile*/
+
+    .body-home .posicion-fila {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+}
+
+.container-fila-tiempo {
+    background-color: rgba(41,136,145,1);
+    border-radius: 5px;
+    margin: 0px auto;
+    margin-top: 10px;
+    width: 400px;
+}
+
+    #btnModalDeleteTurno {
+        width: 120px;
+        height: 40px;
+        margin-top: 5px;
+    }
+
+#btnGoHome {
+    width: 120px;
+    height: 40px;
+    margin-top: 5px;
+}
+
+#btnIrSalaEspera {
+    width: 120px;
+    height: 40px;
+    margin-top: 5px;
+}
+
+.btn-control-atencion {
+    background-color: white;
+    border-radius: 10px;
+    width: 500px;
+    height: 50px;
+    margin: 10px;
+}
+
+/*Modal conservar hora*/
+#modalConservaTurno {
+    margin-top: 250px;
+}
+
+#modal-ConservaTurno {
+    border-radius: 50px;
+    width: 350px;
+}
+
+
+/*05062023*/
+
+.tiempo-atencion .dato-fila {
+    /*margin-right: 0;*/
+}
+.tiempo-atencion {
+    /*width: 100%;
+    justify-content: center;*/
+}
+
+.posicion-fila {
+    /*padding-right: 1rem;
+    padding-left: 1rem;
+    margin-left: 0;
+    width: 100%;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    height: auto !important;*/
+}
+    .posicion-fila .leyenda-fila {
+        /* border-right: none !important;*/
+    }
+
+.posicion-fila {
+    /*border-right: 1px solid rgba(255,255,255,.3);
+    height: auto !important;*/
+}
+
+.tiempo-atencion {
+    /*margin-top: 0;
+    margin-bottom: 0;*/
+}
+
+/*Turnero Home*/
+
+.body-home .tiempo-atencion .dato-fila {
+    /*margin-right: 0;*/
+}
+
+.body-home .tiempo-atencion {
+    /*width: 100%;
+    justify-content: center;*/
+}
+
+.body-home .posicion-fila {
+    /* padding-right: 1rem;
+    padding-left: 1rem;
+    margin-left: 0;
+    width: 100%;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    height: auto !important;*/
+}
+
+    .body-home .posicion-fila .leyenda-fila {
+        /* border-right: none !important;*/
+    }
+
+.body-home .posicion-fila {
+    /*border-right: 1px solid rgba(255,255,255,.3);
+    height: auto !important;*/
+}
+
+.body-home .tiempo-atencion {
+    /* margin-top: 0;
+    margin-bottom: 0*/
+}
+
+@media (max-width: 1024px) {
+    .body-home .tiempo-atencion .dato-fila {
+        /*margin-right: auto;*/
+    }
+}
+
+
+/*Turnero Consalud*/
+
+.fila-unica-consalud {
+    pointer-events: all;
+    border-right: none;
+    max-width: 510px !important;
+}
+
+.fila-unica-consalud .titulo-fila {
+    max-width: 200px;
+    font-size: 11px;
+}
+
+.fila-unica-consalud .tiempo-atencion {
+    max-width: 210px;
+    gap: .5rem;
+}
+
+.fila-unica-consalud .posicion-fila {
+    border-right: none;
+    max-width: 150px;
+    gap: .5rem;
+}
+
+.fila-unica-consalud .leyenda-fila {
+    max-width: 130px;
+    width: 100%;
+}
+
+    .fila-unica-consalud .dato-fila {
+        margin-right: 0;
+    }
+
+    /*Turnero Sala espera mobile*/
+
+
+
+.sala-espera-mobile.sala-espera-consalud {
+
+}
+
+.sala-espera-mobile.sala-espera-consalud .titulo-fila {
+    width: 100%;
+    text-align: center;
+
+    border: 1px solid red;
+}
+
+
+
+/*modal devices*/
+@media (max-width: 1200px) and (max-height: 600px) {
+    .modal-dialog-scrollable .modal-content {
+        
+        overflow: scroll;
+    }
+}
+
+
+
+.modal-content-devices {
+    width: 100%;
+    margin: auto;
+    background-color: var(--background-body-color);
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem;
+    border-radius: 30px;
+}
+
+.modal-devices-cerrar {
+    text-align: end;
+    padding: 0.5rem 0.5 0 0;
+}
+
+    .modal-devices-cerrar img {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+
+#modal-devices {
+    margin-top: 2rem;
+}
+
+
+
+.modal-devices-body {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.modal-devices-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-devices-header-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+    .modal-devices-header-content h1 {
+        color: var(--tertiary-color);
+        font-weight: 700;
+        font-size: 2rem;
+    }
+
+    .modal-devices-header-content img {
+        height: 4rem;
+        width: 4rem;
+    }
+
+.modal-devices-header p {
+    margin: 0;
+    color: var(--title-color);
+    font-size: 18px;
+}
+
+.modal-devices-body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+
+/* camara */
+
+.modal-devices-camara {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.modal-devices-camara-test {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+    .modal-devices-camara-test h3 {
+        color: var(--tertiary-color);
+        font-weight: 700;
+        margin: 0;
+        font-size: 15px;
+    }
+
+    .modal-devices-camara-test p {
+        color: var(--tertiary-color);
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+
+.modal-devices-camara-estado {
+    display: flex;
+    flex-direction: row;
+    margin-top: 0.3rem;
+}
+
+.modal-devices-camara-estado-activa {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem
+}
+
+    .modal-devices-camara-estado-activa h5 {
+        margin: 0;
+        padding: 0;
+        color: green;
+        font-size: 12px;
+    }
+
+.modal-devices-camara-estado-inactivo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    
+}
+
+    .modal-devices-camara-estado-inactivo img {
+        width: 14px;
+    }
+
+.modal-devices-microfono-estado-inactivo img {
+    width: 14px;
+}
+
+.modal-devices-camara-estado-inactivo h5 {
+    margin: 0;
+    padding: 0;
+    color: red;
+    font-size: 12px;
+}
+
+.modal-devices-camara-img {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: gray;
+    min-height: 6.5rem;
+    width: 30%;
+    max-width: 22%;
+    border-radius: 10px;
+}
+
+.modal-devices-camara-boton-estado {
+    border: 1px solid #1DA70C !important;
+    background-color: var(--background-body-color);
+    padding: 0.5rem 0 0.5rem 0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    color: #1DA70C;
+    cursor: pointer;
+}
+
+.horizontal-line-camara {
+    border: none;
+    border-top: 1px solid var(--title-color);
+    margin: 0.6rem 0 0.6rem 0;
+    opacity: 0.2;
+}
+
+
+/* fin camara */
+
+
+
+
+/* microfono */
+
+.modal-devices-microfono {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.modal-devices-microfono-test {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+    .modal-devices-microfono-test h3 {
+        color: var(--tertiary-color);
+        font-weight: 700;
+        margin: 0;
+        font-size: 15px;
+    }
+
+    .modal-devices-microfono-test p {
+        color: var(--tertiary-color);
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+
+.modal-devices-microfono-estado {
+    display: flex;
+    flex-direction: row;
+    margin-top: 0.3rem;
+}
+
+.modal-devices-microfono-estado-activa {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem
+}
+
+    .modal-devices-microfono-estado-activa h5 {
+        margin: 0;
+        padding: 0;
+        color: green;
+        font-size: 12px;
+    }
+
+.modal-devices-microfono-estado-inactivo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem
+}
+
+    .modal-devices-microfono-estado-inactivo h5 {
+        margin: 0;
+        padding: 0;
+        color: red;
+        font-size: 12px;
+    }
+
+.modal-devices-microfono-img {
+    background-image: url(../../img/modal-devices/waves.svg);
+    background-position: center top 1.5rem;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: transparent;
+    min-height: 7rem;
+    width: 30%;
+    max-width: 22%;
+    border-radius: 10px;
+    border: 1px solid var(--secondary-color);
+}
+
+.modal-devices-microfono-boton-estado {
+    border: 1px solid #1DA70C !important;
+    background-color: var(--background-body-color);
+    padding: 0.5rem 0 0.5rem 0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    color: #1DA70C;
+    cursor: pointer;
+}
+
+.horizontal-line-microfono {
+    border: none;
+    border-top: 1px solid var(--title-color);
+    margin: 0.6rem 0 0.6rem 0;
+    opacity: 0.2;
+}
+
+
+/* fin microfono */
+
+
+
+
+/* audio */
+
+.modal-devices-audio {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.modal-devices-audio-test {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+    .modal-devices-audio-test h3 {
+        color: var(--tertiary-color);
+        font-weight: 700;
+        margin: 0;
+        font-size: 15px;
+    }
+
+    .modal-devices-audio-test p {
+        color: var(--tertiary-color);
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+
+
+
+.modal.show .modal-dialog {
+   /* margin: auto;*/
+    width: 100%;
+}
+
+.modal-devices-audio-estado {
+    display: flex;
+    flex-direction: row;
+    margin-top: 0.3rem;
+}
+
+.modal-devices-audio-estado-activa {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem
+}
+
+#test-video {
+    height: 6rem;
+}
+
+.modal-devices-camara-estado-activa img{
+    width: 14px;
+}
+
+.modal-devices-camara-estado-inactiva img {
+    width: 14px;
+}
+
+.modal-devices-microfono-estado-activa img {
+    width: 14px;
+}
+
+.modal-devices-microfono-estado-inactiva img {
+    width: 14px;
+}
+
+.modal-devices-audio-estado-activa img {
+    width: 14px;
+}
+
+.modal-devices-audio-estado-inactiva img {
+    width: 14px;
+}
+
+.modal-devices-audio-estado-activa h5 {
+    margin: 0;
+    padding: 0;
+    color: green;
+    font-size: 12px;
+}
+
+.modal-devices-audio-estado-inactivo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem
+}
+
+    .modal-devices-audio-estado-inactivo h5 {
+        margin: 0;
+        padding: 0;
+        color: red;
+        font-size: 12px;
+    }
+
+.modal-devices-audio-img {
+    background-image: url(../../img/modal-devices/waves.svg);
+    background-position: center top 1.5rem;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: transparent;
+    min-height: 7rem;
+    width: 30%;
+    max-width: 22%;
+    border-radius: 10px;
+    border: 1px solid var(--secondary-color);
+}
+
+.modal-devices-audio-boton-estado {
+    border: 1px solid #1DA70C !important;
+    background-color: var(--background-body-color);
+    padding: 0.5rem 0 0.5rem 0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    color: #1DA70C;
+    cursor: pointer;
+}
+
+.horizontal-line-audio {
+    border: none;
+    border-top: 1px solid var(--title-color);
+    margin: 0.6rem 0 0.9rem 0;
+    opacity: 0.2;
+}
+/* fin audio */
+
+/* boton modal devices */
+.boton-consulta button {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    margin: auto;
+    padding: 0.7rem 0 0.7rem 0;
+    background-color: var(--tertiary-color);
+    color: var(--background-body-color);
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+/* fin boton modal devices */
+
+/*final modal devices*/
+
+audio {
+    display: flex;
+    position: relative;
+    top: 4.3rem;
+    width: 25rem;
+    background-color: var(--primary);
+    right: 26.5rem;
+    padding: 0.15rem;
+    border-radius: 2rem;
+}
+
+.div-what {
+    margin: 1em 0%;
+    display: flex;
+}
+
+    .div-what .fa-whatsapp {
+        color: #087FA2;
+    }
+
+.texto-SAC {
+    display: inline-block;
+   
+}
+
+
+@media (max-width: 1024px) {
+   
+
+
+    .texto-SAC {
+        width: 59%;
+    }
+
+    .modal-devices-header p {
+        
+        font-size: 12px;
+    }
+
+    audio {
+        display: flex;
+        position: relative;
+        top: 1.5rem;
+        width: 9.7rem;
+        background-color: green;
+        right: 0.1rem;
+        padding: 3px;
+        border-radius: 0px;
+    }
+
+
+    .div-what {
+        margin: 1rem 0%;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+    }
+
+
+   
+    .modal-devices-header-content{
+        display: flex;
+        flex-direction: row
+    }
+
+    .modal-content-devices {
+        padding: 0.9rem;
+    }
+
+    .modal-devices-camara-img {
+        width: 100%;
+        max-width: 35%;
+        height: 9rem;
+    }
+
+    .modal-devices-camara-test {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .modal-devices-microfono-img {
+        width: 100%;
+        max-width: 35%;
+        background-size: 80%;
+        background-position: center top 1.8rem;
+    }
+
+    .modal-devices-microfono-estado-activa h5 {
+      
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    .modal-devices-audio-estado-activa h5 {
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    .modal-devices-camara-estado-activa h5 {
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    .modal-devices-microfono {
+       
+        gap: 0; 
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .modal-devices-camara{
+        gap: 0;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .modal-devices-audio {
+        gap: 0;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .modal-devices-camara-estado {
+      
+        margin-top: 1rem;
+    }
+
+
+    .modal-devices-microfono-estado {
+        margin-top: 1rem;
+    }
+
+    .modal-devices-audio-estado {
+        margin-top: 1rem;
+    }
+
+    .modal-devices-microfono-test {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .modal-devices-audio-img {
+        width: 100%;
+        max-width: 35%;
+        background-size: 80%;
+        background-position: center top 1.8rem;
+    }
+
+    .modal-devices-audio-test {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .modal-devices-microfono-boton-estado {
+     
+        font-size: 10px;
+      
+    }
+
+    .modal-devices-audio-boton-estado {
+        font-size: 10px;
+    }
+
+    .modal-devices-camara-boton-estado {
+        font-size: 10px;
+    }
+
+    .modal-devices-header-content h1 {
+        font-size: 15px;
+        text-align: left;
+        margin-bottom: 0 !important;
+    }
+
+    .modal-devices-header {
+       
+        margin-top: 1rem;
+    }
+
+    .modal-devices-header-content {
+       
+        margin-bottom: 0.5rem;
+    }
+
+    .alerta-sala.fila-unica.alerta-superior {
+        height: auto;
+        flex-wrap: wrap;
+    }
+    .sala-espera-mobile.sala-espera-consalud .titulo-fila {
+        width: 100%;
+        text-align: left;
+        display: none;
+    }
+
+    .sala-espera-mobile .tiempo-atencion {
+
+    }
+    .sala-espera-mobile .posicion-fila {
+        width: auto !important;
+    }
+    .sala-espera-mobile .leyenda-fila {
+        font-size: 10px;
+    }
+    .sala-espera-mobile .dato-fila {
+        font-size: 1.4rem;
+    }
+
+    .alerta-sala.fila-unica.alerta-superior {
+        border-right: none;
+    }
+
+    .sala-espera-mobile .tiempo-atencion {
+        padding-right: 0;
+    }
+
+    .sala-espera-mobile.sala-espera-consalud {
+        padding: 1rem;
+    }
+
+        .sala-espera-mobile.sala-espera-consalud .tiempo-atencion .d-flex {
+            gap: .5rem;
+        }
+        .sala-espera-mobile.sala-espera-consalud .alerta-sala {
+            margin-bottom: 0 !important;
+        }
+}
+
+/*clase disabled param modal device*/
+
+#validate-redirect:disabled{
+    opacity: .5;
+    cursor: default;
+    background-color: #999;
+
+}
+
+#redirect-Consult:disabled {
+    opacity: .5;
+    cursor: default;
+    background-color: #999;
+}

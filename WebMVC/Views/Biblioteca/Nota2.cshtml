@@ -1,0 +1,126 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+
+    <section class="container-fluid note-section library featured" id="nota2">
+        <div class="container">
+            <div class="row">
+                <div class="col-auto">
+                    <div class="cont-icons">
+                        <div class="icon account-type">
+                            <i class="fal fa-heart"></i>
+                        </div>
+                        <div class="icon">
+                            <i class="fal fa-file-alt"></i>
+                        </div>
+                    </div>
+
+                    <h1 class="title-section">
+                        Beneficios del autoexamen mamario: conoce cómo realizarlo de forma correcta.
+                    </h1>
+                    <p>
+                        María José Oyarzun, Matrona, especialista en Salud sexual y salud reproductiva, con enfoque en derecho, género y diversidad.
+                        Cursando Magister en sexología, docente universitaria Universidad Andrés Bello.
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <p>
+                        Según un estudio del MINSAL (2018-2019), 5.400 mujeres son detectadas con cáncer de mama cada año en Chile, de las cuales 1.700 fallecen.
+                        La detección temprana es la manera más efectiva de evitar llegar a ello, y las cifras en el país deja en claro una cosa: no existe suficiente
+                        conciencia sobre la importancia de prevenir y detectar a tiempo.
+                    </p>
+                    <p>
+                        Después de casi dos años de pandemia, el foco en el sistema de salud continúa siendo el COVID, y acudir a los controles no es fácil con la poca
+                        disponibilidad de los centros de salud; lo preventivo queda en segundo plano, lo que supone una enorme desventaja cuando la prevención es lo que
+                        hace la diferencia para lidiar con un cáncer de mama.
+
+                    </p>
+                    <p>
+                        Para realizar el examen de manera correcta, María José Oyarzun muestra los principales pasos que se deben seguir:
+                    </p>
+
+                    <ol>
+                        <li>
+                            Comenzar de pie frente a un espejo, sin ropa desde la cintura hacia arriba, para poder mirar la forma de las mamas y características de la
+                            clavícula, axilas, cómo cae la mama, si hay cambios en la piel o si esta se retrae, si el pezón se hunde bajo la presión gravitatoria de la mama, etc.
+                        </li>
+                        <li>
+                            Colocar las manos en la cintura y llevar los codos hacia afuera. Así, la mama se despega del músculo pectoral al que está adherida y se logra ver mejor
+                            su caída, cambios en la piel o de forma, o bultos que no son visibles estando acostada.
+
+                        </li>
+                        <li>
+                            Aún de pie, tocar las mamas con una mano. Gracias a su gravitación, se puede tener acceso al músculo pectoral y a la parte de encima con mucha más facilidad.
+                        </li>
+                        <li>
+                            Acostarse y colocar una mano detrás de la cabeza y la otra tocando la mama contraria. Palpar con la punta de los dedos, suave, pero con presión constante,
+                            siguiendo círculos en orden, para que no quede ningún lugar sin examinar).
+
+                        </li>
+                        <li>
+                            Una vez se termina de palpar en búsqueda de bultos, se termina apretando el pezón para ver si sale algún flujo anormal.
+                        </li>
+                    </ol>
+                    <p>
+                        Si se ha tenido éxito, luego de aquello el paciente recibirá el tratamiento post paro, y finalmente logrará la recuperación.
+                    </p>
+                    <p>
+                        <em>
+                            “La idea no es favorecer el miedo, más bien saber que tenemos el poder de cambiar el funcionamiento de nuestro cuerpo. Hay factores que no podemos cambiar -como la
+                            genética-, pero sí hay otros que podemos modificar en pos de tener una mejor salud”, señala la matrona.  Llevar una alimentación saludable (evitar alimentos procesados
+                            con exceso de sodio y grasa), realizar actividad física constante, disminuir los ambientes de estrés, no fumar, realizarse el autoexamen, y llevar un control habitual
+                            con profesionales de la salud son pasos relevantes”.
+                        </em>
+
+                    </p>
+                    <p>
+                        María José entrega un mensaje final: <em>
+                            “No debemos olvidar los controles preventivos. No acudamos a profesionales solo por sentirnos mal o por una enfermedad, hagámoslo de manera
+                            constante para empezar a empoderarnos de nuestro autocuidado y conocer nuestro cuerpo. Hay una gran deuda en Chile: estamos muy acostumbrados a que un profesional de la salud
+                            diga qué hacer, cuando deberíamos ser acompañantes que entregan las herramientas para que las personas ejerzan su derecho a controlar su propia salud”.
+                        </em>
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+
+                    </div>
+
+                    <partial name="~/Views/Biblioteca/_ColumnasNotas.cshtml" model="Model" view-data="ViewData" />
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}

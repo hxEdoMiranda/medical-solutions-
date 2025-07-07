@@ -1,0 +1,78 @@
+﻿@model List<WebMVC.Models.Archivo>
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+<div class="kt-portlet__head">
+    @* Traer idEntidad y codEntidad desde la view que renderiza esta view parcial. *@
+    @Html.Hidden("idEntidad", ViewData["idEntidad"])
+    @Html.Hidden("codEntidad", ViewData["codEntidad"])
+    <div class="kt-portlet__head-label">
+       
+    </div>
+    <div class="kt-portlet__head-toolbar d-none">
+        <div class="dropdown dropdown-inline">
+            <button type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="flaticon-more-1"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+                <ul class="kt-nav">
+                    <li class="kt-nav__item">
+                        <a id="actualizar_archivos" href="javascript:void(0);" class="kt-nav__link">
+                            <i class="kt-nav__link-icon flaticon-refresh"></i>
+                            <span class="kt-nav__link-text">Actualizar</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="kt-portlet__body">
+
+    <div id="lista_archivos_mobile" class="kt-widget4 lista-archivos">
+        @foreach (var item in Model.Where(x => x.CodEntidadAsociada.Equals("ATENCIONES")))
+        {
+            <div class="kt-widget4__item" id="archivoC">
+                <div class="kt-widget4__pic kt-widget4__pic--icon">
+                    <i class="flaticon-doc" style="font-size: 2.5rem;"></i>
+                </div>
+                <div class="kt-widget4__info">
+                    @if (item.Estado != "E")
+                    {
+                        <a href="@Configuration["ServicesUrl"]@item.RutaVirtual" target="_blank" class="kt-widget4__title" id="archivo">
+                            @item.Nombre
+                        </a>
+                    }
+                    else
+                    {
+                        <p style="text-decoration:line-through; margin-bottom:0px;font-weight: 500;color: #c3c6c8;font-size: 14px;" id="archivo">
+                            @item.Nombre
+                        </p>
+                    }
+                    @{
+                        var fecha = "";
+                        @if (ViewData["view"].Equals(Roles.Paciente))
+                        {
+                            fecha = item.FechaPaciente.ToString();
+                        }
+                        else
+                        {
+                            fecha = item.Fecha.ToString();
+                        }
+                    }
+                    @*<p class="kt-widget4__text">
+                            @item.NombreCompleto - @fecha
+                        </p>*@
+                </div>
+                @*@if (item.IdUsuario.Equals(ViewData["uid"]) && item.Estado != "E")
+                    {
+                        <div class="kt-widget4__tools">
+                            <a href="javascript:void(0);" class="btn btn-clean btn-icon btn-sm eliminar_archivo" data-id-file="@item.Id" data-nombre="@item.Nombre">
+                                <i class="flaticon-delete"></i>
+                            </a>
+                        </div>
+                    }*@
+            </div>
+        }
+    </div>
+</div>

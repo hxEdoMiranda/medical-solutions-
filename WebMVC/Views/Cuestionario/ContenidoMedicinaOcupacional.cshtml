@@ -1,0 +1,129 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    int audio = 0;
+    int visual = 0;
+    int psico = 0;
+    int avanceA = 0;
+    int avanceB = 0;
+    int avanceC = 0;
+    foreach (var item in ViewBag.cuestionariosEmpresa)
+    {
+        if (item.Cod_tipo.Contains("audio"))
+        {
+            audio = item.id_encuesta_activa;
+            avanceA = item.Avance;
+        }
+        else if (item.Cod_tipo.Contains("visual"))
+        {
+            visual = item.id_encuesta_activa;
+            avanceB = item.Avance; ;
+        }
+        else if (item.Cod_tipo.Contains("psico"))
+        {
+            psico = item.id_encuesta_activa;
+            avanceC = item.Avance; ;
+        }
+    }
+}
+<!--MedismartBASE-->
+<div class="container">
+    <div class="row">
+
+        <div class="box_nom035 box_medicina-ocupacional">
+            @if (audio != 0)
+            {
+                <div class="card-medicina-ocupacional">
+                    <h1 class="fuente-accesible">Test de Audiometría</h1>
+                    <p>
+                        Este test es importante, ya que podrás identificar si has estado expuesto a acontecimientos traumaticos severos.
+                        Saber si requieres valoración clinica y realizarte un acompañamiento.
+                    </p>
+                    <ul>
+                        <li>16 pasos</li>
+                        <li>20 minutos aprox.</li>
+                    </ul>
+                    <a id="btnHome035" class="icon_medicina-ocupacional">
+
+                        <img src="~/img/medicina-ocupacional/icon-audiometria.svg" alt="Acontecimientotraumático">
+                        <span class="leyenda-card-home d-md-none fuente-accesible">Test de Audiometría</span>
+
+                    </a>
+                    <h2 class="fuente-accesible">Test de Audiometría</h2>
+                    <div class="box_nom035_cta">
+                        <div class="cont-guardar-info">
+                            <button @(avanceA == 100 ? "disabled" : "") type="submit" onclick="location.href='/Cuestionario/TestOcupacional?idCuestionario=@(audio)'" id="btn_guardar_info" class="btn btn-success btn-guardar-info">Comenzar</button>
+                        </div>
+                    </div>
+                    <div class="porcentaje_pendiente">@(avanceA)% de avance</div>
+                </div>
+            }
+            @if (visual != 0)
+            {
+
+                <div class="divider-card">&nbsp;</div>
+                <div class="card-medicina-ocupacional">
+                    <h1 class="fuente-accesible">Test Visual</h1>
+                    <p>
+                        Este test es importante, ya que podrás identificar si has estado expuesto a acontecimientos traumaticos severos.
+                        Saber si requieres valoración clinica y realizarte un acompañanamiento.
+                    </p>
+                    <ul>
+                        <li>32 pasos</li>
+                        <li>20 minutos aprox.</li>
+                    </ul>
+                    <a id="btnHome035" class="icon_medicina-ocupacional">
+
+                        <img src="~/img/medicina-ocupacional/icon-visual.svg" alt="Acontecimientotraumático">
+                        <span class="leyenda-card-home d-md-none fuente-accesible">Test de Audiometría</span>
+
+                    </a>
+                    <h2 class="fuente-accesible">Test Visual</h2>
+                    <div class="box_nom035_cta">
+                        <div class="cont-guardar-info">
+                            <button @(avanceB == 100 ? "disabled" : "") type="submit" onclick="location.href='/Cuestionario/TestOcupacional?idCuestionario=@(visual)'" id="btn_guardar_info" class="btn btn-success btn-guardar-info">Comenzar</button>
+                        </div>
+                    </div>
+                    <div class="porcentaje_pendiente">@(avanceB)% de avance</div>
+                </div>
+            }
+            @if (psico != 0)
+            {
+
+                <div class="divider-card">&nbsp;</div>
+                <div class="card-medicina-ocupacional">
+                    <h1 class="fuente-accesible">Test Psicológico</h1>
+                    <p>
+                        Este test es importante, ya que podrás identificar si has estado expuesto a acontecimientos traumaticos severos.
+                        Saber si requieres valoración clinica y realizarte un acompañanamiento.
+                    </p>
+                    <ul>
+                        <li>3 pasos</li>
+                        <li>20 minutos aprox.</li>
+                    </ul>
+                    <a id="btnHome035" class="icon_medicina-ocupacional">
+
+                        <img src="~/img/medicina-ocupacional/icon-psicologia.svg" alt="Acontecimientotraumático">
+                        <span class="leyenda-card-home d-md-none fuente-accesible">Test de Audiometría</span>
+
+                    </a>
+                    <h2 class="fuente-accesible">Test Psicológico</h2>
+                    <div class="box_nom035_cta">
+                        <div class="cont-guardar-info">
+                            <button @(avanceC == 100 ? "disabled" : "") type="submit" onclick="location.href='/Cuestionario/TestOcupacional?idCuestionario=@(psico)'" id="btn_guardar_info" class="btn btn-success btn-guardar-info">Comenzar</button>
+                        </div>
+                    </div>
+                    <div class="porcentaje_pendiente">@(avanceC)% de avance</div>
+                </div>
+            }
+        </div>
+        @if (avanceA == 100 && avanceB == 100 && avanceC == 100)
+        {
+            <div class="box_nom035_cta">
+                <div class="cont-guardar-info">
+                    <button type="submit" onclick="location.href='/Cuestionario/MedicinaOcupacionalAgendar'" id="btn_guardar_info" class="btn btn-success btn-guardar-info">Comenzar</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

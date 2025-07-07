@@ -1,0 +1,95 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+
+    <section class="container-fluid note-section library featured" id="nota3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    
+                    <div class="cont-titulo-receta">
+                        <div class="cont-logo">
+                            <img src="~/img/cajalosandes/recetas/logo.svg" alt="" />
+                    <h1 class="title-section">
+                        Cubitos de Cítricos
+                    </h1>
+                        </div>
+                    <img src="~/img/cajalosandes/recetas/cubitos-citrico.png" alt="" />
+                    
+                    </div>
+                    
+                    
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <h2 class="subtitulo-receta">
+                        Ingredientes 10 porciones
+                    </h2>
+
+                    <ol>
+                       
+                        <li>2 naranjas</li>
+                        <li>1 limón</li>
+                        <li>Un puñado de hojas de menta fresca</li>
+                        <li>2 c/s miel</li>
+                    </ol>
+                   
+                    <h2 class="subtitulo-receta">
+                        Preparación
+                    </h2>
+                    <ol>
+                        
+                        
+                         <li> Lavar los cítricos, rallar la piel de una naranja y de un limón. Reservar.</li>
+                         <li> Partir los cítricos por la mitad y hacer zumo.</li>
+                         <li> Mezclar el zumo con la miel</li>
+                         <li> Picar la menta y añadirla a la mezcla. Añadir la piel de los cítricos.</li>
+                         <li> Disponer el líquido en cubiteras y congelar</li>
+                         <li> Sacar los cubitos del molde y servir. Se pueden utilizar los cubitos para enfriar un vaso de agua,
+                        limonada, zumo de frutas o infusión.</li>
+                      
+                    </ol>
+                    <p>
+                        <a href="@Url.Action("DescargarCaja", new { file = ViewBag.codigoNota})">
+                            Descargar PDF
+                        </a>
+                        
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+                    </div>
+                </div>
+            </div>
+            <div class="footer-receta d-none">
+
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}

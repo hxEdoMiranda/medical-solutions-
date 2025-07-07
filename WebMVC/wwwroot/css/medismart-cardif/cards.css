@@ -1,0 +1,62 @@
+/*Cards*/
+.kt-portlet {
+    border-radius: 10px !important;
+    border: 1px solid rgba(59, 193, 205, .3);
+}
+
+    .kt-portlet .kt-portlet__head .kt-portlet__head-label .kt-portlet__head-title {
+        font-weight: 900;
+        color: #3BC1CD;
+    }
+    .kt-portlet .kt-portlet__head {
+        border-bottom: 1px solid rgba(59, 193, 205, .3);
+        font-weight: 700;
+    }
+    /*Menu*/
+    .ms-link-icon {
+        font-size: 36px !important;
+    }
+
+.kt-portlet .kt-portlet__body {
+    /*padding: 2rem 4rem;*/ 
+    padding: 2rem;
+}
+
+.ms-label-menu {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 8px;
+    letter-spacing: 1px;
+}
+
+.kt-menu__item a,
+.kt-menu__item i {
+    color: #3BC1CD; /*!important*/
+}
+
+.kt-menu__item:hover a,
+.kt-menu__item:hover i {
+    color: #FFAF36 !important;
+}
+
+/* Sin Horas Disponibles */
+
+
+#divSinHorasDisponibles {
+    display: flex;
+    align-items: center;
+    max-width: 500px;
+    margin: auto;
+    gap: 1rem;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-top: 5rem;
+}
+
+@media (max-width: 1024px) {
+    #divSinHorasDisponibles {
+        flex-direction: column;
+    }
+}

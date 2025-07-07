@@ -1,0 +1,205 @@
+/* Revistas */
+.cont-revistas, .cont-videos {
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+    /* width: 90%;*/
+    width: 100%;
+    /*height: 100%;*/
+    overflow-x: hidden;
+    flex-wrap: wrap;
+    margin: 1rem auto;
+}
+
+.cont-revistas {
+    max-width: 930px;
+}
+
+.revista {
+  width: 120px;
+  height: 160px;
+  overflow: hidden;
+  background-color: #FFF;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  margin: 0 .5rem .5rem;
+}
+
+.revista .body-revista {
+  height: 160px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.revista .body-revista img {
+  height: 100%;
+}
+
+.revista .footer-revista {
+  text-align: center;
+  font-size: 0.8rem;
+  line-height: 1;
+  background-color: #DDD;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-weight: 700;
+  color: #666;
+  display: none;
+}
+
+.footer-revista {
+    font-weight: 800;
+    display: block;
+    margin-top: .5rem;
+}
+
+.btn-revista {
+    cursor: pointer
+}
+
+
+/*Juegos*/
+
+.contenedor-juego {
+    text-align: center;
+}
+
+
+.visor-juego {
+    width: 800px;
+    height:600px;
+    margin: 0 auto;
+}
+
+.cont-juegos {
+    height: auto;
+    display: block;
+    max-width: 800px;
+    width: 100%;
+}
+
+.lista-juegos {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.footer-juego {
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 1rem 0;
+}
+
+.juego {
+    /*border: 1px solid #DDD;*/
+    text-align: center;
+}
+
+    .juego img {
+        width: 200px;
+        height: 150px;
+        overflow: hidden;
+        border-radius: .5rem;
+        border: 1px solid #3BC1CD;
+        cursor: pointer;
+    }
+
+        .juego .thumb-juego img {
+            width: 100%;
+            height: auto;
+            border-radius: .5rem;
+        }
+
+    .juego .legend-juego {
+        font-size: 1rem;
+        color: #666;
+        display: block;
+        text-align: center;
+        padding: .5rem 0;
+    }
+
+
+/* Videos */
+.contenedor-video {
+    text-align: center;
+}
+
+.visor-video {
+    width: 640px;
+    height: 360px;
+    margin: 0 auto;
+}
+
+.video {
+    /*border: 1px solid #DDD;*/
+    margin-bottom: 1rem;
+}
+
+    .video .thumb-video {
+        width: 300px;
+        height: 150px;
+        overflow: hidden;
+        border-radius: .5rem;
+        border: 1px solid #3BC1CD;
+        cursor: pointer;
+        position: relative;
+    }
+
+        .video .thumb-video img {
+            width: 100%;
+            height: auto;
+            border-radius: .5rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+    .video .legend-video {
+        font-size: 1rem;
+        color: #666;
+        display: block;
+        text-align: center;
+        padding: .5rem 0;
+        width: 100%;
+        max-width: 290px;
+    }
+
+
+
+@media (max-width: 991.98px) {
+
+    .modal-dialog {
+        max-width: 94% !important;
+        height: 100%;
+    }
+
+    .contenedor-juego {
+        height: 100%;
+    }
+
+    .visor-juego, .visor-video, .visor-revista {
+        width: 100%;
+        height: auto;
+    }
+    .visor-juego {
+       height: 100%;
+     }
+
+    .cont-juegos {
+       flex-direction: column;
+    }
+
+    .juego img {
+        width: 100%;
+        height: auto;
+        /* max-height: 88px;*/
+    }
+
+}
+
+
+
+    /*# sourceMappingURL=sala-archivos.css.map */

@@ -1,0 +1,108 @@
+﻿@using Microsoft.Extensions.Configuration
+@model WebMVC.Models.PersonasViewModel
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Configuracion";
+    Layout = "_LayoutPacienteInvitado";
+
+}
+
+
+@{
+    ViewData["idEntidad"] = ViewBag.idEdit;
+    ViewData["codEntidad"] = Entidades.FOTO_PERFIL;
+    //ViewData["uid"] = ViewBag.idCliente;
+}
+@{
+    ViewData["view"] = Roles.Administrador;
+}
+
+@section Styles  {
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/metronic_demo7/assets/plugins/select2/select2.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" />
+    <link href="~/metronic_demo7/assets/plugins/bootstrap-select/css/bootstrap-select.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" />
+}
+
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+    <!--Begin::App-->
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+
+        <!--Begin:: App Aside Mobile Toggle-->
+        <button class="kt-app__aside-close" id="kt_user_profile_aside_close">
+            <i class="la la-close"></i>
+        </button>
+        <!--End:: App Aside Mobile Toggle-->
+        <!--End:: App Aside Mobile Toggle-->
+
+        <div class="col-lg-12">
+            <partial name="~/Views/PacienteInvitado/_PerfilPacienteInvitado.cshtml" model="Model" view-data="ViewData" />
+
+        </div>
+
+    </div>
+
+</div>
+
+
+@*
+@section Scripts {
+    <script src="~/signal/signalr.min.js"></script>
+    
+    <script src="~/js/accesible.js"></script>
+    <script type="module">
+
+        import { init } from '../../js/PacienteInvitado/editarPacienteInvitado.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+            var uid = @ViewBag.uid;
+            var idMedico = @ViewBag.idMedico;
+            var idMedicoHora = @ViewBag.idMedicoHora;
+            var idAtencion = @ViewBag.idAtencion;
+            var idBloqueHora =@ViewBag.idBloqueHora;
+            var fechaSeleccion = '@ViewBag.fechaSeleccion';
+            var fechaText = '@ViewBag.fechaText';
+            var horaText = '@ViewBag.horaText';
+            var horario = @ViewBag.horario.ToString().ToLower();
+            var textoMarca = '@ViewBag.textoMarca';
+            var especialidad = @ViewBag.especialidad;
+            var tipoEspecialidad = '@ViewBag.tipoEspecialidad';
+            var m = '@ViewBag.m';
+            var r = '@ViewBag.r';
+            var c = '@ViewBag.c';
+            var host = '@ViewBag.HostURL';
+            window.textoMarca = textoMarca;
+              
+            window.uid = uid;
+            window.idMedico = idMedico;
+            window.idMedicoHora = idMedicoHora;
+            window.idAtencion = idAtencion;
+            window.idBloqueHora = idBloqueHora;
+            window.fechaSeleccion = fechaSeleccion;
+            window.fechaText = fechaText;
+            window.horaText = horaText;
+            window.horario = horario;
+            window.host = host;
+            window.especialidad = especialidad;
+            window.tipoEspecialidad = tipoEspecialidad;
+            window.m = m;
+            window.r = r;
+            window.c = c;
+               var tipoatencion = '@ViewBag.tipoatencion';
+            window.tipoatencion = tipoatencion;
+            var idCliente = @ViewBag.idCliente;
+            window.idCliente = idCliente;
+            var especialidadFila = @ViewBag.especialidad;
+            window.especialidadFila = especialidadFila;
+        })()
+
+
+
+    </script>
+
+
+}*@
+

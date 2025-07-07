@@ -1,0 +1,54 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_LayoutPaciente";
+}
+
+
+<!--Vista 1-->
+
+
+<div class="container-fluid cont-medicina-preventiva cont-ilustracion-medicina-preventiva">
+    <div class="row">
+        <div class="d-none d-md-block col-md">
+            <img src="~/img/medicina-preventiva/ilustracion.svg" alt="Ilustración" class="ilustracion">
+        </div>
+        <div class="col-md">
+            <div class="opcion-interior restricciones">
+                <i class="fal fa-exclamation-triangle"></i>
+                <div class="header-opcion-interior">
+                   
+                    <h2>
+                    
+                    Importante para la solicitud de exámenes
+                    </h2>
+                </div>
+                
+            <ul>
+                <li>
+                   Paciente debe ser mayor de edad
+                </li>
+                <li>
+                  Paciente debe estar inscrito y tener cuenta en Medismart
+                </li>
+            </ul>
+            <button onclick="location.href='/ExamenesPreventivos/SolicitudExamenes'" class="btn btn-primary">Comenzar</button>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!--end:: Vsita 1-->
+<!--Vista 2-->
+
+
+@section Scripts {
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}

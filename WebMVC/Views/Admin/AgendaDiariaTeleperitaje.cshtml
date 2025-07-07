@@ -1,0 +1,209 @@
+@model AgendaProfesionales
+@{
+    ViewData["Title"] = "ListaProfesionales";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+
+@section PageStyles  {
+    <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+    @*<div class="alert alert-light alert-elevate" role="alert">
+    <div class="alert-icon"><i class="flaticon-warning kt-font-brand"></i></div>
+    <div class="alert-text">
+    Datatable initialized from remote JSON source with local(frontend) pagination, column order and search support.
+    </div>
+    </div>*@
+    <div class="kt-portlet kt-portlet--mobile">
+        <div class="kt-portlet__head kt-portlet__head--lg">
+            <div class="kt-portlet__head-label">
+                <span class="kt-portlet__head-icon">
+                    <i class="kt-font-brand flaticon2-user"></i>
+                </span>
+                <h3 class="kt-portlet__head-title">
+                    Agenda Teleperitaje
+                    @*<small>initialized from remote json file</small>*@
+                </h3>
+            </div>
+
+        </div>
+
+        <div class="kt-portlet__body">
+            <!--begin: Search Form -->
+            <div class="kt-form kt-form--label-right kt-margin-t-20 kt-margin-b-10">
+                <div class="row align-items-center">
+                    <div class="col-xl-12 order-2 order-xl-1">
+                        <div class="row align-items-center">
+                            <div class="col-md-6 kt-margin-b-20-tablet-and-mobile">
+                                <div class="kt-form__group kt-form__group--inline">
+                                    <div class="kt-form__label">
+                                        @*<label>Ver Profesionales</label>*@
+                                        <br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 order-2 order-xl-1">
+                        <div class="row align-items-center mt-4">
+                           <div class="col-md-2 kt-margin-b-20-tablet-and-mobile">
+                                <div class="kt-input-icon kt-input-icon--left">
+                                    <label style="font-weight:bold">Convenio</label>
+                                    <div class="kt-form__control">
+                                        <select class="form-control pl-0" id="convenios">
+                                            <option value="">Seleccione</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-text text-muted">&nbsp;</div>
+                                </div>
+                            </div>
+                             <div class="col-md-2 kt-margin-b-20-tablet-and-mobile">
+                                <div class="kt-input-icon kt-input-icon--left">
+                                    <label style="font-weight:bold">Fecha</label>
+                                    <div class="kt-form__control">
+                                        <input class="form-control" type="date" value="" id="fechaDesde" name="fechaDesde">
+                                    </div>
+                                    <div class="form-text text-muted">&nbsp;</div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 kt-margin-b-20-tablet-and-mobile">
+                                <div class="kt-input-icon kt-input-icon--left">
+                                    <label style="font-weight:bold">Especialidad</label>
+                                    <div class="kt-form__control">
+                                        <select class="form-control pl-0" id="especialidades">
+                                             <option value="0">Seleccione</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-text text-muted">&nbsp;</div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 kt-margin-b-20-tablet-and-mobile">
+                                <div class="kt-input-icon kt-input-icon--left">
+                                    <label style="font-weight:bold">Estado</label>
+                                    <div class="kt-form__control">
+                                        <select class="form-control bootstrap-select pl-0" id="kt_form_status" style="width: 90%">
+                                            <option value="">Todos</option>
+                                            <option value="T">Terminada</option>
+                                            <option value="I">Ingresado</option>
+                                            <option value="E">Eliminada</option>
+                                            <option value="NSP">NSP</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-text text-muted">&nbsp;</div>
+                                </div>
+                            </div>
+
+                          
+                            <div class="col-md-3 kt-margin-b-20-tablet-and-mobile">
+                                <div class="kt-input-icon kt-input-icon--left">
+                                    <input type="text" class="form-control" placeholder="Buscar profesionales" id="generalSearch">
+                                    <span class="kt-input-icon__icon kt-input-icon__icon--left">
+                                        <span><i class="la la-search"></i></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kt-form kt-form--label-right kt-margin-t-20 kt-margin-b-10">
+                <div class="row align-items-center" style="margin-right:20px">
+                    <div class="kt-form__label">
+                        <h5 style="margin-left:15px!important" id="lblInfoConvenio"></h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kt-portlet__body kt-portlet__body--fit" id="divTablaDatos">
+
+                <!--begin: Datatable -->
+                <div class="kt-datatable" id="json_data"></div>
+
+                <!--end: Datatable -->
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="modalReenviarCorreo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Reenviar Correo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 col-md-12 mb-12">
+                            <label class="form-label">Correo</label>
+                            <input id="correo" type="text" class="form-control" />
+                        </div>
+                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnReenviar" class="btn btn-success">Reenviar</button>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+    <div class="modal fade" id="modalGetLink" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Obtener Link</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 col-md-12 mb-12">
+                            <label class="form-label">Link</label>
+                            <input id="link" type="text" class="form-control" />
+                        </div>
+                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnCopiar" class="btn btn-success">Copiar</button>
+                </div>
+            </div>
+        </div>
+</div>
+    <!-- end:: Page -->
+    <!-- begin::Scrolltop -->
+    <div id="kt_scrolltop" class="kt-scrolltop">
+        <i class="fa fa-arrow-up"></i>
+    </div>
+
+    <!--<button onclick="playAudio()" type="button">Play Audio</button>
+    <button onclick="pauseAudio()" type="button">Pause Audio</button>-->
+    @section PageScripts {
+        <script src="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>
+
+    }
+
+    @section Scripts {
+        <script type="module">
+            import { init } from '../../js/Admin/agendaDiariaTeleperitaje.js?rnd=@NumeroRandom.GetRandom()';
+            init(@Html.Raw(Json.Serialize(Model)), '@Html.Raw(Url.Action("AgendaDiariaTeleperitaje"))')
+        </script>
+        <script type="text/javascript">
+            (function () {
+                var uid = @ViewBag.uid;
+
+                window.uid = uid;
+            })()
+        </script>
+        @*<script src="~/js/Paciente/index.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>*@
+    }
+

@@ -1,0 +1,132 @@
+﻿@model WebMVC.Models.HomeViewModel
+
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+
+}
+
+@section PageStyles  {
+    <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+    <!--Begin::Dashboard 7-->
+    <!--Begin::Row-->
+    <div class="row">
+
+        <div class="col-lg-12">
+
+            <!--begin::Portlet-->
+            <div class="kt-portlet kt-portlet--last kt-portlet--head-lg kt-portlet--responsive-mobile" id="kt_page_portlet">
+                <div class="kt-portlet__head kt-portlet__head--lg">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                            <span class="kt-portlet__head-icon">
+                                <i class="flaticon2-schedule"></i>
+                            </span>
+                            <h3 class="kt-portlet__head-title">
+                                Crear, modificar y eliminar AGENDA
+                            </h3>
+                        </h3>
+                    </div>
+                    <div class="kt-portlet__head-toolbar">
+
+                        <div class="input-group">
+                            <input type="text" id="correoProfesional" class="form-control" /> &nbsp;&nbsp;
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-brand" id="btnEnviarAgenda">
+                                    Enviar Agenda
+                                </button>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="kt-portlet__body">
+                    @Html.Hidden("idProfesionalHidden", (object)ViewBag.uid)
+                    @Html.Hidden("nombreProfesional", "")
+                    <input type="hidden" id="duracionAtencionProfesionalId" />
+                    <input type="hidden" id="duracionAtencionProfesionalMin" />
+                    <div id="kt_calendar"></div>
+                </div>
+            </div>
+        </div>
+
+
+        @*
+
+            <div class="col-md-12 order-lg-1 order-xl-1">
+                <div class="kt-portlet" id="kt_portlet">
+                    <div class="kt-portlet__head">
+                        <div class="kt-portlet__head-label">
+                            <span class="kt-portlet__head-icon">
+                                <i class="flaticon2-schedule"></i>
+                            </span>
+                            <h3 class="kt-portlet__head-title">
+                                Crear, modificar y eliminar AGENDA
+                            </h3>
+                        </div>
+                        </div>
+                    <div class="kt-portlet__body">
+
+                    </div>
+                </div>
+            </div>*@
+    </div>
+
+</div>
+
+
+
+<!--<button onclick="playAudio()" type="button">Play Audio</button>
+<button onclick="pauseAudio()" type="button">Pause Audio</button>-->
+
+<audio id="myAudio">
+    <source src="~/metronic_demo7/assets/media/demo/sonido.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+@section PageScripts {
+    <script src="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>
+    @*<script src="~/metronic_demo7/assets/js/pages/components/calendar/basicMedicoMedico.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>*@
+    @*<script src="~/metronic_demo7/assets/js/pages/dashboard.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>*@
+}
+
+@section Scripts {
+    <script src="~/signal/signalr.min.js"></script>
+    
+    <script>
+        var x = document.getElementById("myAudio");
+
+        function playAudio() {
+            x.play();
+        }
+
+        function pauseAudio() {
+            x.pause();
+        }
+    </script>
+    <script type="module">
+        import { init } from '../../js/Admin/crearAgenda.js?rnd=@NumeroRandom.GetRandom()';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+         var uid = @ViewBag.uid;
+           window.uid = uid;
+        })()
+
+        $(function () {
+            $('[data-toggle="popover"]').popover({ trigger: "hover" })
+        })
+    </script>
+}

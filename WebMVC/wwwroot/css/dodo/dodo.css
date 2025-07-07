@@ -1,0 +1,1314 @@
+/*ABC*/
+
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;900&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap');
+
+:root {
+    --primary: #502989;
+    --secondary: #F7931E;
+    --tertiary: #FFF;
+    --accent: #26FE7E;
+    --light: #FFF;
+    --font-family: 'Mulish', sans-serif;
+}
+
+body {
+    /* font-family: var(--font-family) !important;*/
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-family) !important;
+}
+
+/*Login*/
+
+.kt-grid.kt-grid--ver.kt-grid--root.kt-page {
+    width: 100% !important;
+}
+
+.logotipo-desktop {
+    background-image: url(../../img/dodo/logotipo.svg) !important;
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/dodo/logotipo.svg) !important;
+    width: 246px;
+    height: 50.804px;
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+        color: var(--primary);
+        font-weight: 900;
+    }
+
+#kt_login_forgot {
+    color: #5867DD;
+    font-family: Mulish;
+    font-size: 13.624px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.form-group .ms-label {
+    color: var(--primary) !important;
+    font-family: Mulish;
+    font-size: 13.624px;
+    font-style: normal;
+    font-weight: 700 !important;
+    line-height: normal;
+}
+
+.body-home .cont-card .card {
+    border-radius: 16px;
+    background: #F7F7F7;
+}
+
+.farm-abc{
+    display: none !important;
+}
+
+.panel-medios__close i {
+    color: var(--secondary);
+    
+}
+
+.letras-color-home {
+    border-radius: 7.362px;
+    border: 0.92px solid #4F406C;
+    background: #FFF;
+    width: 36.81px;
+    height: 37.243px;
+    color: #4F406C;
+}
+
+    .letras-color-home:hover {
+        background: #4F406C !important;
+        color: #fff;
+    }
+
+
+
+.accesible-tools-desktop .accesible-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 3rem;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+#reporte {
+    display: none;
+}
+
+#reporte2 {
+    margin-left: 83rem;
+    margin-top: -22rem !important;
+}
+
+.copy {
+    color: #FFF;
+    text-align: center;
+    font-family: Mulish;
+    font-size: 11.963px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.body-home .footer-home .terminos a {
+    color: #FFF;
+    font-family: Mulish;
+    font-size: 11.963px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.body-home .cont-card h1 {
+    color: #FFF;
+    text-align: center;
+    font-family: Roboto !important;
+    text-transform: capitalize;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+/*.iconos-centrados {
+    display: flex;
+    justify-content: center;
+}*/
+
+.footer-home .terminos {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    margin-top: -8rem;
+}
+
+.btn-primary {
+    background-color: #502989;
+    border-color: #502989;
+    border-radius: 4.392px !important;
+    color: #FFF;
+    font-family: Mulish;
+    font-size: 11.42px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    bottom: 1.3rem !important;
+}
+
+.anclas-login {
+    color: #646C9A;
+    font-family: Mulish;
+    font-size: 13.624px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.ancla-azul {
+    color: #5867DD;
+    font-family: Mulish;
+    font-size: 13.624px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.btn-primary:hover {
+    background-color: #4F406C;
+    border-color: #4F406C;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: var(--primary);
+    font-family: Mulish !important;
+    font-size: 30.654px;
+    font-style: normal;
+    font-weight: 400 !important;
+    line-height: normal;
+}
+
+.divider-medismart {
+    display: flex !important;
+    margin-bottom: 2rem;
+}
+
+.logo-convenios {
+    /* display: none;*/
+    margin-bottom: 2rem;
+}
+
+/* Im�genes Login */
+.img1 {
+    background-image: url(../../img/dodo/login/960x978.jpg) !important;
+}
+
+.img2 {
+    background-image: url(../../img/dodo/login/960x978.jpg) !important;
+}
+
+.img3 {
+    background-image: url(../../img/dodo/login/960x978.jpg) !important;
+}
+
+.img4 {
+    background-image: url(../../img/dodo/login/960x978.jpg) !important;
+}
+
+.img5 {
+    background-image: url(../../img/dodo/login/960x978.jpg) !important;
+}
+
+.img6 {
+    background-image: url(../../img/dodo/login/960x978.jpg) !important;
+}
+
+/*Home*/
+
+.body-home {
+    background: linear-gradient(0deg, #502989 -19.88%, #502989 50.75%, #000 126.48%) !important;
+    /*background-image: url(../../img/home/logo-fondo.svg) !important;*/
+    background-repeat: no-repeat !important;
+    background-position: bottom right !important;
+    background-attachment: fixed !important;
+}
+
+.body-home .logo-home {
+        padding: 1rem 3rem 1rem 1rem;
+    }
+
+    .body-home .logo-home img {
+        width: 200px;
+    }
+
+    .body-home .menu-top .item-menu-top .menu-top .label-menu,
+    .body-home .menu-top .item-menu-top .menu-top .label-menu-pac {
+        color: #fff;
+        font-weight: bold;
+    }
+
+.top-banner .legend {
+    font-weight: 500;
+}
+
+.body-home .card-plan .preferente::after {
+    content: 'Precio Preferente' !important;
+}
+
+.body-home #btnOrientacion .pronto {
+    display: none;
+}
+
+.menu-top .item-menu-top i,
+.menu-top .label-menu {
+    color: #502989;
+}
+
+.menu-top .item-menu-top:hover i,
+.menu-top .item-menu-top:hover .label-menu,
+.menu-top .item-menu-top:hover .label-menu-pac {
+    color: #4F406C !important;
+}
+
+.body-home .menu-top .item-menu-top i, .body-home .menu-top .item-menu-top .label-menu {
+    color: #ffffff;
+}
+
+
+.menu-top .label-menu, .menu-top .label-menu-pac {
+    color: #502989;
+    font-weight: bold;
+    margin: 0 6px;
+}
+
+.kt-menu__item a,
+.kt-menu__item i {
+    color: #502989;
+}
+
+    .kt-menu__item a .ms-label-menu {
+        color: #241F20;
+    }
+
+
+.kt-menu__item:hover a,
+.kt-menu__item:hover i {
+    color: #4F406C !important;
+}
+
+.accesible-btn button {
+    width: 34.06px;
+    height: 34.461px;
+    color: #502989 !important;
+    border-radius: 6.812px;
+    border: 0.852px solid #4F406C !important;
+    background: #FFF;
+}
+
+.login-footer {
+    display: none !important;
+}
+
+.accesible-btn button:hover {
+    background-color: var(--primary);
+    border-color: var(--primary)
+}
+
+body {
+    background: #FFF !important;
+}
+
+.logos-footer {
+    color: #646C9A;
+    font-family: Mulish;
+    font-size: 13.624px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.logo-web {
+    width: 129.429px !important;
+    height: 37.466px !important;
+}
+
+.logo-fonasa {
+    width: 143.053px !important;
+    height: 48.536px !important;
+}
+
+.busqueda-profesionales {
+    border: none;
+    background: #E6F2F6;
+}
+
+    .busqueda-profesionales i {
+        color: #013948;
+    }
+
+    .busqueda-profesionales .btn-outline-primary {
+        color: #013948;
+        font-family: Mulish;
+        font-size: 17.569px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: uppercase;
+    }
+
+.caja-especialidad.active {
+    background-color: #013948;
+}
+
+.card {
+    border: 1px solid #000000;
+    /* padding: 30px; */
+    border-radius: 8px;
+    max-width: 560px;
+}
+
+.caja-especialidad {
+    background-color: #502989;
+}
+
+.inner-especialidad strong {
+    color: var(--light)
+}
+
+.step.active .step-icon {
+    background-color: var(--primary);
+}
+
+.stepper {
+    background-image: url(../../img/dodo/fondo-banner2.svg);
+}
+
+    .stepper .flecha {
+        color: var(--primary)
+    }
+
+    .stepper img {
+        border-color: #013948;
+    }
+
+.step-triage .titulo-step,
+.step-triage .label-step {
+    color: var(--primary);
+}
+
+.step-triage .step-icon {
+    background-color: #0F1C14;
+}
+
+.step.active .label-step {
+    color: var(--primary)
+}
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: #000000;
+}
+
+.caja-profesional .fecha-atencion {
+    color: #222222;
+    bottom: 4rem !important;
+}
+
+.calificacion .positiva {
+    color: #0F1C14;
+}
+
+.front-fecha-atencion {
+    border: 1px solid #222222;
+}
+
+    .front-fecha-atencion strong:before {
+        color: #000000;
+        font-weight: 900;
+    }
+
+.especialidad-profesional {
+    color: #000000;
+}
+
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+
+.body-home .top-banner .legend {
+    color: var(--tertiary);
+    font-family: Mulish;
+    font-size: 29.947px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.top-banner {
+    background-image: url(../../img/abc/fondo-banner.svg);
+}
+
+    .top-banner img {
+        border: none;
+    }
+
+    .top-banner .legend {
+        color: var(--secondary)
+    }
+
+.banner_topsc .legend .text-warning {
+    color: var(--primary) !important;
+}
+
+.top-banner.banner_topsc {
+    background-image: url(../../img/ccu/fondo-banner2.svg);
+}
+
+.text-warning {
+    color: #C7BED7 !important;
+    font-family: Mulish;
+    font-size: 29.947px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.menu-top .item-menu-top .logotipo-mobile {
+    width: 100px !important;
+    position: relative;
+    top: 7px;
+    left: -5px;
+}
+
+.sala-espera-mobile.sala-espera-consalud {
+    padding: 1rem;
+    min-height: 575px;
+}
+
+/*Sala espera*/
+.hotspot-icon .cont-icon {
+    background-color: #FFFFFF;
+    color: #502989;
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: #F7931E;
+    color: #FFF;
+}
+
+
+
+.letras-sala-espera {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.mensaje-superior {
+    display: none !important;
+}
+
+.color-letras-salaespera {
+    color: #747484 !important;
+    border: 1px solid #747484 !important;
+}
+
+    .color-letras-salaespera:hover {
+        background: var(--secondary) !important;
+        color: #fff !important;
+    }
+
+.cont-icon.hotspot-redes {
+    background-color: #fff;
+    color: #502989;
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+}
+
+.btn-guardar-info,
+.btn-success {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+    .btn-guardar-info:hover,
+    .btn-success:hover {
+        background-color: var(--secondary);
+        border-color: var(--secondary);
+        color: var(--primary)
+    }
+
+.btn.btn-outline-secondary {
+    background-color: #26FE7E;
+    border-color: #26FE7E;
+    color: var(--primary)
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+}
+
+#reporte:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+#hs-g .cont-icon {
+    background-color: var(--primary);
+}
+
+#hs-g:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+.toolbar-option {
+    color: var(--secondary)
+}
+
+    .toolbar-option.active {
+        color: var(--secondary)
+    }
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--primary);
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--accent);
+}
+
+.btn-sala:hover {
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion,
+.cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+    .cont-btn-panel .btn-atencion:hover,
+    .cont-btn-vc .btn-atencion:hover {
+        background-color: rgba(237, 110, 0, 0.1);
+        color: var(--primary);
+    }
+
+.hotspot-icon {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+    .hotspot-icon i {
+        text-shadow: none;
+    }
+
+    .hotspot-icon:hover {
+        color: #FFF;
+    }
+
+@media (max-width: 668px) {
+
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+
+    .cont-consentimiento-informado {
+        height: auto;
+        max-height: 60px;
+        min-height: unset;
+    }
+
+    div#kt_content {
+        margin-bottom: 0;
+    }
+
+    .abc-img img { display: none}
+}
+
+
+
+@media (max-width: 991.98px) {
+
+    .top-banner .legend {
+        text-align: left;
+        font-size: 1.3rem;
+    }
+    /*.kt-grid.kt-grid--hor:not(.kt-grid--desktop):not(.kt-grid--desktop-and-tablet):not(.kt-grid--tablet):not(.kt-grid--tablet-and-mobile):not(.kt-grid--mobile).kt-grid--root {
+        background: #F0F0F0;
+    }*/
+
+    .d-inline-block {
+        color: #3BC1CD !important;
+        text-decoration: underline !important;
+    }
+
+    .accesible-tools-desktop .accesible-btn {
+        margin-top: 1rem;
+    }
+    .letras { display: none;}
+
+
+    .footer-home .terminos {
+        margin-top: 1rem;
+    }
+
+    .row {
+        margin-top: 5rem;
+    }
+
+    .caja-especialidad.active {
+        background-color: #ffffff;
+        border: 2px solid #26FE7E;
+    }
+
+
+
+
+    .step.active .step-icon {
+        background-color: #167B3F;
+    }
+
+    .fa-home {
+        color: var(--secondary);
+    }
+
+    .inicio-mobile {
+        color: var(--secondary);
+    }
+
+
+
+    .container-footer {
+        display: none;
+    }
+
+    #kt_login_forgot {
+        font-size: 12px;
+    }
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+        font-size: 24px;
+    }
+
+    .btn-primary {
+        border: 1px solid #3BC1CD;
+        padding: 0.5rem !important;
+    }
+
+    .leyenda-card-home {
+        color: #0F1C14;
+    }
+}
+
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../dodo/login/548x850.jpg) !important;
+    }
+
+    .img2 {
+        background-image: url(../dodo/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../dodo/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../dodo/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../dodo/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../dodo/login/548x850.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../dodo/login/960x978.jpg) !important;
+    }
+
+    .img2 {
+        background-image: url(../dodo/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../dodo/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../dodo/login/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../dodo/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../dodo/login/960x978.jpg);
+    }
+    
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) 
+{
+    .logotipo-desktop {
+        max-width: 280px;
+        display: block;
+        margin-bottom: 0;
+        height: 72px;
+    }
+}
+
+.bell-abc{
+    display: none !important;
+}
+
+.prehome__plan li::before {
+    content: "";
+    display: inline-block;
+    margin-right: .5rem;
+    background-image: url('../../img/lider/check.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 18px;
+    height: 18px;
+}
+
+.prehome__plan li {
+    list-style-type: none;
+    border-bottom: 1px solid RGBA(0, 58, 112, .3);
+    padding-bottom: 1rem;
+}
+
+/*.atenciones-vive {
+    display: none !important;
+}*/
+
+
+/*Prehome*/
+.prehome__plans {
+    height: 450px;
+}
+
+.prehome__plan {
+    width: 100%;
+    padding: 0;
+}
+
+    .prehome__plan ul {
+        list-style-image: url('../../img/ccu/bullet.svg');
+        margin-top: 32px;
+        height: 350px;
+        font-size: 16px;
+    }
+
+.prehome__title {
+    color: #FFF;
+}
+
+.kt-login__extra.registro {
+    display: flex;
+}
+
+.logo-convenios.convenioChile + hr {
+    display: none;
+}
+
+.kt-login.kt-login--v3.kt-login--signin .kt-login__signin .titulo-card-farmacia {
+    text-align: center;
+}
+
+@media (max-width: 991.98px) {
+    .prehome__plans {
+        height: auto;
+    }
+}
+
+
+
+.ccu-modal-contenedor {
+    display: flex;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 32px;
+    width: 660px;
+    height: 354px;
+    background-image: url(../../img/ccu/dr-modal.png);
+    background-repeat: no-repeat, repeat;
+    background-position: 4% 2rem, 0;
+    flex-direction: row;
+}
+
+.modal-paciente .modal-content {
+    margin: auto;
+    margin-top: 8rem;
+    border: none;
+    padding: 5px 32px;
+}
+
+.ccu-modal-contenedor-titulos {
+    padding: 2rem 0rem 0rem 14rem;
+}
+
+.ccu-modal-dr {
+    height: 23rem;
+    width: 29rem;
+}
+
+.color-triage {
+    background: #ffffff;
+}
+
+.cont-steps {
+    background-color: #ffffff;
+}
+
+#consentimiento {
+    color: #3BC1CD;
+    text-decoration: underline;
+}
+
+
+
+
+.ccu-modal-logo {
+    padding: 1rem 0rem 1rem 0rem;
+}
+
+
+.ccu-modal-contenedor-imagen {
+    padding: 0rem;
+}
+
+.ccu-modal-titulo-uno {
+    color: #004E91;
+    font-family: Mulish;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    padding-bottom: 0.5rem;
+}
+
+
+.ccu-modal-titulo-dos {
+    color: #004E91;
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    padding-bottom: 0.5rem;
+}
+
+/*landings nuevos */
+
+:root {
+    --background-color: #F9F9FC;
+    --primary-color: #ab0640;
+    --title-color: #3E444D;
+    --select-option: #666666;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    
+    /* justify-content: flex-start; */
+    min-height: 100vh;
+    overflow-x: hidden;
+    width: 100vw;
+    font-family: 'Mulish', sans-serif;
+}
+
+.abc-content {
+    display: flex;
+    flex-direction: row;
+    max-width: 1080px;
+    width: 100%;
+    margin: 3rem auto;
+    align-items: center;
+    align-content: center;
+}
+
+.abc-img img {
+    width: 520px;
+    margin: auto;
+}
+
+.abc-img {
+    width: 50%;
+    margin: auto;
+    padding: 0.8rem;
+}
+
+.abc-info {
+    display: flex;
+    flex-direction: column;
+    width: 50% !important;
+    padding: 1rem;
+}
+
+.abc-title {
+    display: flex;
+    flex-direction: column;
+}
+
+    .abc-title h3 {
+        padding: 0;
+        margin: 0;
+        background-image: linear-gradient(to right, #E0004D, #000000);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-align: start;
+        font-family: Arial, sans-serif;
+    }
+
+.abc-title-icon {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    margin-bottom: 1rem;
+}
+
+    .abc-title-icon img {
+        width: 4rem;
+        margin-right: 1rem;
+    }
+
+.abc-title-dos img {
+    width: 16px;
+    margin-right: 0.3rem;
+}
+
+.abc-title-dos {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+}
+
+    .abc-title-dos p {
+        margin: 0;
+        font-size: 15px;
+        color: var(--title-color);
+        font-weight: 600;
+    }
+
+.abc-select-custom {
+    border: 1px solid var( --primary-color);
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 8px;
+    color: var(--select-option);
+}
+
+.abc-select-service {
+    /* margin-top: 0.5rem; */
+}
+
+    .abc-select-service option {
+        color: #666666;
+    }
+
+.abc-info {
+    color: var(--select-option);
+    width: 100%;
+    margin: 0;
+}
+
+    .abc-info span {
+        color: var(--select-option);
+        font-weight: 700;
+    }
+
+.abc-par-uno {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.abc-par-select {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: space-between;
+}
+
+.abc-par-uno-title {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+}
+
+    .abc-par-uno-title img {
+        margin-right: 0.5rem;
+    }
+
+    .abc-par-uno-title h4 {
+        margin: 0;
+    }
+
+.abc-boton {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.abc-select-prevision-evento {
+    border: 1px solid var( --primary-color);
+    width: 260px;
+    padding: 0.5rem;
+    border-radius: 8px;
+    color: var(--select-option);
+}
+
+.abc-boton button {
+    background-color: var(--primary-color);
+    border: none;
+    width: 200px;
+    color: white;
+    padding: 0.8rem 0.1rem 0.8rem 0.1rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+    .abc-boton button h5 {
+        margin: 0;
+        padding: 0;
+    }
+
+#boton-confirmar {
+    font-size: 15px;
+    color: black;
+    padding: 0.5rem 0 0.5rem 0;
+}
+
+
+
+.abc-select-abc {
+    position: relative;
+    display: inline-block;
+}
+
+.abc-select-abc {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-box {
+    display: none;
+    position: absolute;
+    background-color: #373D3F;
+    color: #fff;
+    padding: 10px;
+    padding: 0 1rem 0 1rem;
+    border-radius: 5px;
+    z-index: 1;
+    width: 193px;
+    font-size: 15px;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 10px 0 10px;
+    border-color: #373D3F transparent transparent transparent;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Estilo para el select */
+.abc-select-prevision-evento {
+    /* Agrega estilos según tus necesidades */
+}
+
+/* Mostrar el tooltip al pasar el mouse sobre el contenedor */
+.abc-select-abc:hover .tooltip-box {
+    display: block;
+}
+
+.abc-select-abc h6 {
+    margin: 0;
+}
+
+.abc-eventos {
+    display: flex;
+    justify-content: center;
+    border: 1px solid grey;
+    padding: 0.6rem;
+    border-radius: 6px;
+    width: 240px;
+}
+
+
+
+.text-especialitie-exams p {
+    margin: 0 !important;
+    color: #000 !important;
+    font-size: 16px !important;
+}
+
+#text-especialitie p {
+    margin: 0 !important;
+    color: #000 !important;
+    font-size: 16px !important;
+}
+
+.text-especialitie-exams {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+@media only screen and (max-width: 767px) {
+
+    .abc-content {
+        flex-direction: column;
+    }
+}
+
+.body-home .logo-home {
+    padding: 1rem 2rem;
+    min-width: 100vw;
+}
+
+#text-especialitie {
+    margin-top: 1rem;
+}
+/*MODALS*/
+/* Estilos para los modales */
+.modal-bfc {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 20px !important;
+}
+
+#modalIsapre{
+    border-radius: 10px;
+}
+
+#modalFonasa {
+    border-radius: 10px;
+}
+
+#modalOtras {
+    border-radius: 10px;
+}
+
+.modal-bfc-content {
+    display: flex;
+    flex-direction: column;
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    border-radius: 10px;
+}
+
+.close-modal-bfc {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+    .close-modal-bfc:hover,
+    .close-modal-bfc:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+.modal-bfc-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: none;
+    padding-top: 0;
+    padding-bottom: 1rem;
+}
+
+.modal-bfc-content h5 {
+    font-weight: 500;
+    color: black
+}
+
+.modal-bfc-content p {
+    color: black
+}
+
+.modal-bfc-content button {
+    margin-top: 1rem;
+    background-color: white;
+    padding: 0.5rem 0 0.5rem 0;
+    color: black;
+    border: 1px solid red;
+    border-radius: 7px;
+}
+/*fin modals*/
+
+.text-especialitie-exams i {
+    color: var(--primary-color);
+}
+
+.kt-container {
+    width: 1380px !important;
+    margin: 0 auto !important;
+}

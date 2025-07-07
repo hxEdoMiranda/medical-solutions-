@@ -1,0 +1,1000 @@
+﻿@model WebMVC.Models.AtencionViewModel
+
+
+@{
+    ViewData["idEntidad"] = Model.Atencion.Id;
+    ViewData["codEntidad"] = Entidades.ATENCIONES;
+    ViewData["uid"] = int.Parse(ViewBag.uid);
+
+    var hiddenLaboral = "";
+    var cajaPeritaje = "Conclusión Peritaje";
+    var btnPeritajeConclusion = "Conclusión Peritaje";
+    string tituloIntensidadEstresor = "Intensidad del estresor: ";
+    string tituloTiempoEstresor = "Tiempo de exposición al estresor (años y meses).";
+    string tituloAccionesMitigadoras = "Acciones mitigadoras de la Jefatura ";
+    string tituloExamen = "EXAMEN FÍSICO Y/O MENTAL";
+    string tituloConclusion = "CONCLUSIÓN RESPECTO DEL REINTEGRO LABORAL AL EXAMEN ACTUAL DEL PACIENTE.";
+    @if (ViewBag.idConvenio != 42 && !ViewBag.codConvenio.Contains("TELE_PERITAJE_CONSALUD"))
+    {
+        hiddenLaboral = "hidden";
+        cajaPeritaje = "Resumen Peritaje";
+        btnPeritajeConclusion = "Resumen Peritaje";
+    }
+
+    bool multiespecialidad = Model.Atencion.HoraMedico.IdEspecialidad != 63 ? true : false; // 63 es especialidad psiquiatria en qa y prod
+
+    var hiddenPeritaBanmedica = ViewBag.idConvenio.ToString() == ViewBag.banmedica ? "hidden" : "";
+    var isBanmedica = ViewBag.idConvenio.ToString() == ViewBag.banmedica ? true : false;
+
+    var inputsMulti = "hidden";
+    var hiddenMulti = "";
+    @if (multiespecialidad)
+    {
+        hiddenMulti = "hidden";
+        hiddenLaboral = "";
+        tituloIntensidadEstresor = "Intensidad del problema gatillante: ";
+        tituloTiempoEstresor = "Tiempo de exposición al problema gatillante";
+        tituloAccionesMitigadoras = "¿Cuáles fueron las acciones mitigadoras por parte de la Jefatura?";
+        tituloExamen = "EXAMEN FÍSICO";
+        tituloConclusion = "CONCLUSIÓN DEL PERITAJE.";
+        inputsMulti = "";
+    }
+
+    var hiddenNSPjustificacion = "hidden";
+
+
+}
+
+<style>
+    .kt-timeline-v2:before {
+        content: '';
+        position: absolute;
+        left: 2rem;
+        width: 0.214rem;
+        top: 5px;
+        bottom: 5px;
+        height: calc(100% - 5px);
+        background-color: #E7E9F5;
+    }
+</style>
+<!-- end:: Subheader -->
+<!-- begin:: Content -->
+@{
+    ViewData["especialidad"] = Model.Atencion.Especialidad;
+}
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid medismart-atencion" id="cont-vc">
+
+    <!--Begin::Dashboard 7-->
+    <!--Begin::Row-->
+
+    <div class="row">
+        <div class="col-12 col-md-8 p-0 mt-3 mt-md-0">
+            @Html.Hidden("uid", (object)ViewBag.uid)
+            @Html.Hidden("rol", ViewData["view"])
+            @Html.HiddenFor(m => m.Atencion.Id)
+            @Html.HiddenFor(m => m.Atencion.InicioAtencion)
+            @Html.HiddenFor(m => m.Atencion.SolicitaFirma)
+            @Html.HiddenFor(m => m.Atencion.IdMedicoFirmante)
+            @Html.HiddenFor(m => m.Atencion.IdCliente)
+            <div class="video-container" style="display:block; padding:5px;">
+                <whereby-embed background="on" room="@Model.urlVideoCall" style="height:100%;">
+                </whereby-embed>
+            </div>
+
+        </div>
+
+        <div class="col-12 col-md-4 order-2 order-lg-1 my-4 my-lg-0">
+            <!--<div style="overflow-y: scroll; height:80vh">-->
+            <div class="cont-widgets">
+                <!--Begin::Portlet-->
+                <div class="kt-portlet body-widgets">
+                    <div id="divChat" style="display:none">
+                        <div class="kt-portlet__head text-center">
+
+                            <!--Titulo Chat-->
+
+                            <div class="titulo-chat">
+                                <div class="user-chat">
+                                    <span class="nombre-profesional" id="headName"></span>
+                                    @*<div class="status-profesional online"></div> <div class="leyenda-status">En Línea</div>*@
+                                    <div class="status-profesional offline" id="estilo"></div> <span class="leyenda-status" id="onLine">Offline</span>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="kt-portlet__body card-body h-100">
+                            <div class="scroll scroll-pull" id="scroll" style="overflow: auto;" data-height="375" data-mobile-height="300">
+
+                                <!-- Chat -->
+
+                                <div class="cont-chat" id="divContChat">
+                                </div>
+
+                                <!-- end Chat -->
+                                <!--begin::Messages-->
+                                <div class="messages" id="divMensaje">
+
+                                    <!--fin mensaje in-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-portlet__foot align-items-center">
+                            <!--begin::Compose-->
+                            <div id="txtMsj">
+                                <textarea class="form-control border-0 p-0" id="mensaje" rows="2" placeholder="Escribe..."></textarea>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="mr-3 d-none">
+                                </div>
+                                <div class="d-flex align-items-center justify-content-end chat-tools mt-3">
+                                    <div class="kt_chat__tools d-none">
+
+                                        <a href="#"><i class="flaticon2-photograph"></i></a>
+                                        <a href="#"><i class="flaticon2-photo-camera"></i></a>
+                                    </div>
+
+                                    <button type="button" id="btnEnviar" class="btn btn-brand btn-md btn-upper btn-bold kt-chat__reply">Responder</button>
+                                </div>
+                            </div>
+                            <!--begin::Compose-->
+                        </div>
+                        <!--end::Footer-->
+                    </div>
+
+
+                    <div id="divArchivos" style="display:none">
+                        <partial name="~/Views/Shared/_ArchivosAdjuntos.cshtml" model="Model.Atencion.Archivos" view-data="ViewData" />
+                    </div>
+                    <div id="divHistorial" style="display:none">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title">
+                                    Historial atenciones
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div class="kt-portlet__body">
+                            @if (Model.HistorialAtenciones.Count(x => x.Peritaje == true) == 0)
+                            {
+                                <div id="pnlHistorial" class="align-self-center" style="display:block">
+                                    <div class="row">
+                                        <div class="col-lg-12 kt-align-center">
+                                            <img src="~/metronic_demo7/assets/media/sinResultado.PNG" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <h5>No existen atenciones anteriores</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="kt-timeline-v2">
+                                    <div class="kt-timeline-v2__items  kt-padding-top-25 kt-padding-bottom-30">
+                                        @foreach (var historialAtencion in Model.HistorialAtenciones.Where(x => x.Peritaje == true))
+                                        {
+                                            @if (historialAtencion.Peritaje)
+                                            {
+                                                <div class="kt-timeline-v2__item">
+                                                    <div class="kt-timeline-v2__item-cricle" style="left:0">
+                                                        <i class="fa fa-genderless kt-font-danger"></i>
+                                                    </div>
+
+                                                    <div class="kt-timeline-v2__item-text  kt-padding-top-5 item-historial" style="padding: 0.35rem 0 0 1.6rem;">
+                                                        @historialAtencion.FechaText @historialAtencion.HoraDesdeText.Substring(0, @historialAtencion.HoraDesdeText.LastIndexOf(":")) <br> Dr/a. @historialAtencion.NombreMedico<br>
+                                                        @historialAtencion.Especialidad <br>  @historialAtencion.DiagnosticoMedico <br>   @historialAtencion.PatologiasString<br><a href="/Medico/InformeAtencion?idAtencion=@historialAtencion.Id" target="_blank" type="button" class="btn btn-label-brand btn-bold btn-sm btn-informe">ver Informe</a>
+                                                    </div>
+
+                                                </div>
+                                            }
+                                        }
+
+                                    </div>
+                                </div>
+                            }
+                            <!--Begin::Timeline 3 -->
+                            <!--End::Timeline 3 -->
+                        </div>
+                    </div>
+
+                    <div id="divReporteEnfermeria" style="display:none">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title">
+                                    Historial reporte enfermería
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div class="kt-portlet__body">
+                            @if (Model.reporteEnfermeriaList.Count == 0)
+                            {
+                                <div id="pnlReporteEnfermeria" class="align-self-center" style="display:block">
+                                    <div class="row">
+                                        <div class="col-lg-12 kt-align-center">
+                                            <img src="~/metronic_demo7/assets/media/sinResultado.PNG" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <h5>No existen reportes anteriores</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="kt-timeline-v2">
+                                    <div class="kt-timeline-v2__items  kt-padding-top-25 kt-padding-bottom-30">
+                                        @foreach (var reporteEnfermeria in Model.reporteEnfermeriaList)
+                                        {
+                                            <div class="kt-timeline-v2__item">
+                                                <div class="kt-timeline-v2__item-cricle" style="left:0">
+                                                    <i class="fa fa-genderless kt-font-danger"></i>
+                                                </div>
+                                                <div class="kt-timeline-v2__item-text  kt-padding-top-5" style="padding: 0.35rem 0 0 1.6rem;">
+                                                    @reporteEnfermeria.FechaCreacion.ToString().Substring(0, 10)<br> Enf. @reporteEnfermeria.NombreProfesional<br>
+                                                    <br><a href="/Medico/InformeEnfermeria?id=@reporteEnfermeria.Id" target="_blank" type="button" class="btn btn-label-brand btn-bold btn-sm">ver Reporte</a>
+                                                </div>
+
+                                            </div>
+                                        }
+
+                                    </div>
+                                </div>
+                            }
+                            <!--Begin::Timeline 3 -->
+                            <!--End::Timeline 3 -->
+                        </div>
+                    </div>
+
+
+                    <div id="divReporte">
+                        @Html.HiddenFor(m => m.Atencion.IdPaciente)
+                        <div class="kt-portlet__head" id="contentLabel">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title">
+                                    Reporte Peritaje
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div id="divReloj" class="box" hidden>
+                            <h1 class="box" id="crono"></h1>
+                        </div>
+
+                        <div class="kt-portlet__body">
+                            <div class="mb-2">
+                                <label class="" style="font-weight:bold">Paciente acepta consentimiento informado</label>
+                                <input type="checkbox" class="" name="consentimiento" id="consentimiento" />
+                            </div>
+                            <div class="mb-2">
+                                <label class="" style="font-weight:bold">Atención No Realizada</label>
+                                <input type="checkbox" class="" name="nsp" id="nsp" />
+                            </div>
+                            <div class="mb-4" id="divNSP">
+
+                                <ul class="lista-nsp d-none" id="listaNSP">
+                                    <select class="form-control" name="motivosNSP" id="motivosNSP">
+                                        <option value="" selected>Seleccione motivo de nsp...</option>
+                                        <option value="1">Paciente no se presentó</option>
+                                        <option value="2">Error agendamiento</option>
+                                        <option value="3">Incidencia con paciente</option>
+                                        <option value="4">No acepta consentimiento</option>
+                                        <option value="5">Paciente presentó problemas con el micrófono</option>
+                                        <option value="6">Paciente presentó problemas con la cámara</option>
+                                        <option value="7">Paciente presentó problemas con el audio</option>
+                                        <option value="8">Paciente presentó problemas de señal</option>
+                                        <option value="9">Paciente con corte de suministro eléctrico</option>
+                                        <option value="10">Paciente se presentó fuera de horario</option>
+                                        <option value="11">Profesional presentó problemas con el micrófono</option>
+                                        <option value="12">Profesional presentó problemas con la cámara</option>
+                                        <option value="13">Profesional presentó problemas de audio</option>
+                                        <option value="14">Profesional presentó problemas de señal</option>
+                                        <option value="15">Profesional con corte de suministro eléctrico</option>
+                                        <option value="16">Profesional realiza bloqueo de agenda</option>
+                                        <option value="17">Profesional presentó retraso en su atención</option>
+                                    </select>
+                                </ul>
+
+                                <label style="font-weight:bold" @hiddenNSPjustificacion>Justifique Atención No Realizada</label>
+                                <input class="form-control" type="text" id="DescripcionNSP" name="DescripcionNSP" @hiddenNSPjustificacion>
+                            </div>
+                            <!---inputs peritajes para formulario-->
+                            <!--check si consalud genera reporte o no-->
+                            @if (ViewBag.codConvenio.Contains("TELE_PERITAJE_CONSALUD"))
+                            {
+                                <div class="form-group">
+                                    <label style="font-weight:bold">¿Realiza informe en plataforma Medismart?</label>
+                                    <br />
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="inlineRadio2">NO &nbsp; </label>
+                                        <input type="checkbox" class="" name="checkReporteConsalud" id="checkReporteConsalud" />
+                                    </div>
+                                </div>
+                            }
+
+
+                            <div class="form-group">
+                                <label style="font-weight:bold">Ocupación</label>
+                                <input type="text" class="form-control form-control-sm" id="ocupacionPaciente">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="d-block" style="font-weight:bold">Edad del paciente </label>
+                                <input type="number" id="edadPaciente" name="edadPaciente" min="0" max="150">
+                            </div>
+
+                            <div class="form-group">
+                                <label style="font-weight:bold">Número de Licencia</label>
+                                <input type="text" class="form-control form-control-sm" id="nLicencia">
+                            </div>
+
+                            @if (multiespecialidad)
+                            {
+                                <div class="form-group">
+                                    <label style="font-weight:bold">Dg de la licencia médica</label>
+                                    <input type="text" class="form-control form-control-sm" id="dgLicencia">
+                                </div>
+                            }
+
+                            <!--HISTORIA CLINICA COLMENA DETALLADO-->
+                            <div class="form-group">
+                                <label style="font-weight:bold">Nº de días de reposo continuos autorizados por patología</label>
+                                <input type="number" id="diasLicencia" name="diasLicencia" min="0" max="730">
+                            </div>
+
+
+                            <div class="form-group">
+                                <label style="font-weight:bold">HISTORIA CLÍNICA</label>
+                                <textarea class="form-control" rows="3" name="historiaClinica"></textarea><br />
+                                <!--Historiaclinicacolmena solo visible colmena-->
+                                <div>
+                                    <span>Antecedentes mórbidos </span>
+                                    <textarea class="form-control" rows="1" name="hisMorbido"></textarea><br />
+                                    <span>Antecedentes quirúrgicos </span>
+                                    <textarea class="form-control" rows="1" name="hisQuirurgica"></textarea><br />
+                                    <span>Antecedentes de alergias </span>
+                                    <textarea class="form-control" rows="1" name="hisAlergias"></textarea><br />
+                                    <span>Antecedentes sobre hábitos (consumo alcohol, tabaco, drogas ilegales) </span>
+                                    <textarea class="form-control" rows="1" name="hisHabitoso"></textarea><br />
+                                    <span @hiddenMulti>Antecedentes psiquiátricos personales (tratamientos psiquiátricos y/o psicológicos previos)</span>
+                                    <textarea class="form-control" rows="1" name="hisPsiquiatrico" @hiddenMulti></textarea><br @hiddenMulti />
+                                    <span @hiddenMulti>Antecedentes psiquiátricos familiares (enfermedades psiquiátricas graves, esquizofrenia, bipolaridad, depresión, suicidios, consumo Sustancias)</span>
+                                    <textarea class="form-control" rows="1" name="hisPsiquiatricoFamilia" @hiddenMulti></textarea><br @hiddenMulti />
+                                    <span>Antecedentes biográficos (dónde vive, con quién vive, dónde nació, tiene hijos)</span>
+                                    <textarea class="form-control" rows="1" name="hisBiografico"></textarea><br />
+                                </div>
+                            </div>
+
+                            <!--Check si es causa laboral o no, despliegue de preguntas-->
+                            <div class="form-group" @hiddenLaboral @hiddenPeritaBanmedica>
+                                <label style="font-weight:bold">¿La patología que presenta actualmente, corresponde a situación laboral?</label>
+                                <br />
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label" for="inlineRadio2">SI &nbsp; </label>
+                                    <input type="checkbox" class="" name="checkistCausas" id="checkistCausas" />
+                                </div>
+                            </div>
+
+                            <div class="mb-2" id="divListaCausas">
+                                <div class="d-none" id="listaCausas">
+                                    <div class="form-group">
+                                        <label style="font-weight:bold"><strong>HISTORIA LABORAL</strong></label><br />
+                                        <span>(nivel educacional, tipo contrato, jornada laboral, horas extras, últimas vacaciones)</span>
+                                        <br />
+                                        <br />
+                                        <span>Profesión o actividad laboral </span>
+                                        <textarea class="form-control" rows="1" name="quest1"></textarea>
+                                        <span>Cargo que desempeña </span>
+                                        <textarea class="form-control" rows="1" name="quest1.1"></textarea>
+                                        <span>Antigüedad laboral</span>
+                                        <textarea class="form-control" rows="1" name="quest1.2"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        @if (multiespecialidad)
+                                        {
+                                            <label style="font-weight:bold">Gatillante del problema: </label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkSobrecarga">
+                                                <label class="form-check-label" for="checkSobrecarga">
+                                                    Sobrecarga
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkErgonomia">
+                                                <label class="form-check-label" for="checkErgonomia">
+                                                    Ergonomía
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkSeguridad">
+                                                <label class="form-check-label" for="checkSeguridad">
+                                                    Implementos de seguridad
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkProteccion">
+                                                <label class="form-check-label" for="checkProteccion">
+                                                    Elementos de protección personal
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkQuimico">
+                                                <label class="form-check-label" for="checkQuimico">
+                                                    Peligro Químico
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkBio">
+                                                <label class="form-check-label" for="checkBio">
+                                                    Peligro biológico
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkAmbiental">
+                                                <label class="form-check-label" for="checkAmbiental">
+                                                    Peligro ambiental
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkHerr">
+                                                <label class="form-check-label" for="checkHerr">
+                                                    Herramientas de trabajo
+                                                </label>
+                                            </div>
+
+
+                                        }
+                                        else
+                                        {
+                                            <label style="font-weight:bold">Identificación de estresores laborales: </label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkSobrecarga">
+                                                <label class="form-check-label" for="checkSobrecarga">
+                                                    Sobrecarga
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkMenoscabo">
+                                                <label class="form-check-label" for="checkMenoscabo">
+                                                    Menoscabo
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkAcoso">
+                                                <label class="form-check-label" for="checkAcoso">
+                                                    Acoso
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkMaltrato">
+                                                <label class="form-check-label" for="checkMaltrato">
+                                                    Maltrato
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkDisfuncional">
+                                                <label class="form-check-label" for="checkDisfuncional">
+                                                    Liderazgo Disfuncional
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkHostigamiento">
+                                                <label class="form-check-label" for="checkHostigamiento">
+                                                    Hostigamiento
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkHostilizacion">
+                                                <label class="form-check-label" for="checkHostilizacion">
+                                                    Hostilización
+                                                </label>
+                                            </div>
+                                            <br />
+                                            <span>Texto libre</span>
+                                            <textarea class="form-control" rows="2" name="quest2"></textarea>
+
+                                        }
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="font-weight:bold">@tituloIntensidadEstresor</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="checkPermanente">
+                                            <label class="form-check-label" for="checkPermanente">
+                                                Permanente
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="checkFluctuante">
+                                            <label class="form-check-label" for="checkFluctuante">
+                                                Fluctuante
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="checkIntermitente">
+                                            <label class="form-check-label" for="checkIntermitente">
+                                                Intermitente
+                                            </label>
+                                        </div>
+                                        <br />
+                                        <span>Texto libre</span>
+                                        <textarea class="form-control" rows="2" name="quest3"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="font-weight:bold">@tituloTiempoEstresor</label>
+                                        <textarea class="form-control" rows="2" name="quest4"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="font-weight:bold">Breve descripción del puesto de trabajo.</label>
+                                        <textarea class="form-control" rows="2" name="quest5"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="font-weight:bold">Notificó a jefatura de la problemática.</label>
+                                        <textarea class="form-control" rows="2" name="quest6"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="font-weight:bold">@tituloAccionesMitigadoras</label>
+                                        <textarea class="form-control" rows="3" name="quest7"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" style="display:none;">
+                                <label style="font-weight:bold">Anamnesis Actual</label>
+                                <textarea class="form-control" rows="3" name="DiagnosticoMedico"></textarea>
+                            </div>
+                            <!--Nuevo input para multiespecialidades-->
+                            <div class="form-group" @inputsMulti>
+                                <label style="font-weight:bold">IMÁGENES, EXAMENES DE LABORATORIO Y EXÁMENES COMPLEMENTARIOS</label>
+                                <textarea class="form-control" rows="3" name="ExaLaboratorio"></textarea>
+                            </div>
+                            <!-- fin input -->
+                            <div class="form-group">
+                                <label style="font-weight:bold">@tituloExamen</label>
+                                <textarea class="form-control" rows="3" name="ExaFisicoMental"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label style="font-weight:bold">TRATAMIENTO ACTUAL</label><br />
+                                <span @hiddenLaboral>Detallar Fármacos y dosis.</span>
+                                <textarea class="form-control" rows="3" name="TratamientoActual"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label style="font-weight:bold">¿Es adecuado el Tratamiento?</label>
+                                <br />
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="tratamientoAdecuado" id="tratamientoAdecuado1" value="1">
+                                    <label class="form-check-label" for="tratamientoAdecuado1">SI</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="tratamientoAdecuado" id="tratamientoAdecuado2" value="0">
+                                    <label class="form-check-label" for="tratamientoAdecuado2">NO</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group d-none" id="asktratamientoAdecuado">
+                                <label style="font-weight:bold">Si no está de acuerdo con el tratamiento indicado debe señalar de que tipo de tratamientos se vería beneficiado.</label>
+                                <textarea class="form-control" rows="3" name="tratamientoIndicado"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label style="font-weight:bold">ESTADO FUNCIONAL DEL PACIENTE AL MOMENTO DEL PERITAJE. </label>
+                                <span>(Mencione funcionalidad y descríbala. Indicar que actividades realiza fuera y dentro de casa, si tiene ayuda de terceros, que actividades ha dejado de realizar) </span>
+                                <textarea class="form-control" rows="3" name="EstadoActual"></textarea>
+                            </div>
+                            <div class="form-group" @hiddenMulti>
+                                <label style="font-weight:bold">Diagnóstico de acuerdo con opinión del perito.</label>
+                                <span>En caso de peritaje psiquiátrico completar la siguiente información:</span>
+                                <div class="form-group row mt-2">
+                                    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">EJE I:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control form-control-sm" id="EJEI">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">EJE II:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control form-control-sm" id="EJEII">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">EJE III:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control form-control-sm" id="EJEIII">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">EJE IV:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control form-control-sm" id="EJEIV">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">EJE V:</label>
+                                    <div class="col-sm-10">
+                                        <!--<input type="text" class="form-control form-control-sm" id="EJEV" >-->
+                                        <select class="form-control" name="EJEV" id="EJEV">
+                                            <option value="" selected>Seleccione puntaje gaf</option>
+                                            <optgroup label="Numero de días de licencia">
+                                                <option value="<50 puntos">menor a 50 puntos &nbsp;>&nbsp; 30 días</option>
+                                                <option value="50 puntos">50 puntos &nbsp;>&nbsp; 29 días</option>
+                                                <option value="51 puntos">51 puntos &nbsp;>&nbsp; 27-28 días</option>
+                                                <option value="52 puntos">52 puntos &nbsp;>&nbsp; 25-26 días</option>
+                                                <option value="53 puntos">53 puntos &nbsp;>&nbsp; 23-24 días</option>
+                                                <option value="54 puntos">54 puntos &nbsp;>&nbsp; 21-22 días</option>
+                                                <option value="55 puntos">55 puntos &nbsp;>&nbsp; 19-20 días</option>
+                                                <option value="56 puntos">56 puntos &nbsp;>&nbsp; 17-18 días</option>
+                                                <option value="57 puntos">57 puntos &nbsp;>&nbsp; 15-16 días</option>
+                                                <option value="58 puntos">58 puntos &nbsp;>&nbsp; 13-14 días</option>
+                                                <option value="59 puntos">59 puntos &nbsp;>&nbsp; 11-12 días</option>
+                                                <option value="60 puntos">60 puntos &nbsp;>&nbsp; 09-10 días</option>
+                                                <option value="61 puntos">61 puntos &nbsp;>&nbsp; 07-08 días</option>
+                                                <option value="62 puntos">62 puntos &nbsp;>&nbsp; 05-06 días</option>
+                                                <option value="63 puntos">63 puntos &nbsp;>&nbsp; 03-04 días</option>
+                                                <option value="64 puntos">64 puntos &nbsp;>&nbsp; 01-02 días</option>
+                                                <option value="65 puntos">65 puntos &nbsp;>&nbsp; Reintegro el mismo día</option>
+                                                <optgroup label="Reintegro días antes de la evaluación">
+                                                    <option value="66 puntos">66 puntos &nbsp;>&nbsp; 1-2 días</option>
+                                                    <option value="67 puntos">67 puntos &nbsp;>&nbsp; 3 a 4 días</option>
+                                                    <option value="68 puntos">68 puntos &nbsp;>&nbsp; 5 a 6 días</option>
+                                                    <option value="69 puntos">69 puntos &nbsp;>&nbsp; 7 a 8 días</option>
+                                                    <option value="70 puntos">70 puntos &nbsp;>&nbsp; 9 a 10 días</option>
+                                                    <option value="71 puntos">71 puntos &nbsp;>&nbsp; 11 a 12 días</option>
+                                                    <option value="72 puntos">72 puntos &nbsp;>&nbsp; 13 a 14 días</option>
+                                                    <option value="73 puntos">73 puntos &nbsp;>&nbsp; 15 a 16 días</option>
+                                                    <option value="74 puntos">74 puntos &nbsp;>&nbsp; 17 a 18 días</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-inline">
+                                    <label style="font-weight:bold">Fecha peritaje: &nbsp;</label>
+                                    <input class="form-control" type="date" id="currentDate" />
+                                    <br />
+                                    <br />
+                                    <p id="eje5Date" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label style="font-weight:bold">@tituloConclusion </label>
+                                <textarea class="form-control" rows="4" name="conclusionPeritaje"></textarea><br @inputsMulti />
+                                <!--Inputs conclusion multiespecialidades-->
+                                <span @inputsMulti>Diagnóstico del perito: </span>
+                                <textarea class="form-control" rows="1" name="dgPerito" @inputsMulti></textarea><br @inputsMulti />
+                                <span @inputsMulti>Fecha de Diagnóstico de la patología: </span>
+                                <textarea class="form-control" rows="1" name="fechaDg" @inputsMulti></textarea><br @inputsMulti />
+                                <span @inputsMulti>Observaciones y limitaciones de la entrevista:</span>
+                                <textarea class="form-control" rows="1" name="ObservacionEntrevista" @inputsMulti></textarea><br @inputsMulti />
+                                <span @inputsMulti>Rol de la licencia médica:</span>
+                                <textarea class="form-control" rows="1" name="rolLicencia" @inputsMulti></textarea><br @inputsMulti />
+                                <span @inputsMulti>Fecha retorno laboral estimado: </span>
+                                <textarea class="form-control" rows="1" name="fechaRetorno" @inputsMulti></textarea><br @inputsMulti />
+
+                                <!--fin inputs conclusion multiespecialidades-->
+
+                            </div>
+                            <hr>
+
+
+                            @{
+                                var textoGuardar = "Previsualizar";
+                                var classTexto = "btn-atencion";
+                                var classIcon = "fal fa-eye";
+                                if (ViewData["view"].Equals(Roles.Invitado) || Model.Atencion.Peritaje)
+                                {
+                                    textoGuardar = "Guardar y finalizar";
+                                    classTexto = "btn-warning";
+                                    classIcon = "";
+                                }
+                            }
+
+
+                            @if (Model.Atencion.AtencionDirecta)
+                            {
+                                <div class="mb-2 d-flex justify-content-between" id="divBtnFirma">
+                                    <button id="btnSolicitarFirma" type="button" class="btn-atencion btn--warning mt-3 mt-lg-0"><i class="fal fa-eye"></i> <span>Solicitar Firma</span></button>
+                                    <button id="btnGuardar" type="button" class="btn @classTexto mt-3 mt-lg-0"><i class="@classIcon"></i> <span>@textoGuardar</span></button>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-2" style="text-align:right;">
+                                            <button id="btnGuardar" type="button" class="btn @classTexto  mt-3 mt-lg-0 mb-2"><i class="@classIcon"></i> <span>@textoGuardar</span></button>
+
+                                            <button id="btnGuardarDatos" type="button" class="btn btn-info  mt-3 mt-lg-0  mb-2"><i class="@classIcon"></i> <span>Guardar datos</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                    <div id="divAntecedentesMedicos" style="display:none">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title">
+                                    Antecedentes Médicos
+                                </h3>
+                            </div>
+                        </div>
+                        <form id="form_edit_am" class="kt-form kt-form--label-right">
+                            <div class="kt-portlet__body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="kt-widget kt-widget--user-profile-1 mb-0 pb-0">
+                                            <div class="form-group">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Alergias</label>
+                                                    @Html.TextAreaFor(m => m.fichaPaciente.Alergias, new { @class = "form-control", type = "text", id = "Alergias", name = "Alergias" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Medicamentos</label>
+                                                    @Html.TextAreaFor(m => m.fichaPaciente.Medicamentos, new { @class = "form-control", type = "text", id = "Medicamentos" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Enfermedades</label>
+                                                    @Html.TextAreaFor(m => m.fichaPaciente.Enfermedades, new { @class = "form-control", type = "text", id = "Enfermedades" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Cirugías</label>
+                                                    @Html.TextAreaFor(m => m.fichaPaciente.Cirugias, new { @class = "form-control", type = "text", id = "Cirugias" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-12 col-md mb-1 mb-md-0">
+                                                    <label class="form-label">Hábitos</label>
+                                                    @Html.TextAreaFor(m => m.fichaPaciente.Habitos, new { @class = "form-control", type = "text", id = "Habitos" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kt-portlet__foot">
+                                <div class="kt-form__actions">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6 col-lg-9 offset-lg-3 text-right">
+                                            <button type="submit" id="btn_guardar_am" class="btn btn-success btn-block">Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!------------ PERITAJE-------------->
+                    <div id="divConclusionPeritaje" style="display:none">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title">
+                                    @cajaPeritaje
+                                </h3>
+                            </div>
+                        </div>
+                        <form id="form_edit_peritaje" class="kt-form kt-form--label-right">
+                            <div class="kt-portlet__body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="kt-widget kt-widget--user-profile-1 mb-0 pb-0">
+                                            <label style="font-weight:bold">RESUMEN </label>
+
+                                            <div class="form-group">
+                                                <label style="font-weight:bold">Es patología GES</label>
+                                                <br />
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="patologiaGes" id="patologiaGesSI" value="1">
+                                                    <label class="form-check-label" for="inlineRadio1">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="patologiaGes" id="patologiaGesNO" value="0">
+                                                    <label class="form-check-label" for="inlineRadio2">NO</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label style="font-weight:bold">Recibe tratamiento a través de GES</label>
+                                                <br />
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="tratamientoGes" id="tratamientoGesSI" value="1">
+                                                    <label class="form-check-label" for="inlineRadio1">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="tratamientoGes" id="tratamientoGesNO" value="0">
+                                                    <label class="form-check-label" for="inlineRadio2">NO</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label style="font-weight:bold">Licencia emitida bajo régimen GES</label>
+                                                <br />
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="licenciaGes" id="licenciaGesSI" value="1">
+                                                    <label class="form-check-label" for="inlineRadio1">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="licenciaGes" id="licenciaGesNO" value="0">
+                                                    <label class="form-check-label" for="inlineRadio2">NO</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label style="font-weight:bold">Amerita Reposo</label>
+                                                <br />
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="reposo" id="reposoSI" value="1">
+                                                    <label class="form-check-label" for="inlineRadio1">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="reposo" id="reposoNO" value="0">
+                                                    <label class="form-check-label" for="inlineRadio2">NO</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group" id="reposoParcialTotal">
+                                                <label style="font-weight:bold">Tipo Reposo</label>
+                                                <br />
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="reposoTotal" id="reposoTotal" value="1">
+                                                    <label class="form-check-label" for="inlineRadio1">Total</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="reposoTotal" id="reposoParcial" value="2">
+                                                    <label class="form-check-label" for="inlineRadio2">Parcial</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label style="font-weight:bold">Amerita Prórroga</label>
+                                                <br />
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="Prorroga" id="ProrrogaSI" value="1">
+                                                    <label class="form-check-label" for="inlineRadio1">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="Prorroga" id="ProrrogaNO" value="0">
+                                                    <label class="form-check-label" for="inlineRadio2">NO</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label style="font-weight:bold">N° de Días de Prórroga: </label>
+                                                <input type="number" id="diasProrroga" name="diasProrroga" min="0" max="100">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label style="font-weight:bold">Recuperabilidad</label>
+                                                <br />
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="Recuperabilidad" id="RecuperabilidadSI" value="1">
+                                                    <label class="form-check-label" for="inlineRadio1">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="Recuperabilidad" id="RecuperabilidadNO" value="0">
+                                                    <label class="form-check-label" for="inlineRadio2">NO</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label style="font-weight:bold">Iniciar Tramites de Invalidez</label>
+                                                <br />
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="Invalidez" id="InvalidezSI" value="1">
+                                                    <label class="form-check-label" for="inlineRadio1">SI</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="Invalidez" id="InvalidezNO" value="0">
+                                                    <label class="form-check-label" for="inlineRadio2">NO</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label style="font-weight:bold">Origen de la Patología</label>
+                                                <br />      
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="Origen" id="OrigenSI" value="1">
+                                                        <label class="form-check-label" for="inlineRadio1">Común</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="Origen" id="OrigenNO" value="0">
+                                                        <label class="form-check-label" for="inlineRadio2">Laboral</label>
+                                                    </div>
+                                            </div>
+
+                                            <div class="form-group" @hiddenMulti>
+                                                <label style="font-weight:bold">Aplicación EEAF para Peritajes psiquiátricos. </label>
+                                                <br />
+                                                <span>Puntaje Obtenido</span>
+                                                <input type="number" id="puntajePeritaje" name="puntajePeritaje" min="0" max="1000">
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kt-portlet__foot">
+                                <div class="kt-form__actions">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6 col-lg-9 offset-lg-3 text-right">
+                                            <button type="submit" id="btn_guardar_peritaje" class="btn btn-success btn-block">Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <!--End::Portlet-->
+            </div>
+        </div>
+
+
+        <div class="col-12 order-1 order-md-2">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-md-8">
+                        <div class="cont-btn-vc">
+                            <button id="reload" class="btn-atencion" type="button" title="Recargar Atención"><i class="fal fa-sync"></i> <span class="fuente-accesible">Recargar Atención</span></button>
+                            @if (ViewData["view"].Equals(Roles.Medico))
+                            {
+                                <button id="volverLlamar" class="btn-atencion" type="button" title="Llamada Paciente"><i class="fal fa-mic"></i> <span class="fuente-accesible">Llamar Paciente</span></button>
+                            }
+
+                            <button id="panel_reporte" type="button" class="btn-atencion ml-2 mt-3 mt-lg-0"><i class="fal fa-file-alt"></i> <span>Reporte Peritaje</span></button>
+                            <button hidden id="panel_reporteEnfermeria" type="button" class="btn-atencion ml-2 mt-3 mt-lg-0"><i class="fal fa-file-alt"></i> <span>Reporte Enfermería</span></button>
+                            <button id="panel_conclusionPeritaje" type="button" class="btn-atencion ml-2 mt-3 mt-lg-0"><i class="fal fa-file-alt"></i> <span>@btnPeritajeConclusion</span></button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="cont-btn-panel">
+                            <button hidden id="panel_archivos" class="btn-atencion" type="button" title="Adjuntos"><i class="fal fa-paperclip"></i> <span class="fuente-accesible">Adjuntos</span></button>
+                            <button id="panel_historial" class="btn-atencion" type="button" title="Historial"><i class="fal fa-history"></i> <span class="fuente-accesible">Historial</span></button>
+                            <button hidden id="panel_antecedentes_medicos" class="btn-atencion" type="button" title="Historial"><i class="fal fa-history"></i> <span>Antecedentes Médicos</span></button>
+                            <button id="panel_chat" href="javascript:void(0)" class="btn-atencion btn-chat ml-auto" type="button" title="Chat"><i class="fal fa-comments"></i> <span class="fuente-accesible">Chat</span> </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="headName2" />
+
+
+
+
+
+
+<style>
+    .box {
+        height: 60px;
+        width: 120px;
+        font: bold 1.6em dotum, "lucida sans", arial;
+        align-content: center;
+        border-radius: 9px;
+    }
+
+</style>

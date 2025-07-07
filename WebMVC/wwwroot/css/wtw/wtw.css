@@ -1,0 +1,859 @@
+/*compara*/
+
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');*/
+
+:root {
+    --primary: #7F35B2;
+    --secondary: #C900AC;
+    --tertiary: #FFB92A;
+    --accent: #F9D324;
+    --light: #FFF;
+    --font-family: 'Mulish', sans-serif;
+}
+
+body {
+    /* font-family: var(--font-family) !important;*/
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-family) !important;
+}
+
+/*Login*/
+.logotipo-desktop {
+    background-image: url(../../img/wtw/logotipo.svg);
+    max-width: 292px;
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/wtw/logotipo.svg);
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: var(--primary);
+    font-weight: 900;
+    display: inline-block;
+}
+
+.login-info--tooltip~.tooltip-inner {
+    text-align: left !important;
+    background-color: red !important;
+}
+
+.login-info--tooltip i {
+    color: #ccc;
+    font-size: 20px;
+    margin-left: 10px;
+    text-align: left !important;
+}
+
+.form-group .ms-label {
+    color: var(--primary) !important;
+}
+
+.tooltip.show p {
+    text-align: left;
+}
+
+
+
+
+.btn-primary {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.divider-medismart {
+    display: none;
+    margin-bottom: 2rem;
+}
+
+.logo-convenios {
+    /* display: none;*/
+    margin-bottom: 2rem;
+}
+
+/* Imágenes Login */
+.img1 {
+    background-image: url(../../img/wtw/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/wtw/login/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/wtw/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/wtw/login/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/wtw/login/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/wtw/login/960x978.jpg);
+}
+
+.body-home {
+    /*background-image: linear-gradient(175.39deg, #FFFFFF -7.56%, #333333 1.84%, #103ADA 96.27%);*/
+
+    background: #3bc1cd;
+    background-image: url(../../img/home/logo-fondo.svg), linear-gradient(360deg, #C900AC 0%, #8537BB 39.06%);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-attachment: fixed;
+}
+
+.body-home .logo-home img {
+    width: 130px;
+}
+
+.top-banner .legend {
+    font-weight: 500;
+}
+
+.menu-top .item-menu-top i,
+.menu-top .label-menu {
+    color: #00843D;
+}
+
+.menu-top .item-menu-top:hover i,
+.menu-top .item-menu-top:hover .label-menu {
+    color: var(--accent) !important;
+}
+
+.kt-menu__item a,
+.kt-menu__item i {
+    color: var(--primary)
+}
+
+.kt-menu__item a .ms-label-menu {
+    color: var(--primary)
+}
+
+.kt-menu__item:hover a,
+.kt-menu__item:hover i {
+    color: var(--secondary) !important;
+}
+
+.accesible-btn button {
+    color: #7F35B2;
+    border: 1px solid #7F35B2;
+    margin: 0.5rem;
+}
+
+.busqueda-profesionales {
+    border: 2px solid var(--secondary);
+}
+
+.busqueda-profesionales i {
+    color: var(--secondary)
+}
+
+.busqueda-profesionales .btn-outline-primary {
+    color: var(--secondary)
+}
+
+.caja-especialidad.active {
+    background-color: var(--primary);
+}
+
+.caja-especialidad {
+    background-color: var(--secondary);
+}
+
+.inner-especialidad strong {
+    color: var(--light)
+}
+
+.step.active .step-icon {
+    background-color: var(--primary);
+}
+
+.stepper {
+    background-image: url(../../img/compara/fondo-banner2.svg);
+}
+
+.stepper .flecha {
+    color: var(--primary)
+}
+
+.stepper img {
+    border-color: var(--primary)
+}
+
+.step.active .label-step {
+    color: var(--primary)
+}
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: var(--tertiary)
+}
+
+.caja-profesional .fecha-atencion {
+    color: var(--secondary)
+}
+
+.front-fecha-atencion {
+    border: 1px solid rgba(35, 33, 114, .3)
+}
+
+.front-fecha-atencion strong:before {
+    color: var(--secondary);
+    font-weight: 900;
+}
+
+.especialidad-profesional {
+    color: var(--tertiary)
+}
+
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+
+.top-banner {
+    background-image: url(../../img/wtw/fondo-banner2.svg);
+}
+
+.top-banner img {
+    border-color: rgba(255, 255, 255, .3)
+}
+
+.top-banner .legend {
+    color: var(--secondary)
+}
+
+.banner_topsc .legend .text-warning {
+    color: var(--primary) !important;
+}
+
+.top-banner.banner_topsc {
+    background-image: url(../../img/compara/fondo-banner2.svg);
+}
+
+.text-warning {
+    color: var(--tertiary) !important;
+}
+
+.menu-top .item-menu-top .logotipo-mobile {
+    width: 110px !important;
+}
+
+/*Sala espera*/
+.hotspot-icon .cont-icon {
+    background-color: var(--tertiary)
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+.cont-icon.hotspot-redes {
+    background-color: #222;
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+
+}
+
+#hs-g .cont-icon {
+    background-color: var(--secondary);
+}
+
+#hs-g:hover .cont-icon {
+    background-color: var(--primary);
+}
+
+.toolbar-option {
+    color: var(--primary)
+}
+
+.toolbar-option.active {
+    color: var(--secondary)
+}
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--tertiary)
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--secondary)
+}
+
+.btn-sala:hover {
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion,
+.cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion:hover,
+.cont-btn-vc .btn-atencion:hover {
+    background-color: rgba(237, 110, 0, 0.1);
+    color: var(--primary);
+}
+
+.hotspot-icon {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.hotspot-icon i {
+    text-shadow: none;
+}
+
+.hotspot-icon:hover {
+    color: #FFF;
+}
+
+
+
+
+/*Prehome*/
+
+.prehome__plans {
+    height: 450px;
+}
+
+.prehome__plan {
+    width: 100%;
+    padding: 0;
+}
+
+.prehome__plan ul {
+    list-style-image: url('../../img/compara/bullet.svg');
+
+    margin-top: 32px;
+    height: 350px;
+    font-size: 16px;
+}
+
+.prehome__title {
+    color: #FFF;
+}
+
+.kt-login__extra.registro {
+    display: none;
+}
+
+.logo-convenios.convenioChile+hr {
+    display: none;
+}
+
+.kt-login.kt-login--v3.kt-login--signin .kt-login__signin .titulo-card-farmacia {
+    text-align: center;
+}
+
+.login-footer .terminos {
+    margin-bottom: 2rem;
+    display: flex;
+    margin-top: 2rem;
+    gap: 1rem;
+    margin-left: 1rem;
+}
+
+.stepper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    background-image: url(../../img/compara/fondo-banner.svg);
+    background-repeat: repeat-x;
+    background-position: left 10px;
+    margin-bottom: 2.5rem;
+    margin-top: 2.5rem;
+}
+
+.menu-top .label-menu-pac {
+    color: #00843D;
+}
+
+.category-button:hover,
+.category-button.active {
+    background-color: var(--important) !important;
+    color: var(--important) !important;
+}
+
+.kt-menu__item:hover a,
+.kt-menu__item:hover i {
+    color: var(--primary) !important;
+}
+
+.menu-top .item-menu-top:hover .label-menu-pac {
+    color: var(--accent) !important;
+}
+
+.kt-menu__item:hover a .ms-label-menu {
+    color: var(--primary);
+}
+
+.logo-convenios img {
+    width: 102px;
+    margin: auto;
+    display: none;
+}
+
+.btn-login {
+    border-radius: 58px;
+    border: 1px solid #C900AC;
+    background: #C900AC;
+    box-shadow: 4px 4px 16px 0px rgba(88, 103, 221, 0.25);
+}
+
+.form-group label {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .form-control {
+    background: rgba(235, 237, 242, 0.40);
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__actions .kt-login__btn-secondary,
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__actions .kt-login__btn-primary {
+    height: 40px !important;
+    margin-top: 2rem !important;
+}
+
+.copy {
+    display: none;
+}
+
+.footer-home .terminos {
+    width: 100% !important;
+    display: block;
+    /* text-align: center; */
+    /* justify-content: center; */
+    /* align-items: center; */
+}
+
+.body-home .menu-top .item-menu-top i,
+.body-home .menu-top .item-menu-top .label-menu {
+    color: #FFFFFF;
+}
+
+#btnAbandonarAtencion .cont-icon {
+    background: #E377DC;
+}
+
+#hs-b .cont-icon {
+    background: #007D61;
+}
+
+#hs-c .cont-icon {
+    background: #C900AC;
+}
+
+#hs-d .cont-icon {
+    background: #FFB92A;
+}
+
+#icon-sala-mobile-juegos .cont-icon {
+    background: #C900AC;
+}
+
+#icon-sala-mobile-videos .cont-icon {
+    background: #C2A8F0;
+}
+
+#wsp-m .cont-icon {
+    background: #00843D;
+}
+
+.accesible-tools-desktop .accesible-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 5rem;
+    margin-top: 5rem;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.terminos {
+    display: flex;
+    justify-content: center;
+}
+
+.logotipo-blanco {
+    display: none;
+}
+
+.img-interrogacion {
+    margin-top: 1rem;
+}
+
+.accesible-btn .letras-login {
+    color: #C900AC;
+    border: 1px solid #C900AC;
+    margin: 0.5rem;
+    background: #ffffff;
+}
+
+.ancla-azul {
+    color: #5867DD !important;
+}
+
+.letras-sala-espera {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+}
+
+.color-letras-salaespera {
+    color: #00843D !important;
+    border: 1px solid #00843D !important;
+}
+
+
+
+.cont-informe .col-examenes {
+    display: none !important;
+}
+
+.cont-informe .col-medicamentos {
+    display: none !important;
+}
+
+
+/*Modal > Ley de Transparencia*/
+
+#modal-transparencia-co {
+    padding: 0;
+    margin: 0 auto;
+    height: auto;
+    backdrop-filter: blur(5px);
+}
+
+#modal-transparencia-co .modal-body {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    margin: -1px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#modal-transparencia-co .ltd__content {
+    padding: 16px;
+    display: inline-block;
+    flex-direction: column;
+    width: 100%;
+}
+
+#modal-transparencia-co .ltd__content h2 {
+    font-size: 36px;
+    color: #3bc1cd;
+    font-weight: 700;
+}
+
+#modal-transparencia-co .ltd__content h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 2rem 0 2rem 0;
+}
+
+#modal-transparencia-co .ltd__content button.btn{
+    float: right;
+    background-color: #3bc1cd;
+    color: #fff;
+    font-weight: 700;
+    width: 210px;
+    border: none;
+    text-transform: uppercase;
+
+}
+
+#modal-transparencia-co p.ltd__list-item {
+    padding: 10px;
+    background-color: #f7f7f7;
+    margin: 16px 0 16px 0;
+    text-align: left;
+    border-radius: 7px;
+    width: 100%;
+}
+#modal-transparencia-co p.ltd__list-item a {
+    color: #3bc1cd;
+    text-shadow: #333;
+}
+#modal-transparencia-co p.ltd__list-item a:hover {
+    text-decoration: underline ;
+}
+
+#modal-transparencia-co .ltd__list-item-icon {
+    margin-right: 10px;
+}
+
+#modal-transparencia-co .ltd__list-item-icon {
+    margin-right: 10px;
+}
+
+
+@media (max-width: 668px) {
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+
+    #modal-transparencia-co .ltd__content button.btn {
+        float: unset;
+        margin: 0 auto;
+        display: block;
+    }
+}
+
+
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/wtw/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/wtw/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/wtw/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/wtw/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/wtw/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/wtw/login/548x850.jpg);
+    }
+}
+
+
+
+
+@media (max-width: 991.98px) {
+
+    .accesible-tools-desktop .accesible-btn {
+        margin-left: 9.5rem;
+        margin-top: 1.5rem;
+    }
+
+    .prehome__plans {
+        height: auto;
+    }
+    
+
+    .body-home {
+
+        background: #FFFFFF;
+    }
+
+    .body-home .menu-top .item-menu-top i,
+    .body-home .menu-top .item-menu-top .label-menu {
+        color: #FFF;
+    }
+
+    .body-home .cont-card .card .card-body {
+        justify-content: start;
+        background: #7F35B2;
+        border-radius: 16px;
+    }
+
+    .top-banner .legend {
+        text-align: left;
+        font-size: 1.3rem;
+    }
+
+    .leyenda-card-home {
+        color: #FFFFFF;
+    }
+
+    .body-home .powered,
+    .body-home .powered strong {
+        color: #FFF;
+        display: none;
+    }
+
+    .accesible-btn button {
+        color: #ffffff;
+        border: 1px solid #7F35B2;
+        margin: 0.5rem;
+        background: #7F35B2;
+    }
+
+    a {
+        color: #7F35B2;
+        text-decoration: none;
+        background-color: transparent;
+        margin-top: 1.5rem;
+    }
+
+    .terminos {
+
+        margin-top: 1.5rem;
+    }
+
+    .body-home .top-banner .legend {
+        color: #7F35B2;
+    }
+
+    .kt-header-mobile--fixed .kt-header__topbar {
+        background: #7F35B2;
+    }
+
+    .menu-top .item-menu-top i,
+    .menu-top .label-menu {
+        color: #FFFFFF;
+    }
+
+    .logotipo-mobile {
+        display: none;
+    }
+
+    .container-login {
+        background-color: #7F35B2;
+        height: 72rem;
+
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+
+
+    }
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+        color: #FFFFFF;
+    }
+
+    .form-group .ms-label {
+        color: #ffffff !important;
+    }
+
+    .img-interrogacion {
+        display: none;
+    }
+
+    .anclas-login {
+        color: #FFFFFF !important;
+    }
+
+    .login-footer .terminos {
+
+        display: none;
+
+    }
+
+    .kt-footer .kt-footer__copyright {
+
+        display: none !important;
+    }
+
+    .accesible-btn .letras-login {
+        color: #C900AC;
+        border: 1px solid #ffffff;
+        margin: 0.5rem;
+        background: #ffffff;
+    }
+
+    hr {
+
+        background: #ffffff
+    }
+
+    .logotipo-blanco {
+        display: block;
+        margin-bottom: 1.5rem;
+        margin-left: 3rem;
+    }
+
+    #modal-transparencia-co .ldt__hero-img {
+        display: none;
+    }
+}
+
+
+
+@media (max-width: 1024px) {
+    .body-home .logo-home img {
+        width: 108px;
+    }
+
+    .body-home .logo-home {
+        background-color: #7F35B2;
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/wtw/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/wtw/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/wtw/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/wtw/login/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/wtw/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/wtw/login/960x978.jpg);
+    }
+}
+

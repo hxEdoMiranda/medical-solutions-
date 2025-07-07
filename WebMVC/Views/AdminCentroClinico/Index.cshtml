@@ -1,0 +1,160 @@
+﻿@*@model WebMVC.Models.HomeViewModel
+*@
+@using Microsoft.Extensions.Configuration
+@model  WebMVC.Models.EmpresaCentroClinico
+@inject IConfiguration Configuration
+
+@{
+    ViewData["Title"] = "Administrador Centro Clinico";
+    Layout = "_LayoutCentroClinico";
+    
+}
+
+@section PageStyles  {
+    <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">             
+      
+    <!--   <div>
+        <span class="kt-widget12__desc">Datos</span>
+                                   <label style="font-size:40px" id="idEmpresa" value="@ViewData["IdEmpresa"]"></label>
+                                   <label style="font-size:40px" id="idPersonaEmpresa" value="@ViewData["IdPersonaEmpresa"]"></label>
+                                   <label style="font-size:40px" id="idCentroClinico" value="@ViewData["IdCentroClinico"]"></label>
+                            </div>-->
+
+@*
+ Begin::Dashboard 7
+    <!--Begin::Row-->
+    <div class="row">
+        <div class="col-md-3 order-lg-1 order-xl-1">
+
+            <div class="kt-portlet kt-portlet--tabs kt-portlet--height-fluid">
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                            Tablero Administración de Profesionales
+                        </h3>
+                    </div>
+
+                </div>
+                <div class="kt-portlet__body">
+                    <div class="kt-widget12">
+                        
+                        <div class="kt-widget12__content kt-portlet__space-x kt-portlet__space-y">
+                            <div class="kt-widget12__item">
+                                <div class="kt-widget12__info">
+                                    <h5>Profesionales</h5>
+                                </div>
+                                <div class="kt-widget12__info" style="text-align:end">
+                                    <button type="button" id="btnProfesionales" class="btn btn-info btn-sm">ver</button>
+                                </div>
+
+                            </div>
+                            <div class="kt-widget12__item">
+                                <div class="kt-widget12__info">
+                                    <span class="kt-widget12__desc">Activos</span>
+                                    <span class="kt-widget12__value"> <label style="font-size:40px" id="lblProfesionalesActivos"> </label></span>
+                                </div>
+                                <div class="kt-widget12__info">
+                                    <span class="kt-widget12__desc">Inactivos</span>
+                                    <span class="kt-widget12__value"> <label style="font-size:40px" id="lblProfesionalesInactivos"> </label></span>
+                                </div>
+                                <span class="kt-widget12__desc">Datos</span>
+                                   <label style="font-size:40px" id="idEmpresa" value="@ViewData["IdEmpresa"]"></label>
+                                   <label style="font-size:40px" id="idPersonaEmpresa" value="@ViewData["IdPersonaEmpresa"]"></label>
+                                   <label style="font-size:40px" id="idCentroClinico" value="@ViewData["IdCentroClinico"]"></label>
+                            </div>
+
+                        </div>
+                        <div class="kt-widget12__content kt-portlet__space-x kt-portlet__space-y" style="background-color:#ebedf2">
+                            <div class="kt-widget12__item">
+                                <div class="kt-widget12__info">
+                                    <h5>Convenios</h5>
+                                </div>
+                                <div class="kt-widget12__info" style="text-align:end">
+                                    <button type="button" id="btnConvenios" class="btn btn-info btn-sm" style="visibility:hidden">ver</button>
+                                </div>
+                            </div>
+                            <div class="kt-widget12__item">
+                                <div class="kt-widget12__info">
+                                    <span class="kt-widget12__desc">Activos</span>
+                                    <span class="kt-widget12__value"><label style="font-size:40px" id="lblConveniosActivos"> </label></span>
+                                </div>
+                                <div class="kt-widget12__info">
+                                    <span class="kt-widget12__desc">Inactivos</span>
+                                    <span class="kt-widget12__value"><label style="font-size:40px" id="lblConveniosInactivos"> </label></span>
+                                </div>
+                            </div>
+                            <div class="kt-widget12__item">
+                                <div class="kt-widget12__info">
+                                    <label></label>
+                                    <select class="form-control" id="selectConvenios">
+                                        <option value="0">Seleccione</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-widget12__chart" style="height:290px;">
+                            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                            <canvas id="kt_chart_finance_summary" style="display: block; width: 867px; height: 290px;" width="867" height="290" class="chartjs-render-monitor"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--End::Portlet-->
+        </div>
+
+        <div class="col-md-9 order-lg-1 order-xl-1">
+            <div class="kt-portlet" id="kt_portlet">
+                <div class="kt-portlet__body">
+                    <h4 class="kt-portlet__head-title" id="Titulo">
+                        Tablero Profesionales
+                    </h4>
+                    <br>
+
+                    <div id="kt_calendar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="kt_modal_3" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Resumen Diario</h5>
+                </div>
+                <div class="modal-body" id="modalBody">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btnCerrar" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>*@
+
+</div>
+
+@section PageScripts {
+    <script src="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>
+}
+
+<script type="module">
+        import { init } from '../../js/CentroClinico/tableroAdminProfCentroClinico.js?rnd=@NumeroRandom.GetRandom()';
+        init(@Html.Raw(Json.Serialize(Model)))
+</script>
+
+<script type="text/javascript">
+        (function () {
+         var uid = @ViewBag.uid;
+             window.uid = uid;      
+        })()         
+</script>
+

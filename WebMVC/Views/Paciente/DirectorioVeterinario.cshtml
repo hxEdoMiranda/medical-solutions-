@@ -1,0 +1,169 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@model WebMVC.Models.AtencionViewModel
+@{
+    ViewData["Title"] = "Directorio Veterinario";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="container directorio-vet">
+    <div class="row d-flex ">
+        <div class="col-6 p-3 d-flex flex-column">
+            <img class="portada" src="~/img/calma/directorio-vet--portada.jpg" alt="Veterinaria usa su estetoscopio en un perro">
+        </div>
+        <div class="col-sm-1 col-md-6 p-3 d-flex flex-column">
+            <h2>
+                <span class="small-text">Directorio</span><br>
+                <span class="large-text">Veterinario</span>
+            </h2>
+            <h3>¿Dónde requieres tu servicio?</h3>
+            <div class="dirvet-wrap mt-4">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Selecciona una opción
+                    </button>
+                    <div class="dropdown-menu dropdown-listVet" aria-labelledby="dropdownMenuButton">
+                        
+                    </div>
+                </div>
+
+          
+            </div>
+
+           <div class="mt-3">
+    <h5 id="ciudadSeleccionada" class="mt-3"></h5>
+</div>
+<div class="mt-2 list-ciudades-dir-vet">
+    <ul id="ciudadesList" class="list-unstyled"></ul>
+</div>
+
+
+            
+            @* Boton descarga PDF *@
+            <a href="https://appdiscoec2.s3.amazonaws.com/upload/pdf/calma/Calma_2024_Directorio-M%C3%A9dicos-Veterinario-y-Zootecnistas.pdf" target="_blank" class="btn btn-primary calma-dirVet-pdf mt-3">
+                <img src="~/img/calma/calma--pdf-icon.svg">
+                @* <i class="fa fa-file-pdf-o" aria-hidden="true"></i> *@
+                Descargar directorio
+            </a>
+           
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+let baseUrl2 = new URL(window.location.href);
+let lambda = ""
+    if (baseUrl2.hostname.includes("localhost")) {
+    //URL QA
+    baseUrl2 = "https://o3h6ykborh.execute-api.us-east-1.amazonaws.com";
+    lambda = "directorioVet-API-qa"
+ 
+} else if (baseUrl2.hostname.includes("qa")) {
+
+    //URL QA
+    baseUrl2 = "https://o3h6ykborh.execute-api.us-east-1.amazonaws.com";
+    lambda = "directorioVet-API-qa"
+
+
+    //CAMBIAR URL DE PRODUCCION
+}  else {
+        baseUrl2 = "https://k3bek1cs2i.execute-api.us-east-1.amazonaws.com";
+        lambda = "directorioVet-API"
+}
+
+    function showContent(contentId) {
+        $('.content').hide();
+        $('#' + contentId).show();
+
+    }
+async function getCentrosVet(idCiudad) {
+        const url = `${baseUrl2}/default/${lambda}?idCiudad=` + idCiudad;
+    const response = await fetch(url);
+    const data = await response.json();
+
+    const ciudadSeleccionadaElement = document.getElementById('ciudadSeleccionada');
+
+    if (data.status === 'okey' && Array.isArray(data.centrosVet)) {
+
+        //console.log('data ->' , data.centrosVet[0].centroVet.split(',')[1].trim())
+        ciudadSeleccionadaElement.textContent = data.centrosVet[0].centroVet.split(',')[1].trim();
+
+        const ciudadesList = document.getElementById('ciudadesList');
+        ciudadesList.innerHTML = '';
+
+        data.centrosVet.forEach(centroVet => {
+              const li = document.createElement('li');
+    const centroVetText = centroVet.centroVet;
+    li.innerHTML = centroVetText; 
+    ciudadesList.appendChild(li);
+
+    const hr = document.createElement('hr');
+    ciudadesList.appendChild(hr);
+
+    
+    const telefonoRegex = /\+\d{2,}\s?\d{7,}/;
+    const telefonoMatch = centroVetText.match(telefonoRegex);
+
+    if (telefonoMatch) {
+      
+        const telefonoIndex = centroVetText.indexOf(telefonoMatch[0]);
+        const telefonoLength = telefonoMatch[0].length;
+        const telefonoSpan = document.createElement('span');
+        telefonoSpan.textContent = centroVetText.substring(telefonoIndex, telefonoIndex + telefonoLength);
+        telefonoSpan.style.fontWeight = 'bold';
+        telefonoSpan.style.textDecoration = 'underline';
+
+       
+        li.innerHTML = `${centroVetText.substring(0, telefonoIndex)}${telefonoSpan.outerHTML}${centroVetText.substring(telefonoIndex + telefonoLength)}`;
+    }
+
+            setTimeout(() => {
+                li.style.opacity = '1';
+                hr.style.opacity = '1';
+            }, 100);
+        });
+
+        console.log('entro al if')
+    } else {
+        console.error('Error al cargar ciudades');
+    }
+}
+
+
+    async function getCiudades() {
+        try {
+            const response = await fetch(`${baseUrl2}/default/${lambda}`)
+            const data = await response.json()
+            return data.ciudades
+        } catch (e) {
+            console.log(e)
+        }
+
+    }
+    
+    async function updateCiudadesList() {
+        const div = document.querySelector('.dropdown-listVet');
+
+        try {
+            const ciudades = await getCiudades();
+            console.log('ciudades dedesde filtro', ciudades)
+
+            ciudades.forEach(ciudad => {
+                ;
+                const a = document.createElement('a');
+                a.classList.add('dropdown-item')
+                // a.href = '#';
+                a.dataset.value = ciudad.id
+                a.textContent = ciudad.municipioCiudad
+                a.addEventListener('click', function () { getCentrosVet(this.dataset.value)
+            })
+                div.appendChild(a);
+            });
+        } catch (error) {
+            console.error('Error al actualizar la lista de ciudades:', error);
+        }
+    }
+    updateCiudadesList()
+</script>
+

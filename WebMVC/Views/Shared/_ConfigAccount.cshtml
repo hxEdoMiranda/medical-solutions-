@@ -1,0 +1,120 @@
+﻿@using System.Globalization;
+
+@{
+    var largoPass = 15;
+    var minimoPass = 5;
+    string textoClave = "clave";
+
+    @if (ViewData["view"].Equals(Roles.Paciente))
+    {
+        if (ViewBag.idCliente == "108" || ViewBag.HostURL.ToString().Contains("clinicamundoscotia.")){
+        largoPass = 8;
+        minimoPass = 6;
+        textoClave = "contraseña";
+        }
+    }
+    
+   
+}
+
+
+<div class="kt-portlet mb-4 cont-cambio-clave">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title" metadata="configuracionChangePass">Cambiar @textoClave</h3>
+        </div>
+
+    </div>
+    <form id="form_change_pw" class="kt-form kt-form--label-right">
+        <div class="kt-portlet__body">
+            <div class="kt-section kt-section--first mb-0">
+                <div class="kt-section__body">
+                    
+                    <div class="row">
+                        <div class="col-lg-12">
+
+                            <div class="kt-widget kt-widget--user-profile-1 mb-0">
+
+                                <div class="row inputs-order-width">
+                                    <div class="form-group col-12 passw-input">
+                                        <label class="form-label">Nueva @(new CultureInfo("en-US").TextInfo.ToTitleCase(textoClave))</label>
+                                        <div class="input-group" id="show_hide_password">
+
+                                            <input type="password" name="Password" maxlength=@largoPass id="Password" minlength=@minimoPass class="form-control" placeholder="@(new CultureInfo("en-US").TextInfo.ToTitleCase(textoClave))" required>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group mb-0 col-12 passw-input">
+                                        <label class="form-label">Repetir @(new CultureInfo("en-US").TextInfo.ToTitleCase(textoClave))</label>
+                                        <div class="input-group" id="show_hide_rpassword">
+
+                                            <input type="password" name="PasswordRepeat" maxlength=@largoPass id="PasswordRepeat" minlength=@minimoPass class="form-control" placeholder="Repetir @textoClave" required>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                                
+                                <div class="condiciones-validacion-clave">
+                                    <h6 metadata="configuracionPassInfo">La @textoClave debe tener: </h6>
+                                    <ul>
+                                        
+                                        @{
+                                            if (ViewData["view"].Equals(Roles.Paciente) || ViewData["view"].Equals(Roles.Medico))
+                                            {
+                                                if (ViewBag.idCliente == "108" || ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+                                                {
+                                                       <li><span metadata="configuracionPassInfo2"> Entre 6 a 8 caracteres</span> </li>
+                                                        <li><span metadata="configuracionPassInfo2"> Una letra mayúscula y una minúscula</span> </li>
+                                                        <li><span metadata="configuracionPassInfo2"> Al menos un número</span> </li>
+                                                }else{
+                                                        <li><span metadata="configuracionPassInfo2"> Entre 5 a 15 caracteres.</span> </li>
+                                                        <li><span metadata="configuracionPassInfo2"> Una letra mayúscula y una minúscula</span> </li>
+                                                        <li><span metadata="configuracionPassInfo2"> Al menos un número</span> </li>
+                                                }
+                                           
+                                            }
+                                            else
+                                            {
+                                                    <li>
+                                                            <span metadata="configuracionPassInfo2">- Entre 5 a 15 caracteres.</span>
+                                                     </li>
+                                            }
+                                         }
+                                        
+                                    </ul>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="kt-portlet__foot">
+            <div class="kt-form__actions">
+                <div class="row">
+                    
+                    <div class="col-12 ml-md-auto col-md-auto text-right">
+                        <button type="submit" id="btn_guardar_pw" class="btn btn-success btn-block" metadata="configuracionPassGuardar">Guardar Nueva @(new CultureInfo("en-US").TextInfo.ToTitleCase(textoClave))</button>
+                        @*<button type="reset" class="btn btn-secondary">Cancel</button>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+

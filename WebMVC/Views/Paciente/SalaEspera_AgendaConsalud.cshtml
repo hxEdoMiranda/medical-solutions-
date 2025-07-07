@@ -1,0 +1,1181 @@
+﻿@model WebMVC.Models.AtencionViewModel
+
+@{
+    ViewBag.Title = "Medical";
+    Layout = "_LayoutExterno";
+    ViewData["view"] = Roles.Paciente;
+    ViewData["idEntidad"] = Model.Atencion.Id;
+    ViewData["codEntidad"] = Entidades.ATENCIONES;
+
+}
+
+@section Styles  {
+    <link href="~/Toasty.js-master/assets/toasty-custom-styles.css" rel="stylesheet" />
+    <link href="~/Toasty.js-master/assets/prism/prism.css" rel="stylesheet" />
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+
+}
+<!-- Sala de Espera-->
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+    <!-- Sala de espera -->
+    <div class="container-fluid sala-espera d-none d-lg-block">
+        <!-- Alerta Sala de Espera -->
+
+        <div class="cont-alerta-sala">
+            <div class="alerta-sala">
+                <div class="icono-alerta">
+                    <i class="fal fa-times"></i>
+                </div>
+                <p>
+                    El doctor te atenderá en un momento, ponte cómodo en la sala de espera…
+                </p>
+            </div>
+        </div>
+
+        <!--end. Alerta Sala de Espera -->
+
+        <div class="row">
+            <div class="col-12 p-0">
+
+                <div class="titulo-sala">
+                    <small>Sala de</small>
+                    Espera
+                </div>
+                <div class="hotspots">
+                    <img src="~/img/fondo-sala.jpg" />
+
+                    <a href="https://wa.me/56948042543?text=Asistencia%20al%20Paciente%20-%20Consalud%20" target="_blank"
+                       class="hotspot-icon text-center"
+                       id="hs-b">
+                        <div class="cont-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        Asistencia Paciente
+                    </a>
+                    <a href="javascript:void(0);"
+                       class="hotspot-icon"
+                       id="hs-f"
+                       data-toggle="modal"
+                       data-target="#modal-contacto">
+                        <div class="cont-icon">
+                            <i class="fal fa-phone-alt"></i>
+                        </div>
+                        Contacto
+                    </a>
+                    <a href="#"
+                       class="hotspot-icon"
+                       id="hs-c"
+                       data-toggle="modal"
+                       data-target="#modal-juego">
+                        <div class="cont-icon">
+                            <i class="fal fa-gamepad-alt"></i>
+                        </div>
+                        Juegos
+                    </a>
+                    <a href="javascript:void(0);"
+                       class="hotspot-icon"
+                       id="hs-d"
+                       data-toggle="modal"
+                       data-target="#modal-revista">
+                        <div class="cont-icon">
+                            <i class="fal fa-file-alt"></i>
+                        </div>
+                        Revistas
+                    </a>
+                    <a href="#"
+                       class="hotspot-icon"
+                       id="hs-e"
+                       data-toggle="modal"
+                       data-target="#modal-videos">
+                        <div class="cont-icon">
+                            <i class="fal fa-play"></i>
+                        </div>
+                        Videos
+                    </a>
+
+
+                    <a href="https://clientes.consalud.cl/"
+                       class="hotspot-icon"
+                       id="btnAbandonarAtencion">
+                        <div class="cont-icon">
+                            <i class="fal fa-door-open"></i>
+                        </div>
+                        Salir
+                    </a>
+
+                    <a href="javascript:void(0);"
+                       class="hotspot-icon text-center"
+                       id="hs-g">
+                        <div class="cont-icon">
+                            <i class="fal fa-check"></i>
+                        </div>
+                        Ir a la Atención
+                    </a>
+
+
+
+                    <a href="javascript:void(0);"
+                       class="text-center hotspot-icon"
+                       id="reporte">
+                        <div class="cont-icon">
+                            <i class="fal fa-file-plus"></i>
+                        </div>
+                        Agregar <br /> Información
+                    </a>
+
+                    <a href="https://www.facebook.com/Medismartchile/"
+                       data-toggle="modal" data-target="#modal-contacto"
+                       target="_blank"
+                       class="text-center hotspot-icon"
+                       id="contacto">
+                        <div class="cont-icon hotspot-redes">
+                            <i class="fal fa-envelope"></i>
+                        </div>
+                    </a>
+
+                    <a href="https://www.facebook.com/Medismartchile/"
+                       target="_blank"
+                       class="text-center hotspot-icon"
+                       id="facebook">
+                        <div class="cont-icon hotspot-redes">
+                            <i class="fab fa-facebook-f"></i>
+                        </div>
+                    </a>
+
+                    <a href="https://www.facebook.com/Medismartchile"
+                       target="_blank"
+                       class="text-center hotspot-icon"
+                       id="instagram">
+                        <div class="cont-icon hotspot-redes">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                    </a>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-sala-espera d-none">
+            <ul>
+                <li id="chat" class="">
+                    <a href="#">
+                        <i class="fal fa-comment"></i>
+                        Chat
+                    </a>
+                </li>
+                <li id="reporte" class="">
+                    <div class="cont-icon">
+                        <i class="fal fa-file-plus"></i>
+                    </div>
+                    <span>Agregar Información</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="panel-sala" id="panel">
+            <div class="btn-icon" id="close-panel">
+                <i class="fal fa-times"></i>
+            </div>
+
+
+
+            <div class="container-fluid caja-base caja-confirmacion-hora tabbable-line">
+
+                <ul class="nav nav-tabs">
+                    <li>
+                        <a href="#tab_15_1" class="active" data-toggle="tab" aria-expanded="false">Información para el médico </a>
+                    </li>
+                    <li>
+                        <a href="#tab_15_2" data-toggle="tab" aria-expanded="true">Adjuntar Archivos </a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab_15_1">
+                        <!---->
+
+                        <div class="row">
+                            <div class="col-12 px-0 px-lg-2 col-lg">
+                                <div class="formulario-confirma-hora">
+
+                                    @*<i class="fal fa-check-circle"></i>*@
+                                    <h4 class="mb-4">
+                                        Agregar Información
+                                    </h4>
+
+                                    <div class="body-formulario">
+                                        <!-- Form -->
+                                        <form action="" class="container-fluid">
+                                            <div class="form-group row">
+                                                <div class="col-12 p-0">
+                                                    <p>
+                                                        Cuéntame ¿Cuál es tu molestia o necesidad de atención?
+                                                    </p>
+                                                    <textarea class="form-control" rows="3" placeholder="Escribe un comentario" id="triageObservacion" name="triageObservacion"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row mb-lg-0">
+                                                <div class="col-12 p-0">
+                                                    <p>
+                                                        Antecedentes médicos previos
+                                                    </p>
+                                                    <textarea class="form-control" rows="3" placeholder="Diagnósticos y medicamentos en uso" id="antecedentesMedicos" name="antecedentesMedicos"></textarea>
+                                                </div>
+                                            </div>
+
+
+
+                                        </form>
+                                        <!-- Form -->
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-12 mt-4 p-0">
+                                <button class="btn btn-primary btn-block btn-sm" id="btnConfirmar">
+                                    Guardar
+                                </button>
+                            </div>
+
+                        </div>
+
+                        <!---->
+
+
+                    </div>
+                    <div class="tab-pane fade" id="tab_15_2">
+                        <div class="row">
+                            <div class="col">
+                                <div class="carga-archivos">
+                                    <h4 class="mb-4">
+                                        Adjuntar archivos
+                                    </h4>
+                                    <div class="cont-carga-archivos" @*d-none d-md-block*@>
+                                        <div class="dropzone dropzone-default dropzone-brand" id="kt_dropzone_3">
+                                            <div class="dropzone-msg dz-message needsclick">
+                                                <h3 class="dropzone-msg-title">¿Deseas subir un archivo?</h3>
+                                                <span class="dropzone-msg-desc">Receta, imagen o radiografía</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container-fluid p-0 mt-4">
+                                        <div class="row">
+
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="correoUsuario" />
+                                    <input type="hidden" id="genero" />
+                                    <input type="hidden" id="fechaNacimiento" />
+
+                                    <div class="alert alert-outline-success">
+                                        <div class="d-flex">
+                                            <i class="fal fa-info-circle fa-2x mr-2"></i>
+                                            <p class="mb-0">
+                                                Los archivos que subas se guardaran automáticamente
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div id="divArchivosEspera1">
+                                        <div class="kt-portlet__head">
+                                            @* Traer idEntidad y codEntidad desde la view que renderiza esta view parcial. *@
+                                            @Html.Hidden("idEntidad", ViewData["idEntidad"])
+                                            @Html.Hidden("codEntidad", ViewData["codEntidad"])
+                                            <div class="kt-portlet__head-label">
+
+                                            </div>
+                                            <div class="kt-portlet__head-toolbar d-none">
+                                                <div class="dropdown dropdown-inline">
+                                                    <button type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="flaticon-more-1"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <ul class="kt-nav">
+                                                            <li class="kt-nav__item">
+                                                                <a id="actualizar_archivos" href="javascript:void(0);" class="kt-nav__link">
+                                                                    <i class="kt-nav__link-icon flaticon-refresh"></i>
+                                                                    <span class="kt-nav__link-text">Actualizar</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="kt-portlet__body">
+
+                                            <div id="lista_archivos_espera" class="kt-widget4 lista-archivos">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- end. Sala de espera -->
+    <!-- Sala espera mobile -->
+    <div class="container-fluid sala-espera-mobile d-lg-none">
+        <div class="titulo-sala">
+            <small>Sala de</small>
+            Espera
+        </div>
+
+        <div class="card-sala">
+            <div class="btn-sala d-none" id="chat-m">
+                <div class="cont-icon">
+                    <i class="fal fa-comments"></i>
+                </div>
+                <span>Chat</span>
+            </div>
+            <div class="btn-sala" id="reporte-m">
+                <div class="cont-icon">
+                    <i class="fal fa-file-plus"></i>
+                </div>
+                <span>Agregar Info</span>
+            </div>
+            <div class="btn-sala" id="ingreso-m">
+                <a href="javascript:void(0);" class="cont-icon">
+                    <i class="fal fa-check"></i>
+                </a>
+                <span>
+                    Ir a la Atención
+                </span>
+            </div>
+            <div class="btn-sala" id="wsp-m">
+                <a href="https://wa.me/56948042543?text=Asistencia%20al%20Paciente%20-%20Consalud%20" class="cont-icon" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <span>
+                    Asistencia Paciente
+                </span>
+            </div>
+
+        </div>
+
+        <div class="card-sala">
+            <div class="btn-sala" id="btnAbandonarAtencionMobile">
+                <a href="https://clientes.consalud.cl/" class="cont-icon">
+                    <i class="fal fa-door-open"></i>
+                </a>
+                <span>
+                    Salir
+                </span>
+
+                @*<div class="cont-icon">
+                        <i class="fal fa-door-open"></i>
+                    </div>
+                    <span>Salir</span>*@
+            </div>
+
+            <div class="btn-sala" data-toggle="modal" data-target="#modal-contacto">
+                <div class="cont-icon">
+                    <i class="fal fa-envelope"></i>
+                </div>
+                <span>Contacto</span>
+            </div>
+        </div>
+
+        <div class="card-sala">
+            <div class="btn-sala" data-toggle="modal" data-target="#modal-juego">
+                <div class="cont-icon">
+                    <i class="fal fa-gamepad-alt"></i>
+                </div>
+                <span>Juegos</span>
+            </div>
+            <div class="btn-sala" data-toggle="modal" data-target="#modal-revista">
+                <div class="cont-icon">
+                    <i class="fal fa-file-alt"></i>
+                </div>
+                <span>Revistas</span>
+            </div>
+            <div class="btn-sala" data-toggle="modal" data-target="#modal-videos">
+                <div class="cont-icon">
+                    <i class="fal fa-play"></i>
+                </div>
+                <span>Videos</span>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Mobile Panel -->
+
+<div class="panel-sala d-lg-none" id="panel-m">
+    <div class="btn-icon" id="close-panel-m">
+        <i class="fal fa-times"></i>
+    </div>
+    <div class="container-fluid caja-base caja-confirmacion-hora tabbable-line">
+
+        <ul class="nav nav-tabs">
+            <li>
+                <a href="#tab_15_3" class="active" data-toggle="tab" aria-expanded="false">Información para el médico </a>
+            </li>
+            <li>
+                <a href="#tab_15_4" data-toggle="tab" aria-expanded="true">Adjuntar Archivos </a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="tab_15_3">
+                <!--  -->
+                <div class="row">
+                    <div class="col-12 px-0 px-lg-2 col-lg">
+                        <div class="formulario-confirma-hora">
+                            <div class="header-formulario">
+                                @*<i class="fal fa-check-circle"></i>*@
+                                <h4>
+                                    Ingresar datos
+                                </h4>
+                            </div>
+                            <div class="body-formulario">
+                                <!-- Form -->
+                                <form action="" class="container-fluid">
+                                    <div class="form-group row">
+                                        <div class="col-12 p-0">
+                                            <p>
+                                                Cuéntame ¿Cuál es tu molestia o necesidad de atención?
+                                            </p>
+                                            <textarea class="form-control" rows="3" placeholder="Escribe un comentario" id="triageObservacionMobile" name="triageObservacionMobile"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row mb-lg-0">
+                                        <div class="col-12 p-0">
+                                            <p>
+                                                Antecedentes médicos previos
+                                            </p>
+                                            <textarea class="form-control" rows="3" placeholder="Diagnósticos y medicamentos en uso" id="antecedentesMedicosMobile" name="antecedentesMedicosMobile"></textarea>
+                                        </div>
+                                    </div>
+
+
+
+                                </form>
+                                <!-- Form -->
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-12 p-0">
+                    <button class="btn btn-primary btn-block btn-sm" id="btnConfirmar2">
+                        Guardar
+                    </button>
+                </div>
+                <!--  -->
+            </div>
+            <div class="tab-pane fade" id="tab_15_4">
+                <!--  -->
+
+                <div class="row">
+                    <div class="col p-0">
+                        <div class="carga-archivos mt-0">
+                            <h4 class="mb-4">¿Deseas subir un archivo?</h4>
+
+                            <div class="cont-carga-archivos" @*d-none d-md-block*@>
+                                <div class="dropzone dropzone-default dropzone-brand" id="kt_dropzone_4">
+                                    <div class="dropzone-msg dz-message needsclick">
+                                        <h3 class="dropzone-msg-title">¿Deseas subir un archivo?</h3>
+                                        <span class="dropzone-msg-desc">Receta, imagen o radiografía</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="container-fluid p-0 mt-4">
+                                <div class="row">
+
+                                </div>
+                            </div>
+
+
+
+
+
+                            <input type="hidden" id="correoUsuario" />
+                            <input type="hidden" id="genero" />
+                            <input type="hidden" id="fechaNacimiento" />
+
+                            <div class="alert alert-outline-success">
+                                <div class="d-flex">
+                                    <i class="fal fa-info-circle fa-2x mr-2"></i>
+                                    <p>
+                                        Los archivos que subas se guardaran automáticamente
+                                    </p>
+                                </div>
+                            </div>
+                            <div id="divArchivosEspera">
+                                <div class="kt-portlet__head">
+                                    @* Traer idEntidad y codEntidad desde la view que renderiza esta view parcial. *@
+                                    @Html.Hidden("idEntidad", ViewData["idEntidad"])
+                                    @Html.Hidden("codEntidad", ViewData["codEntidad"])
+                                    <div class="kt-portlet__head-label">
+
+                                    </div>
+                                    <div class="kt-portlet__head-toolbar d-none">
+                                        <div class="dropdown dropdown-inline">
+                                            <button type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="flaticon-more-1"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <ul class="kt-nav">
+                                                    <li class="kt-nav__item">
+                                                        <a id="actualizar_archivos" href="javascript:void(0);" class="kt-nav__link">
+                                                            <i class="kt-nav__link-icon flaticon-refresh"></i>
+                                                            <span class="kt-nav__link-text">Actualizar</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="kt-portlet__body">
+                                    <div id="lista_archivos_mobile" class="kt-widget4 lista-archivos">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--  -->
+            </div>
+
+
+        </div>
+
+
+
+
+
+    </div>
+</div>
+
+
+<!-- Modal Contacto -->
+<div class="modal fade"
+     id="modal-contacto"
+     tabindex="-1"
+     aria-labelledby="modal-contacto"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Contáctanos</h5>
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col text-center">
+                            <a href="#">
+                                <i class="fab fa-whatsapp fa-3x d-block mb-3"></i>
+                                +56948042543
+                            </a>
+                        </div>
+                        <div class="col text-center">
+                            <a href="#">
+                                <i class="fal fa-envelope fa-3x d-block mb-3"></i>
+                                contacto@medismart.live
+
+                            </a>
+                        </div>
+                        @*
+                            <div class="col text-center">
+                                <a href="#">
+                                    <i class="fab fa-facebook fa-3x d-block mb-3"></i>
+                                    /Medismartchile
+                                </a>
+                            </div>
+                            <div class="col text-center">
+                                <a href="#">
+                                    <i class="fab fa-instagram fa-3x d-block mb-3"></i>
+                                  /Medismartchile
+
+                                </a>
+                            </div>
+                        *@
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-secondary btn-sm"
+                        data-dismiss="modal">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end. Modal Contacto-->
+<!-- Modal Juego -->
+<div class="modal fade"
+     id="modal-juego"
+     tabindex="-1"
+     aria-labelledby="modal-juego"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable  modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">
+                    <span class="btn-revista d-none" id="btnVolverJuego">
+                        <i class="fal fa-long-arrow-left"></i>
+                    </span>
+                    Medismart / Juegos
+                </h5>
+                <button type="button"
+                        class="close"
+                        onclick="removeSrcJuego()"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="" id="contJuegos">
+
+                    <div class="container-fluid">
+                        <div class="row mb-4">
+                            <div class="col-6 col-md-4 mb-4 mb-lg-0">
+                                <div class="juego" id="j4">
+                                    <div class="body-revista">
+                                        <img src="https://tutorialzine.com/media/2015/01/xtype.jpg" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        X-Type
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4 mb-4 mb-lg-0">
+                                <div class="juego" id="j5">
+                                    <div class="body-revista">
+                                        <img src="https://js13kgames.com/games/stolen-sword/__big.jpg" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Stolen Sword
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4 mb-4 mb-lg-0">
+                                <div class="juego" id="j6">
+                                    <div class="body-revista">
+                                        <img src="https://js13kgames.com/games/the-legend-of-yeti-404/__big.jpg" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        The Legend of Yeti-404
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6 col-md-4 mb-4 mb-lg-0">
+
+                                <div class="juego" id="j1">
+                                    <div class="body-revista">
+                                        <img src="~/img/juegos/j1.png" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        OnOff
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4 mb-4 mb-lg-0">
+                                <div class="juego" id="j2">
+                                    <div class="body-revista">
+                                        <img src="~/img/juegos/j2.png" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Everyone's sky
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-4 mb-4 mb-lg-0">
+                                <div class="juego" id="j3">
+                                    <div class="body-revista">
+                                        <img src="~/img/juegos/j3.png" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Ninja vs EvilCorp
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+                <div class="contenedor-juego">
+                    <iframe class="visor-juego d-none" title="vimeo-player" src="" frameborder="0" allowfullscreen id="visorJuego"></iframe>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        onclick="removeSrcJuego()"
+                        class="btn btn-secondary btn-sm"
+                        data-dismiss="modal">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end. Juego -->
+<!-- Modal revista -->
+<div class="modal fade"
+     id="modal-revista"
+     tabindex="-1"
+     aria-labelledby="modal-revista"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <span class="btn-revista d-none" id="btnVolver">
+                        <i class="fal fa-long-arrow-left"></i>
+                    </span>
+                    Medismart / Revistas
+                </h5>
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        onclick="removeSrc()"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="cont-revistas" id="contRevistas">
+
+                    <div class="container-fluid d-md-none">
+                        <div class="row">
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista">
+                                    <div class="body-revista">
+                                        <a href="~/img/revistas/r1.pdf" target="_blank">
+                                            <img src="~/img/revistas/r1.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista">
+                                    <div class="body-revista">
+                                        <a href="~/img/revistas/r2.pdf" target="_blank">
+                                            <img src="~/img/revistas/r2.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista">
+                                    <div class="body-revista">
+                                        <a href="~/img/revistas/vogue-385_compr.pdf" target="_blank">
+                                            <img src="~/img/revistas/r3.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista">
+                                    <div class="body-revista">
+                                        <a href="~/img/revistas/142240310-Plantas-Que-Planta-en-que-Lugar_compr.pdf" target="_blank">
+                                            <img src="~/img/revistas/r4.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista">
+                                    <div class="body-revista">
+                                        <a href="~/img/revistas/ad-156-compr.pdf" target="_blank">
+                                            <img src="~/img/revistas/r5.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista">
+                                    <div class="body-revista">
+                                        <a href="~/img/revistas/glamour-210_compr.pdf" target="_blank">
+                                            <img src="~/img/revistas/r6.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista">
+                                    <div class="body-revista">
+                                        <a href="~/img/revistas/traveler-138_compr.pdf" target="_blank">
+                                            <img src="~/img/revistas/r7.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista">
+                                    <div class="body-revista">
+                                        <a href="~/img/revistas/wired0421.pdf" target="_blank">
+                                            <img src="~/img/revistas/r8.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista">
+                                    <div class="body-revista">
+                                        <a href="~/img/revistas/worl-cup_2018.pdf" target="_blank">
+                                            <img src="~/img/revistas/r9.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista">
+                                    <div class="body-revista">
+                                        <a href="~/img/revistas/korra1.pdf" target="_blank">
+                                            <img src="~/img/revistas/r10.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista">
+                                    <div class="body-revista">
+                                        <a href="~/img/revistas/condorito.pdf" target="_blank">
+                                            <img src="~/img/revistas/r11.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="container-fluid d-none d-md-block">
+                        <div class="row">
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista" id="thumb1">
+                                    <div class="body-revista">
+                                        <img src="~/img/revistas/r1.png" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista" id="thumb2">
+                                    <div class="body-revista">
+                                        <img src="~/img/revistas/r2.png" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista" id="thumb3">
+                                    <div class="body-revista">
+                                        <img src="~/img/revistas/r3.jpg" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista" id="thumb4">
+                                    <div class="body-revista">
+                                        <img src="~/img/revistas/r4.jpg" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista" id="thumb5">
+                                    <div class="body-revista">
+                                        <img src="~/img/revistas/r5.jpg" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista" id="thumb6">
+                                    <div class="body-revista">
+                                        <img src="~/img/revistas/r6.jpg" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista" id="thumb7">
+                                    <div class="body-revista">
+                                        <img src="~/img/revistas/r7.jpg" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista" id="thumb8">
+                                    <div class="body-revista">
+                                        <img src="~/img/revistas/r8.jpg" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista" id="thumb9">
+                                    <div class="body-revista">
+                                        <img src="~/img/revistas/r9.jpg" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista" id="thumb10">
+                                    <div class="body-revista">
+                                        <img src="~/img/revistas/r10.jpg" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista" id="thumb11">
+                                    <div class="body-revista">
+                                        <img src="~/img/revistas/r11.jpg" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="" id="">
+                    <embed src="" id="visor" type="application/pdf" width="100%" height="700px" class="d-none" />
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        onclick="removeSrc()"
+                        class="btn btn-secondary btn-sm"
+                        data-dismiss="modal">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end. Modal revista-->
+<!-- Modal videos -->
+<div class="modal fade"
+     id="modal-videos"
+     tabindex="-1"
+     aria-labelledby="modal-videos"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">
+                    <span class="btn-revista d-none" id="btnVolverVideo">
+                        <i class="fal fa-long-arrow-left"></i>
+                    </span>
+                    Medismart / Videos
+                </h5>
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        onclick="removeSrcVideo()"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+                <div class="cont-videos" id="contVideos">
+                    <div class="video" id="v1">
+                        <div class="thumb-video">
+                            <img src="~/img/imgConsalud.jpg" alt="" />
+                        </div>
+                        <span class="legend-video">
+                            Consalud - Orientación Hospitalaria
+                        </span>
+                    </div>
+                    @*<div class="video" id="v1">
+                            <div class="thumb-video">
+                                <img src="https://i.vimeocdn.com/video/1061995114_640x360.webp" alt="" />
+                            </div>
+                            <span class="legend-video">
+                                Video Medismart
+                            </span>
+                        </div>*@
+                    <div class="video" id="v2">
+                        <div class="thumb-video">
+                            <img src="~/img/videos/video1.jpg" alt="" />
+                        </div>
+                        <span class="legend-video">
+                            Medismart.live - Como Prevenir COVID-19
+                        </span>
+                    </div>
+                    <div class="video" id="v3">
+                        <div class="thumb-video">
+                            <img src="~/img/videos/video2.jpg" alt="" />
+                        </div>
+                        <span class="legend-video">
+                            Medismart.live - Consejos de Actividad Física
+                        </span>
+                    </div>
+                </div>
+
+                <div class="contenedor-video">
+                    <iframe class="visor-video d-none" title="vimeo-player" src="" frameborder="0" allowfullscreen id="visorVideo"></iframe>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-secondary btn-sm"
+                        onclick="removeSrcVideo()"
+                        data-dismiss="modal">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <!--toasty js-->
+
+    <script src="~/signal/signalr.min.js"></script>
+    <link href="~/Toasty.js-master/dist/toasty.css" rel="stylesheet" />
+    <script src="~/Toasty.js-master/dist/toasty.js"></script>
+    <script src="~/Toasty.js-master/assets/prism/prism.js"></script>
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        (function () {
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+            var canal = '@ViewBag.canal';
+            window.canal = canal;
+             var idCliente = '@ViewBag.idCliente';
+            window.idCliente = idCliente;
+        })()
+    </script>
+    <script type="module">
+        import { init } from '../../js/Paciente/atencion-agenda.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="module">
+        import { init } from '../../js/Shared/archivos-sala-espera.js?rnd=${@NumeroRandom.GetRandom()}';
+        init()
+    </script>
+    <!-------------------------------------------------------------------------------------------------->
+
+    <script src="~/js/Shared/atencion.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/Shared/archivos-adjuntos.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/Shared/chat.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script>
+        // Warning before leaving the page (back button, or outgoinglink)
+        window.onbeforeunload = function () {
+            return "Seguro que quieres dejar la página, estas en medio de una atención?";
+            //if we return nothing here (just calling return;) then there will be no pop-up question at all
+            //return;
+        };
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+   
+    <script src="~/js/sala.js?rnd=@NumeroRandom.GetRandom()"></script>
+}
+

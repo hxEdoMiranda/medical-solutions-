@@ -1,0 +1,883 @@
+/*Defensa*/
+
+:root {
+    --primary: #354360;
+    --secondary: #0B0B0B;
+    --tertiary: #354360;
+    --accent: #E81E2B;
+    --light: #FFF;
+    --dark: #0E0E0E;
+    --font-family: 'Poppins', sans-serif;
+    --base-font-size: 16px;
+    --background-ui: #E5E5E5;
+    --menu-color: #364F6B;
+    --transition: all .3s ease-out;
+    --ctamain: #0199EC;
+    --ctainner: #005297;
+    --keytext: #5867DD;
+    --sizetext: #3BC1CD;
+    --costo: #FFAF36;
+    --costotext: #0081A4;
+    --step: #00438A;
+    --ctmdate: #7CDA24;
+}
+
+.btn-success {
+    color: #fff;
+    background-color: var(--ctamain) !important;
+    border-color: var(--ctamain) !important;
+    color: #ffffff;
+}
+.kt-avatar .kt-avatar__upload {
+    background-color: var(--ctmdate)!important;
+}
+
+.caja-atencion .status-atencion {
+    background-color: var( --ctmdate);
+    color: var(--light);
+    font-weight: 800;
+}
+.hora.disponible small {
+    background-color: var(--ctmdate);
+}
+.hora.disponible .detalle-hora {
+    color: #00438aa3;
+}
+.caja-reserva .btn-am {
+    background-color: #1d84dacf;
+    border-color: #1d84dacf;
+    color: #FFF;
+}
+.caja-reserva .btn-pm {
+    background-color: #1a63a0cf;
+    border-color: #1a63a0cf;
+    color: #FFF;
+}
+.hora-top {
+    font-size: 3.5rem;
+    color: var(--ctamain);
+    font-weight: 900;
+}
+.aviso-atencion.pronto {
+    background-color: var(--ctamain);
+}
+.mensaje-superior .inner-mensaje.pronto {
+    color: #FFF;
+    background-color: var(--ctamain);
+}
+.aviso-atencion .status-atencion {
+    background-color: var(--sizetext);
+}
+.body-home {
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-attachment: fixed;
+    background-color: rgb(1,153,236) !important;
+    background-image: linear-gradient(180deg, rgba(1,153,236,1) 12%, rgba(51,51,51,1) 100%, rgba(2,0,36,1) 333333%) !important;
+}
+
+.body-home .datos-atencion {
+    color: var(--ctamain);
+}
+
+.body-home .fecha-atencion {
+    text-align: center;
+    color: var(--costotext);
+    width: 138px;
+    display: flex;
+}
+.body-home .iconos-atencion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+}
+.body-home .fecha-atencion .fecha, .body-home .fecha-atencion .hora {
+    font-size: 1.2rem;
+}
+.body-home .nombre-pro {
+    font-size: 1.3rem;
+    font-weight: 900;
+}
+.mensaje-superior .inner-mensaje.hoy {
+    color: #FFF;
+    background-color: var(--ctamain);
+}
+.mensaje-confirmacion p {
+    font-size: 1.25rem;
+    text-align: justify;
+    font-weight: 400;
+}
+.selector-horas i {
+    font-size: 18px;
+    color: var(--ctamain);
+}
+.check-aceptacion a {
+    color: var(--ctamain);
+    text-decoration: underline;
+}
+
+.hora.seleccionado small {
+    background-color: #528d1c;
+}
+.hora.ocupado small {
+    background-color: #DDD;
+    color: #999;
+    justify-content: center;
+    padding: 0.625rem 6.5rem !important;
+    font-size: 1.0rem;
+    display: flex;
+}
+.hora.seleccionado .detalle-hora {
+    color: #02264ba3;
+}
+.titulo-data-horario {
+    border: 1px solid #00438aa3;
+    color: #00438aa3;
+    padding: 2rem;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 10px;
+    margin: 1rem;
+    margin-left: 0;
+}
+
+body, .bkg-login {
+    background-color: #ffffff !important;
+}
+
+.container-login a {
+    color: var(--keytext) !important;
+}
+
+.container-login a:hover {
+    color: var(--primary) !important;
+}
+.fuente-accesible {
+    font-weight: 900;
+    max-width: initial;
+}
+.contain_fletcher h1.fuente-accesible {
+    max-width: initial;
+}
+
+/*Login*/
+
+.img1, .img2, .img3, .img4, .img5, .img6 {
+    background-image: url(../../img/grupodefensa/login/login_img.png) !important;
+}
+
+.logotipo-desktop {
+    background-image: url(../../img/grupodefensa/login/logo_gdefensa.png);
+}
+.logotipo-img {
+    width: 179px;
+    height: 71px;
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/grupodefensa/login/logo_gdefensa.png);
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: var(--secondary);
+    font-weight: 900;
+}
+
+.form-group .ms-label {
+    color: var(--secondary) !important;
+}
+
+.btn-primary {
+    background-color: var(--ctamain);
+    border-color: var(--ctamain);
+    color: var(--light) !important;
+}
+
+    .btn-primary:hover {
+        background-color: var(--primary);
+        border-color: var(--primary);
+        color: var(--light) !important;
+    }
+    
+    .btn.btn-outline-secondary {
+        background-color: var(--secondary);
+        border-color: var(--secondary);
+        color: var(--primary)
+    }
+    
+    #reporte .cont-icon {
+        background-color: var(--primary);
+    }
+    
+    #reporte:hover .cont-icon {
+        background-color: var(--secondary);
+    }
+    
+    .btn-guardar-info, .btn-success {
+        background-color: var(--primary);
+        border-color: var(--primary);
+        
+    }
+    
+    .btn-guardar-info:hover, .btn-success:hover {
+        background-color: var(--secondary);
+        border-color: var(--secondary);
+        color: var(--primary)
+    }
+    
+    .btn.btn-outline-secondary {
+        background-color: var(--secondary);
+        border-color: var(--secondary);
+        color: var(--primary)
+    }
+    
+    #reporte .cont-icon {
+        background-color: var(--primary);
+    }
+    
+    #reporte:hover .cont-icon {
+        background-color: var(--secondary);
+    }
+    
+    #hs-g .cont-icon {
+        background-color: var(--primary);
+    }
+    
+    #hs-g:hover .cont-icon {
+        background-color: var(--secondary);
+    }
+
+
+.divider-medismart, .logo-convenios {
+    display: flex!important;
+    margin: 2rem 0;
+}
+.convenioChile {
+    display: block!important;
+}
+.logo-convenios.convenioChile {
+    display: flex !important;
+}
+.titulo-dropdown, .titulo-notificaciones {
+    color: var(--ctamain);
+}
+.aviso-atencion {
+    background-color: var(--ctainner);
+}
+
+/* Im�genes Login */
+
+
+/*Home*/
+.container-grupodefensa .cont-card h1 {
+    font-size: 1rem;
+    text-align: center;
+    text-transform: capitalize;
+    margin: 1rem auto 2rem;
+    color: #FFF;
+    max-width: 171px;
+}
+.cont-card .card-body .pronto {
+    left: auto;
+    bottom: auto;
+    font-size: 10px;
+    text-transform: uppercase;
+    background-color: #FFAF36!important;
+    color: #FFF;
+    border-radius: 0px 16px 0px 8px;
+    width: 60px;
+    top: -1px;
+    right: -1px;
+    font-weight: 700;
+    padding: .25rem;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cont-steps {
+    background-color: white;
+}
+
+.fletcher_accet .accesible-btn button {
+    color: #08395B;
+    border: 0px;
+}
+
+.fletcher_accetdeks .accesible-btn button {
+    color: #08395B;
+    border: 1px solid #333333;
+}
+
+.icon-confirma {
+    color: var(--ctmdate);
+}
+.caja-atencion .fecha-atencion, .caja-atencion .hora-atencion {
+    color: var(--ctamain);
+    font-size: 20px;
+    font-weight: 800;
+}
+.caja-atencion .header-aviso-atencion, .caja-atencion .header-aviso-atencion i {
+    color: #00438aa3;
+}
+.datos-fecha {
+    padding-bottom: 35px;
+}
+.container-grupodefensa span#saludoPaciente {
+    color: var(--light) !important;
+}
+
+.fletcher_accet .accesible-btn {
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.footer-home .terminos {
+    width: 100%;
+    display: flex !important;
+    text-align: center;
+    justify-content: space-between;
+}
+.contain_fletcher {
+    display: inline-block;
+}
+.contain_fletcher .cont-card .card img {
+    width: auto;
+    max-width: initial;
+    max-height: inherit;
+}
+
+.accesible-tools {
+    display: block;
+}
+
+/*Home*/
+.body-home .logo-home img {
+    max-width: 108px;
+    width: 100%;
+}
+
+.body-home .card-plan .costo, .body-home .card-plan .pronto-card, .precio {
+    background-color: var(--costo);
+    color: var(--costotext);
+}
+
+.costo, .precio {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    height: 25px;
+    font-size: 11px;
+    font-weight: 900;
+    background-color: #FFAF36;
+    color: #0081A4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px 16px 0px 16px;
+    text-transform: uppercase;
+}
+
+.costo {
+    width: 70px;
+}
+.precio {
+    width: 138px;
+}
+
+
+.costo::after {
+    content: 'Costo 0';
+    display: inline-block;
+}
+.precio::after {
+    content: 'precio preferente';
+    display: inline-block;
+    text-transform:uppercase;
+}
+.body-home .card-plan .preferente {
+    font-weight: 900;
+    background-color: var(--costo);
+    color: var(--costotext);
+}
+/*menu*/
+
+
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--ctamain);
+}
+
+
+span.ms-label-menu {
+    color: var(--dark);
+    font-size: 9px;
+}
+
+    .menu-top .item-menu-top i,
+    .menu-top .label-menu {
+        color: var(--secondary);
+    }
+
+.menu-top .item-menu-top:hover i, .menu-top .item-menu-top:hover .label-menu {
+    color: var(--secondary)
+}
+
+
+.kt-menu__item:hover a, .kt-menu__item:hover i {
+    color: var(--secondary) !important;
+}
+
+.accesible-btn button {
+    color: var(--dark);
+    border: 1px solid var(--dark);
+}
+
+    .accesible-btn button:hover {
+        background-color: var(--primary);
+        border-color: var(--primary);
+        color: var(--light);
+    }
+
+.busqueda-profesionales {
+    border: 2px solid var(--secondary);
+}
+    .busqueda-profesionales i {
+        color: var(--secondary)
+    }
+    .busqueda-profesionales .btn-outline-primary {
+        color: var(--secondary)
+    }
+
+.caja-especialidad.active {
+    background-color: var(--ctamain);
+    box-shadow: 0px 2px 20px rgb(0 0 0 / 0%) !important;
+}
+.iniciales {
+    background-color: #0081A4!important;
+}
+
+.caja-especialidad {
+    background-color: var(--ctainner);
+}
+
+.inner-especialidad strong {
+    color: var(--primary)
+}
+
+.header-formulario i {
+    color: var(--ctmdate) !important;
+}
+/*steper*/
+.step.active .step-icon {
+    background-color: var(--step);
+}
+.step.active .label-step {
+    color: var(--step);
+}
+.stepper-sv .step-icon {
+    background-color: var(--step);
+}
+.stepper-sv .label-step {
+    color:  var(--step);
+}
+.stepper .flecha {
+    color: #0199ec;
+}
+/*steper*/
+
+.titulo-examenes-preventivos {
+    color: #646c9a !important;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/*Modalesiconos*/
+.swal2-styled.swal2-confirm {
+    background-color: var(--ctamain);
+}
+.card-examen-preventivo .paso {
+    font-size: 16px;
+    color: var(--ctmdate);
+    font-weight: 700;
+}
+
+.swal2-icon.swal2-info, .swal2-icon.swal2-warning {
+    border-color: var(--ctmdate);
+    color: var(--ctmdate);
+}
+
+.swal2-icon.swal2-question {
+    border-color: var(--ctmdate);
+    color: var(--ctmdate);
+}
+/*Modalesiconos*/
+
+
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: var(--tertiary)
+}
+
+.caja-profesional .fecha-atencion {
+    color: var(--secondary)
+}
+
+.front-fecha-atencion {
+    border: 1px solid rgba(35,33, 114, .3)
+}
+
+    .front-fecha-atencion strong:before {
+        color: var(--secondary);
+        font-weight: 900;
+    }
+
+.especialidad-profesional {
+    color: var(--tertiary)
+}
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--ctamain)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+
+.top-banner {
+    background-image: url(../../img/rappi/fondo-banner.svg);
+}
+    .top-banner img {
+        border-color: rgba(255, 255, 255, .3)
+    }
+    .top-banner .legend {
+        color: var(--secondary)
+    }
+
+
+.legend .text-warning {
+    color: var(--ctamain) !important;
+}
+
+.container-colmena .text-warning {
+    color: var( --light) !important;
+}
+
+
+/*biblioteca*/
+.title-section-biblioteca {
+    color: var(--ctamain) !important;
+}
+.home-library .bg-library {
+    background-color: var(--ctamain) !important;
+}
+.inner-btn {
+    background-color: var(--ctmdate) !important;
+}
+.btn-icon {
+    color: var(--dark) !important;
+}
+.dropdown-biblioteca .btn-secondary {
+    border: 2px solid var(--dark) !important;
+    color: var(--dark) !important;
+}
+.dropdown-biblioteca {
+    background-image: none!important;
+}
+    .dropdown-biblioteca i {
+        display: block !important;
+    }
+.card-library.featured:hover, .card-library:hover {
+    background-image: url(), linear-gradient(to bottom, #477e14, #7cda24);
+}
+.capsula-thumb-1 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#7cda24), to(rgb(93 161 30 / 64%))),url(../../biblioteca/capsulas/capsula1/thumb.jpg);
+}
+
+.capsula-thumb-3 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#7cda24), to(rgb(93 161 30 / 64%))),url(../../biblioteca/capsulas/capsula3/thumb.jpg);
+}
+.charla-thumb-3 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#7cda24), to(rgb(93 161 30 / 64%))),url(../../biblioteca/charlas/charla3/thumb.jpg);
+}
+
+.charla-thumb-1 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#7cda24), to(rgb(93 161 30 / 64%))),url(../../biblioteca/charlas/charla1/thumb.jpg);
+}
+.charla-thumb-2 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#7cda24), to(rgb(93 161 30 / 64%))),url(../../biblioteca/charlas/charla2/thumb.jpg);
+}
+.nota-thumb-1 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#7cda24), to(rgb(93 161 30 / 64%))),url(../../biblioteca/notas/nota1/thumb.jpg);
+}
+.nota-thumb-3 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#7cda24), to(rgb(93 161 30 / 64%))),url(../../biblioteca/notas/nota3/thumb.jpg);
+}
+.nota-thumb-4 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#7cda24), to(rgb(93 161 30 / 64%))),url(../../biblioteca/notas/nota4/thumb.jpg);
+}
+.capsula-thumb-2 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#7cda24), to(rgb(93 161 30 / 64%))), url(../../biblioteca/capsulas/capsula2/thumb.jpg);
+}
+.capsula-thumb-11 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#7cda24), to(rgb(93 161 30 / 64%))),url(../../biblioteca/capsulas/capsula11/thumb.jpg);
+}
+.capsula-thumb-12 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#7cda24), to(rgb(93 161 30 / 64%))), url(../../biblioteca/capsulas/capsula12/thumb.jpg);
+}
+
+.capsula-thumb-4 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#7cda24), to(rgb(93 161 30 / 64%))), url(../../biblioteca/capsulas/capsula4/thumb.jpg);
+}
+.capsula-thumb-6 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#7cda24), to(rgb(93 161 30 / 64%))), url(../../biblioteca/capsulas/capsula6/thumb.jpg);
+}
+.capsula-thumb-7 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#7cda24), to(rgb(93 161 30 / 64%))), url(../../biblioteca/capsulas/capsula7/thumb.jpg);
+}
+.capsula-thumb-8 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#7cda24), to(rgb(93 161 30 / 64%))), url(../../biblioteca/capsulas/capsula8/thumb.jpg);
+}
+.capsula-thumb-9 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#7cda24), to(rgb(93 161 30 / 64%))), url(../../biblioteca/capsulas/capsula9/thumb.jpg);
+}
+.nota-thumb-5 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#7cda24), to(rgb(93 161 30 / 64%))), url(../../biblioteca/notas/nota5/thumb.jpg);
+}
+.capsula-thumb-10 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#7cda24), to(rgb(93 161 30 / 64%))), url(../../biblioteca/capsulas/capsula10/thumb.jpg);
+}
+
+.nota-thumb-2 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#7cda24), to(rgb(93 161 30 / 64%))),url(../../biblioteca/notas/nota2/thumb.jpg);
+}
+.nota-thumb-6 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#7cda24), to(rgb(93 161 30 / 64%))),url(../../biblioteca/notas/nota6/thumb.jpg);
+}
+.capsula-thumb-5 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#7cda24), to(rgb(93 161 30 / 64%))), url(../../biblioteca/capsulas/capsula5/thumb.jpg);
+}
+
+.top-banner .legend {
+    margin-left: 0px;
+}
+
+/*biblioteca*/
+
+
+/*Sala espera*/
+
+
+.hotspot-icon .cont-icon {
+    background-color: var(--dark);
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: var(--ctainner)
+}
+
+.cont-icon.hotspot-redes {
+    background-color: var(--secondary);
+    color: var(--light) !important;
+}
+
+
+#reporte .cont-icon {
+    background-color: var(--ctamain);
+    color: var(--light);
+}
+
+.btn-consentimiento {
+    color: var(--secondary)
+}
+#reporte .cont-icon {
+    background-color: var(--ctmdate);
+    color: var(--light);
+}
+
+#reporte:hover .cont-icon {
+    background-color: var(--secondary);
+    color: var(--light)
+}
+
+
+a.hotspot-icon {
+    color: var(--light) !important;
+}
+
+    a.hotspot-icon:hover .cont-icon.hotspot-redes {
+        background-color: var(--primary);
+    }
+    a.hotspot-icon:hover .cont-icon {
+        background-color: var(--ctmdate);
+    }
+
+.hotspot-icon .cont-icon i {
+    color: var(--light);
+}
+
+.hotspot-icon:hover .cont-icon i {
+    color: var(--light);
+}
+
+
+
+.hotspot-icon .cont-icon.hotspot-redes i {
+    color: var(--light);
+}
+
+.toolbar-option {
+    color: var(--primary)
+}
+
+.toolbar-option.active {
+    color: var(--secondary)
+}
+
+.cont-alerta-sala .alerta-sala {
+    background-color: var(--step);
+}
+
+#mensaje {
+    text-align: center;
+}
+
+.alerta-sala.fila-unica.minSalaEspera {
+    background-color: var(--step);
+}
+
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--secondary)
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--secondary)
+}
+
+.cont-btn-panel .btn-atencion, .cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+    .cont-btn-panel .btn-atencion:hover, .cont-btn-vc .btn-atencion:hover {
+        background-color: rgba(237, 110, 0, 0.1);
+        color: var(--primary);
+    }
+
+.hotspot-icon {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+    .hotspot-icon i {
+        text-shadow: none;
+    }
+
+    .hotspot-icon:hover {
+        color: #FFF;
+    }
+/*@mediaQuerys*/
+
+@media screen and (max-width: 640px) and (min-width: 376px) {
+    .body-home .cont-card .card img {
+        width: auto;
+        height: 60%;
+    }
+
+    .logotipo-img {
+        width: 130px;
+        height: 71px;
+    }
+
+    .top-banner .legend {
+        font-size: 25px;
+    }
+
+    .cont-datepicker {
+        margin: 0 auto;
+    }
+    .caja-especialidad i {
+        margin: initial;
+    }
+    .label-caja-especialidad {
+        width: 100%;
+    }
+
+    .bkg_fetcher span.leyenda-card-home.d-md-none.fuente-accesible {
+        font-size: 15px !important;
+    }
+    .inner-especialidad {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+    .fuente-accesible {
+        font-size: 1.0rem !important;
+        font-weight: 900;
+        max-width: 278px !important;
+    }
+    .alerta-sala {
+        background-color: var(--step);
+    }
+}
+
+@media (max-width: 668px) {
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+
+    .sala-espera-mobile .btn-sala .cont-icon i {
+        text-shadow: none;
+    }
+
+    .sala-espera-mobile .btn-sala .cont-icon {
+        color: var(--light) !important;
+        background-color: var(--dark);
+    }
+
+        .sala-espera-mobile .btn-sala .cont-icon:hover {
+            color: var(--light) !important;
+            background-color: var(--secondary);
+        }
+
+    .sala-espera-mobile .card-sala:nth-of-type(4n) {
+        justify-content: space-between;
+    }
+
+}
+
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1, .img2, .img3, .img4, .img5, .img6 {
+        background-image: url(../../img/grupodefensa/login/548x850.png) !important;
+    }
+   
+
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+    #imgLogin {
+        background-image: url(../../img/grupodefensa/login/login_img.png);
+    }
+}

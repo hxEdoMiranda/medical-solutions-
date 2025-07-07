@@ -1,0 +1,939 @@
+/*Medicina Ocupacional*/
+
+
+.modal-medicina-ocupacional {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    border: 4px solid #3BC1CD;
+}
+
+    .modal-medicina-ocupacional .btn {
+        max-width: 422px;
+        margin: auto;
+        justify-content: center;
+    }
+
+.box_img_medicina-ocupacional {
+    width: 40%;
+    height: 280px;
+    background-image: url(../../img/medicina-ocupacional/ilustracion-medicina-ocupacional.svg);
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: contain;
+}
+
+.iconos-inicio__medicina-ocupacional {
+    display: flex;
+   
+    max-width: 600px;
+    margin: 36px auto;
+    margin-left: 0;
+    justify-content: space-evenly;
+}
+
+.icono-inicio__medicina-ocupacional {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+    .icono-inicio__medicina-ocupacional img {
+        max-width: 60px;
+        margin: auto;
+    }
+
+    .icono-inicio__medicina-ocupacional label {
+        font-weight: 700;
+        width: 98px;
+        text-align: center;
+        word-break: break-word;
+        line-height: 1.2;
+    }
+
+.content__modal-medicina-ocupacional h1 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+
+.content__modal-medicina-ocupacional p,
+.content__modal-medicina-ocupacional ul {
+    font-size: 18px;
+    margin-left: 2rem;
+}
+
+.content__modal-medicina-ocupacional ul {
+    padding-left: 0;
+}
+
+.content__modal-medicina-ocupacional {
+    max-width: 486px;
+}
+
+.box_medicina-ocupacional h3 {
+
+    margin-top: 36px;
+}
+
+.form_nom035.form_medicina-ocupacional {
+    background: transparent;
+}
+
+.box_nom035.box_medicina-ocupacional {
+    width: 96%;
+    max-width: 1600px;
+    display: flex;
+    flex-wrap: nowrap;
+    grid-gap: 6rem;
+    margin: auto;
+    margin-top: 3rem;
+    width: 96%;
+}
+
+.box_inner_nom035.box_medicina-ocupacional {
+    margin: auto;
+    margin-top: 50px;
+    max-width: 1200px;
+    width: 96%;
+    
+}
+
+.box_nom035.box_medicina-ocupacional h1 {
+    font-size: 18px;
+    text-align: left !important;
+    width: 100%;
+}
+
+.box_inner_nom035.box_medicina-ocupacional h1 {
+    font-size: 26px;
+    text-align: left;
+    font-weight: 700;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    color: #646c9a;
+}
+
+
+
+.box_nom035.box_medicina-ocupacional h2 {
+    font-size: 14px;
+    text-align: left !important;
+    width: 100%;
+    font-weight: 700;
+    text-align: center !important;
+    display: none;
+}
+
+
+    .box_nom035.box_medicina-ocupacional ul {
+        padding-left: 2rem;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .box_nom035.box_medicina-ocupacional p {
+        text-align:left;
+        line-height: 1.5;
+        min-height: 0;
+    }
+
+.box_nom035.box_medicina-ocupacional + .box_nom035_cta .cont-guardar-info {
+    text-align: center;
+}
+
+.box_nom035.box_medicina-ocupacional + .box_nom035_cta button#btn_guardar_info {
+    max-width: 294px !important;
+    margin: auto;
+}
+
+
+
+.box_nom035.box_medicina-ocupacional h1 {
+    font-size: 24px !important;
+    margin-bottom: 14px;
+    font-weight: 700 !important;
+}
+
+.box_nom035.box_medicina-ocupacional img {
+    width: 100px;
+    margin: auto;
+    margin-bottom: 0;
+    margin-top: 2rem;
+}
+
+.box_nom035.box_medicina-ocupacional .porcentaje_pendiente {
+    color: #646c9a;
+    text-align: center;
+    margin-top: 0;
+}
+
+.box_nom035.box_medicina-ocupacional .box_nom035_cta {
+    margin-top: 2rem;
+}
+
+.box_nom035.box_medicina-ocupacional li {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.box_medicina-ocupacional {
+    background-color: #FFF;
+    padding: 4rem !important;
+    border: 1px solid #3BC1CD;
+    border-radius: 10px;
+    display: flex;
+}
+
+        .box_medicina-ocupacional .box_inner_text {
+            width: 100%;
+            max-width: 600px;
+        }
+
+.icon_medicina-ocupacional {
+    display: block;
+    text-align: center;
+}
+
+.card-medicina-ocupacional {
+    /*width: 30%;*/
+    max-width: 320px;
+    margin: auto;
+}
+
+.box_nom035.box_medicina-ocupacional .divider-card, 
+.box_inner_nom035.box_medicina-ocupacional .divider-card {
+    background-color: rgba(59, 193, 205, 0.3);
+    width: 2px;
+}
+
+.box_medicina-ocupacional .btn {
+    max-width: 400px;
+    margin: auto;
+}
+
+    .box_medicina-ocupacional .btn:hover {
+        background-color: #0081A4 !important;
+    }
+    /*Selector Medicina Preventiva*/
+    .selector__medicina-ocupacional {
+        width: 100%;
+        max-width: 960px;
+        margin: auto;
+        padding: 40px;
+        background-color: #FFF;
+        border-radius: 10px;
+    }
+
+    .selector__medicina-ocupacional a {
+        color: #C4c4c4;
+        font-size: 16px;
+    }
+
+        .selector__medicina-ocupacional a.active {
+            color: #3BC1CD;
+        }
+
+    .selector__medicina-ocupacional h1 {
+        font-size: 24px;
+        margin-top: 40px;
+        font-weight: 700;
+    }
+
+    .selector__medicina-ocupacional p {
+        font-size: 18px;
+        color: #666;
+    }
+
+
+.items__medicina-ocupacional {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 70px;
+    align-items: stretch;
+}
+
+    .items__medicina-ocupacional .divider {
+        background-color: #3BC1CD;
+        width: 2px;
+    }
+
+.item__medicina-ocupacional:first-child {
+}
+
+.item__medicina-ocupacional {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    max-width: 360px;
+    width: 98%;
+}
+
+    .item__medicina-ocupacional h2 {
+        margin-bottom: 48px;
+        color: #111;
+        font-weight: 700;
+    }
+
+
+    .item__medicina-ocupacional p {
+        text-align: center;
+    }
+
+    .item__medicina-ocupacional img {
+        max-width: 98px;
+        margin: auto;
+        margin-bottom: 16px;
+    }
+
+.item__medicina-ocupacional {
+    max-width: 360px;
+    margin: auto;
+}
+
+    .item__medicina-ocupacional button {
+        max-width: 260px;
+        margin: auto;
+        margin-top: 32px;
+    }
+
+/*Chequeo preventivo*/
+
+.chequeo-preventivo h4 {
+    margin-top: 12px;
+    margin-bottom: 40px;
+    display: block;
+}
+
+.declaracion-examenes {
+    margin: 2rem 0;
+    margin-bottom: 0;
+    font-size: 14px;
+}
+
+/*Modal Exito*/
+
+.modal-exito-examenes {
+    max-width: 780px;
+    width: 90%;
+    margin: auto;
+}
+
+    .modal-exito-examenes .cont-modal {
+        justify-content: center;
+    }
+
+    .modal-exito-examenes img {
+        margin-bottom: 56px;
+    }
+
+    .modal-exito-examenes h3 {
+        margin-bottom: 24px;
+    }
+
+    .modal-exito-examenes h2 {
+        text-transform: uppercase;
+    }
+
+    /*Test Medicina Ocupacional*/
+
+.test-medicina-ocupacional {
+    width: 100%;
+    max-width: 960px;
+    margin: 4rem auto;
+    margin-bottom: 2rem;
+}
+
+.header-test {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5rem;
+}
+
+    .header-test h1 {
+        font-size: 27px;
+        width: 100%;
+    }
+
+    .card-test {
+        padding: 2rem;
+    }
+
+    /*Stepper Test*/
+    .stepper-test {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .stepper-test .step {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 60px;
+        margin-bottom: .5rem;
+    }
+
+    .stepper-test .num-step {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #D9D9D9;
+        border-radius: 50%;
+        height: 36px;
+        width: 36px;
+        color: #FFF;
+        font-weight: 700;
+        font-size: 18px;
+        padding-top: 0;
+    }
+
+    .stepper-test .divider-step {
+        background-color: #D9D9D9;
+        width: calc(100% - 36px);
+        display: inline-block;
+        height: 8px;
+    }
+
+        .stepper-test .step.active .num-step {
+            background-color: #3BC1CD;
+        }
+
+    .stepper-test .step.active .num-step,
+    .stepper-test .step.passed .num-step {
+        background-color: #3BC1CD;
+    }
+    .stepper-test .step.passed .divider-step {
+        background-color: #3BC1CD;
+    }
+
+    .stepper-test .step:last-child .divider-step {
+        display: none;
+    }
+
+.card-test .number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #3BC1CD;
+}
+
+.card-test .card-body {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    justify-content: center;
+    align-items: flex-start;
+    /*align-items: center;*/
+}
+
+.test-medicina-ocupacional .cont-card .card-test h3 {
+    font-weight: 900;
+    margin-bottom: 8rem;
+    width: 100%;
+    /* max-width: 240px;*/
+    flex-shrink: 0;
+    font-size: 1.4rem;
+}
+
+.icon-caja-test {
+    width: 50%;
+    text-align: center;
+    font-size: 22px;
+}
+
+    .icon-caja-test .icon {
+        width: 100px;
+        height: 100px;
+        margin: auto;
+        border-radius: 50%;
+        background-color: rgba(59, 193, 205, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        margin-bottom: 1rem;
+    }
+
+    .icon-caja-test .icon img {
+        width: 100%;
+        max-width: 80px;
+        margin: auto;
+        
+    }
+
+
+    .test-medicina-ocupacional .cont-card {
+        display: flex;
+    }
+
+
+.test-medicina-ocupacional .cont-card {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+    .test-medicina-ocupacional .cont-card .header-test {
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .test-medicina-ocupacional .cont-card .card-test {
+        width: 68%;
+        padding: 2rem 3rem;
+        border: 3px solid rgba(59, 193, 205, 0.2);
+        border-radius: 2rem;
+        flex-grow: 1;
+        max-width: 1000px;
+    }
+
+        .test-medicina-ocupacional .cont-card .card-test small {
+            text-transform: uppercase;
+            display: block;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+    .test-medicina-ocupacional .cont-card .contenedor-test {
+        width: 30%;
+        display: flex;
+        /*align-items: center;*/
+        align-items: flex-start;
+        justify-content: center;
+        border-radius: 2rem;
+        background-color: #FFF;
+        border: 3px solid rgba(59, 193, 205, 0.2);
+        flex-wrap: wrap;
+        padding: 2rem 3rem;
+    }
+
+        .test-medicina-ocupacional .cont-card .contenedor-test h2 {
+            width: 100%;
+            font-weight: 900;
+            font-size: 1.4rem;
+        }
+
+            .test-medicina-ocupacional .cont-card .contenedor-test h2 small {
+                display: block;
+                text-transform: uppercase;
+                font-size: .8rem;
+                font-weight: 700;
+            }
+
+            .test-medicina-ocupacional {
+            }
+
+.test-medicina-ocupacional .cont-preguntas {
+    
+}
+
+.init-test {
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+}
+
+    .init-test img {
+        width: 110px;
+        margin: auto;
+        margin-bottom: 3rem;
+    }
+
+    .init-test .btn {
+        border-radius: 46px;
+    }
+
+    .init-test h2 {
+        font-size: 18px;
+        margin-bottom: 58px;
+    }
+
+.box_ocupacional035.test-medicina-ocupacional h1 {
+    font-size: 2.4rem;
+    
+    margin-bottom: 3rem;
+    font-weight: 900;
+}
+
+.legend-icon {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    text-align: left;
+    gap: 1rem;
+    line-height: 1.2;
+    /*max-width: 176px;*/
+    max-width: 245px;
+    font-weight: 700;
+    margin: auto;
+}
+
+/*Test Psicologico*/
+
+.test-psicologico,
+.exito-test {
+    padding: 2rem;
+    border: 3px solid rgba(59, 193, 205, 0.2);
+    background-color: #FFF;
+    text-align: center;
+    border-radius: 10px;
+
+}
+
+.test-psicologico_titulo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #111;
+
+}
+
+.test-psicologico_enunciado {
+    font-size: 1rem;
+    margin: 2rem 0;
+}
+
+.test-psicologico .btn {
+    border-radius: 3rem;
+}
+
+.test-psicologico_alternativas {
+    margin: 2rem 0;
+    border-bottom: 1px solid #DDD;
+    padding-bottom: 1rem;
+}
+
+/*Exito Test*/
+
+.exito-test {
+    font-weight: 700;
+}
+
+.exito-test img {
+    max-width: 100px;
+}
+
+.exito-test_icono {
+    margin: auto;
+    max-width: 150px;
+    margin-bottom: 40px;
+}
+
+.card-test audio {
+    right: auto;
+    top: auto;
+}
+.test-medicina-ocupacional .cont-preguntas input[type=text] {
+    display: block;
+    width: 100%;
+    height: 30px;
+    padding: 0.65rem 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #e2e5ec;
+    border-radius: 4px;
+    -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+
+
+.test_selectmultiple {
+    display: flex;
+}
+
+.finalbox_inner_nom035 .porcentaje_test {
+    display: none;
+}
+
+.box_inner_nom035.box_medicina-ocupacional .card-medicina-ocupacional {
+    width: 94%;
+    max-width: 350px
+}
+
+
+.box_inner_nom035.box_medicina-ocupacional .card-medicina-ocupacional img {
+    margin: auto;
+    width: 150px;
+    display: block;
+}
+
+.card-medicina-ocupacional .porcentaje_cero, 
+.card-medicina-ocupacional .porcentaje_pendiente, 
+.card-medicina-ocupacional .porcentaje_finalizado {
+    margin-top: 1rem;
+}
+
+.test_selectmultiple .form-group label {
+    display: inline-block;
+    margin-right: .5rem;
+}
+
+.test_selectmultiple .form-group {
+    margin-right: 2rem;
+    margin-bottom: 0 !important;
+}
+
+#contenedor-psico:has(.test_selectmultiple) {
+    width: 100%;
+}
+
+.box_nom035.box_medicina-ocupacional {
+    padding: 3rem !important;
+    grid-gap: 3rem;
+}
+
+#loaderNom35 {
+    top: 100px;
+    left: 100px;
+    right: 0;
+    width: auto;
+}
+
+.box_inner_nom035.card-init {
+    padding: 3rem 2rem;
+    border: 1px solid #3BC1CD;
+    max-width: 960px;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 6rem;
+    background-color: #FFF;
+}
+
+.card-nom {
+    padding: 3rem 2rem;
+    border: 1px solid #3BC1CD;
+    max-width: 960px;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 6rem;
+    background-color: #FFF;
+    width: 100%;
+}
+
+#steps_16 .divider-step {
+    display: none;
+}
+
+.preguntas_box .card-profile {
+    /*border: none;
+    border-bottom: 1px solid #C4ECF0;*/
+    min-height: auto;
+}
+
+#div-ocupacional.card-body {
+    align-items: center;
+}
+
+/*
+.card.card-test:has(img) {
+    height: auto;
+    overflow: hidden;
+}
+*/
+
+.test_innerbox {
+    min-height: 350px;
+}
+
+.stepper-test .step:nth-of-type(1) .num-step::after,
+.stepper-test .step:nth-of-type(2) .num-step::after,
+.stepper-test .step:nth-of-type(3) .num-step::after,
+.stepper-test .step:nth-of-type(4) .num-step::after {
+    display: none;
+}
+
+
+@media only screen and (max-width: 767px) {
+    .box_img_medicina-ocupacional {
+        width: 100%;
+        max-height: 200px;  
+        margin: auto;
+    }
+
+        .box_inner_nom035.card-init img {
+            width: 100%;
+            height: auto;
+        }
+
+        .box_inner_text {
+            width: 100%;
+        }
+
+        .iconos-inicio__medicina-ocupacional {
+            width: 100%;
+            max-width: 390px;
+            flex-wrap: wrap;
+        }
+
+    .test-medicina-ocupacional .cont-card .contenedor-test {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+@media only screen and (max-width:1024px) {
+
+    .init-test {
+        width: 100%;
+    }
+
+    .box_inner_nom035.card-init {
+        flex-direction: column;
+    }
+
+        .box_inner_nom035.card-init .box_img_nom035 {
+
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            min-height: 220px;
+
+        }
+
+        .box_inner_nom035.card-init .box_inner_text {
+            width: 100%;
+            max-width: none;
+        }
+
+        #loaderNom35 {
+            top: 0;
+            left: 0;
+            right: 0;
+            width: auto;
+        }
+    .box_inner_nom035.box_medicina-ocupacional {
+        padding: 1rem;
+        flex-direction: column;
+        margin-bottom: 7rem;
+        margin-top: 10rem;
+        width: 90%;
+        gap: 3rem;
+    }
+
+    .box_medicina-ocupacional {
+        padding: 1rem;
+    }
+    .box_inner_nom035 {
+        gap: 2rem;
+    }
+
+    .header-test {
+        flex-wrap: wrap;
+        margin-bottom: 0;
+    }
+
+    .stepper-test {
+        flex-wrap: wrap;
+        max-width: 320px;
+        margin: auto;
+        width: 94%;
+        gap: .5rem;
+        justify-content: center;
+    }
+
+        .stepper-test .step {
+            width: auto;
+        }
+
+        .stepper-test .divider-step {
+            width: 1rem;
+            display: none;
+        }
+
+    .test-medicina-ocupacional .cont-card .card-test {
+        width: 94%;
+        max-width: 320px;
+        margin: auto;
+        
+    }
+
+    .test-medicina-ocupacional .cont-card .contenedor-test {
+        width: 94%;
+        max-width: 320px;
+        margin: auto;
+        flex-direction: column;
+    }
+    .exito-test_icono img {
+        max-width: 180px;
+        margin: auto;
+        margin-bottom: 2rem;
+    }
+    .exito-test_icono {
+        margin: auto;
+        margin-bottom: 2rem;
+        max-width: 150px;
+    }
+
+    .box_nom035.box_medicina-ocupacional {
+        margin: auto;
+        flex-direction: column;
+        margin-top: 10rem;
+        width: 96%;
+        max-width: 320px;
+        margin-bottom: 8rem;
+        padding: 2rem !important;
+        grid-gap: 2rem;
+    }
+        .box_nom035.box_medicina-ocupacional .divider-card {
+            display: none;
+        }
+
+    .test_selectmultiple {
+        flex-direction: column;
+    }
+
+    .test_innerbox.card-profile {
+        flex-direction: column;
+    }
+    .test_selectmultiple .form-group label {
+        /*width: 68px;*/
+        max-width: 200px;
+        width: 100%;
+    }
+
+    .card-medicina-ocupacional .porcentaje_cero, 
+    .card-medicina-ocupacional .porcentaje_pendiente, 
+    .card-medicina-ocupacional .porcentaje_finalizado {
+        margin-top: 0;
+    }
+
+    .box_nom035.box_medicina-ocupacional .divider-card, 
+    .box_inner_nom035.box_medicina-ocupacional .divider-card {
+        display: none;
+    }
+
+    .test-medicina-ocupacional {
+        margin-top: 8rem;
+    }
+        .test-medicina-ocupacional .cont-card .card-test h3 {
+            margin-bottom: 2rem;
+        }
+
+    .icon-caja-test {
+        width: 100%;
+    }
+
+    .icon-caja-test:first-child {
+        margin-bottom: 2rem;
+    }
+    .test-medicina-ocupacional .cont-card .header-test {
+        margin-bottom: 1rem;
+    }
+}
+
+/*
+#btn_guardar_info {
+    display: none;
+}*/

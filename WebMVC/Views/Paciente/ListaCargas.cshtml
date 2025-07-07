@@ -1,0 +1,250 @@
+﻿@using Microsoft.Extensions.Configuration
+@using System.Globalization;
+@using System.Security.Claims
+@using WebMVC.Controllers
+@model WebMVC.Models.PersonasViewModel
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Lista Cargas";
+    Layout = "_LayoutPaciente";
+}
+
+@{
+    ViewData["idEntidad"] = ViewBag.uid;  
+    ViewData["codEntidad"] = Entidades.FOTO_PERFIL;
+    ViewData["uid"] = int.Parse(ViewBag.uid);
+}
+
+@{
+    ViewData["view"] = Roles.Paciente;
+}
+
+@{
+    // Carga configuración empresa para obtener la cantidad de cargas permitidas
+    var host = Configuration["ServicesUrl"];
+    var _layout = new LayoutController();
+    var configEmpresa = await _layout.GetConfigEmpresa(host, Convert.ToInt32(ViewBag.idCliente));
+}
+
+@{
+    string titulo = "Beneficiarios";
+    string textoBeneficiario = "Beneficiario";
+    string nuevoBeneficiario = "Crear Nuevo";
+    if (ViewBag.idCliente == "108" || ViewBag.HostURL.ToString().Contains("clinicamundoscotia.") || ViewBag.HostURL.ToString().Contains("masproteccionsalud.") || ViewBag.HostURL.ToString().Contains("vivetuseguro."))
+    {
+        titulo = "Adicionales";
+        textoBeneficiario = "Adicional";
+    }
+    if(ViewBag.idCliente == "204")
+    {
+        titulo = "Beneficiarios";
+        textoBeneficiario = "Beneficiario";
+    }    
+    if (ViewBag.HostURL.ToString().Contains("afc.") || ViewBag.HostURL.ToString().Contains("gallagher."))
+    {
+        titulo = "Cargas";
+        textoBeneficiario = "Carga";
+        nuevoBeneficiario = "Crear Nueva";
+    }
+    if (Model.CodigoTelefono == "CO" || ViewBag.HostURL.ToString().Contains("gallagher.") || ViewBag.HostURL.ToString().Contains("aecsa.") || ViewBag.HostURL.ToString().Contains("ajg.medismart.") || ViewBag.HostURL.ToString().Contains("bonnahealth."))
+    {
+        titulo = "Beneficiarios";
+        textoBeneficiario = "Beneficiario";
+        nuevoBeneficiario = "Crear nuevo";
+    }
+}
+@section Styles  {
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+
+
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+    <!--Top Banner-->
+
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+        <div class="col-md-12 p-md-0">
+            <div class="mensaje-mobile d-none">
+                @*<span class="saludo-usuario">¡Hola  Josefa!</span> Que tengas un excelente día.*@
+
+            </div>
+            <div class="top-banner justify-content-md-between top-cargas">
+                <h1 class="legend order-2 order-md-1"><span>@titulo</span> </h1>
+                <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--Cargas-->
+
+
+    <div class="cont-cargas">
+
+
+        
+            
+        <div class="container-fluid p-0">
+            @if (ViewBag.idCliente == "108" || ViewBag.HostURL.Contains("clinicamundoscotia.") || ViewBag.HostURL.Contains("prevenciononcologica.") || ViewBag.HostURL.Contains("masproteccionsalud.") || ViewBag.HostURL.Contains("saludtumundoseguro.") || ViewBag.HostURL.Contains("vivetuseguro."))
+            {
+                @if (ViewBag.HostURL.Contains("saludproteccion.")){
+                    
+                    <p>Designa hasta cuatro personas que puedan acceder a Salud Protección</p>
+                }
+                <!--begin: Search Form -->
+            <div class="kt-form kt-form--label-right kt-margin-b-10">
+                <div class="row align-items-center">
+                    <div class="col-xl-12 order-2 order-xl-1">
+                        <div class="row align-items-center mt-4">
+                            <div class="col-md-5 kt-margin-b-20-tablet-and-mobile">
+                                <div class="kt-input-icon kt-input-icon--left">
+                                    <div class="typeahead">
+                                        <input class="form-control" id="input_codigo" placeholder="@titulo..." type="text" dir="ltr" autocomplete="off">
+                                    </div>
+                                    <span class="kt-input-icon__icon kt-input-icon__icon--left">
+                                        <span><i class="la la-search"></i></span>
+                                    </span>
+                                    <div class="form-text text-muted"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-auto kt-margin-b-20-tablet-and-mobile">
+                                <a href="#" class="btn btn-primary btn-elevate btn-icon-sm pull-right" id="btnBuscar">
+                                    <i class="la la-search"></i>
+                                    Buscar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end: Search Form -->
+            }
+            <div class="row">
+                <div class="col-12">
+                    <div class="buscador-beneficiarios">
+                            <div id="btn-agregar-beneficiario" hidden>
+                                <a href="@Url.Action("NuevoBeneficiario")" class="btn btn-primary btn-sm">
+                                <i class="la la-plus"></i>
+                                @nuevoBeneficiario @(new CultureInfo("en-US").TextInfo.ToTitleCase(textoBeneficiario))
+                            </a>
+                        </div>   
+                    </div>
+
+                </div>
+            </div>
+            @if (ViewBag.HostURL.Contains("masproteccionsalud."))
+            {
+                <div class="row">
+                    <div class="col-xl-8 col-md-12">
+                        <div class="beneficiarios-infobox">
+                            <p> Para hacer uso de los servicios, el adicional debe seguir estos pasos:</p>
+                            <ul>
+                                <li style="text-align:left;">Iniciar sesión directa en <a href="https://masproteccionsalud.cl" target="_blank" rel="noopener noreferrer">www.masproteccionsalud.cl</a>.</li>
+                                <li>Usuario: RUT.</li>
+                                <li>Clave de acceso: 6 primeros dígitos.</li>
+                                <li>Una vez que ingrese, el sistema le pedirá crear una contraseña segura.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+         <div class="row justify-content-start" id="listaBeneficiarios">
+            
+        </div>
+        
+        <!--<div class="col-12 col-md-3">
+            <div class="card card-carga">
+                <div class="icon">
+                    <i class="fal fa-user"></i>
+                </div>
+                <div class="data-carga">
+                    <div class="nombre">
+                        Tomás Araya S.
+                        <small>15.685.653-8</small>
+                    </div>
+                    <div class="email"> <i class="fal fa-envelope"></i>taraya@slayer.com</div>
+                    <div class="fono"><i class="fal fa-phone-alt"></i>+56 22122222</div>
+                    <div class="movil"><i class="fal fa-mobile"></i>+56 9 99122222</div>
+                </div>
+                <div class="toolbar-cargas">
+                    <button class="btn-icon btn-danger"><i class="fal fa-trash"></i> Eliminar</button>
+                    <button class="btn-icon btn-info"><i class="fal fa-pen"></i> Editar</button>
+                </div>
+            </div>
+        </div>
+
+
+        </div>-->
+        <!--<div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 col-md-4 col-lg-2">
+        >>>>>>> 8e37964e6b9ac7c4f67b2fcd3feb7f247e967c6a
+                            <div class="card card-carga">
+                                <div class="icon">
+                                    <i class="fal fa-user"></i>
+                                </div>
+                                <div class="data-carga">
+                                    <div class="nombre">
+                                        Tomás Araya S.
+                                        <small>15.685.653-8</small>
+                                    </div>
+                                    <div class="email"> <i class="fal fa-envelope"></i>taraya@slayer.com</div>
+                                    <div class="fono"><i class="fal fa-phone-alt"></i>+56 22122222</div>
+                                    <div class="movil"><i class="fal fa-mobile"></i>+56 9 99122222</div>
+                                </div>
+                                <div class="toolbar-cargas">
+                                    <button class="btn-icon btn-danger"><i class="fal fa-trash"></i> Eliminar</button>
+                                    <button class="btn-icon btn-info"><i class="fal fa-pen"></i> Editar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+
+
+    </div>
+
+</div>
+
+<!-- end:: Page -->
+<!-- begin::Scrolltop -->
+<div id="kt_scrolltop" class="kt-scrolltop">
+    <i class="fa fa-arrow-up"></i>
+</div>
+
+
+@section Scripts {
+    <script type="module">
+        import { init } from '../../js/Paciente/config.js?10';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+
+            var uid = @ViewBag.uid;
+
+            window.uid = uid;
+             var idCliente = '@ViewBag.idCliente';
+            window.idCliente = idCliente;
+            var host = '@ViewBag.HostURL';
+            window.host = host;
+            // Cantidad de cargas permitida
+            window.cantCargas = @configEmpresa.CantCargas;
+            window.admiteCEmergencia = 0;
+            window.admiteCargas = @configEmpresa.AdmiteCargas;
+            window.cantCEmergencia = 0;
+        })()
+    </script>
+    <script type="module">
+        import { init } from '../../js/Paciente/verCargas.js?rnd=@NumeroRandom.GetRandom()';
+        init(@Html.Raw(Json.Serialize(Model)), '@Html.Raw(Url.Action("EditBeneficiario"))',@Html.Raw(Json.Serialize(@ViewBag.idCliente)))
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  
+}
+

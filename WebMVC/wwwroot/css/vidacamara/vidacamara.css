@@ -1,0 +1,575 @@
+/*Vidacamara*/
+
+
+:root {
+    --primary-color: #FF7415;
+    --secondary-color: #0E0F18;
+    --tertiary-color: #FF7415;
+    --accent-color: #FF7415;
+    --background-ui: #F7F7F7;
+    --light-color: #FFF;
+    --orange: #ED8B00;
+    --dark-color: #262630;
+    /* --font-family: 'Poppins', sans-serif;
+    --base-font-size: 16px;
+    --background-ui: #7B2A83;*/
+}
+
+
+body {
+    background-color: var(--background-ui) !important;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper {
+    margin: 5rem auto 0 auto !important;
+
+}
+
+
+.logotipo-desktop {
+    background-image: url(../../img/vidacamara/logo.svg);
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/vidacamara/logo.svg);
+}
+
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: #262630;
+}
+
+.form-group .ms-label {
+    color: #262630 !important;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.divider-medismart {
+    display: none;
+}
+
+.logo-convenios {
+    display: none;
+}
+
+/* Imágenes Login */
+.img1 {
+    background-image: url(../../img/vidacamara/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/vidacamara/login/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/vidacamara/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/vidacamara/login/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/vidacamara/login/960x978.jpg);
+}
+
+
+.img6 {
+    background-image: url(../../img/vidacamara/login/960x978.jpg);
+}
+/*Home*/
+
+.body-home {
+    background-color: var(--background-ui) !important;
+    background-image: url('../../img/vidacamara/logo-fondo.svg');
+    background-position: 150% 16%;
+}
+
+    .body-home .cont-card .card {
+        background-color: #262630;
+    }
+
+    .body-home .cont-card h1 {
+        color: var(--secondary-color);
+    }
+
+    .body-home .top-banner .legend {
+        color: var(--secondary-color);
+    }
+
+    .body-home .text-warning {
+        color: var(--accent-color) !important;
+    }
+    .body-home .pronto,
+    .body-home .preferente {
+        background-color: var(--accent-color)
+    }
+
+
+    .body-home .menu-top .item-menu-top i,
+    .body-home .menu-top .item-menu-top .label-menu,
+    .menu-top .item-menu-top i,
+    .menu-top .item-menu-top .label-menu {
+        color: var(--accent-color) !important;
+       
+    }
+
+
+    .body-home .menu-top .item-menu-top:hover i,
+    .body-home .menu-top .item-menu-top:hover .label-menu,
+    .item-menu-top:hover i,
+    .item-menu-top:hover .label-menu {
+        color: #ffb822 !important;
+    }
+
+    .body-home .menu-top .item-menu-top .opcion-ayuda,
+    .body-home .menu-top .item-menu-top .opcion-ayuda i {
+        color: var(--primary-color);
+        !important;
+    }
+
+    .body-home .opcion-ayuda a {
+        color: var(--primary-color);
+        !important;
+    }
+
+        .body-home .opcion-ayuda a:hover {
+            color: #ffb822 !important;
+        }
+
+.opcion-ayuda a:hover {
+    color: #ffb822;
+}
+
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--secondary-color);
+}
+
+.step.active .step-icon {
+    background-color: var(--accent-color)
+}
+
+.mensaje-superior .inner-mensaje {
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+}
+
+.caja-profesional:hover {
+    border: 1px solid var(--orange);
+}
+
+
+.body-home .fecha-atencion {
+    color: var(--orange)
+}
+
+
+.body-home .btn-icon {
+    color: var(--accent-color);
+}
+
+.leyenda-card-home {
+    color: var(--primary-color);
+}
+
+
+.body-home .powered, .body-home .powered strong {
+    color: var(--secondary-color)
+}
+
+.body-home .datos-atencion {
+    color: var(--primary-color)
+}
+
+.body-home .registro-institucion,
+.body-home .card-atencion .especialidad {
+    color: var(--secondary-color)
+}
+
+.body-home .page-subtitle {
+    color: var(--secondary-color)
+}
+/*Footer*/
+
+.body-home .footer-home {
+    margin-top: 2rem;
+}
+
+.body-home .footer-home,
+.body-home .footer-home a {
+    color: var(--secondary-color)
+}
+
+
+/*Agenda*/
+
+
+.iniciales {
+    background-color: var(--primary-color);
+}
+
+.stepper,
+.top-banner {
+    background-image: url(../../img/vidacamara/fondo-banner.svg);
+}
+    .stepper img,
+    .top-banner img {
+        border: 3px solid rgba(255,116,21, .5);
+    }
+    .stepper .flecha {
+        color: var(--primary-color)
+    }
+
+
+
+    .cont-steps {
+        background-color: var(--background-ui);
+    }
+
+.busqueda-profesionales {
+    border: 2px solid var(--orange);
+}
+
+.caja-especialidad {
+    background-color: var(--dark);
+}
+
+.busqueda-profesionales i {
+    color: var(--primary-color)
+}
+
+
+.caja-especialidad i {
+    color: var(--primary-color)
+}
+
+
+.caja-especialidad.active {
+    background-color: var(--accent-color);
+}
+
+.caja-especialidad.active i {
+    color: var(--light-color);
+}
+
+.caja-profesional {
+    border: 1px solid rgba(255, 116, 21, .4);
+}
+
+    .caja-profesional .fecha-atencion,
+    .front-fecha-atencion strong:before {
+        color: var(--secondary-color)
+    }
+
+    .btn-outline-primary {
+        color: var(--primary-color)
+    }
+
+    .nombre-profesional,
+    .caja-profesional .titulo-profesional,
+    .especialidad-profesional {
+        color: var(--primary-color)
+    }
+
+
+.nombre-profesional small {
+    color: var(--secondary-color)
+}
+
+.front-fecha-atencion {
+    border: 1px solid transparent
+}
+
+.caja-reserva,
+.perfil-profesional {
+    border: 1px solid rgba(255,116,21, .3);
+}
+
+.caja-base {
+    border: 1px solid rgba(255,116,21, .3);
+}
+
+.hora-top {
+    color: var(--secondary-color);
+}
+
+.hora.disponible small {
+   background-color: var(--secondary-color);
+}
+
+.titulo-data-horario {
+    border: 1px solid var(--orange);
+    color: var(--orange)
+}
+
+.caja-reserva .btn-am {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.caja-reserva .btn-pm {
+    background-color: var(--orange);
+    border-color: var(--orange);
+}
+
+.hora.disponible .detalle-hora {
+    color: var(--secondary-color)
+}
+
+.mensaje-superior .inner-mensaje.hoy {
+    background-color: var(--accent-color)
+}
+
+.aviso-atencion.hoy {
+    background-color: var(--accent-color)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary-color)
+}
+
+.top-banner .legend {
+    color: var(--secondary-color);
+}
+
+.text-warning {
+    color: var(--accent-color) !important;
+}
+
+.titulo-seccion {
+    color: var(--secondary-color)
+}
+
+.caja-atencion {
+    border: 1px solid var(--light-color)
+}
+
+    .caja-atencion .titulo-profesional,
+    .caja-atencion .fecha-atencion,
+    .caja-atencion .hora-atencion {
+        color: var(--secondary-color)
+    }
+
+    .caja-atencion .header-aviso-atencion,
+    .caja-atencion .header-aviso-atencion i {
+        color: var(--orange)
+    }
+.datos-diagnostico {
+    color: var(--secondary-color)
+}
+
+
+.atencion-toolbar.atencion-proxima-toolbar {
+    border-top: 1px solid #DDD;
+}
+
+.datos-diagnostico {
+    border-top: 1px dashed rgba(255, 116, 21, .5);
+}
+
+.cont-aviso-modal strong,
+.cont-aviso-modal .datos-fecha .fecha-atencion {
+    color: var(--secondary-color)
+}
+
+.atencion-toolbar.atencion-proxima-toolbar {
+    margin-top: 1rem;
+}
+
+.selector-horas i {
+    color: var(--secondary-color)
+}
+
+.check-aceptacion {
+    border-top: 1px solid #DDD;
+}
+
+    .check-aceptacion a {
+        color: var(--accent-color);
+    }
+
+.cont-volver .btn.btn-outline-secondary {
+    background-color: var(--light-color)
+}
+
+.mensaje-confirmacion.caja-base {
+    border: 1px solid rgba(255,116,21, .3);
+}
+
+.body-home .footer-home .footer-cliente {
+    display: block;
+}
+
+
+/*Perfil*/
+
+.kt-portlet .kt-portlet__head .kt-portlet__head-label .kt-portlet__head-title {
+    color: var(--secondary-color);
+}
+
+.kt-portlet .kt-portlet__head {
+    border-bottom: 1px solid rgba(255,116, 21,.5)
+}
+
+kt-form__actions .btn-success {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color)
+;}
+
+
+/*Sala de espera*/
+
+.hotspot-icon .cont-icon {
+    background-color: rgba(14,15,24,.8);
+    transition: all .3s ease-out;
+}
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: rgba(14,15,24,.8);
+}
+
+
+.sala-espera-mobile img {
+    margin-top: -200px;
+}
+
+.accesible-btn button {
+    border: 1px solid var(--orange);
+    color: var(--secondary-color);
+}
+
+#reporte .cont-icon {
+    background-color: var(--secondary-color);
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: var(--secondary-color)
+}
+
+/*Atencion*/
+
+.cont-btn-panel .btn-atencion, .cont-btn-vc .btn-atencion {
+    border: 1px solid var(--orange);
+    color: var(--orange);
+}
+
+    .cont-btn-panel .btn-atencion:hover, .cont-btn-vc .btn-atencion:hover {
+        color: var(--orange);
+        background-color: rgba(255,116,21,.1);
+    }
+    /*
+    .caja-base {
+    border: 1px solid var(--light-color)
+}
+
+    .stepper-sv .step-icon {
+    background-color: var(--secondary-color);
+}
+
+.stepper-sv .titulo-step,
+.stepper-sv .label-step {
+    color: var(--secondary-color);
+}*/
+    @media (max-width: 1024px) {
+        .toolbar-option {
+        color: var(--accent-color)
+    }
+        .stepper {
+            background-image: none;
+        }
+        .body-home .footer-home {
+            margin-top: 4rem;
+            
+        }
+}
+
+@media (min-width: 1025px) {
+    .kt-header--fixed:not(.kt-subheader--fixed) .kt-header {
+        border: 1px solid var(--light-color) !important;
+    }
+
+    .ms-aside {
+        border: 1px solid var(--light-color) !important;
+    }
+}
+
+
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/vidacamara/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/vidacamara/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/vidacamara/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/vidacamara/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/vidacamara/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/vidacamara/login/548x850.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/vidacamara/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/vidacamara/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/vidacamara/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/vidacamara/login/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/vidacamara/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/vidacamara/login/960x978.jpg);
+    }
+}
+
+
+/*Prohome*/
+
+.prehome__plan ul {
+    list-style-image: url('../../img/vidacamara/bullet.svg');
+    margin-top: 32px;
+}
+
+.prehome__plan h2 {
+    font-size: 22px;
+}
+
+.prehome__title {
+    color: var(--primary-color)
+}
+/*Modal Especialidades*/
+#opciones_esinmediata .btn-primary {
+    color: var(--light-color);
+    font-size: 1rem;
+}

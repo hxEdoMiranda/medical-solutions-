@@ -1,0 +1,1107 @@
+/*compara*/
+
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap');
+
+:root {
+    --primary: #FD6903;
+    --secondary: #333333;
+    --tertiary: #FFFFFF;
+    --accent: #F9D324;
+    --light: #FFF;
+    --font-family: 'Rubik', sans-serif;
+}
+
+body {
+    font-family: var(--font-family) !important;
+    background: #FFF;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family) !important;
+    
+}
+/*Login*/
+.logotipo-desktop {
+    background-image: url(../../img/positivav2/logotipo.svg);
+    height: 15rem;
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/positivav2/logotipo-blanco.svg);
+    height: 10rem;
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 0 !important;
+}
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+        color: var(--primary);
+        font-weight: 900;
+        display: inline-block;
+        
+    }
+
+.alianza {
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.login-info--tooltip ~ .tooltip-inner {
+    text-align: left !important;
+    background-color: red !important;
+}
+    .login-info--tooltip i {
+        color: #ccc;
+        font-size: 20px;
+        margin-left: 10px;
+        text-align: left !important;
+    }
+
+.form-group .ms-label {
+    color: var(--primary) !important;
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.tooltip.show p {
+    text-align: left;
+}
+.dcto-mobile {
+    display: none;
+}
+
+.clave-mobile {
+    display: none;
+}
+
+@media (max-width: 991.98px) {
+    body {
+        background: #fff !important;
+    }
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+        color: var(--tertiary);
+        font-weight: 900;
+        display: inline-block;
+    }
+    .form-group .ms-label {
+        color: var(--tertiary) !important;
+        
+    }
+    .dcto-mobile {
+        display: block;
+        color: #FFF;
+        font-family: Mulish;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+    #labelIdentificador{
+        display: none !important;
+    }
+
+    .clave-mobile {
+        display: block !important;
+        color: #FFF;
+        font-family: Mulish;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+
+    .clave-escritorio {
+        display: none !important;
+    }
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .form-control {
+        background: #FFF !important;
+    }
+    #terminosFooter {
+        color: var(--secondary) !important;       
+    }
+    #politicas {
+        color: var(--secondary) !important;
+        
+    }
+   
+}
+
+.kt-divider {
+    
+    display: none;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    border-radius: 58px;
+    box-shadow: 4px 4px 16px 0px rgba(88, 103, 221, 0.25);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.body-home .logo-home {
+    padding: 1rem;
+    background: #fff !important;
+}
+
+.mt-5, .my-5 {
+    margin-top: 3rem !important;
+   
+}
+.logo-medismart {
+    margin-top: 5rem;
+    display: none;
+    justify-content: center;
+   
+}
+
+.anclas-login {
+    color: #646C9A;
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.logo-medismart img {
+    margin: 0;
+    width: 200px;
+}
+/*.divider-medismart {
+   
+    margin-bottom: 2rem;
+}*/
+.logo-convenios {
+    /* display: none;*/
+    margin-bottom: 2rem;
+}
+
+/* Imágenes Login */
+.img1 {
+    background-image: url(../../img/positivav2/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/positivav2/login/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/positivav2/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/positivav2/login/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/positivav2/login/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/positivav2/login/960x978.jpg);
+}
+
+.bnd-colombia {
+    width: 130px;
+    margin-top: 2.5rem;
+    height: 1.6rem !important;
+}
+
+.body-home {
+    background-color: #fff !important;
+    background-image: url(../../img/home/logo-fondo.svg) !important;
+    background-repeat: no-repeat !important;
+    background-position: bottom right !important;
+    background-attachment: fixed !important;
+}
+
+    .body-home .logo-home img {
+        width: 130px;
+        margin-top: 2.5rem;
+        height: 7rem;
+    }
+
+    .top-banner .legend {
+        font-weight: 600;
+    }
+
+.menu-top .item-menu-top i,
+.menu-top .label-menu {
+    color: var(--primary);
+}
+
+.menu-top .item-menu-top:hover i, .menu-top .item-menu-top:hover .label-menu {
+    color: var(--secondary) !important;
+}
+.kt-menu__item a, .kt-menu__item i {
+    color: #4248B0;
+}
+
+    .kt-menu__item a .ms-label-menu {
+        color: var(--primary);
+    }
+
+    .kt-menu__item:hover a, .kt-menu__item:hover i {
+        color: var(--secondary) !important;
+    }
+.interrogacion {
+    vertical-align: middle;
+    border-style: none;
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+
+.logo-mobile{
+    display: none;
+}
+
+.link-terminos{
+    display: flex;
+    justify-content:space-between
+}
+.btn-terminos {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.terminos-condiciones{
+    display: flex;
+    margin-top: 2rem;
+}
+
+.terminos-1{
+    margin-left:11rem;
+}
+
+.accesible-btn button {
+    color: #fff !important;
+    border: 1px solid var(--primary) !important;
+    background: var(--primary) !important;
+    margin: 0.5rem;
+}
+
+#terminosFooter {
+    color: var(--primary);
+    text-align: center;
+    font-family: Mulish;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+#politicas {
+    color: var(--primary);
+    margin-left: 1rem;
+    text-align: center;
+    font-family: Mulish;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--primary);
+}
+
+.copy {
+    color: var(--primary);
+    text-align: center;
+    font-family: Mulish;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.term-poli{
+    display:flex;
+}
+
+.busqueda-profesionales {
+    border: 2px solid var(--secondary);
+}
+    .busqueda-profesionales i {
+        color: var(--secondary)
+    }
+    .busqueda-profesionales .btn-outline-primary {
+        color: var(--secondary)
+    }
+
+.caja-especialidad.active {
+    background-color: #009845;
+}
+
+.cont-steps {
+    width: 342px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #fff;
+}
+
+.prehome__plan h2 {
+    text-align: inherit;
+    font-weight: 700;
+    width: 70%;
+    margin: 0 0 0 0;
+    /* margin-top: 3rem; */
+}
+
+.caja-especialidad {
+    background-color: var(--secondary);
+}
+
+.inner-especialidad strong {
+    color: var(--light)
+}
+
+.step.active .step-icon {
+    background-color: #009845;
+}
+
+.stepper {
+    background-image: url(../../img/viva/fondo-banner2.svg);
+}
+
+    .stepper .flecha {
+        color: var(--primary)
+    }
+
+    .stepper img {
+        border-color: var(--secondary);
+    }
+
+.step.active .label-step {
+    color: var(--primary)
+}
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.step .step-triage{
+    background: #ffffff;
+}
+@media (max-width: 991.98px) {
+    .terminos-1 {
+        margin-left: 0;
+    }
+    .copy {
+        display: none;
+    }
+    .prehome__plan ul {
+        list-style-image: url(../../img/azteca/bullet.svg);
+        margin-top: 32px;
+        height: auto !important;
+        font-size: 16px;
+        min-height: 0;
+    }
+    .prehome__plan .btn {
+        /* max-width: 108px; */
+       margin-bottom: 2rem;
+    }
+
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: #009845;
+}
+
+.caja-profesional .fecha-atencion {
+    color: var(--secondary)
+}
+
+.front-fecha-atencion {
+    border: 1px solid rgba(35,33, 114, .3)
+}
+
+    .front-fecha-atencion strong:before {
+        color: var(--secondary);
+        font-weight: 900;
+    }
+
+.especialidad-profesional {
+    color: #009845;
+}
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+.body-home .cont-home.cont-home-medismart {
+    margin-top: 7rem !important;
+}
+
+.body-home .logo-home {
+    background: var(--secondary);
+    margin-top: -2rem;
+}
+
+.top-banner {
+    background-image: url(../../img/positivav2/fondo-banner2.svg);
+}
+    .top-banner img {
+        border-color: rgba(255, 255, 255, .3)
+    }
+    .top-banner .legend {
+        color: var(--secondary)
+    }
+
+.stepper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    background-image: url(../../img/azteca/banner1.svg);
+    background-repeat: repeat-x;
+    background-position: left 10px;
+    margin-bottom: 2.5rem;
+    margin-top: 2.5rem;
+}
+.banner_topsc .legend .text-warning {
+    color: var(--primary) !important;
+}
+
+.top-banner.banner_topsc {
+    background-image: url(../../img/viva/fondo-banner2.svg);
+}
+
+.text-warning {
+    color: var(--primary) !important;
+}
+
+
+.body-home .cont-card .card .card-body {
+    display: flex;
+    
+    width: 100%;
+    height: 100%;
+    background: var(--primary);
+    border-radius: 16px;
+}
+
+@media (max-width: 1024px) {
+    .body-home .cont-card .card img {
+        width: 46px;
+        height: 49px;
+        margin: 0;
+    }
+
+    .img-login-positiva  {
+        flex-direction: column;
+    }
+
+    .kt-login__container.fletcher_login .positiva-cuida {
+        margin-top: 2rem;
+    }
+}
+
+.body-home .cont-card h1 {
+    font-size: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 1rem auto 2rem;
+    color: var(--primary);
+    max-width: 200px;
+    font-family: Roboto;
+}
+.menu-top .item-menu-top .logotipo-mobile {
+    width: 110px !important;
+}
+/*Sala espera*/
+.hotspot-icon .cont-icon {
+    background-color: var(--primary);
+    color: #ffffff;
+}
+#lista_archivos2{
+    
+}
+
+
+.hotspot-icon:hover .cont-icon {
+    background-color: #11B649;
+}
+
+.consentimiento2{
+    display: none;
+}
+
+#btnAbandonarAtencion .cont-icon:hover {
+    background-color: #3BC1CD;
+}
+
+.cont-icon.hotspot-redes {
+    background-color: #FFFFFF;
+}
+
+.hotspot-icon:hover .hotspot-redes {
+    background-color: #1CA3A9;
+}
+
+.toolbar-option {
+    color: var(--primary)
+}
+
+.toolbar-option.active {
+    color: var(--secondary)
+}
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--primary);
+    color: #ffffff;
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--secondary)
+}
+
+.btn-sala:hover {
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion, .cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+    .cont-btn-panel .btn-atencion:hover, .cont-btn-vc .btn-atencion:hover {
+        background-color: rgba(237, 110, 0, 0.1);
+        color: var(--primary);
+    }
+
+.hotspot-icon {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+    .hotspot-icon i {
+        text-shadow: none;
+    }
+
+    .hotspot-icon:hover {
+        color: #FFF;
+    }
+
+@media (max-width: 668px) {
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .top-banner .legend {
+        text-align: left;
+        font-family: Mulish !important;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+    .body-home .menu-top .item-menu-top i, .body-home .menu-top .item-menu-top .label-menu {
+        color: var(--primary) !important;
+    }
+}
+
+
+ @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/positivav2/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/positivav2/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/positivav2/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/positivav2/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/positivav2/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/positivav2/login/548x850.jpg);
+    }
+
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/positivav2/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/positivav2/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/positivav2/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/positivav2/login/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/positivav2/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/positivav2/login/960x978.jpg);
+    }
+    
+
+}
+
+
+/*Prehome*/
+
+.prehome__plans {
+    height: 450px;
+}
+
+.prehome__plan {
+    width: 100%;
+    padding: 0;
+}
+
+    .prehome__plan ul {
+        list-style-image: url('../../img/azteca/bullet.svg');
+        margin-top: 32px;
+        height: 350px;
+        font-size: 16px;
+    }
+
+.prehome__title {
+    color: var(--primary);
+}
+
+.body-home .top-banner .legend {
+    color: #2C3948;
+    
+}
+
+.kt-login__extra.registro {
+    display: none;
+}
+
+.logo-convenios.convenioChile + hr {
+    display: none;
+}
+
+.kt-login.kt-login--v3.kt-login--signin .kt-login__signin .titulo-card-farmacia {
+    text-align: center;
+    color: var(--primary);
+}
+
+
+.kt-login__container.fletcher_login img {
+    margin: auto;
+    display: block;
+    max-width: 120px;
+}
+
+
+@media (max-width: 991.98px) {
+    .prehome__plans {
+        height: auto;
+    }
+    .kt-login.kt-login--v3.kt-login--signin .kt-login__signin .titulo-card-farmacia {
+        color: var(--light);    }
+
+
+}
+
+.login-footer .terminos {
+    margin-bottom: 2rem;
+    display: flex;
+    margin-top: 2rem;
+    gap: 1rem;
+    margin-left: 1rem;
+}
+.stepper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    background-image: url(../../img/positivav2/fondo-banner2.svg);
+    background-repeat: repeat-x;
+    background-position: left 10px;
+    margin-bottom: 2.5rem;
+    margin-top: 2.5rem;
+}
+
+.titulo-servicio {
+    font-size: 2.2rem;
+    margin-top: 2rem;
+    color: #009845;
+}
+.menu-top .label-menu-pac {
+    color: var(--primary);
+}
+.check-aceptacion a {
+    color: #3BC1CD !important;
+    text-decoration: underline;
+}
+
+#consentimiento {
+    color: #3BC1CD !important;
+    text-decoration: underline;
+}
+
+.category-button:hover, .category-button.active {
+    background-color: var(--important) !important;
+    color: var(--important) !important;
+}
+
+.kt-menu__item:hover a, .kt-menu__item:hover i {
+    color: var(--secondary) !important;
+}
+
+.menu-top .item-menu-top:hover .label-menu-pac {
+    color: var(--secondary) !important;
+}
+
+.kt-menu__item:hover a .ms-label-menu {
+    color: var(--secondary);
+}
+
+.logo-convenios img {
+    width: 102px;
+    margin: auto;
+    display: none;
+}
+
+.btn-login {
+    border-radius: 58px;
+    border: 1px solid #C900AC;
+    background: #C900AC;
+    box-shadow: 4px 4px 16px 0px rgba(88, 103, 221, 0.25);
+}
+
+.form-group label {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .form-control {
+    background: rgba(235, 237, 242, 0.40);
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__actions .kt-login__btn-secondary, .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__actions .kt-login__btn-primary {
+    height: 40px !important;
+    margin-top: -2rem !important;
+}
+
+.footer-home .terminos {
+    width: 100% !important;
+    display: none;
+    /* text-align: center; */
+    /* justify-content: center; */
+    /* align-items: center; */
+}
+
+.mt-0, .my-0 {
+    margin-top: 2rem !important;
+}
+
+.body-home .menu-top .item-menu-top i, .body-home .menu-top .item-menu-top .label-menu {
+    color: #2C3948;
+}
+
+.body-home .menu-top .item-menu-top:hover i, .body-home .menu-top .item-menu-top:hover .label-menu {
+    color: var(--primary) !important;
+}
+
+
+
+.accesible-tools-desktop .accesible-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 5rem;
+    margin-top: 5rem;
+}
+
+a {
+    color: var(--secondary);
+    text-decoration: none;
+    background-color: transparent;
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.terminos {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem
+}
+
+
+.logotipo-blanco{
+    display:none;
+}
+.img-interrogacion {
+    margin-top: 1rem;
+}
+
+.accesible-btn .letras-login {
+    color: #FFFFFF;
+    border: 1px solid var(--secondary);
+    margin: 0.5rem;
+    background: var(--secondary);
+    
+}
+.ancla-azul {
+    color: var(--primary) !important;
+}
+
+.letras-sala-espera {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+}
+
+.color-triage {
+   
+    
+}
+
+.color-letras-salaespera {
+    color: #4248B0 !important;
+    border: 1px solid #4248B0 !important;
+}
+
+    @media (max-width: 991.98px) {
+
+        .stepper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 80px;
+            background-image: none !important;
+            background-repeat: repeat-x;
+            background-position: left 10px;
+            margin-bottom: 2.5rem;
+            margin-top: 2.5rem;
+        }
+        .cont-logo-mobile {
+            /* height: 150px; */
+            display: flex !important;
+            justify-content: center;
+            background: var(--primary);
+        }
+
+        .body-home {
+            background: #FFFFFF;
+        }
+
+        .leyenda-card-home {
+            color: #fff;
+            font-family: Roboto;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            text-transform: uppercase;
+        }
+
+        .body-home .powered, .body-home .powered strong {
+            color: #FFF;
+            display: none;
+        }
+
+        .accesible-tools-desktop .accesible-btn {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin-left: 0rem;
+            margin-top: 2rem;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            background-color: transparent;
+            margin-top: 1.5rem;
+            font-family: Mulish;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+
+        .terminos {
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            margin-left:3rem;
+            margin-right: 3rem;
+        }
+
+        .cont-fondo-mobile {
+            width: 100%;
+            height: 77rem;
+            /* max-height: 580px; */
+            z-index: -1;
+            overflow: hidden;
+            position: absolute;
+        }
+
+        .kt-header-mobile--fixed .kt-header__topbar {
+            background: var(--primary);
+        }
+        .menu-top .item-menu-top i, .menu-top .label-menu {
+            color: #fff;
+        }
+
+        .container-login {
+            background-color: var(--primary);
+            /*height: 10rem;*/
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        .img-interrogacion {
+            display: none;
+        }
+
+        .anclas-login {
+            color: var(--tertiary) !important;
+            font-family: Mulish;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+        hr {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border: 0;
+            border-top: 1px solid #fff;
+        }
+
+        .btn-primary {
+            border-radius: 4px;
+            background: #FFB92A;
+            box-shadow: 4px 4px 16px 0px rgba(88, 103, 221, 0.25);
+            color: #FFF;
+            font-family: Mulish;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px; /* 142.857% */
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            width: 153px;
+            height: 30px;
+            padding: 10px 58px;
+        }
+        .accesible-btn button {
+            color: var(--secondary) !important;
+            text-align: center;
+            font-family: Mulish;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            text-transform: uppercase;
+            background: #fff !important;
+        }
+
+        .login-footer .terminos {
+            display: none;
+        }
+
+        .kt-footer .kt-footer__copyright {
+            display: none !important;
+        }
+
+
+        .logotipo-blanco {
+            display: block;
+            margin-bottom: 1.5rem;
+            margin-left: 3rem;
+        }
+
+        .logo-mobile {
+            display: block;
+            margin-bottom: 1.5rem;
+            margin-left: 2.5rem;
+        }
+    }
+
+
+.hotspot-icon:hover .cont-icon i {
+    color: var(--light);
+}
+
+#contacto .cont-icon.hotspot-redes {
+    background-color: #1CA3A9;
+    color: var(--light);
+}
+
+.cont-informe {
+    margin-top: 5rem;
+}
+
+    .cont-informe .col-examenes,
+    .cont-informe .col-farmacias {
+        display: none;
+    }
+
+.img-login-positiva {
+    display: flex;
+    margin-top: 2rem;
+}
+
+.kt-login__container.fletcher_login .positiva-cuida {
+    max-width: 200px;
+    height. 28px;
+    width: 100%;
+}

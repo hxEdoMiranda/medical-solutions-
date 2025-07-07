@@ -1,0 +1,504 @@
+﻿@using Microsoft.Extensions.Configuration
+@using System.Security.Claims;
+@model WebMVC.Models.PersonasViewModel
+@inject IConfiguration Configuration
+
+<!--Nuevo Perfil-->
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col p-0">
+            <div class="card card-profile">
+                <form id="form_edit_perfil">
+                    <div class="card-body py-0">
+                        <div class="row">
+                            <div class="col-12 col-lg-4 pr-md-5">
+                                <h3>Imagen Personal</h3>
+
+                                <div class="cont-foto-perfil">
+                                    @Html.HiddenFor(m => m.TempID)
+                                    <div class="kt-avatar kt-avatar--outline" id="kt_user_avatar">
+                                        @{
+                                            var img1 = (object)ViewBag.uid + ".jpg";
+
+                                        }
+                                        @*@Configuration["ServicesUrl"]@Model.personasDatos.RutaVirtual*@@*background-image: url(@Configuration["ServicesUrl"]@Model.rutaAvatar);*@
+                                        <div id="divAvatar" class="foto-perfil">
+                                            <div id="cargaFoto" style="display: none">
+                                                <div id="kt_dropzone_fotoavatar">
+                                                    <div class="dropzone-msg dz-message medismart-dopzone needsclick">
+                                                        <h3 class="dropzone-msg-title" metadata="configuracionImgMessage">Cambia tu foto de perfil.</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <label class="kt-avatar__upload icono-editar-perfil" data-toggle="kt-tooltip" title="" data-original-title="Cambiar foto">
+                                            <i class="fal fa-pen"></i>
+
+                                        </label>
+                                        <span class="kt-avatar__cancel icono-editar-perfil" data-toggle="kt-tooltip" title="" data-original-title="Cancel avatar">
+                                            <i class="fal fa-times"></i>
+                                        </span>
+
+                                    </div>
+                                </div>
+
+
+
+                                <!--Nuevo avatar-->
+
+
+                            </div>
+
+                            <div class="col-12 col-lg-4 pl-md-5 columna-datos-contacto">
+                                <h3>Datos Personales</h3>
+                                <div class="cont-foto-perfil d-none">
+
+                                    <div class="foto-perfil">
+                                        <div class="icono-editar-perfil">
+                                            <i class="fal fa-pen"></i>
+                                        </div>
+                                        <div class="icono-editar-perfil">
+                                            <i class="fal fa-times"></i>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">Nombres <span style="color:red">*</span></label>
+                                    @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control", maxlength = "50", required = "required" })
+                                </div>
+
+                                <div class="form-group">
+                                    @if (ViewBag.HostURL.ToString().Contains("gallagher.") || ViewBag.HostURL.ToString().Contains("ajg.medismart.") || ViewBag.HostURL.ToString().Contains("aecsa.") || ViewBag.HostURL.ToString().Contains("rappi.") || ViewBag.HostURL.ToString().Contains("bonnahealth.") || ViewBag.HostURL.ToString().Contains("bu.") || Model.CodigoTelefono == "CO")
+                                    {
+                                        <label class="form-label">Primer apellido <span style="color:red">*</span></label>
+                                        @Html.TextBoxFor(m => m.ApellidoPaterno, new { @class = "form-control", maxlength = "50", required = "required" })
+                                    }
+                                    else
+                                    {
+                                        <label class="form-label">Apellido paterno <span style="color:red">*</span></label>
+                                        @Html.TextBoxFor(m => m.ApellidoPaterno, new { @class = "form-control", maxlength = "50", required = "required" })
+                                    }
+                                </div>
+
+                                <div class="form-group">
+                                    @if (ViewBag.HostURL.ToString().Contains("gallagher.") || ViewBag.HostURL.ToString().Contains("ajg.medismart.") || ViewBag.HostURL.ToString().Contains("aecsa.") || ViewBag.HostURL.ToString().Contains("rappi.") || ViewBag.HostURL.ToString().Contains("bonnahealth.") || ViewBag.HostURL.ToString().Contains("bu.") || Model.CodigoTelefono == "CO")
+                                    {
+                                        <label class="form-label">Segundo apellido</label>
+                                        @Html.TextBoxFor(m => m.ApellidoMaterno, new { @class = "form-control", maxlength = "50" })
+                                    }
+                                    else
+                                    {
+                                        <label class="form-label">Apellido materno</label>
+                                        @Html.TextBoxFor(m => m.ApellidoMaterno, new { @class = "form-control", maxlength = "50" })
+                                    }
+                                </div>
+
+
+
+                                <div class="form-group datos-identidad">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label class="form-label">@(Model.CodigoTelefono == "CO" ? "Documento de identidad" : Model.CodigoTelefono == "MX" ? "CURP" : "Cédula de identidad")</label>
+                                            @if (ViewData["view"].Equals(Roles.Paciente))
+                                            {
+                                                @Html.TextBoxFor(m => m.Identificador, new { @class = "form-control", maxlength = "12", required = "required", disabled = "disabled" })
+                                                @Html.HiddenFor(m => m.Identificador)
+                                            }
+                                            else
+                                            {
+                                                @Html.TextBoxFor(m => m.Identificador, new { @class = "form-control", maxlength = "12", required = "required", id = "identificador" })
+                                            }
+
+                                            @Html.Hidden("idEntidad", ViewData["idEntidad"])
+                                            @Html.Hidden("codEntidad", ViewData["codEntidad"])
+                                            @Html.Hidden("uid", (object)ViewBag.uid)
+                                        </div>
+
+                                        <div class="col">
+
+                                            <label class="form-label">Fecha de nacimiento</label>
+                                            @Html.TextBoxFor(m => m.FNacimiento, "{0:dd/MM/yyyy}", new { @class = "form-control", type = "text" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Género <span style="color:red">*</span></label>
+                                    @Html.DropDownListFor(m => m.Genero, Model.ObtenerSexo(), new { @class = "form-control m-input", style = "text-transform: uppercase", required = "required" })
+                                </div>
+
+                                @if (Model.CodigoTelefono == "CO")
+                                {
+                                    <div class="form-group">
+                                        <label class="form-label"><span metadata="configuracionDatosEstadoCivil">Estado civil </span><span style="color:red">*</span></label>
+                                        @Html.DropDownListFor(m => m.EstadoCivil, Model.ObtenerEstadosCiviles(Model.CodigoTelefono), new { @class = "form-control m-input", style = "text-transform: uppercase", required = "required" })
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label"><span metadata="configuracionDatosEscolaridad">Escolaridad </span><span style="color:red">*</span></label>
+                                        @Html.DropDownListFor(m => m.Escolaridad, Model.ObtenerEscolaridades(Model.CodigoTelefono), new { @class = "form-control m-input", style = "text-transform: uppercase", required = "required" })
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label"><span metadata="configuracionDatosPaisNacimiento">País de nacimiento </span><span style="color:red">*</span></label>
+                                        @Html.TextBoxFor(m => m.PaisNacimiento, new { @class = "form-control", type = "text", required = "required" })
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label"><span metadata="configuracionDatosPaisNacimiento">Ciudad de nacimiento </span><span style="color:red">*</span></label>
+                                        @Html.TextBoxFor(m => m.CiudadNacimiento, new { @class = "form-control", type = "text", required = "required" })
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-12 col-lg-4 pl-md-5 columna-datos-contacto">
+                                <h3>Datos de contacto</h3>
+                                <div class="form-group">
+                                    <label class="form-label">Correo <span style="color:red">*</span></label>
+                                    @if (ViewBag.idCliente == "108" || ViewBag.idCliente == "233")
+                                    {
+                                        @Html.TextBoxFor(m => m.Correo, new { @class = "form-control", type = "text", required = "required", maxlength = "60" })
+                                    }
+                                    else
+                                    {
+                                        @Html.TextBoxFor(m => m.Correo, new { @class = "form-control", type = "text", required = "required", maxlength = "100" })
+                                    }
+                                </div>
+                                <div class="form-group">
+                                    @if(Model.CodigoTelefono == "CO")
+                                    {
+                                        <label class="form-label">Celular <span style="color:red">*</span></label>
+                                        <br>
+                                        @Html.TextBoxFor(m => m.TelefonoMovil, new { @class = "form-control", required = "required" })
+                                    }
+                                    else
+                                    {
+                                        <label class="form-label">Celular</label>
+                                        <br>
+                                        @Html.TextBoxFor(m => m.TelefonoMovil, new { @class = "form-control"@*, required = "required"*@})
+                                    }
+                                </div>
+                                <div class="form-group">
+                                    @if(Model.CodigoTelefono == "CO")
+                                    {
+                                        <label class="form-label">Teléfono <span style="color:red">*</span></label>
+                                        <br>
+                                        @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control", type = "text", required = "required" })
+                                    }
+                                    else
+                                    {
+                                        <label class="form-label">Teléfono</label>
+                                        <br/>
+                                        @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control", type = "text" })
+                                    }
+                                </div>
+                                <div class="form-group">
+                                    @*Validación de direccion del perfil (WOW) x país, por ahora solo Chile*@
+                                    @if (Model.CodigoTelefono == "CL")
+                                    {
+                                        <label class="form-label">Dirección <span style="color:red">*</span></label>
+                                        @Html.TextBoxFor(m => m.Direccion, new { @class = "form-control", type = "text", required = "required", name = "profileDireccion", id="profileAddress" })
+                                        <div class="wow__perfil-addresses" id="divDireccionMedi">
+                                            <a id="agregar-direccion-medicamentos" class="btn btn-outline-primary btn-sm wow-btn__perfil wow__btn-med">
+                                                <p class="agregarDireccionPerfil">Agregar</p>
+                                            </a>
+                                            <a id="seleccionar-direccion-medicamentos" class="btn btn-outline-primary btn-sm wow-btn__perfil">
+                                                <p id="selectAddressMed" class="seleccionarDireccionPerfil">Seleccionar</p>
+                                            </a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <label class="form-label">Dirección <span style="color:red">*</span></label>
+                                        @Html.TextBoxFor(m => m.Direccion, new { @class = "form-control", type = "text", required = "required"})
+                                    }
+                                </div>
+                                @if (Model.CodigoTelefono == null || (Model.CodigoTelefono != "PE" && Model.CodigoTelefono != "EC" && Model.CodigoTelefono != "CR"))
+                                {
+                                @if (ViewBag.HostURL.ToString().Contains("gallagher.") || ViewBag.HostURL.ToString().Contains("ajg.medismart.") || ViewBag.HostURL.ToString().Contains("aecsa.") || ViewBag.HostURL.ToString().Contains("rappi.") || ViewBag.HostURL.ToString().Contains("bonnahealth.") || ViewBag.HostURL.ToString().Contains("bu.") || Model.CodigoTelefono == "CO")
+                                {
+                                    <h3 hidden>Datos previsionales</h3>
+                                }
+                                else if (Model.CodigoTelefono == "MX")
+                                {
+                                
+                                }
+                                else
+                                {
+                                    <h3>Datos previsionales</h3>
+                                }
+                                <div class="form-group">
+                                    @if (ViewBag.HostURL.ToString().Contains("gallagher.") || ViewBag.HostURL.ToString().Contains("ajg.medismart.") || ViewBag.HostURL.ToString().Contains("aecsa.") || ViewBag.HostURL.ToString().Contains("rappi.") || ViewBag.HostURL.ToString().Contains("bonnahealth.") || ViewBag.HostURL.ToString().Contains("bu.") || Model.CodigoTelefono == "CO")
+                                    {
+                                        <label class="form-label">EPS</label>
+                                        @Html.DropDownListFor(m => m.Prevision, Model.ObtenerPrevision(), new { @class = "form-control m-input", style = "text-transform: uppercase" })
+                                    }
+                                    else if (Model.CodigoTelefono == "MX")
+                                    {
+                                        <label class="form-label"></label>
+                                    }
+                                    else
+                                    {
+                                        <label class="form-label">Previsión</label>
+                                        @Html.DropDownListFor(m => m.Prevision, Model.ObtenerPrevision(), new { @class = "form-control m-input", style = "text-transform: uppercase" })
+                                    }
+                                </div>
+                                }
+                                @if (!ViewData["view"].Equals(Roles.Paciente))
+                                {
+                                    <div class="form-group">
+                                        <label class="form-label">Convenio</label>
+                                        <select name="convenio" id="convenio" class="form-control show-tick ms select2" multiple data-placeholder="Select"></select>
+                                        @*@Html.DropDownListFor(model => model.IdEmpresa, Enumerable.ToList(Model.Empresas).Select(x => new SelectListItem { Text = x.Nombre.ToString(), Value = x.Id.ToString() }), new { @class = "form-control" })*@
+                                    </div>
+                                }
+                                
+                                @if (ViewBag.HostURL.ToString().Contains("gallagher.") || ViewBag.HostURL.ToString().Contains("ajg.medismart.") || ViewBag.HostURL.ToString().Contains("aecsa.") || ViewBag.HostURL.ToString().Contains("rappi.") || ViewBag.HostURL.ToString().Contains("bonnahealth.") || ViewBag.HostURL.ToString().Contains("bu.") || Model.CodigoTelefono == "CO")
+                                {
+                                    <h3 hidden>Zona horaria</h3>
+                                    @Html.DropDownListFor(m => m.ZonaHoraria, Model.ZonasHorarias(), new { @class = "form-control m-input", style = "text-transform: uppercase; display:none" })
+                                }
+
+                                else
+                                {
+                                    <h3>Zona horaria</h3>
+                                    <div class="form-group">
+                                        <label class="form-label">Zona Horaria</label>
+                                        @Html.DropDownListFor(m => m.ZonaHoraria, Model.ZonasHorarias(), new { @class = "form-control m-input", style = "text-transform: uppercase" })
+
+                                    </div>
+                                }
+
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col cont-guardar-info">
+                                <button type="submit" id="btn_guardar_info" class="btn btn-success btn-guardar-info">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--end::Nuevo Perfil-->
+
+<div class="kt-portlet d-none">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title" metadata="configuracionPerfilTitle">Información Personal</h3>
+        </div>
+
+    </div>
+    <form id="form_edit_perfil" class="kt-form kt-form--label-right">
+        <div class="kt-portlet__body">
+            <div class="kt-section kt-section--first mb-0">
+                <div class="kt-section__body">
+
+
+                    <div class="row">
+                        <div class="col-md-auto">
+                            <div class="row">
+                                <div class="col-lg-12 mb-4">
+                                    <div class="row">
+
+
+                                        <div class="col-lg-12 col-xl-12 text-center">
+                                            <!--
+                                            @Html.HiddenFor(m => m.TempID)
+                                            <div class="kt-avatar kt-avatar--outline" id="kt_user_avatar">
+                                            @{
+
+
+                                            }
+                                            @*@Configuration["ServicesUrl"]@Model.personasDatos.RutaVirtual*@@*background-image: url(@Configuration["ServicesUrl"]@Model.rutaAvatar);*@
+                                                <div id="divAvatar" style="height:230px;width:230px;" class=" dropzone accessibility-issue__headerkt-avatar__holder cont-avatar">
+                                                    <div class="form-group row" id="cargaFoto" style="display: none">
+                                                        <div class="dropzone dropzone-default dropzone-brand brand-zone-medismart" id="kt_dropzone_fotoavatar" style="height:200px;">
+                                                            <div class="dropzone-msg dz-message medismart-dopzone needsclick">
+                                                                <h3 class="dropzone-msg-title" metadata="configuracionImgMessage">Arrastra tu foto de perfil aquí si deseas cambiarla.</h3>
+                                                                <span class="dropzone-msg-desc" metadata="configuracionImgMessage2">Archivos seleccionados se <strong>guardarán</strong> automáticamente.</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="Cambiar foto">
+                                                    <i class="fa fa-pen"></i>
+
+                                                </label>
+                                                <span class="kt-avatar__cancel" data-toggle="kt-tooltip" title="" data-original-title="Cancel avatar">
+                                                    <i class="fa fa-times"></i>
+                                                </span>
+                                            </div>
+                                            -->
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md">
+
+                            <!--Nuevo layout de formulario-->
+
+                            <h5 class="label-title mb-4" metadata="configuracionDatosTitle">Datos Personales</h5>
+
+                            <div class="form-group row mb-4">
+                                <div class="col-12 col-md mb-4 mb-md-0">
+                                    <label class="form-label"><span metadata="configuracionDatosNombre">Nombres </span><span style="color:red">*</span></label>
+                                    @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control", maxlength = "50", required = "required" })
+                                </div>
+                                <div class="col-12 col-md mb-4 mb-md-0">
+                                    <label class="form-label"><span metadata="configuracionDatosApellido">Apellido paterno </span><span style="color:red">*</span></label>
+                                    @Html.TextBoxFor(m => m.ApellidoPaterno, new { @class = "form-control", maxlength = "50", required = "required" })
+                                </div>
+                                <div class="col-12 col-md mb-4 mb-md-0">
+                                    <label class="form-label" metadata="configuracionDatosApellido2">Apellido materno</label>
+                                    @Html.TextBoxFor(m => m.ApellidoMaterno, new { @class = "form-control", maxlength = "50" })
+                                </div>
+                            </div>
+
+                            <div class="form-group row mb-4">
+                                <div class="col-12 col-md mb-4 mb-md-0">
+                                    <label class="form-label" metadata="configuracionDatosDni">Cédula de Identidad</label>
+                                    @if (ViewData["view"].Equals(Roles.Paciente))
+                                    {
+                                        @Html.TextBoxFor(m => m.Identificador, new { @class = "form-control", maxlength = "12", required = "required", disabled = "disabled" })
+                                        @Html.HiddenFor(m => m.Identificador)
+                                    }
+                                    else
+                                    {
+                                        @Html.TextBoxFor(m => m.Identificador, new { @class = "form-control", maxlength = "12", required = "required", id = "identificador" })
+                                        @Html.HiddenFor(m => m.Identificador)
+                                    }
+
+                                    @Html.Hidden("idEntidad", ViewData["idEntidad"])
+                                    @Html.Hidden("codEntidad", ViewData["codEntidad"])
+                                    @Html.Hidden("IdCliente", ViewData["uid"])
+                                    @Html.Hidden("uid", (object)ViewBag.uid)
+                                    @Html.Hidden("IdCentroClinico", (object)ViewBag.IdCentroClinico)
+                                </div>
+                                <div class="col-12 col-md mb-4 mb-md-0">
+                                    <label class="form-label" metadata="configuracionDatosNacimiento">Fecha de nacimiento</label>
+                                    @Html.TextBoxFor(m => m.FNacimiento, "{0:dd/MM/yyyy}", new { @class = "form-control", type = "text" })
+                                </div>
+                                <div class="col-12 col-md mb-4 mb-md-0">
+                                    <label class="form-label"><span metadata="configuracionDatosGenero">Género </span><span style="color:red">*</span></label>
+                                    @Html.DropDownListFor(m => m.Genero, Model.ObtenerSexo(), new { @class = "form-control m-input", style = "text-transform: uppercase", required = "required" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="col-12">
+
+                        <h5 class="label-title mb-4" metadata="configuracionDatosContacto">Datos de Contacto</h5>
+
+                        <div class="form-group row mb-4 ">
+                            <div class="col-12 col-md-6 mb-4">
+                                <label class="form-label"><span metadata="configuracionDatosCorreo">Correo </span><span style="color:red">*</span></label>
+                                @Html.TextBoxFor(m => m.Correo, new { @class = "form-control", type = "text", required = "required", maxlength = "100" })
+                            </div>
+                            <div class="col-12 col-md-3 mb-4">
+                                <label class="form-label" metadata="configuracionDatosCelular">Celular</label>
+                                @Html.TextBoxFor(m => m.TelefonoMovil, new { @class = "form-control"@*, required = "required"*@ })
+                            </div>
+                            <div class="col-12 col-md-3 mb-4">
+                                <label class="form-label" metadata="configuracionDatosTel">Teléfonossss</label>
+                                @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control", type = "text" })
+                            </div>
+                            <div class="col-12 col-md-6 mb-4">
+                                <label class="form-label"><span metadata="configuracionDatosDireccion">Dirección</span><span style="color:red">*</span></label>
+                                @Html.TextBoxFor(m => m.Direccion, new { @class = "form-control", type = "text", required = "required" })
+                            </div>
+                            <div class="col-12 col-md-6 mb-4">
+                                <label class="form-label" metadata="configuracionDatosZona">Zona Horaria</label>
+                                @Html.DropDownListFor(m => m.ZonaHoraria, Model.ZonasHorarias(), new { @class = "form-control m-input", style = "text-transform: uppercase" })
+                            </div>
+                        </div>
+                        @*<div class="form-group row">
+                        <label class="col-xl-3 col-lg-3 col-form-label">Zona Horaria</label>
+                        <div class="col-lg-8 col-xl-8 validate">
+                        @Html.DropDownListFor(m => m.ZonaHoraria, Model.ZonasHorarias(), new { @class = "form-control m-input", style = "text-transform: uppercase" })
+                        </div>
+                        </div>*@
+                    </div>
+                    @if (Model.CodigoTelefono == null || (Model.CodigoTelefono != "PE" && Model.CodigoTelefono != "EC" && Model.CodigoTelefono != "CR"))
+                    {
+                    <div class="col-12" id="datosPrevisionales">
+                        <hr />
+                        <h5 class="label-title mb-4" metadata="configuracionDatosPrevision">Datos previsionales</h5>
+                        <div class="form-group row mb-0">
+                            <div class="col-12 col-md mb-4 mb-md-0">
+                                <label class="form-label" metadata="configuracionDatosPrevTtile">Previsión</label>
+                                @Html.DropDownListFor(m => m.Prevision, Model.ObtenerPrevision(), new { @class = "form-control m-input", style = "text-transform: uppercase" })
+                            </div>
+                            <div class="col-12 col-md">
+
+                                @if (!ViewData["view"].Equals(Roles.Paciente))
+                                {
+                                    <label class="form-label" metadata="configuracionDatosConvenio">Convenio</label>
+                                    <select name="convenio" id="convenio" class="form-control show-tick ms select2" multiple data-placeholder="Select"></select>
+                                    @*@Html.DropDownListFor(model => model.IdEmpresa, Enumerable.ToList(Model.Empresas).Select(x => new SelectListItem { Text = x.Nombre.ToString(), Value = x.Id.ToString() }), new { @class = "form-control" })*@
+                                }
+                               
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+                    <!--end:: Nuevo layout de formulario-->
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="kt-portlet__foot">
+            <div class="kt-form__actions">
+                <div class="row">
+                    <div class="col-12 ml-md-auto col-md-auto">
+                        <br />
+                        <button type="submit" id="btn_guardar_info" class="btn btn-success btn-block" metadata="configuracionGuardarPerfil">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </form>
+
+
+
+</div>
+
+
+@section Scripts {
+    <script src="~/js/Usuario/config.js?9rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/config.js?rnd=@NumeroRandom.GetRandom()';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+
+            var uid = @ViewBag.uid;
+
+            window.uid = uid;
+            var idEdit = @ViewBag.idEdit;
+            window.idEdit = idEdit;
+            var idCliente = '@ViewBag.idCliente';
+            window.idCliente = idCliente;
+
+        })()
+    </script>
+}

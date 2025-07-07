@@ -1,0 +1,766 @@
+/*BUK & BUK-MX*/
+
+
+:root {
+    --primary: #080707;
+    --secondary: #071867;
+    --tertiary: #27273F;
+    --accent: #2F45AA;
+    --light: #FFF;
+    --font-family: 'Mulish', sans-serif;
+}
+
+body {
+    /* font-family: var(--font-family) !important;*/
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family) !important;
+}
+
+
+
+/*Login*/
+
+.logotipo-buk-wedoctorsmx {
+    background-image: url(../../img/buk/logotipo-mx.png) !important;
+}
+
+.logotipo-desktop {
+    background-image: url(../../img/buk/logotipo.png);
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/buk/logotipo.png);
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: var(--primary);
+    font-weight: 900;
+}
+
+.form-group .ms-label {
+    color: var(--tertiary) !important;
+}
+
+.btn-primary {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    border-radius: 50px;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.divider-medismart {
+    display: flex !important;
+    margin-bottom: 2rem;
+}
+
+.logo-convenios {
+    /* display: none;*/
+    margin-bottom: 2rem;
+}
+
+/* Im�genes Login */
+.img1 {
+    background-image: url(../../img/buk/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/buk/login/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/buk/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/buk/login/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/buk/login/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/buk/login/960x978.jpg);
+}
+
+/*Home*/
+
+.body-home {
+    /* background-image: linear-gradient(190deg, #161515, var(--accent) 70%); */
+    /* background-blend-mode: multiply; */
+    /*background-position: right 90%;*/
+}
+
+.body-home .logo-home img {
+    width: 120px;
+}
+
+.body-home .menu-top .item-menu-top .menu-top .label-menu,
+.body-home .menu-top .item-menu-top .menu-top .label-menu-pac {
+    color: #fff;
+    font-weight: bold;
+}
+
+.top-banner .legend {
+    font-weight: 500;
+}
+
+.body-home .card-plan .preferente-buk::after {
+    /* content: 'Precio Preferente' !important; */
+    /* display: inline-block !important;
+    color: white */
+    display: none !important;
+}
+
+.body-home .card-body .costo::after {
+    /* content: 'Costo 0' !important;
+    display: inline-block !important; */
+    display: none !important;
+}
+
+.body-home .card-plan .costo::after {
+    /* content: 'Costo 0' !important;
+    display: inline-block !important; */
+    display: none !important;
+}
+
+.body-home .card-plan .atencion-24::after {
+    /* content: '' !important; */
+    display: none !important;
+}
+
+.body-home .container.container_scotiabank.fletcher_accet {
+    display: none;
+}
+
+.costo::after {
+    /* content: 'Costo 0' !important; */
+    display: none !important;
+}
+
+.costo {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    /* background-image: url(../../img/home/costo-cero.svg); */
+    width: 70px;
+    height: 25px;
+    font-size: 11px;
+    font-weight: 900;
+    /* background-color: var(--accent); */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px 16px 0px 8px;
+    text-transform: uppercase;
+}
+
+
+
+.preferente-buk {
+
+    color: white;
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    /* background-image: url(../../img/home/costo-cero.svg); */
+    width: 127px;
+    height: 25px;
+    font-size: 11px;
+    font-weight: 900;
+    /* background-color: var(--accent); */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px 16px 0px 8px;
+    text-transform: uppercase;
+}
+
+.preferente-buk::after {
+    /* content: 'Precio Preferente' !important; */
+}
+
+.body-home #btnOrientacion .pronto {
+    display: none;
+}
+
+.menu-top .item-menu-top i,
+.menu-top .label-menu {
+    color: #2F45AA;
+}
+
+.menu-top .item-menu-top:hover i,
+.menu-top .item-menu-top:hover .label-menu,
+.menu-top .item-menu-top:hover .label-menu-pac {
+    color: var(--accent) !important;
+}
+
+
+.menu-top .label-menu,
+.menu-top .label-menu-pac {
+    color: #2F45AA;
+    font-weight: bold;
+    margin: 0 6px;
+}
+
+.kt-menu__item a,
+.kt-menu__item i {
+    color: black;
+}
+
+.kt-menu__item a .ms-label-menu {
+    color: var(--tertiary)
+}
+
+.kt-menu__item:hover a,
+.kt-menu__item:hover i {
+    color: var(--secondary) !important;
+}
+
+.accesible-btn button {
+    color: var(--secondary);
+    border: 1px solid var(--secondary);
+}
+
+.accesible-btn button:hover {
+    background-color: var(--primary);
+    border-color: var(--primary)
+}
+
+.busqueda-profesionales {
+    border: 2px solid #025F79;
+}
+
+.busqueda-profesionales i {
+    color: var(--secondary)
+}
+
+.busqueda-profesionales .btn-outline-primary {
+    color: var(--secondary)
+}
+
+.caja-especialidad.active {
+    background-color: #025F79;
+}
+
+.card {
+    border: 1px solid #2F45AA;
+}
+
+.caja-especialidad {
+    background-color: var(--secondary);
+}
+
+.inner-especialidad strong {
+    color: var(--light)
+}
+
+.step.active .step-icon {
+    background-color: black;
+}
+
+.stepper {
+    background-image: url(../../img/buk/fondo-banner2.svg);
+    color: #000000;
+}
+
+.stepper .flecha {
+    color: var(--primary)
+}
+
+.stepper img {
+    border-color: black;
+}
+
+.step-triage .titulo-step,
+.step-triage .label-step {
+    color: var(--primary);
+}
+
+.step-triage .step-icon {
+    background-color: var(--primary);
+}
+
+.step.active .label-step {
+    color: var(--primary)
+}
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: #8F8F8F
+}
+
+.caja-profesional .fecha-atencion {
+    color: var(--secondary)
+}
+
+.front-fecha-atencion {
+    border: 1px solid rgba(35, 33, 114, .3)
+}
+
+.front-fecha-atencion strong:before {
+    color: var(--secondary);
+    font-weight: 900;
+}
+
+.especialidad-profesional {
+    color: #8F8F8F
+}
+
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+
+.top-banner {
+    background-image: url(../../img/buk/fondo-banner.svg);
+}
+
+.top-banner img {
+    border-color: rgba(255, 255, 255, .3)
+}
+
+.top-banner .legend {
+    color: var(--light);
+    font-size: 28px;
+}
+
+.banner_topsc .legend .text-warning {
+    color: var(--primary) !important;
+}
+
+.top-banner.banner_topsc {
+    background-image: url(../../img/buk/fondo-banner2.svg);
+}
+
+/*.text-warning {
+    color: var(--light) !important;
+}
+*/
+.menu-top .item-menu-top .logotipo-mobile {
+    width: 100px !important;
+    position: relative;
+    top: 7px;
+    left: -5px;
+}
+
+/*Sala espera*/
+.hotspot-icon .cont-icon {
+    background-color: white;
+}
+
+.hotspot-icon .cont-icon:hover {
+    color: white;
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: #5867DD;
+}
+
+.cont-icon.hotspot-redes {
+    background-color: #2F45AA !important;
+    color: #fff !important;
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+}
+
+.btn-guardar-info,
+.btn-success {
+    background-color: var(--primary);
+    border-color: var(--primary);
+
+}
+
+.btn-guardar-info:hover,
+.btn-success:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: white
+}
+
+.btn.btn-outline-secondary {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--primary)
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+}
+
+#reporte:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+#hs-g .cont-icon {
+    background-color: var(--primary);
+}
+
+#hs-g:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+.toolbar-option {
+    color: var(--primary)
+}
+
+.toolbar-option.active {
+    color: var(--secondary)
+}
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--primary);
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--accent);
+}
+
+.login-footer .kt-container {
+    display: none;
+
+}
+
+.interrogacion {
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+
+.body-home .cont-card h1 {
+
+    max-width: 206px;
+}
+
+.copy {
+    display: none;
+}
+
+.btn-sala:hover {
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion,
+.cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion:hover,
+.cont-btn-vc .btn-atencion:hover {
+    background-color: rgba(237, 110, 0, 0.1);
+    color: var(--primary);
+}
+
+.hotspot-icon {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.hotspot-icon i {
+    text-shadow: none;
+}
+
+.hotspot-icon:hover {
+    color: #FFF;
+}
+
+
+/*Prehome*/
+
+.prehome__plans {
+    height: 450px;
+}
+
+.prehome__plan {
+    width: 100%;
+    padding: 0;
+}
+
+.prehome__plan ul {
+    list-style-image: url('../../img/buk/bullet.svg');
+
+    margin-top: 32px;
+    height: 350px;
+    font-size: 16px;
+}
+
+.prehome__title {
+    color: #FFF;
+}
+
+.kt-login__extra.registro {
+    display: none;
+}
+
+.logo-convenios.convenioChile+hr {
+    display: none;
+}
+
+.kt-login.kt-login--v3.kt-login--signin .kt-login__signin .titulo-card-farmacia {
+    text-align: center;
+}
+
+
+.ccu-modal-contenedor {
+    display: flex;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 32px;
+    width: 660px;
+    height: 354px;
+    background-image: url(../../img/buk/dr-modal.png);
+    background-repeat: no-repeat, repeat;
+    background-position: 4% 2rem, 0;
+    flex-direction: row;
+}
+
+.modal-paciente .modal-content {
+    margin: auto;
+    margin-top: 8rem;
+    border: none;
+    padding: 5px 32px;
+}
+
+.ccu-modal-contenedor-titulos {
+    padding: 2rem 0rem 0rem 14rem;
+}
+
+.ccu-modal-dr {
+    height: 23rem;
+    width: 29rem;
+}
+
+.ccu-modal-logo {
+    padding: 1rem 0rem 1rem 0rem;
+}
+
+
+.ccu-modal-contenedor-imagen {
+    padding: 0rem;
+}
+
+.ccu-modal-titulo-uno {
+    color: #004E91;
+    font-family: Mulish;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    padding-bottom: 0.5rem;
+}
+
+
+.ccu-modal-titulo-dos {
+    color: #004E91;
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    padding-bottom: 0.5rem;
+}
+
+.body-home .cont-card .card {
+
+    border-radius: 16px;
+    border: none;
+    /* width: 160px; */
+    /* height: 160px; */
+    transition: all .3s ease-out;
+    cursor: pointer;
+    display: block;
+    background-color: white;
+    /* margin: auto; */
+
+}
+
+.body-home .card-plan .costo,
+.body-home .card-plan .pronto-card,
+.body-home .card-plan .atencion-24 {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    /* background-image: url(../../img/home/costo-cero.svg); */
+    width: 70px;
+    height: 25px;
+    font-size: 11px;
+    font-weight: 900;
+    /* background-color: var(--accent); */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px 16px 0px 8px;
+    text-transform: uppercase;
+    display: none !important;
+}
+
+.body-home .card-body .costo,
+.body-home .card-plan .pronto-card,
+.body-home .card-plan .atencion-24 {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    /* background-image: url(../../img/home/costo-cero.svg); */
+    width: 70px;
+    height: 25px;
+    font-size: 11px;
+    font-weight: 900;
+    /* background-color: var(--accent); */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px 16px 0px 8px;
+    text-transform: uppercase;
+    display: none !important;
+}
+
+.accesible-tools-desktop .accesible-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 3rem;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+
+.leyenda-card-home {
+    text-align: left;
+    margin-left: 1rem;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: white;
+    text-transform: uppercase;
+}
+
+.calificacion .positiva {
+    color: var(--accent);
+}
+
+.hotspot-icon .cont-icon {
+    font-size: 2.5rem;
+    color: var(--accent);
+}
+
+.hotspot-icon:hover .cont-icon {
+    font-size: 2.5rem;
+    color: white !important;
+}
+
+.hotspot-redes {
+    background-color: white !important;
+}
+
+.hotspot-redes:hover {
+    background-color: var(--accent) !important;
+    color: white !important;
+}
+
+.fa-bell {
+    display: none !important;
+}
+
+.none-buk {
+    display: none !important;
+}
+
+
+
+@media (max-width: 668px) {
+
+    .prehome__plan {
+        padding: 2rem 0 3rem 0 !important;
+    }
+
+
+
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+
+    .cont-consentimiento-informado {
+        height: auto;
+        max-height: 60px;
+        min-height: unset;
+    }
+
+    div#kt_content {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .prehome__plans {
+        height: auto;
+    }
+
+    .top-banner .legend {
+        text-align: left;
+        font-size: 1.3rem;
+    }
+
+    
+}
+
+@media (max-width: 1024px){
+
+.leyenda-card-home {
+        color: var(--tertiary);
+    }
+
+}
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+
+    .img1,
+    .img2,
+    .img3,
+    .img4,
+    .img5,
+    .img6 {
+        background-image: url(../../img/buk/login/548x850.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1,
+    .img2,
+    .img3,
+    .img4,
+    .img5,
+    .img6 {
+        background-image: url(../../img/buk/login/960x978.jpg);
+    }
+}

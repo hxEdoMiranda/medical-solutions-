@@ -1,0 +1,132 @@
+/*Asistencia*/
+
+.cont-orientacion {
+    margin-top: 4rem;
+}
+
+    .cont-orientacion h1 {
+        font-weight: 900;
+        color: #0081a4;
+        
+    }
+
+        .cont-orientacion h1 small {
+            font-weight: 900;
+            font-size:2.2rem;
+        }
+
+        .cont-orientacion .canales-orientacion {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 3rem;
+        }
+
+        .cont-orientacion .canales-orientacion i {
+            font-size: 1.4rem;
+            display: inline-block;
+            margin-right: 1rem;
+        }
+
+        .cont-orientacion .canales-orientacion li {
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+
+
+    .cont-orientacion .lista-orientacion {
+        padding-left: 0;
+        list-style-type: none;
+        font-size: 1.2rem;
+    }
+
+
+.btn-asistencia {
+    padding: 1rem;
+    background-color: #3BC1CD;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    width: 300px;
+    display: flex;
+    transition: all 0.3s ease-out;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 2px solid #3bc1cd;
+    color: #FFF;
+    position: relative;
+    border: 1px solid red;
+   
+}
+
+
+
+.btn-asistencia .icono-asistencia {
+    position: absolute;
+    z-index: 2;
+    left: -40px;
+    transition: .3s ease-in-out all;
+    opacity: 0;
+}
+
+    .btn-asistencia:hover {
+        color: #FFF !important;
+        background-color: #0081a4
+    }
+
+        .btn-asistencia:hover .icono-asistencia {
+            left: calc(100% - 30px);
+            opacity: 1;
+        }
+
+
+    .cont-orientacion .lista-orientacion li {
+        margin-bottom: 1rem;
+    }
+
+        @media (max-width: 1024px) {
+            h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+            .cont-orientacion p {
+        display: none;
+    }
+
+    .cont-orientacion {
+        margin-top: 2rem;
+    }
+
+    .cont-orientacion img {
+        max-width: 200px;
+        margin-bottom: 2rem;
+    }
+
+            a {
+                margin: auto;
+                text-align: center;
+                /*justify-content: center;*/
+            }
+
+    .lista-orientacion {
+        display: block;
+        margin: auto;
+        text-align: center;
+        list-style-type: none;
+    }
+
+        .lista-orientacion li {
+            margin-bottom: 1rem;
+        }
+}
+
+
+.toma-examenes-medismart {
+    display: block;
+}
+
+.toma-examenes-coopeuch {
+    display: none;
+}

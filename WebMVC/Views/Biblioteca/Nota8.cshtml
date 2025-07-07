@@ -1,0 +1,144 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+
+    <section class="container-fluid note-section library featured" id="nota8">
+        <div class="container">
+            <div class="row">
+                <div class="col-auto">
+                    <div class="cont-icons">
+                        <div class="icon account-type">
+                            <i class="fal fa-heart"></i>
+                        </div>
+                        <div class="icon">
+                            <i class="fal fa-file-alt"></i>
+                        </div>
+                    </div>
+
+                    <h1 class="title-section">
+                        "La detección temprana en el cáncer de mama: Tu escudo protector"
+                    </h1>
+                    
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    
+                    <p>
+                        El cáncer de mama es una realidad que afecta a millones de mujeres en todo el mundo. Sin embargo, la buena noticia es que cuando 
+                        se detecta a tiempo, las posibilidades de éxito en el tratamiento y recuperación son significativamente mayores. En este blog, 
+                        exploraremos la importancia de la detección temprana en el cáncer de mama, por qué debes tomarla en serio y cómo puedes cuidar 
+                        tu salud mamaria.
+
+                    </p> <br />
+                    <strong>
+                        Entendiendo el cáncer de mama
+
+                        </strong>
+                    <p>
+                        El cáncer de mama es una enfermedad en la que las células en los tejidos mamarios comienzan a crecer de manera anormal. 
+                        Puede desarrollarse de manera silenciosa, sin causar síntomas evidentes en sus etapas iniciales. Esto hace que la detección
+                        temprana sea fundamental, ya que cuanto antes se detecte, mayores serán las opciones de tratamiento efectivo.
+
+
+
+                    </p><br />
+                    <strong>
+                        ¿Por qué la detección temprana es vital?
+
+                        </strong>
+                    <p>
+                        La detección temprana del cáncer de mama puede marcar la diferencia entre la vida y la muerte. En sus etapas iniciales, 
+                        el cáncer de mama es más tratable y las opciones de tratamiento son menos invasivas. Además, las tasas de supervivencia a 
+                        largo plazo son significativamente más altas cuando se diagnostica a tiempo.
+
+                    </p><br />
+                    <strong>
+                        Métodos de detección temprana
+
+                    </strong> 
+                    <br />
+                    <p>
+                        Existen dos métodos principales para la detección temprana del cáncer de mama:
+
+                    </p>
+
+                    <ol>
+                        <br />
+                        <li>
+                            <strong>Autoexamen mamario:</strong> Realizar autoexámenes regulares de tus mamas te permite conocer tu cuerpo y 
+                            detectar cualquier cambio inusual, como bultos o cambios en la piel. Si encuentras algo inusual, debes contactar 
+                            a un profesional de la salud de inmediato.
+
+
+                        </li>
+                        <br />
+                        <li>
+                            <strong>Mamografía:</strong> Las mamografías son radiografías especializadas de las mamas que pueden detectar tumores 
+                            que son demasiado pequeños para ser palpados. Se recomienda que las mujeres mayores de 40 años se realicen mamografías de manera regular.
+
+
+
+                        </li>
+                                                                  
+                    </ol>
+                    
+                    <p>
+                        Cada día cuenta cuando se trata de la detección temprana del cáncer de mama. No esperes a que los síntomas empeoren o a que las 
+                        dudas se acumulen. Tu salud es una prioridad, y estamos aquí para brindarte el apoyo necesario en cada paso del camino.
+
+
+                    </p>
+                    
+                    <br />
+                    <strong>
+                        La detección temprana salva vidas
+
+                    </strong>
+
+                    <div class="cont-btnNota7">
+                        <button class="btn btn-primary" onclick="location.href='/Paciente/Agendar?tipo=suscripcion'">Agendar cita</button>
+                    </div>
+                   
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+                    </div>
+                    
+
+                    <partial name="~/Views/Biblioteca/_ColumnasNotas.cshtml" model="Model" view-data="ViewData" />
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}

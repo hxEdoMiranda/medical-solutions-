@@ -1,0 +1,55 @@
+
+@model WebMVC.Models.AtencionViewModel
+@{
+    Layout = "_LayoutInvitado";
+    ViewData["view"] = Roles.Invitado;
+
+
+}
+@section Styles  {
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+<partial name="~/Views/Shared/_Atencion.cshtml" model="Model" view-data="ViewData" />
+
+
+
+
+
+@section Scripts {
+    <script src="~/opentok/opentok.min.js"></script>
+    
+
+    <script src="~/signal/signalr.min.js"></script>
+    
+    <script src="~/metronic_demo7/assets/js/pages/components/extended/sweetalert2.js?rnd=@NumeroRandom.GetRandom()"></script>
+    <script src="~/js/Shared/atencion.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/Shared/archivos-adjuntos.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/Shared/chat.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+
+    @*<script src="https://kit.fontawesome.com/f20b9dc261.js?rnd=@NumeroRandom.GetRandom()" crossorigin="anonymous"></script>*@
+    <script src="~/js/KitAwesome.js"></script>
+
+    @*<script src="~/js/Medico/atencion.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>*@
+    <script type="module">
+        import { init } from '../../js/Invitado/atencion.js?rnd=@NumeroRandom.GetRandom()';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+        })()
+    </script>
+    <script>
+        // Warning before leaving the page (back button, or outgoinglink)
+        window.onbeforeunload = function () {
+            return "Seguro que quieres dejar la página, estas en medio de una atención?";
+            //if we return nothing here (just calling return;) then there will be no pop-up question at all
+            //return;
+        };
+    </script>
+}
+
+
+

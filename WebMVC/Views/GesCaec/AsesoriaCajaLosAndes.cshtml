@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+  <div class="toma-examenes-cardif">
+
+        <!--start..Scotiabank-->
+
+        <div class="asesorias-cda">
+                <div class="cont-ilustracion_cda"></div>
+                <div class="cont-asesorias">
+                    <h1>¿Conoces tus coberturas de salud? <br />Tranquilo, aquí te ayudamos a entender todo.</h1>
+                    <p>
+                        Comunícate con nuestro Centro de Atención y podrás resolver todas tus dudas sobre GES (Garantías Explícitas de Salud) y 
+                        CAEC (Cobertura Adicional para Enfermedades Catastróficas). Descubre cómo activar estas coberturas y qué enfermedades están cubiertas.
+                    </p>
+                    <p><strong>Contáctanos directamente pinchando acá:</strong></p>
+                    <div class="container-fluid cont-btn">
+                            <div class="asesorias-cda_box">
+                                <div class="cda_location">
+                        <a id="btnCallAsistencia" class="btn btn-primary">LLAMAR</a>
+                        <small>Llamarás directamente al <br /> @ViewBag.NumeroAsesoria</small>
+                                </div>
+                                 
+                    @if (!ViewBag.HostURL.Contains("masproteccionsalud.") && !ViewBag.HostURL.Contains("clinicamundoscotia."))
+                    {
+                        <div class="cda_location">
+                            <button class="btn btn-primary" onclick="location.href='/Paciente/Agendar?tipo=suscripcion&tipoEspecialidad=orientacion'">VIDEOLLAMADA</button>
+                        </div>
+                    }
+                            </div>
+                </div>
+        </div>
+        </div>
+
+
+    
+   </div>

@@ -1,0 +1,310 @@
+﻿@using Microsoft.Extensions.Configuration
+@model WebMVC.Models.ReportePaciente
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Reporte Enfermería";
+    Layout = "_Layout";
+
+}
+
+
+@section Styles  {
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+    <!--Begin::App-->
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+
+        <!--Begin:: App Aside Mobile Toggle-->
+        <button class="kt-app__aside-close" id="kt_user_profile_aside_close">
+            <i class="la la-close"></i>
+        </button>
+        <!--End:: App Aside Mobile Toggle-->
+        <!--End:: App Aside Mobile Toggle-->
+        <div class="col-xl-12">
+            <div class="kt-portlet">
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">Reporte Enfermería</h3>
+                    </div>
+
+                </div>
+                <form id="form_edit_reporte" class="kt-form kt-form--label-right">
+                    <div class="kt-portlet__body kt-portlet__body--fit">
+                        <div class="row col-lg-12">
+                            <div class="kt-widget1 col-lg-6">
+                                <div class="kt-widget1__item">
+                                    <div class="kt-widget1__info col-lg-12">
+                                        <div class="form-group row mb-4">
+                                            <div class="col-6 col-md mb-4 mb-md-0">
+                                                <label class="form-label">Paciente</label>
+                                                <span class="kt-widget1__desc">@Model.persona.Nombre @Model.persona.ApellidoPaterno</span><br>
+                                            </div>
+                                            <div class="col-6 col-md mb-4 mb-md-0">
+                                                @{
+                                                    DateTime fechaMayor = DateTime.Parse(DateTime.Now.ToShortDateString());
+                                                    DateTime fechaMenor = DateTime.Parse(Convert.ToDateTime(Model.persona.FNacimiento).ToShortDateString());
+
+                                                    var diferencia = fechaMayor.Year - fechaMenor.Year;
+                                                    int añosDiferencia = diferencia;
+
+                                                }
+                                                <label class="form-label">Edad</label>
+                                                <span class="kt-widget1__desc">@añosDiferencia</span><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-no-padding row-col-separator-xl">
+                            <div class="col-md-12 col-lg-12 col-xl-6">
+                                @Html.HiddenFor(m => m.reporteEnfermeria.Id)
+                                @Html.HiddenFor(m => m.reporteEnfermeria.IdPaciente)
+                                <!--begin:: Widgets/Stats2-1 -->
+                                <div class="kt-widget1">
+                                    
+                                    <div class="kt-widget1__item">
+                                        <div class="kt-widget1__info col-lg-12">
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Motivo de Consulta </label>
+                                                    @Html.DropDownListFor(m => m.reporteEnfermeria.MotivoConsulta, Enumerable.ToList(Model.motivoConsulta).Select(x => new SelectListItem { Text = x.Detalle.ToString(), Value = x.Id.ToString() }), new { @class = "form-control m-input", style = "text-transform: uppercase" })
+                                                </div>
+                                                <div class="col-12 col-md mb-4 mb-md-0" id="derivacion" hidden>
+                                                    <label class="form-label">Derivación Profesional</label>
+                                                    @Html.TextBoxFor(m => m.reporteEnfermeria.DerivacionProfesional, new { @class = "form-control"})
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="kt-widget1__item">
+                                        <div class="kt-widget1__info col-lg-12">
+                                            <h5 class="label-title mb-4">Valoración y diagnósticos de enfermería </h5>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Antecedentes Psicosociales</label>
+                                                    @Html.TextAreaFor(m => m.reporteEnfermeria.AntecedentesPsicosociales, new { @class = "form-control" })
+                                                </div>
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Antecedentes Laborales</label>
+                                                    @Html.TextAreaFor(m => m.reporteEnfermeria.AntecedentesLaborales, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Antecedentes Académicos</label>
+                                                    @Html.TextAreaFor(m => m.reporteEnfermeria.AntecedentesAcademicos, new { @class = "form-control" })
+                                                </div>
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Red de apoyo</label>
+                                                    @Html.TextAreaFor(m => m.reporteEnfermeria.RedApoyo, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Observaciones</label>
+                                                    @Html.TextAreaFor(m => m.reporteEnfermeria.Observacion, new { @class = "form-control"})
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="kt-widget1__item">
+                                        <div class="kt-widget1__info col-lg-12">
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Indicaciones de enfermería</label>
+                                                    @Html.TextAreaFor(m => m.reporteEnfermeria.IndicacionEnfermeria, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="kt-widget1__item">
+                                        <div class="kt-widget1__info col-lg-12">
+                                            <div class="form-group col-12 mb-4 pl-0">
+                                                <div class="col-12 col-md mb-4 mb-md-0 pl-0">
+                                                    <label class="form-label">Control</label>
+                                                    @Html.DropDownListFor(m => m.reporteEnfermeria.Control, Enumerable.ToList(Model.control).Select(x => new SelectListItem { Text = x.Detalle.ToString(), Value = x.Id.ToString() }), new { @class = "form-control m-input", style = "text-transform: uppercase" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="kt-widget1__item">
+                                        <div class="kt-widget1__info col-lg-12">
+                                            <h5 class="label-title mb-4">Antecedentes Médicos</h5>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Alergias</label>
+                                                    @Html.TextAreaFor(m => m.reporteEnfermeria.Alergias, new { @class = "form-control" })
+                                                </div>
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Medicamentos de uso habitual</label>
+                                                    @Html.TextAreaFor(m => m.reporteEnfermeria.Medicamentos, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!--end:: Widgets/Stats2-1 -->
+                            </div>
+                            <div class="col-md-12 col-lg-12 col-xl-6">
+                                <div class="kt-widget1">
+                                    <div class="kt-widget1__item">
+                                        <div class="kt-widget1__info col-lg-12">
+                                            <h5 class="label-title mb-4">Antecedentes Mórbidos</h5>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">HTA</label>
+                                                    @Html.CheckBoxFor(m => m.reporteEnfermeria.Hta, new { @class = "" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">DMII</label>
+                                                    @Html.CheckBoxFor(m => m.reporteEnfermeria.Dm)
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Asma</label>
+                                                    @Html.CheckBoxFor(m => m.reporteEnfermeria.Asma)
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">EPOC</label>
+                                                    @Html.CheckBoxFor(m => m.reporteEnfermeria.Epoc)
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Dislipidemia</label>
+                                                    @Html.CheckBoxFor(m => m.reporteEnfermeria.Dislipidemia)
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Depresión</label>
+                                                    @Html.CheckBoxFor(m => m.reporteEnfermeria.Depresion)
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Trastorno del sueño</label>
+                                                    @Html.CheckBoxFor(m => m.reporteEnfermeria.TrastornoSueno)
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Otros</label>
+                                                    @Html.TextAreaFor(m => m.reporteEnfermeria.OtrosAntecedentesMorbidos, new { @class = "form-control col-6"})
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="kt-widget1__item">
+                                        <div class="kt-widget1__info col-lg-12">
+                                            <div class="form-group col-12 mb-4 pl-0">
+                                                <div class="col-12 col-md mb-4 mb-md-0 pl-0">
+                                                    <label class="form-label">Antecedentes Quirúrgicos</label>
+                                                    @Html.TextAreaFor(m => m.reporteEnfermeria.AntecedentesQuirurgicos, new { @class = "form-control col-12"})
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="kt-widget1__item">
+                                        <div class="kt-widget1__info col-lg-12">
+                                            <h5 class="label-title mb-4">Hábitos</h5>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Alcohol</label>
+                                                    @Html.CheckBoxFor(m => m.reporteEnfermeria.Alcohol, new { @class = "" })
+                                                </div>
+                                                <div class="col-12 col-md mb-4 mb-md-0 pl-0">
+                                                    <label class="form-label">Observación Alcohol</label>
+                                                    @Html.TextAreaFor(m => m.reporteEnfermeria.ObsAlcohol, new { @class = "form-control col-12"})
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Tabaco</label>
+                                                    @Html.CheckBoxFor(m => m.reporteEnfermeria.Tabaco)
+                                                </div>
+                                                <div class="col-12 col-md mb-4 mb-md-0 pl-0">
+                                                    <label class="form-label">Observación Tabaco</label>
+                                                    @Html.TextAreaFor(m => m.reporteEnfermeria.ObsTabaco, new { @class = "form-control col-12" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Actividad Física</label>
+                                                    @Html.CheckBoxFor(m => m.reporteEnfermeria.ActividadFisica)
+                                                </div>
+                                                <div class="col-12 col-md mb-4 mb-md-0 pl-0">
+                                                    <label class="form-label">Observación Actividad Física</label>
+                                                    @Html.TextAreaFor(m => m.reporteEnfermeria.ObsActividadFisica, new { @class = "form-control col-12" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Otras Drogas</label>
+                                                    @Html.CheckBoxFor(m => m.reporteEnfermeria.OtrasDrogas)
+                                                </div>
+                                                <div class="col-12 col-md mb-4 mb-md-0 pl-0">
+                                                    <label class="form-label">Observación Otras Drogas</label>
+                                                    @Html.TextAreaFor(m => m.reporteEnfermeria.ObsOtrasDrogas, new { @class = "form-control col-12" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!--end:: Widgets/Stats2-2 -->
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="kt-portlet__foot">
+                        <div class="kt-form__actions">
+                            <div class="row">
+                                <div class="col-12 col-md-6 offset-md-6 col-lg-3 offset-lg-9 text-right">
+                                    <button type="submit" id="btn_guardar_info" class="btn btn-success btn-block">Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+       
+
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script type="module">
+        import { init } from '../../js/Medico/editar-reporte-enfermeria.js?rnd=@NumeroRandom.GetRandom()';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+            var idPaciente = @ViewBag.idPaciente;
+            window.idPaciente = idPaciente;
+        })()
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+   
+}

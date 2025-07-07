@@ -1,0 +1,542 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@model LoginViewModel
+
+@{
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @*<title>@ViewData["Title"] - Medical</title>*@
+
+    <base href="">
+    <meta charset="utf-8" />
+    <title>Salud Protección | Sitio Paciente</title>
+    <meta name="description" content="Latest updates and statistic charts">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FH66LBPZ8B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-FH66LBPZ8B');
+    </script>
+
+    <!-- Google Tag Manager -->
+    @if (ViewBag.HostURL != null && (ViewBag.HostURL.ToString().Contains("saludproteccion.cl") || ViewBag.HostURL.ToString().Contains("masproteccionsalud.cl") || ViewBag.HostURL.ToString().Contains("clinicamundoscotia.cl")))
+    {
+        <script>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || []; w[l].push({
+                    'gtm.start':
+                        new Date().getTime(), event: 'gtm.js'
+                }); var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-WGQBMR9R');
+
+
+        </script>
+    }
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PR4C236');
+    </script>
+    <!-- End Google Tag Manager -->
+
+
+    <!-- #region metronic-template -->
+    <!--begin::Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Mulish&display=swap" rel="stylesheet">
+    <!--end::Fonts -->
+
+    <link href="~/metronic_demo7/assets/css/pages/login/login-3.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet"
+        type="text/css" />
+
+    <!--begin::Global Theme Styles(used by all pages) -->
+    <link href="~/metronic_demo7/assets/plugins/global/plugins.bundle.css?rnd=@NumeroRandom.GetRandom()"
+        rel="stylesheet" type="text/css" />
+    <link href="~/metronic_demo7/assets/css/style.bundle.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet"
+        type="text/css" />
+    <!--end::Global Theme Styles -->
+    <!--begin::Global Medismart Styles -->
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+
+    <link href="~/css/coopeuch/coopeuch.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <!--end::Global Medismart Styles -->
+    <!-- #endregion -->
+    <link rel="shortcut icon" href="~/css/assets/media/logos/logoFavicon.ico" />
+
+    @{
+
+        <!--<script type="module">
+                   import { MetadataLoader } from '../../js/Shared/metadata-json-resource.js?rnd=${@NumeroRandom.GetRandom()}';
+                   window.onload = MetadataLoader("loginCoopeuch");
+                </script>-->
+    }
+
+    <script>
+        (function (h, o, t, j, a, r) {
+            h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+            h._hjSettings = { hjid: 2677023, hjsv: 6 };
+            a = o.getElementsByTagName('head')[0];
+            r = o.createElement('script'); r.async = 1;
+            r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+    </script>
+
+</head>
+
+<body
+    class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--transparent kt-aside--enabled kt-aside--fixed kt-aside--minimize kt-page--loading">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PR4C236" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+
+    @if (ViewBag.HostURL != null && (ViewBag.HostURL.ToString().Contains("saludproteccion.cl") || ViewBag.HostURL.ToString().Contains("masproteccionsalud.cl") || ViewBag.HostURL.ToString().Contains("clinicamundoscotia.cl")))
+    {
+
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WGQBMR9R"
+                    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
+    }
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- begin:: Page -->
+    <div class="kt-grid kt-grid--ver kt-grid--root kt-page">
+        <div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v3 kt-login--signin" id="kt_login">
+            <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+                <div class="kt-login__logo mb-0 d-md-none d-block text-center cont-logo-mobile">
+                    <a href="#" class="px-0 logotipo-img logotipo-mobile logo-coopeuch">
+                        <!--<img alt="Logo" class="logotipo" src="~/img/logotipo.png" />-->
+                    </a>
+                </div>
+                <div class="container-fluid container-login">
+                    <div class="row row-eq-height justify-content-center">
+                        <div class="col-md-6 bkg-login d-none d-md-block">
+                            <div id="imgLogin" class="imgLogin"></div>
+                            <!--<img alt="Medismart.live" src="~/img/login6.png" id="imgLogin" />-->
+                            <!--<img src="~/img/login4.jpg" alt="Medismart.live"/>-->
+                        </div>
+                        <div class="col col-md-6">
+                            <div class="kt-login__wrapper">
+                                <div class="kt-login__container">
+                                    <div class="kt-login__logo mb-0 d-none d-md-block">
+                                        <a href="#" class="px-0 logotipo-img logotipo-desktop logo-coopeuch">
+                                            <!--<img alt="Logo" class="logotipo" src="~/img/logotipo.png" />-->
+                                        </a>
+                                    </div>
+                                    <div class="kt-login__signin">
+                                        <div class="kt-login__head">
+                                            <!-- <div class="pais">
+                                                <img alt="Bolivia" src="~/img/bolivia/bolivia.svg" />
+                                            </div>
+                                               -->
+                                            <h3 class="kt-login__title" metadata="loginSaludo">
+                                                Ingresa a <br /> Salud Protección
+                                            </h3>
+                                        </div>
+                                        <form class="kt-form" method="post" role="form">
+                                            <div class="form-group">
+                                                <label class="d-block ms-label fuente-accesible">Ingresa tu RUT (sin
+                                                    puntos ni guion)</label>
+                                                <input class="form-control" type="text" id="kt_rut"
+                                                    placeholder="Ingresa tu RUT" autocomplete="off" asp-for="Username">
+                                                <input class="form-control" type="hidden" id="JsonData"
+                                                    asp-for="JsonData">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="d-block ms-label fuente-accesible">Contraseña</label>
+                                                <div class="input-group" id="show_hide_password">
+                                                    <input id="kt_pw" class="form-control" type="password"
+                                                        placeholder="Escribe aquí" asp-for="Password">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            <a><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input hidden name="rol" value="@Roles.Paciente" />
+                                            <input hidden name="returnUrl" value="@ViewData["ReturnUrl"]" />
+                                            <div class="row kt-login__extra align-items-center mt-0">
+                                                <div class="col">
+                                                    <a href="javascript:;" id="kt_login_forgot" metadata="loginClave"
+                                                        class="kt-login__link fuente-accesible">Olvidé mi contraseña</a>
+                                                </div>
+
+                                                <div class="col">
+                                                    <div class="kt-login__actions mt-0">
+                                                        @*<button type="submit" class="btn btn-default">Log
+                                                        in</button>*@
+                                                        <button id="kt_login_signin_submit" disabled
+                                                            metadata="loginButton"
+                                                            class="btn btn-primary btn-elevate kt-login__btn-primary valido-login btn-block mt-0">Ingresar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <!-- RECAPTCHA-->
+                                        <div id="recaptcha_v" data-callback="recaptcha_callback" class="g-recaptcha"
+                                            data-sitekey="6Lcsq1ofAAAAAOZ17PtwxlJgTvl6ActzMUvxm8TR"></div>
+
+
+                                    </div>
+                                    <div class="kt-login__forgot">
+                                        <div class="kt-login__head">
+                                            <h3 class="kt-login__title">¿Olvidaste tu contraseña?</h3>
+                                        </div>
+                                        <form class="kt-form" asp-controller="Account" asp-action="PageReset"
+                                            method="post">
+                                            <div class="form-group">
+
+                                                <label class="kt-login__desc ms-label fuente-accesible">Ingresa tu RUT
+                                                    (sin puntos ni guion)</label>
+                                                <input class="form-control" type="text"
+                                                    placeholder="Cédula de Identidad" id="kt_email" asp-for="Username">
+                                                <input hidden name="rol" value="@Model.rol" />
+
+                                            </div>
+                                            <div class="kt-login__actions mt-0">
+                                                <div class="container">
+                                                    <div class="row align-items-center">
+                                                        <div class="col px-0 pr-md-1 ">
+                                                            <!--<button id="kt_login_forgot_cancel" class="btn btn-light btn-elevate kt-login__btn-secondary btn-block mb-3 mb-md-0 fuente-accesible">Cancelar</button>-->
+
+                                                            <a href="javascript:;" id="kt_login_forgot_cancel"
+                                                                class="kt-login__link fuente-accesible">Cancelar</a>
+                                                        </div>
+                                                        <div class="col-auto px-0 pl-md-1 text-right">
+                                                            <button id="kt_login_forgot_submit"
+                                                                class="btn btn-primary btn-elevate kt-login__btn-primary btn-block fuente-accesible">Ingresar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div class="kt-reset__password">
+                                        <form id="formCodigo" class="kt-form" asp-controller="Users"
+                                            asp-action="ValidarCodigoLogin" method="post">
+
+                                            <div class="kt-login__head">
+                                                <h4 class="kt-login__title fuente-accesible">¿Olvidaste tu contraseña?
+                                                </h4>
+                                            </div>
+                                            <div class="input-group mb-2">
+                                                <input hidden class="form-control" type="text" placeholder=""
+                                                    asp-for="Codigo" id="codigo" autocomplete="off">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="mensaje-envio">
+                                                            <input hidden name="Username" value="@Model.Username"
+                                                                id="username_code" />
+                                                            <p>
+                                                                Te enviamos un correo electrónico <span
+                                                                    id="email-user"></span>con un código de
+                                                                verificación. <br />
+                                                                ¿No lo recibiste? <a id="kt_login_resend_link"
+                                                                    href="javascript:;">Reenviar</a>
+                                                            </p>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div id="divCodes" class="codigo-verificacion">
+                                                            <label>Código de verificación</label>
+                                                            <div class="cont-codigo">
+                                                                <input type="text" maxlength="1" name="code1" id="code1"
+                                                                    autocomplete="off" value="" />
+                                                                <input type="text" maxLength="1" name="code2" id="code2"
+                                                                    autocomplete="off" value="" />
+                                                                <input type="text" maxLength="1" name="code3" id="code3"
+                                                                    autocomplete="off" value="" />
+                                                                <input type="text" maxLength="1" name="code4" id="code4"
+                                                                    autocomplete="off" value="" />
+                                                                <input type="text" maxLength="1" name="code5" id="code5"
+                                                                    autocomplete="off" value="" />
+                                                                <input type="text" maxLength="1" name="code6" id="code6"
+                                                                    autocomplete="off" value="" />
+                                                            </div>
+                                                            <div id="errorCodigo" class="codigo-no-valido d-none">
+                                                                <img src="~/img/coopeuch/iconos/error .svg"
+                                                                    alt="Error" />El código de verificación es
+                                                                incorrecto. Vuelve a intentarlo.
+                                                            </div>
+                                                            <div id="vencimientoCodigo" class="codigo-no-valido d-none">
+                                                                <img src="~/img/coopeuch/iconos/error .svg"
+                                                                    alt="Error" />El código ha caducado.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row toolbar-reset-clave">
+                                                <div class="col">
+                                                    <a href="javascript:;" id="kt_login_new_psw_cancel"
+                                                        class="kt-login__link fuente-accesible">Cancelar</a>
+                                                </div>
+                                                <div class="col-auto px-0 pl-md-1 text-right">
+                                                    <button id="kt_login_code_submit" disabled
+                                                        class="btn btn-primary btn-elevate-cambio kt-login__btn-primary btn-block fuente-accesible">Continuar</button>
+                                                </div>
+                                            </div>
+                                        </form>
+
+
+                                        <form id="formClaveNueva" class="kt-form d-none" method="post" role="form">
+                                            <div class="kt-login__head">
+                                                <h4 class="kt-login__title fuente-accesible">¿Olvidaste tu contraseña?
+                                                </h4>
+                                            </div>
+
+                                            <input hidden name="rol" value="@Model.rol" />
+                                            <input hidden name="ActivationCode" value="@Model.ActivationCode" />
+                                            <input hidden name="username" value="@Model.Username" id="usernameForm" />
+                                            <input hidden name="returnUrl" value="@ViewData["ReturnUrl"]" />
+                                            <div class="form-group mb-3">
+                                                <label class="d-block ms-label fuente-accesible">Ingresa tu nueva
+                                                    contraseña</label>
+                                                <div class="input-group" id="show_hide_password_new">
+                                                    <input class="form-control" type="password" maxlength="8"
+                                                        placeholder="*******" id="passwordNP" asp-for="Password"
+                                                        autocomplete="new-password">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            <a><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mensaje-validacion">
+                                                    <div id="pswAlfa" class="item-mensaje">Debe contener mayúsculas,
+                                                        minúsculas y números.</div>
+                                                    <div id="pswLargo" class="item-mensaje">Su largo debe ser de 6 a 8
+                                                        caracteres.</div>
+                                                    <div id="pswUsada" class="item-mensaje">No debe ser una contraseña
+                                                        ya utilizada.</div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label class="d-block ms-label fuente-accesible">Confirma tu nueva
+                                                    contraseña</label>
+                                                <div class="input-group" id="show_hide_password_newr">
+                                                    <input class="form-control" type="password" maxlength="8"
+                                                        placeholder="*******" asp-for="RepeatPassword" id="RepeatPassword">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            <a><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="mensaje-validacion">
+                                                    <div id="pswIgual" class="item-mensaje">Las contraseñas deben ser
+                                                        iguales.</div>
+                                                </div>
+                                            </div>
+                                            <div class="row toolbar-reset-clave-cambio">
+                                                <div class="col">
+                                                    <a href="javascript:;" id="kt_login_code_cancel"
+                                                        class="kt-login__link fuente-accesible">Cancelar</a>
+                                                </div>
+                                                <div class="col text-right">
+                                                    <button id="kt_password_reset_submit" disabled
+                                                        class="btn btn-primary btn-elevate-cambio kt-login__btn-primary btn-block fuente-accesible">Crear
+                                                        contraseña</button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+
+                                        <div id="recaptcha_v_m" data-callback="activateResetPassBtnCall"
+                                            class="g-recaptcha d-none"
+                                            data-sitekey="6Lcsq1ofAAAAAOZ17PtwxlJgTvl6ActzMUvxm8TR"></div>
+                                    </div>
+
+                                    <div class="accesible-tools d-block">
+                                        <div class="accesible-btn text-center">
+                                            <button id="increase-font">A+</button>
+                                            <button id="normal-font">A</button>
+                                            <button id="decrease-font">A-</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- end:: No Account-->
+                                    <!--begin::Divider-->
+                                    <div class="kt-login__divider mt-5 ">
+                                        <div class="kt-divider d-none">
+                                            <span></span>
+                                            <span>Atendemos por Isapre y Fonasa</span>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                    <!--end::Divider-->
+
+                                    <!--Usuario sin cuenta-->
+
+                                    <div class="usuario-sin-cuenta">
+
+                                        <!-- begin:: No Account-->
+                                        <div id="kt_create_account" class="col-auto pt-4">
+                                            <span>¿No tienes cuenta?</span>
+                                            <a href="javascript:;" id="kt_login_account" metadata="loginClave"
+                                                class="kt-login__link fuente-accesible"><strong>Regístrate
+                                                    Acá</strong></a>
+                                        </div>
+                                    </div>
+
+                                    <!--Usuario sin cuenta-->
+
+                                    <!--Convenios-->
+                                    <div class="logo-convenios">
+                                        <div class="iso-coopeuch">
+                                            <img alt="Logo" class="logotipo" src="~/img/coopeuch/logos/coopeuch.png" />
+                                        </div>
+                                        <div class="iso-coopeuch">
+                                            <img alt="Logo" class="logotipo" src="~/img/coopeuch/logos/medismart.svg" />
+                                        </div>
+                                        <div class="iso-coopeuch">
+                                            <img alt="Logo" class="logotipo" src="~/img/coopeuch/logos/cardif.png" />
+                                        </div>
+
+                                    </div>
+                                    <div class="modal fade" id="modal-exito" tabindex="-1" role="dialog"
+                                        aria-labelledby="modal-orientacion" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm modal-exito"
+                                            role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">X</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+
+                                                    <img alt="Logo" class="logotipo" src="~/img/coopeuch/exito.svg" />
+                                                    <h3>¡Felicidades!</h3>
+                                                    <p>Has creado tu contraseña con éxito.</p>
+                                                    <button type="button" id="" class="btn btn-primary btn-sm"
+                                                        data-dismiss="modal">Entendido</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- #region metronic-template -->
+    <!-- begin::Global Config(global config for global JS sciprts) -->
+    <script>
+        var KTAppOptions = {
+            "colors": {
+                "state": {
+                    "brand": "#22b9ff",
+                    "light": "#ffffff",
+                    "dark": "#282a3c",
+                    "primary": "#5867dd",
+                    "success": "#34bfa3",
+                    "info": "#36a3f7",
+                    "warning": "#ffb822",
+                    "danger": "#fd3995"
+                },
+                "base": {
+                    "label": ["#c5cbe3", "#a1a8c3", "#3d4465", "#3e4466"],
+                    "shape": ["#f0f3ff", "#d9dffa", "#afb4d4", "#646c9a"]
+                }
+            }
+        };
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/gh/bigdatacloudapi/js-api-client@latest/bigdatacloud_api_client.min.js"
+        type="text/javascript"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/bigdatacloudapi/js-client-ip-client@latest/bigdatacloud_client_ip.min.js"
+        type="text/javascript"></script>
+    <!-- end::Global Config -->
+    <!--begin::Global Theme Bundle(used by all pages) -->
+    <script src="~/metronic_demo7/assets/plugins/global/plugins.bundle.js?rnd=@NumeroRandom.GetRandom()"
+        type="text/javascript"></script>
+    <script src="~/metronic_demo7/assets/js/scripts.bundle.js?rnd=@NumeroRandom.GetRandom()"
+        type="text/javascript"></script>
+    <script src="~/js/jquery.rut.js?rnd=@NumeroRandom.GetRandom()"></script>
+    <!--end::Global Theme Bundle -->
+    <!-- #endregion -->
+
+    <script src="~/metronic_demo7/assets/js/pages/custom/login/login-unico-code.js?rnd=@NumeroRandom.GetRandom()"
+        type="module"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="~/js/validator-messages-es.js?rnd=@NumeroRandom.GetRandom()"></script>
+    <!-- traducción del validador -->
+    <script src="~/js/random-image.js?rnd=@NumeroRandom.GetRandom()"></script><!-- random image login -->
+    <script src="~/js/accesible.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script>
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-FJDJFPSQ18');
+    </script>
+    <script type="text/javascript">
+        $('#kt_rut').keyup(async function (e) {
+            e.preventDefault();
+            recaptcha_callback();
+        });
+        $('#kt_pw').keyup(async function (e) {
+            e.preventDefault();
+            recaptcha_callback();
+        });
+        function recaptcha_callback() {
+            var captchaValido = onLoadRecaptchaScr(0);
+            if (captchaValido && $('#kt_rut').val() && $('#kt_rut').val().length > 0 && $('#kt_pw').val().length > 0) {
+                $("#kt_login_signin_submit").removeAttr('disabled');
+                $("#kt_login_signin_submit").addClass("active");
+            } else {
+                $("#kt_login_signin_submit").attr('disabled');
+                $("#kt_login_signin_submit").removeClass("active");
+            }
+        }
+        function onLoadRecaptchaScr(posCaptcha) {
+            //posCaptcha ES LA POSICION (el elemento div captcha)  DEL CAPTCHA QUE SE QUIERE COMPROBAR  (HAY 2 ACTUALMENTE PARA LOGIN Y RECUPERAR CONTRASEÑA)
+            var response = grecaptcha.getResponse(posCaptcha);
+            return response;
+        };
+        var activateResetPassBtnCall = function () {
+            validarCaptchaPW = onLoadRecaptchaScr(1);
+            if (validarCaptchaPW && $('#passwordNP').val().length > 0 && $('#RepeatPassword').val().length > 0) {
+                $("#kt_password_reset_submit").removeAttr('disabled');
+                $("#kt_password_reset_submit").addClass("active");
+            }
+        };
+    </script>
+</body>
+
+</html>

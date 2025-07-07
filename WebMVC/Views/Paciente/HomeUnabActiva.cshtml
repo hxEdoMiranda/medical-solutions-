@@ -1,0 +1,939 @@
+﻿@model WebMVC.Models.AtencionViewModel
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Paciente";
+    Layout = "_LayoutHome";
+
+}
+
+@section Styles  {
+    @*<link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />*@
+    <link href="~/css/unab/unab.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+
+
+
+
+<div class="cont-home">
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+        <!--Nuevo Home-->
+ 
+            <!--MedismartBASE-->
+        <div class="container container-colmena ">
+            <div class="row">
+                <div class="col">
+                    <div class="top-banner justify-content-between">
+                        <h1 class="legend order-2 order-md-1">¡Hola,  <span class="saludo-usuario text-warning text-capitalize" id="saludoPaciente"></span>! ¿En qué te podemos ayudar?</h1>
+                        <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+                    </div>
+                </div>
+            </div>
+            <!-- row especialidades: NUTRICIÓN, OBSTETRICIA y KINESIOLOGÍA -->
+            <div class="row">
+
+                <div class="col-12 col-md-4 col-lg-4 p-0">
+                    <div class="cont-card">
+                        <a @*href="/Paciente/Agendar?tipo=medicina"*@ class="" id="btnNutricionUnab">
+                            <div class="card">
+                                <div class="card-body">
+                                    @*<img src="~/img/iconos/especialista.svg" alt="">*@
+
+                                    <img src="/img/unab/home/iconos/nutricion.svg" alt="">
+                                    <span class="leyenda-card-home d-md-none fuente-accesible">
+                                        
+                                        <small class="d-block" style="text-transform: none; font-size: 90% ">Nutrición</small>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        <h1 class="fuente-accesible">
+
+                            Nutrición
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4 col-lg-4 p-0">
+                    <div class="cont-card">
+                        <a @*href="/Paciente/Agendar?tipo=medicina"*@ class="" id="btnObstetriciaUnab">
+                            <div class="card">
+                                <div class="card-body">
+                                    @*<img src="~/img/iconos/especialista.svg" alt="">*@
+
+                                    @* <img src="/img/unab/home/iconos/obstetricias.svg" alt="">*@
+                                    <img src="/img/unab/home/iconos/gine-unab.png" alt="">
+                                    <span class="leyenda-card-home d-md-none fuente-accesible">
+                                        <small class="d-block" style="text-transform: none; font-size: 90% ">
+                                            Obstetricia</small>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        <h1 class="fuente-accesible">
+
+                            
+                            Ginecología y Obstetricia
+                        </h1>
+                    </div>
+                </div>
+
+                 <div class="col-12 col-md-4 col-lg-4 p-0">
+                    <div class="cont-card">
+                        <a @*href="/Paciente/Agendar?tipo=medicina"*@ class="" id="btnKineUnab">
+                            <div class="card">
+                                <div class="card-body">
+                                    @*<img src="~/img/iconos/especialista.svg" alt="">*@
+
+                                    <img src="/img/unab/home/iconos/kinesiologia.svg" alt="">
+                                    <span class="leyenda-card-home d-md-none fuente-accesible">
+                                        <small class="d-block" style="text-transform: none; font-size: 90% ">Kinesiología</small>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        <h1 class="fuente-accesible">
+
+                            Kinesiología
+                        </h1>
+                    </div>
+                </div>
+
+
+            </div>
+            
+            <!-- row especialidades: FONOAUDIOLOGÍA, PSICOPEDAGOGÍA y TERAPIA OCUPACIONAL -->
+            <div class="row">
+
+                <div class="col-12 col-md-4 col-lg-4 p-0">
+                    <div class="cont-card">
+                        <a @*href="/Paciente/Agendar?tipo=medicina"*@ class="" id="btnFonoaudiologiaUnab">
+                            <div class="card">
+                                <div class="card-body">
+                                    @*<img src="~/img/iconos/especialista.svg" alt="">*@
+
+                                    <img src="/img/unab/home/iconos/fonoaudiologia.svg" alt="">
+                                    <span class="leyenda-card-home d-md-none fuente-accesible">
+                                        
+                                        <small class="d-block" style="text-transform: none; font-size: 90% ">Fonoaudiología</small>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        <h1 class="fuente-accesible">
+
+                            Fonoaudiología
+                        </h1>
+                    </div>
+                </div>
+                <!-- row especialidades:Medicina -->
+                    <div class="col-12 col-md-4 col-lg-4 p-0">
+                        <div class="cont-card">
+                            <a @*href="/Paciente/Agendar?tipo=medicina"*@ class="" id="btnMedicinaUnab">
+                                <div class="card">
+                                    <div class="card-body">
+                                        @*<img src="~/img/iconos/especialista.svg" alt="">*@
+
+                                        <img src="/img/unab/home/iconos/medicina.png" alt="">
+                                        <span class="leyenda-card-home d-md-none fuente-accesible">
+
+                                            <small class="d-block" style="text-transform: none; font-size: 90% ">Medicina</small>
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>
+                            <h1 class="fuente-accesible">
+
+                            Medicina
+                            </h1>
+                        </div>
+                    </div>
+
+                 <div class="col-12 col-md-4 col-lg-4 p-0">
+                    <div class="cont-card">
+                        <a @*href="/Paciente/Agendar?tipo=medicina"*@ class="" id="btnTerapiaOcupacionalUnab">
+                            <div class="card">
+                                <div class="card-body">
+                                    @*<img src="~/img/iconos/especialista.svg" alt="">*@
+
+                                    <img src="/img/unab/home/iconos/terapia-ocupacional.svg" alt="">
+                                    <span class="leyenda-card-home d-md-none fuente-accesible">
+                                        <small class="d-block" style="text-transform: none; font-size: 90% ">Terapia ocupacional</small>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        <h1 class="fuente-accesible">
+
+                            Terapia ocupacional
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4 col-lg-4 p-0">
+                    <div class="cont-card">
+                        <a @*href="/Paciente/Agendar?tipo=medicina"*@ class="" id="btnPsicopedagogiaUnab">
+                            <div class="card">
+                                <div class="card-body">
+                                    @*<img src="~/img/iconos/especialista.svg" alt="">*@
+
+                                    <img src="/img/unab/home/iconos/psicopedagogia.svg" alt="">
+                                    <span class="leyenda-card-home d-md-none fuente-accesible">
+                                        <small class="d-block" style="text-transform: none; font-size: 90% ">Psicopedagogía</small>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        <h1 class="fuente-accesible">
+
+                            Psicopedagogía
+                        </h1>
+                    </div>
+                </div>
+
+                <!--PSICOLOGIA-->
+                <div class="col-12 col-md-4 col-lg-4 p-0" @ViewBag.visiblePsicologia>
+                    <div class="cont-card">
+                        <a href="@ViewBag.accionPsicologia">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="@ViewBag.imgPsicologia" alt="">
+                                    <span class="leyenda-card-home d-md-none fuente-accesible">
+                                        @ViewBag.textoPsicologia
+                                        <small class="d-block" style="text-transform: none; font-size: 90%">@ViewBag.subTextoPsicologia</small>
+
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        <h1 class="fuente-accesible">
+                            @ViewBag.textoPsicologia
+                            <small class="d-block" style="text-transform: none; font-size: 90%">@ViewBag.subTextoPsicologia</small>
+                        </h1>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+            <!--MedismartBASE-->
+
+    </div>
+
+    @if(ViewBag.idCliente != "108"){
+        <div class="container" hidden id="contentAtenciones">
+        <h3 class="page-subtitle" id="subtitulo">Próxima Atención</h3>
+        <div class="row">
+            <div class="col-12" id="atencionesA">
+            </div>
+        </div>
+
+    </div>
+    }
+
+    <div class="container container_scotiabank">
+            <div class="row d-none d-md-block mt-2 cont-accesible-tools">
+                <div class="col">
+                    <div class="accesible-tools">
+                        <div class="accesible-btn">
+                            <button id="increase-font-desk">A+</button>
+                            <button id="normal-font-desk">A</button>
+                            <button id="decrease-font-desk">A-</button>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+    </div>
+</div>
+
+<!--Modal Medicamentos-->
+
+<div class="modal fade" id="modal-medicamentos" tabindex="-1" role="dialog" aria-labelledby="modal-medicamentos-label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title only-pc"><b><span metadata="homeMedtitle">Cómo comprar los medicamentos recetados por tu doctor en </span></b><b style="color: red;"><span metadata="homeMedtitle2">Pharol?</span></b><b><span metadata="homeMedtitle3"> MUY FÁCIL</span></b></h2>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body only-pc">
+                <div class="card-group my-4">
+                    <div class="card text-center bg-transparent border-0 col-md">
+                        <img src="~/img/medicamentos/Paso1.png" class="card-img" alt="...">
+                        <div class="card-body cards ">
+                            <div class='number'>
+                                <p><b>1</b></p>
+                            </div>
+                            <div class='text-card'>
+                                <p>Recibiras un <b>Whatsapp</b> de nuestras  <b>Ejecutivas Virtuales</b> con: Link de Compra. Medicamentos y Código de Descuento Depacho</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card text-center bg-transparent border-0 d-flex col-md">
+                        <img src="~/img/medicamentos/Paso2.png" class="card-img" alt="...">
+                        <div class="card-body cards ">
+                            <div class='number'>
+                                <p><b>2</b></p>
+                            </div>
+                            <div class='text-card'>
+                                <p><b>Elige</b> en Pharol, la opción de <b>medicamentos</b> de tu preferencia. Siempre te mostraremos los más economicos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card text-center bg-transparent border-0 d-flex col-md">
+                        <img src="~/img/medicamentos/Paso3.png" class="card-img" alt="...">
+                        <div class="card-body cards ">
+                            <div class='number'>
+                                <p><b>3</b></p>
+                            </div>
+                            <div class='text-card'>
+                                <p>Incorpora tus datos personales, dirección de despacho y <b>Código de Descuento: MEDISMART</b> Luego, del pago te llegará un mail de confirmación de la compra!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card text-center bg-transparent border-0 d-flex col-md">
+                        <img src="~/img/medicamentos/Paso4.png" class="card-img" alt="...">
+                        <div class="card-body cards ">
+                            <div class='number'>
+                                <p><b>4</b></p>
+                            </div>
+                            <div class='text-card'>
+                                <p><b>Y Listo!!!<br></b> Muy pronto iremos a dejar los medicamentos<b> a tu casa!</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!--end. Modal Medicamentos-->
+<!--Modal Orientación-->
+
+<div class="modal fade" id="modal-orientacion" tabindex="-1" role="dialog" aria-labelledby="modal-orientacion" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title only-pc">Orientación Enfermería Telefónica</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body only-pc">
+
+                <div class="container cont-orientacion">
+                    <div class="row align-items-center">
+                        <div class="col-12 col-md-6 text-center">
+                            <img src="~/img/home/soporte4.svg" alt="" />
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <h1>¿Necesitas ayuda? ¡Contáctanos!</h1>
+                            <ul class="my-4 lista-orientacion">
+                                <li>¿Tienes dudas respecto a tu plan de salud?</li>
+                                <li>¿Quieres maximizar tus coberturas?</li>
+                                <li>¡¡Habla con nuestras orientadores de salud!!</li>
+                            </ul>
+                            <ul class="canales-orientacion">
+                                <li>
+                                    <a href="tel:56948042543"
+                                       target="_blank">
+                                        <i class="far fa-mobile"></i> Llámanos <i class="fal fa-long-arrow-right ml-auto"></i>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="https://wa.me/56948042543?text=Asistencia%20al%20Paciente%20-%20Medismart%20"
+                                       target="_blank">
+                                        <i class="fab fa-whatsapp"></i> Escríbenos <i class="fal fa-long-arrow-right ml-auto"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalAnulacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-aviso">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="cont-aviso-modal">
+
+                    <h2>¿Vas a anular tu atención?</h2>
+                    <p class="m-0">
+                        Al anular tu atención perderás la hora reservada con el profesional.
+                    </p>
+
+                    <!--Aviso-->
+
+
+
+                    <div class="cont-aviso-atencion">
+                        <a href="#" class="link-aviso" id="" data-id="">
+
+                            <div class="aviso-atencion container-fluid mt-5">
+                                <div class="cont-aviso row h-100 align-items-center">
+                                    <div class="col-auto cont-foto-profesional p-0 d-none d-md-block">
+
+                                        <img id="fotoMedicoModal" alt="image" class="foto-profesional" style="height:150px;width:150px;">
+                                    </div>
+                                    <div class="col-12 col-md col-xl pl-0 pl-md-3 pr-0">
+                                        <div class="data-atencion">
+                                            <span class="header-aviso-atencion"><i class="fal fa-calendar-alt"></i> <span>Próxima Atención</span></span>
+                                            <span class="nombre-profesional" id="nombreProfesionalModal"></span>
+                                            <span class="titulo-profesional" id="tituloMedicoModal"></span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-12 col-md col-xl pr-md-3">
+                                        <div class="datos-fecha">
+                                            <span class="fecha-atencion" id="fechaAtencionModal"></span>
+                                            <span class="hora-atencion" id="horaAtencionModal"><span class="text-uppercase"></span></span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+
+                    <!--Fin Aviso-->
+
+                </div>
+
+            </div>
+            <div class="modal-footer footer-aviso">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Volver</button>
+                <button type="button" id="btnAnular" class="btn btn-danger btn-sm">Anular Atención</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalConfirmacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-aviso">
+        <div class="modal-content">
+            <div class="modal-header modal-header-aviso">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="cont-aviso-modal">
+
+                    <h2>¿Confirmas tu atención?</h2>
+                    <p class="m-0">
+                        Usarás la hora agendada con  <strong id="nombreProfesionalConfirma"></strong>
+                        <br />  de  <strong id="tituloMedicoConfirma"></strong>
+                        en el siguiente horario:
+                    </p>
+
+                    <div class="datos-fecha" style="float: none">
+                        <span class="fecha-atencion" id="fechaAtencionConfirma"></span>
+                        <span class="hora-atencion text-center" id="horaAtencionConfirma"></span>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer footer-aviso">
+                @*<button type="button" id="btnReagenda" class="btn btn-secondary btn-sm" data-dismiss="modal">No, deseo reagendar</button>*@
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Volver</button>
+                <button type="button" id="btnConfirma" class="btn btn-primary btn-sm">Si, confirmo</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalReagendar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-aviso modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4><span id="nombreprofesional"></span></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="">
+
+                    <div class="row">
+                        <div class="col-md-12 mb-4 mb-lg-0 col-lg-12">
+
+                            <!-- Reserva Hora -->
+
+                            <div class="caja-reserva">
+                                <div class="container-fluid">
+                                    <h4>Reagendar Hora</h4>
+                                    <p>
+                                        Selecciona si deseas en la mañana o en la tarde
+                                    </p>
+                                    <hr class="mb-4" />
+                                    <div class="row">
+                                        <div class="col-12 col-md-6 mb-4 mb-lg -0 calendario">
+
+                                            <!--Tags-->
+
+                                            <div class="kt-section__content kt-section__content--solid text-center mb-4" id="btnHorario">
+                                                @*<button type="button" class="btn btn-brand btn-elevate btn-pill btn-am" id="btnManana">Mañana</button>&nbsp;
+                                                    <button type="button" class="btn btn-brand btn-elevate btn-pill btn-pm" id="btnTarde">Tarde</button>*@
+                                            </div>
+
+                                            <!--Tags-->
+                                            <!--Date Picker-->
+
+                                            <div class="col-lg-12" id="rowDatePicker">
+
+                                            </div>
+                                            <div class="col-lg-12 mt-5">
+                                                Si no encuentras hora con el médico que seleccionaste no te preocupes, puedes anular esta hora y agendar una nueva con otro médico. Si tienes dudas no dudes en contáctarnos.
+                                            </div>
+                                            @*<div class="cont-datepicker" id="kt_datepicker_6">
+                                                </div>*@
+
+                                            <!--Date Picker-->
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="seleccion-horas">
+                                                <div class="header-seleccion-horas" id="headerSeleccion">
+                                                </div>
+                                                <div class="body-seleccion-horas">
+                                                    <div class="body-seleccion-horas">
+                                                        <ul class="lista-horas" id="listaHoras">
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Reserva Hora -->
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer footer-aviso">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Volver</button>
+                <div id="btnConf"></div>
+                @*<button type="button" class="btn btn-success btn-sm" id="btnConfirmarHora">Confirmar Hora</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalAtencionDirecta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-aviso">
+        <div class="modal-content">
+            <div class="modal-header modal-header-aviso">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="cont-aviso-modal">
+                    <h2>Tienes una atención en curso</h2>
+                    <p class="m-0">
+                        Atención con <strong id="nombreProfesionalAtencion"></strong>
+                        <br /> Especialidad  <strong id="tituloMedicoAtencion"></strong>
+                    </p>
+                </div>
+
+            </div>
+            <div class="modal-footer footer-aviso" style="align-self:center;">
+                <button type="button" id="btnAtencion" class="btn btn-primary btn-sm">Ir a la atención</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalBeneficiarios" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-aviso">
+        <div class="modal-content">
+            <div class="modal-header modal-header-aviso">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="cont-aviso-modal">
+                    <h2>Seleccionar Beneficiario</h2>
+                    <br />
+                    <br />
+                    <select class="form-control" id="selectBeneficiario" name="selectBeneficiario">
+                        <option value="0">Seleccionar</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="modal-footer footer-aviso" style="align-self:center;">
+                <button type="button" id="btnAceptar" class="btn btn-primary btn-sm">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalAtencionPendiente" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-aviso">
+        <div class="modal-content">
+            <div class="modal-header modal-header-aviso">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="cont-aviso-modal">
+                    <h2>Tienes una atención que no ha sido terminada, ¿Quieres volver a la fila?</h2>
+                    @*<p class="m-0">
+                            Atención con <strong id="tipoAtencion"></strong>
+                            <br /> Especialidad  <strong id="Especialidad"></strong>
+                        </p>*@
+                </div>
+
+            </div>
+            <div class="modal-footer footer-aviso" style="align-self:center;">
+                <button type="button" id="btnVolverFila" class="btn btn-primary btn-sm">Volver a la fila</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Pronto-->
+
+<div class="modal fade bd-example-modal-sm" id="modalPronto" tabindex="-1" aria-labelledby="modalProntolLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-aviso">
+        <div class="modal-content">
+            <div class="modal-header modal-header-aviso">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="cont-aviso-modal modal-pronto text-center">
+                    <i class="fal fa-exclamation-triangle fa-4x"></i>
+                    <h4 class="mt-4">Servicio disponible próximamente</h4>
+                </div>
+            </div>
+            <div class="modal-footer footer-aviso" style="align-self:center;">
+                <button type="button" data-dismiss="modal" class="btn btn-primary btn-sm">Ok, Gracias</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--end:: Modal Pronto-->
+<!--modal aviso-->
+<div class="modal fade bd-example-modal-sm" id="modalAviso" tabindex="-1" aria-labelledby="modalProntolLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-xl modal-aviso">
+        <div class="modal-content">
+            <div class="modal-header modal-header-aviso">
+                <h2>Bienvenido(a)</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body py-0">
+
+                <h3 class="mb-4"><strong>¡Tenemos buenas noticias para ti!</strong></h3>
+                <div class="row">
+                    <div class="col-12 col-md-6 mb-4 mb-md-0">
+                        <h5>Ingresa al nuevo módulo de <strong class="text-success">Atención Inmediata – Medicina General</strong>, donde podrás atenderte en pocos minutos, comienza acá:</h5>
+                        <div class="cont-img-bienvenida">
+                            <img src="~/img/home/medicina-general.png" alt="">
+                        </div>
+
+
+                    </div>
+                    <div class="col-12 col-md-6 ">
+                        <h5>
+                            Para <strong class="text-success">profesionales de la salud y médicos especialistas</strong>, agenda tu hora como siempre
+                            desde acá:
+                        </h5>
+                        <div class="cont-img-bienvenida">
+                            <img src="~/img/home/medicina-especialista.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer footer-aviso" style="align-self:center;">
+                <button id="btnEntiendoModal" type="button" data-dismiss="modal" class="btn btn-primary btn-sm mb-4">Entendido</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Modal Servicios-->
+
+<div class="modal fade" id="modal-servicios" tabindex="-1" role="dialog" aria-labelledby="modal-orientacion" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm modal-servicios" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="fal fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="cont-card-servicios">
+                    <div class="card-servicio"><img src="~/img/home/iconos/farmacia.svg" alt="Farmacias" /></div>
+                    <div class="card-servicio"><img src="~/img/home/iconos/examenes.svg" alt="Farmacias" /></div>
+                    <div class="card-servicio"><img src="~/img/home/iconos/biblioteca.svg" alt="Farmacias" /></div>
+                </div>
+                <p>
+                    Desde hoy puedes acceder a nuevos servicios en Medismart:
+                </p>
+
+                <ul class="lista-servicios">
+                    <li><img src="~/img/iconos/chevron-right.svg" alt="" /> Pedir Exámenes a Domicilio</li>
+                    <li><img src="~/img/iconos/chevron-right.svg" alt="" /> Comprar Medicamentos</li>
+                    <li><img src="~/img/iconos/chevron-right.svg" alt="" /> Despacho a Domicilio</li>
+                    <li><img src="~/img/iconos/chevron-right.svg" alt="" /> Acceso a Información Médica</li>
+                </ul>
+
+                <div class="cont-logos-farmacia">
+                    <div class="farmacia"><img src="~/img/farmacias/logo-pharol.svg" alt="" /></div>
+                    <div class="farmacia"><img src="~/img/farmacias/logo-yapp.svg" alt="" /></div>
+                    <div class="farmacia"><img src="~/img/examenes/logo-examedi.png" alt="" /></div>
+                </div>
+
+                <button type="button" id="" class="btn btn-primary btn-sm" data-dismiss="modal">Entendido</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Modal Servicios-->
+
+
+<!--Modal Blanco-->
+
+<div class="modal fade" id="modal-blanco" tabindex="-1" role="dialog" aria-labelledby="modal-blanco" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm modal-blanco" role="document">
+        <div class="modal-content">
+                
+            <div class="modal-body">
+                <button type="button" class="close-btn" data-dismiss="modal" aria-label="Close">
+                    <i class="fal fa-times"></i>
+                </button>
+
+                <div class="cont-modal">
+                    <div class="img-modal">
+
+                    </div>
+                    <div class="content-modal">
+                        <h3>
+                            Desde hoy podrás agendar <strong>tus exámenes de manera presencial</strong>, una nueva alternativa para cuidar tu salud
+
+                        </h3>
+                        <div class="cont-btn-modal">
+                            <img src="~/img/home/modal-blanco/blanco.png" alt="" />
+                            <img src="~/img/home/modal-blanco/examedi.png" alt="" />
+                        </div>
+
+                        <button id="btnBlanco" class="btn btn-success btn-block btn-sm" data-dismiss="modal">Ingresa aquí</button>
+                    </div>
+                </div>
+
+             
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--INICIO MODAL ACTUALIZACION DE USUARIO-->
+<div class="modal modal-paciente fade" id="modalActualizacionPaciente" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fal fa-user"></i>
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Actualización Usuario
+                    <small>Campo requerido*</small>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <div class="form-group">
+                    <label for="Identificador" class="form-label">Identificador <span style="color:red">*</span></label>
+                    <input class="form-control" type="text" maxlength="12" required="required" id="Identificador" name="Identificador" />
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Nombres <span style="color: red">*</span></label>
+                    <input class="form-control" type="text" maxlength="50" required="required" id="Nombre" name="Nombre" autocomplete="off" value="@ViewBag.name"/>
+                </div>
+                <div class="form-group">
+                    <label for="ApellidoPaterno" class="form-label">Apellido paterno <span style="color: red">*</span></label>
+                    <input class="form-control" type="text" maxlength="50" required="required" id="ApellidoPaterno" name="ApellidoPaterno"/>
+                </div>
+                <div class="form-group">
+                    <label for="ApellidoMaterno" class="form-label">Apellido materno</label>
+                    <input class="form-control" type="text" maxlength="50" required="required" id="ApellidoMaterno" name="ApellidoMaterno"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="Correo" class="form-label">Correo <span style="color: red">*</span></label>
+                    <input class="form-control" type="email" maxlength="60" required="required" id="Correo" name="Correo" value="@ViewBag.userMail" disabled/>
+                </div>
+
+                <div class="form-group">
+                    <label for="Telefono" class="form-label">Telefono <span style="color: red">*</span></label>
+                    <input class="form-control" type="text" maxlength="60" required="required" id="Telefono" name="Telefono"/>
+                    <input hidden name="uidFirebase" value="@ViewBag.uidFirebase">
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-primary" id="btnActualizar" data-dismiss="modal">Actualizar Información</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--FIN MODAL ACTUALIZACION DE USUARIO-->
+<!--INICIO MODAL LOGIN USUARIO EXISTENTE-->
+<div class="modal modal-paciente fade" id="modalLogin" data-backdrop="static" name="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-login">
+      @*
+      <div class="modal-content">
+         *@
+         <div class="kt-login__signin">
+            <form class="kt-form" asp-controller="Account" asp-action="GuestLogin" method="post" role="form">
+               <div class="modal-header">
+                  <i class="fal fa-user"></i>
+                  <h5 class="modal-title" align="center">
+                     Ingreso de Usuario
+                     <small>login</small>
+                  </h5>
+               </div>
+               <div class="modal-body" id="modalBody">
+                  <div class="form-group">
+                     <label class="d-block ms-label fuente-accesible" id="labelIdentificador">Ingresa tu E-MAIL o RUT00</label>
+                     <input class="form-control" type="text" id="kt_firebase" required placeholder="tucorreo@gmail.com o 111111111" autocomplete="off" name="Username">
+                     <input class="form-control" type="hidden" id="JsonData" name="JsonData">
+                     <input class="form-control" type="hidden" name="UrlAgendar" value="@ViewData["UrlAgendar"]">                        
+                  </div>
+                  <input hidden name="rol" value="@Roles.Paciente">
+                  <input hidden name="returnUrl" value="@ViewData["ReturnUrl"]">
+                  <div class="form-group">
+                     <label class="d-block ms-label fuente-accesible">Clave</label>
+                     <input type="password" class="form-control" required="required" name="Password">		
+                  </div>
+               </div>
+               <div>
+                  <div class="modal-footer">
+                     <a href="javascript:;" id="kt_login_forgot" class="fuente-accesible d-none" style="margin-left: auto">¿Olvidaste tu clave?</a>
+                     <button type="button" class="btn btn-primary" style="align-self: flex-end" id="kt_login_signin_submit">Ingresar</button>
+                  </div>
+                  <div class="modal-footer d-none">
+                     <button type="button" class="btn btn-light btn-elevate kt-login__btn-secondary" id="kt_login_forgot_cancel"  data-dismiss="modal">Cancelar</button>
+                  </div>
+               </div>
+            </form>
+         </div>
+         <div class="kt-reset__password">
+            <div class="kt-login__head">
+               <h3 class="kt-login__title">Ingresa tu nueva clave</h3>
+            </div>
+            <form class="kt-form" method="post" role="form">
+               <div class="input-group mb-2">
+                  <input class="form-control" type="password" placeholder="Clave" name="Password">
+               </div>
+               <div class="input-group mb-3">
+                  <input class="form-control" type="password" placeholder="Repetir Clave" name="RepeatPassword">
+               </div>
+               <input hidden name="rol" value="@Roles.Paciente" />
+               <input hidden name="ActivationCode" value="" />
+               <input hidden name="username" value="" />
+               <input hidden name="returnUrl" value="@ViewData["ReturnUrl"]" />
+               <div class="text-left">
+                  <p style="font-size:12px !important">
+                     <strong>La clave debe tener :</strong><br /><br />
+                     - Entre 8 a 15 caracteres. <br />
+                     - Al menos una letra mayúscula / Al menos una letra minúscula / Al menos un número <br />
+                  </p>
+               </div>
+               <div class="kt-login__actions mt-0">
+                  <button id="kt_password_reset_submit" class="btn btn-brand btn-elevate kt-login__btn-primary">Modificar</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+<!--FIN MODAL LOGIN USUARIO EXISTENTE-->
+
+<script src="https://cdn.jsdelivr.net/gh/bigdatacloudapi/js-api-client@latest/bigdatacloud_api_client.min.js" type="text/javascript"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/bigdatacloudapi/js-client-ip-client@latest/bigdatacloud_client_ip.min.js" type="text/javascript"></script>
+<!--Modal Wellness-->
+
+<!--Modal Blanco-->
+
+@section PageScripts {
+    <script src="~/js/jquery.rut.js?rnd=@NumeroRandom.GetRandom()"></script>
+
+}
+@section Scripts {
+    <script src="~/signal/signalr.min.js"></script>
+    <script src="~/js/accesible.js"></script>
+    <script src="~/js/modal.js"></script>
+    
+    <script type="module">
+
+        import { init } from '../../js/Paciente/home.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+        var uid = @ViewBag.uid;
+        window.uid = uid;
+        var visibleVet = "@ViewBag.visibleVet";
+        window.visibleVet = visibleVet;
+        var idCliente = @ViewBag.idCliente;
+        window.idCliente = idCliente;
+        var visibleNotice = "@ViewBag.VisibleNotice";
+        window.visibleNotice = visibleNotice;
+        var activaBlanco = @ViewBag.activaBlanco;
+        window.activaBlanco = activaBlanco
+        var codigoTelefono = "@ViewBag.codigoTelefono";
+        window.codigoTelefono = codigoTelefono
+        var host = '@ViewBag.HostURL';
+        window.host = host;
+        var isNewUserFirebase = "@ViewBag.isNewUserFirebase";
+        window.isNewUserFirebase = isNewUserFirebase;
+
+        var isNewUser = "@ViewBag.isNewUser";
+        window.isNewUser = isNewUser;
+
+        })()
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+   
+}
+
+<!--end: Modal Orientación-->

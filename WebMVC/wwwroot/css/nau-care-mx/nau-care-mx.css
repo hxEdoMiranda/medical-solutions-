@@ -1,0 +1,947 @@
+/*compara*/
+
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap');
+
+:root {
+    --primary: #003380;
+    --secondary: #54ACC7;
+    --tertiary: #FFA83D;
+    --accent: #F9D324;
+    --light: #FFF;
+    --font-family: 'Mulish', sans-serif;
+}
+
+body {
+    /* font-family: var(--font-family) !important;*/
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family) !important;
+}
+/*Login*/
+.logotipo-desktop {
+    background-image: url(../../img/nau-care/logotipo.svg);
+    width: 462px;
+    height: 180px;
+    width: 462px;
+    height: 180px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/nau-care/logotipo.svg);
+}
+
+.interrogacion {
+    
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+        color: #333333;
+        font-weight: 400 !important;
+        display: inline-block;
+        font-family: Mulish !important;
+        font-size: 36px;
+        font-style: normal;
+    }
+
+.login-info--tooltip ~ .tooltip-inner {
+    text-align: left !important;
+    background-color: red !important;
+}
+    .login-info--tooltip i {
+        color: #ccc;
+        font-size: 20px;
+        margin-left: 10px;
+        text-align: left !important;
+    }
+
+.form-group .ms-label {
+    color: #333333 !important;
+    font-family: Mulish !important;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700 !important;
+    line-height: normal;
+}
+
+.tooltip.show p {
+    text-align: left;
+}
+
+
+
+
+.btn-primary {
+    background-color: #003380;
+    border-color: #003380;
+    border-radius: 58px;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.divider-medismart {
+    display: flex !important;
+    margin-bottom: 2rem;
+}
+
+.logo-convenios {
+    /* display: none;*/
+    margin-bottom: 2rem;
+}
+
+/* Imágenes Login */
+.img1 {
+    background-image: url(../../img/nau-care/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/nau-care/login/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/nau-care/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/nau-care/login/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/nau-care/login/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/nau-care/login/960x978.jpg);
+}
+
+
+    .body-home .logo-home img {
+        width: 130px;
+    }
+
+    .top-banner .legend {
+        font-weight: 500;
+    }
+
+.menu-top .item-menu-top i,
+.menu-top .label-menu {
+    color: var(--primary);
+}
+
+.menu-top .item-menu-top:hover i, .menu-top .item-menu-top:hover .label-menu {
+    color: #003380 !important;
+}
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--accent)
+}
+
+    .kt-menu__item a .ms-label-menu {
+        color: var(--primary)
+    }
+
+.kt-menu__item:hover a, .kt-menu__item:hover i {
+    color: #CC3399 !important;
+}
+
+.accesible-btn button {
+    border-radius: 8px;
+    border: 1px solid #003380;
+    background: #FFF;
+    color: #003380;
+    text-align: center;
+    font-family: Mulish;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+    .accesible-btn button:hover {
+        background-color: #54ACC7;
+        border-color: #54ACC7;
+    }
+
+.busqueda-profesionales {
+    border: 2px solid var(--secondary);
+}
+    .busqueda-profesionales i {
+        color: var(--secondary)
+    }
+    .busqueda-profesionales .btn-outline-primary {
+        color: var(--secondary)
+    }
+
+.caja-especialidad.active {
+    background-color: var(--primary);
+}
+
+.caja-especialidad {
+    background-color: var(--secondary);
+}
+
+.inner-especialidad strong {
+    color: var(--light)
+}
+
+.step.active .step-icon {
+    background-color: var(--primary);
+}
+
+.stepper {
+    background-image: url(../../img/compara/fondo-banner2.svg);
+}
+
+    .stepper .flecha {
+        color: var(--primary)
+    }
+
+    .stepper img {
+        border-color: var(--primary)
+    }
+
+.step.active .label-step {
+    color: var(--primary)
+}
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: #003380
+}
+
+.calificacion .positiva {
+    color: #003380;
+}
+
+.caja-profesional .fecha-atencion {
+    color: var(--secondary)
+}
+
+.front-fecha-atencion {
+    border: 1px solid rgba(35,33, 114, .3)
+}
+
+    .front-fecha-atencion strong:before {
+        color: var(--secondary);
+        font-weight: 900;
+    }
+
+.especialidad-profesional {
+    color: #003380
+}
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+
+.top-banner {
+    background-image: url(../../img/nau-care/fondo-banner.svg);
+}
+
+.banner-naucare-mx {
+    background-image: url(../../img/nau-care/fondo-banner-mx.svg);
+}
+.top-banner img {
+    border-color: rgba(255, 255, 255, .3)
+}
+    .top-banner .legend {
+        color: var(--secondary)
+    }
+
+.banner_topsc .legend .text-warning {
+    color: var(--primary) !important;
+}
+
+.top-banner.banner_topsc {
+    background-image: url(../../img/prestasalud/fondo-banner2.svg);
+}
+
+.text-warning {
+    color: #F9D324 !important;
+    font-family: Mulish;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.menu-top .item-menu-top .logotipo-mobile {
+    width: 110px !important;
+}
+
+/*Atencion Inmediata*/
+#consentimiento {
+    color: #3BC1CD !important;
+    text-decoration: underline !important;
+}
+
+/*Sala espera*/
+.hotspot-icon .cont-icon {
+    background-color: #FFFFFF;
+    color: #FFFFFF;
+}
+
+#btnAbandonarAtencion .cont-icon {
+    background-color: #003380;
+}
+
+#hs-b .cont-icon {
+    background-color: #003380;
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: var(--primary);
+    color: #ffffff
+}
+
+.cont-icon.hotspot-redes {
+    background-color: #222;
+}
+
+#reporte .cont-icon {
+    background-color: #CC3399;
+    color: #fff;
+}
+
+#reporte {
+    color: #C39;
+    text-align: center;
+    font-family: Mulish;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+#btnAbandonarAtencion {
+    color: #003380;
+    text-align: center;
+    font-family: Mulish;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+#hs-g .cont-icon {
+    background-color: #C39;
+}
+
+#hs-g:hover .cont-icon {
+    background-color: var(--primary);
+}
+
+.toolbar-option {
+    color: var(--primary)
+}
+
+.toolbar-option.active {
+    color: var(--secondary)
+}
+
+.btn-sala {
+    color: #C39;
+}
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: #C39;
+    color: #fff;
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--primary)
+}
+
+.btn-sala:hover {
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion, .cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+    .cont-btn-panel .btn-atencion:hover, .cont-btn-vc .btn-atencion:hover {
+        background-color: rgba(237, 110, 0, 0.1);
+        color: var(--primary);
+    }
+
+.hotspot-icon {
+    text-shadow: none;
+    color: #003380;
+    text-align: center;
+    font-family: Mulish;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+    .hotspot-icon i {
+        text-shadow: none;
+    }
+
+    .hotspot-icon:hover {
+        color: #FFF;
+    }
+
+@media (max-width: 668px) {
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .top-banner .legend {
+        text-align: left;
+        font-size: 1.3rem;
+    }
+    .accesible-tools-desktop .accesible-btn {
+       
+        margin-top: 0 !important;
+    }
+    .body-home .top-banner .legend {
+        
+        font-size: 20px !important;
+       
+    }
+    .text-warning {
+        font-size: 20px !important;
+    }
+    .accesible-btn {
+        display: flex;
+        justify-content: center;
+    }
+    .kt-footer, #kt_footer {
+       
+        display: flex;
+        flex-direction: column;
+    }
+
+    .leyenda-card-home {
+       
+        color: #CC3399;
+       
+    }
+}
+
+
+ @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/nau-care/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/nau-care/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/nau-care/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/nau-care/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/nau-care/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/nau-care/login/548x850.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/nau-care/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/nau-care/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/nau-care/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/nau-care/login/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/nau-care/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/nau-care/login/960x978.jpg);
+    }
+}
+
+
+/*Prehome*/
+
+.prehome__plans {
+    height: 450px;
+}
+
+.prehome__plan {
+    width: 100%;
+    padding: 0;
+}
+
+.prehome__plan ul {
+    list-style-image: url('../../img/compara/bullet.svg');
+   
+    margin-top: 32px;
+    height: 350px;
+    font-size: 16px;
+}
+
+.prehome__title {
+    color: #FFF;
+}
+
+.kt-login__extra.registro {
+    display: none;
+}
+
+.logo-convenios.convenioChile + hr {
+    display: none;
+}
+
+.kt-login.kt-login--v3.kt-login--signin .kt-login__signin .titulo-card-farmacia {
+    text-align: center;
+}
+
+.prehome__card {
+    width: 1733px;
+    margin-left: -20rem;
+}
+
+.prehome__plan ul {
+    
+    width: 240px;
+}
+
+@media (max-width: 991.98px) {
+    .prehome__plans {
+        height: auto;
+    }
+
+    .prehome__plan ul {
+       
+       
+        min-height: 21px;
+        max-height: 77px;
+        
+    }
+
+    .prehome__card {
+        width: 300px;
+        margin-left: auto;
+    }
+    .prehome__plan .btn {
+       
+        margin-bottom: 2rem !important;
+    }
+    .stepper {
+        
+        background-image: none !important;
+        
+    }
+
+
+}
+
+.login-footer .terminos {
+    margin-bottom: 2rem;
+    display: flex;
+    margin-top: 2rem;
+    gap: 1rem;
+    margin-left: 1rem;
+}
+.stepper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    background-image: url(../../img/nau-care/fondo-banner2.svg);
+    background-repeat: repeat-x;
+    background-position: left 10px;
+    margin-bottom: 2.5rem;
+    margin-top: 2.5rem;
+}
+.menu-top .label-menu-pac {
+    color: var(--primary)
+}
+
+.category-button:hover, .category-button.active {
+    background-color: var(--important) !important;
+    color: var(--important) !important;
+}
+
+.kt-menu__item:hover a, .kt-menu__item:hover i {
+    color: #CC3399 !important;
+}
+
+.menu-top .item-menu-top:hover .label-menu-pac {
+    color: #CC3399 !important;
+}
+
+.kt-menu__item:hover a .ms-label-menu {
+    color: #CC3399;
+}
+
+.mt-5, .my-5 {
+    margin-top: 3rem !important;
+    display: none;
+}
+
+.logo-convenios img {
+    width: 150px;
+    height: auto;
+    display: none;
+}
+
+a {
+    color: #103ADA;
+    text-decoration: none;
+    background-color: transparent;
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__actions .kt-login__btn-secondary, .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__actions .kt-login__btn-primary {
+    border-radius: 58px;
+    border: 1px solid #C39;
+    background: #C39;
+    box-shadow: 4px 4px 16px 0px rgba(88, 103, 221, 0.25);
+    color: #FFF;
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 125% */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.kt-grid.kt-grid--hor:not(.kt-grid--desktop):not(.kt-grid--desktop-and-tablet):not(.kt-grid--tablet):not(.kt-grid--tablet-and-mobile):not(.kt-grid--mobile) {
+    color: #646C9A;
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.registrate {
+    color: #5867DD;
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+/*#id-pre-home-0{
+    display: none;
+}*/
+
+.btn-ingresar {
+    display: none !important;
+}
+
+.prehome__plan .btn {
+    /* max-width: 108px; */
+    margin: auto auto 0;
+    background: #C39;
+    border: 1px solid #C39;
+    color: #FFF;
+    font-family: Mulish;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 125% */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 58px;
+}
+
+.naucare-mx-bell {
+    color: #CC3399 !important;
+}
+
+.naucare-mx-atenciones {
+    color: #CC3399 !important;
+}
+
+.naucare-mx-question {
+    color: #CC3399 !important;
+}
+
+.naucare-mx-help {
+    color: #CC3399 !important;
+}
+
+.naucare-mx-out {
+    color: #CC3399 !important;
+}
+
+.naucare-mx-salir {
+    color: #CC3399 !important;
+}
+
+.naucare-mx-terminos {
+    color: #003380 !important;
+}
+
+.naucare-mx-politicas {
+    color: #003380 !important;
+}
+
+.naucare-mx-letras {
+    color: #fff !important;
+    border: 1px solid #CC3399 !important;
+    background: #CC3399 !important;
+}
+
+.body-home {
+    background-image: url(../../img/home/logo-fondo.svg), linear-gradient(0deg, #CC337C -19.87%, #CC33A1 126.48%);
+    background-repeat: no-repeat, repeat;
+    background-position: bottom right;
+    background-attachment: fixed;
+}
+
+.body-naucare-mx {
+    background-image: url(../../img/home/logo-fondo.svg), linear-gradient(0deg, #fff -19.87%, #fff 126.48%);
+    background-repeat: no-repeat, repeat;
+    background-position: bottom right;
+    background-attachment: fixed;
+}
+
+
+
+    .body-home .menu-top .item-menu-top i, .body-home .menu-top .item-menu-top .label-menu {
+        color: #fff;
+    }
+
+    .body-home .logo-home img {
+        width: 200px;
+       
+    }
+
+.kt-grid.kt-grid--ver-desktop.kt-grid--desktop {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    
+}
+
+.terminos{
+    display: none !important;
+}
+
+.body-home .footer-home {
+    color: #FFF;
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    max-width: 1020px;
+    margin: auto;
+    margin-top: 5rem;
+}
+
+.body-home .cont-card .card .card-body {
+    border-radius: 16px;
+    background: #CC3399;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+}
+
+.term-nau {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.accesible-tools-desktop .accesible-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+    .accesible-tools-desktop .accesible-btn button {
+        
+        margin: 0.5rem;
+    }
+
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--primary);
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+
+    .sala-medismart #hs-c {
+        margin-top: -4rem;
+    }
+    .sala-medismart #hs-d {
+        
+        margin-top: -4rem;
+    }
+    .sala-medismart #hs-e {
+        margin-top: -4rem;
+    }
+}
+
+    .letras-sala-espera {
+        display: flex;
+        flex-direction: column !important;
+    }
+
+    @media (max-width: 1024px) div#kt_wrapper {
+        margin-top: 0 !important;
+    }
+
+    .body-home .cont-card .card {
+        border-radius: 16px;
+        width: 160px;
+        height: 160px;
+        transition: all .3s ease-out;
+        cursor: pointer;
+        display: block;
+        margin: auto;
+        background: #54ACC7 !important;
+    }
+
+.naucare-mx-titulo {
+    color: #08395B !important;
+}
+
+.body-home .top-banner .legend {
+    color: #FFF;
+    text-align: center;
+    font-family: Mulish !important;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.body-home .cont-card h1 {
+    color: #CC3399;
+    text-align: center;
+    font-family: Roboto !important;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+    .hotspot-icon .cont-icon {
+        background-color: #CC3399;
+    }
+
+
+    .hotspot-icon:hover .cont-icon {
+        background-color: #003380;
+        transform: scale(1.2);
+    }
+
+    .sala-medismart #hs-c {
+        color: #C39;
+        text-align: center;
+        font-family: Mulish;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: uppercase;
+    }
+
+    .sala-medismart #hs-d {
+        color: #C39;
+        text-align: center;
+        font-family: Mulish;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: uppercase;
+    }
+
+    .sala-medismart #hs-e {
+        color: #C39;
+        text-align: center;
+        font-family: Mulish;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-transform: uppercase;
+    }
+
+
+    .hotspot-icon:hover {
+        color: white;
+    }
+
+    @media (max-width: 991.98px) {
+
+        .body-home .cont-card .card {
+            width: 90% !important;
+            height: 100px !important;
+            margin: auto !important;
+            margin-bottom: 1rem !important;
+        }
+    }
+
+.body-home .card-plan .costo, .body-home .card-plan .pronto-card, .body-home .card-plan .atencion-24 {
+   
+    display: none !important;
+    
+}

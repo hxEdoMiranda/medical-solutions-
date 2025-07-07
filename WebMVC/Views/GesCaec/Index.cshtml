@@ -1,0 +1,85 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_LayoutPaciente";
+}
+
+@if (ViewBag.HostURL.ToString().Contains("prevenciononcologica.")){
+    <partial name="~/Views/GesCaec/AsesoriaCajaLosAndes.cshtml" model="Model" view-data="ViewData" />
+}
+else if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia.")){
+    <partial name="~/Views/GesCaec/AsesoriaScotiabank.cshtml" model="Model" view-data="ViewData" />
+}
+else if (ViewBag.HostURL.ToString().Contains("masproteccionsalud.")){
+    <partial name="~/Views/GesCaec/AsesoriaClinicaCajaLosAndes.cshtml" model="Model" view-data="ViewData" />
+}
+else if((ViewBag.HostURL.ToString().Contains("saludproteccion."))){
+     <partial name="~/Views/GesCaec/AsesoriaCoopeuch.cshtml" model="Model" view-data="ViewData" />  
+} 
+else if ((ViewBag.HostURL.ToString().Contains("saludtumundoseguro.")))
+{
+    <partial name="~/Views/GesCaec/AsesoriaCencosud.cshtml" model="Model" view-data="ViewData" />
+}
+else{
+    <!--Otros clientes-->
+
+        <div class="container cont-orientacion toma-examenes-medismart">
+        <h1 class="titulo-toma-examenes">Orientación de Salud</h1>
+        <div class="row align-items-center">
+            <div class="col-12 col-md-6 text-center">
+                <!--<img src="../../../assets/images/soporte4.svg" alt="" />-->
+                <img src="~/img/asistencia/asistencia.svg" alt="...">
+            </div>
+            <div class="col-12 col-md-6">
+                <h1>¿Necesitas ayuda? <br /> <small>¡Contáctanos!</small></h1>
+                <ul class="my-4 lista-orientacion">
+                    <li>¿Sabes que enfermedades cubre GES/CAEC?</li>
+                    <li>¿Sabes cual es su cobertura y como activarla?</li>
+                    <li>¡¡Habla con nuestro equipo!!</li>
+                </ul>
+                <ul class="canales-orientacion">
+                    <li>
+                        <button onclick="location.href=tel:228696900"
+                                id="btnOrientacionTelefonica"
+                                class="btn-asistencia">
+                            <i class="far fa-mobile"></i> Llámanos <i class="fal fa-long-arrow-right ml-auto icono-asistencia"></i>
+                        </button>
+                    </li>
+
+                    @*<li>
+                        <a href="https://wa.me/56948042543?text=Asistencia%20al%20Paciente%20-%20Medismart%20"
+                           target="_blank" class="btn-asistencia">
+                            <i class="fab fa-whatsapp"></i> Escríbenos <i class="fal fa-long-arrow-right ml-auto icono-asistencia"></i>
+                        </a>
+                    </li>*@
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--end::Otros clientes-->
+
+}
+
+
+@section Scripts {
+    <script type="module">
+        import { init } from '../../js/Paciente/asistencia-gescaec.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script>
+        var num = '@Html.Raw(@ViewBag.Numero)';
+        window.num = num;
+        var host = '@ViewBag.HostURL';
+        window.host = host;
+        var num = '@Html.Raw(@ViewBag.NumeroAsesoria)';
+        window.num = num;
+    </script>
+
+
+}

@@ -1,0 +1,70 @@
+﻿
+@model WebMVC.Models.AtencionViewModel
+@{
+    Layout = "_LayoutInvitado";
+    ViewData["view"] = Roles.Invitado;
+    
+    var isPsicopedagogiaUnab = false;
+    var isUnab = false;
+
+    if (ViewBag.HostURL.ToString().Contains("unabactiva.") || ViewBag.HostURL.ToString().Contains("activa.unab."))
+    {
+        isUnab = true;
+        // Especialidad
+        string especialidad = Model.Atencion.HoraMedico?.Especialidad ?? Model.Atencion.Especialidad ?? string.Empty;
+        isPsicopedagogiaUnab = Util.RemoveAccent(especialidad).ToLower().Contains("psicopedagogia");
+    }
+}
+
+@section Styles  {
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+<partial name="~/Views/Shared/_Box-Atencion-Profesional.cshtml" model="Model" view-data="ViewData" />
+
+@section Scripts {
+    <script src="~/js/Shared/jitsi-call.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/whereby_embed_v1.js" type="module"></script>
+    <!--toasty js-->
+    <link href="~/Toasty.js-master/dist/toasty.css" rel="stylesheet" />
+    <script src="~/Toasty.js-master/dist/toasty.js"></script>
+    <script src="~/Toasty.js-master/assets/prism/prism.js"></script>
+    <!-------------------------------------------------------------------------------------------------->
+    <script src="~/signal/signalr.min.js"></script>
+
+    <script src="~/metronic_demo7/assets/js/pages/components/extended/sweetalert2.js?rnd=@NumeroRandom.GetRandom()"></script>
+    <script src="~/js/Shared/atencion-box.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/Shared/archivos-adjuntos.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/Shared/chat.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+
+    @*<script src="https://kit.fontawesome.com/f20b9dc261.js?rnd=@NumeroRandom.GetRandom()" crossorigin="anonymous"></script>*@
+    <script src="~/js/KitAwesome.js"></script>
+    <script src="~/metronic_demo7/assets/plugins/select2/select2.js?rnd=@NumeroRandom.GetRandom()"></script>
+    <script type="module">
+        //import { init } from '../../js/Invitado/atencion.js?rnd=@NumeroRandom.GetRandom()';
+         import { init } from '../../js/Invitado/atencion-box.js?random=@NumeroRandom.GetRandom()';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+            (function () {
+                $('.select2').select2();
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+            var isPsicopedagogiaUnab = @isPsicopedagogiaUnab.ToString().ToLower();
+            window.isPsicopedagogiaUnab = isPsicopedagogiaUnab;
+        })()
+    </script>
+    <script>
+        // Warning before leaving the page (back button, or outgoinglink)
+        window.onbeforeunload = function () {
+            return "Seguro que quieres dejar la página, estas en medio de una atención?";
+            //if we return nothing here (just calling return;) then there will be no pop-up question at all
+            //return;
+        };
+    </script>
+    <script>
+        function goBack() {
+            return document.referrer;
+        }
+    </script>
+}

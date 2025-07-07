@@ -1,0 +1,114 @@
+/* START STYLE COMPRA MEDICAMENTOS */
+
+
+#modal-medicamentos .modal-title {
+    color: #0785A6;
+    padding-top: 3%;
+    padding-left: 3%;
+}
+
+#modal-medicamentos .modal-body {
+    padding: 0rem !important;
+    margin-bottom: 1%;
+    text-align: -webkit-center;
+}
+
+#modal-medicamentos .modal-header {
+    padding: 0rem;
+}
+
+#modal-medicamentos .modal-content {
+    border-radius: 26px !important;
+    border: #A5B2B6 solid !important;
+}
+
+
+#modal-medicamentos .number {
+    border: #0785A6 3px solid;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*width: 16%;*/
+}
+
+    #modal-medicamentos .number p {
+        color: #0785A6;
+        font-size: 1.4rem;
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+    }
+
+#modal-medicamentos .text-card p {
+    font-size: 12px;
+    color: #0785A6;
+    padding-top: 5%;
+    /*font-weight: 600;*/
+    font-family: "Poppins", sans-serif;
+}
+
+#modal-medicamentos .card-body {
+    padding: 1rem !important;
+}
+
+#modal-medicamentos .card-img {
+    width: 65% !important;
+    align-self: center;
+}
+
+#modal-medicamentos .card-group {
+    width: 90%;
+}
+
+#modal-medicamentos .card-body {
+    text-align: -webkit-center;
+}
+
+#modal-medicamentos .ml-5, .mx-5 {
+    margin-left: 3rem !important;
+}
+
+
+#modal-medicamentos .modal-title {
+    margin: 0 0 1rem;
+}
+
+#modal-medicamentos .modal-header .close {
+    margin: .5rem;
+}
+
+/* END STYLE COMPRA MEDICAMENTOS */
+
+
+@media (max-width: 1024px) {
+    #modal-medicamentos .modal-title {
+        text-align: center;
+        font-weight: 900;
+
+    }
+
+    #modal-medicamentos .card {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    #modal-medicamentos .card-img {
+        width: 40% !important;
+    }
+
+    #modal-medicamentos .card-body {
+        text-align: left;
+    }
+
+    #modal-medicamentos .number {
+        width:30px;
+        height: 30px;
+    }
+
+    #modal-medicamentos .modal-header .close {
+        margin: .2rem;
+    }
+}

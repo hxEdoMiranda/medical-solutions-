@@ -1,0 +1,285 @@
+﻿@model AtencionesTeledocViewModel
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "InformeTeledoc";
+    Layout = "_LayoutPaciente";
+
+    var archivoOrientacion = "SIN-ATENCIONES";
+    if (ViewBag.idEspecialidad == 77)
+    {
+        archivoOrientacion = "ATENCIONES-CERTIFICADOS"; // ESTE CODIGO ENTIDAD NO EXISTE, SE USA PARA QUE HAGA NADA EL FILTRO CUANDO NO ES ORIENTACION
+    }
+
+    var hiddenAchs = string.Empty;
+    var isAchs = false;
+    if (ViewBag.HostURL.ToString().Contains("achs."))
+    {
+        isAchs = true;
+        hiddenAchs = "hidden";
+    }
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+<!-- begin:: Subheader -->
+<!-- begin:: Content -->
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+        <!--Begin:: App Aside Mobile Toggle-->
+        <button class="kt-app__aside-close" id="kt_user_profile_aside_close">
+            <i class="la la-close"></i>
+        </button>
+
+
+        <div class="container-fluid cont-informe" style="overflow-x: hidden;">
+            <div class="row">
+                <div class="col-12 col-md-auto">
+                    <h3 class="mb-3 titulo-seccion titulo-informe">Resumen de Atención</h3>
+                    <div class="card-informe informe" style="height: @(isAchs ? "auto" : string.Empty)">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12 col-md columna-paciente scrollable">
+                                    @Html.Hidden("uid", (object)ViewBag.uid)
+                                    @Html.HiddenFor(m => m.idPaciente)
+                                    <!--Paciente-->
+                                    <div class="item-resumen">
+                                        <div class="legend-resumen">
+                                            Paciente
+                                        </div>
+                                        <div class="info-resumen">
+                                            <div class="nombre-paciente">
+                                                <p>Nombre del paciente</p>
+                                            </div>
+                                            <div class="rut-paciente">
+                                                @Model.idPaciente
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--Paciente-->
+                                    <!--Profesional-->
+                                    <div class="item-resumen">
+                                        <div class="legend-resumen">
+                                            Profesional
+                                        </div>
+                                        <div class="info-resumen">
+                                            <div class="nombre-profesional">
+                                                @Model.nombreDoctor
+                                            </div>
+                                            <div class="especialidad">
+                                                @Model.especialidad
+                                            </div>
+                                            <!--HORA DE LA ATENCION-->
+                                            <div class="especialidad">
+                                                @Model.tsCreacion
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!--Profesional-->
+                                    <!--Motivo de consulta-->
+                                    <div class="item-resumen">
+                                        <div class="legend-resumen">
+                                            Motivo de la consulta
+                                        </div>
+                                        <div class="info-resumen">
+                                            <div class="nombre-paciente">
+                                                @Model.motivoConsulta
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--Diagnóstico-->
+                                    <div class="item-resumen" @hiddenAchs>
+                                        <div class="legend-resumen">
+                                            Diagnóstico
+                                        </div>
+                                        <div class="info-resumen">
+                                            <span class="kt-widget1__desc">
+                                                @if (Model.ficha_medica.diagnostico != null)
+                                                {
+                                                    @Model.ficha_medica.diagnostico
+                                                }
+                                                else
+                                                {
+                                                    <text></text> <!-- Muestra un espacio en blanco si diagnostico es null -->
+                                                }
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <!--Diagnóstico-->
+                                    <!--Anamnesis/Hipótesis diagnóstica-->
+                                    <div class="item-resumen" @hiddenAchs>
+                                        <div class="legend-resumen">
+                                            Anamnesis próxima
+                                        </div>
+                                        <div class="info-resumen">
+                                            @Model.ficha_medica.anamnesis_proxima
+                                        </div>
+                                    </div>
+                                    <!--Anamnesis/Hipótesis diagnóstica-->
+                                    <!--Indicaciones-->
+                                    <div class="item-resumen" @hiddenAchs>
+                                        <div class="legend-resumen">
+                                            Indicación o Plan
+                                        </div>
+                                        <div class="info-resumen">
+                                            @Model.ficha_medica.indicaciones
+                                        </div>
+                                    </div>
+                                    <!--Indicaciones-->
+                                    <!--Control-->
+                                    <div class="item-resumen" @hiddenAchs>
+                                        <div class="legend-resumen">
+                                            Control
+                                        </div>
+                                        <div class="info-resumen">
+                                        </div>
+                                    </div>
+
+                                    <div class="item-resumen" @hiddenAchs>
+                                        <div class="legend-resumen">
+                                            URl descarga
+                                        </div>
+                                        <div class="info-resumen">
+                                            @foreach (var archivo in Model.archivos)
+                                            {
+                                                @archivo.url
+                                                <br />
+                                                <br />
+                                                <br />
+                                            }
+                                        </div>
+                                    </div>
+
+                                    
+
+
+
+                                    <!--Control-->
+                                    <div class="item-resumen" @hiddenAchs>
+                                        <div class="legend-resumen">
+                                            Resumen última consulta:
+                                        </div>
+                                        <div class="info-resumen">
+                                            <div>
+                                                <p class="legend-resumen" style="display: inline;">- Dia</p>
+                                                <span class="no-legend-resumen" style="display: inline;">@Model.tsCreacion</span>
+                                            </div>
+                                            <div>
+                                                <p class="legend-resumen" style="display: inline;">- Tratante</p>
+                                                <span class="no-legend-resumen" style="display: inline;">@Model.nombreDoctor</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    @if (ViewData["view"].Equals(Roles.Medico))
+                                    {
+                                        <div class="item-resumen" @hiddenAchs>
+                                            <div class="legend-resumen">
+                                                <p>Observaciones</p>
+                                            </div>
+                                            <div class="info-resumen">
+                                                @Model.ficha_medica.diagnostico_observaciones
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+
+
+                                <!-- CONFIGURACION DEL ARCHIVO ------------------------------------------------------------------------------------------->
+                                
+                                <div class="col-12 col-md columna-archivos" style="border-left: 1px dashed #C4ECF0; ">
+                                    <div class="legend-resumen" @hiddenAchs>
+                                        Archivos de la Atenci&oacute;n
+                                    </div>
+
+                                    @if (Model.archivos.ToList().Count == 0)
+                                    {
+                                        <div id="pnlArchivos" class="align-self-center" style="display:block">
+                                            <div class="row">
+                                                <div class="col-lg-12 kt-align-center">
+                                                    <img src="~/metronic_demo7/assets/media/sinResultado.PNG" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12 text-center" @hiddenAchs>
+                                                    <h5>No existen archivos asociados a esta atención.</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        @if (ViewData["view"].Equals(Roles.Medico) || ViewData["view"].Equals(Roles.Administrador))
+                                        {
+                                            @foreach (var archivo in Model.archivos)
+                                            {
+                                                <div class="archivos-atencion">
+                                                    <ul>
+                                                        @if (archivo.nombreArchivo != null)
+                                                        {
+                                                            <li>
+                                                                <div class="tipo-archivo">
+                                                                    @archivo.nombreArchivo
+                                                                </div>
+                                                                <a href="@archivo.url" class="btn-archivo" style="text-decoration: none;">
+                                                                    @if (archivo.nombreArchivo.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+                                                                    {
+                                                                        <i class="fal fa-file-pdf"></i>
+                                                                    }
+                                                                    else if (archivo.nombreArchivo.EndsWith(".docx", StringComparison.OrdinalIgnoreCase) || archivo.nombreArchivo.EndsWith(".doc", StringComparison.OrdinalIgnoreCase))
+                                                                    {
+                                                                        <i class="fal fa-file-word"></i>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <i class="fal fa-file"></i>
+                                                                    }
+                                                                </a>
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            @foreach (var archivo in Model.archivos)
+                                            {
+                                                <div class="archivos-atencion">
+                                                    
+                                                    <ul>
+                                                        @if (archivo.nombreArchivo != null )
+                                                        {
+                                                            <li>
+                                                                <div class="tipo-archivo">
+                                                                    @archivo.nombreArchivo
+                                                                </div>
+                                                                <a href="@archivo.url" class="btn-archivo" style="text-decoration: none;">
+                                                                    <i class="fal fa-file-pdf"></i>
+                                                                </a>
+
+                                                            </li>
+                                                        }                                                        
+                                                   </ul>
+                                                </div>
+                                            }
+                                        }
+                                    }
+                            
+                                </div>
+                                <!---------------  FIN DE LA CONFIGURACION ------------------------------------------------------------------------------------->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

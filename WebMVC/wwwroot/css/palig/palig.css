@@ -1,0 +1,798 @@
+/*glory*/
+
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');*/
+
+:root {
+    --primary: #1A1A1A;
+    --secondary: #ffff;
+    --tertiary: #111;
+    --fourth: #0F499A;
+    --accent: #ffff;
+    --light: #FFF;
+    --font-family: 'Mulish', sans-serif;
+}
+.html-uno{
+    height:1rem;
+}
+
+
+body {
+    /* font-family: var(--font-family) !important;*/
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family) !important;
+}
+/*Login*/
+.logotipo-desktop {
+    background-image: url(../../img/palig/logotipo.svg);
+    background-size: 100% 100%;
+    background-position: center center;
+    max-width: 300px;
+    height: 214px;
+    width: initial;
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/palig/logotipo.svg);
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+        
+        
+        display: inline-block;
+        color: #373737;
+        /* Mulish/34px: Regular */
+        font-family: Mulish !important;
+        font-size: 34px;
+        font-style: normal;
+        font-weight: 400 !important;
+        line-height: normal;
+    }
+
+.login-info--tooltip ~ .tooltip-inner {
+    text-align: left !important;
+    background-color: red !important;
+}
+.login-info--tooltip i {
+        color: #ccc;
+        font-size: 20px;
+        margin-left: 10px;
+        text-align: left !important;
+    }
+
+.form-group .ms-label {
+    color: #373737 !important;
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.cont-home {
+    text-align: center;
+    margin-bottom: 2rem;
+    /*display: none;*/
+}
+
+.tooltip.show p {
+    text-align: left;
+}
+
+.btn-primary {
+    width: 193px;
+    height: 35px;
+    padding: 11px 60px;
+    align-items: center;
+    color: #FFF;
+    font-family: Mulish;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border-radius: 5px;
+    background: #3DB2C0;
+    margin-left: auto;
+}
+
+.no-tiene-cuenta {
+    color: #373737;
+    font-family: Mulish;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.registrate {
+    color: #037EA1;
+    font-family: Mulish;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.btn-primary:hover {
+    background-color: #111986;
+    border-color: #111986;
+}
+
+.divider-medismart {
+    display: flex !important;
+    margin-bottom: 2rem;
+}
+
+.logo-convenios {
+    /* display: none;*/
+    margin-bottom: 2rem;
+}
+
+/* Imágenes Login */
+.img1 {
+    background-image: url(../../img/palig/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/palig/login/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/palig/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/palig/login/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/palig/login/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/palig/login/960x978.jpg);
+}
+
+.body-home {
+    /*background-image: linear-gradient(175.39deg, #FFFFFF -7.56%, #333333 1.84%, #103ADA 96.27%);*/
+
+    background: #3bc1cd;
+    background-image: linear-gradient(179deg, #299FD9 -19.14%, #EDB150 109.27%);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-attachment: fixed;
+}
+
+    .body-home .logo-home img {
+        width: 134px;
+    }
+
+    .top-banner .legend {
+        font-weight: 500;
+    }
+
+.menu-top .item-menu-top i,
+.menu-top .label-menu {
+    color: #ECB450
+}
+
+.menu-top .item-menu-top:hover i, .menu-top .item-menu-top:hover .label-menu {
+    color: #BCB5B5 !important;
+}
+.kt-menu__item a, .kt-menu__item i {
+    color: #299FD9;
+}
+
+    .kt-menu__item a .ms-label-menu {
+        color: #241F20;
+    }
+
+    .kt-menu__item:hover a, .kt-menu__item:hover i {
+        color: var(--secondary) !important;
+    }
+
+.accesible-btn button {
+    color: #037EA1;
+    border: 1px solid #037EA1;
+}
+
+.accesible-tools-desktop .accesible-btn button {
+    margin: 0.5rem;
+    color: #08395B;
+    border: none;
+}
+
+.color-letras-salaespera {
+    margin: 0.5rem !important;
+    color: #333333 !important;
+    border: #333333 1px solid !important;
+}
+
+
+
+btn-letras-a {
+    color: #fff;
+    border: 1px solid #08395B;
+}
+
+.letras-color-home {
+    color: #0081A4 !important;
+    border: 1px solid #3BC1CD !important;
+    background: #fff;
+}
+
+.accesible-btn button:hover {
+    background-color: #BCB5B5;
+    border-color: var(--primary)
+}
+
+.busqueda-profesionales {
+    border: 2px solid #E6F2F6;
+    background: #E6F2F6;
+}
+    .busqueda-profesionales i {
+        color: var(--fourth)
+    }
+    .busqueda-profesionales .btn-outline-primary {
+        color: var(--fourth)
+    }
+
+.caja-especialidad.active {
+    background-color: #EFBB66;
+}
+
+.caja-especialidad {
+    background-color: #013948;
+}
+
+.inner-especialidad strong {
+    color: var(--light)
+}
+
+.step.active .step-icon {
+    background-color: var(--primary);
+}
+
+.stepper {
+    background-image: url(../../img/glory/fondo-banner2.svg);
+}
+
+    .stepper .flecha {
+        color: var(--primary)
+    }
+
+    .stepper img {
+        border-color: #1F9FDA
+    }
+
+.step.active .label-step {
+    color: var(--primary)
+}
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: #564B52
+}
+
+    .nombre-profesional small {
+        
+        color: #000;
+    }
+
+.calificacion .positiva {
+    color: #1F9FDA;
+}
+
+.caja-profesional .fecha-atencion {
+    color: var(--tertiary)
+}
+
+.front-fecha-atencion {
+    border: 1px solid rgba(35,33, 114, .3)
+}
+
+    .front-fecha-atencion strong:before {
+        color: #564B52;
+       
+    }
+
+    .front-fecha-atencion strong {
+        color: #564B52;
+    }
+
+.especialidad-profesional {
+    color: #564B52
+}
+
+.front .btn-agendar {
+    background: #EFBB66;
+    border: 1px solid #EFBB66;
+    color: #fff;
+}
+.caja-profesional.no-flip {
+    border: 2px solid #1F9FDA;
+}
+
+
+.caja-profesional .fecha-atencion {
+    border: 1px solid #1F9FDA;
+}
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+
+.top-banner {
+    background-image: url(../../img/palig/fondo-banner2.svg);
+}
+    .top-banner img {
+        border-color: rgba(255, 255, 255, .3)
+    }
+    .top-banner .legend {
+        color: var(--fourth)
+    }
+
+.banner_topsc .legend .text-warning {
+    color: var(--primary) !important;
+}
+
+.top-banner.banner_topsc {
+    background-image: url(../../img/glory/fondo-banner2.svg);
+}
+
+.body-home .text-warning {
+    color: var(--secondary) !important;
+}
+
+.menu-top .item-menu-top .logotipo-mobile {
+    width: 110px !important;
+}
+/*Sala espera*/
+.hotspot-icon .cont-icon {
+    background-color: #333333
+}
+
+.hotspot-icon:hover .cont-icon {
+    /* background-color: #C4C4C4;*/
+    background-color: #EDB150;
+}
+
+.cont-icon.hotspot-redes {
+    background-color: #000;
+}
+
+#reporte .cont-icon {
+    background-color: #333333;
+}
+
+#reporte:hover .cont-icon {
+    background-color: #EDB150;
+}
+
+#hs-g .cont-icon {
+    background-color: var(--secondary);
+}
+
+#hs-g:hover .cont-icon {
+    background-color: var(--primary);
+}
+
+.toolbar-option {
+    color: var(--primary)
+}
+
+.toolbar-option.active {
+    color: var(--secondary)
+}
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--tertiary)
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--secondary)
+}
+
+.btn-sala:hover {
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion, .cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+    .cont-btn-panel .btn-atencion:hover, .cont-btn-vc .btn-atencion:hover {
+        background-color: rgba(237, 110, 0, 0.1);
+        color: var(--primary);
+    }
+
+.hotspot-icon {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+    .hotspot-icon i {
+        text-shadow: none;
+    }
+
+    .hotspot-icon:hover {
+        color: #FFF;
+    }
+
+@media (max-width: 668px) {
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .top-banner .legend {
+        text-align: left;
+        font-size: 1.3rem;
+    }
+}
+
+
+ @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/palig/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/palig/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/palig/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/palig/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/palig/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/palig/login/548x850.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/palig/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/palig/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/palig/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/palig/login/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/palig/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/palig/login/960x978.jpg);
+    }
+}
+
+
+/*Prehome*/
+
+.prehome__plans {
+    height: 450px;
+}
+
+.prehome__plan {
+    width: 100%;
+    padding: 0;
+}
+
+.prehome__plan ul {
+    list-style-image: url('../../img/glory/bullet.svg');
+   
+    margin-top: 32px;
+    height: 350px;
+    font-size: 16px;
+}
+
+.prehome__title {
+    color: #FFF;
+}
+
+.kt-login__extra.registro {
+    display: none;
+}
+
+.logo-convenios.convenioChile + hr {
+    display: none;
+}
+
+.kt-login.kt-login--v3.kt-login--signin .kt-login__signin .titulo-card-farmacia {
+    text-align: center;
+}
+
+@media (max-width: 991.98px) {
+    .prehome__plans {
+        height: auto;
+    }
+
+
+}
+
+
+
+.login-footer .terminos {
+    margin-bottom: 2rem;
+    display: flex;
+    margin-top: 2rem;
+    gap: 1rem;
+    margin-left: 1rem;
+}
+.stepper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    background-image: url(../../img/palig/fondo-banner.svg);
+    background-repeat: repeat-x;
+    background-position: left 10px;
+    margin-bottom: 2.5rem;
+    margin-top: 2.5rem;
+}
+.menu-top .label-menu-pac {
+    color: #ECB450
+}
+
+.category-button:hover, .category-button.active {
+    background-color: var(--important) !important;
+    color: var(--important) !important;
+}
+
+.letras-triage-mexicana {
+    color: #4F406C !important;
+    border: 1px solid #4F406C !important;
+}
+
+.kt-menu__item:hover a, .kt-menu__item:hover i {
+    color: var(--primary) !important;
+}
+
+.menu-top .item-menu-top:hover .label-menu-pac {
+    color: #BCB5B5 !important;
+}
+
+.kt-menu__item:hover a .ms-label-menu {
+    color: var(--primary);
+}
+
+.body-home {
+    /*background: linear-gradient(180deg, #CACACC 16.67%, #0F499A 100%);*/
+}
+
+.body-home .top-banner .legend {
+    color: #fff;
+}
+
+    .body-home .card-plan .costo, .body-home .card-plan .pronto-card {
+        position: absolute;
+        top: -1px;
+        right: -1px;
+        width: 70px;
+        height: 25px;
+        font-size: 11px;
+        font-weight: 900;
+        background-color: #FFAF36;
+        color: #0081A4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0px 16px 0px 8px;
+        text-transform: uppercase;
+    }
+
+.accesible-tools-desktop .accesible-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0rem;
+}
+
+.letras-sala-espera{
+    display:flex;
+    flex-direction: column !important;
+
+}
+
+
+
+a {
+    color: #037EA1;
+    font-family: Mulish;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+html, body {
+    height: 68rem;
+    margin: 0px;
+    padding: 0px;
+    font-size: 13px;
+    font-weight: 300;
+    font-family: Poppins, Helvetica, sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    max-height: 68rem;
+}
+
+.body-login {
+    height: 68rem;
+    margin: 0px;
+    padding: 0px;
+    font-size: 13px;
+    font-weight: 300;
+    font-family: Poppins, Helvetica, sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    max-height: 56rem;
+}
+
+/*.body-login {
+    max-height: 45rem;
+}*/
+
+.body-home .footer-home {
+    margin-top: 0;
+}
+
+.body-home .footer-home {
+    color: #FFF;
+    padding: 0rem 2rem 3rem 2rem;
+    text-align: center;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    max-width: 1020px;
+    margin: auto;
+    margin-top: 0;
+}
+
+@media (max-width: 1024px) {
+    .body-home .powered, .body-home .powered strong {
+        color: #FFF;
+        display: none;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .container-login {
+        border-top-left-radius: 2rem;
+        border-top-right-radius: 2rem;
+        min-height: calc(107vh - 150px);
+        background-color: #f9f9fc;
+    }
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+        width: 290px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    html, body {
+        font-size: 12px;
+        max-height: 0rem;
+        height: 0rem;
+    }
+}
+
+@media (max-width: 768px) {
+    html, body {
+        font-size: 12px;
+        height: 0;
+    }
+    .accesible-tools-desktop .accesible-btn {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+
+    .body-home .cont-home {
+        height: 52rem;
+    }
+   
+}
+
+@media (min-width: 570px) and (max-width: 765px) {
+    html, body {
+        font-size: 12px;
+        max-height: 95rem;
+        height: 0;
+    }
+
+}
+
+@media (max-width: 991.98px) {
+
+    .kt-grid.kt-grid--hor:not(.kt-grid--desktop):not(.kt-grid--desktop-and-tablet):not(.kt-grid--tablet):not(.kt-grid--tablet-and-mobile):not(.kt-grid--mobile) > .kt-grid__item.kt-grid__item--fluid, .kt-grid.kt-grid--hor:not(.kt-grid--desktop):not(.kt-grid--desktop-and-tablet):not(.kt-grid--tablet):not(.kt-grid--tablet-and-mobile):not(.kt-grid--mobile) > .kt-grid__item.kt-grid__item--fluid {
+        /* flex: 0 0 0; */
+        margin-bottom: 0rem;
+    }   
+       
+}
+
+@media (max-width: 991.98px) {
+    body {
+        /*ackground-color: #f9f9fc !important;*/
+        padding-top: 0;
+    }
+   
+}
+
+/*.mt-0, .my-0 {
+    margin-top: 1.5rem !important;
+    display: flex;
+    flex-direction: column-reverse;
+    line-height: 2rem;
+}*/
+
+
+@media (min-width: 567px) and (max-width: 1200px) and (orientation: portrait) {
+    .kt-login__logo.cont-logo-mobile.d-md-none {
+        /*background-color: #f9f9fc !important;*/
+        display: flex !important;
+        justify-content: center;
+    }
+}
+
+.body-home .container {
+    height: auto;
+    /*display: none;*/
+}
+
+.wow__header .wow__title h2 {
+    color: var(--fourth);
+}

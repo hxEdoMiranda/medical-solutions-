@@ -1,0 +1,301 @@
+/*Estilos para Medismart Colombia*/
+
+
+/*
+    Login
+*/
+
+.logo-convenios {
+    justify-content: center;
+}
+
+.kt-login.kt-login--v3
+.kt-login__wrapper
+.kt-login__container
+.kt-login__head {
+    margin: 10px 0px;
+}
+
+.kt-login__head {
+    display: flex;
+    align-items: center;
+}
+
+    .kt-login__head .pais {
+        margin-right: 1rem;
+        width: 100px;
+        height: 100px;
+        border-radius: 80px;
+        overflow: hidden;
+        object-fit: cover;
+    }
+
+
+.kt-login.kt-login--v3
+.kt-login__wrapper
+.kt-login__container
+.kt-login__head
+.kt-login__title {
+    margin-top: 0;
+}
+
+.kt-login__head .pais img {
+    max-width: 50px;
+}
+
+.logo-convenios {
+    align-items: center;
+    justify-content: start;
+}
+
+    .logo-convenios .pais {
+        background-image: url('../../img/colombia/colombia.svg');
+        background-size: contain;
+        width: 60px;
+        height: 40px;
+        margin-left: 1.5rem;
+        /*box-shadow: 0 7px 30px -10px rgba(150,170,180, 1);*/
+    }
+
+.pais-flotante {
+    position: absolute;
+    width: 60px !important;
+    top: 1rem;
+    right: 5rem;
+}
+
+.isotipo {
+    width: 60px;
+    height: 60px;
+    background-image: url('../../img/isotipo.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/* Imgenes Login */
+.img1 {
+    background-image: url(../../img/colombia/co1.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/colombia/co2.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/colombia/co3.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/colombia/co4.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/colombia/co5.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/colombia/co6.jpg);
+}
+
+/* Examenes */
+.examenes_title {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: 5px;
+    border-top: 1px solid #C4ECF0;
+    border-bottom: 1px solid #C4ECF0;
+}
+
+.service {
+    width: 57%;
+}
+
+.precio {
+    width: 30%;
+}
+
+.precio_medismart {
+    width: 45%;
+}
+
+.incluir_servicio {
+    width: 15%;
+}
+
+.examenes_items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: flex-start;
+    font-size: 11px;
+    text-align: left;
+    border-bottom: 1px solid #C4ECF0;
+    padding: 5px 0px;
+}
+
+.precio_medismart h2 {
+    font-weight: 700 !important;
+}
+
+.examenes_title h2 {
+    font-size: 13px;
+    font-weight: 500;
+    color: #0282a6;
+}
+
+.name_item {
+    width: 50%;
+    display: inline-table;
+}
+
+.tarifa_item {
+    width: 18%;
+}
+
+.tarifaoferta_item {
+    width: 35%;
+    font-weight: 900;
+    text-align: center;
+    color: #0282a6;
+}
+
+.valor_item {
+    width: 15%;
+}
+
+.titulo-card-farmacia {
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 700 !important;
+    color: #48465b !important;
+    margin: 10px 0px;
+}
+
+.lista-proveedores {
+    margin: 10px 0px;
+}
+
+.pago_box {
+    display: flex;
+    margin: 20px 0px;
+    align-items: center;
+}
+
+.btn-proveedor {
+    width: 35% !important;
+}
+
+.ciudad_box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.card-informe {
+    min-height: 510px;
+    height: auto;
+}
+
+input#pagar {
+    padding: 0.65rem 1rem;
+    background-color: #1dc9b7;
+    border: 1px solid #1dc9b7;
+    color: #fff;
+    width: 70%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    input#pagar:hover {
+        background-color: #ffb822;
+        border: 1px solid #ffb822;
+    }
+
+.valor-consulta {
+    border-top: none !important;
+}
+
+.total-valor {
+    border-bottom: 1px dashed rgba(59, 193, 205, 0.5);
+}
+
+
+element.style {
+}
+
+*, *::before, *::after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.valor-consulta {
+    font-size: 16px;
+}
+
+@media (max-width: 668px) {
+    .card-informe {
+        height: auto;
+    }
+
+    .container-fluid.cont-informe {
+        margin-top: 30px;
+    }
+
+    .kt-header-mobile--fixed .kt-header__topbar {
+        top: 0;
+    }
+
+    .legend-resumen {
+        min-height: 50px;
+    }
+
+    .examenes_title h2 {
+        font-size: 13px;
+    }
+
+    p.fuente-accesible {
+        text-align: center;
+    }
+
+    .pay_box {
+        background-image: url(none) !important;
+        width: 100% !important;
+    }
+
+    h3.text-danger.my-3 {
+        text-align: center;
+    }
+}
+
+/* Confirmacion Pago */
+.cont-icon-confirma_ev {
+    display: flex;
+    justify-content: center;
+}
+
+    .cont-icon-confirma_ev .icon-confirma, .cont-icon-confirma_ev i.fal.fa-exclamation-triangle {
+        font-size: 70px;
+    }
+
+.pay_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 80px;
+    background-image: url(../../img/fondo-banner.svg);
+    background-repeat: repeat-x;
+    background-position: left 10px;
+    margin-bottom: 2.5rem;
+    margin-top: 2.5rem;
+    flex-direction: row;
+}
+
+h3.text-danger.my-3 {
+    color: #29787f !important;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 700;
+}

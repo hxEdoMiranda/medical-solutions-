@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "ListaPagosPaciente";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section PageStyles {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
+    <div class="kt-portlet kt-portlet--mobile">
+        <div class="kt-portlet__head kt-portlet__head--lg">
+            <div class="kt-portlet__head-label">
+                <span class="kt-portlet__head-icon">
+                    <i class="kt-font-brand flaticon2-list"></i>
+                </span>
+                <h3 class="kt-portlet__head-title">
+                    Listado de pagos pacientes
+                </h3>
+            </div>
+        </div>
+
+        <div class="kt-portlet__body">
+            <div class="kt-form kt-form--label-right kt-margin-t-20 kt-margin-b-10">
+                <div class="row align-items-center">
+                    <div class="col-md-10">
+                        <div class="kt-input-icon kt-input-icon--left">
+                            <input type="text" class="form-control" placeholder="Buscar RUT..." id="generalSearch" />
+                            <span class="kt-input-icon__icon kt-input-icon__icon--left">
+                                <span><i class="la la-search"></i></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-brand btn-elevate btn-icon-sm" id="buscar" style="width: 100%">
+                            <i class="la la-search"></i>
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="kt-portlet__body kt-portlet__body--fit">
+            <!-- Data -->
+            <div class="kt-datatable" id="json_data"></div>
+        </div>
+    </div>
+</div>
+
+<div id="kt_scrolltop" class="kt-scrolltop">
+    <i class="fa fa-arrow-up"></i>
+</div>
+
+@section PageScripts {
+    <script src="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>
+}
+
+@section Scripts {
+    <script type="module">
+        import { init } from '../../js/Admin/listaPagosPaciente.js?rnd=@NumeroRandom.GetRandom()';
+        init();
+    </script>
+    <script type="text/javascript">
+        document.getElementById('buscar').addEventListener('click', function () {
+            const rut = document.getElementById('generalSearch').value;
+            if (rut.length > 0) {
+                const event = new Event('search');
+                event.rut = rut;
+                document.dispatchEvent(event);
+            }
+        });
+    </script>
+}

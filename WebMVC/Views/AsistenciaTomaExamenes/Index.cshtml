@@ -1,0 +1,98 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_LayoutPaciente";
+}
+
+
+
+<div class="container cont-orientacion toma-examenes-medismart">
+    <div class="row align-items-center">
+        <div class="col-12 col-md-6 text-center">
+            <!--<img src="../../../assets/images/soporte4.svg" alt="" />-->
+            <img src="~/img/asistencia/asistencia.svg" alt="...">
+        </div>
+        <div class="col-12 col-md-6">
+            <h1>¿Necesitas ayuda? <br /> <small>¡Contáctanos!</small></h1>
+            <ul class="my-4 lista-orientacion">
+                <li>¿Sabes cuales son los laboratorios más cercanos?</li>
+                <li>¿Necesitas apoyo para agendar tus exámenes?</li>
+                <li>¡¡Habla con nuestro equipo!!</li>
+            </ul>
+            <ul class="canales-orientacion">
+                <li>
+                    <button onclick="location.href=tel:228696900"
+                            id="btnOrientacionTelefonica"
+                            class="btn-asistencia">
+                        <i class="far fa-mobile"></i> Llámanos <i class="fal fa-long-arrow-right ml-auto icono-asistencia"></i>
+                    </button>
+                </li>
+
+              @*  <li>
+
+                    <button id="btnWhatsAppAsistenciaTomaExamenes"
+                            class="btn-asistencia">
+                        <i class="fab fa-whatsapp"></i> Escríbenos <i class="fal fa-long-arrow-right ml-auto icono-asistencia"></i>
+                    </button>
+                </li>*@
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid toma-examenes-coopeuch">
+    <h1 class="titulo-toma-examenes">Exámenes Médicos</h1>
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-auto">
+                <img src="~/img/coopeuch/pantalla-examenes.svg" alt="Examenes" />
+            </div>
+            <div class="col-12 col-md cont-mensaje">
+                <h1>
+                    Te ayudamos a agendar tus exámenes médicos.
+                    <small>¡Contáctanos!</small>
+                </h1>
+
+                <p>
+                    Con la ayuda de nuestro Centro de Atención, podrás agendar de forma simple y rápida tus exámenes médicos.
+                </p>
+                <p> Dinos qué fecha prefieres, el lugar que más te acomode y encontramos una hora y un laboratorio (o centro médico) perfecto para tus necesidades.</p>
+
+                <p> Contáctanos directamente pinchando acá: </p>
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 col-md-12 nota-asistencia">
+                            <div class="col-md-6">
+                                <button class="btn btn-primary" onclick="location.href='tel:228696900'">Llamar</button>
+                                <small class="data-asistencia">
+                                    Llamarás directamente al <br />
+                                    2 2869 6900
+                                </small>
+                             </div>
+                            <div class="col-md-6">
+                             <button class="btn btn-primary" onclick="location.href='/Paciente/Agendar?tipo=suscripcion&tipoEspecialidad=orientacion'">Video consulta</button>
+                             </div>
+                        </div>
+                        @*<div class="col-12 col-md-6 nota-asistencia">
+                            <button class="btn btn-primary" onclick="location.href='tel:56948042543'">Whatsapp</button>
+                            <small>
+                                Escribirás directamente al
+                                +56 9 5369 4225
+                            </small>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script type="module">
+    import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';       
+    init(@Html.Raw(Json.Serialize(Model)))
+</script>
+}    

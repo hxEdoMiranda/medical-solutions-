@@ -1,0 +1,58 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+    Layout = "_LayoutPaciente";
+}
+
+<style type="text/css">
+    
+/* Essilor Plan > Examenes > Reserva Exitosa */
+
+.reserva-exitosa {
+    margin: 3rem auto;
+    padding: 60px;
+    border-radius: 40px;
+    background: #FFF;
+} 
+
+
+.reserva-exitosa--ilustracion img {
+    display: block;
+    width: 90%;
+}
+
+.reserva-exitosa--texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 2rem;
+}
+
+</style>
+
+<div class="container reserva-exitosa">
+    <div class="row d-flex">
+        <div class="col-sm-6 reserva-exitosa--ilustracion">
+            <img src="../../img/mexico/essilor/examen-no-realizado.jpg" alt="Reserva Exitosa">
+        </div>
+        <div class="col-sm-6 reserva-exitosa--texto">
+            <h2 style="width: 100%;" class="lux-titulo-negacion">
+                Decidiste no realizar
+                <br />
+                tus exámenes de laboratorio
+            </h2>
+                <p class="lux-parrafo-info">
+                Te recomendamos que si cambias de opinión te dirijas a la sección de laboratorio para coordinar la realización de tus exámenes médicos.
+                </p>
+
+                
+            <a class="btn btn-primary" id="backToHome" href="/" role="button">
+                ENTENDIDO
+            </a> 
+            
+        </div>
+    </div>
+</div>

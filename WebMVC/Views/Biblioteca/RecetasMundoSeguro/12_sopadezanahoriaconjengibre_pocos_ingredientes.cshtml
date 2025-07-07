@@ -1,0 +1,85 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+    <section class="container-fluid note-section library featured" id="nota3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="cont-titulo-receta">
+                        <div class="cont-logo">
+                            <img src="~/img/cencosud/vida-sana/sopadezanahoriaconjengibre.png" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <h2 class="subtitulo-receta">
+                        Ingredientes 6 porciones:
+                    </h2>
+
+                    <ol>
+                        <li>1 cda aceite.</li>
+                        <li>¾ taza cebolla picada.</li>
+                        <li>2 dientes de ajo.</li>
+                        <li>1 cdta jengibre rallado.</li>
+                        <li>4 tazas de zanahoria trozada.</li>
+                        <li>Condimentos a gusto.</li>
+                    </ol>
+
+                    <h2 class="subtitulo-receta">
+                        Preparación
+                    </h2>
+                    <ol>
+                        <li>En una olla agrega el aceite y cebolla hasta que la cebolla esté transparente, agrega el ajo, jengibre y sal.</li>
+                        <li>Agrega las zanahorias y el líquido a fuego bajo, tápalo y déjalo hasta que las zanahorias estén cocidas.</li>
+                        <li>Licua las zanahorias en una juguera hasta que tenga la consistencia que desees.</li>
+                        <li>Prueba y corrobora los condimentos.</li>
+                    </ol>
+                    <h2 class="subtitulo-receta">
+                        Opcional:
+                    </h2>
+                    <ol>
+                        <li>Sirve con almendras laminadas como decoración </li>
+                    </ol>
+                    <p>
+                        <a href="@Url.Action("DescargarCenco", new { file = ViewBag.codigoNota})">
+                            Descargar receta
+                        </a>
+                        
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}
+

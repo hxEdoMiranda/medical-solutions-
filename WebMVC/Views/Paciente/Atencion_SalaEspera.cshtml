@@ -1,0 +1,3239 @@
+@using System.Security.Claims;
+@model WebMVC.Models.AtencionViewModel
+
+@{
+    ViewBag.Title = "Medical";
+    Layout = "_LayoutPaciente";
+    if (ViewBag.idCliente == "1")
+    {
+        Layout = "_LayoutExterno";
+    }
+    else if ((ViewBag.HostURL.ToString().Contains("peritajesisapre.") || ViewBag.HostURL.ToString().Contains("banmedica.")) && ViewBag.peritaje)
+    {
+        Layout = "_LayoutExterno";
+    }
+    else if (ViewBag.idCliente == "2" && ViewBag.peritaje)
+    {
+        Layout = "_LayoutExterno";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("happ."))
+    {
+        Layout = "_LayoutExterno";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("hlf."))
+    {
+        Layout = "_LayoutExterno";
+    }
+    ViewData["view"] = Roles.Paciente;
+    ViewData["idEntidad"] = Model.Atencion.Id;
+    ViewData["codigoPais"] = Model.Atencion.CodigoTelefono;
+    ViewData["codEntidad"] = Entidades.ATENCIONES;
+    ViewData["uid"] = ViewBag.uid;
+    var nombreEmpresa = "Medismart";
+    if (ViewBag.idCliente == "108") nombreEmpresa = "Salud Protección";
+    if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia.")) nombreEmpresa = "MundoScotia";
+    if (ViewBag.HostURL.ToString().Contains("prevenciononcologica.")) nombreEmpresa = "+ Protección";
+    if (ViewBag.HostURL.ToString().Contains("masproteccionsalud.")) nombreEmpresa = "+ Protección";
+    if (ViewBag.HostURL.ToString().Contains("saludtumundoseguro.")) nombreEmpresa = "Oncológico";
+    //imagen sala por empresa
+    var imgSala = "/img/fondo-sala-medismart2.jpg";
+    var imgSalaMobile = "/img/sala-espera/sala-espera1.jpg";
+    bool mostrarRedesSociales = true;
+    var codigoTelefono = ((ClaimsIdentity)User.Identity).GetSpecificClaim("CodigoTelefono");
+
+    @switch (ViewBag.idCliente)
+    {
+        case "1":
+            imgSala = "/img/fondo-sala.jpg";
+            imgSalaMobile = "/img/sala-espera/sala-espera-consalud.jpg";
+            break;
+        case "148":
+            imgSala = "/img/fondo-sala-colmena.jpg";
+            imgSalaMobile = "/img/sala-espera/sala-espera-colmena.jpg";
+            break;
+        case "108":
+            imgSala = "/img/coopeuch/fondo-sala.png";
+            imgSalaMobile = "/img/coopeuch/fondo-sala-mobile.png";
+            break;
+        case "204":
+            imgSala = "/img/claro/fondo-sala.jpg";
+            imgSalaMobile = "/img/claro/fondo-sala-mobile.jpg";
+            break;
+        case "233":
+            imgSala = "/img/scotiabank/sala-espera/fondo-sala.jpg";
+            imgSalaMobile = "/img/scotiabank/sala-espera/fondo-sala-mobile.jpg";
+            break;
+        default:
+            imgSala = "/img/fondo-sala-medismart2.jpg";
+            imgSalaMobile = "/img/sala-espera/sala-espera1.jpg";
+            break;
+    }
+
+    @if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+    {
+        imgSala = "/img/scotiabank/sala-espera/fondo-sala.jpg";
+        imgSalaMobile = "/img/scotiabank/sala-espera/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("vidasecurity."))
+    { mostrarRedesSociales = false;
+        imgSala = "/img/vidasecurity/fondo-sala.jpg";
+        imgSalaMobile = "/img/vidasecurity/fondo-sala-espera-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("unabactiva.") || ViewBag.HostURL.ToString().Contains("activa.unab."))
+    {
+        imgSala = "/img/unab/fondo-sala.jpg";
+        imgSalaMobile = "/img/unab/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("camanchaca."))
+    {
+        imgSala = "/img/camanchaca/fondo-sala.jpg";
+        imgSalaMobile = "/img/camanchaca/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("oaxacasalud."))
+    {
+        imgSala = "/img/oaxaca/fondo-sala.jpg";
+        imgSalaMobile = "/img/oaxaca/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("oaxacasalud."))
+    {
+        imgSala = "/img/oaxaca/fondo-sala.jpg";
+        imgSalaMobile = "/img/oaxaca/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("rappi."))
+    {
+        imgSala = "/img/rappi/fondo-sala.jpg";
+        imgSalaMobile = "/img/rappi/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("prevenciononcologica."))
+    {
+        imgSala = "/img/cajalosandes/fondo-sala.jpg";
+        imgSalaMobile = "/img/cajalosandes/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("masproteccionsalud."))
+    {
+        imgSala = "/img/masproteccionsalud/fondo-sala.jpg";
+        imgSalaMobile = "/img/masproteccionsalud/fondo-sala-mobile.jpg";
+        mostrarRedesSociales = false;
+    }
+    else if (ViewBag.HostURL.ToString().Contains("gallagher."))
+    {
+        imgSala = "/img/aseguradora-solidaria/fondo-sala.jpg";
+        imgSalaMobile = "/img/aseguradora-solidaria/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("aecsa."))
+    {
+        imgSala = "/img/aecsa/fondo-sala.jpg";
+        imgSalaMobile = "/img/aecsa/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("programadp."))
+    {
+        imgSala = "/img/daviplata/fondo-sala.jpg";
+        imgSalaMobile = "/img/daviplata/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("gallagher."))
+    {
+        imgSala = "/img/aseguradora-solidaria/fondo-sala.jpg";
+        imgSalaMobile = "/img/aseguradora-solidaria/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("nestle."))
+    {
+        imgSala = "/img/nestle/fondo-sala.jpg";
+        imgSalaMobile = "/img/nestle/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("ajg.medismart."))
+    {
+        imgSala = "/img/gallagher/fondo-sala.jpg";
+        imgSalaMobile = "/img/gallagher/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("bonnahealth."))
+    {
+        imgSala = "/img/bonnahealth/fondo-sala.jpg";
+        imgSalaMobile = "/img/bonnahealth/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("bicevida.") || ViewBag.HostURL.ToString().Contains("bicevidapersonas."))
+    {
+        imgSala = "/img/bicevida/fondo-sala.jpg";
+        imgSalaMobile = "/img/bicevida/fondo-sala-mobile.jpg";
+        mostrarRedesSociales = false;
+    }
+    else if (ViewBag.HostURL.ToString().Contains("fletcher."))
+    {
+        imgSala = "/img/fletcher/fondo-sala.jpg";
+        imgSalaMobile = "/img/fletcher/fondo-sala.jpg";
+        mostrarRedesSociales = false;
+    }
+    else if (ViewBag.HostURL.ToString().Contains("uoh."))
+    {
+        imgSala = "/img/fondo-sala-medismart2.jpg";
+        imgSalaMobile = "/img/sala-espera/sala-espera1.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("achs."))
+    {
+        imgSala = "/img/achs/fondo-sala.jpg";
+        imgSalaMobile = "/img/achs/fondo-sala-mobile.jpg";
+        mostrarRedesSociales = false;
+    }
+    else if (ViewBag.HostURL.ToString().Contains("aquachile."))
+    {
+        imgSala = "/img/aquachile/fondo-sala.jpg";
+        imgSalaMobile = "/img/aquachile/fondo-sala.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("bu."))
+    {
+        imgSala = "/img/bancounion/fondo-sala.jpg";
+        imgSalaMobile = "/img/bancounion/fondo-sala.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("grupodefensa."))
+    {
+        imgSala = "/img/grupodefensa/fondo-sala.png";
+        imgSalaMobile = "/img/grupodefensa/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("simpleemx.") || ViewBag.HostURL.ToString().Contains("simpleecl."))
+    {
+        imgSala = "/img/simplee/fondo-sala.jpg";
+        imgSalaMobile = "/img/simplee/fondo-sala-mobile.jpg";
+    } else if (ViewBag.HostURL.ToString().Contains("vidacamara."))
+    {
+        mostrarRedesSociales = false;
+    } else if (ViewBag.HostURL.ToString().Contains("vidasecurity."))
+    {
+        mostrarRedesSociales = false;
+    } else if (ViewBag.HostURL.ToString().Contains("zurich.")) {
+        imgSala = "/img/zurich/fondo-sala.jpg";
+        imgSalaMobile = "/img/zurich/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("implementos.")) {
+        imgSala = "/img/epysa/fondo-sala.jpg";
+        imgSalaMobile = "/img/epysa/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("clini.")) {
+        imgSala = "/img/clini/fondo-sala.jpg";
+        imgSalaMobile = "/img/clini/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("mienergy.")) {
+        imgSala = "/img/energy/fondo-sala.jpg";
+        imgSalaMobile = "/img/energy/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("sekure.")) {
+        imgSala = "/img/sekure/fondo-sala.jpg";
+        imgSalaMobile = "/img/sekure/fondo-sala-mobile.jpg";
+
+    }
+    else if (ViewBag.HostURL.ToString().Contains("tratame.")) {
+        imgSala = "/img/tratame/fondo-sala.jpg";
+        imgSalaMobile = "/img/tratame/fondo-sala-mobile.jpg";
+
+    }
+    else if (ViewBag.HostURL.ToString().Contains("falp.")) {
+        imgSala = "/img/falp/fondo-sala.jpg";
+        imgSalaMobile = "/img/falp/fondo-sala-mobile.jpg";
+
+    }
+    else if(ViewBag.HostURL.ToString().Contains("cermaq.")){
+        imgSala = "/img/cermaq/fondo-sala.jpg";
+        imgSalaMobile = "/img/cermaq/fondo-sala-mobile.jpg";
+    }
+    else if(ViewBag.HostURL.ToString().Contains("oxiquim.")){
+        imgSala = "/img/oxiquim/fondo-sala.jpg";
+        imgSalaMobile = "/img/oxiquim/fondo-sala-mobile.jpg";
+    }
+    else if(ViewBag.HostURL.ToString().Contains("bondup.")){
+        imgSala = "/img/bondup/fondo-sala.jpg";
+        imgSalaMobile = "/img/bondup/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("financiar."))
+    {
+        imgSala = "/img/financiar/fondo-sala.jpg";
+        imgSalaMobile = "/img/financiar/fondo-sala-mobile.jpg";
+    }
+    else if(ViewBag.HostURL.ToString().Contains("foncencosud.")){
+        imgSala = "/img/foncencosud/fondo-sala.jpg";
+        imgSalaMobile = "/img/foncencosud/fondo-sala-mobile.jpg";
+    }
+
+    else if(ViewBag.HostURL.ToString().Contains("liberty.")){
+        imgSala = "/img/liberty/fondo-sala.jpg";
+        imgSalaMobile = "/img/liberty/fondo-sala-mobile.jpg";
+    }
+    else if(ViewBag.HostURL.ToString().Contains("salmonesaustral.")){
+        imgSala = "/img/salmones-austral/fondo-sala.jpg";
+        imgSalaMobile = "/img/salmones-austral/fondo-sala-mobile.jpg";
+    }
+     else if (ViewBag.HostURL.ToString().Contains("essilorluxottica.wedoctorsmx."))
+    {
+        imgSala = "/img/sunglass/fondo-sala.jpg";
+        imgSalaMobile = "/img/sunglass/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("luxottica."))
+    {
+        imgSala = "/img/luxottica/fondo-sala.jpg";
+        imgSalaMobile = "/img/luxottica/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("cenco."))
+    {
+        imgSala = "/img/cenco/fondo-sala.jpg";
+        imgSalaMobile = "/img/cenco/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("clientesbci."))
+    {
+        imgSala = "/img/clientesbci/fondo-sala.jpg";
+        imgSalaMobile = "/img/clientesbci/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("multix."))
+    {
+        imgSala = "/img/multix/fondo-sala.jpg";
+        imgSalaMobile = "/img/multix/fondo-sala-mobile.jpg";
+
+    }
+    else if (ViewBag.HostURL.ToString().Contains("solidaria."))
+    {
+        imgSala = "/img/solidaria/fondo-sala.jpg";
+        imgSalaMobile = "/img/solidaria/fondo-sala-mobile.jpg";
+
+    }
+    else if (ViewBag.HostURL.ToString().Contains("sura."))
+    {
+        imgSala = "/img/sura/fondo-sala.jpg";
+        imgSalaMobile = "/img/sura/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("cns."))
+    {
+        imgSala = "/img/cns/fondo-sala.jpg";
+        imgSalaMobile = "/img/cns/fondo-sala-mobile.jpg";
+
+    }
+     else if (ViewBag.HostURL.ToString().Contains("telemed."))
+    {
+        imgSala = "/img/telemed/fondo-sala.jpg";
+        imgSalaMobile = "/img/telemed/fondo-sala-mobile.jpg";
+
+    }
+
+     else if (ViewBag.HostURL.ToString().Contains("didi."))
+    {
+        imgSala = "/img/didi/fondo-sala.jpg";
+        imgSalaMobile = "/img/didi/fondo-sala-mobile.jpg";
+
+    }
+    else if (ViewBag.HostURL.ToString().Contains("tuya."))
+    {
+        imgSala = "/img/tuya/fondo-sala.jpg";
+        imgSalaMobile = "/img/tuya/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("vidasecurity.bhp"))
+    {
+        imgSala = "/img/bhp/fondo-sala.jpg";
+        imgSalaMobile = "/img/bhp/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("laaraucana."))
+    {
+        imgSala = "/img/la-araucana/fondo-sala.jpg";
+        imgSalaMobile = "/img/la-araucana/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("happlabs."))
+    {
+        imgSala = "/img/happlabs/fondo-sala.jpg";
+        imgSalaMobile = "/img/happlabs/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("alliados."))
+    {
+        imgSala = "/img/alliados/fondo-sala.jpg";
+        imgSalaMobile = "/img/alliados/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("saludtumundoseguro."))
+    {
+        imgSala = "/img/cencosud/sala-espera/fondo-sala.jpg";
+        imgSalaMobile = "/img/cencosud/sala-espera/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("credipress."))
+    {
+        imgSala = "/img/credipress/fondo-sala.jpg";
+        imgSalaMobile = "/img/credipress/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("seguroyfacil."))
+    {
+        imgSala = "/img/seguroyfacil/fondo-sala.jpg";
+        imgSalaMobile = "/img/seguroyfacil/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("seguroyfacil."))
+    {
+        imgSala = "/img/seguroyfacil/fondo-sala.jpg";
+        imgSalaMobile = "/img/seguroyfacil/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("comparaonline."))
+    {
+        imgSala = "/img/compara/fondo-sala.jpg";
+        imgSalaMobile = "/img/compara/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("grupomerco."))
+    {
+        imgSala = "/img/merco/fondo-sala.jpg";
+        imgSalaMobile = "/img/merco/fondo-sala-mobile.jpg";
+    }
+
+    else if (ViewBag.HostURL.ToString().Contains("help.medismart"))
+    {
+        imgSala = "/img/help/fondo-sala.jpg";
+        imgSalaMobile = "/img/help/fondo-sala-mobile.jpg";
+    }
+
+    else if (ViewBag.HostURL.ToString().Contains("prestasalud.medismart"))
+    {
+        imgSala = "/img/prestasalud/fondo-sala.jpg";
+        imgSalaMobile = "/img/prestasalud/fondo-sala-mobile.jpg";
+    }
+
+    else if (ViewBag.HostURL.ToString().Contains("bice."))
+    {
+        imgSala = "/img/bancobice/fondo-sala.jpg";
+        imgSalaMobile = "/img/bancobice/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("simpleeregalariza."))
+    {
+        imgSala = "/img/simple-regalariza/fondo-sala.jpg";
+        imgSalaMobile = "/img/simple-regalariza/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("onassist."))
+    {
+        imgSala = "/img/onassist/fondo-sala.jpg";
+        imgSalaMobile = "/img/onassist/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("ruah."))
+    {
+        imgSala = "/img/ruah/fondo-sala.jpg";
+        imgSalaMobile = "/img/ruah/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("ccu."))
+    {
+        imgSala = "/img/ccu/fondo-sala.jpg";
+        imgSalaMobile = "/img/ccu/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("masterdescuentos.medismart"))
+    {
+        imgSala = "/img/master-descuentos/fondo-sala.jpg";
+        imgSalaMobile = "/img/master-descuentos/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("conplan.medismart"))
+    {
+        imgSala = "/img/conplan/fondo-sala.jpg";
+        imgSalaMobile = "/img/conplan/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("positiva"))
+    {
+        imgSala = "/img/positivav2/fondo-sala.jpg";
+        imgSalaMobile = "/img/positivav2/fondo-sala-mobile.svg";
+    }
+     else if (ViewBag.HostURL.ToString().Contains("metlife."))
+    {
+        imgSala = "/img/metlife/fondo-sala.jpg";
+        imgSalaMobile = "/img/metlife/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("youzen."))
+    {
+        imgSala = "/img/youzen/fondo-sala.jpg";
+        imgSalaMobile = "/img/youzen/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("bcf-lapolar."))
+    {
+        imgSala = "/img/lapolar/fondo-sala.jpg";
+        imgSalaMobile = "/img/lapolar/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("tiendared."))
+    {
+        imgSala = "/img/tiendared/fondo-sala.jpg";
+        imgSalaMobile = "/img/tiendared/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("pepsico.docwell"))
+    {
+        imgSala = "/img/pepsi-costa-rica/fondo-sala.jpg";
+        imgSalaMobile = "/img/pepsi-costa-rica/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("loreal."))
+    {
+        imgSala = "/img/loreal/fondo-sala.jpg";
+        imgSalaMobile = "/img/loreal/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("segurosmundial."))
+    {
+        imgSala = "/img/segurosmundial/fondo-sala.jpg";
+        imgSalaMobile = "/img/segurosmundial/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("calma."))
+    {
+        imgSala = "/img/calma/fondo-sala.jpg";
+        imgSalaMobile = "/img/calma/fondo-sala-mobile.jpg";
+    }
+      else if (ViewBag.HostURL.ToString().Contains("gestamineria."))
+    {
+        imgSala = "/img/gesta/fondo-sala.jpg";
+        imgSalaMobile = "/img/gesta/fondo-sala-mobile.jpg";}
+    else if (ViewBag.HostURL.ToString().Contains("sbins."))
+    {
+        imgSala = "/img/southbridge/fondo-sala.jpg";
+        imgSalaMobile = "/img/southbridge/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("salud.docwell"))
+    {
+        imgSala = "/img/southbridge/fondo-sala.jpg";
+        imgSalaMobile = "/img/southbridge/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("beinsure.wedoctorsmx"))
+    {
+        imgSala = "/img/be-insure/fondo-sala.jpg";
+        imgSalaMobile = "/img/be-insure/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("servipag.medismart"))
+    {
+        imgSala = "/img/servipag/fondo-sala.jpg";
+        imgSalaMobile = "/img/servipag/fondo-sala-mobile.jpg";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("bienestar.medismart"))
+    {
+        imgSala = "/img/bancow/fondo-sala.jpg";
+        imgSalaMobile = "/img/bancow/fondo-sala-mobile.jpg";
+    }
+}
+@section Styles  {
+    <link href="~/Toasty.js-master/assets/toasty-custom-styles.css" rel="stylesheet" />
+    <link href="~/Toasty.js-master/assets/prism/prism.css" rel="stylesheet" />
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    @switch (ViewBag.idCliente)
+    {
+        case "108":
+            <link href="~/css/coopeuch/coopeuch.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+            break;
+    }
+    @if (ViewBag.HostURL.ToString().Contains("micuidado."))
+    {
+        <link href="~/css/scotiaco/scotiaco.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+
+    @if (ViewBag.HostURL.ToString().Contains("vidasecurity."))
+    {
+        <link href="~/css/vidasecurity/vidasecurity.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+
+    @if (ViewBag.HostURL.ToString().Contains("rappi."))
+    {
+        <link href="~/css/rappi/rappi.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+
+    @if (ViewBag.HostURL.ToString().Contains("gallagher."))
+    {
+        <link href="~/css/aseguradora-solidaria/aseguradora-solidaria.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    @if (ViewBag.HostURL.ToString().Contains("zurich."))
+    {
+        <link href="~/css/zurich/zurich.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    @if (ViewBag.HostURL.ToString().Contains("siigo."))
+    {
+        <link href="~/css/siigo/siigo.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+      @if (ViewBag.HostURL.ToString().Contains("tuya."))
+    {
+        <link href="~/css/tuya/tuya.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    @if (ViewBag.HostURL.ToString().Contains("saludtumundoseguro."))
+    {
+        <link href="~/css/cencosud/cencosud.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+
+     @if (ViewBag.HostURL.ToString().Contains("dimex.") || ViewBag.HostURL.ToString().Contains("expedicionmasters."))
+    {
+        <link href="~/css/dimex/dimex.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+     @if (ViewBag.HostURL.ToString().Contains("programabb."))
+    {
+        <link href="~/css/banco-bogota/banco-bogota.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+
+     @if (ViewBag.HostURL.ToString().Contains("alliados."))
+    {
+        <link href="~/css/alliados/alliados.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    @if (ViewBag.HostURL.ToString().Contains("wtw.medismart"))
+    {
+        <link href="~/css/wtw/wtw.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    @if (ViewBag.HostURL.ToString().Contains("comercialco.medismart"))
+    {
+        <link href="~/css/comercialCo/comercialCo.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+
+    @if (ViewBag.HostURL.ToString().Contains("help.medismart"))
+    {
+        <link href="~/css/help/help.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    @if (ViewBag.HostURL.ToString().Contains("onassist."))
+    {
+        <link href="~/css/onassist/onassist.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    @if (ViewBag.HostURL.ToString().Contains("ruah"))
+    {
+        <link href="~/css/ruah/ruah.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    @if (ViewBag.HostURL.ToString().Contains("ccu."))
+    {
+        <link href="~/css/ccu/ccu.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    @if (ViewBag.HostURL.ToString().Contains("loreal."))
+    {
+        <link href="~/css/loreal/loreal.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    @if (ViewBag.HostURL.ToString().Contains("segurosmundial."))
+    {
+        <link href="~/css/segurosmundial/segurosmundial.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    @if (ViewBag.HostURL.ToString().Contains("calma."))
+    {
+        <link href="~/css/calma/calma.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+     @if (ViewBag.HostURL.ToString().Contains("gestamineria."))
+    {
+        <link href="~/css/gesta/gesta.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    @if (ViewBag.HostURL.ToString().Contains("beinsure.wedoctorsmx"))
+    {
+        <link href="~/css/be-insure/be-insure.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+      @if (ViewBag.HostURL.ToString().Contains("servipag.medismart"))
+    {
+        <link href="~/css/servipag/servipag.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    else if (ViewBag.HostURL.ToString().Contains("bienestar.medismart"))
+    {
+        <link href="~/css/bancow/bancow.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+   
+}
+
+    <!-- Sala de Espera-->
+    @Html.Hidden("uid", (object)ViewBag.uid)
+    @Html.Hidden("rol", ViewData["view"])
+    <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid container-sala">
+
+
+
+        <!-- Sala de espera -->
+        <div class="container-fluid sala-espera d-none d-lg-block" id="sala">
+
+            <!-- Alerta Sala de Espera -->
+
+            <div class="cont-alerta-sala d-none">
+                <div class="alerta-sala">
+                    <div class="icono-alerta">
+                        <i class="fal fa-times"></i>
+                    </div>
+                    <p>
+                        El doctor te atenderá en un momento, ponte cómodo en la sala de espera…
+                    </p>
+                </div>
+            </div>
+
+            <!--end. Alerta Sala de Espera -->
+
+            <div class="row sala-medismart">
+                <div class="col-12 p-0">
+
+                    <div class="titulo-sala">
+                        Sala de Espera
+                    </div>
+
+
+                    @if (ViewBag.HostURL.ToString().Contains("unabactiva.") || ViewBag.HostURL.ToString().Contains("activa.unab."))
+                    {
+
+                    @*Unab Hotspots*@
+                    <div class="hotspots">
+                        <div class="hotspots">
+                            <img src=@imgSala class="fondo-sala" />
+
+                            <a href="https://noticias.unab.cl/"
+                           target="_blank"
+                           class="hotspot-icon"
+                           id="noticiasUnab">
+                                <div class="cont-icon">
+                                    <img src="~/img/unab/sala/noticias.png" alt="Noticias Unab" />
+                                </div>
+                            </a>
+
+                            <a href="https://www.unab.cl/radio-unab/"
+                           target="_blank"
+                           class="hotspot-icon"
+                           id="hs-a">
+                                <div class="cont-icon">
+                                    <img src="~/img/unab/sala/radio.svg?v=@NumeroRandom.GetRandom()" alt="Radio Unab" />
+                                </div>
+                            </a>
+
+
+                            <a href="https://biblioteca.unab.cl/" target="_blank"
+                           class="hotspot-icon text-center"
+                           id="hs-b">
+                                <div class="cont-icon">
+                                    <img src="~/img/unab/sala/biblioteca.svg?v=@NumeroRandom.GetRandom()" alt="Biblioteca" />
+
+                                </div>
+
+                            </a>
+
+                            <a href="#"
+                           class="hotspot-icon"
+                           id="hs-f"
+                           data-toggle="modal"
+                           data-target="#modal-contacto">
+                                <div class="cont-icon">
+                                    <i class="fal fa-phone-alt"></i>
+                                </div>
+                                Contacto
+                            </a>
+                            <a href="https://www.unab.cl/admision/"
+                           target="_blank"
+                           class="hotspot-icon"
+                           id="hs-c">
+                                <div class="cont-icon">
+
+                                    <img src="~/img/unab/sala/admision.svg?v=@NumeroRandom.GetRandom()" alt="Admisión" />
+
+                                </div>
+
+                            </a>
+                            <a href="https://www.postgradounab.cl/"
+                           target="_blank"
+                           class="hotspot-icon"
+                           id="hs-d">
+                                <div class="cont-icon">
+                                    <img src="~/img/unab/sala/postgrados.svg?v=@NumeroRandom.GetRandom()" alt="Postgrados" />
+
+                                </div>
+
+                            </a>
+
+                            <a href="https://agenda.unab.cl/"
+                           target="_blank"
+                           class="hotspot-icon"
+                           id="agendaUnab">
+                                <div class="cont-icon">
+                                    <img src="~/img/unab/sala/agenda.svg?v=@NumeroRandom.GetRandom()" alt="Agenda" />
+
+                                </div>
+
+                            </a>
+
+                            <a href="https://m.youtube.com/channel/UCs6SUzBbQEkHwACY1THP0aQ"
+                           target="_blank"
+                           class="hotspot-icon"
+                           id="tubeUnab">
+                                <div class="cont-icon">
+                                    <img src="~/img/unab/sala/youtube.svg?v=@NumeroRandom.GetRandom()" alt="YouTube" />
+
+                                </div>
+
+                            </a>
+
+
+
+                            <a href="#"
+                           class="hotspot-icon"
+                           id="btnAbandonarAtencion">
+                                <div class="cont-icon">
+                                    <img src="~/img/unab/sala/salir.svg?v=@NumeroRandom.GetRandom()" alt="Salir" />
+
+                                </div>
+
+                            </a>
+
+                            <a href="javascript:void(0);"
+                           class="hotspot-icon text-center"
+                           id="hs-g">
+                                <div class="cont-icon">
+
+                                    <img src="~/img/unab/sala/check.svg?v=@NumeroRandom.GetRandom()" alt="Ir a la Atención" />
+
+                                </div>
+
+
+                            </a>
+
+                            <a href="#"
+                           class="text-center hotspot-icon"
+                           id="reporte">
+                                <div class="cont-icon">
+                                    <i class="fal fa-file-plus"></i>
+                                </div>
+                                Agregar <br /> Información
+                            </a>
+
+
+
+                            <a href="mailto:contacto@medismart.live"
+                           data-toggle="modal" data-target="#modal-contacto"
+                           target="_blank"
+                           class="text-center hotspot-icon"
+                           id="contacto">
+                                <div class="cont-icon hotspot-redes">
+                                    <i class="fal fa-envelope"></i>
+                                </div>
+                            </a>
+
+                            <a href="https://www.facebook.com/Medismartchile/"
+                           target="_blank"
+                           class="text-center hotspot-icon"
+                           id="facebook">
+                                <div class="cont-icon hotspot-redes">
+                                    <i class="fab fa-facebook-f"></i>
+                                </div>
+                            </a>
+
+                            <a href="https://www.instagram.com/medismartchile/"
+                           target="_blank"
+                           class="text-center hotspot-icon"
+                           id="instagram">
+                                <div class="cont-icon hotspot-redes">
+                                    <i class="fab fa-instagram"></i>
+                                </div>
+                            </a>
+
+
+                        </div>
+                    </div>
+
+                }
+                    else
+                    {
+                    <div class="hotspots">
+                        @if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+                        {
+                            <img src="~/img/scotiabank/sala-espera/fondo-sala.jpg" />
+                        }
+                        else if (ViewBag.HostURL.ToString().Contains("vidasecurity."))
+                        {
+                            <img src="~/img/vidasecurity/fondo-sala.jpg" />
+                        }
+                        else if (ViewBag.HostURL.ToString().Contains("unabactiva.") || ViewBag.HostURL.ToString().Contains("activa.unab."))
+                        {
+                            <img src="~/img/unab/fondo-sala.jpg" />
+                        }
+                        else if (ViewBag.HostURL.ToString().Contains("prevenciononcologica."))
+                        {
+                            <img src="~/img/cajalosandes/fondo-sala.jpg">
+                        }
+                        else if (ViewBag.HostURL.ToString().Contains("fletcher."))
+                        {
+                            <img src="~/img/fletcher/fondo-sala.jpg">
+                        }
+                       
+                        else
+                        {
+                            @switch (ViewBag.idCliente)
+                            {
+                                case "1":
+                                    <img src="~/img/fondo-sala.jpg" />
+                                    break;
+                                case "148":
+                                    <img src="~/img/fondo-sala-colmena.jpg" />
+                                    break;
+                                case "176":
+                                    <img src="~/img/vidacamara/fondo-sala.jpg" />
+                                    break;
+                                case "204":
+                                    <img src="~/img/claro/fondo-sala.jpg" />
+                                    break;
+                                case "233":
+                                    <img src="~/img/scotiabank/sala-espera/fondo-sala.jpg" />
+                                    break;
+                                case "240":
+                                    <img src="~/img/cajalosandes/fondo-sala.jpg" />
+                                    break;
+                                case "108":
+                                    <img src="~/img/coopeuch/fondo-sala.png" />
+                                    break;
+                                default:
+                                    <img src="@imgSala" />
+                                    break;
+                            }
+                        }
+
+
+                        @{ 
+                            if (ViewBag.codigoTelefono == "CO" || ViewBag.HostURL.ToString().Contains("rappi.") || ViewBag.HostURL.ToString().Contains("aecsa.") || ViewBag.HostURL.ToString().Contains("gallagher.") || ViewBag.HostURL.ToString().Contains("bonnahealth.") || ViewBag.HostURL.ToString().Contains("bu.") || Model.Atencion.CodigoPais == "CO")
+                            {
+                                <a href="https://wa.me/573132136751?text=Atencion%20al%20Cliente%20" target="_blank"
+                            class="hotspot-icon text-center calma-icon"
+                            id="hs-b">
+                                    <div class="cont-icon">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </div>
+                                    <span class="fuente-accesible">
+                                        Servicio al paciente
+                                    </span>
+                                </a>
+                            }
+                            else if (ViewBag.HostURL.ToString().Contains("saludtumundoseguro."))
+                            {
+                                <a href="https://wa.me/569536942258?text=Asistencia%20al%20Paciente%20" target="_blank"
+                           class="hotspot-icon text-center"
+                           id="hs-b">
+                                    <div class="cont-icon">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </div>
+                                    <span class="fuente-accesible">
+                                        Asistencia Paciente
+                                    </span>
+                                </a>
+                            }
+                            else if (ViewBag.codigoTelefono == "MX" || Model.Atencion.CodigoPais == "MX")
+                            {
+                                <a href="https://wa.me/525554926971?text=Atencion%20al%20Cliente" target="_blank"
+                            class="hotspot-icon text-center"
+                            id="hs-b">
+                                    <div class="cont-icon">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </div>
+                                    <span class="fuente-accesible">
+                                        Servicio al paciente
+                                    </span>
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="https://wa.me/56948042543?text=Servicio%20al%20Cliente%20" target="_blank"
+                               class="hotspot-icon text-center"
+                               id="hs-b">
+                                    <div class="cont-icon">
+                                        @{
+                                            if (ViewBag.idCliente != "108")
+                                            {
+                                                <i class="fab fa-whatsapp"></i>
+                                            }
+                                            else
+                                            {
+                                                <!--icono coopeuch-->
+                                                <img src="~/img/coopeuch/iconos/sala-espera/asistencia.svg" alt="Asistencia Paciente" />
+                                                <!--icono coopeuch-->
+                                            }
+                                        }
+
+                                    </div>
+                                    <span class="fuente-accesible">
+                                        Servicio al paciente
+                                    </span>
+                                </a>
+                            }
+                        }
+
+                        <a href="javascript:void(0);"
+                       class="hotspot-icon"
+                       id="hs-f"
+                       data-toggle="modal"
+                       data-target="#modal-contacto">
+                            <div class="cont-icon">
+                                <i class="fal fa-phone-alt"></i>
+                            </div>
+                            <span class="fuente-accesible">Contacto</span>
+
+                        </a>
+                     
+                        <!--<a href="#" class="hotspot-icon" id="hs-c" data-toggle="modal" data-target="#modal-juego">-->
+                        <a href="#" class="hotspot-icon" id="hs-c">
+                            <div class="cont-icon">
+                                @if (ViewBag.idCliente == "108")
+                                {
+                                    <!--icono copeuch-->
+                                    <img src="~/img/coopeuch/iconos/sala-espera/juegos.svg" alt="Salir" />
+                                    <!--icono copeuch-->
+                                }
+                                else if (ViewBag.HostURL.ToString().Contains("prevenciononcologica."))
+                                {
+                                   <img src="~/img/cajalosandes/iconos/icon_sala_game.svg" alt="Game" />
+                                }
+                                else if (@ViewBag.HostURL.ToString().Contains("positiva.")) {
+                                    // <i class="fal fa-crown"></i>
+                                    <i class="fa-light fa-crown"></i>
+                                    // <img src="~/img/positivav2/sala-espera/iconos/juegos.svg" alt="Juegos" />
+                                }
+                                else if (@ViewBag.HostURL.ToString().Contains("metlife."))
+                                {
+                                    <img src="~/img/metlife/sala-espera/iconos/juegos.svg" alt="Salir" />
+                                }
+                                else
+                                {
+                                    <i class="fal fa-gamepad-alt"></i>
+                                }
+                            </div>
+                          <span class="fuente-accesible">Juegos</span>
+                        </a>
+                  
+                        <a href="#" class="hotspot-icon" id="hs-d">
+                            <div class="cont-icon">
+                                @if (ViewBag.idCliente == "108")
+                                {
+                                    <!--icono coopeuch-->
+                                    <img src="~/img/coopeuch/iconos/sala-espera/revistas.svg" alt="Salir" />
+                                    <!--icono coopeuch-->
+                                }
+                                 else @if (ViewBag.HostURL.ToString().Contains("prevenciononcologica."))
+                                    {
+                                     <img src="~/img/cajalosandes/iconos/icon_sala_magazine.svg" alt="Magazine" />
+                                    }
+                                else if (@ViewBag.HostURL.ToString().Contains("metlife."))
+                                {
+                                    <img src="~/img/metlife/sala-espera/iconos/revistas.svg" alt="Salir" />
+                                }
+                                else
+                                {
+                                    <i class="fal fa-file-alt"></i>
+                                }
+                            </div>
+                            Revistas
+                        </a>
+
+                        @if (ViewBag.HostURL.ToString().Contains("bonnahealth.") || ViewBag.HostURL.ToString().Contains("ajg.medismart.") || ViewBag.HostURL.ToString().Contains("aecsa.") || ViewBag.HostURL.ToString().Contains("bu.") || ViewBag.HostURL.ToString().Contains("rappi.") || ViewBag.HostURL.ToString().Contains("gallagher.") || codigoTelefono == "CO")
+                        {
+                            @if (@ViewBag.HostURL.ToString().Contains("metlife."))
+                            {
+                                <a href="#" class="hotspot-icon" id="hs-e">
+                                    <div class="cont-icon">
+                                        <img src="~/img/metlife/sala-espera/iconos/videos.svg" alt="Salir" />
+                                    </div>
+                                    Videos
+                                </a>
+                            }
+                            else
+                            {
+                               <a href="#" class="hotspot-icon" id="hs-e" hidden>
+                                    <div class="cont-icon" hidden>
+                                        <i class="fal fa-play"></i>
+                                    </div>
+                                    Videos
+                                </a>
+                            }
+                        }
+                        else
+                        {
+                            <!--<a href="#" class="hotspot-icon" id="hs-e" data-toggle="modal" data-target="#modal-videos">-->
+                            <a href="#" class="hotspot-icon" id="hs-e">
+                                <div class="cont-icon">
+                                    @if (ViewBag.idCliente == "108")
+                                    {
+                                        <img src="~/img/coopeuch/iconos/sala-espera/videos.svg" alt="Videos" />
+                                    }
+                                    else if (ViewBag.HostURL.ToString().Contains("prevenciononcologica."))
+                                    {
+                                                            <img src="~/img/cajalosandes/iconos/icon_sala_video.svg" alt="Video" />
+                                    }
+                                    else
+                                    {
+                                        <i class="fal fa-play"></i>
+                                    }
+                                </div>
+                                Videos
+                            </a>
+                        }
+                     <!--Salir-->
+                         <a href="#" class="hotspot-icon" id="btnAbandonarAtencion">
+                            <div class="cont-icon">
+                                @if (@ViewBag.HostURL.ToString().Contains("metlife."))
+                                {
+                                    <img src="~/img/metlife/sala-espera/iconos/salir.svg" alt="Salir" />
+                                }
+                                else if (ViewBag.idCliente == "108") //cliente coopeuch, se invierte if
+                                {
+                                    <img src="~/img/coopeuch/iconos/sala-espera/salir.svg" alt="Salir" />
+                                }
+                                 else @if (ViewBag.HostURL.ToString().Contains("prevenciononcologica.") || ViewBag.HostURL.ToString().Contains("masproteccionsalud."))
+                                {
+                                    <img src="~/img/cajalosandes/iconos/icon_sala_exit.svg" alt="Exit" />
+                                }
+                                else @if (ViewBag.HostURL.ToString().Contains("saludtumundoseguro."))
+                                {
+                                    <i class="fal fa-door-open" alt="Salir"></i>
+                                }
+                                else
+                                {
+                                  <i class="fal fa-door-open" ></i>
+                                }
+                            </div>
+                            Salir
+                        </a>
+
+                      
+                        <a href="javascript:void(0);"
+                       class="hotspot-icon text-center"
+                       id="hs-g">
+                            <div class="cont-icon">
+                                @if (ViewBag.idCliente == "108")
+                                {
+                                     <img src="~/img/coopeuch/iconos/sala-espera/salir.svg" alt="Ir a la Atención" />
+                                }
+                                else @if (ViewBag.HostURL.ToString().Contains("prevenciononcologica.") || ViewBag.HostURL.ToString().Contains("masproteccionsalud."))
+                                {
+                                    <img src="~/img/cajalosandes/iconos/icon_sala_box.svg" alt="Box" />
+                                }
+                                else
+                                {
+                                    <i class="fal fa-check"></i>
+                                }
+
+
+
+                            </div>
+                            <!--<span class="fuente-accesible" id="IrBox">Ir a la Atención</span>-->
+                            <!--Texto personalizado para boton Ir a la Atención de positiva:-->
+                            @if (ViewBag.HostURL.ToString().Contains("positiva."))
+                                {
+                                <span class="fuente-accesible" id="IrBox">Ir a la Atención</span>
+                            }
+                            else
+                            {
+                                <span class="fuente-accesible" id="IrBox">Ir a la Atención</span>
+                            }
+
+                        </a>
+
+                        <a href="javascript:void(0);"
+                       class="text-center hotspot-icon"
+                       id="reporte">
+                            <div class="cont-icon">
+                                <i class="fal fa-file-plus"></i>
+                            </div>
+                            Agregar <br /> Información
+                        </a>
+                       
+
+                       @if (ViewBag.HostURL.ToString().Contains("bonnahealth.") || ViewBag.HostURL.ToString().Contains("ajg.medismart.") || ViewBag.HostURL.ToString().Contains("aecsa.") || ViewBag.HostURL.ToString().Contains("gallagher.") || ViewBag.HostURL.ToString().Contains("rappi.") || ViewBag.HostURL.ToString().Contains("bu.") || Model.Atencion.CodigoPais == "CO")
+                        {
+                        <a href="mailto:contactocolombia@medismart.live"
+                       data-toggle="modal" data-target="#modal-contacto"
+                       target="_blank"
+                       class="text-center hotspot-icon"
+                       id="contacto">
+                                <div class="cont-icon hotspot-redes">
+                                    <i class="fal fa-envelope"></i>
+                                </div>
+                            </a>
+                        }
+                    else {
+
+                        <a href="mailto:contacto@medismart.live"
+                       data-toggle="modal" data-target="#modal-contacto"
+                       target="_blank"
+                       class="text-center hotspot-icon"
+                       id="contacto">
+                        <div class="cont-icon hotspot-redes">
+                            <i class="fal fa-envelope"></i>
+                        </div>
+                    </a>
+                      } 
+
+                       @if (ViewBag.HostURL.ToString().Contains("bonnahealth.") || ViewBag.HostURL.ToString().Contains("ajg.medismart.") || ViewBag.HostURL.ToString().Contains("aecsa.") || ViewBag.HostURL.ToString().Contains("gallagher.") || ViewBag.HostURL.ToString().Contains("rappi.") || ViewBag.HostURL.ToString().Contains("bu.") || Model.Atencion.CodigoPais == "CO" || Model.Atencion.CodigoPais == "CL" || ViewBag.HostURL.ToString().Contains("clini."))
+                        {
+                        <a href="https://www.facebook.com/Medismartchile/"
+                       target="_blank"
+                       class="text-center hotspot-icon"
+                       id="facebook" hidden>
+                        <div class="cont-icon hotspot-redes" hidden>
+                            <i class="fab fa-facebook-f"></i>
+                        </div>
+                    </a>
+                        }
+
+                        else {
+                        <a href="https://www.facebook.com/Medismartchile/"
+                       target="_blank"
+                       class="text-center hotspot-icon"
+                       id="facebook">
+                        <div class="cont-icon hotspot-redes">
+                            <i class="fab fa-facebook-f"></i>
+                        </div>
+                    </a>
+                    }
+                        @if (
+                            ViewBag.HostURL.ToString().Contains("bonnahealth.") || 
+                            ViewBag.HostURL.ToString().Contains("ajg.medismart.") || 
+                            ViewBag.HostURL.ToString().Contains("aecsa.") || 
+                            ViewBag.HostURL.ToString().Contains("gallagher.") || 
+                            ViewBag.HostURL.ToString().Contains("rappi.") || 
+                            ViewBag.HostURL.ToString().Contains("bu.") || 
+                            Model.Atencion.CodigoPais == "CO" || 
+                            Model.Atencion.CodigoPais == "CL" ||
+                            ViewBag.HostURL.ToString().Contains("clini.") 
+                            )
+                        {
+                       <a href="https://www.facebook.com/Medismartchile/"
+                       target="_blank"
+                       class="text-center hotspot-icon"
+                       id="instagram" hidden>
+                        <div class="cont-icon hotspot-redes" hidden>
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                    </a>
+                        }
+
+                    else{
+                    <a href="https://www.facebook.com/Medismartchile/"
+                       target="_blank"
+                       class="text-center hotspot-icon"
+                       id="instagram">
+                        <div class="cont-icon hotspot-redes">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                    </a>
+                    }
+
+                    </div>
+
+                }
+
+
+
+
+
+            </div>
+        </div>
+
+        <div class="panel-sala" id="panel">
+            <div class="btn-icon" id="close-panel">
+                <i class="fal fa-times"></i>
+            </div>
+            <div class="container-fluid caja-base caja-confirmacion-hora tabbable-line">
+
+                <ul class="nav nav-tabs">
+                    <li>
+                        <a href="#tab_15_1" class="active" data-toggle="tab" aria-expanded="false">Información para el médico </a>
+                    </li>
+                    <li>
+                        <a href="#tab_15_2" data-toggle="tab" aria-expanded="true">Adjuntar Archivos </a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab_15_1">
+                        <!---->
+
+                        <div class="row">
+                            <div class="col-12 px-0 px-lg-2 col-lg">
+                                <div class="formulario-confirma-hora">
+
+                                    @*<i class="fal fa-check-circle"></i>*@
+                                    <h4 class="mb-4">
+                                        Agregar Información
+                                    </h4>
+
+                                    <div class="body-formulario">
+                                        <!-- Form -->
+                                        <form action="" class="container-fluid">
+                                            <div class="form-group row">
+                                                <div class="col-12 p-0">
+                                                    <p>
+                                                        Cuéntame ¿Cuál es tu molestia o necesidad de atención?
+                                                    </p>
+                                                    <textarea class="form-control" rows="3" placeholder="Escribe un comentario" id="triageObservacion" name="triageObservacion"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row mb-lg-0">
+                                                <div class="col-12 p-0">
+                                                    <p>
+                                                        Antecedentes médicos previos
+                                                    </p>
+                                                    <textarea class="form-control" rows="3" placeholder="Diagnósticos y medicamentos en uso" id="antecedentesMedicos" name="antecedentesMedicos"></textarea>
+                                                </div>
+                                            </div>
+
+
+
+                                        </form>
+                                        <!-- Form -->
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-12 mt-4 p-0">
+                                <button class="btn btn-primary btn-block btn-sm" id="btnConfirmar">
+                                    Guardar
+                                </button>
+                            </div>
+
+                        </div>
+
+                        <!---->
+
+
+                    </div>
+                    <div class="tab-pane fade" id="tab_15_2">
+                        <div class="row">
+                            <div class="col">
+                                <div class="carga-archivos">
+                                    <h4 class="mb-4">
+                                        Adjuntar archivos
+                                    </h4>
+                                    <div class="cont-carga-archivos" @*d-none d-md-block*@>
+                                        <div class="dropzone dropzone-default dropzone-brand" id="kt_dropzone_3">
+                                            <div class="dropzone-msg dz-message needsclick">
+                                                <h3 class="dropzone-msg-title">¿Deseas subir un archivo?</h3>
+                                                <span class="dropzone-msg-desc">Receta, imagen o radiografía</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container-fluid p-0 mt-4">
+                                        <div class="row">
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="correoUsuario" />
+                                    <input type="hidden" id="genero" />
+                                    <input type="hidden" id="fechaNacimiento" />
+
+                                    <div class="alert alert-outline-success">
+                                        <div class="d-flex">
+                                            <i class="fal fa-info-circle fa-2x mr-2"></i>
+                                            <p class="mb-0">
+                                                Los archivos que subas se guardaran automáticamente
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div id="divArchivosEspera1">
+                                        <div class="kt-portlet__head">
+                                            @* Traer idEntidad y codEntidad desde la view que renderiza esta view parcial. *@
+                                            @Html.Hidden("idEntidad", ViewData["idEntidad"])
+                                            @Html.Hidden("codEntidad", ViewData["codEntidad"])
+                                            <div class="kt-portlet__head-label">
+                                            </div>
+                                            <div class="kt-portlet__head-toolbar d-none">
+                                                <div class="dropdown dropdown-inline">
+                                                    <button type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="flaticon-more-1"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <ul class="kt-nav">
+                                                            <li class="kt-nav__item">
+                                                                <a id="actualizar_archivos" href="javascript:void(0);" class="kt-nav__link">
+                                                                    <i class="kt-nav__link-icon flaticon-refresh"></i>
+                                                                    <span class="kt-nav__link-text">Actualizar</span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="kt-portlet__body">
+
+                                            <div id="lista_archivos_espera" class="kt-widget4 lista-archivos">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+        <div class="cont-volver"><a id="volverSala" class="btn btn-outline-secondary btn-block btn-sm">Volver</a></div>
+
+    </div>
+    <!-- end. Sala de espera -->
+    <!-- Sala espera mobile -->
+    @if (ViewBag.HostURL.ToString().Contains("unabactiva.") || ViewBag.HostURL.ToString().Contains("activa.unab."))
+    {
+
+        @*Mobile*@
+
+        <div class="container-fluid sala-espera-mobile sala-espera-consalud sala-espera-mobile-coopeuch sala-espera-inmediata d-lg-none">
+            <div class="titulo-sala">
+                Sala de
+                Espera
+            </div>
+
+            <div class="cont-fondo-mobile">
+                <img src=@imgSalaMobile />
+            </div>
+
+
+            <div class="card-sala card-media">
+                <a href="https://www.unab.cl/admision/" target="_blank" class="btn-sala" id="icon-sala-mobile-videos">
+                    <div class="cont-icon">
+                        <img src="~/img/unab/sala/admision.svg" alt="Admisión" />
+                    </div>
+
+                </a>
+                <a href="https://www.postgradounab.cl/" target="_blank" class="btn-sala" id="chat-m">
+                    <div class="cont-icon">
+                        <img src="~/img/unab/sala/postgrados.svg" alt="Postgrados" />
+                    </div>
+                </a>
+                <a href="https://biblioteca.unab.cl/" target="_blank" class="btn-sala" id="icon-sala-mobile-revistas">
+                    <div class="cont-icon">
+                        <img src="~/img/unab/sala/biblioteca.svg" alt="Biblioteca" />
+                    </div>
+
+                </a>
+                <a href="https://agenda.unab.cl/" target="_blank" class="btn-sala" id="wsp-m">
+                    <div class="cont-icon">
+                        <img src="~/img/unab/sala/agenda.svg" alt="Agenda" />
+                    </div>
+                </a>
+
+            </div>
+
+            <div class="card-sala card-function">
+                <div class="btn-sala d-none" id="btnAbandonarAtencionMobile">
+                    <div class="cont-icon">
+                        <i class="fal fa-door-open"></i>
+                    </div>
+                    <span>Salir</span>
+                </div>
+                <div class="btn-sala d-none" data-toggle="modal" data-target="#modal-turno">
+                    <div class="cont-icon">
+                        <i class="fal fa-calendar-alt"></i>
+                    </div>
+                    <span>Tu Turno</span>
+                </div>
+                <div class="btn-sala d-none" data-toggle="modal" data-target="#modal-contacto">
+                    <div class="cont-icon">
+                        <i class="fal fa-envelope"></i>
+                    </div>
+                    <span>Contacto</span>
+                </div>
+            </div>
+
+
+            <div class="card-sala card-function">
+                <a href="https://noticias.unab.cl/" target="_blank" class="btn-sala" id="icon-noticias-unab">
+                    <div class="cont-icon">
+                        <img src="~/img/unab/sala/noticias.png" alt="Noticias Unab" />
+                    </div>
+
+                </a>
+                <a href="https://www.unab.cl/radio-unab/" target="_blank" class="btn-sala" id="icon-sala-mobile-juegos">
+                    <div class="cont-icon">
+                        <img src="~/img/unab/sala/radio.svg" alt="Radio Unab" />
+                    </div>
+
+                </a>
+
+                <a href="https://m.youtube.com/channel/UCs6SUzBbQEkHwACY1THP0aQ" class="btn-sala" id="">
+                    <div class="cont-icon">
+                        <img src="~/img/unab/sala/youtube.svg" alt="Unab TV" />
+                    </div>
+
+                </a>
+
+                <a href="javascript:void(0)" class="btn-sala" id="ingreso-m">
+                    <div class="cont-icon">
+                        <img src="~/img/unab/sala/check.svg" alt="Ir a la Atención" />
+                    </div>
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+        @*Mobile*@
+
+    }
+    else
+    {
+        <div class="container-fluid sala-espera-mobile d-lg-none">
+
+            <div class="titulo-sala">
+                @if (ViewBag.HostURL.ToString().Contains("positiva."))
+                {
+                    <span style="text-transform: uppercase;">ATENCIÓN INMEDIATA</span>
+                }
+                else
+                {
+                    <span>Sala de Espera</span>
+                }
+            </div>
+
+            <div class="cont-fondo-mobile">
+                @if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+                {
+                    <img src="~/img/scotiabank/sala-espera/fondo-sala-mobile.jpg" />
+                }
+                else if (ViewBag.HostURL.ToString().Contains("unabactiva.") || ViewBag.HostURL.ToString().Contains("activa.unab."))
+                {
+                    <img src="~/img/unab/fondo-sala-mobile.jpg" />
+                }
+                else
+                {
+                    @switch (ViewBag.idCliente)
+                    {
+                        case "1":
+                            <img src="~/img/sala-espera/sala-espera-consalud.jpg" />
+                            break;
+                        case "148":
+                            <img src="~/img/sala-espera/sala-espera-colmena.jpg" />
+                            break;
+                        case "176":
+                            <img src="~/img/vidacamara/fondo-sala-mobile.jpg" />
+                            break;
+                        case "108":
+                            <img src="~/img/coopeuch/fondo-sala-mobile.png" />
+                            break;
+                        case "204":
+                            <img src="~/img/claro/fondo-sala-mobile.jpg" />
+                            break;
+                        case "233":
+                            <img src="~/img/scotiabank/sala-espera/fondo-sala-mobile.jpg" />
+                            break;
+                        default:
+                            <img src="@imgSalaMobile" />
+                            break;
+                    }
+                }
+
+            </div>
+
+            <div class="card-sala card-media">
+                <!--<div class="btn-sala" data-toggle="modal" data-target="#modal-juego" id="icon-sala-mobile-juegos">-->
+                <div class="btn-sala" data-toggle="modal" id="icon-sala-mobile-juegos">
+                    <div class="cont-icon">
+                        @{
+                            @if (ViewBag.idCliente == "108")
+                                {
+                                      <!--icono copeuch-->
+                                    <img src="~/img/coopeuch/iconos/sala-espera/juegos.svg" alt="Salir" />
+                                    <!--icono copeuch-->
+                                }
+                                else if (@ViewBag.HostURL.ToString().Contains("metlife."))
+                                {
+                                    <img src="~/img/metlife/sala-espera/iconos/juegos.svg" alt="Salir" />
+                                }
+                                else
+                                {
+                                   <i class="fal fa-gamepad-alt"></i>
+                                }
+                        }
+
+                    </div>
+                    <span>Juegos</span>
+                </div>
+                <!--<div class="btn-sala" data-toggle="modal" data-target="#modal-revista" id="icon-sala-mobile-revistas">-->
+                <div class="btn-sala" id="icon-sala-mobile-revistas">
+                    <div class="cont-icon">
+                          @if (ViewBag.idCliente == "108")
+                                {
+                                     <!--icono coopeuch-->
+                                    <img src="~/img/coopeuch/iconos/sala-espera/revistas.svg" alt="Salir" />
+                                    <!--icono coopeuch-->
+                                  
+                                }
+                                else if (@ViewBag.HostURL.ToString().Contains("metlife."))
+                                {
+                                    <img src="~/img/metlife/sala-espera/iconos/revistas.svg" alt="Salir" />
+                                }
+                                else
+                                {
+                                    <i class="fal fa-file-alt"></i>
+                                }
+
+                    </div>
+                    <span>Revistas</span>
+                </div>
+                <!--<div class="btn-sala" data-toggle="modal" data-target="#modal-videos" id="icon-sala-mobile-videos">-->
+                <div class="btn-sala" id="icon-sala-mobile-videos">
+                    <div class="cont-icon">
+                          @if (ViewBag.idCliente == "108")
+                            {
+                                        <img src="~/img/coopeuch/iconos/sala-espera/videos.svg" alt="Videos" />
+                            }
+                           else if (ViewBag.HostURL.ToString().Contains("prevenciononcologica."))
+                           {
+                             <img src="~/img/cajalosandes/iconos/icon_sala_video.svg" alt="Video" />
+                           }
+                           else if (@ViewBag.HostURL.ToString().Contains("metlife."))
+                           {
+                             <img src="~/img/metlife/sala-espera/iconos/videos.svg" alt="Salir" />
+                               
+                           }
+                           else
+                                    {
+                                        <i class="fal fa-play"></i>
+                                    }
+                    </div>
+                    <span>Videos</span>
+                </div>
+
+
+            </div>
+
+
+
+            <div class="card-sala d-none">
+                <div class="btn-sala" id="btnAbandonarAtencionMobile">
+                    <a href="https://clientes.consalud.cl/" class="cont-icon">
+                        @*<i class="fal fa-door-open"></i>*@
+                        <!--Icono Coopeuch-->
+                        <img src="~/img/coopeuch/iconos/sala-espera/salir.svg" alt="Salir" />
+                        <!--Icono Coopeuch-->
+
+                    </a>
+                    <span>
+                        Salir
+                    </span>
+
+                    @*<div class="cont-icon">
+                <i class="fal fa-door-open"></i>
+                </div>
+                <span>Salir</span>*@
+                </div>
+
+                <div class="btn-sala" data-toggle="modal" data-target="#modal-contacto">
+                    <div class="cont-icon">
+                        <i class="fal fa-envelope"></i>
+                    </div>
+                    <span>Contacto</span>
+                </div>
+            </div>
+
+            <div class="card-sala card-function">
+                <div class="btn-sala d-none" id="chat-m">
+                    <div class="cont-icon">
+                        <i class="fal fa-comments"></i>
+                    </div>
+                    <span>Chat</span>
+                </div>
+                <div class="btn-sala" id="reporte-m">
+                    <div class="cont-icon">
+                        <i class="fal fa-file-plus"></i>
+                    </div>
+                    <span>Agregar Info</span>
+                </div>
+                <div class="btn-sala" id="ingreso-m">
+                    <a href="javascript:void(0);" class="cont-icon">
+                        @{
+                            @if (ViewBag.idCliente != "108" && (!ViewBag.HostURL.ToString().Contains("prevenciononcologica.")))
+                            {
+                                <i class="fal fa-check"></i>
+                            }
+                            else @if (ViewBag.HostURL.ToString().Contains("prevenciononcologica."))
+                            {
+                                <img src="~/img/cajalosandes/iconos/icon_sala_box.svg" alt="Box" />
+                            }
+                            else
+                            {
+                                <!--icono coopeuch-->
+                                <img src="~/img/coopeuch/iconos/sala-espera/salir.svg" alt="Ir a la Atención" />
+                                <!--icono coopeuch-->
+                            }
+                        }
+                    </a>
+                    
+                    @if (ViewBag.HostURL.ToString().Contains("positiva."))
+                    {
+                        // Label personalizado para Boton Ir a la Atención de Positiva:
+                        <span class="fuente-accsesible">
+                            Ingresar a la Consulta
+                        </span>
+                    }
+                    else
+                    {
+                        <span>
+                            Ir a la Atención
+                        </span>
+                    }
+                </div>
+                <div class="btn-sala" id="wsp-m">
+                    <a href="https://wa.me/56948042543?text=Asistencia%20al%20Paciente%20-%20Consalud%20" class="cont-icon" target="_blank">
+                        @{
+                                                @if (ViewBag.idCliente != "108" && (!ViewBag.HostURL.ToString().Contains("prevenciononcologica.")))
+                            {
+                                                    <i class="fab fa-whatsapp"></i>
+                            }
+                            else @if (ViewBag.HostURL.ToString().Contains("prevenciononcologica."))
+                            {
+                                                    <img src="~/img/cajalosandes/iconos/icon_sala_asistencia.svg" alt="Box" />
+                            }
+
+
+                            else
+                            {
+                                                    <!--icono coopeuch-->
+                                                    <img src="~/img/coopeuch/iconos/sala-espera/revistas.svg" alt="Revistas" />
+                                                    <!--icono coopeuch-->
+                            }
+                        }
+                    </a>
+                    <span>
+                        Asistencia Paciente
+                    </span>
+                </div>
+
+            </div>
+
+
+        </div>
+    }
+
+
+
+
+
+
+    <div class="accesible-tools-desktop mt-4 d-none">
+        <div class="accesible-btn">
+            <button id="increase-font-desk">A+</button>
+            <button id="normal-font-desk">A</button>
+            <button id="decrease-font-desk">A-</button>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Mobile Panel -->
+
+<div class="panel-sala d-lg-none" id="panel-m">
+    <div class="btn-icon" id="close-panel-m">
+        <i class="fal fa-times"></i>
+    </div>
+    <div class="container-fluid caja-base caja-confirmacion-hora tabbable-line">
+
+        <ul class="nav nav-tabs">
+            <li>
+                <a href="#tab_15_3" class="active" data-toggle="tab" aria-expanded="false">Información para el médico </a>
+            </li>
+            <li>
+                <a href="#tab_15_4" data-toggle="tab" aria-expanded="true">Adjuntar Archivos </a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="tab_15_3">
+                <!--  -->
+                <div class="row">
+                    <div class="col-12 px-0 px-lg-2 col-lg">
+                        <div class="formulario-confirma-hora">
+                            <div class="header-formulario">
+                                @*<i class="fal fa-check-circle"></i>*@
+                                <h4>
+                                    Ingresar datos
+                                </h4>
+                            </div>
+                            <div class="body-formulario">
+                                <!-- Form -->
+                                <form action="" class="container-fluid">
+                                    <div class="form-group row">
+                                        <div class="col-12 p-0">
+                                            <p>
+                                                Cuéntame ¿Cuál es tu molestia o necesidad de atención?
+                                            </p>
+                                            <textarea class="form-control" rows="3" placeholder="Escribe un comentario" id="triageObservacionMobile" name="triageObservacionMobile"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row mb-lg-0">
+                                        <div class="col-12 p-0">
+                                            <p>
+                                                Antecedentes médicos previos
+                                            </p>
+                                            <textarea class="form-control" rows="3" placeholder="Diagnósticos y medicamentos en uso" id="antecedentesMedicosMobile" name="antecedentesMedicosMobile"></textarea>
+                                        </div>
+                                    </div>
+
+
+
+                                </form>
+                                <!-- Form -->
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-12 p-0">
+                    <button class="btn btn-primary btn-block btn-sm" id="btnConfirmar2">
+                        Guardar
+                    </button>
+                </div>
+                <!--  -->
+            </div>
+            <div class="tab-pane fade" id="tab_15_4">
+                <!--  -->
+
+                <div class="row">
+                    <div class="col p-0">
+                        <div class="carga-archivos mt-0">
+                            <h4 class="mb-4">¿Deseas subir un archivo?</h4>
+
+                            <div class="cont-carga-archivos" @*d-none d-md-block*@>
+                                <div class="dropzone dropzone-default dropzone-brand" id="kt_dropzone_4">
+                                    <div class="dropzone-msg dz-message needsclick">
+                                        <h3 class="dropzone-msg-title">¿Deseas subir un archivo?</h3>
+                                        <span class="dropzone-msg-desc">Receta, imagen o radiografía</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="container-fluid p-0 mt-4">
+                                <div class="row">
+                                </div>
+                            </div>
+
+
+
+
+
+                            <input type="hidden" id="correoUsuario" />
+                            <input type="hidden" id="genero" />
+                            <input type="hidden" id="fechaNacimiento" />
+
+                            <div class="alert alert-outline-success">
+                                <div class="d-flex">
+                                    <i class="fal fa-info-circle fa-2x mr-2"></i>
+                                    <p>
+                                        Los archivos que subas se guardaran automáticamente
+                                    </p>
+                                </div>
+                            </div>
+                            <div id="divArchivosEspera">
+                                <div class="kt-portlet__head">
+                                    @* Traer idEntidad y codEntidad desde la view que renderiza esta view parcial. *@
+                                    @Html.Hidden("idEntidad", ViewData["idEntidad"])
+                                    @Html.Hidden("codEntidad", ViewData["codEntidad"])
+                                    <div class="kt-portlet__head-label">
+                                    </div>
+                                    <div class="kt-portlet__head-toolbar d-none">
+                                        <div class="dropdown dropdown-inline">
+                                            <button type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="flaticon-more-1"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <ul class="kt-nav">
+                                                    <li class="kt-nav__item">
+                                                        <a id="actualizar_archivos" href="javascript:void(0);" class="kt-nav__link">
+                                                            <i class="kt-nav__link-icon flaticon-refresh"></i>
+                                                            <span class="kt-nav__link-text">Actualizar</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="kt-portlet__body">
+                                    <div id="lista_archivos_mobile" class="kt-widget4 lista-archivos">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--  -->
+            </div>
+
+
+        </div>
+
+
+
+
+
+    </div>
+</div>
+<!-- Modal Contacto -->
+<div class="modal fade"
+     id="modal-contacto"
+     tabindex="-1"
+     aria-labelledby="modal-contacto"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Contáctanos</h5>
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col text-center">
+                            <a href="#">
+                                <i class="fab fa-whatsapp fa-3x d-block mb-3"></i>
+                                +56948042543
+                            </a>
+                        </div>
+                        <div class="col text-center">
+                            <a href="#">
+                                <i class="fal fa-envelope fa-3x d-block mb-3"></i>
+                                contacto@medismart.live
+
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-secondary btn-cerrar-modal"
+                        data-dismiss="modal">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end. Modal Contacto-->
+<!-- Modal Juego -->
+<div class="modal fade"
+     id="modal-juego"
+     tabindex="-1"
+     aria-labelledby="modal-juego"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable  modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">
+                    <span class="btn-revista btn-volver-media" id="btnVolverJuego">
+                        <img src="~/img/iconos/icon_game.svg" />
+                    </span>
+                    @(nombreEmpresa+" / Juegos")
+                </h5>
+                <button type="button"
+                        class="close btn-cerrar-modal"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="" id="contJuegos1">
+
+                    <div class="container-fluid">
+                        <div class="row mb-4">
+                            <div class="col-4 col-md-4 mb-4 mb-lg-0">
+                                <div class="juego" id="j4" data-url="https://phoboslab.org/xtype/">
+                                    <div class="body-revista">
+                                        <img src="https://tutorialzine.com/media/2015/01/xtype.jpg" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        X-Type
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-4 mb-4 mb-lg-0">
+                                <div class="juego" id="j5" data-url="https://js13kgames.com/games/stolen-sword/index.html">
+                                    <div class="body-revista">
+                                        <img src="https://js13kgames.com/games/stolen-sword/__big.jpg" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Stolen Sword
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-4 mb-4 mb-lg-0">
+                                <div class="juego" id="j6" data-url="https://js13kgames.com/games/the-legend-of-yeti-404/index.html">
+                                    <div class="body-revista">
+                                        <img src="https://js13kgames.com/games/the-legend-of-yeti-404/__big.jpg" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        The Legend of Yeti-404
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-4 col-md-4 mb-4 mb-lg-0">
+
+                                <div class="juego" id="j1" data-url="https://js13kgames.com/games/onoff/index.html">
+                                    <div class="body-revista">
+                                        <img src="~/img/juegos/j1.png" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        OnOff
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-4 mb-4 mb-lg-0">
+                                <div class="juego" id="j2" data-url="https://js13kgames.com/games/everyones-sky/index.html">
+                                    <div class="body-revista">
+                                        <img src="~/img/juegos/j2.png" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Everyone's sky
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-4 mb-4 mb-lg-0">
+                                <div class="juego" id="j3" data-url="https://js13kgames.com/games/ninja-vs-evilcorp/index.html">
+                                    <div class="body-revista">
+                                        <img src="~/img/juegos/j3.png" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Ninja vs EvilCorp
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 col-md-4 mb-4 mb-lg-0">
+                                <div class="juego" id="j7" data-url="https://ellisonleao.github.io/clumsy-bird/">
+                                    <div class="body-revista">
+                                        <img src="~/img/juegos/j7.png" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Clumsy Bird
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-4 mb-4 mb-lg-0">
+                                <div class="juego" id="j8" data-url="https://pacman.js.org/">
+                                    <div class="body-revista">
+                                        <img src="~/img/juegos/j8.png" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Pac Man
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-4 mb-4 mb-lg-0">
+                                <div class="juego" id="j9" data-url="https://games.coolgames.com/tetris-lottery/en/3.2/index.html?mp_assets=https%3A%2F%2Fs2.minijuegosgratis.com%2F&mp_embed=0&mp_game_id=1189&mp_game_uid=tetris-i1240&mp_game_url=https%3A%2F%2Fwww.minijuegos.com%2Fembed%2Ftetris-i1240&mp_int=1&mp_locale=es_ES&mp_player_type=IFRAME&mp_site_https_url=https%3A%2F%2Fwww.minijuegos.com%2F&mp_site_name=minijuegos.com&mp_site_url=https%3A%2F%2Fwww.minijuegos.com%2F&mp_timezone=America%2FSantiago&mp_view_type=">
+                                    <div class="body-revista">
+                                        <img src="~/img/juegos/j9.png" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Tetris
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+                </div>
+
+                <div class="contenedor-juego contenedor-media">
+                    <iframe class="visor-juego d-none" title="vimeo-player" src="" frameborder="0" allowfullscreen id="visorJuego1"></iframe>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-secondary btn-sm btn-cerrar-modal"
+                        data-dismiss="modal">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end. Juego -->
+<!-- Modal revista -->
+<div class="modal fade"
+     id="modal-revista"
+     tabindex="-1"
+     aria-labelledby="modal-revista"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <span class="btn-revista btn-volver-media" id="btnVolver">
+                        <img src="~/img/iconos/icon_book.svg" />
+                    </span>
+                    @(nombreEmpresa+" / Revistas")
+                </h5>
+                <button type="button"
+                        class="close btn-cerrar-modal"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="cont-revistas" id="contRevistas1">
+
+                    <div class="container-fluid d-md-none">
+                        <div class="row">
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista">
+                                    <div class="body-revista">
+                                        <a href="https://cdn.medismart.live/r1.pdf" target="_blank">
+                                            <img src="~/img/revistas/r1.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista">
+                                    <div class="body-revista">
+                                        <a href="https://cdn.medismart.live/r2.pdf" target="_blank">
+                                            <img src="~/img/revistas/r2.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista">
+                                    <div class="body-revista">
+                                        <a href="https://cdn.medismart.live/vogue-385_compr.pdf" target="_blank">
+                                            <img src="~/img/revistas/r3.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista">
+                                    <div class="body-revista">
+                                        <a href="https://cdn.medismart.live/142240310-Plantas-Que-Planta-en-que-Lugar_compr.pdf" target="_blank">
+                                            <img src="~/img/revistas/r4.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista">
+                                    <div class="body-revista">
+                                        <a href="https://cdn.medismart.live/ad-156-compr.pdf" target="_blank">
+                                            <img src="~/img/revistas/r5.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista">
+                                    <div class="body-revista">
+                                        <a href="https://cdn.medismart.live/glamour-210_compr.pdf" target="_blank">
+                                            <img src="~/img/revistas/r6.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista">
+                                    <div class="body-revista">
+                                        <a href="https://cdn.medismart.live/traveler-138_compr.pdf" target="_blank">
+                                            <img src="~/img/revistas/r7.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista">
+                                    <div class="body-revista">
+                                        <a href="https://cdn.medismart.live/wired0421.pdf" target="_blank">
+                                            <img src="~/img/revistas/r8.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista">
+                                    <div class="body-revista">
+                                        <a href="https://cdn.medismart.live/worl-cup_2018.pdf" target="_blank">
+                                            <img src="~/img/revistas/r9.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista">
+                                    <div class="body-revista">
+                                        <a href="https://cdn.medismart.live/korra1.pdf" target="_blank">
+                                            <img src="~/img/revistas/r10.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista">
+                                    <div class="body-revista">
+                                        <a href="https://medismartcdn.azureedge.net/condorito.pdf" target="_blank">
+                                            <img src="~/img/revistas/r11.jpg" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="container-fluid d-none d-md-block">
+                        <div class="row">
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista" id="thumb1">
+                                    <div class="body-revista">
+                                        <img src="~/img/revistas/r1.png" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista" id="thumb2">
+                                    <div class="body-revista">
+                                        <img src="~/img/revistas/r2.png" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista" id="thumb3">
+                                    <div class="body-revista">
+                                        <img src="~/img/revistas/r3.jpg" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista" id="thumb4">
+                                    <div class="body-revista">
+                                        <img src="~/img/revistas/r4.jpg" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista" id="thumb5">
+                                    <div class="body-revista">
+                                        <img src="~/img/revistas/r5.jpg" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista" id="thumb6">
+                                    <div class="body-revista">
+                                        <img src="~/img/revistas/r6.jpg" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista" id="thumb7">
+                                    <div class="body-revista">
+                                        <img src="~/img/revistas/r7.jpg" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista" id="thumb8">
+                                    <div class="body-revista">
+                                        <img src="~/img/revistas/r8.jpg" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista" id="thumb9">
+                                    <div class="body-revista">
+                                        <img src="~/img/revistas/r9.jpg" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista" id="thumb10">
+                                    <div class="body-revista">
+                                        <img src="~/img/revistas/r10.jpg" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 col-md-auto mb-4">
+                                <div class="revista" id="thumb11">
+                                    <div class="body-revista">
+                                        <img src="~/img/revistas/r11.jpg" alt="">
+                                    </div>
+                                    <div class="footer-revista">
+                                        Portada Revistas
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contenedor-media" id="">
+                    <embed src="" id="visor" type="application/pdf" width="100%" height="700px" class="d-none" />
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button id="cerrar-revistas" type="button"
+                        class="btn btn-secondary btn-sm"
+                        data-dismiss="modal">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end. Modal revista-->
+<!-- Modal videos -->
+<div class="modal fade"
+     id="modal-videos"
+     tabindex="-1"
+     aria-labelledby="modal-videos"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">
+                    <span class="btn-revista btn-volver-media" id="btnVolverVideo">
+                        <img src="~/img/iconos/icon_video.svg" />
+                    </span>
+                    @(nombreEmpresa+" / Videos")
+                </h5>
+                <button type="button"
+                        class="close btn-cerrar-modal"
+                        data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+                <div class="cont-videos" id="contVideos1">
+
+                    @if (ViewBag.idCliente == "1")
+                    {
+                        <div class="video" id="v1" data-url="https://www.youtube.com/embed/IxRiUAIvsyM?autoplay=0&fs=0&iv_load_policy=3&showinfo=0&rel=0&cc_load_policy=0&start=0&end=0&origin=http://youtubeembedcode.com">
+                            <div class="thumb-video">
+                                <img src="~/img/imgConsalud.jpg" alt="" />
+                            </div>
+                            <span class="legend-video">
+                                Consalud - Orientación Hospitalaria
+                            </span>
+                        </div>
+                    }
+
+                    <div class="video" id="v23" data-url="https://www.youtube.com/embed/WbUH_dQYWrE">
+                        <div class="thumb-video">
+                            <img src="https://i.ytimg.com/vi/WbUH_dQYWrE/hqdefault.jpg" alt="" />
+                        </div>
+                        <span class="legend-video">
+                            Nueva Ley de Alimentos en Chile. ¿Sabes por qué existe?
+                        </span>
+                    </div>
+                    <div class="video" id="v22" data-url="https://www.youtube.com/embed/mnYsWWhGNPA">
+                        <div class="thumb-video">
+                            <img src="https://i.ytimg.com/vi/mnYsWWhGNPA/hqdefault.jpg" alt="" />
+                        </div>
+                        <span class="legend-video">
+                            Diabetes y prevención de amputaciones
+                        </span>
+                    </div>
+                    <div class="video" id="v21" data-url="https://www.youtube.com/embed/L-gJ0e68m2A">
+                        <div class="thumb-video">
+                            <img src="https://i.ytimg.com/vi/L-gJ0e68m2A/hqdefault.jpg" alt="" />
+                        </div>
+                        <span class="legend-video">
+                            Spot Unicef & Minsal Campaña Influenza Ministerio de Salud Chile
+                        </span>
+                    </div>
+                    <div class="video" id="v20" data-url="https://www.youtube.com/embed/eQMgCeXyxkY">
+                        <div class="thumb-video">
+                            <img src="https://i.ytimg.com/vi/eQMgCeXyxkY/hqdefault.jpg" alt="" />
+                        </div>
+                        <span class="legend-video">
+                            Campaña VIH Ministerio de Salud Chile video 4
+                        </span>
+                    </div>
+                    <div class="video" id="v19" data-url="https://www.youtube.com/embed/y5SvRVO6d_o">
+                        <div class="thumb-video">
+                            <img src="https://i.ytimg.com/vi/y5SvRVO6d_o/hqdefault.jpg" alt="" />
+                        </div>
+                        <span class="legend-video">
+                            Video Educativo sobre la Tuberculosis. Ministerio de Salud Chile
+                        </span>
+                    </div>
+                    <div class="video" id="v18" data-url="https://www.youtube.com/embed/39Gn0vIGUfQ">
+                        <div class="thumb-video">
+                            <img src="https://i.ytimg.com/vi/39Gn0vIGUfQ/hqdefault.jpg" alt="" />
+                        </div>
+                        <span class="legend-video">
+                            Ministerio de Salud - Campaña de prevención de enfermedades entéricas
+                        </span>
+                    </div>
+                    <div class="video" id="v17" data-url="https://www.youtube.com/embed/ByXNor-LZ-A">
+                        <div class="thumb-video">
+                            <img src="https://i.ytimg.com/vi/ByXNor-LZ-A/hqdefault.jpg" alt="" />
+                        </div>
+                        <span class="legend-video">
+                            Síntomas Ataque Cerebral
+                        </span>
+                    </div>
+                    <div class="video" id="v16" data-url="https://www.youtube.com/embed/mkuNlkaLz2Q">
+                        <div class="thumb-video">
+                            <img src="https://i.ytimg.com/vi/mkuNlkaLz2Q/hqdefault.jpg" alt="" />
+                        </div>
+                        <span class="legend-video">
+                            Así recomienda la OMS que los niños usen el cubrebocas
+                        </span>
+                    </div>
+                    <div class="video" id="v15" data-url="https://www.youtube.com/embed/GQQUVM5I7oo">
+                        <div class="thumb-video">
+                            <img src="https://i.ytimg.com/vi/GQQUVM5I7oo/hqdefault.jpg" alt="" />
+                        </div>
+                        <span class="legend-video">
+                            OMS - FAO : Segunda Conferencia Internacional sobre Nutrición
+                        </span>
+                    </div>
+                    <div class="video" id="v14" data-url="https://www.youtube.com/embed/vdhDnYdBDhQ">
+                        <div class="thumb-video">
+                            <img src="https://i.ytimg.com/vi/vdhDnYdBDhQ/hqdefault.jpg" alt="" />
+                        </div>
+                        <span class="legend-video">
+                            OMS: Respira la Vida - Cómo la contaminación del aire afecta a tu cuerpo
+                        </span>
+                    </div>
+
+                    <!---->
+                    <div class="video" id="v13" data-url="https://www.youtube.com/embed/NAlY-1KI6ts">
+                        <div class="thumb-video">
+                            <img src="https://i.ytimg.com/vi/NAlY-1KI6ts/hqdefault.jpg" alt="" />
+                        </div>
+                        <span class="legend-video">
+                            OMS: Fortalecer la función del sistema de salud para abordar la violencia contra las mujeres
+                        </span>
+                    </div>
+                    <div class="video" id="v12" data-url="https://www.youtube.com/embed/4CdM4_k6glQ">
+                        <div class="thumb-video">
+                            <img src="https://i.ytimg.com/vi/4CdM4_k6glQ/hqdefault.jpg" alt="" />
+                        </div>
+                        <span class="legend-video">
+                            Iniciativa Perro Negro OMS y OPS contra la depresión
+                        </span>
+                    </div>
+
+                    <div class="video" id="v11" data-url="https://www.youtube.com/embed/cP0FeB29NLQ">
+                        <div class="thumb-video">
+                            <img src="https://i.ytimg.com/vi/cP0FeB29NLQ/hqdefault.jpg" alt="" />
+                        </div>
+                        <span class="legend-video">
+                            7 consejos de la OMS para protegerse y prevenir la propagación del COVID--19
+                        </span>
+                    </div>
+
+                    <div class="video" id="v10" data-url="https://www.youtube.com/embed/Ar2xQ0S2_CM">
+                        <div class="thumb-video">
+                            <img src="https://i.ytimg.com/vi/Ar2xQ0S2_CM/hqdefault.jpg" alt="" />
+                        </div>
+                        <span class="legend-video">
+                            Cómo lavarse correctamente las manos | OMS
+                        </span>
+                    </div>
+
+                    <div class="video" id="v9" data-url="https://www.youtube.com/embed/HZW6m2jAHuw">
+                        <div class="thumb-video">
+                            <img src="https://i.ytimg.com/vi/HZW6m2jAHuw/hqdefault.jpg" alt="" />
+                        </div>
+                        <span class="legend-video">
+                            OMS : Depresión – Hablemos
+                        </span>
+                    </div>
+
+                    <div class="video" id="v8" data-url="https://www.youtube.com/embed/NMmAj1EKdVo">
+                        <div class="thumb-video">
+                            <img src="https://i.ytimg.com/vi/NMmAj1EKdVo/hqdefault.jpg" alt="" />
+                        </div>
+                        <span class="legend-video">
+                            La higiene de manos - OMS
+                        </span>
+                    </div>
+
+                    <div class="video" id="v7" data-url="https://www.youtube.com/embed/LcgMIIFCtf8">
+                        <div class="thumb-video">
+                            <img src="https://i.ytimg.com/vi/LcgMIIFCtf8/hqdefault.jpg" alt="" />
+                        </div>
+                        <span class="legend-video">
+                            Pandemia está "lejos del final"
+                        </span>
+                    </div>
+
+                    <div class="video" id="v6" data-url="https://www.youtube.com/embed/Ag-16MTo4Nw">
+                        <div class="thumb-video">
+                            <img src="https://i.ytimg.com/vi/Ag-16MTo4Nw/hqdefault.jpg" alt="" />
+                        </div>
+                        <span class="legend-video">
+                            OMS: El Cuidado del oído puede evitar la pérdida auditiva
+                        </span>
+                    </div>
+
+                    <div class="video" id="v5" data-url="https://www.youtube.com/embed/vP8EoLwPGWk">
+                        <div class="thumb-video">
+                            <img src="https://i.ytimg.com/vi/vP8EoLwPGWk/hqdefault.jpg" alt="" />
+                        </div>
+                        <span class="legend-video">
+                            OMS: Traemos salud a la vida
+                        </span>
+                    </div>
+
+                    <div class="video" id="v4" data-url="https://www.youtube.com/embed/XiCrniLQGYc">
+                        <div class="thumb-video">
+                            <img src="https://i.ytimg.com/vi/XiCrniLQGYc/hqdefault.jpg" alt="" />
+                        </div>
+                        <span class="legend-video">
+                            I had a black dog, his name was depression
+                        </span>
+                    </div>
+                    @if (ViewBag.idCliente != "108")
+                    {
+                        <div class="video" id="v2" data-url="https://player.vimeo.com/video/490880402">
+                            <div class="thumb-video">
+                                <img src="~/img/videos/video1.jpg" alt="" />
+                            </div>
+                            <span class="legend-video">
+                                Medismart.live - Como Prevenir COVID-19
+                            </span>
+                        </div>
+
+                        <div class="video" id="v3" data-url="https://player.vimeo.com/video/490880536">
+                            <div class="thumb-video">
+                                <img src="~/img/videos/video2.jpg" alt="" />
+                            </div>
+                            <span class="legend-video">
+                                Medismart.live - Consejos de Actividad Física
+                            </span>
+                        </div>
+                    }
+                </div>
+
+                <div class="contenedor-video contenedor-media">
+                    <iframe class="visor-video d-none" title="vimeo-player" src="" frameborder="0" allowfullscreen id="visorVideo1"></iframe>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button"
+                        class="btn btn-secondary btn-sm btn-cerrar-modal"
+                        data-dismiss="modal">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="d-block my-lg-4 cont-consentimiento-informado">
+
+    @if (!Model.Atencion.Especialidad.Equals("Medicina Veterinaria"))
+    {
+        if (ViewBag.HostURL.ToString().Contains("bonnahealth.") || ViewBag.HostURL.ToString().Contains("ajg.medismart.") || ViewBag.HostURL.ToString().Contains("aecsa.") || ViewBag.HostURL.ToString().Contains("rappi.") || ViewBag.HostURL.ToString().Contains("bu.") || ViewBag.HostURL.ToString().Contains("gallagher.") || Model.Atencion.CodigoPais == "CO")
+        {
+            <div id="lista_archivos2" class="kt-widget4">
+                <div class="kt-widget4__item text-center d-block my-4 my-md-0" id="">
+
+                    <div class="btn-consentimiento ml-md-auto">
+                        <i class="fal fa-file-alt"></i>
+                        <a href="https://medical.medismart.live/documentosLegalesCO/CONSENTIMIENTO-INFORMADO-PARA-ATENCION-POR-TELEMEDICINA-Medical-Solutions-Colombia.pdf" target="_blank" class="d-inline-block d-lg-none kt-widget4__title pr-0">Consentimiento Informado</a>
+                        <a href="javascript:void(0);" id="consentimientoco" class="d-none d-lg-inline-block kt-widget4__title">Consentimiento Informado</a>
+                    </div>
+                </div>
+            </div>
+        }
+        else if (Model.Atencion.CodigoPais == "MX")
+        {
+            <div id="lista_archivos2" class="kt-widget4">
+                <div class="kt-widget4__item text-center d-block my-4 my-md-0" id="">
+                    <div class="btn-consentimiento ml-md-auto">
+                        <i class="fal fa-file-alt"></i>
+                        <a href="https://medical.medismart.live/documentosLegalesMX/Consentimiento-InformadoMX.pdf" target="_blank" class="d-inline-block d-lg-none kt-widget4__title pr-0">Consentimiento Informado</a>
+                        <a href="javascript:void(0);" id="consentimientomx" class="d-none d-lg-inline-block kt-widget4__title">Consentimiento Informado</a>
+                    </div>
+                </div>
+            </div>
+        }
+        else if (Model.Atencion.CodigoPais == "EC")
+        {
+            <div id="lista_archivos2" class="kt-widget4">
+                <div class="kt-widget4__item text-center d-block my-4 my-md-0" id="">
+                    <div class="btn-consentimiento ml-md-auto">
+                        <i class="fal fa-file-alt"></i>
+                        <a href="https://medical.medismart.live/documentosLegalesEC/CONSENTIMIENTO-INFORMADO-MEDISMART-ECUADOR-SAS.pdf" target="_blank" class="d-inline-block d-lg-none kt-widget4__title pr-0">Consentimiento Informado</a>
+                        <a href="javascript:void(0);" id="consentimientoec" class="d-none d-lg-inline-block kt-widget4__title">Consentimiento Informado</a>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div id="lista_archivos2" class="kt-widget4">
+                <div class="kt-widget4__item text-center d-block my-4 my-md-0" id="">
+                <div class="btn-consentimiento ml-md-auto">
+                    <i class="fal fa-file-alt"></i>
+                    <a href="https://medical.medismart.live/Consentimiento-Informado/Consentimiento-Informado.pdf" target="_blank" class="d-inline-block d-lg-none kt-widget4__title pr-0">Consentimiento Informado</a>
+                    <a href="javascript:void(0);" id="consentimiento" class="d-none d-lg-inline-block kt-widget4__title">Consentimiento Informado</a>
+                </div>
+            </div>
+        </div>
+        }
+    }
+
+</div>
+<div class="modal fade" id="modalConsentimiento" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Consentimiento Informado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="modalBodyConsentimiento">
+                @*terminos y condiciones se cargan de forma dinamica*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarConsentimiento" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+    </div>
+     <!-- Modal Colombia-->
+<div class="modal fade" id="modalConsentimientoco" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Consentimiento Informado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="modalBodyConsentimientoco"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarConsentimientoco" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal mexico-->
+<div class="modal fade" id="modalConsentimientomx" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Consentimiento Informado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="modalBodyConsentimientomx"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarConsentimientomx" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal ecuador-->
+<div class="modal fade" id="modalConsentimientoec" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Consentimiento Informado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="modalBodyConsentimientoec"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarConsentimientoec" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--modal smartcheck -->
+<div class="modal fade" id="modalSmartcheck" data-backdrop="true" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false">
+    <div class="modal-dialog modal-smartcheck" role="document">
+        <div class="modal-content" style="border-radius: 12px;">
+            <div class="modal-body" id="modalBodySmartcheck">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">X</button>
+                <h2>¡Enhorabuena!</h2>
+                <div class="form-group row">
+                    <div class="col-lg-auto">
+                        <i class="fal fa-check-circle" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-lg">
+                        <p id="msj_smartcheck">
+                            !Ya tenemos tus resultados de SmartCheck y tus certificados adjuntos, estas listo para reservar tu hora médica!
+                        </p>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+
+
+                        <div class="puntaje-smartcheck">
+                            <h5>Smartcheck: Indicador general de salud</h5>
+                            <div class="puntaje-smartcheck" style="color: @ViewBag.colorSmartcheck; font-size:50px;"><b>@ViewBag.puntajeSaludSmartcheck?.ToString("0.#")</b> / 100</div>
+                            <div class="grafico-smartcheck">
+                                <div class="form-group">
+                                    <div class="divIndicador">&nbsp;</div>
+                                    <span class="divCero">0</span><span class="divCien">100</span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h5><b id="titulo_cant_archivos">Archivos que subiste</b></h5>
+                                <hr />
+                            </div>
+                            <div class="col-lg-12 kt-widget4" id="listaArchivos_smartcheck">
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <a data-dismiss="modal" class="form-control btn btn-primary btn-sm" style="color:white; width:50%; margin:0 auto;"> ENTENDIDO </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Panel Juegos -->
+
+<div class="panel-medios close-panel" id="panelJuegos">
+    <!-- Panel medios Header-->
+    <div class="panel-medios__header">
+        <h3 class="panel-medios__title">
+        <button class="btn btn-primary btn-return">
+                <i class="far fa-chevron-left"></i>
+        </button>
+         @nombreEmpresa <strong> Juegos</strong></h3>
+        <button class="panel-medios__close">
+            <i class="fal fa-times"></i>
+        </button>
+    </div>
+
+    <!-- end: Panel medios Header-->
+    <!-- Panel medios Body-->
+    <div class="panel-medios__body" id="contJuegos">
+
+        <!-- Caja Video -->
+        
+
+        <!-- end: Caja Video -->
+        
+    </div>
+    <div class="contenedor-juego contenedor-media d-none" id="contIframeJuegos">
+        <iframe class="visor" title="player" src="" frameborder="0" allowfullscreen id="visorJuego"></iframe>
+    </div>
+    <!-- end: Panel medios Body-->
+</div>
+<!-- end: Panel Juegos -->
+
+<!-- Panel Videos -->
+
+<div class="panel-medios close-panel" id="panelVideos">
+    <!-- Panel medios Header-->
+    <div class="panel-medios__header">
+        <h3 class="panel-medios__title">
+            <button class="btn btn-primary btn-return">
+                <i class="far fa-chevron-left"></i>
+            </button>
+        @nombreEmpresa <strong> Videos</strong></h3>
+        <button class="panel-medios__close">
+            <i class="fal fa-times"></i>
+        </button>
+    </div>
+
+    <!-- end: Panel medios Header-->
+     <div class="caja-botones">
+        <button class="category-button" data-categoria="todos">Todos</button>
+        <button class="category-button" data-categoria="salud mental">Salud Mental</button>
+        <button class="category-button" data-categoria="salud del adulto">Salud del adulto</button>
+        <button class="category-button" data-categoria="salud de la mujer">Salud de la mujer</button>
+        <button class="category-button" data-categoria="prevencion">Prevención</button>
+        <button class="category-button" data-categoria="salud infantil">Salud infantil</button>
+    </div>
+    <!-- Panel medios Body-->
+    <div class="panel-medios__body" id="contVideos">
+
+        <!-- Caja Video -->
+        <!-- end: Caja Video -->
+
+    </div>
+    <div class="contenedor-videos contenedor-media d-none" id="contIframeVideos">
+        <iframe class="visor" title="player" src="" frameborder="0" allowfullscreen id="visorVideo"></iframe>
+    </div>
+    <!-- end: Panel medios Body-->
+</div>
+<!-- end: Panel Videos -->
+
+<!-- Panel Revistas -->
+
+<div class="panel-medios close-panel" id="panelRevistas">
+    <!-- Panel medios Header-->
+    <div class="panel-medios__header">
+        <h3 class="panel-medios__title">
+            <button class="btn btn-primary btn-return">
+                <i class="far fa-chevron-left"></i>
+            </button>
+        @nombreEmpresa <strong> Revistas</strong></h3>
+        <button class="panel-medios__close">
+            <i class="fal fa-times"></i>
+        </button>
+    </div>
+
+    <!-- end: Panel medios Header-->
+    <!-- Panel medios Body-->
+    <div class="panel-medios__body" id="contRevistas">
+
+        <!-- Caja Video -->
+        <!-- end: Caja Video -->
+
+    </div>
+
+    <div class="contenedor-revista contenedor-media d-none" id="contIframeRevistas">
+        <iframe class="visor" title="player" src="" frameborder="0" allowfullscreen id="visorRevista"></iframe>
+    </div>
+    <!-- end: Panel medios Body-->
+</div>
+<!-- end: Panel Revistas -->
+
+<div class="backdrop-panel d-none" id="backdrop"></div>
+
+
+<!--Modal Invierno Informativo 2-->
+
+<div class="modal fade" id="modal-invierno2" tabindex="-1" aria-labelledby="modal-invierno" data-backdrop="static"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm modal-invierno modal-presencial">
+        <div class="modal-content">
+
+            <img src="~/img/modal-invierno/2.jpg" alt="" />
+            <h2>Dada la crisis sanitaria, recomendamos acudir a un médico presencial en los siguientes casos:</h2>
+            <ul>
+                <li><i class="fal fa-check"></i> Niños menores de un año.</li>
+                <li><i class="fal fa-check"></i> Infección respiratoria aguda.</li>
+                <li><i class="fal fa-check"></i> Fiebre persistente por más de 5 días.</li>
+                <li><i class="fal fa-check"></i> Sonidos respiratorios audibles.</li>
+                <li><i class="fal fa-check"></i> Fatiga respiratoria o sensación de opresión en el pecho.</li>
+            </ul>
+            <p>
+                Estas son algunas de las principales causas por las que recomendamos consultar presencialmente, pueden haber otras por las que nuestros médicos indiquen la modalidad presencial. 
+            </p>
+            <div class="modal-footer">
+
+                <button class="btn btn-primary" data-dismiss="modal">Entendido</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--Modal Invierno Informativo 2-->
+<!-- MODAL MEDIA DEVICE-->
+<div class="modal" id="modal-devices" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+
+        <div class="modal-content modal-content-devices">
+            <div class="modal-devices-cerrar">
+                <img src="~/img/modal-devices/cerrar.svg" alt="" data-dismiss="modal" />
+            </div>
+            <div class="modal-devices-header">
+                <div class="modal-devices-header-content">
+                    <img src="~/img/modal-devices/alert.svg" alt="" />
+                    <div class="modal-devices-header-titles">
+                        <h1>Activemos tu dispositivo antes de comenzar.</h1>
+                        <p>Para comenzar tu consulta médica revisa las siguientes configuraciones:</p>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-devices-body mt-3">
+
+                <!-- camara -->
+                <div class="modal-devices-camara-general">
+                    <div class="modal-devices-camara">
+                        <div>
+                            <div class="modal-devices-camara-test">
+                                <img src="~/img/modal-devices/camara.svg" alt="" />
+                                <h3>ACTIVAR TU CÁMARA</h3>
+                                <p>Comprueba si tu cámara está funcionando</p>
+                            </div>
+                            <div class="modal-devices-camara-estado">
+                                <div class="modal-devices-camara-estado-activa">
+                                    <img src="~/img/modal-devices/check.svg" alt="" />
+                                    <h5 id="msj-video">CÁMARA ACTIVADA</h5>
+                                </div>
+                                <div class="modal-devices-camara-estado-inactivo" style="display:none">
+                                    <img src="~/img/modal-devices/no-check.svg" alt="" />
+                                    <h5>CÁMARA NO ACTIVADA</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-devices-camara-img">
+                            <video id="test-video">Video stream not available.</video>
+                            <button class="modal-devices-camara-boton-estado" id="btn-test-video">
+                                ACTIVAR CÁMARA
+                            </button>
+                        </div>
+                    </div>
+                    <div class="horizontal-line-camara"></div>
+                </div>
+
+                <!-- fin camara -->
+                <!-- microfono -->
+                <div class="modal-devices-microfono-general">
+                    <div class="modal-devices-microfono">
+                        <div>
+                            <div class="modal-devices-microfono-test">
+                                <img src="~/img/modal-devices/microfono.svg" alt="" />
+                                <h3>ACTIVAR TU MICRÓFONO</h3>
+                                <p>Prueba si tu micrófono está funcionando</p>
+                            </div>
+                            <div class="modal-devices-microfono-estado">
+                                <div class="modal-devices-microfono-estado-activa">
+                                    <img src="~/img/modal-devices/check.svg" alt="" />
+                                    <h5 id="msj-mic">MICRÓFONO ACTIVADO</h5>
+                                </div>
+                                <div class="modal-devices-microfono-estado-inactivo" style="display:none">
+                                    <img src="~/img/modal-devices/no-check.svg" alt="">
+                                    <h5>MICRÓFONO NO ACTIVADO</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-devices-microfono-img">
+                            <audio id="test-mic">Video stream not available.</audio>
+                            <div id="sound-clip"></div>
+                            <button class="modal-devices-microfono-boton-estado" id="record">
+                                ACTIVAR MICRÓFONO
+                            </button>
+                        </div>
+                    </div>
+                    <div class="horizontal-line-microfono"></div>
+                </div>
+
+                <!-- fin microfono -->
+                <!-- audio -->
+                <div class="modal-devices-audio-general">
+                    <div class="modal-devices-audio">
+                        <div>
+                            <div class="modal-devices-audio-test">
+                                <img src="~/img/modal-devices/audio.svg" />
+                                <h3>ACTIVAR TU AUDIO</h3>
+                                <p>Comprueba si tu audio está funcionando</p>
+                            </div>
+                            <div class="modal-devices-audio-estado">
+                                <div class="modal-devices-audio-estado-activa">
+                                    <img src="~/img/modal-devices/check.svg" alt="" />
+                                    <h5 id="msj-audio">AUDIO ACTIVADO</h5>
+                                </div>
+                                <!-- <div class="modal-devices-audio-estado-inactivo">
+                                    <img src="./assets/no-check.svg" alt="">
+                                    <h5>AUDIO NO ACTIVADO</h5>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="modal-devices-audio-img">
+                            <button class="modal-devices-audio-boton-estado" id="btn-test-audio">
+                                ACTIVAR AUDIO
+                            </button>
+                        </div>
+                    </div>
+                    <div class="horizontal-line-audio"></div>
+                </div>
+
+                <!-- fin audio -->
+            </div>
+             <div class="div-what">
+                <p class="texto-SAC">Si no logras activar los dispositivos, favor comunicarte con SAC acá: </p>
+                @{
+                    var idCliente = ((ClaimsIdentity)User.Identity).GetSpecificClaim("primarysid");
+                }
+                <!-- fin audio -->
+                @if (idCliente == "108")
+                {
+                    <div class="wp_box" style="width: 10em; display: inline-block;">
+                        <a href="https://wa.me/56948042543?text=Atencion%20al%20Cliente" target="_blank" style="display: flex;">
+                            <i class="fab fa-whatsapp"></i>
+                            <h3 style="font-size: medium;">
+                                Whatsapp
+                            </h3>
+                        </a>
+                    </div>
+                    
+                }
+                else if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+                {
+                    <div class="wp_box" style="width: 10em; display: inline-block;">
+                        <a href="https://wa.me/56948042543?text=Atencion%20al%20Cliente" target="_blank" style="display: flex;">
+                            <i class="fab fa-whatsapp"></i>
+                            <h3 style="font-size: medium;">
+                                Whatsapp
+                            </h3>
+                        </a>
+                    </div>
+                }
+                else if (ViewBag.HostURL.ToString().Contains("masproteccionsalud.") || ViewBag.HostURL.ToString().Contains("prevenciononcologica."))
+                {
+                    <div class="wp_box" style="width: 10em; display: inline-block;">
+                        <a href="https://wa.me/56948042543?text=Atencion%20al%20Cliente" target="_blank" style="display: flex;">
+                            <i class="fab fa-whatsapp"></i>
+                            <h3 style="font-size: medium;">
+                                Whatsapp
+                            </h3>
+                        </a>
+                    </div>
+                }    
+                else if (ViewBag.HostURL.ToString().Contains("unabactiva.") || ViewBag.HostURL.ToString().Contains("uoh."))
+                {
+                    <div class="wp_box" style="width: 10em; display: inline-block;">
+                        <a href="https://wa.me/56948042543?text=Atencion%20al%20Cliente" target="_blank" style="display: flex;">
+                            <i class="fab fa-whatsapp"></i>
+                            <h3 style="font-size: medium;">Whatsapp</h3>
+                        </a>
+                    </div>
+                }
+                else if (ViewBag.HostURL.ToString().Contains("clini."))
+                {
+                    <div class="wp_box" style="width: 10em; display: inline-block;">
+                        <a href="https://wa.me/56948042543?text=Atencion%20al%20Cliente" target="_blank" style="display: flex;">
+                            <i class="fab fa-whatsapp"></i>
+                            <h3 style="font-size: medium;">Whatsapp</h3>
+                        </a>
+                    </div>
+                }
+
+                else if (ViewBag.HostURL.ToString().Contains("positiva."))
+                {
+                    <div class="wp_box" style="width: 10em; display: inline-block;">
+                        <a href="https://api.whatsapp.com/message/FZ6WKVTYES2UM1?autoload=1&app_absent=0" target="_blank" style="display: flex;">
+                            <i class="fab fa-whatsapp"></i>
+                            <h3 style="font-size: medium;">Whatsapp</h3>
+                        </a>
+                    </div>
+                }
+             
+                else if (codigoTelefono == "CO")
+                {
+                    <div class="wp_box" style="width: 10em; display: inline-block;">
+                        <a href="https://wa.me/573132136751?text=Atencion%20al%20Cliente" target="_blank" style="display: flex;">
+                            <i class="fab fa-whatsapp"></i>
+                            <h3 style="font-size: medium;">Whatsapp</h3>
+                        </a>
+                    </div>
+                }
+                else if (codigoTelefono == "CL")
+                {
+                    <div class="wp_box" style="width: 10em; display: inline-block;">
+                        <a href="https://wa.me/56948042543?text=Atencion%20al%20Cliente" target="_blank" style="display: flex;">
+                            <i class="fab fa-whatsapp"></i>
+                            <h3 style="font-size: medium;">
+                                Whatsapp
+                            </h3>
+                        </a>
+                    </div>
+                }
+                else if (codigoTelefono == "PE")
+                {
+                    <div class="wp_box" style="width: 10em; display: inline-block;">
+                        <a href="https://wa.me/56948042543?text=Atencion%20al%20Cliente" target="_blank" style="display: flex;">
+                            <i class="fab fa-whatsapp"></i>
+                            <h3 style="font-size: medium;">
+                                Whatsapp
+                            </h3>
+                        </a>
+                    </div>
+                }
+                else if (codigoTelefono == "EC")
+                {
+                    <div class="wp_box" style="width: 10em; display: inline-block;">
+                        <a href="https://wa.me/573132136751?text=Atencion%20al%20Cliente" target="_blank" style="display: flex;">
+                            <i class="fab fa-whatsapp"></i>
+                            <h3 style="font-size: medium;">
+                                Whatsapp
+                            </h3>
+                        </a>
+                    </div>
+                }
+                else if (codigoTelefono == "CR")
+                {
+                    <div class="wp_box" style="width: 10em; display: inline-block;">
+                        <a href="https://wa.me/56948042543?text=Atencion%20al%20Cliente" target="_blank" style="display: flex;">
+                            <i class="fab fa-whatsapp"></i>
+                            <h3 style="font-size: medium;">
+                                Whatsapp
+                            </h3>
+                        </a>
+                    </div>
+                }
+                else if (codigoTelefono == "MX")
+                {
+                    <div class="wp_box" style="width: 10em; display: inline-block;">
+                        <a href="https://wa.me/525554926971?text=Atencion%20al%20Cliente" target="_blank" style="display: flex; font-size: large;">
+                            <i class="fab fa-whatsapp"></i>
+                            <h3 style="font-size: medium;">
+                                Whatsapp
+                            </h3>
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    @*<div class="wp_box" style="width: 10em; display: inline-block;">
+                        <a href="https://wa.me/573132136751?text=Atencion%20al%20Cliente" target="_blank" style="display: flex;">
+                            <i class="fab fa-whatsapp" style="margin-right: 10px; font-size: large;"></i>
+                            <img src="~/img/icon_colombia.svg">
+                            <h3 style="font-size: medium;">Whatsapp <b>Colombia</b></h3>
+                        </a>
+                    </div>*@
+                    <div class="wp_box" style="width: 10em; display: inline-block;">
+                        <a href="https://wa.me/56948042543?text=Atencion%20al%20Cliente" target="_blank" style="display: flex;">
+                            <i class="fab fa-whatsapp"></i>
+                            <h3 style="font-size: medium;">
+                                Whatsapp
+                            </h3>
+                        </a>
+                    </div>
+
+                }
+            </div>
+            <div class="boton-consulta">
+                <button data-dismiss="modal" id="redirect-Consult">
+                    IR A MI CONSULTA
+                </button>
+
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>
+
+
+<!-- MODAL MEDIA DEVICE-->
+
+@section Scripts {
+    <!--toasty js-->
+    <script src="~/signal/signalr.min.js"></script>
+    <script src="~/js/detectRTC.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <link href="~/Toasty.js-master/dist/toasty.css" rel="stylesheet" />
+    <script src="~/Toasty.js-master/dist/toasty.js"></script>
+    <script src="~/Toasty.js-master/assets/prism/prism.js"></script>
+    <script type="text/javascript">
+        (function() {
+
+
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+            var canal = '@ViewBag.canal';
+            window.canal = canal;
+            var idCliente = @ViewBag.idCliente;
+            window.idCliente = idCliente;
+            var idSmartcheck = @ViewBag.idSmartcheck;
+            //var idSmartcheck = '@ViewBag.idSmartcheck' !== '' ? parseInt('@ViewBag.idSmartcheck') : null;
+            window.detectSmartcheck = idSmartcheck;
+        })()
+        window.codigoTelefono = "@codigoTelefono";
+    </script>
+    <script type="module">
+        import { init } from '../../js/Paciente/atencion-sala-espera.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+    <script type="module">
+        import { init } from '../../js/Shared/archivos-sala-espera.js?rnd=${@NumeroRandom.GetRandom()}';
+        init()
+    </script>
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <!--<script src="~/js/sala.js?rnd=@NumeroRandom.GetRandom()5"></script>-->
+    <script src="~/js/accesible.js?1"></script>
+    @if (!ViewBag.HostUrl.Contains("unabactiva."))
+    {
+        <script src="~/js/sala-juegos.js?rnd=@NumeroRandom.GetRandom()"></script> <!-- script sala -->
+        <script src="~/js/sala-videos.js?rnd=@NumeroRandom.GetRandom()"></script> <!-- script sala -->
+        <script src="~/js/sala-revistas.js?rnd=@NumeroRandom.GetRandom()"></script> <!-- script sala -->
+    }
+    <script src="~/js/modal.js"></script>
+}

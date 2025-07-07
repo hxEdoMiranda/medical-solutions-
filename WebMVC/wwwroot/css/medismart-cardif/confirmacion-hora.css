@@ -1,0 +1,126 @@
+/* Confirmación Hora */
+
+.caja-confirmacion-hora {
+    max-width: 1200px;
+}
+
+.caja-confirmacion-hora p {
+    font-size: 1.2rem;
+}
+
+.formulario-confirma-hora .header-formulario {
+    display: flex;
+    align-items: center;
+
+}
+
+    .formulario-confirma-hora .header-formulario i {
+        display: block;
+        margin-right: 1rem;
+    }
+
+    .formulario-confirma-hora .header-formulario p {
+        margin-bottom: 0;
+        font-weight: 700;
+        letter-spacing: -.5px;
+        text-align: justify;
+    }
+
+    .carga-archivos {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        border-left: 1px solid rgba(59, 193, 205, 0.5);
+        padding-left: 2rem;
+    }
+
+.carga-archivos h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #3BC1CD;
+}
+
+.custom-file-label {
+    border: 1px solid rgba(59, 193, 205, 0.5);
+    text-transform: uppercase;
+    color: #0081A4;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.custom-file-label::after {
+    background-color: #fff;
+    border-left: none;
+}
+
+.custom-file-input:lang(en)~.custom-file-label::after {
+    font-family: 'FontAwesome';
+    content: "\f178";
+    color: #0081A4;
+}
+
+.dropzone.dropzone-default .dropzone-msg-title {
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
+.dropzone-msg-desc {
+    font-weight: 700 !important;
+    font-size: 1.1rem !important;
+}
+
+.eliminar_archivo {
+    padding: 1rem !important;
+}
+
+
+@media (max-width: 1024px) {
+    .carga-archivos {
+        margin-top: 2rem;
+        padding-left: 0;
+        align-items: stretch;
+        justify-content: space-between;
+        border-left: none;
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .caja-confirmacion-hora {
+        padding: 2rem;
+    }
+
+        .caja-confirmacion-hora .form-group {
+            margin-bottom: .5rem;
+        }
+
+        .mensaje-confirmacion #fotoMedico {
+            margin: 0 auto;
+        }
+
+    .caja-confirmacion-hora p {
+        font-size: 1rem !important;
+    }
+
+    .carga-archivos {
+        margin-top: .5rem;
+    }
+    .btn.eliminar_archivo {
+        position: relative;
+        padding: .5rem 1rem !important;
+        text-align: center;
+    }
+
+    .btn.eliminar_archivo i {
+        margin-right: 0 !important;
+    }
+
+    .kt-widget4 .kt-widget4__item {
+
+    }
+} 
+
+

@@ -1,0 +1,90 @@
+﻿@using Microsoft.Extensions.Configuration
+@model WebMVC.Models.EmpresaEncuestaModel
+@inject IConfiguration Configuration
+<!--MedismartBASE-->
+<div class="container">
+    <div class="row">
+
+        <div class="box_inner_nom035 box_medicina-ocupacional">
+
+            
+                <div class="card-medicina-ocupacional">
+                    <h1 class="fuente-accesible">Acontecimiento Traumático</h1>
+                    <p>
+                        Acontecimiento experimentado durante o con motivo del trabajo que se caracteriza por la ocurrencia de la muerte o que representa un peligro real para la integridad física de una o varias personas y que puede generar trastorno de estrés postraumático para quien lo sufre o lo presencia.
+                    </p>
+                    <h4>20 minutos aprox.</h4>
+                    <a href="" id="btnHome035" class="cardlistado">
+                        <img src="~/img/mexico/nom035_icon01.svg" alt="Acontecimientotraumático">
+                    </a>
+                    <div class="box_nom035_cta">
+                        <div class="cont-guardar-info">
+                            <button type="submit" id="btnCuetionario1" class="btn btnCuestionarioHabilitado btn-success btn-guardar-info">Comenzar</button>
+                        </div>
+                    </div>
+                    <div class="porcentaje_cero" id="porcentajeC1">@ViewBag.Cuestionario1Avance % de avance</div>
+                </div>
+            
+            @if (Convert.ToInt32(Model.cantidad_empleados) <= 50)
+            {
+                <div class="divider-card">&nbsp;</div>
+
+                
+                    <div class="card-medicina-ocupacional">
+                        <h1 class="fuente-accesible">Entorno Organizacional</h1>
+                        <p>
+                            Es aquel en el que se promueven aspectos como: El sentido de pertenencia de los trabajadores a la empresa. La formación para la adecuada realización de las tareas encomendadas. La definición precisa de responsabilidades para los trabajadores del centro de trabajo.
+                        </p>
+                        <h4>20 minutos aprox.</h4>
+                        <a href="" id="btnHome035" class="cardlistado">
+                            <img src="~/img/mexico/nom035_icon02.svg" alt="Entornoorganizacional">
+                        </a>
+                        <div class="box_nom035_cta">
+                            <div class="cont-guardar-info">
+                                <button type="submit" id="btnCuetionario2" class="btn btnCuestionarioHabilitado btn-success btn-guardar-info">Comenzar</button>
+                            </div>
+                        </div>
+                        <div class="porcentaje_cero" id="porcentajeC2">@ViewBag.Cuestionario2Avance % de avance</div>
+
+                    </div>
+                
+            }
+
+            @if (Convert.ToInt32(Model.cantidad_empleados) > 50)
+            {
+                <div class="divider-card">&nbsp;</div>
+                <div class="card-medicina-ocupacional">
+                    
+                        <h1 class="fuente-accesible">Riesgo Psicosocial</h1>
+                        <p>
+                            Acontecimientos que pueden provocar trastornos de ansiedad, no orgánicos del ciclo sueño-vigilia y de estrés grave y de adaptación, derivado de la naturaleza de las funciones del puesto de trabajo. <br><br><br>
+                        </p>
+                        <h4>20 minutos aprox.</h4>
+
+                        <a href="" id="btnHome035" class="cardlistado">
+                            <img src="~/img/mexico/nom035_icon03.svg" alt="RiesgoPsicosocial">
+                        </a>
+                        <div class="cont-guardar-info">
+                            <div class="box_nom035_cta">
+                                <button type="submit" id="btnCuetionario3" class="btn btnCuestionarioHabilitado btn-success btn-guardar-info">Comenzar</button>
+                            </div>
+                        </div>
+                        <div class="porcentaje_cero" id="porcentajeC3">@ViewBag.Cuestionario3Avance % de avance</div>
+                    
+                </div>
+
+            }
+
+        </div>
+    </div>
+</div>
+
+                                            
+@section Scripts {
+    <script type="module">
+        import { init } from '../../js/Cuestionario/ListadoCuestionario.js';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    
+}

@@ -1,0 +1,1207 @@
+/*Estilos para Medismart Mexico*/
+
+
+/*
+    Login
+*/
+
+/*tabs nom*/
+
+.nav-tabs .nav-link.active {
+    border-bottom: 3px solid #646C9A;
+}
+
+#tabNom {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.buzon-opinion {
+    max-width: 1100px;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    padding: 2rem;
+    gap: 2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #3BC1CD;
+}
+
+.buzon-opinion-img{
+    width: 40%
+}
+
+.buzon-opinion-img img {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+}
+
+.buzon-opinion-content{
+    width: 60%;
+}
+
+    .buzon-opinion-content h2 {
+        margin-bottom: 10px;
+        color: black !important;
+    }
+
+    .buzon-opinion-content label {
+        color: black;
+        font-weight: 600;
+        margin-bottom: 2px;
+    }
+
+    .buzon-opinion-content p {
+        color: grey;
+        margin-bottom: 10px;
+    }
+
+    .tab-content {
+        margin-top: 0px;
+    }
+
+#tabNom li a {
+    color: #646C9A !important;
+    font-weight: 700 !important;
+}
+/*fin tabs nom*/
+progress#file {
+    accent-color: #249696;
+}
+.btnCuestionarioHabilitado{
+    border-radius: 15px;
+    width: 100%;
+    background: #3BC1CD;
+    border: 1px solid #3BC1CD;
+}
+
+.logotipo-desktop {
+    background-image: url(../../img/mexico/logo_wedoctors.png);
+}
+
+/*home*/
+.powered {
+    display: none;
+}
+
+.body-home .footer-home{
+    margin-top: 1rem;
+}
+#content {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0;
+    z-index: -1;
+    position: absolute !important;
+    /*background: #ff000024;*/
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+}
+
+.bakg_loading {
+    text-shadow: none;
+    border: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+.spinner-border {
+    position: fixed;
+    z-index: 999999;
+    margin: auto;
+    top: -20%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 5rem;
+    height: 5rem;
+    border: 0.5em solid #3BC1CD;
+    border: 4px solid #F3F3F3;
+    border-top: 4px solid #3498DB;
+    border-radius: 50%;
+    animation: spin 2s linear infinite;
+}
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+
+    .btnCuestionarioDeshabilitado, .btn-success.disabled, .btn-success:disabled {
+    border-radius: 15px;
+    width: 100%;
+    background: #DDDDDD;
+    border: 1px solid #DDDDDD;
+    color: #ffffff;
+}
+
+div#divPreguntas {
+    text-align: center;
+}
+.finalbox_inner_nom035 {
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin: 3rem auto auto;
+    align-items: stretch;
+    flex-direction: column;
+    background-color: #FFF;
+    border-radius: 10px;
+    border: 1px solid #DDD;
+    padding: 4rem 2rem;
+    width: 96%;
+}
+.finalbox_img_nom035, .planaccion_img_nom035 {
+    max-width: 450px;
+    min-height: 200px;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: contain;
+    margin: auto;
+    margin-bottom: 2rem;
+    width: 100%;
+    height: 100%;
+}
+
+.message_nom035 {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    color: #000;
+    font-size: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#content {
+    text-align: center;
+}
+.contenedor {
+}
+
+.hijo {
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    /* centrar vertical y horizontalmente */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -25px 0 0 -25px; /* aplicar a top y al margen izquierdo un valor negativo para completar el centrado del elemento hijo */
+}
+
+
+.finalbox_img_nom035 {
+    background-image: url(../../img/mexico/finalnom035.svg);
+}
+.planaccion_img_nom035 {
+    background-image: url(../../img/mexico/nom035_planaccion.svg);
+    margin-bottom: 45px;
+}
+.finalbox_inner_nom035 p span {
+    color: #3bc1cd;
+}
+
+
+.porcentaje_test label.form-label {
+    color: #3BC1CD !important;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 900;
+}
+
+.box_nom035 {
+    padding: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 70px;
+    flex-direction: row;
+    width: 80%;
+    margin: 50px auto 0;
+    justify-content: center;
+}
+.nom035form_inner #form_edit_perfil label.form-label {
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: left;
+    display: flex;
+}
+    .box_nom035 .cont-guardar-info {
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+.test_nom035 p {text-align:center!important;}
+.test_nom035 span {color:#3BC1CD!important}
+.guia_nom035 {
+    font-style: italic;
+    font-size: 15px;
+    margin-bottom: 70px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+}
+    .guia_nom035::before {
+        content: "";
+        background-image: url(/img/mexico/alert_icon.svg);
+        height: 20px;
+        width: 20px;
+        display: inline-block;
+        background-size: contain;
+        margin-right: 10px;
+    }
+.form_nom035 .form-group {
+    text-align: center;
+}
+.form_nom035 label.form-label {
+    font-size: 18px;
+    text-align: center;
+    font-weight: 900;
+    color: #0081A4;
+}
+.form_nom035 .porcentaje_test progress, .finalbox_inner_nom035 .porcentaje_test progress {
+    vertical-align: baseline;
+    height: 35px;
+    width: 65%;
+    margin: 0 10px;
+}
+.finalbox_inner_nom035 h3 {
+    color: #0081A4;
+    font-weight: 800;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.linea-nom035 {
+    border: none !important;
+    max-width: 116px;
+    margin: auto;
+    background-color: #646C9A !important;
+    width: 1px;
+    margin-top: 24px;
+    display: inline-block;
+    height: 100%;
+}
+
+
+.porcentaje_test label.form-label {
+    color: #3BC1CD !important;
+}
+.porcentaje_test {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+    .form_nom035 .icontest_inner {
+        display: flex;
+        justify-content: center;
+    }
+    .form_nom035 .icontest_inner img {
+        width: 25%;
+        height: auto;
+    }
+.porcentaje_cero, .porcentaje_pendiente, .porcentaje_finalizado {
+    font-weight: 800;
+    font-size: 15px;
+    text-align:center;
+}
+.cont-card a#btnHome035 img {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.porcentaje_cero {
+    color: #666666;
+}
+.porcentaje_pendiente {
+    color: #FF6565;
+}
+.porcentaje_finalizado {
+    color: #3BC1CD;
+}
+
+.box_nom035_cta {
+    width: 100%;
+    display: inline-block;
+}
+
+.box_nom035_cta button#btn_guardar_info {
+    width: 100%;
+    max-width: 300px;
+}
+
+.box_nom035 .cont-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.box_nom035 .card {
+     /*border: 0px;
+    border-radius: 0px !important;
+   background-color: transparent;*/
+}
+.box_nom035 p {
+    text-align: left;
+    font-size: 14px;
+    color: #666666;
+    min-height: 160px;
+}
+.box_nom035 h1.fuente-accesible, .form_nom035 h1.fuente-accesible {
+    font-size: 18px;
+    text-align: left;
+    font-weight: 900;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    color: #646c9a;
+}
+.box_nom035 h4 {
+    font-size: 15px;
+    color: #646C9A;
+    font-weight: 600;
+}
+
+    .box_nom035 h4::before {
+        content: "";
+        background-image: url(/img/mexico/ellipse_nom035.svg);
+        height: 7px;
+        width: 7px;
+        display: inline-block;
+        background-size: cover;
+        margin-right: 5px;
+        background-position: center center;
+    }
+
+
+
+.box_inner_nom035 {
+    max-width: 1400px;
+    display: flex;
+    justify-content: center;
+    gap: 85px;
+    margin: 150px 0 0 0;
+    align-items: stretch;
+}
+.form_nom035 button#btn_guardar_info {
+    width: 100%;
+    margin: auto;
+    display: block;
+}
+
+.text-danger {
+    color: #FF6565 !important;
+}
+
+.test_innerbox h4 span {
+    color: #3BC1CD;
+    font-weight: 600;
+}
+.test_select label {
+    display: flex;
+    cursor: pointer;
+    color: #ffffff;
+    position: relative;
+    padding: 2px 0px 0px 0px;
+    font-size: 1em;
+    border-radius: 15px;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    font-weight: 800;
+    width: 100%;
+    height: 35px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.test_select input[type="Radio"]:checked + label {
+    padding: 5px 15px;
+    background: #246d74;
+    color: #fff;
+    border-radius: 15px;
+}
+button#SiguienteP, button#btn_guardar_info, button#Siguiente {
+    border-radius: 15px;
+    max-width: 320px;
+    margin: auto;
+}
+.finalbox_inner_nom035 p {
+    font-size: 15px;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 3rem;
+}
+div#divPreguntas h5 {
+    margin: 0 auto;
+    color: #0081A4;
+    font-weight: 800;
+    font-size: 16px;
+    text-transform: uppercase;
+    width: 100%;
+}
+.test_selectmultiple {
+    display: flex;
+    flex-direction: column;
+}
+    .test_selectmultiple .form-group {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        border-bottom: 1px solid #C4ECF0;
+    }
+        .test_selectmultiple .form-group label.form-label {
+            color: #646C9A;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor:pointer;
+        }
+
+.test_select input[type="Radio"] {
+    display: none;
+}
+
+.box_img_nom035 {
+    width: 450px;
+    height: 280px;
+    background-image: url(../../img/mexico/nom035_inner.png);
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: contain;
+}
+.box_inner_text {
+    max-width:30%;
+}
+    .box_inner_text p, .form_nom035 p {
+        text-align: left;
+        font-size: 15px;
+    }
+
+.form_nom035 p + p {
+    font-weight: 700;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+    .box_inner_text h2, .form_nom035 h2 {
+        margin-bottom: 15px;
+        font-weight: 600;
+        color: #646c9a;
+    }
+
+    .box_inner_text h3, .form_nom035 h3 {
+        margin-bottom: 15px;
+        font-weight: 600;
+        font-size:20px;
+    }
+
+
+.form_nom035 p span {
+    color: #0081A4;
+    font-weight: 600;
+}
+
+.box_inner_nom035 button#SiguienteHome {
+    background-color: #3BC1CD;
+    border-radius: 40px;
+    color: white;
+    width: -webkit-fill-available;
+    border-color: #3BC1CD;
+    margin-top: 2rem;
+}
+
+.form_nom035 {
+    width: 40%;
+    margin: 50px auto 0;
+    margin-top: 7rem;
+}
+
+
+
+.test_box {
+    width: 100%;
+    margin: 50px auto 0;
+}
+.preguntas_box {
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 25px 0px;
+    width:100%;
+}
+
+
+.nom035form_inner.card-profile, .test_innerbox {
+    background: white;
+    border: 1px solid #3BC1CD;
+    padding: 20px;
+    text-align: left;
+}
+.test_innerbox h4 {
+    color: #666666;
+}
+    .test_innerbox h4 {
+        color: #666666;
+        font-size: 18px;
+        font-style: italic;
+        width: 100%;
+        min-height: 100px;
+    }
+h1#TituloEncuesta {
+    text-align: center;
+}
+.test_select {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+    .test_select .form-group {
+        display: flex;
+        border-bottom: 1px solid #C4ECF0;
+        background: #3BC1CD;
+        width: 45%;
+        border-radius: 15px;
+        justify-content: center;
+        height: 35px;
+    }
+
+
+.cont-card .card-body .pronto {
+    left: auto;
+    bottom: auto;
+    font-size: 10px;
+    text-transform: uppercase;
+    background-color: #0081A4 !important;
+    color: #FFF;
+    border-radius: 0px 16px 0px 8px;
+    width: 60px;
+    top: -1px;
+    right: -1px;
+    font-weight: 700;
+    padding: .25rem;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box_no035 {
+    background-color: white;
+    width: 65%;
+    height: auto;
+    margin: 0 auto;
+    padding: 30px;
+    border-left: 4px solid #3BC1CD;
+    border-radius: 20px 20px 0px 0px;
+    display: flex;
+    grid-gap: 20px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-right: 4px solid #3BC1CD;
+    border-top: 4px solid #3BC1CD;
+}
+a.btn.btn_nom035.btn-success.btn-block {
+    background-color: #3BC1CD;
+    border-radius: 40px;
+    color: white;
+    width: 60%;
+}
+.logo-convenios {
+    justify-content: center;
+}
+.textbox035 h2 {
+    margin-bottom: 35px;
+    color: #646C9A;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+.textbox035 p {
+    color: #666666;
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+}
+.kt-login.kt-login--v3 
+.kt-login__wrapper 
+.kt-login__container 
+.kt-login__head {
+    margin-top: 50px;
+}
+
+.kt-login__head {
+    display: flex;
+    align-items: center;
+}
+
+.kt-login__head .pais {
+    margin-right: 1rem;
+    width: 100px;
+    height: 100px;
+    border-radius: 80px;
+    overflow: hidden;
+    object-fit: cover;
+  }
+
+
+.kt-login.kt-login--v3 
+.kt-login__wrapper 
+.kt-login__container 
+.kt-login__head 
+.kt-login__title {
+    margin-top: 0;
+}
+
+.kt-login__head .pais img {
+    max-width: 50px;
+}
+
+.logo-convenios {
+   align-items: center;
+   justify-content: start;
+}
+
+    .logo-convenios .pais {
+        background-image: url('../../img/mexico/mexico.svg');
+        background-size: contain;
+        width: 60px;
+        height: 40px;
+        margin-left: 1.5rem;
+        /*box-shadow: 0 7px 30px -10px rgba(150,170,180, 1);*/
+    }
+
+.pais-flotante {
+    position: absolute;
+    width: 60px !important;
+    top: 1rem;
+    right: 5rem;
+
+}
+
+.isotipo {
+    width: 60px;
+    height: 60px;
+    background-image: url('../../img/isotipo.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/* Imágenes Login */
+.img1 {
+    background-image: url(../../img/mexico/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/mexico/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/mexico/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/mexico/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/mexico/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/mexico/960x978.jpg);
+}
+
+
+
+@media screen and (max-width: 640px) and (min-width: 376px) {
+
+    .finalbox_img_nom035 {
+        width: 100%;
+    }
+
+
+    .linea-nom035 {
+        display: none;
+    }
+
+
+    .box_nom035 .card {
+        margin: 0px;
+    }
+
+    .box_nom035 img {
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    .box_nom035 p {
+        min-height: auto;
+    }
+    .box_no035 {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+    }
+    .textbox035 h2 {
+        margin-bottom: 20px;
+    }
+    a.btn.btn_nom035.btn-success.btn-block {
+        width: 100%;
+    }
+    .box_no035 img {
+        display: inline-block;
+        max-width: -webkit-fill-available;
+    }
+
+    .box_inner_nom035 {
+        flex-direction: column;
+        margin: 60px 0 0 0;
+    }
+    .box_img_nom035 {
+        width: auto;
+    }
+    .box_inner_nom035 {;
+        gap: 20px;
+    }
+    .box_inner_text {
+        max-width: 100%;
+    }
+
+    .form_nom035 {
+        width: 100%;
+    }
+        .form_nom035 .card-profile {
+            padding: 15px;
+        }
+    .box_nom035 {
+        padding: 0px;
+        display: flex;
+        grid-gap: 20px;
+        flex-direction: column;
+        width: 90%;
+        margin: 50px auto 0;
+        height: 100%;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .pais-flotante {
+        top: 10rem;
+    }
+}
+
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+
+
+
+    #imgLogin {
+        position: fixed;
+    }
+
+    .img1 {
+        background-image: url(../../img/mexico/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img//mexico/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img//mexico/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img//mexico/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img//mexico/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img//mexico/548x850.jpg);
+    }
+
+    div#kt_wrapper {
+        margin-top: 24px !important;
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .box_nom035 {
+        grid-gap: 50px;
+    }
+
+
+
+    .box_nom035 {
+        width: 100%;
+    }
+        .box_nom035 h1.fuente-accesible, .form_nom035 h1.fuente-accesible {
+            font-size: 17px;
+        }
+        .box_nom035 p {
+            min-height: 177px;
+        }
+
+    #imgLogin {
+        position: fixed;
+    }
+
+    .kt-login__signin {
+        margin-bottom: 1.5rem;
+    }
+
+    .img1 {
+        background-image: url(../../img/mexico/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/mexico/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/mexico/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/mexico/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/mexico/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/mexico/960x978.jpg);
+    }
+}
+
+
+@media screen and (min-device-width: 1920px) {
+    .box_nom035 {
+        grid-gap: 50px;
+        width: 100%;
+    }
+}
+
+/* If you like this, please check my blog at codedgar.com.ve */
+@import url('https://fonts.googleapis.com/css?family=Work+Sans');
+#form-checkout {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+}
+
+.container {
+    height: 18px;
+    display: inline-block;
+    border-radius: 2px;
+    padding: 1px 2px;
+}
+
+.body-home .container.container-colmena {
+    height: auto !important;
+    margin: 0 auto;
+    display: block;
+}
+
+.body-home .container {
+    height: auto;
+}
+.body-home #contentAtenciones {
+    margin: 0 auto;
+    display: block;
+}
+
+
+.cardlistado {
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.logo-card {
+    max-width: 40px;
+    margin-bottom: 15px;
+    margin-top: -10px;
+}
+
+label {
+    display: flex;
+    font-size: 10px;
+    color: #646c9a;
+    /*opacity: .4;*/
+}
+
+input {
+    font-family: 'Work Sans', sans-serif;
+    background: transparent;
+    border: none;
+    color: #646c9a;
+    transition: border-bottom .4s;
+}
+
+    input:focus {
+        outline: none;
+    }
+
+.cardnumber {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.name {
+    display: block;
+    font-size: 15px;
+    max-width: 200px;
+    float: left;
+    margin-bottom: 10px;
+}
+
+.toleft {
+    float: left;
+}
+
+.ccv {
+    width: 50px;
+    margin-top: 0px;
+    font-size: 15px;
+}
+
+.receipt {
+    background: #dbdce0;
+    border-radius: 4px;
+    padding: 5%;
+    padding-top: 200px;
+    max-width: 600px;
+    display: block;
+    margin: auto;
+    margin-top: -180px;
+    z-index: -999;
+    position: relative;
+}
+
+.col {
+    width: 50%;
+    float: left;
+}
+
+.bought-item {
+    background: #f5f5f5;
+    padding: 2px;
+}
+
+.bought-items {
+    margin-top: -3px;
+}
+
+.cost {
+    color: #3a7bd5;
+}
+
+.seller {
+    color: #3a7bd5;
+}
+
+.description {
+    font-size: 13px;
+}
+
+.price {
+    font-size: 12px;
+}
+
+.comprobe {
+    text-align: center;
+}
+
+.proceed {
+    position: absolute;
+    transform: translate(300px, 10px);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #1abc9c;
+    border: none;
+    color: white;
+    transition: box-shadow .2s, transform .4s;
+    cursor: pointer;
+}
+
+    .proceed:active {
+        outline: none;
+    }
+
+    .proceed:focus {
+        outline: none;
+        box-shadow: inset 0px 0px 5px white;
+    }
+
+.sendicon {
+    filter: invert(100%);
+    padding-top: 2px;
+}
+
+.test-medicina-ocupacional .test_selectmultiple .form-group .form-label {
+    margin-right: 1rem;
+    display: inline-block;
+}
+
+.box_inner_text .btn {
+    margin-top: 2rem;
+}
+
+
+.card-medicina-ocupacional h4 {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+@media (max-width: 600px) {
+    .body-home #contentAtenciones {
+        max-width: 92%;
+    }
+
+    .proceed {
+        transform: translate(250px, 10px);
+    }
+
+    .col {
+        display: block;
+        margin: auto;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 1024px) {
+
+    .buzon-opinion{
+        width: 80%;
+    }
+    .buzon-opinion-content {
+        width: 100%;
+    }
+
+    .buzon-opinion-content h1 {
+        text-align: left;
+    }
+
+    #tabNom {
+     
+        margin-top: 5rem;
+    }
+
+    .buzon-opinion-img {
+        display: none;
+    }
+    .box_inner_nom035 {
+        gap: 1rem;
+
+    }
+    .iconos-inicio__medicina-ocupacional {
+        justify-content: space-between;
+    }
+    .box_medicina-ocupacional {
+        padding: 2rem !important;
+    }
+
+    .icono-inicio__medicina-ocupacional label {
+        opacity: 1;
+    }
+    .kt-footer, #kt_footer {
+        display: none;
+    }
+    .icon_medicina-ocupacional {
+        display: flex;
+        flex-direction: column;
+    }
+    .leyenda-card-home {
+        text-align: center;
+    }
+
+    .form_nom035 {
+        width: 100%;
+        margin-top: 1rem !important;
+    }
+}
+
+
+/* 03102023 - Medicina Ocupacional*/
+
+.form_nom035 {
+    margin-top: 3rem;
+}
+
+element.style {
+}
+
+.prehome__plan h2 {
+    text-align: center;
+    font-weight: 700;
+    width: 100%;
+    margin: 0 auto;
+    height: 100px;
+    font-size: 22px;
+}
+
+.prehome__plan ul {
+    list-style-image: url(../../img/prehome/bullet.svg);
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 32px;
+    min-height: 255px;
+    max-height: 214px;
+    overflow: hidden;
+    overflow-y: auto;
+    border: none;
+    width: 100%;
+}
+
+
+.prehome__plans::before {
+    content: "";
+    border-left: 1px solid black;
+    max-height: 54%;
+    min-height: 54%;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+}
+
+

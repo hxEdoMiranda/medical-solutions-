@@ -1,0 +1,3253 @@
+/* Momento WOW */
+:root {
+    --primary: #3BC1CD;
+    --secondary: #0282A6;
+    --tertiary: #666;
+    --copy: #646C9A;
+    --grey: #DDD;
+    --accent: #FFAF36;
+    --light: #FFF;
+    --danger: #E15241;
+    --font-family: "Mulish", sans-serif;
+    --transition: all ease-out .3s;
+}
+
+body {
+    font-family: var(--font-family);
+}
+
+/* WOW */
+.wow {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 40px;
+}
+
+
+.wow__title {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .wow__title h2 {
+        font-size: 32px;
+        /* margin-bottom: 21px; */
+        margin: 0 0 0 0;
+        color: var(--secondary);
+        text-transform: uppercase;
+        font-size: 24px;
+        margin-bottom: 1rem;
+    }
+
+.wow__header .wow__title h2 {
+    margin-bottom: 0;
+}
+
+.wow__container {
+    display: flex;
+    border-radius: 16px;
+    padding: 40px;
+    gap: 16px;
+    border: 1px solid rgba(59, 193, 205, 0.3);
+    background-color: var(--light);
+}
+
+.wow__container-tab .tab-content__header {
+    /* flex-direction: column;*/
+}
+
+.wow__lista {
+    width: 50%;
+    max-width: 527px;
+}
+
+.wow__lista-header {
+    margin-bottom: 16px;
+}
+
+.wow__tabs {
+    width: 50%;
+}
+
+.wow__menu-tabs {
+    display: flex;
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.wow__tab {
+    margin-right: 42px;
+    cursor: pointer;
+    padding-bottom: 0px;
+}
+
+    .wow__tab:hover {
+        color: var(--secondary);
+    }
+
+    .wow__tab.active {
+        color: #0282A6;
+        border-bottom: 3px solid var(--secondary);
+    }
+
+.wow__lista-body {
+    background-color: #EEE;
+    padding: 32px;
+    padding-top: 14px;
+    padding-bottom: 0;
+    border-radius: 16px;
+    /*background-image: linear-gradient(#CEDCDD, #CEDCDD);*/
+    background-size: 100% 120px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    /*height: 97%;*/
+}
+
+.wow__lista-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.wow__lista-title {
+    font-size: 16px;
+    color: var(--tertiary);
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.wow__guardar-lista {
+    color: var(--secondary);
+}
+
+.wow__lista-item-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.wow__lista-item-title {
+    font-weight: 900;
+    font-size: 14px;
+    color: var(--secondary);
+    text-transform: uppercase;
+}
+
+.wow__subitem {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+    .wow__subitem a {
+        display: block;
+        font-size: 12px;
+        text-transform: none;
+        color: var(--secondary);
+        margin-top: 16px;
+    }
+
+    .wow__subitem i {
+        margin-right: 8px;
+    }
+
+.wow__subitem-check {
+    width: 70%;
+}
+
+    .wow__subitem-check label {
+        margin-left: 8px;
+    }
+
+.wow__subitem-price {
+    display: flex;
+    width: 30%;
+    /*margin-left: -100px;*/
+}
+
+    .wow__subitem-price small {
+        display: inline-block;
+        margin-bottom: 0;
+    }
+
+.wow small {
+    color: var(--copy);
+    margin-bottom: 16px;
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.wow__sublabel {
+    padding-left: 24px;
+    margin-bottom: 0 !important;
+}
+
+.wow__lista-item {
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(0, 129, 164, 0.6);
+    padding-bottom: 12px;
+}
+
+    .wow__lista-item:last-child {
+        border-bottom: none;
+    }
+
+.wow__lista-footer {
+    height: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(82, 148, 154, 0.2);
+    border-radius: 0px 0px 16px 16px;
+    margin-left: -32px;
+    margin-right: -32px;
+}
+
+.wow__lista-footer_compra {
+    height: 1px !important;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+    .wow__lista-footer_compra .link-terminos {
+        display: none;
+    }
+
+.wow__lista-footer button {
+    /*margin-bottom: 16px;*/
+    width: 100%;
+    font-weight: bold;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+.wow__lista-footer a {
+    color: var(--secondary);
+    font-size: 14px;
+    display: none;
+}
+
+    .wow__lista-footer a:hover {
+        color: var(--accent);
+    }
+
+.wow__total {
+    border-bottom: 1px solid rgba(0, 129, 164, 0.6);
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0;
+}
+
+    .wow__total.final {
+        align-items: center;
+        border-bottom: none;
+    }
+
+        .wow__total.final .wow__total-price {
+            color: var(--secondary);
+            font-size: 32px;
+            width: 50%;
+            text-align: right;
+        }
+
+.wow__total-label {
+    color: var(--secondary);
+    font-size: 16px;
+}
+
+    .wow__total-label.subtotal-label, .total-label {
+        font-weight: bold;
+    }
+
+.wow__total-price {
+    font-weight: 700;
+    color: var(--secondary);
+    width: 100px;
+    text-align: right;
+    font-size: 16px;
+}
+
+    .wow__total-price small {
+        display: inline-block;
+        color: var(--secondary);
+    }
+
+.total_costo-examen {
+    padding-bottom: 0;
+    width: 100% !important;
+    border-bottom: none;
+    padding-top: 10px;
+}
+
+.total_costo-medicamentos {
+    width: 100% !important;
+    border-bottom: none;
+    padding-top: 10px;
+    padding-bottom: 0;
+}
+
+.wow__lista-item-body {
+    display: flex;
+    gap: 8px;
+}
+
+
+.tab-content {
+    margin-top: 68px;
+}
+
+.tab-content__header {
+    display: flex;
+    width: 100%;
+    margin-top: 40px;
+}
+
+    .tab-content__header img {
+        /* margin-bottom: 42px;
+        margin-top:50px;*/
+        max-width: 100px;
+        margin: 2rem 0;
+    }
+
+.tab--medicamentos .tab-content__header {
+    flex-direction: column;
+}
+
+.tab-list__item_examen .tab-list__check_examen {
+    justify-content: flex-start;
+}
+
+.tab-content__body {
+    margin-top: 32px;
+}
+
+.tab-content__title {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: var(--secondary);
+    font-weight: 700;
+    margin-top: 0;
+    width: 100%;
+}
+
+.tab-data-smartcheck {
+    padding-top: 16px;
+    border-top: 1px solid rgba(59, 193, 205, 0.3);
+    border-bottom: 1px solid rgba(59, 193, 205, 0.3);
+    padding-bottom: 0px;
+}
+
+
+
+.tab-list__item {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.tab-data__list {
+    border-bottom: 1px solid rgba(59, 193, 205, 0.3);
+    display: flex;
+}
+
+    .tab-data__list:last-child {
+        border-bottom: none;
+    }
+
+.tab-data__item {
+    padding: 16px 0;
+    font-size: 16px;
+    width: 50%;
+}
+
+.tab-data__files {
+    padding: 16px 0;
+    padding-bottom: 2px;
+}
+
+.tab-data__list-files {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+    .tab-data__list-files a {
+        color: var(--secondary);
+        font-size: 14px;
+    }
+
+.tab-data__list-files-li {
+    padding: .5rem;
+    color: #0282A6;
+}
+
+.textoFile {
+    display: inline;
+    text-decoration: underline;
+}
+
+
+.user-box {
+    width: 50%;
+    display: flex;
+    gap: 16px;
+    padding-bottom: 2px;
+}
+
+    .user-box .data-user {
+        color: var(--tertiary);
+        font-size: 16px;
+    }
+
+        .user-box .data-user small {
+            font-size: 12px;
+            color: var(--copy);
+            display: block;
+            margin-bottom: 9px;
+        }
+
+    .user-box .nombre-user {
+        font-weight: 700;
+    }
+
+    .user-box .sub-data {
+        margin-top: 8px;
+    }
+
+    .user-box .foto-user {
+        width: 86px;
+        height: 86px;
+        border-radius: 50%;
+        background-color: #999;
+        overflow: hidden;
+        flex-shrink: 0;
+    }
+
+        .user-box .foto-user img {
+            width: 100%;
+            -o-object-fit: cover;
+            object-fit: contain;
+            margin: 0;
+        }
+
+.tab-list__item {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+    .tab-list__item label {
+        text-transform: uppercase;
+        font-size: 14px;
+        color: var(--copy);
+        margin-left: 0.5rem;
+        width: 90%;
+    }
+
+
+.tab-list__item_examen {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    /*margin-top: 100px;*/
+    display: block;
+}
+
+    .tab-list__item_examen label {
+        text-transform: uppercase;
+        font-size: 14px;
+        color: var(--copy);
+        margin-left: 0.5rem;
+        margin-bottom: 0;
+        margin-right: auto;
+    }
+
+.tab-list__item_interconsulta {
+    display: flex;
+    min-width: 300px;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    margin-top: 100px;
+    margin-left: -559px;
+}
+
+.tab-list__price {
+    color: var(--secondary);
+    justify-content: flex-end;
+    font-size: 16px;
+    display: flex;
+    width: 10%;
+}
+
+.tab-list__check {
+    color: var(--secondary);
+    font-size: 14px;
+    text-transform: uppercase;
+    display: flex;
+    /*min-width: 489px !important;*/
+    float: left;
+    width: 100%;
+}
+
+.tab-list__check_examen {
+    color: var(--secondary);
+    font-size: 14px;
+    text-transform: uppercase;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.tab-list__vendor {
+    display: flex;
+    align-items: center;
+}
+
+    .tab-list__vendor a {
+        color: var(--secondary);
+        font-size: 14px;
+    }
+
+        .tab-list__vendor a:hover {
+            color: var(--accent);
+        }
+
+.vendor {
+    width: 120px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #DDD;
+    border-radius: 8px;
+    margin-right: 16px;
+}
+
+.logo-vendor {
+    /*width: 100px;
+    position: absolute;*/
+    max-width: 90px !important;
+    width: 100% !important;
+    display: block !important;
+    margin-top: 2rem !important;
+    margin-bottom: 0 !important;
+}
+
+.logo-vendor-yapp {
+    width: 100px;
+    position: absolute;
+    margin-top: 30px;
+}
+
+.logo-vendor-ex {
+    /*width: 100px;
+    position: absolute;*/
+}
+
+.wow__subitem-check {
+    color: var(--secondary);
+    font-size: 14px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: flex-start;
+}
+
+    .wow__subitem-check input[type="checkbox"] {
+        margin-top: 4px;
+    }
+
+.wow__subitem-price {
+    color: var(--secondary);
+    /*width: 160px;*/
+    justify-content: flex-end;
+    font-size: 16px;
+}
+
+    .wow__subitem-price .old-price {
+        display: inline-block;
+        margin-bottom: 0;
+        color: var(--danger);
+        text-decoration: line-through;
+        float: left !important;
+        text-align: left;
+        transform: translate(-20%, 20%);
+    }
+
+.descto-medismart {
+    border-bottom: 4px solid rgba(0, 129, 164, 0.6);
+}
+
+    .descto-medismart .wow__total-label {
+        color: var(--danger);
+    }
+
+    .descto-medismart .wow__total-price {
+        color: var(--danger);
+    }
+
+/*.tab--antecedentes,
+.tab--medicamentos,
+.tab--interconsultas {
+    display: none;
+}
+    */
+
+/*Ancho Tabs*/
+
+.wow.wow__resumen {
+    max-width: 600px;
+    margin: auto
+}
+
+    .wow.wow__resumen .wow__tabs {
+        width: 100%;
+    }
+
+    .wow.wow__resumen:has(.wow__lista) {
+        max-width: 1200px;
+    }
+
+        .wow.wow__resumen:has(.wow__lista) .wow__tabs {
+            width: 50%;
+        }
+/*Diagnostico box*/
+
+.tab-data__item .tab-data__value {
+    max-height: 80px;
+    overflow: hidden;
+    overflow-y: auto;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+
+    /* width */
+    .tab-data__item .tab-data__value::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    /* Track */
+    .tab-data__item .tab-data__value::-webkit-scrollbar-track {
+        background: rgba(2, 92, 116, 0.2);
+        width: 6px;
+        height: 80px;
+        border-radius: 8px;
+    }
+
+
+    /* Handle */
+    .tab-data__item .tab-data__value::-webkit-scrollbar-thumb {
+        background: rgba(2, 92, 116, 0.5);
+        transition: all .3s ease-out;
+        border-radius: 8px;
+        transition: all .1s ease-out;
+    }
+
+        /* Handle on hover */
+        .tab-data__item .tab-data__value::-webkit-scrollbar-thumb:hover {
+            background: rgba(59, 193, 205, 0.6);
+        }
+
+
+
+/*Dropdown WOW*/
+.wow__dropdown {
+    width: 80%;
+    display: flex;
+}
+
+.dropdown-toggle-mm {
+    width: 90% !important /* <--- PERDON MARIO ATTE. MAX*/
+}
+
+.wow__dropdow-togle {
+    background-color: var(--light);
+    border: 1px solid var(--secondary);
+    border-radius: 6px;
+    text-transform: none;
+    color: var(--secondary);
+    width: 115%; /* <--- PERDON MARIO ATTE. MAX*/
+    padding: 0.625rem 0.2rem !important;
+}
+
+.wow__dropdown-item {
+    gap: 8px;
+}
+
+.data-profesional, .interconsulta-horario {
+    color: var(--secondary);
+}
+
+.wow__dropdown-item.active, .wow__dropdown-item:active {
+    background-color: var(--primary);
+    color: var(--light);
+}
+
+    .wow__dropdown-item:active .data-profesional,
+    .wow__dropdown-item:active .interconsulta-horario {
+        color: var(--light);
+    }
+
+.data-profesional .nombre {
+    font-weight: 700;
+    font-size: 14px;
+}
+
+/*Map*/
+
+.map-container {
+    height: 380px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 16px;
+    /*position: absolute;*/
+    /* left: 4.34%;
+    right: 4.34%;
+    top: 29%;
+    margin-bottom: -12.1%;
+    border-radius: 12px;*/
+}
+
+    .map-container #map {
+        width: 100%;
+        height: 100%;
+        position: static;
+    }
+
+/*Historial*/
+
+.wow__toolbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.wow__tarjeta {
+    border-radius: 16px;
+    border: 1px solid var(--primary);
+    background-color: var(--light);
+}
+
+.wow .buscador-historial {
+    width: 100%;
+}
+
+.wow .tags-historial {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    max-width: 420px;
+    justify-content: flex-end;
+}
+
+.wow .tag {
+    border-radius: 4px;
+    border: 1px solid var(--primary);
+    padding: 0.5rem;
+    background-color: var(--light);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-align: center;
+    height: max-content;
+}
+
+    .wow .tag.active {
+        background-color: var(--secondary) !important;
+        color: var(--light);
+        border: 1px solid var(--secondary);
+    }
+
+    .wow .tag:hover {
+        background-color: var(--secondary);
+        color: var(--light);
+    }
+
+
+
+.wow__toolbar {
+    margin-bottom: 2rem;
+}
+
+    .wow__toolbar input[type=text] {
+        border: 1px solid var(--secondary);
+        font-size: 1rem;
+        border: 1px solid var(--secondary);
+        background-color: var(--light);
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        height: 28px;
+        width: 94%;
+        margin: auto;
+        max-width: 320px;
+    }
+
+        .wow__toolbar input[type=text]:active {
+            border: 2px solid var(--secondary);
+        }
+
+        .wow__toolbar input[type=text]:focus-visible {
+            border: 2px solid var(--secondary);
+        }
+
+        .wow__toolbar input[type=text]:focus-within {
+            border: 2px solid var(--secondary);
+        }
+
+.wow__historial .wow__body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /*height: 100%;*/
+    gap: 1.6rem;
+}
+
+    .wow__historial .wow__body .puntaje-smartcheck {
+        margin-bottom: 0;
+    }
+
+.wow__puntaje-smartcheck {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 18px;
+    align-items: center;
+}
+
+.label-smartcheck {
+    width: 60%;
+    font-size: 14px;
+}
+
+.valor-puntaje-smartcheck {
+    width: 40%;
+    text-align: right;
+    font-size: 27px;
+    font-weight: 700;
+}
+
+.wow__puntaje-smartcheck .grafico-smartcheck {
+    width: 100%;
+}
+
+    .wow__puntaje-smartcheck .grafico-smartcheck .divIndicador {
+        width: 100%;
+        height: 8px;
+        margin-top: 4px;
+    }
+
+.wow__body .contenedor_atencion, .wow__body .contenedor_examen, .wow__body .contenedor_smartcheck, .wow__body .contenedor-todos {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.address_legend-wow {
+    color: var(--secondary);
+    padding-bottom: 2px;
+    height: 8px;
+}
+
+.wow__historial .wow__tarjeta {
+    max-width: 390px;
+    width: 100%;
+    padding: 24px 32px;
+    position: relative;
+}
+
+.wow__historial .tarjeta__title {
+    font-size: 16px;
+    text-transform: uppercase;
+    color: var(--secondary);
+    font-weight: 700;
+}
+
+.wow__historial .tarjeta__body {
+    flex-direction: column;
+}
+
+.wow__historial .tarjeta__fecha {
+    font-weight: 900;
+    color: var(--copy);
+    font-size: 16px;
+    margin-bottom: 0.5rem;
+}
+
+.wow__historial .tarjeta__profesional {
+    font-size: 20px;
+    color: var(--copy);
+    font-weight: 900;
+}
+
+.wow__historial .tarjeta__especialidad {
+    font-weight: 700;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.wow__historial .tarjeta__titulo-seccion {
+    text-transform: uppercase;
+    color: var(--copy);
+    font-size: 12px;
+    margin-bottom: 0.5rem;
+}
+
+.wow__historial .tarjeta__seccion {
+    margin: 0.5rem 0;
+}
+
+.wow__historial .tarjeta__seccion-content {
+    color: var(--copy);
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: .5rem;
+    min-height: 48px;
+    text-align: left;
+}
+
+.tarjeta__profesional a {
+    color: var(--copy);
+}
+
+/*Tipos de Tarjeta*/
+
+.tarjeta--atencion, .tarjeta--examenes, .tarjeta--smartcheck {
+    background-image: url(../../img/wow/icono-atencion.svg);
+    background-repeat: no-repeat;
+    background-position: 94% 24px;
+}
+
+
+
+.tarjeta--examenes {
+    background-image: url(../../img/wow/icono-preventivo.svg);
+}
+
+.tarjeta--smartcheck {
+    background-image: url(../../img/wow/icono-smartcheck.svg);
+}
+
+.wow__historial .tarjeta__seccion-content ul {
+    margin: 0;
+}
+
+.wow__historial .certificados {
+    margin-top: 32px;
+}
+
+.tipo-archivo {
+    display: flex;
+    width: 48% !important;
+}
+
+.link-smartcheck {
+    background-color: transparent;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    position: absolute;
+    top: 11.5%;
+    left: 83%;
+    padding: 0;
+    cursor: pointer;
+}
+
+.tag-descarga {
+    display: block;
+    text-decoration: none;
+    /*margin-right: 1rem*/
+    font-size: 14px;
+    color: var(--secondary);
+    padding: 0.5rem;
+    border: 1px solid var(--secondary);
+    border-radius: 8px;
+    width: 100% !important;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    height: 36px;
+}
+
+    .tag-descarga i {
+        margin-right: .5rem;
+        display: inline-block;
+    }
+
+    .tag-descarga:hover {
+        background-color: rgb(231, 231, 231);
+    }
+
+.tag-examen-prev {
+    width: 100% !important;
+}
+
+.tarjeta--examenes .tarjeta__fecha {
+    margin-bottom: 16px;
+}
+
+.wow__domicilio {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .wow__domicilio .btn-outline-primary {
+        background-color: #FFF;
+        border: 2px solid #C5EDF0;
+    }
+
+        .wow__domicilio .btn-outline-primary:hover {
+            border: 2px solid var(--secondary);
+        }
+
+    .wow__domicilio .btn {
+        padding: 8px !important;
+        font-size: 14px;
+        color: var(--secondary);
+        text-transform: none;
+        border-radius: 8px;
+    }
+
+        .wow__domicilio .btn i {
+            font-size: 24px;
+        }
+
+
+
+
+@media (max-width: 1024px) {
+    .wow {
+        margin-top: 4rem;
+    }
+
+    .user-box {
+        width: 100%;
+        padding-bottom: 10px;
+    }
+
+    .title-Busca_Direccion {
+        font-size: 18px;
+    }
+
+    .wow-modal__address {
+        flex-direction: column;
+    }
+
+    .buscar-Direccion {
+        font-size: 14px;
+    }
+
+    .new_address {
+        width: 100%;
+    }
+
+    .wow__historial {
+        width: 90%;
+    }
+
+        .wow__historial .wow__tarjeta {
+            margin-bottom: 1rem;
+        }
+
+    .wow__body .contenedor_atencion {
+        gap: .5rem;
+    }
+
+    .wow .tags-historial {
+        justify-content: space-between;
+        gap: .5rem;
+        /*width: 90%;*/
+        margin: auto;
+    }
+
+    .wow__historial .wow__title h2 {
+        font-size: 18px;
+        margin-left: 2rem;
+        margin-bottom: 0;
+    }
+
+    .wow .tags-historial
+
+    .wow__historial .tarjeta__titulo-seccion {
+        text-align: left;
+    }
+
+    .data-atencion.data-historial {
+        text-align: left;
+    }
+
+    .wow__historial .wow__tarjeta:last-child {
+        margin-bottom: 0;
+    }
+
+    .wow__toolbar {
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .wow .tag {
+        font-size: 12px;
+        width: 100%;
+    }
+
+    .wow .buscador-historial {
+        text-align: center;
+    }
+
+    .wow__historial .wow__tarjeta {
+        max-width: 390px;
+        margin: .5rem auto;
+    }
+
+    .wow-modal__footer {
+        flex-direction: column;
+    }
+
+    .wow__container {
+        flex-direction: column;
+        padding: 24px 16px;
+        width: 94%;
+        margin: auto;
+    }
+
+    .tab-content__body {
+        margin-top: 0;
+    }
+
+    .tab-data-smartcheck {
+        padding: 1rem 0;
+        padding-bottom: 0px;
+    }
+
+    .tab-content {
+        margin-top: 2rem;
+    }
+
+    .wow__tabs {
+        width: 100%;
+    }
+
+    .wow__lista {
+        max-width: 600px;
+        width: 98%;
+        margin: auto;
+    }
+
+
+
+    .tab-content__header {
+        flex-direction: column;
+        margin-top: 2rem;
+    }
+
+    .wow__menu-tabs {
+        width: 100%;
+        overflow-y: hidden;
+        overflow-x: auto;
+    }
+
+    .tab-data__files {
+        padding: 1rem 0;
+    }
+
+    .wow__lista-body {
+        padding: 8px 1rem;
+    }
+
+    .agregarDireccionExamenes {
+        width: auto !important;
+    }
+
+    .seleccionarDireccionExamenes {
+        float: none;
+    }
+
+    .wow__domicilio {
+        flex-direction: column;
+    }
+
+        .wow__domicilio .btn {
+            margin-bottom: 1rem;
+        }
+
+    .wow__lista-footer {
+        margin-left: -1rem;
+        margin-right: -1rem;
+        margin-bottom: -8px;
+    }
+
+        .wow__lista-footer a {
+            margin: 1rem;
+        }
+
+        .wow__lista-footer button {
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 10px !important;
+        }
+
+        .wow__lista-footer .otrosBotones {
+            width: 95%;
+        }
+
+    .direccionMedicamentos {
+        margin-top: 0;
+    }
+
+    .agregar-direccion__medicamentos {
+        width: auto !important;
+        margin: 0;
+    }
+
+    .seleccionar-direccion__medicamentos {
+        margin: 0;
+    }
+
+    .wow__title {
+        align-items: center;
+    }
+
+    .tab-content--title {
+        margin-top: 2rem;
+    }
+
+    .wow__terminos-condiciones {
+        /*transform: translate(75%,-25%) !important;*/
+        text-align: right !important;
+        width: 100% !important;
+    }
+
+    .wow__imagen-puntaje {
+        width: 20px;
+        margin-bottom: -2%;
+    }
+
+    .wow__contenido-smartcheck {
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+    }
+
+    .wow__puntaje-smartcheck_ {
+        font-size: 18px !important;
+        margin-bottom: 35px;
+    }
+
+    .wow__grafico-smartcheck_ {
+        margin-bottom: 25px !important;
+        margin-left: 30px;
+    }
+
+    .wow__group_smartcheck_ {
+        width: 220px !important;
+    }
+
+    .wow__divIndicador-smartcheck {
+        height: 9px;
+        width: unset;
+    }
+
+    .wow__p-sort {
+        width: 17% !important;
+    }
+
+    .wow__sort-fecha {
+        width: 41% !important;
+    }
+
+    .tab-data__list-files.archivos__atencion tab-data__list-files-li {
+        width: auto;
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .tarjeta--smartcheck_resumen {
+        margin-top: -35px;
+    }
+
+    .container__legend-address {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .wow__sort-interconsulta {
+        font-size: 11px;
+    }
+
+    .wow__lista-body_compra .wow__lista-item .wow__lista-item-body .wow__subitem-price {
+        margin-left: 0 !important;
+    }
+
+    .wow__subitem-price-interc-compra {
+        width: 80% !important;
+    }
+
+        .wow__subitem-price-interc-compra .price {
+            color: var(--secondary);
+            width: 80% !important;
+            margin-left: 5rem !important;
+        }
+
+    .wow__btn-inicio {
+        display: block !important;
+        margin-top: 1rem;
+        width: 100%;
+    }
+
+    .wow__perfil-addresses {
+        padding-left: 1rem;
+    }
+
+        .wow__perfil-addresses .wow__btn-med {
+            width: 108px !important;
+        }
+
+        .wow__perfil-addresses .wow-btn__perfil {
+            padding: 0.625rem 1rem !important;
+        }
+}
+
+.wow__sort-interconsulta {
+    width: 100%;
+    display: flex;
+    padding-top: 12px;
+    color: var(--secondary);
+    height: 33px;
+}
+
+.wow__sort-fecha {
+    width: 32%;
+}
+
+.wow__sort-costo {
+    width: auto;
+}
+
+.wow__p-sort {
+    width: 20%;
+}
+
+.tab-list__price_int {
+    width: 20%;
+}
+/* Pago Mercado Pago */
+#form-checkout {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+.wow .container {
+    height: 25px;
+    display: inline-block;
+    border: 1px solid rgb(118, 118, 118);
+    border-radius: 2px;
+    /*padding: 1px 2px;*/
+}
+
+
+button#form-checkout__submit {
+    background-color: #1DC9B7;
+    padding: 0.2rem 0.9rem !important;
+    height: 50px;
+    color: #fff;
+    border-radius: 5px;
+    width: 25%;
+}
+
+.box_addcards {
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    /*border-bottom: 1px solid #B4B4B4;*/
+    /*border-top: 1px solid #B4B4B4;*/
+    width: 100%;
+    max-width: 468px;
+}
+
+    .box_addcards h2 {
+        color: #646C9A;
+        font-size: 20px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+    }
+
+    .box_addcards .tarjetas_ok {
+        margin: 1rem 0;
+    }
+
+    .box_addcards h4 {
+        color: #646C9A;
+        font-size: 16px;
+    }
+
+    .box_addcards .credit_ctabox {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .box_addcards .item01 {
+        width: 100%;
+        margin: 0 20px 0 20px;
+    }
+
+    .box_addcards .cards_addimage {
+        width: 35%;
+    }
+
+
+.addcards_box label {
+    color: #646C9A !important;
+    opacity: 1;
+}
+
+
+.addcards_box .cardnumber, .addcards_box input.input.name, .addcards_box input.input.toleft.ccv {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 8px;
+    border: 0;
+    background: transparent;
+}
+
+
+.credit_ctabox div#form-checkout__cardNumber,
+.credit_ctabox div#form-checkout__expirationDate,
+.credit_ctabox div#form-checkout__securityCode,
+input#form-checkout__cardholderName,
+input#form-checkout__identificationNumber,
+input#form-checkout__cardholderEmail,
+select#form-checkout__identificationType,
+select#form-checkout__issuer,
+select#form-checkout__installments {
+    margin: 0 0 20px 0;
+    height: calc(1.5em + 1.3rem + 2px);
+    background: #F4F0F0;
+    padding: 5px;
+    color: #0b0b0b;
+    width: -webkit-fill-available;
+    font-size: 16px;
+    border: none;
+    border-radius: 0;
+}
+
+.credit_ctabox input#cardNumber {
+    color: #646C9A;
+}
+
+.credit_ctabox .date_code {
+    display: flex;
+    gap: 20px;
+}
+
+.credit_ctabox .box_date, .credit_ctabox .box_code {
+    display: flex;
+    flex-direction: column;
+}
+
+.credit_ctabox .checkbox_text {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+
+    .credit_ctabox .checkbox_text label {
+        font-size: 14px;
+        color: #646C9A;
+        margin-left: 5px;
+        opacity: 1;
+    }
+
+.credit_ctabox .save_dates a#manejoDatosMS {
+    color: #646C9A;
+    text-decoration: underline;
+    font-size: 14px;
+}
+
+.wow-modal__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.wow-modal__body .cont-radio {
+    margin-bottom: 2rem;
+}
+
+/*MOBILE styles*/
+
+@media screen and (max-width: 640px) and (min-width: 375px) {
+
+    .box_addcards .credit_ctabox {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+
+    .box_addcards .item01 {
+        width: 100%;
+    }
+
+    .box_addcards .cards_addimage {
+        width: 100%;
+    }
+
+    button#form-checkout__submit {
+        background-color: #1DC9B7;
+        color: #fff;
+        border-radius: 5px;
+        width: 80%;
+        margin: 0rem auto;
+        font-size: 15px;
+        padding: 1.0rem 2.5rem !important;
+    }
+
+
+    .box_addcards .tarjetas_ok {
+        margin: 2rem 0;
+    }
+
+    .credit_ctabox .date_code {
+        display: flex;
+        gap: 0px;
+        flex-direction: column;
+    }
+
+    /*HISTORIAL*/
+    .link-smartcheck {
+        top: 6.5%;
+        left: 85%;
+    }
+
+    .wow__title {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0;
+    }
+
+    .wow__historial .wow__title h2 {
+        margin: 0 0 1rem 0;
+        padding-left: 0;
+    }
+
+    .wow .tags-historial {
+        gap: 0;
+    }
+
+        .wow .tags-historial .tag {
+            width: auto;
+        }
+    /*SMARTCHECK*/
+
+    .valor-puntaje-smartcheck {
+        font-size: 22px;
+    }
+
+    .wow__historial .tarjeta__title {
+        line-height: 12px;
+    }
+
+    wow__tarjeta tarjeta--smartcheck {
+        margin: 0 0 0 0;
+    }
+    /*Agregar tarjeta > form checkout*/
+    #form-checkout {
+        max-width: 90%;
+        width: auto;
+    }
+}
+
+.tituloCompra {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+    .tituloCompra .titleCompra {
+        margin-top: 10px;
+        font-weight: bold;
+        color: #0282A6;
+        font-size: 18px;
+    }
+
+.imgCircleCheck {
+    width: 40px;
+}
+
+.profesionalAsignaDerivacion {
+    font-size: 15px !important;
+    color: #333;
+    left: 259px;
+    margin-top: -75px;
+}
+
+.filePDFWow {
+    width: 30px;
+    margin-top: -20px !important;
+    margin-left: -60px;
+}
+
+.especialidadDerivacionTitle {
+    text-transform: none;
+    position: absolute;
+    margin-left: 0px;
+    font-size: 16px;
+    color: #333333;
+    font-weight: bold;
+    margin-top: -25px;
+}
+
+.especialidadDerivacionSubTitle {
+    position: absolute;
+    font-size: 12px;
+    color: #333333;
+    margin-left: 0px;
+}
+
+.tab-list__vendors_int {
+    margin-top: 40px;
+}
+
+.checkbox_tab__int {
+    display: flex;
+    margin-bottom: -25px !important;
+    width: 30px !important;
+    margin-left: -10px;
+}
+
+.toogle_int {
+    width: 70% !important;
+    margin-left: 25px;
+}
+
+.agregarDireccionExamenes {
+    display: inline-block;
+    text-decoration: underline !important;
+    width: 60%;
+}
+
+.agregar-direccion__medicamentos {
+    display: inline-block;
+    text-decoration: underline !important;
+    width: 60%;
+}
+
+.seleccionarDireccionExamenes {
+    display: inline;
+    text-decoration: underline;
+    float: right;
+    height: 10px;
+    cursor: pointer;
+}
+
+.agregar-DireccionExamenes {
+    height: 10px;
+    cursor: pointer;
+    display: inline;
+    text-decoration: underline;
+}
+
+.direccionExamenes {
+    margin-top: 4px;
+    color: #0282A6;
+}
+
+.agregarDireccionMedicamentos {
+    display: inline;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.seleccionarDireccionMedicamentos {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.direccionMedicamentos {
+    margin-top: 18px;
+    color: #0282A6;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 8px;
+}
+
+.imagenMedicoCompra__sm {
+    margin-left: 0;
+    height: 500px;
+}
+
+.imagenMedicoCompra__md {
+    margin-left: 0;
+    height: 600px;
+}
+
+
+.tituloMedicoCompra {
+    font-size: 32px;
+    margin-left: 0;
+    color: #363F77;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.textoMedicoCompra-sinimg {
+    margin-left: 0;
+    font-size: 17px;
+    color: #363F77;
+    text-align: left;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    margin-right: 0;
+}
+
+.textoMedicoCompra-sinimg-imp {
+    margin-left: 0;
+    font-size: 17px;
+    color: #363F77;
+    text-align: left;
+    line-height: 1.2;
+    margin-bottom: .5rem;
+    margin-right: 0;
+}
+
+.textoMedicoCompra-sinimg-footer {
+    margin-top: 3.5rem;
+    margin-left: 0;
+    font-size: 17px;
+    color: #363F77;
+    text-align: left;
+    line-height: 1.2;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+.textoMedicoCompra {
+    margin-left: 0;
+    font-size: 15px;
+    color: #363F77;
+    text-align: left;
+    background-image: url('../../img/momento-wow/check-cuadro.svg');
+    background-repeat: no-repeat;
+    padding-left: 28px;
+    background-position: 0 4px;
+    line-height: 1.2;
+    margin-right: 0;
+}
+
+.elipseSombra {
+    border: 0px !important;
+    width: 50%;
+    height: 28.76px;
+    margin-left: 0;
+    display: block;
+    margin-top: -15px;
+    background: radial-gradient(50% 50% at 50% 50%, rgba(91, 91, 91, 0.5) 0%, rgba(217, 217, 217, 0) 100%);
+}
+
+.elipseColor {
+    position: absolute;
+    width: 80%;
+    display: block;
+    height: 351px;
+    margin-left: -580px;
+    margin-top: -283px;
+    background: radial-gradient(50% 50% at 50% 50%, #0081A4 -181.27%, rgba(59, 193, 205, 0) 100%);
+    z-index: -1;
+}
+
+.wow__lista {
+    /*width: 600px;*/
+}
+
+.wow__lista-body_compra {
+    background-color: #EEE;
+    padding: 32px;
+    padding-top: 14px;
+    padding-bottom: 0;
+    border-radius: 16px !important;
+    background-image: linear-gradient(#CEDCDD, #CEDCDD);
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    min-width: 490px;
+    max-width: 510px;
+}
+
+.cotiza-medicamentos {
+    margin-top: 30px;
+    margin-left: 120px;
+    display: flex;
+    text-decoration: underline !important;
+}
+
+.title-Busca_Direccion {
+    /* color: #0081A4;
+    font-size: 30px;
+    position: absolute;
+    left: 4.34%;
+    right: 11.84%;
+    top: 7.17%;
+    bottom: 87.2%;
+    font-size: 28px;*/
+    font-size: 18px;
+    color: var(--secondary);
+    text-align: left;
+}
+
+.buscar-Direccion {
+    /*display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 14px 66px 14px 16px;
+    gap: 64px;
+    position: absolute;
+    left: 4.34%;
+    right: 67.75%;
+    top: 15.3%;
+    bottom: 77.22%;
+    
+    */
+    background-color: var(--light);
+    border: 1px solid var(--secondary);
+    border-radius: 8px;
+    color: var(--secondary) !important;
+    padding: 1rem;
+    padding-right: 48px;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--secondary);
+    background-image: url(../../img/wow/search.svg);
+    background-repeat: no-repeat;
+    background-position: 95% center;
+    max-width: 300px;
+    width: 96%;
+}
+
+    .buscar-Direccion:focus-visible, .buscar-Direccion:active {
+        border-color: var(--secondary);
+        outline: none;
+    }
+
+.close-modal_direccion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: transparent;
+}
+
+.wow-modal__address {
+    /*height: 621px;
+    border-radius: 32px !important;*/
+    display: flex;
+    margin-top: 0;
+    margin-bottom: 40px;
+    gap: 1rem;
+    align-items: center;
+}
+
+.legend-address {
+    /*position: absolute;
+    left: 34.06%;
+    right: 38.48%;
+    top: 15.80%;
+    bottom: 77.5%;*/
+}
+
+.btn-guardar_direccion {
+    /*display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+    position: absolute;
+    left: 76.67%;
+    right: 1.14%;
+    top: 90.22%;
+    bottom: 8.16%;
+    background: #0282A6;
+    border: 1px solid #0282A6;
+    box-shadow: 4px 4px 16px rgba(88, 103, 221, 0.25);
+    border-radius: 4px;
+    height: 38px;
+    color: #FFF;*/
+}
+
+.wow-modal__container {
+    position: relative;
+    padding: 2rem !important;
+}
+
+.modal-checker_direccion {
+    /* position: absolute;
+    left: 4.32%;
+    right: 61.16%;
+    top: 90.05%;
+    bottom: 9.7%;*/
+}
+
+.wow-modal__header {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.new_address {
+    /* position: absolute;
+    left: 34.06%;
+    right: 38.48%;
+    top: 18.90%;
+    bottom: 77.5%;
+    text-transform: uppercase;
+    width: 100%;
+    font-weight: bold;*/
+    text-transform: uppercase;
+    width: 250px;
+}
+
+.wow-modal__body_radio {
+    position: absolute;
+    top: 16%;
+    left: 4.60%;
+}
+
+
+
+.btn-seleccionar_direccion {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+    position: absolute;
+    left: 72.67%;
+    right: 1.14%;
+    top: 90.22%;
+    bottom: 8.16%;
+    background: #0282A6;
+    border: 1px solid #0282A6;
+    box-shadow: 4px 4px 16px rgba(88, 103, 221, 0.25);
+    border-radius: 4px;
+    height: 38px;
+    width: 260px;
+    color: #FFF;
+}
+
+.wow_modal-content {
+    /* height: 661px;
+    width: 96%;
+    left: 5%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;*/
+    max-width: 1107px;
+    margin: auto;
+}
+
+.wow-modal_dir {
+    background: rgba(0, 0, 0, 0.9);
+    opacity: 95%
+}
+
+.close-modal_direccion i {
+    font-size: 32px !important;
+    font-weight: 300;
+}
+
+
+.btn.wow__btn_descargarResumen {
+    padding: 0 8px !important;
+    font-size: 11px !important;
+    width: 168px;
+    height: 36px;
+}
+
+.wow__pago-transbank {
+    /*float: left;*/
+    align-items: center !important;
+    justify-content: space-between;
+    width: 182px;
+    margin-left: 33%;
+    margin-top: 10%;
+}
+
+.wow__pago-mercadopago {
+    width: 220px;
+    float: right;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.modal-wow__modal-pagos {
+    /*display: block;*/
+    margin-top: 5%;
+}
+
+.wow__transbank-legend {
+    display: flex;
+    position: relative;
+    margin-top: 10%;
+    font-size: 20px;
+    margin-left: 33%;
+    height: 180px;
+    align-items: flex-start;
+}
+
+.modal__wow-gral {
+    min-height: 410px;
+    height: 80vh;
+    overflow-y: scroll;
+}
+
+.wow__text-select-pay {
+    margin-left: 4%;
+    height: 30px;
+    align-items: self-start;
+}
+
+.modal__wow-footer-pagos {
+    margin-left: 22rem;
+    margin-top: -2.5rem;
+    border-top: 0 !important;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.wow__img-mercadopago {
+    width: 200px;
+}
+/*
+@media screen and (max-device-width: 1024px) {
+    kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor {
+        width: 375px;
+        position: relative;
+        height: 812px;
+    }
+
+    .wow__title {
+        width: 348px !important;
+        position: absolute;
+        display: flex;
+        top: 95px;
+        height: 25px;
+    }
+
+    .wow__title_text {
+        width: 331px;
+        font-size: 26px !important;
+        position: absolute;
+        left: 3%;
+        min-width: 335px;
+    }
+
+    .wow__btn_descargarResumen {
+        visibility: hidden;
+    }
+
+    .wow_modal-content {
+        width: 375px;
+        height: 812px;
+        left: 1px;
+        right: 2%;
+    }
+
+    .close-modal_direccion {
+        position: absolute;
+        left: 82.25%;
+        right: 7.77%;
+        top: 12px;
+        bottom: 87.28%;
+        width: 10px;
+        z-index: 0;
+        height: 20px;
+    }
+
+    .title-Busca_Direccion {
+        color: #0081A4;
+        position: absolute;
+        left: 7.80%;
+        top: 5.25%;
+        font-size: 22px;
+        text-align: left;
+    }
+
+    .buscar-Direccion {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 14px 66px 14px 16px;
+        gap: 64px;
+        position: absolute;
+        left: 9.80%;
+        right: 67.75%;
+        top: 13.8%;
+        bottom: 77.22%;
+        background: #FFFFFF;
+        border: 1px solid #0282A6;
+        border-radius: 8px;
+        color: #0282A6;
+        width: 300px;
+        text-transform: uppercase;
+        font-size: 10px;
+    }
+
+    .legend-address {
+        position: absolute;
+        left: 7.80%;
+        right: 38.48%;
+        top: 21.50%;
+        bottom: 77.5%;
+        float: left;
+        display: block;
+        width: 350px;
+    }
+
+    .new_address {
+        position: absolute;
+        left: 7.80%;
+        right: 38.48%;
+        top: 25.30%;
+        bottom: 77.5%;
+        text-transform: uppercase;
+        width: 335px;
+        font-weight: bold;
+    }
+
+
+    .btn-guardar_direccion {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        gap: 10px;
+        position: absolute;
+        left: 23.50%;
+        right: 1.14%;
+        top: 91.22%;
+        bottom: 8.16%;
+        background: #0282A6;
+        border: 1px solid #0282A6;
+        box-shadow: 4px 4px 16px rgba(88, 103, 221, 0.25);
+        border-radius: 4px;
+        height: 38px;
+        color: #FFF;
+        float: right;
+        width: 220px;
+    }
+
+    .modal-checker_direccion {
+        position: absolute;
+        left: 7.80%;
+        right: 61.16%;
+        top: 83.50%;
+        bottom: 9.7%;
+        width: 325px;
+        display: inline-block;
+        float: left;
+    }
+
+    .wow__label-radio {
+        margin-left: 1%;
+        width: 330px;
+    }
+
+    .wow-modal__body_radio {
+        top: 15%;
+        left: 7.10%;
+        width: 370px;
+        position: absolute;
+        right: 20px !important
+    }
+
+    .btn-seleccionar_direccion {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        gap: 10px;
+        position: absolute;
+        left: 17.8%;
+        right: 1.14%;
+        top: 91.22%;
+        bottom: 8.16%;
+        background: #0282A6;
+        border: 1px solid #0282A6;
+        box-shadow: 4px 4px 16px rgba(88, 103, 221, 0.25);
+        border-radius: 4px;
+        height: 38px;
+        color: #FFF;
+        width: 245px;
+    }
+
+    .wow-modal__footer {
+        flex-direction: column !important;
+    }
+}
+
+    */
+
+/*Tabs*/
+
+.tab--examenes .tab-content__header {
+    flex-direction: column;
+}
+
+.tab--examenes .tab-content__header {
+    justify-content: flex-start;
+    margin-top: 40px;
+}
+
+.wow-loader__pago {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.wow-loading__pago {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+}
+
+.wow-loading__pago-message {
+    background: linear-gradient(to right, #3BC1CD, #0282A6);
+    border-radius: 5px;
+    color: #f3f3f3;
+    font-size: 20px;
+    padding: 10px 20px;
+    margin-top: 20px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.wow__subitem-price_interc {
+    display: flex;
+    width: 15%;
+    justify-content: flex-end;
+}
+
+.wow__terminos-condiciones {
+    float: right;
+    width: 100%;
+    text-align: right;
+    color: #0282A6;
+    display: block;
+}
+
+
+.wow__imagen-puntaje {
+    width: 20px !important;
+    margin-bottom: -2%;
+}
+
+.wow__contenido-smartcheck {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.wow__puntaje-smartcheck_ {
+    font-size: 24px;
+}
+
+.wow__grafico-smartcheck_ {
+    margin-bottom: 0;
+    margin-left: 20px;
+}
+
+.wow__group_smartcheck_ {
+    width: 370px;
+}
+
+.wow__divIndicador-smartcheck {
+    height: 9px;
+    width: unset;
+}
+
+.small__smart {
+    margin-bottom: 2px;
+}
+
+.tarjeta--smartcheck_resumen {
+    background-position: 94% -10px;
+    padding-top: 20px;
+    margin-top: -25px;
+}
+
+.wow__btn_danger {
+    color: #EB5757;
+    background: #FFF;
+    float: right;
+    margin-right: 12px;
+}
+
+.wow__old-examen {
+    /*margin-left: 150px;*/
+    margin-top: 3px;
+    color: var(--danger) !important;
+    text-decoration: line-through;
+    margin-left: auto;
+}
+
+
+/*Modal Genera Informe*/
+
+.wow-genera-informe {
+    display: flex;
+    width: 90%;
+    margin: auto;
+    align-items: center;
+}
+
+.wow-loader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .5rem;
+}
+
+
+.finalizarAtencionWOW .wow-modal__header {
+    height: 60px;
+    justify-content: flex-end;
+    display: none;
+}
+
+.finalizarAtencionWOW .titleModalWow {
+    font-weight: 900;
+}
+
+
+.btnCerrarModalWow {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 !important;
+}
+
+    .btnCerrarModalWow img {
+        width: 100%;
+        max-width: 40px;
+    }
+
+.wow_message-loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #0282A6;
+    font-weight: 700;
+    gap: 1.5rem;
+    margin: auto;
+}
+
+    .wow_message-loader img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .wow_message-loader .wow-loading__pago {
+        margin: auto;
+    }
+
+.modal-wow {
+    margin-top: 20%;
+    max-width: 600px;
+}
+
+.dropdown-menu .tab-content {
+    margin-top: 1.5rem;
+}
+
+#item-wallet {
+    display: flex;
+}
+
+#item-wallet {
+    margin-right: 0.6rem;
+}
+
+.data-conteo {
+    display: flex;
+}
+
+.finalizarAtencionWOW .preloader {
+    float: none;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.cont-preloader {
+    width: 100%;
+}
+
+@media screen and (max-device-width: 1024px) {
+
+    .wow__subitem-check label {
+        font-size: 12px !important;
+    }
+
+    #item-wallet {
+        visibility: hidden;
+        pointer-events: none;
+        display: block;
+    }
+
+    .wow.wow__resumen:has(.wow__lista) {
+        width: 370px !important;
+    }
+
+    .wow__lista-footer .wow__total-final-card {
+        width: 90% !important;
+    }
+
+    .wow__lista-footer .wow__parrafo-msg-card {
+        width: 90%;
+    }
+
+    .wow-genera-informe {
+        flex-direction: column;
+    }
+
+        .wow-genera-informe .docWow {
+            display: none;
+        }
+
+    .finalizarAtencionWOW .titleModalWow {
+        font-size: 22px;
+        position: static;
+        width: 100%;
+    }
+
+    .finalizarAtencionWOW .textoModalWow,
+    .finalizarAtencionWOW .wow-mensaje-loader,
+    .finalizarAtencionWOW .subTextoModalWow {
+        position: static;
+        width: 100%;
+    }
+
+    .finalizarAtencionWOW .spinnerWow,
+    .finalizarAtencionWOW .segundos,
+    .finalizarAtencionWOW .conteo {
+        position: static;
+        float: none;
+    }
+
+
+
+    .tarjeta--atencion, .tarjeta--examenes, .tarjeta--smartcheck {
+        background-position: 98% 9px;
+    }
+
+    .tag-descarga {
+        font-size: 13px;
+    }
+
+    .wow__historial .tarjeta__titulo-seccion {
+        text-align: left;
+    }
+
+    .wow__historial .tarjeta__fecha i {
+        display: none;
+    }
+
+    .wow__title h2 {
+        font-size: 20px;
+        margin: 0 0 14px 0;
+        padding-left: 14px;
+    }
+
+    .wow__total-label {
+        font-size: 14px;
+    }
+
+    .wow__lista-footer #msjSinTarjetasWallet {
+        margin-left: 2rem !important;
+        width: 90%;
+    }
+
+    .wow__lista-footer {
+        height: auto;
+        margin-left: -1rem;
+        margin-right: -1rem;
+        margin-bottom: -8px;
+    }
+
+    .wow__subitem-check {
+        font-size: 12px;
+    }
+
+    .tab-data__list-files {
+        display: flex;
+    }
+
+    .tab-data__item small {
+    }
+
+    .total_costo-examen {
+        height: auto;
+    }
+
+    .wow__old-examen {
+        margin-left: 0;
+    }
+
+    .user-box .sub-data {
+        margin-top: 0;
+    }
+
+    #divCostoEnvioExamen .wow__subitem-price,
+    #divCostoEnvioExamen .wow__total-label {
+        width: auto;
+    }
+
+    #divCostoEnvioExamen .wow__total {
+        justify-content: flex-start;
+    }
+
+    #costoExamenSinDescuento {
+        margin-left: auto;
+        margin-right: 7px;
+    }
+
+
+    #divCostoEnvioMed .wow__subitem-price,
+    #divCostoEnvioMed .wow__total-label {
+        width: auto;
+    }
+
+    .imagenMedicoCompra {
+        display: none;
+    }
+
+    .elipseSombra {
+        display: none;
+    }
+
+    .elipseColor {
+        display: none;
+    }
+
+    .wow__lista-body_compra {
+        min-width: unset;
+    }
+
+    .wow__container-titulo-medico-compra {
+        display: none !important;
+    }
+
+    .imgMedicoCompra {
+        display: none;
+    }
+
+    .wow__total.final .wow__total-price {
+        font-size: 28px !important;
+    }
+
+    .imgCircleCheck {
+        width: 30px;
+    }
+
+    .wow__historial .tarjeta__seccion-content {
+        min-height: none;
+    }
+
+    .wow__lista-footer .wow__border-msg-card .btn.btn-secondary.wow__btn-msg-card {
+        margin-left: 3.5rem !important;
+        margin-top: 1rem !important;
+    }
+
+    .wow.wow__resumen:has(.wow__lista) .wow__tabs {
+        width: 100%;
+    }
+
+    .wow__subitem-price {
+        width: 100%;
+        justify-content: flex-start;
+        padding-left: 2.2rem;
+        margin-bottom: .5rem;
+    }
+
+    .wow__subitem-check {
+        width: 100%;
+    }
+
+    .logo-vendor {
+        /*width: 100px;
+    position: absolute;*/
+        width: 100%;
+        max-width: 90px;
+        margin-top: 2rem;
+        margin-bottom: 0;
+    }
+
+    .wow__subitem-check input[type=checkbox] {
+        margin-top: 4px;
+        width: 16px;
+        height: 16px;
+    }
+
+    .wow__div-sinTelefonos #msjSinTelefonoWallet .wow__border-msg-card .wow__subtitle-msg-card {
+        width: 96% !important;
+        gap: 0.2rem !important;
+    }
+
+        .wow__div-sinTelefonos #msjSinTelefonoWallet .wow__border-msg-card .wow__subtitle-msg-card input {
+            width: 52% !important;
+        }
+
+    .wow__div-sinTelefonos #msjSinTelefonoWallet .wow__border-msg-card .btn.btn-primary.wow__btn-tel-card {
+        margin-left: -7.8rem !important;
+        padding: 0.8rem 0.8rem !important;
+    }
+}
+
+
+
+.wow__lista-item-body.wow__dropdown {
+    height: 40px;
+}
+
+.wow__total.total_costo-examen.wow__subitem-price {
+    width: auto;
+}
+
+.wow__total.total_costo-examen {
+    justify-content: flex-start !important;
+}
+
+    .wow__total.total_costo-examen .wow__subitem-price {
+        width: auto;
+        margin-left: .5rem;
+    }
+
+#divInterconsulta .wow__lista-item-body .price {
+    text-align: right;
+}
+
+.dropdown.wow__dropdown {
+    text-align: left;
+}
+
+.subtitle-agendamiento {
+    padding: 1rem;
+    margin: 1rem auto;
+    border: 1px solid #E15241;
+    background-color: #F2C8C4;
+    color: #E15241;
+    border-radius: 12px;
+    flex-shrink: 0;
+    margin-top: 0;
+    margin-bottom: 4px;
+}
+
+    .subtitle-agendamiento p {
+        margin: 0;
+    }
+
+#seleccionar-direccion-medicamentos a {
+    margin: 0;
+}
+
+#agregar-direccion-medicamentos a {
+    margin: 0;
+}
+
+.wow__lista-item .dropdown.wow__dropdown {
+    width: 100%;
+}
+
+.tarjeta--smartcheck.tarjeta--smartcheck_resumen {
+    background-image: none;
+}
+
+.container__legend-address {
+    display: flex;
+    gap: 1rem;
+}
+
+.legend-address {
+    width: 100%;
+}
+
+.tab-data__list-files.archivos__atencion {
+    padding: .5rem;
+    width: auto;
+    display: inline-block;
+    display: inline-block;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+    .tab-data__list-files.archivos__atencion li a {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-bottom: 0;
+        align-items: center;
+    }
+
+        .tab-data__list-files.archivos__atencion li a i {
+            margin-right: .5rem;
+            display: inline-block;
+        }
+
+        .tab-data__list-files.archivos__atencion li a .textoFile {
+            margin-bottom: 0;
+        }
+
+
+.wow__container-titulo-medico-compra {
+    width: 320px;
+    flex-shrink: 0;
+    margin-left: 3rem;
+}
+/*
+.wow__container .wow__container-titulo-medico-compra {
+    display:flex;
+}*/
+
+.wow__lista-body_compra.wow__lista-item.wow__lista-item-body.wow__subitem-price-interc.price {
+    margin-left: 80px;
+}
+
+.wow__sort-interconsulta input[type="checkbox"] {
+    top: 1.7px;
+    position: relative;
+}
+
+.wow__btn-inicio {
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+.wow__perfil-addresses {
+    display: flex;
+    padding-right: 1rem;
+    justify-content: space-around;
+    max-width: 370px;
+    flex-wrap: nowrap;
+    font-size: 14px;
+    padding-top: 0.7rem;
+    padding-bottom: 1.8rem;
+    padding-left: 1rem;
+}
+
+    .wow__perfil-addresses .agregar-direccion__perfil {
+        cursor: pointer;
+        border: 1px solid #646C9A;
+        border-radius: 8px;
+        padding: 4px;
+        padding-bottom: 0;
+        display: flex;
+    }
+
+    .wow__perfil-addresses .wow__btn-med {
+        width: 156px;
+    }
+
+    .wow__perfil-addresses .agregar-direccion__perfil .agregarDireccionPerfil {
+        /*margin-bottom: 0.5rem;*/
+    }
+
+    .wow__perfil-addresses .wow-btn__perfil {
+        height: 2.2rem;
+    }
+
+        .wow__perfil-addresses .wow-btn__perfil .agregarDireccionPerfil {
+            margin-top: -2px;
+        }
+
+        .wow__perfil-addresses .wow-btn__perfil .seleccionarDireccionPerfil {
+            margin-top: -2px;
+        }
+
+    .wow__perfil-addresses .seleccionar-direccion__perfil {
+        cursor: pointer;
+        border: 1px solid #646C9A;
+        border-radius: 8px;
+        padding: 4px;
+        padding-bottom: 0;
+        display: flex;
+    }
+
+        .wow__perfil-addresses .seleccionar-direccion__perfil .seleccionarDireccionPerfil {
+            margin-bottom: 0.5rem;
+        }
+
+            .wow__perfil-addresses.seleccionar-direccion__perfil.seleccionarDireccionPerfil p {
+                margin-top: -2px;
+            }
+
+.wow__lista-footer .btn.btn-primary.hideButton {
+    display: none;
+    width: 80%;
+}
+
+.wow__lista-footer .otrosBotones {
+    display: flex;
+    gap: 0.4rem;
+    width: 90%;
+}
+
+.wow__loader-pagos {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+    margin-top: -5.4rem;
+    margin-left: 16rem;
+    display: flex;
+    justify-content: center;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.wow__loader-pagos-wc {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    animation: spin 2s linear infinite;
+    margin-top: -6rem;
+    margin-left: 16rem;
+    display: flex;
+    justify-content: center;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.otrosBotones.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.wow__error-pago {
+    color: red;
+    font-size: 16px;
+    margin-top: -5rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    height: 30px;
+    margin-left: 9rem;
+}
+
+.wow__subitem-price-interc-compra {
+    font-size: 16px;
+}
+
+    .wow__subitem-price-interc-compra .price {
+        color: var(--secondary);
+        width: 50%;
+        margin-left: 12rem;
+    }
+
+
+.wow__footer-addform {
+    display: flex;
+    margin-top: 3rem;
+    padding-bottom: 0 !important;
+    margin-left: 1rem;
+    margin-bottom: 0;
+    justify-content: space-around;
+    width: 100%;
+}
+
+    .wow__footer-addform .save_cta {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .wow__footer-addform .btn.btn-primary.btn-submit__wow#form-checkout__submit {
+        background-color: #0081A4;
+        border-color: #0081A4;
+        width: 90%;
+        height: 36px;
+    }
+
+        .wow__footer-addform .btn.btn-primary.btn-submit__wow#form-checkout__submit:hover {
+            color: #fff;
+            background-color: #384ad7;
+            border-color: #2e40d4;
+            width: 90%;
+            height: 36px;
+        }
+
+    .wow__footer-addform .back_cta {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .wow__footer-addform .btn.btn-primary.back__wow#form-back {
+        background-color: #0081A4;
+        border-color: #0081A4;
+        width: 90%;
+        height: 36px;
+    }
+
+        .wow__footer-addform .btn.btn-primary.back__wow#form-back:hover {
+            color: #fff;
+            background-color: #384ad7;
+            border-color: #2e40d4;
+            width: 90%;
+            height: 36px;
+        }
+
+
+.btn-guardar-info.wow__cerrar_pago {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 32rem;
+    margin-top: 0rem;
+    font-size: 30px;
+    background: #FFFF;
+    padding-bottom: 0;
+    transform: translateZ(1px);
+}
+
+.box_addcards.wow__resumen-addcard {
+    margin-top: -2.5rem;
+    padding: 0 0;
+    margin-bottom: 0;
+}
+
+.wow__agregar-tarjetas.wow__form-addcard {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: -1.5rem;
+}
+
+    .wow__agregar-tarjetas.wow__form-addcard.btn.btn-primary.wow__btn-add {
+        display: flex;
+    }
+
+.box_addcards.wow__add-newcard {
+    padding-top: 0;
+    margin-top: -2rem;
+}
+
+    .box_addcards.wow__add-newcard h2 {
+        margin-left: 1rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .box_addcards.wow__add-newcard h3 {
+        font-size: 12px;
+    }
+
+/*Mensajes pago sin tarjeta Mercadopago*/
+
+
+.wow__lista-footer #msjSinTarjetasWallet {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 2.5rem;
+}
+
+.wow__lista-footer .wow__title-msg-card {
+    color: var(--secondary);
+    letter-spacing: 0.005em;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 0.5rem;
+}
+
+.wow__lista-footer .wow__parrafo-msg-card {
+    color: #666666;
+    font-size: 14px;
+}
+
+.wow__lista-footer .wow__border-msg-card {
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    width: 92%;
+    flex-wrap: wrap;
+    background-color: #FFFFFF;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+    .wow__lista-footer .wow__border-msg-card .wow__subtitle-msg-card {
+        margin-top: 0.5rem;
+        font-size: 12px;
+        color: #646C9A;
+        font-weight: bold;
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+        line-height: 18px;
+    }
+
+        .wow__lista-footer .wow__border-msg-card .wow__subtitle-msg-card img {
+            width: 3rem;
+        }
+
+    .wow__lista-footer .wow__border-msg-card .btn.btn-secondary.wow__btn-msg-card {
+        font-size: 10px;
+        background-color: #0282A6;
+        display: flex;
+        justify-content: flex-end;
+        color: #FFFFFF;
+        margin-left: 18.5rem;
+        padding: 0.5rem !important;
+        box-shadow: 4px 4px 16px 0px #5867DD40;
+        font-weight: bold;
+        line-height: 20px;
+    }
+
+
+.wow__lista-footer .wow__total-final-card {
+    display: flex;
+    justify-content: space-between;
+    width: 94%;
+    color: var(--secondary);
+    margin-bottom: 1rem;
+    margin-left: 0;
+    align-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+    .wow__lista-footer .wow__total-final-card .wow__total-fc-label.total-label {
+        font-size: 16px;
+    }
+
+
+    .wow__lista-footer .wow__total-final-card .wow__total-fc-price {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+#buttonpagos.disabled {
+    pointer-events: none;
+}
+
+.buy__suscripcion.wow__container-titulo-medico-compra {
+    width: 320px;
+    flex-shrink: 0;
+    margin-left: 20rem;
+    margin-top: 8rem;
+}
+
+.imagenMedicoCompra__sm.compra--medico {
+    margin-top: 4rem;
+    margin-bottom: -1.2rem;
+    border-bottom: 0;
+}
+
+.wow__div-sinTelefonos {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-top: 1px solid rgba(59, 193, 205, 0.3);
+    padding: 1.2rem 0;
+}
+
+    .wow__div-sinTelefonos #msjSinTelefonoWallet .wow__border-msg-card {
+        width: 100%;
+        display: flex;
+        height: 40px;
+        justify-content: flex-start;
+    }
+        .wow__div-sinTelefonos #msjSinTelefonoWallet .wow__border-msg-card .btn.btn-primary.wow__btn-tel-card {
+            margin-left: -6.5rem;
+        }
+
+        .wow__div-sinTelefonos #msjSinTelefonoWallet .wow__border-msg-card .wow__subtitle-msg-card {
+            width: 70%;
+            display: flex;
+            gap: 1rem;
+            text-align: center;
+        }
+
+        .wow__div-sinTelefonos #msjSinTelefonoWallet .wow__border-msg-card .wow__subtitle-msg-card img {
+            max-width: 45px;
+        }
+
+            .wow__div-sinTelefonos #msjSinTelefonoWallet .wow__border-msg-card .wow__subtitle-msg-card input {
+                width: 60%;
+                text-align: center;
+                border: 1px solid #3BC1CD;
+                border-radius: 8px;
+            }
+
+                .wow__div-sinTelefonos #msjSinTelefonoWallet .wow__border-msg-card .wow__subtitle-msg-card input:focus {
+                    border: 2px solid #3BC1CD;
+                } 
+
+#msjSinTelefonoWallet .wow__title-msg-card span {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--tertiary);
+}
+
+.wow__lista-footer .wow__suscripciones a {
+    display: flex;
+}
+
+.modal-dialog.modal-wow.wow-mp {
+    margin-top: 10%;
+}
+.modal-wow.modal-suscripciones {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2%;
+    max-width: 800px;
+    max-height: 800px;
+}
+
+.modal-body.wow_body-suscripcion {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 760px;
+}
+
+.modal-content.content-mailmp {
+    padding: 2rem;
+}
+
+.modal-body.body-mp {
+    padding: 0.25rem;
+    margin-left: 3rem;
+}
+
+.wow_message-loader-mail {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 18px;
+    color: #0282A6;
+    font-weight: 700;
+    gap: 1.5rem;
+    margin: auto;
+}
+
+    .wow_message-loader-mail img {
+        width: 80px;
+        height: 80px;
+    }
+
+.message-correo {
+    font-size: 16px;
+    margin-top: 1rem;
+    font-weight: 500;
+    color: #000000;
+}
+
+.btn-suscripcion-modal {
+    display: flex;
+    margin-top: 4rem;
+    justify-content: center;
+}
+
+    .btn-suscripcion-modal .btn.btn-secondary {
+        background: #0282A6;
+        color: #FFF;
+    }
+
+.btn-guardar-info.wow__cerrar_pago.cerrar-mp {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 33rem;
+    margin-top: 0rem;
+    font-size: 30px;
+    background: #FFFF;
+    padding-bottom: 0;
+    transform: translateZ(1px);
+}
+
+.btn.btn-secondary.btn-copy__mail {
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    float: right;
+    margin-top: 1rem;
+    margin-right: 3rem;
+}
+
+    .btn.btn-secondary.btn-copy__mail .wow--img.img_copy--mail {
+        width: 30px;
+    }

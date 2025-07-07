@@ -1,0 +1,84 @@
+﻿@model WebMVC.Models.HomeViewModel
+
+@{
+    ViewData["Title"] = "Home";
+    
+}
+
+@section PageStyles  {
+    <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+        <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+            <!--Begin::Dashboard 7-->
+            <!--Begin::Row-->
+            <div class="row">
+                <div class="col-md-4 order-lg-1 order-xl-1">
+
+                    <!--Begin::Portlet-->
+                    <div class="kt-portlet kt-portlet--height-fluid">
+                        <div class="kt-portlet__head" style="background-color: #22b9ff">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title text-white">
+                                   Atención con Agenda
+                                </h3>
+                            </div>
+
+                        </div>
+                        <div class="kt-portlet__body">
+                            <div class="kt-scroll" data-scroll="true" @*data-height="75vh" data-mobile-height="300"*@>
+
+                                <!--Begin::Timeline 3 -->
+                                <div class="kt-timeline-v2">
+                                    <div id="kt-timeline-v2__items" class="kt-timeline-v2__items  kt-padding-top-25 kt-padding-bottom-30">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--End::Timeline 3 -->
+                        </div>
+                    </div>
+
+                    <!--End::Portlet-->
+                </div>
+
+                <div class="col-md-8 order-lg-1 order-xl-1">
+                    <div class="kt-portlet" id="kt_portlet">
+                        <div class="kt-portlet__body">
+                            <div id="kt_calendar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+     
+
+@section PageScripts {
+    <script src="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>
+    @*<script src="~/metronic_demo7/assets/js/pages/components/calendar/basicMedicoMedico.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>*@
+    @*<script src="~/metronic_demo7/assets/js/pages/dashboard.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>*@
+}
+
+@section Scripts {
+    <script src="~/signal/signalr.min.js"></script>
+    
+    
+    <script type="module">
+        import { init } from '../../js/Medico/index.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+            var host = '@ViewBag.HostURL';
+            window.host = host;
+        })()
+    </script>
+}

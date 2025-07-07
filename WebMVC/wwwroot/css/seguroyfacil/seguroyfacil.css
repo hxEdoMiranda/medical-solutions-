@@ -1,0 +1,764 @@
+/*seguroyfacil*/
+
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');*/
+
+:root {
+    --primary: #00915A;
+    --secondary: #00B053;
+    --tertiary: #545353;
+    --accent: #FDB727;
+    --light: #FFF;
+    --font-family: 'Mulish', sans-serif;
+}
+
+body {
+    /* font-family: var(--font-family) !important;*/
+    background-color: #FFF !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family) !important;
+}
+/*Login*/
+.logotipo-desktop {
+    background-image: url(../../img/seguroyfacil/logotipo.svg) !important;
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/seguroyfacil/logotipo.svg) !important;
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: var(--primary);
+    font-weight: 900;
+}
+
+.form-group .ms-label {
+    color: var(--tertiary) !important;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.divider-medismart {
+    display: flex !important;
+    margin-bottom: 2rem;
+}
+
+.body-home .footer-home .terminos a {
+    color: var(--primary);
+ 
+}
+
+.body-home .logo-home {
+    border-bottom: 3px solid rgba(146, 146, 146, 0.29);
+}
+
+
+.footer-home .terminos {
+    color: var(--primary);
+}
+/* Imágenes Login */
+.img1 {
+    background-image: url(../../img/seguroyfacil/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/seguroyfacil/login/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/seguroyfacil/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/seguroyfacil/login/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/seguroyfacil/login/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/seguroyfacil/login/960x978.jpg);
+}
+
+.body-home .cont-card .card {
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--secondary);
+}
+
+
+.body-home .card {
+    background-color: var(--secondary);
+}
+
+
+.body-home {
+   background-image: linear-gradient(#FFF, #FFF), linear-gradient(#fff, #fff);
+    background-blend-mode: multiply;
+    background-size: 100% 150px, 100% 7px, 100% calc(100vh - 100px);
+    background-position: 0 0, 0 150px, 0 157px, 0 0;
+}
+
+    .body-home .logo-home img {
+        width: 230px;
+        height: 60px;
+    }
+
+    .top-banner .legend {
+        font-weight: 500;
+    }
+
+.menu-top .item-menu-top i,
+.menu-top .label-menu {
+    color: var(--primary) !important;
+}
+
+.menu-top .item-menu-top:hover i, .menu-top .item-menu-top:hover .label-menu {
+    color: var(--accent) !important;
+}
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--secondary)
+}
+
+    .kt-menu__item a .ms-label-menu {
+        color: var(--secondary)
+    }
+
+    .kt-menu__item:hover a, .kt-menu__item:hover i {
+        color: var(--primary) !important;
+    }
+
+.accesible-btn button {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--light);
+}
+
+.stepper-sv .step-icon {
+    background-color: var(--primary);
+}
+
+.accesible-btn button:hover {
+    color: var(--secondary);
+    background-color: var(--light);
+    border: 1px solid var(--primary);
+}
+
+.busqueda-profesionales {
+    border: 2px solid var(--secondary);
+}
+    .busqueda-profesionales i {
+        color: var(--secondary)
+    }
+    .busqueda-profesionales .btn-outline-primary {
+        color: var(--secondary)
+    }
+
+.caja-especialidad.active {
+    background-color: var(--primary);
+}
+
+.caja-especialidad {
+    background-color: var(--secondary);
+}
+
+.inner-especialidad strong {
+    color: var(--light)
+}
+
+.step.active .step-icon {
+    background-color: var(--primary);
+}
+
+.stepper {
+    background-image: url(../../img/seguroyfacil/fondo-banner2.svg);
+}
+
+    .stepper .flecha {
+        color: var(--primary)
+    }
+
+    .stepper img {
+        border-color: var(--primary)
+    }
+
+.step.active .label-step {
+    color: var(--primary)
+}
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: var(--tertiary)
+}
+
+.caja-profesional .fecha-atencion {
+    color: var(--secondary)
+}
+
+.front-fecha-atencion {
+    border: 1px solid rgba(35,33, 114, .3)
+}
+
+    .front-fecha-atencion strong:before {
+        color: var(--secondary);
+        font-weight: 900;
+    }
+
+.especialidad-profesional {
+    color: var(--tertiary)
+}
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+
+.top-banner {
+    background-image: url(../../img/seguroyfacil/fondo-banner.svg);
+}
+    .top-banner img {
+        border-color: rgba(255, 255, 255, .3)
+    }
+    .top-banner .legend {
+        color: var(--secondary)
+    }
+
+.banner_topsc .legend .text-warning {
+    color: var(--primary) !important;
+}
+
+.top-banner.banner_topsc {
+    background-image: url(../../img/seguroyfacil/fondo-banner2.svg);
+}
+
+.text-warning {
+    color: #000 !important;
+}
+
+.menu-top .item-menu-top .logotipo-mobile {
+    width: 110px !important;
+}
+/*Sala espera*/
+.hotspot-icon .cont-icon {
+    background-color: var(--light);
+    color: var(--primary);
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: var(--primary);
+}
+
+.cont-icon.hotspot-redes {
+    background-color: #000;
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+    color: var(--light)
+}
+.hotspot-icon .cont-icon i {
+    color: var(--primary)
+}
+
+.hotspot-icon:hover .cont-icon i {
+    color: var(--light)
+}
+
+
+#reporte .cont-icon i {
+    color: var(--primary) !important;
+}
+
+.titulo-sala {
+    display: none;
+}
+
+
+.btn-brand {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--light);
+}
+
+.btn-brand:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--light);
+}
+
+#hs-g .cont-icon, #reporte .cont-icon {
+    background-color: var(--secondary);
+}
+
+    #hs-g .cont-icon i, #reporte .cont-icon i {
+        color: var(--light) !important;
+    }
+
+#hs-g:hover .cont-icon {
+    background-color: var(--primary);
+}
+
+.toolbar-option {
+    color: var(--primary)
+}
+
+.toolbar-option.active {
+    color: var(--secondary)
+}
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--primary)
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--secondary)
+}
+
+.btn-sala:hover {
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion, .cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+    .cont-btn-panel .btn-atencion:hover, .cont-btn-vc .btn-atencion:hover {
+        background-color: rgba(237, 110, 0, 0.1);
+        color: var(--primary);
+    }
+
+.hotspot-icon {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+    .hotspot-icon i {
+        text-shadow: none;
+    }
+
+    .hotspot-icon:hover {
+        color: #FFF;
+    }
+
+@media (max-width: 668px) {
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .top-banner .legend {
+        text-align: left;
+        font-size: 20px;
+    }
+    .body-home .logo-home img {
+        width: 150px;
+    }
+    .body-home {
+        background-size: 742px 673px, 100% 60px, 199px 187px, 100% 100vh;
+    }
+}
+
+
+ @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/seguroyfacil/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/seguroyfacil/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/seguroyfacil/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/seguroyfacil/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/seguroyfacil/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/seguroyfacil/login/548x850.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/seguroyfacil/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/seguroyfacil/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/seguroyfacil/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/seguroyfacil/login/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/seguroyfacil/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/seguroyfacil/login/960x978.jpg);
+    }
+}
+
+.logo-convenios {
+    justify-content: center;
+    gap: 4rem;
+}
+/*Prohome*/
+.prehome__plans {
+    height: 450px;
+}
+
+.prehome__plan {
+    width: 100%;
+    padding: 0;
+}
+
+.prehome__plan ul {
+    list-style-image: url('../../img/seguroyfacil/bullet.svg');
+   
+    margin-top: 32px;
+    height: 350px;
+    font-size: 16px;
+}
+
+.prehome__title {
+    color: #FFF;
+}
+
+.kt-login__extra.registro {
+    display: none;
+}
+
+.logo-convenios.convenioChile + hr {
+    display: none;
+}
+
+.kt-login.kt-login--v3.kt-login--signin .kt-login__signin .titulo-card-farmacia {
+    text-align: center;
+}
+
+.logo-convenios img {
+    width: 102px;
+    margin: auto;
+}
+
+.body-home .menu-top .item-menu-top i, .body-home .menu-top .item-menu-top .label-menu {
+    color: var(--secondary);
+}
+
+.body-home .top-banner .legend {
+    color: var(--primary);
+}
+
+.body-home .cont-card h1 {
+    color: var(--secondary);
+}
+
+.cont-logos {
+    margin: auto;
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    gap: 2rem;
+    color: #111;
+}
+
+.footer__segurofacil {
+    /*position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0*/
+    display: flex;
+    padding: 24px 0;
+    background-color: #f7f7f7;
+    background-image: url(../../img/seguroyfacil/texto-vertical.png);
+    background-repeat: no-repeat;
+    background-position: 32px center;
+    height: 130px;
+}
+
+    .footer__segurofacil.footer-agendamiento {
+        width: calc(100% - 100px);
+        margin-left: 100px;
+        height: 130px !important;
+        padding: 72px 0 !important;
+    }
+
+        .footer__segurofacil.footer-agendamiento .cont-logos {
+            max-width: 1400px;
+        }
+
+        .footer__segurofacil .logo-medismart {
+            max-width: 166px;
+        }
+
+
+    .footer__segurofacil .frase-banco {
+        text-align: center;
+        width: 100%;
+        max-width: 1200px;
+        margin: auto;
+        color: var(--tertiary);
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+        color: #111;
+        text-align: center;
+    }
+
+    .container-colmena {
+        margin-top: 12rem;
+    }
+.body-home .footer-home {
+    margin-bottom: 64px;
+}
+
+.opcion-ayuda {
+    background-color: #f7f7f7;
+    border-radius: 14px !important;
+    border: none;
+    text-align: center;
+    gap: 14px;
+    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
+}
+
+.opcion-ayuda .titulo-dropdown {
+        text-align: center;
+        font-size: 18px;
+        color: var(--primary) !important;
+        font-weight: 700;
+    }
+
+.opcion-ayuda ul {
+       
+    }
+.opcion-ayuda ul a {
+    text-decoration: underline;
+    text-align: center;
+    color: #111;
+    width: 100%;
+    justify-content: center !important;
+}
+
+
+.opcion-ayuda ul li {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    color: var(--primary);
+    font-size: 16px;
+}
+
+    .opcion-ayuda img {
+        max-width: 34px;
+        display: block;
+        margin: auto;
+    }
+
+    .opcion-ayuda ul li h2 {
+        font-size: 16px;
+    }
+
+.body-home .dropdown-menu.dropdown-menu-sm,
+.dropdown-menu.dropdown-menu-sm {
+    width: 340px;
+}
+
+.body-home .item-menu-top .dropdown-menu {
+    border: none !important;
+}
+
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--primary);
+}
+.menu-top .label-menu-pac {
+    color: var(--primary);
+}
+
+.hora.disponible small {
+    background-color: var(--primary);
+}
+
+.hora.disponible .detalle-hora {
+    color: var(--secondary);
+}
+.hora-top, .selector-horas i {
+    color: var(--secondary);
+}
+.check-aceptacion a {
+    color: var(--secondary);
+}
+
+.caja-reserva .btn-am {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.caja-reserva {
+    border: 1px solid var(--primary)
+}
+.btn.btn-outline-secondary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--light);
+}
+.perfil-profesional {
+    border: 1px solid var(--primary);
+}
+
+.btn-outline-primary {
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.caja-base {
+    border: 1px solid var(--primary);
+}
+.dropzone.dropzone-default.dropzone-brand {
+    border-color: var(--primary);
+}
+
+.header-formulario i {
+    color: var(--primary);
+}
+
+.caja-base h1 {
+    color: var(--primary)
+}
+
+.ms-aside {
+    border: 1px solid #CCC !important;
+}
+
+.kt-header--fixed:not(.kt-subheader--fixed) .kt-header {
+    border-bottom: 1px solid #CCC !important;
+}
+
+.body-home .card-atencion {
+    max-width: 1200px;
+}
+
+
+.body-home .nombre-pro {
+    color: var(--tertiary);
+}
+
+.body-home .btn-icon .icono i,
+.body-home .btn-icon .leyenda-icono {
+    color: var(--secondary);
+}
+
+#drop-mensajes-turno {
+    background-color: var(--secondary);
+}
+
+    #drop-mensajes-turno .atencion-proxima-toolbar a:first-child, #drop-mensajes-turno .atencion-proxima-toolbar a:first-child i {
+        color: #EB5757 !important;
+    }
+
+    #drop-mensajes-turno .atencion-proxima-toolbar a {
+        color: var(--primary)
+    }
+
+    @media (max-width: 991.98px) {
+        .prehome__plans {
+        height: auto;
+    }
+
+    .body-home .card {
+        background-color: var(--primary);
+        color: var(--light);
+    }
+    .leyenda-card-home {
+        color: var(--light);
+    }
+
+    .footer__segurofacil {
+        background-image: none;
+    }
+
+    .footer__segurofacil .logo-medismart {
+        display: none;
+    }
+    .footer__segurofacil img {
+        margin: auto;
+        margin-bottom: 0;
+        max-width: 98%;
+    }
+
+    .footer__segurofacil .frase-banco {
+        font-size: 7px;
+        max-width: 200px;
+    }
+
+    .body-home .powered, .body-home .powered strong {
+        color: var(--primary);
+    }
+
+    .body-home .top-banner {
+        font-size: 20px;
+        margin-bottom: 2rem;
+    }
+
+    .body-home .top-banner img {
+        width: 94px;
+        height: 94px;
+        border: 3px solid var(--secondary);
+    }
+
+    .container-colmena {
+        margin-top: 0;
+    }
+
+        .panel-medios {
+            padding: 32px;
+        }
+}
+
+    .footer-agendamiento {
+
+    }

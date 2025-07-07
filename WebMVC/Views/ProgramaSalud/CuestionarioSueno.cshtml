@@ -1,0 +1,423 @@
+﻿@using Microsoft.Extensions.Configuration
+@model WebMVC.Models.CuestionarioResponseModel
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Cuestionario";
+    Layout = "_LayoutPaciente";
+}
+@section Styles {
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid configuracion-paciente">
+
+    <div class="confirmar-icon-container">
+        <div class="confirmar-icon active-step">
+            <img src="/img/programa-salud/agendamiento-step-1.svg" alt="">
+
+        </div>
+        <div class="confirmar-line"></div>
+
+        <div class="confirmar-icon ">
+            <img src="/img/programa-salud/agendamiento-step-2.svg" alt="">
+
+        </div>
+    </div>
+    <div id="loaderNom35">
+    </div>
+    <div class="ps-cuestionario">
+        <div class="ps-cuestionario-content">
+            <!-- Header -->
+            <h2 class="ps-cuestionario-header">
+                <span class="ps-cuestionario--icon"></span>
+                <span class="ps-cuestionario--title">Cuestionario para Paciente Sueño</span>
+            </h2>
+            <!-- Instructions -->
+            
+            <!-- Form -->
+            <form class="ps-cuestionario--form" id="psCuestionario2">
+               
+                <h3>
+                    Las siguientes preguntas solo tienen que ver con sus hábitos de sueño durante el último
+                    mes. En sus respuestas debe reflejar cual ha sido su comportamiento durante la mayoría
+                    de los días y noches del pasado mes. Por favor, conteste a todas las preguntas.
+                </h3>
+                <div class="form-group ps-form-group">
+
+                    @*acordeones*@
+                    <div class="accordion">
+
+                        @*SECCION 1 *@
+
+                        <div class="contenedor-habitos">
+
+                            <div class="accordion-header">
+
+                            <p class="accordion-titulo">HABITOS DE SUEÑO</p>
+                            <i class="fal fa-plus-circle"></i>
+
+                            </div>
+                            
+
+                            <div class="accordion-content">
+                                <div class="col">
+                                    <label for="Hora_Acostarse" class="mb-3 mt-3">Durante el último mes, ¿cuál ha sido, normalmente, su hora de acostarse?</label>
+                                    <input type="time" class="form-control" id="Hora_Acostarse" name="Hora_Acostarse" placeholder="">
+                                </div>
+                                <br>
+                                <div class="col">
+                                    <label for="Tiempo_Dormirse" class="mb-3">
+                                        ¿Cuánto tiempo habrá tardado en dormirse, normalmente, las noches del último
+                                        mes?
+                                    </label>
+                                    <br>
+                                    <input type="radio" name="Tiempo_Dormirse" value="Menos de 15 min"> Menos de 15 min
+                                    <br>
+                                    <input type="radio" name="Tiempo_Dormirse" value="Entre 16-30 min"> Entre 16-30 min
+                                    <br>
+                                    <input type="radio" name="Tiempo_Dormirse" value="Entre 31-60 min"> Entre 31-60 min
+                                    <br>
+                                    <input type="radio" name="Tiempo_Dormirse" value="Más de 60 min"> Más de 60 min
+                                </div>
+                                <br>
+                                <div class="col">
+                                    <label for="Hora_Levantarse" class="mb-3">
+                                        Durante el último mes, ¿a qué hora se ha levantado habitualmente por la
+                                        mañana?
+                                    </label>
+                                    <input type="time" class="form-control" id="Hora_Levantarse" name="Hora_Levantarse" placeholder="">
+                                </div>
+                                <br>
+                                <div class="col">
+                                    <label for="Horas_Dormidas" class="mb-3">
+                                        ¿Cuántas horas calcula que habrá dormido verdaderamente cada noche durante
+                                        el último mes?
+                                    </label>
+                                    <input type="number" class="form-control" id="Horas_Dormidas" name="Horas_Dormidas" placeholder="">
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                       
+                        @*FIN SECCION 1*@
+
+                        @*SECCION 2*@
+                        <div class="contenedor-sueno">
+
+                            <div class="accordion-header">
+
+                            <p class="accordion-titulo">TIEMPO DE SUEÑO</p>
+                            <i class="fal fa-plus-circle"></i>
+                            </div>
+
+                            <div class="accordion-content">
+                                <div class="col">
+                                    <h5 class="mb-3 mt-3">
+                                        Durante el último mes, cuántas veces ha tenido usted problemas para
+                                        dormir a causa de:
+                                    </h5>
+                                    <!-- 5 a -->
+                                    <label for="problemas_dormir_primera_media_hora" class="mb-3">
+                                        1. No poder concliliar el sueño en la primera media hora:
+                                    </label>
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_primera_media_hora" value="Ninguna vez en el ultimo mes"> Ninguna vez en el último mes
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_primera_media_hora" value="Menos de una vez a la semana"> Menos de una vez a la semana
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_primera_media_hora" value="Una o dos veces a la semana"> Una o dos veces a la semana
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_primera_media_hora" value="Tres o más veces a la semana"> Tres o más veces a la semana
+                                    <br>
+                                    <br>
+                                    <!-- 5 b -->
+                                    <label for="problemas_dormir_despertar_noche_madrugada" class="mb-3">
+                                        2. Despertarse durante la noche o de madrugada:
+                                    </label>
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_despertar_noche_madrugada" value="Ninguna vez en el ultimo mes"> Ninguna vez en el último mes
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_despertar_noche_madrugada" value="Menos de una vez a la semana"> Menos de una vez a la semana
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_despertar_noche_madrugada" value="Una o dos veces a la semana"> Una o dos veces a la semana
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_despertar_noche_madrugada" value="Tres o más veces a la semana"> Tres o más veces a la semana
+                                    <br>
+                                    <br>
+                                    <!-- 5 c -->
+                                    <label for="problemas_dormir_levantarse_ir_servicio" class="mb-3">
+                                        3. Tener que levantarse para ir al servicio:
+                                    </label>
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_levantarse_ir_servicio" value="Ninguna vez en el ultimo mes"> Ninguna vez en el último mes
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_levantarse_ir_servicio" value="Menos de una vez a la semana"> Menos de una vez a la semana
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_levantarse_ir_servicio" value="Una o dos veces a la semana"> Una o dos veces a la semana
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_levantarse_ir_servicio" value="Tres o más veces a la semana"> Tres o más veces a la semana
+                                    <br>
+                                    <br>
+                                    <!-- 5 d -->
+                                    <label for="problemas_dormir_no_respirar_bien" class="mb-3">
+                                        5. No poder respirar bien:
+                                    </label>
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_no_respirar_bien" value="Ninguna vez en el ultimo mes"> Ninguna vez en el último mes
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_no_respirar_bien" value="Menos de una vez a la semana"> Menos de una vez a la semana
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_no_respirar_bien" value="Una o dos veces a la semana"> Una o dos veces a la semana
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_no_respirar_bien" value="Tres o más veces a la semana"> Tres o más veces a la semana
+                                    <br>
+                                    <br>
+                                    <!-- 5 e -->
+                                    <label for="problemas_dormir_toser_roncar" class="mb-3">
+                                        6. Toser o roncar ruidosamente:
+                                    </label>
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_toser_roncar" value="Ninguna vez en el ultimo mes"> Ninguna vez en el último mes
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_toser_roncar" value="Menos de una vez a la semana"> Menos de una vez a la semana
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_toser_roncar" value="Una o dos veces a la semana"> Una o dos veces a la semana
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_toser_roncar" value="Tres o más veces a la semana"> Tres o más veces a la semana
+                                    <br>
+                                    <br>
+                                    <!-- 5 f -->
+                                    <label for="problemas_dormir_sentir_frio" class="mb-3">
+                                        7. Sentir frío:
+                                    </label>
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_sentir_frio" value="Ninguna vez en el ultimo mes"> Ninguna vez en el último mes
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_sentir_frio" value="Menos de una vez a la semana"> Menos de una vez a la semana
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_sentir_frio" value="Una o dos veces a la semana"> Una o dos veces a la semana
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_sentir_frio" value="Tres o más veces a la semana"> Tres o más veces a la semana
+                                    <br>
+                                    <br>
+                                    <!-- 5 g -->
+                                    <label for="problemas_dormir_sentir_calor" class="mb-3">
+                                        8. Sentir demasiado calor:
+                                    </label>
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_sentir_calor" value="Ninguna vez en el ultimo mes"> Ninguna vez en el último mes
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_sentir_calor" value="Menos de una vez a la semana"> Menos de una vez a la semana
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_sentir_calor" value="Una o dos veces a la semana"> Una o dos veces a la semana
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_sentir_calor" value="Tres o más veces a la semana"> Tres o más veces a la semana
+                                    <br>
+                                    <br>
+                                    <!-- 5 h -->
+                                    <label for="problemas_dormir_pesadillas_malos_suenos" class="mb-3">
+                                        9. Tener pesadillas o malos sueños:
+                                    </label>
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_pesadillas_malos_suenos" value="Ninguna vez en el ultimo mes"> Ninguna vez en el último mes
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_pesadillas_malos_suenos" value="Menos de una vez a la semana"> Menos de una vez a la semana
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_pesadillas_malos_suenos" value="Una o dos veces a la semana"> Una o dos veces a la semana
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_pesadillas_malos_suenos" value="Tres o más veces a la semana"> Tres o más veces a la semana
+                                    <br>
+                                    <br>
+                                    <!-- 5 i -->
+                                    <label for="problemas_dormir_sufrir_dolores" class="mb-3">
+                                        10. Sufrir dolores:
+                                    </label>
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_sufrir_dolores" value="Ninguna vez en el ultimo mes"> Ninguna vez en el último mes
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_sufrir_dolores" value="Menos de una vez a la semana"> Menos de una vez a la semana
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_sufrir_dolores" value="Una o dos veces a la semana"> Una o dos veces a la semana
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_sufrir_dolores" value="Tres o más veces a la semana"> Tres o más veces a la semana
+                                    <br>
+                                    <br>
+                                    <!-- 5 j -->
+                                    <label for="problemas_dormir_otras_razones_text" class="mb-3">
+                                        11. Otras razones. Por favor descríbalas:
+                                    </label>
+                                    <input type="text" class="form-control" id="problemas_dormir_otras_razones_text" name="problemas_dormir_otras_razones_text" placeholder="">
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_otras_razones" value="Ninguna vez en el ultimo mes"> Ninguna vez en el último mes
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_otras_razones" value="Menos de una vez a la semana"> Menos de una vez a la semana
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_otras_razones" value="Una o dos veces a la semana"> Una o dos veces a la semana
+                                    <br>
+                                    <input type="radio" name="problemas_dormir_otras_razones" value="Tres o más veces a la semana"> Tres o más veces a la semana
+                                </div>
+                                <br>
+
+                            </div>
+
+                        </div>
+
+                        
+                        @*FIN SECCION 2*@
+
+                        @*SECCION 3*@
+                        <div class="contenedor-sueno" id="contenedor-sueno">
+
+                            <div class="accordion-header">
+                            <p class="accordion-titulo mb-3">CALIDAD DE SUEÑO</p>
+                         <i class="fal fa-plus-circle"></i>
+
+                            </div>
+                            <div class="accordion-content">
+                                <div class="col">
+                                    <label for="Calidad_Sueno" class="mb-3">
+                                        1. Durante el último mes, ¿Cómo valoraría en conjunto, la calidad de su
+                                        sueño?
+                                    </label>
+                                    <br>
+                                    <input type="radio" name="Calidad_Sueno" value="Muy buena"> Muy buena
+                                    <br>
+                                    <input type="radio" name="Calidad_Sueno" value="Bastante buena"> Bastante buena
+                                    <br>
+                                    <input type="radio" name="Calidad_Sueno" value="Bastante mala"> Bastante mala
+                                    <br>
+                                    <input type="radio" name="Calidad_Sueno" value="Muy mala"> Muy mala
+                                </div>
+                                <br>
+                                <div class="col">
+                                    <label for="Medicinas_Dormir" class="mb-3">
+                                       2.  Durante el último mes, ¿cuántas veces habrá tomado medicinas (por su
+                                        cuenta o recetadas por el médico) para dormir?
+                                    </label>
+                                    <br>
+                                    <input type="radio" name="Medicinas_Dormir" value="Ninguna vez en el ultimo mes"> Ninguna vez en el último mes
+                                    <br>
+                                    <input type="radio" name="Medicinas_Dormir" value="Menos de una vez a la semana"> Menos de una vez a la semana
+                                    <br>
+                                    <input type="radio" name="Medicinas_Dormir" value="Una o dos veces a la semana"> Una o dos veces a la semana
+                                    <br>
+                                    <input type="radio" name="Medicinas_Dormir" value="Tres o mas veces a la semana"> Tres o más veces a la semana
+                                </div>
+                                <br>
+                                <div class="col">
+                                    <label for="Somnolencia_Actividades" class="mb-3">
+                                        3. Durante el último mes, ¿cuántas veces ha sentido somnolencia mientras
+                                        conducía, comía o desarrollaba alguna otra actividad?
+                                    </label>
+                                    <br>
+                                    <input type="radio" name="Somnolencia_Actividades" value="Ninguna vez en el ultimo mes"> Ninguna vez en el último mes
+                                    <br>
+                                    <input type="radio" name="Somnolencia_Actividades" value="Menos de una vez a la semana"> Menos de una vez a la semana
+                                    <br>
+                                    <input type="radio" name="Somnolencia_Actividades" value="Una o dos veces a la semana"> Una o dos veces a la semana
+                                    <br>
+                                    <input type="radio" name="Somnolencia_Actividades" value="Tres o más veces a la semana"> Tres o más veces a la semana
+                                </div>
+                                <br>
+                                <div class="col">
+                                    <label for="Animos_Realizar_Actividades" class="mb-3">
+                                        4. Durante el último més, ¿ha representado para usted mucho problema el
+                                        tener ánimos para realizar alguna de las actividades detalladas en la
+                                        pregunta anterior?
+                                    </label>
+                                    <br>
+                                    <input type="radio" name="Animos_Realizar_Actividades" value="Ningun problema"> Ningún problema
+                                    <br>
+                                    <input type="radio" name="Animos_Realizar_Actividades" value="Solo un leve problema"> Sólo un leve problema
+                                    <br>
+                                    <input type="radio" name="Animos_Realizar_Actividades" value="Un problema"> Un problema
+                                    <br>
+                                    <input type="radio" name="Animos_Realizar_Actividades" value="Un grave problema"> Un grave problema
+                                </div>
+                                <br>
+                                <div class="col">
+                                    <label for="Dormir_Acompanado" class="mb-3">
+                                        5. ¿Duerme usted solo o acompañado?
+                                    </label>
+                                    <br>
+                                    <input type="radio" name="Dormir_Acompanado" value="Solo"> Solo
+                                    <br>
+                                    <input type="radio" name="Dormir_Acompanado" value="Con alguien en otra habitacion"> Con alguien en otra habitación
+                                    <br>
+                                    <input type="radio" name="Dormir_Acompanado" value="En la misma habitacion, pero en otra cama"> En la misma habitación, pero en otra cama
+                                    <br>
+                                    <input type="radio" name="Dormir_Acompanado" value="En la misma cama"> En la misma cama
+                                </div>
+                            </div>
+
+                        </div>
+                       
+                        @*SECCION 3*@
+
+                    </div>
+
+                    @*BOTON*@
+                    <div class="form_nom035">
+                    </div>
+
+                    @*fin acordeones*@
+                
+                    
+                    
+                </div>
+               
+
+                <!-- <button type="button" class="btn btn-primary px-4 float-right">Save</button> -->
+                <div class="form_nom035">
+                        <div class="col cont-guardar-info">
+                        <button type="submit" class="btn btn-success btn-block boton-preguntas" metadata="configuracionGuardarPerfil" >Enviar</button>
+                        </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/js/Usuario/config.js?9rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script type="module">
+        import { init } from '../../js/ProgramaSalud/cuestionario-programa.js?rnd=@NumeroRandom.GetRandom()';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+            var idCliente = '@ViewBag.idCliente';
+            window.idCliente = idCliente;
+            window.host = '@ViewBag.HostURL';
+            var idCuestionario = parseInt('@ViewBag.idCuestionario');
+            window.idCuestionario = idCuestionario;
+            var idUsuarioBH = parseInt('@ViewBag.idUsuarioBH');
+            window.idUsuarioBH = idUsuarioBH;
+            var idUsuario = parseInt('@ViewBag.idUsuario');
+            window.idUsuario = idUsuario;
+            var idCuestionarioPersona = parseInt('@ViewBag.idCuestionarioPersona');
+            window.idCuestionarioPersona = idCuestionarioPersona;
+            var cuestionarioBH = parseInt('@ViewBag.cuestionarioBH');
+            window.cuestionarioBH = cuestionarioBH;
+            window.tipo = @ViewBag.tipo;
+            //var idProgramaSalud = idProgramaSalud;
+            //window.idProgramaSalud = '@ViewBag.idProgramaSalud',
+
+        })()
+
+        $(document).ready(function () {
+            $(".accordion-header").click(function () {
+                $(this).toggleClass("active");
+                $(this).next(".accordion-content").slideToggle();
+                $(this).find(".fal").toggleClass("fa-plus-circle fa-minus-circle");
+                $(".accordion-header").not(this).removeClass("active");
+                $(".accordion-content").not($(this).next(".accordion-content")).slideUp();
+                $(".accordion-header").not(this).find(".fal").removeClass("fa-minus-circle").addClass("fa-plus-circle");
+            });
+        });
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+}

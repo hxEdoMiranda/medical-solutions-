@@ -1,0 +1,378 @@
+/*Layout Login*/
+
+.kt-login__forgot,
+.kt-login__signin {
+    min-height: 0;
+}
+
+
+.kt-login.kt-login--v3
+.kt-login__wrapper
+.kt-login__container
+.kt-login__head .kt-login__title {
+    font-size: 24px;
+    color: #3BC1CD;
+    font-weight: 300 !important;
+    margin-top: 50px;
+    text-align: left;
+    /*width: 220px;*/
+}
+
+.kt-login.kt-login--v3 
+.kt-login__wrapper 
+.kt-login__container 
+.kt-login__head .kt-login__desc {
+    text-align: left;
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper {
+    padding: 0;
+    margin: 0 auto 2rem auto;
+    overflow: hidden;
+}
+
+.bkg-login {
+    max-height: 100vh;
+    overflow: hidden;
+    background-color: #EBEDF2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.bkg-login img {
+    width: 100%;
+    height: auto;
+}
+
+.logo-convenios {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0rem;
+}
+
+.logo-convenios img {
+    width: 150px;
+    height: auto;
+ }
+
+ .logotipo {
+     width: 100%;
+     height: auto;
+ }
+
+ .divider-abodoc {
+     display: none;
+ }
+
+
+ /*Mediaqueries Login*/
+
+@media (max-width: 991.98px) {
+
+    body {
+        background-color: #f0f0f0 !important;
+        padding-top: 0;
+    }
+
+    .kt-login__forgot, .kt-login__signin {
+        min-height: 300px;
+    }
+
+    .cont-logo-mobile {
+        /* height: 150px;*/
+        display: flex !important;
+        justify-content: center;
+    }
+
+    .container-login {
+        border-top-left-radius: 2rem;
+        border-top-right-radius: 2rem;
+        min-height: calc(100vh - 150px);
+        background-color: #f9f9fc;
+    }
+    .logotipo {
+        max-width: 300px;
+        height: auto;
+        margin-top: 3.5rem;
+    }
+
+    .logotipo img {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .logo-convenios img {
+        width: 100px;
+    }
+
+
+    .kt-login.kt-login--v3 .kt-login__wrapper {
+        max-width: 300px;
+        margin-top: 2rem;
+    }
+
+    .kt-login.kt-login--v3
+    .kt-login__wrapper
+    .kt-login__container
+    .kt-login__head
+    .kt-login__title {
+        font-weight: 300;
+        font-size: 24px;
+        margin: 0;
+        font-weight: 700 !important;
+        width: auto;
+    }
+}
+
+
+.logotipo-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    background-position: center center;
+    background-size: contain;
+    margin:  2rem auto;
+}
+
+.logotipo-desktop {
+    max-width: 430px;
+    background-image: url(../../img/logo-mlive.svg);
+    height: 98px;
+}
+
+.logotipo-mobile {
+    max-width: 300px;
+    background-image: url(../../img/logo-mlive.svg);
+    height: 68px;
+    margin-bottom: 2rem;
+}
+
+/*Img Classes*/
+
+#imgLogin {
+    height: 100vh;
+    width: 50vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+}
+/*
+.img1 {
+    background-image: url(../../img/login/1.jpg);
+    
+}
+
+.img2 {
+    background-image: url(../../img/login/3.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/login/5.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/login/1.jpg);
+}
+
+    */
+
+
+.img1 {
+    background-image: url(../../img/login/960x978-1.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/login/960x978-2.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/login/960x978-3.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/login/960x978-4.jpg);
+}
+.img5 {
+    background-image: url(../../img/login/960x978-5.jpg);
+}
+.img6 {
+    background-image: url(../../img/login/960x978-1.jpg);
+}
+
+
+.foto-login {
+    background-image: url(../../img/login/960x978.jpg);
+    height: 100vh;
+    width: 50vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.cont-captcha {
+    border: 1px solid red;
+}
+
+
+/* ----------- Retina Screens ----------- */
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+        margin-top: 10%;
+    }
+
+    .kt-login.kt-login--v3 .kt-login__wrapper {
+        margin: 0 auto 1rem auto;
+    }
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head {
+        margin-bottom: 1rem;
+    }
+
+    .logotipo-desktop {
+        max-width: 280px;
+        display: inline-block;
+        margin-bottom: 0;
+        height: 72px;
+    }
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__logo {
+        text-align: left;
+    }
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+        margin-top: 1rem;
+        font-size: 24px;
+    }
+    .kt-login__forgot, .kt-login__signin {
+        min-height: 300px;
+    }
+
+    .logo-convenios {
+        margin-top: 1rem
+    }
+
+    .logo-convenios img {
+        width: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .logotipo-mobile {
+        height: 60px;
+    }
+}
+
+.container-login .kt-footer {
+    background: transparent;
+}
+
+
+.login-footer {
+    text-align: center;
+}
+
+
+.login-footer .kt-container {
+    display: flex;
+    
+    justify-content: space-evenly;
+    padding: 0;
+}
+
+    .login-footer .kt-container a {
+        font-size: 12px;
+    }
+
+
+    .login-footer a:hover {
+        text-decoration: underline !important;
+    }
+
+.login-footer .terminos {
+    
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+    .login-footer .terminos a {
+        display: inline-block;
+        margin-left: 0;
+    }
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .form-control {
+    background: #EBEDF2;
+}
+
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    #imgLogin {
+        position: fixed;
+    }
+
+    .img1 {
+        background-image: url(../../img/login/548x850-1.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/login/548x850-2.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/login/548x850-3.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/login/548x850-4.jpg);
+    }
+    .img5 {
+        background-image: url(../../img/login/548x850-5.jpg);
+    }
+    .img6 {
+        background-image: url(../../img/login/548x850-1.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+    #imgLogin {
+        position: fixed;
+    }
+
+    .kt-login__signin {
+        margin-bottom: 1.5rem;
+    }
+
+    .img1 {
+        background-image: url(../../img/login/960x978-1.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/login/960x978-2.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/login/960x978-3.jpg);
+    }
+
+    .img4 {
+         background-image: url(../../img/login/960x978-4.jpg);
+    }
+    .img5 {
+        background-image: url(../../img/login/960x978-5.jpg);
+    }
+    .img6 {
+        background-image: url(../../img/login/960x978-1.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1920px) {
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+        margin-top: 10%;
+    }
+}

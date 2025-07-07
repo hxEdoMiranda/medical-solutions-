@@ -1,0 +1,76 @@
+/*Lista de Archivos*/
+
+.lista-archivos {
+    height: auto;
+    overflow: hidden;
+    margin: 2rem 0;
+}
+
+#divHistorial .kt-portlet__body {
+    height: 630px;
+    overflow-y: auto;
+}
+
+.kt-timeline-v2 .kt-timeline-v2__items .kt-timeline-v2__item .kt-timeline-v2__item-text {
+    padding: 0.35rem 0 0 1rem;
+}
+
+.btn-informe {
+    padding: .25rem .5rem !important;
+    text-transform: capitalize;
+    font-size: 1rem;
+    box-shadow: none;
+    border: 1px solid rgba(10, 134, 168, 0.3);
+}
+
+#divHistorial .btn-informe {
+    margin-top: .5rem;
+}
+
+
+
+
+@media (max-width: 1024px) {
+    .video-container {
+        display: flex;
+        width: 100%;
+        height: calc(100% - 20px);
+        min-height: 75vh;
+        border-radius: 10px;
+        /*border: 1px solid #3BC1CD; */
+        align-items: stretch;
+        margin-bottom: 1rem;
+    }
+    .kt-header-mobile--fixed .kt-wrapper {
+        padding-top: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .lista-archivos {
+        margin: 1rem 0;
+    }
+
+    #divHistorial .kt-portlet__body {
+        padding: 1rem;
+    }
+
+    .lista-archivos-informe {
+        /*max-height: 300px;*/
+    }
+}
+
+.lista-archivos-informe {
+    max-height: 324px;
+    display: block;
+    overflow-y: auto;
+}
+
+
+#pnlArchivos img {
+    max-width: 200px;
+}
+
+.btn-consentimiento .kt-widget4__title {
+    font-size: 1.2rem !important;
+}

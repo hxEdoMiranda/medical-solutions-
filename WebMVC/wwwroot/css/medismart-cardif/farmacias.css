@@ -1,0 +1,264 @@
+/*Farmacias*/
+
+:root {
+    --primary-color: #3BC1CD;
+    --secondary-color: #8A94B3;
+    --tertiary-color: #0282A6;
+    --gray-color: #666;
+    --accent-color: #FF7415;
+    --light-color: #FFF;
+    --hover-color: #0282A6;
+    --transition: all .3s ease-out;
+}
+
+.cont-farmacias {
+    margin: auto;
+    max-width: 1600px;
+}
+
+
+.card-farmacia {
+    width: 100%;
+    max-width: 320px;
+    border: 1px solid rgba(59, 193, 205, 0.3);
+    border-radius: 8px;
+    background-color: #FFF;
+    padding: 2rem;
+    margin-bottom: 1rem;
+    padding-right: 1rem;
+}
+
+.header-card-farmacia {
+    border-bottom: 1px dashed var(--primary-color);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    height: 118px;
+    overflow-y: auto;
+}
+
+.card-farmacia .fecha-atencion {
+    font-size: 16px;
+    color: var(--primary-color);
+    text-align: left;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+    .card-farmacia .fecha-atencion i {
+    }
+
+.card-farmacia .nombre-profesional {
+    font-size: 18px;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+}
+
+.card-farmacia .especialidad {
+    font-weight: 800;
+    font-size: 16px;
+}
+
+
+.titulo-card-farmacia,
+.subtitulo-card-farmacia {
+    font-size: 11px;
+    color: var(--tertiary-color);
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.subtitulo-card-farmacia {
+    text-transform: none;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.lista-medicamentos {
+    color: var(--gray-color);
+    /* margin-bottom: 2rem;*/
+}
+
+    .lista-medicamentos li {
+        line-height: 18px;
+        text-align: left;
+    }
+
+.lista-proveedores {
+    list-style-type: none;
+    padding-left: 0;
+    /*height: 120px;*/
+    overflow-y: auto;
+}
+
+    .lista-proveedores li {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        margin-bottom: 1rem;
+    }
+
+        .lista-proveedores li:last-child {
+            margin-bottom: 0;
+        }
+
+.btn-proveedor {
+    border: 1px solid rgba(59, 193, 205, 0.3);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 106px;
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    background-color: #FFF;
+}
+
+    .btn-proveedor:hover {
+        background-color: rgba(59, 193, 205, 0.3);
+    }
+
+
+.card-farmacia.ultima-atencion .btn-proveedor:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.btn-proveedor img {
+    width: 100%;
+}
+
+.leyenda-proveedor {
+    width: 180px;
+    text-align: left;
+}
+
+    .leyenda-proveedor a {
+        color: var(--primary-color)
+    }
+
+        .leyenda-proveedor a:hover {
+            text-decoration: underline !important;
+        }
+
+
+.card-farmacia .lista-medicamentos {
+    
+    height: 80px;
+    overflow-y: auto;
+}
+
+
+.card-farmacia.ultima-atencion {
+    max-width: 450px;
+    background-color: var(--tertiary-color);
+}
+
+    .card-farmacia.ultima-atencion .fecha-atencion {
+        color: #FFF;
+    }
+
+    .card-farmacia.ultima-atencion .nombre-profesional,
+    .card-farmacia.ultima-atencion .especialidad,
+    .card-farmacia.ultima-atencion .titulo-card-farmacia,
+    .card-farmacia.ultima-atencion .subtitulo-card-farmacia {
+        color: #C4ECF0;
+    }
+
+    .card-farmacia.ultima-atencion .lista-medicamentos {
+        color: #C4ECF0;
+    }
+
+
+    .card-farmacia.ultima-atencion .leyenda-proveedor {
+        width: 300px;
+    }
+
+        .card-farmacia.ultima-atencion .leyenda-proveedor a {
+            color: rgba(255, 255, 255, .8);
+        }
+
+.cont-cards-farmacia {
+    display: flex;
+    gap: 1rem;
+}
+
+.cont-farmacias .mensaje-no-atencion {
+    max-width: 450px;
+}
+
+
+.inner-card-farmacia {
+    height: 400px;
+}
+
+/*Scroll Farmacias*/
+
+   .lista-medicamentos {
+       height: 80px;
+       padding-right: 1rem;
+       overflow-y: auto;
+   }
+
+    /* width */
+    .lista-medicamentos::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    /* Track */
+    .lista-medicamentos::-webkit-scrollbar-track {
+        background: rgba(2, 92, 116, 0.2);
+        width: 6px;
+        height: 50px;
+        border-radius: 8px;
+    }
+
+
+    /* Handle */
+    .lista-medicamentos::-webkit-scrollbar-thumb {
+        background: rgba(2, 92, 116, 0.5);
+        transition: all .3s ease-out;
+        border-radius: 8px;
+        transition: all .1s ease-out;
+    }
+
+        /* Handle on hover */
+        .lista-medicamentos::-webkit-scrollbar-thumb:hover {
+            background: rgba(59, 193, 205, 0.6);
+        }
+
+@media (max-width: 1024px) {
+
+    .card-farmacia {
+        max-width: 360px;
+    }
+
+    .cont-farmacias .titulo-seccion {
+        margin-top: 2rem;
+    }
+
+        .cont-farmacias .titulo-seccion:first-child {
+            margin-top: 3rem;
+        }
+
+    .cont-farmacias .mensaje-no-atencion {
+        margin-top: 3rem;
+    }
+
+    .header-card-farmacia {
+        height: auto;
+    }
+
+    .card-farmacia .lista-medicamentos {
+        height: auto;
+    }
+
+    .lista-proveedores {
+        height: auto;
+    }
+
+    .lista-medicamentos {
+        height: auto;
+        padding-right: 2rem;
+    }
+}

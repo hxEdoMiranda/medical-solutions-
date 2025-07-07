@@ -1,0 +1,400 @@
+﻿@model WebMVC.Models.AtencionViewModel
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Paciente";
+    Layout = "_LayoutHome";
+
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+      <link href="~/css/vidacamara/vidacamara.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />;
+    
+}
+
+
+
+<div class="cont-home">
+<div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+<!--Nuevo Home-->
+
+<div class="container container-colmena ">
+
+<div class="row">
+    <div class="col">
+        <div class="top-banner justify-content-between">
+            <h1 class="legend order-2 order-md-1">¡Hola,  <span class="saludo-usuario text-warning text-capitalize" id="saludoPaciente"></span>! ¿En qué te podemos ayudar?</h1>
+            <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+@{
+    foreach (var item in @ViewBag.ListaEmpresas)
+    {
+
+        if (@item.IdEmpresa == Convert.ToInt32(@Configuration["VC-IND-ALMA-PMG"]))
+
+        {
+            <div class="col-12 col-md-4 col-lg-3 p-0" @item.VisibleSuscripcion>
+                <div class="cont-card">
+                    <a class="btnAtencionDirectaGeneral" data-id="@item.IdEmpresa" id="">
+                        <div class="card card-plan">
+                            <div class="costo"></div>
+                            <div class="card-body">
+                                <img src="@(item.ImgSuscripcion+@item.IdEmpresa+".svg")" alt="">
+                                <span class="leyenda-card-home d-md-none fuente-accesible">
+                                    @item.TextoSuscripcion
+                                    <small class="d-block" style="text-transform: none; font-size: 90%">@item.SubTextoSuscripcion</small>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                    <h1 class="fuente-accesible">
+                        @item.TextoSuscripcion
+                        <small class="d-block" style="text-transform: none; font-size: 90%">@item.SubTextoSuscripcion</small>
+                    </h1>
+                </div>
+            </div>
+        }
+        else if (@item.IdEmpresa == Convert.ToInt32(@Configuration["VC-IND-ALMA-PD"]))
+        {
+            <div class="col-12 col-md-4 col-lg-3 p-0" @item.VisibleSuscripcion>
+                <div class="cont-card">
+                    <a href="/Paciente/Agendar?tipo=suscripcion&IdclienteVC=@item.IdEmpresa">
+                        <div class="card card-plan">
+                            <div class="costo"></div>
+                            <div class="card-body">
+                                <img src="@(item.ImgSuscripcion+@item.IdEmpresa+".svg")" alt="">
+                                <span class="leyenda-card-home d-md-none fuente-accesible">
+                                    @item.TextoSuscripcion
+                                    <small class="d-block" style="text-transform: none; font-size: 90%">@item.SubTextoSuscripcion</small>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                    <h1 class="fuente-accesible">
+                        @item.TextoSuscripcion
+                        <small class="d-block" style="text-transform: none; font-size: 90%">@item.SubTextoSuscripcion</small>
+                    </h1>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-3 p-0" @item.VisibleSuscripcion>
+                <div class="cont-card">
+                    <a class="btnAtencionDirectaGeneral" data-id="@item.IdEmpresa" id="">
+                        <div class="card card-plan">
+                            <div class="costo"></div>
+                            <div class="card-body">
+                                <img src="@(item.ImgSuscripcion+"atencion-inmediata.svg")" alt="">
+                                <span class="leyenda-card-home d-md-none fuente-accesible">
+                                    @item.TextoSuscripcion
+                                    <small class="d-block" style="text-transform: none; font-size: 90%">Medicina General</small>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                    <h1 class="fuente-accesible">
+                        Medicina General
+                        <small class="d-block" style="text-transform: none; font-size: 90%"></small>
+                    </h1>
+                </div>
+            </div>
+        }
+        else if (@item.IdEmpresa == Convert.ToInt32(@Configuration["VC-COLECTIVOS-MG"]))
+        {
+            <div class="col-12 col-md-4 col-lg-3 p-0" @item.VisibleSuscripcion>
+                <div class="cont-card">
+                    <a href="/Paciente/Agendar?tipo=suscripcion&IdclienteVC=@item.IdEmpresa">
+                        <div class="card card-plan">
+                            <div class="costo"></div>
+                            <div class="card-body">
+                                <img src="@(item.ImgSuscripcion+@item.IdEmpresa+".svg")" alt="">
+                                <span class="leyenda-card-home d-md-none fuente-accesible">
+                                    @item.TextoSuscripcion
+                                    <small class="d-block" style="text-transform: none; font-size: 90%">@item.SubTextoSuscripcion</small>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                    <h1 class="fuente-accesible">
+                        @item.TextoSuscripcion
+                        <small class="d-block" style="text-transform: none; font-size: 90%">@item.SubTextoSuscripcion</small>
+                    </h1>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-3 p-0" @item.VisibleSuscripcion>
+                <div class="cont-card">
+                    <a class="btnAtencionDirectaGeneral" data-id="@item.IdEmpresa" id="">
+                        <div class="card card-plan">
+                            <div class="costo"></div>
+                            <div class="card-body">
+                                <img src="@(item.ImgSuscripcion+"atencion-inmediata.svg")" alt="">
+                                <span class="leyenda-card-home d-md-none fuente-accesible">
+                                    @item.TextoSuscripcion
+                                    <small class="d-block" style="text-transform: none; font-size: 90%">Medicina General</small>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                    <h1 class="fuente-accesible">
+                        Medicina General
+                        <small class="d-block" style="text-transform: none; font-size: 90%"></small>
+                    </h1>
+                </div>
+            </div>
+        }
+        else if (@item.IdEmpresa == Convert.ToInt32(@Configuration["VC-COLECTIVOS-FULL"]))
+        {
+            <div class="col-12 col-md-4 col-lg-3 p-0" @item.VisibleSuscripcion>
+                <div class="cont-card">
+                    <a href="/Paciente/Agendar?tipo=suscripcion&IdclienteVC=@item.IdEmpresa">
+                        <div class="card card-plan">
+                            <div class="costo"></div>
+                            <div class="card-body">
+                                <img src="@(item.ImgSuscripcion+@item.IdEmpresa+".svg")" alt="">
+                                <span class="leyenda-card-home d-md-none fuente-accesible">
+                                    @item.TextoSuscripcion
+                                    <small class="d-block" style="text-transform: none; font-size: 90%">@item.SubTextoSuscripcion</small>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                    <h1 class="fuente-accesible">
+                        @item.TextoSuscripcion
+                        <small class="d-block" style="text-transform: none; font-size: 90%">@item.SubTextoSuscripcion</small>
+                    </h1>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-3 p-0" @item.VisibleSuscripcion>
+                <div class="cont-card">
+                    <a class="btnAtencionDirectaGeneral" data-id="@item.IdEmpresa" id="">
+                        <div class="card card-plan">
+                            <div class="costo"></div>
+                            <div class="card-body">
+                                <img src="@(item.ImgSuscripcion+"atencion-inmediata.svg")" alt="">
+                                <span class="leyenda-card-home d-md-none fuente-accesible">
+                                    @item.TextoSuscripcion
+                                    <small class="d-block" style="text-transform: none; font-size: 90%">Medicina General</small>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                    <h1 class="fuente-accesible">
+                        Medicina General
+                        <small class="d-block" style="text-transform: none; font-size: 90%"></small>
+                    </h1>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-3 p-0" @item.VisibleSuscripcion>
+                <div class="cont-card">
+                    <a href="/Paciente/Agendar?tipo=lifestyle&IdclienteVC=@item.IdEmpresa">
+                        <div class="card">
+                            <div class="card-body">
+                                <img src="~/img/vidacamara/home/wellness-vet.svg" alt="">
+                                <span class="leyenda-card-home d-md-none fuente-accesible">
+                                    LIFESTYLE & WELLNESS
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                    <h1 class="fuente-accesible">
+                        LIFESTYLE & WELLNESS
+                    </h1>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-12 col-md-4 col-lg-3 p-0" @item.VisibleSuscripcion>
+                <div class="cont-card">
+                    @if (@item.IsEmpresa == false)
+                    {
+                        <a href="@item.ActionUrl">
+                            <div class="card card-plan">
+                                <div class="costo"></div>
+                                <div class="card-body">
+                                    <img src="@(item.ImgSuscripcion+@item.IdEmpresa+".svg")" alt="">
+                                    <span class="leyenda-card-home d-md-none fuente-accesible">
+                                        @item.TextoSuscripcion
+                                        <small class="d-block" style="text-transform: none; font-size: 90%">@item.SubTextoSuscripcion</small>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="/Paciente/Agendar?tipo=suscripcion&IdclienteVC=@item.IdEmpresa">
+                            <div class="card card-plan">
+                                <div class="costo"></div>
+                                <div class="card-body">
+                                    <img src="@(item.ImgSuscripcion+@item.IdEmpresa+".svg")" alt="">
+                                    <span class="leyenda-card-home d-md-none fuente-accesible">
+                                        @item.TextoSuscripcion
+                                        <small class="d-block" style="text-transform: none; font-size: 90%">@item.SubTextoSuscripcion</small>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    }
+
+                    <h1 class="fuente-accesible">
+                        @item.TextoSuscripcion
+                        <small class="d-block" style="text-transform: none; font-size: 90%">@item.SubTextoSuscripcion</small>
+                    </h1>
+                </div>
+            </div>
+        }
+
+    }
+
+}
+
+</div>
+
+</div>
+
+</div>
+</div>
+<!--INICIO MODAL ACTUALIZACION DE USUARIO-->
+<div class="modal modal-paciente fade" id="modalActualizacionPaciente" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fal fa-user"></i>
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Actualización Usuario
+                    <small>Campo requerido*</small>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <div class="form-group">
+                    <label for="Identificador" class="form-label">Identificador <span style="color:red">*</span></label>
+                    <input class="form-control" type="text" maxlength="12" required="required" id="Identificador" name="Identificador" />
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Nombres <span style="color: red">*</span></label>
+                    <input class="form-control" type="text" maxlength="50" required="required" id="Nombre" name="Nombre" autocomplete="off" value="@ViewBag.name"/>
+                </div>
+                <div class="form-group">
+                    <label for="ApellidoPaterno" class="form-label">Apellido paterno <span style="color: red">*</span></label>
+                    <input class="form-control" type="text" maxlength="50" required="required" id="ApellidoPaterno" name="ApellidoPaterno"/>
+                </div>
+                <div class="form-group">
+                    <label for="ApellidoMaterno" class="form-label">Apellido materno</label>
+                    <input class="form-control" type="text" maxlength="50" required="required" id="ApellidoMaterno" name="ApellidoMaterno"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="Correo" class="form-label">Correo <span style="color: red">*</span></label>
+                    <input class="form-control" type="email" maxlength="60" required="required" id="Correo" name="Correo" value="@ViewBag.userMail" disabled/>
+                </div>
+
+                <div class="form-group">
+                    <label for="Telefono" class="form-label">Telefono <span style="color: red">*</span></label>
+                    <input class="form-control" type="text" maxlength="60" required="required" id="Telefono" name="Telefono"/>
+                    <input hidden name="uidFirebase" value="@ViewBag.uidFirebase">
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-primary" id="btnActualizar" data-dismiss="modal">Actualizar Información</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--FIN MODAL ACTUALIZACION DE USUARIO-->
+<!--INICIO MODAL LOGIN USUARIO EXISTENTE-->
+<div class="modal modal-paciente fade" id="modalLogin" data-backdrop="static" name="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-login">
+        <div class="modal-content">
+            <form class="kt-form" asp-controller="Account" asp-action="GuestLogin" method="post" role="form">
+                <div class="modal-header">
+                    <i class="fal fa-user"></i>
+                    <h5 class="modal-title" align="center">
+                        Ingreso de Usuario
+                        <small>login</small>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <div class="form-group">
+                        <label class="d-block ms-label fuente-accesible" id="labelIdentificador">Ingresa tu E-MAIL o RUT</label>
+                        <input class="form-control" type="text" id="kt_firebase" placeholder="111111111 o tucorreo@gmail.com" autocomplete="off" name="Username">
+                        <input class="form-control" type="hidden" id="JsonData" name="JsonData">
+                        <input class="form-control" type="hidden" name="UrlAgendar" value="">
+                    </div>
+                    <input hidden name="rol" value="@Roles.Paciente">
+                    <input hidden name="returnUrl" value="">
+                    <div class="form-group">
+                        <label class="d-block ms-label fuente-accesible">Clave</label>
+                        <input type="password" class="form-control" required="required" name="Password">
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-end">
+                    <button type="button" class="btn btn-primary" id="kt_login_signin_submit">Ingresar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<!--FIN MODAL LOGIN USUARIO EXISTENTE-->
+
+
+<!--Modal Medicamentos-->
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/bigdatacloudapi/js-api-client@latest/bigdatacloud_api_client.min.js" type="text/javascript"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/bigdatacloudapi/js-client-ip-client@latest/bigdatacloud_client_ip.min.js" type="text/javascript"></script>
+<!--Modal Wellness-->
+
+
+
+
+<!--Modal Servicios-->
+
+
+@section Scripts {
+    <script src="~/signal/signalr.min.js"></script>
+    <script src="~/js/accesible.js"></script>
+    
+    <script type="module">
+
+        import { init } from '../../js/Paciente/home.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+        var uid = @ViewBag.uid;
+            window.uid = uid;
+            var visibleVet = "@ViewBag.visibleVet";
+            window.visibleVet = visibleVet;
+        var idCliente = @ViewBag.idCliente;
+            window.idCliente = idCliente;
+            var visibleNotice = "@ViewBag.VisibleNotice";
+            window.visibleNotice = visibleNotice;
+
+        
+        var isNewUserFirebase = "@ViewBag.isNewUserFirebase";
+        window.isNewUserFirebase = isNewUserFirebase;
+
+        var isNewUser = "@ViewBag.isNewUser";
+        window.isNewUser = isNewUser;
+        })()
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+   
+}
+
+<!--end: Modal Orientación-->

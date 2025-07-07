@@ -1,0 +1,146 @@
+﻿@model WebMVC.Models.AtencionViewModel
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Paciente";
+    Layout = "_LayoutHome";
+
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+
+<div class="cont-home">
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+        <!--Nuevo Home-->
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col">
+                    <div class="top-banner justify-content-between">
+                        <h1 class="legend order-2 order-md-1">BCF Consulta Médica Presencial</h1>
+                        <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                
+                    <div class="col-6 col-md-4 col-lg-3 p-0">
+                    <a href="/Presencial/ServicioConsultas?servicio=medicina-general">
+                        <div class="cont-card">
+                            
+                                <div class="card card-plan">
+                                    <div class="card-body">
+                                        <img src="~/img/abc/bcf-medica-presencial/svg/consulta-medicina-general.svg" alt="">
+                                    </div>
+                                </div>
+                            <h1>
+                                BCF MEDICINA GENERAL O FAMILIAR
+                            </h1>
+                        </div>
+                    </a>
+
+                    </div>
+
+
+            
+                <div class="col-6 col-md-4 col-lg-3 p-0">
+                    <a href="/Presencial/ServicioConsultas?servicio=traumatologia">
+
+                    <div class="cont-card">
+                            <div class="card card-plan">
+                                <div class="card-body">
+                                    <img src="~/img/abc/bcf-medica-presencial/svg/consulta-traumatologia.svg" alt="">
+                                </div>
+                            </div>
+                        <h1>
+                            BCF TRAUMATOLOGÍA Y ORTOPEDIA
+                        </h1>
+                    </div>
+                    </a>
+
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 p-0">
+                    <a href="/Presencial/ServicioConsultas?servicio=pediatria">
+
+                    <div class="cont-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="~/img/abc/bcf-medica-presencial/svg/consulta-pediatria.svg" alt="">
+                                </div>
+                            </div>
+                        <h1>
+                            BCF PEDIATRÍA O MEDICINA GENERAL INFANTIL
+                        </h1>
+                    </div>
+                    </a>
+
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 p-0">
+                    <a href="/Presencial/ServicioConsultas?servicio=ginecologia">
+
+                    <div class="cont-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="~/img/abc/bcf-medica-presencial/svg/consulta-ginecologia.svg" alt="">
+                                </div>
+                            </div>
+                        <h1>
+                            BCF GINECOLOGÍA Y OBSTETRICIA
+                        </h1>
+                    </div>
+                    </a>
+
+                </div>
+                <div class="col-6 col-md-4 col-lg-3 p-0">
+                    <a href="/Presencial/ServicioConsultas?servicio=urologia">
+
+                    <div class="cont-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="~/img/abc/bcf-medica-presencial/svg/consulta-urologia.svg" alt="">
+                                </div>
+                            </div>
+                        <h1>
+                            BCF UROLOGÍA
+                        </h1>
+                    </div>
+                    </a>
+
+                </div>
+
+                @if (!@ViewBag.HostURL.ToString().Contains("bcf-corona"))
+                {
+                    <div class="col-6 col-md-4 col-lg-3 p-0">
+                        <a href="/Presencial/ServicioConsultas?servicio=oftalmologia">
+
+                            <div class="cont-card">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <img src="~/img/abc/bcf-medica-presencial/svg/consulta-oftalmologia.svg" alt="">
+                                    </div>
+                                </div>
+                                <h1>
+                                    BCF OFTALMOLOGÍA
+                                </h1>
+                            </div>
+                        </a>
+
+                    </div>
+                }
+               
+            </div>
+        </div>
+    </div>
+</div>
+                @section Scripts {
+
+                    <script src="~/signal/signalr.min.js"></script>
+         }
+
+                <!--end: Modal Orientación-->

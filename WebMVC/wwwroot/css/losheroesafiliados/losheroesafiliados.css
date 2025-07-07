@@ -1,0 +1,499 @@
+/*Losheroesafiliados*/
+
+:root {
+    --primary: #FD5000;
+    --secondary: #005CAA;
+    --tertiary: #005CAA;
+}
+
+
+
+
+
+/*Login*/
+
+@media (max-width: 991.98px) {
+
+    body {
+        background-color: #f0f0f0 !important;
+        padding-top: 0;
+        
+    }
+
+    .kt-login__forgot, .kt-login__signin {
+        min-height: 300px;
+    }
+
+    .cont-logo-mobile {
+        /* height: 150px;*/
+        display: flex !important;
+        justify-content: center;
+    }
+
+    .container-login {
+        border-top-left-radius: 2rem;
+        border-top-right-radius: 2rem;
+        min-height: calc(100vh - 150px);
+        background-color: #f9f9fc;
+    }
+
+    .logotipo {
+        max-width: 300px;
+        height: auto;
+        margin-top: 3.5rem;
+    }
+
+        .logotipo img {
+            width: 100%;
+            max-width: 300px;
+        }
+
+    .logo-convenios img {
+        width: 100px;
+    }
+
+
+    .kt-login.kt-login--v3 .kt-login__wrapper {
+        max-width: 300px;
+        margin-top: 2rem;
+    }
+
+        .kt-login.kt-login--v3
+        .kt-login__wrapper
+        .kt-login__container
+        .kt-login__head
+        .kt-login__title {
+            font-weight: 300;
+            font-size: 24px;
+            margin: 0;
+            font-weight: 700 !important;
+            width: auto;
+        }
+}
+
+
+
+
+.logotipo-desktop {
+    background-image: url(../../img/Losheroesafiliados/logotipo.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    height:300px;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    font-size: 24px;
+    color: #3BC1CD;
+    font-weight: 300 !important;
+    margin-top: 0px;
+    text-align: left;
+   
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/Losheroesafiliados/logotipo.svg);
+    margin-bottom: 2rem;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+hr {
+    border: none;
+    height: 2px;
+    background-color: #ccc; /* Cambia el color de la barra */
+    margin: 20px 0; /* Espacio alrededor de la barra */
+}
+#kt_login_signin_submit {
+    padding: 10px 20px; /* Espaciado interno del botón */
+    border: 2px;
+    border-radius: 1px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+    transition: background-color 0.3s, color 0.3s; /* Efecto de transición */
+}
+
+    /* Efecto al pasar el mouse */
+    #kt_login_signin_submit:hover {
+        background-color: #0056b3; /* Cambio de color de fondo al pasar el mouse */
+        color: white; /* Color del texto al pasar el mouse */
+    }
+
+
+/*.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}*/
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+        color: var(--secondary);
+        font-weight: 500 !important;
+        font-size: 26px;
+    }
+
+.form-group .ms-label {
+    color: var(--tertiary) !important;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+    .btn-primary:hover {
+        background-color: var(--secondary);
+        border-color: var(--secondary);
+    }
+
+.btn-guardar-info, .btn-success {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+    .btn-guardar-info:hover, .btn-success:hover {
+        background-color: var(--secondary);
+        border-color: var(--secondary);
+        color: var(--primary)
+    }
+
+.btn.btn-outline-secondary {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--primary)
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+}
+
+#reporte:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+#hs-g .cont-icon {
+    background-color: var(--primary);
+}
+
+#hs-g:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+.logo-convenios {
+    justify-content: space-between;
+    margin-top: 3rem;
+}
+
+/* Im�genes Login */
+.img1 {
+    background-image: url(../../img/Losheroesafiliados/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/Losheroesafiliados/login/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/Losheroesafiliados/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/Losheroesafiliados/login/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/Losheroesafiliados/login/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/Losheroesafiliados/login/960x978.jpg);
+}
+
+.body-home {
+    background-image: none;
+    background-color: #FFF !important;
+}
+
+    .body-home .top-banner .legend {
+        color: var(--secondary)
+    }
+
+    .body-home .menu-top .item-menu-top i, .body-home .menu-top .item-menu-top .label-menu {
+        color: var(--secondary)
+    }
+
+    .body-home .cont-card .card {
+        background-color: var(--secondary);
+    }
+
+    .body-home .footer-home {
+        color: var(--secondary);
+    }
+
+        .body-home .footer-home .terminos a {
+            color: var(--secondary);
+        }
+
+    .body-home .cont-card h1 {
+        font-size: 1rem;
+        text-align: center;
+        text-transform: uppercase;
+        margin: 1rem auto 2rem;
+        color: var(--secondary);
+        max-width: 170px;
+    }
+
+.leyenda-card-home {
+    color: var(--primary);
+}
+
+
+.menu-top .item-menu-top i,
+.menu-top .label-menu {
+    color: var(--primary);
+}
+
+.convenioChile, .divider-abodoc, .divider-medismart {
+    display: flex;
+    justify-content: space-around;
+}
+
+.menu-top .item-menu-top:hover i, .menu-top .item-menu-top:hover .label-menu {
+    color: var(--secondary)
+}
+
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--primary)
+}
+
+.kt-menu__item:hover a, .kt-menu__item:hover i {
+    color: var(--secondary) !important;
+}
+
+.accesible-btn button {
+    color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+    .accesible-btn button:hover {
+        background-color: var(--secondary);
+        border-color: var(--secondary)
+    }
+
+.busqueda-profesionales {
+    border: 2px solid var(--secondary);
+}
+
+    .busqueda-profesionales i {
+        color: var(--secondary)
+    }
+
+    .busqueda-profesionales .btn-outline-primary {
+        color: var(--secondary)
+    }
+
+.caja-especialidad.active {
+    background-color: var(--primary);
+}
+
+.caja-especialidad {
+    background-color: var(--secondary);
+}
+
+.inner-especialidad strong {
+    color: var(--primary)
+}
+
+.step.active .step-icon {
+    background-color: var(--primary);
+}
+
+.stepper {
+    background-image: url(../../img/vidasecurity/fondo-banner.svg);
+}
+
+    .stepper .flecha {
+        color: var(--primary)
+    }
+
+    .stepper img {
+        border-color: var(--primary)
+    }
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: var(--tertiary)
+}
+
+.caja-profesional .fecha-atencion {
+    color: var(--secondary)
+}
+
+.front-fecha-atencion {
+    border: 1px solid rgba(35,33, 114, .3)
+}
+
+    .front-fecha-atencion strong:before {
+        color: var(--secondary);
+        font-weight: 900;
+    }
+
+.inner-especialidad strong {
+    color: #FFF;
+}
+
+.especialidad-profesional {
+    color: var(--tertiary)
+}
+
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+
+.top-banner {
+    background-image: url(../../img/vidasecurity/fondo-banner.svg);
+}
+
+    .top-banner img {
+        border-color: rgba(237, 110, 0, .3)
+    }
+
+    .top-banner .legend {
+        color: var(--secondary)
+    }
+
+.text-warning {
+    color: var(--primary) !important;
+}
+
+.hotspot-icon {
+    text-shadow: 1px 1px 2px #000000;
+    font-size: 1.2rem;
+}
+/*Sala espera*/
+
+.alerta-sala {
+    background-color: var(--secondary);
+}
+
+.hotspot-icon .cont-icon {
+    background-color: var(--primary)
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: var(--secondary)
+}
+
+.cont-icon.hotspot-redes {
+    background-color: #000;
+}
+
+
+.toolbar-option {
+    color: var(--primary)
+}
+
+    .toolbar-option.active {
+        color: var(--secondary)
+    }
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--primary)
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--secondary)
+}
+
+.cont-btn-panel .btn-atencion, .cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+    .cont-btn-panel .btn-atencion:hover, .cont-btn-vc .btn-atencion:hover {
+        background-color: rgba(237, 110, 0, 0.1);
+        color: var(--primary);
+    }
+
+.hotspot-icon:hover {
+    color: #FFF;
+}
+
+@media (max-width: 668px) {
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+}
+
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/Losheroesafiliados/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/Losheroesafiliados/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/Losheroesafiliados/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/Losheroesafiliados/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/Losheroesafiliados/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/Losheroesafiliados/login/548x850.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/Losheroesafiliados/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/Losheroesafiliados/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/Losheroesafiliados/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/Losheroesafiliados/login/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/Losheroesafiliados/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/Losheroesafiliados/login/960x978.jpg);
+    }
+}
+
+
+
+}
+
+

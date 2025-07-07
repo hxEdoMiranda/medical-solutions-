@@ -1,0 +1,162 @@
+/*Prehome*/
+
+
+
+.prehome__title {
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 42px;
+    font-weight: 900;
+    color: #FFF;
+}
+
+.prehome {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 6rem;
+}
+
+.prehome__card {
+    border-radius: 28px;
+    background-color: #fff;
+    padding: 2rem 0;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.prehome__plan {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    border-right: 1px solid #DDD;
+    padding: 0 .5rem;
+    flex-shrink: 1;
+    width: 100%;
+    max-width: 320px;
+    flex: 1;
+}
+
+    .prehome__plan h2 {
+        text-align: center;
+        font-weight: 700;
+        width: 70%;
+        margin: 0 auto;
+        /*margin-top: 3rem;*/
+    }
+
+    .prehome__plan ul {
+        list-style-image: url('../../img/prehome/bullet.svg');
+        padding-left: 30px;
+        padding-right: 30px;
+        margin-top: 32px;
+        min-height: 250px;
+        max-height: 300px;
+        overflow: hidden;
+        overflow-y: auto;
+        width: 100%;
+    }
+
+    .prehome__plan li {
+        margin-bottom: 16px;
+        font-size: 16px;
+    }
+
+.prehome__plans {
+    display: flex;
+    justify-content: space-evenly;
+    /*gap: 1rem;
+    height: 350px;*/
+    height: 400px;
+}
+
+.prehome__plan .btn {
+    /*max-width: 108px;*/
+    margin: auto auto 0;
+}
+
+.prehome__plan:last-child {
+    border-right: none;
+}
+
+
+/*Scrollbar*/
+
+/*Scroll columna paciente*/
+
+/* Track */
+
+.prehome__plan ul::-webkit-scrollbar-track,
+.prehome__plan ul::-webkit-scrollbar-track {
+    background: rgba(80, 80, 80, 0.2);
+}
+
+
+/* Handle */
+.prehome__plan ul::-webkit-scrollbar-thumb,
+.prehome__plan ul::-webkit-scrollbar-thumb {
+    background: #67bce1;
+}
+
+    /* Handle on hover */
+    .prehome__plan ul::-webkit-scrollbar-thumb:hover,
+    .prehome__plan ul::-webkit-scrollbar-thumb:hover {
+        background: #67bce1;
+    }
+
+.prehome.single-plan {
+    max-width: 600px;
+}
+
+
+.prehome.double-plan {
+    max-width: 800px;
+}
+
+.prehome.multiple-plan {
+    max-width: 1200px;
+}
+
+
+@media (max-width: 991.98px) {
+
+    .prehome__title {
+        font-size: 24px;
+    }
+    .prehome__card {
+        margin: auto;
+        width: 90%;
+    }
+
+    .prehome__plan {
+        border-right: none;
+        border-bottom: 1px solid #DDD;
+        padding-top: 0;
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+    }
+
+        .prehome__plan ul {
+            height: auto;
+        }
+
+        .prehome__plan:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .prehome__plan li {
+            font-size: 16px;
+        }
+
+
+        .prehome__plans {
+            flex-direction: column;
+            height: auto !important;
+            max-height: none;
+        }
+
+
+}
+
+
+

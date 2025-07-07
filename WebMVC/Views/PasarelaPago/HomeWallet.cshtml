@@ -1,0 +1,423 @@
+﻿@using Microsoft.Extensions.Configuration
+@model WebMVC.Models.DatosCardMercadopPago
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Configuracion";
+    Layout = "_LayoutPaciente";
+    ViewData["idEntidad"] = ViewBag.uid;
+    ViewData["uid"] = int.Parse(ViewBag.uid);
+    ViewData["view"] = Roles.Paciente;
+}
+<script type="text/javascript">
+    (function () {
+        var model = @Html.Raw(Json.Serialize(Model));
+        window.modelVista = model;
+    })()
+</script>
+
+@section Styles  {
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/css/PasarelaPago/pasarela.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+
+}
+
+
+<div class="cont-home wallet_box">
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+        <!--Wallet-->
+        <div class="box_wallet">
+            <!--S1-->
+            <div class="w01_box">
+                <div class="wallet">
+                    <h2>Mi billetera</h2>
+                    <p>Registra un método de pago para optimizar tus pagos en agenda on demand, medicamentos, exámenes, suscripciones y planes.</p>
+                </div>
+                @*<div class="transactions">
+                <h2>Mis Transacciones</h2>
+                </div>*@
+            </div>
+            <!--S1-->
+            <!--S2-->
+            <div class="w02_box">
+                <!--addcards-->
+                <div class="credit_debitcards">
+                    <h2>Tarjetas de crédito o débito</h2>
+                    <p>
+                        Medismart live acepta todos los métodos de pago procesados por Mercado pago.<br /> <b>Inscribe tu tarjeta</b> y reserva tus consultas médicas de manera más ágil.
+                    </p>
+                    <div class="cards_poweredby">
+                        <p>Impulsado por</p>
+                    </div>
+                </div>
+                <!--addcards-->
+                <div id="DivListCard">
+                    @foreach (var item in Model.tarjetas)
+                    {
+                        var nomBtn = "btn" + @item.CardId;
+                        var nomBtnAutorizo = "btnAutorizo" + @item.CardId;
+                        var numberCardShow = "●●●●●●●●●●●●" + item.LastFourDigit;
+                        <div class="cards_boxdelete">
+                            <div class="addcards_box">
+                                <img class="credit_card-chip" src="~/img/PasarelaPago/credit-card-chip.svg">
+                                <label style="color: #FFF !important;">Número de tarjeta</label>
+                                <input type="text" class="input cardnumber lblCard" value=@numberCardShow disabled="disabled">
+                                <div class="cardFechaCvv">
+                                    <div style="width: 50%;">
+                                        <label style="color: #FFF !important">Fecha de expiración</label>
+                                        <input type="text" class="input cardnumber lblCard" value=@item.ExpirationDate disabled="disabled">
+                                    </div>
+                                    <div>
+                                        <label style="color: #FFF !important">Código de seguridad CVV</label>
+                                        <input type="text" class="input cardnumber lblCard" value="●●●" disabled="disabled">
+                                    </div>
+                                </div>
+
+                                <div id="imageCard" style="display: flex;" class="image-Card">
+                                    <label style="width: 80%;margin-top: 2%; color: #FFF !important;">@item.CardHolderName</label>
+                                    @if (item.FranchiseCard.ToLower().Contains("master"))
+                                    {
+                                        <img src="~/img/PasarelaPago/MasterCard.png" class="logo-card">
+                                    }
+                                    else if (item.FranchiseCard.ToLower().Contains("visa"))
+                                    {
+                                        <img src="~/img/PasarelaPago/visa-logo1.svg" class="logo-card">
+                                    }
+                                    else if (item.FranchiseCard.ToLower().Contains("amex"))
+                                    {
+                                        <img src="~/img/PasarelaPago/American_Express_logo.svg" class="logo-card">
+                                        numberCardShow = "●●●●●●●●●●" + item.LastFourDigit;
+                                    }
+                                </div>
+                            </div>
+                            @*
+                        <div class="delete_card">
+                        <h3 style="text-align: right;">@item.CreditorDebit</h3>
+                        <h2>Vencimiento @item.ExpirationDate</h2>*@
+                            <!--Autorización-->
+                            @if (item.tarjetaCarga == 1 && item.esCarga == 1)
+                            {
+                                <div class="delete_card">
+                                    <h3 style="text-align: right;">@item.CreditorDebit</h3>
+                                    <h2>Vencimiento @item.ExpirationDate</h2>
+                                    <div class="delete_items">
+                                        <div class="checkbox_delete" hidden>
+                                            <label><input type="checkbox" name="chkPredetermina" checked=@item.default_card id=@item.CardId /> Predeterminada</label>
+                                        </div>
+                                        <div hidden class="checkbox_text">
+                                            <label><input type="checkbox" checked=@item.shared_card_load id=@nomBtnAutorizo /> Autorizo compartir la tarjeta con mis cargas/beneficiarios</label>
+                                        </div>
+                                        <div hidden class="delete_button"> <button name="btnElimina" id=@nomBtn>Quitar</button></div>
+                                    </div>
+                                </div>
+                            }
+                            else if (item.tarjetaCarga != 1 && item.esCarga == 1)
+                            {
+                                <div class="delete_card">
+                                    <h3 style="text-align: right;">@item.CreditorDebit</h3>
+                                    <h2>Vencimiento @item.ExpirationDate</h2>
+                                    <div class="delete_items">
+                                        <div class="checkbox_delete">
+                                            <label><input type="checkbox" name="chkPredetermina" checked=@item.default_card id=@item.CardId /> Predeterminada</label>
+                                        </div>
+                                        <div class="delete_button"> <button name="btnElimina" id=@nomBtn>Quitar</button></div>
+                                    </div>
+                                </div>
+                            }
+                            else 
+                            {
+                            <div class="delete_card">
+                                <h3 style="text-align: right;">@item.CreditorDebit</h3>
+                                <h2>Vencimiento @item.ExpirationDate</h2>
+                                <div class="delete_items">
+                                    <div class="checkbox_delete">
+                                        <label><input type="checkbox" name="chkPredetermina" checked=@item.default_card id=@item.CardId /> Predeterminada</label>
+                                    </div>
+                                    <div class="checkbox_text">
+                                        <label><input type="checkbox" checked=@item.shared_card_load id=@nomBtnAutorizo /> Autorizo compartir la tarjeta con mis cargas/beneficiarios</label>
+                                    </div>
+                                    <div class="delete_button"> <button name="btnElimina" id=@nomBtn>Quitar</button></div>
+                                </div>
+                            </div>
+                            }
+                            <!--Autorización-->
+                            @*</div>*@
+                        </div>
+                        <input type="hidden" id="CustomerId" value=@item.CustomerId />
+                    }
+                </div>
+                <!--addcards CTA-->
+                <div class="credit_cta" id="DivAddNewCard">
+                    <img src="~/img/pasarelapago/icon_add.svg">
+                    <div>
+                        <button class="btn btn-primary btn-block btn-sm" id="AddNewCard">Agregar tarjeta</button>
+                    </div>
+                </div>
+                <!--addcards CTA-->
+                <!--cards-->
+                <div class="box_addcards" id="DivAddCard" style="display: none;" >
+                    <h2>Agrega los datos de la tarjeta</h2>
+                    <div class="tarjetas_ok"> <img src="~/img/pasarelapago/tarjetas_ok.png" /></div>
+
+                    <div class="credit_ctabox">
+                        <div class="item01">
+                            <form id="form-checkout">
+                                <!--Número de tarjeta-->
+                                <h3>Número de tarjeta</h3>
+                                <div id="form-checkout__cardNumber"></div>
+                                <!--Número de tarjeta-->
+
+                                <div class="date_code">
+                                    <!--Fecha caducidad-->
+                                    <div class="box_date">
+                                        <h3>Fecha de caducidad (MM/AA)</h3>
+                                        <div id="form-checkout__expirationDate"></div>
+                                    </div>
+                                    <!--Fecha caducidad-->
+                                    <!--Codigoseguridad-->
+                                    <div class="box_code">
+                                        <h3>Código de seguridad (CVV)  <i class="fal fa-info-circle d-none"></i> </h3>
+                                        <div id="form-checkout__securityCode"></div>
+                                    </div>
+                                    <!--Codigoseguridad-->
+                                </div>
+                                <!--Tipo Documento tarjeta-->
+                                @if (ViewBag.codigoTelefono != "MX")
+                                {
+                                    <h3>Tipo de identificación títular</h3>
+                                    <select id="form-checkout__identificationType"></select>
+                                    <!--Tipo Documento tarjeta-->
+                                    <!--Númerodedocumento-->
+                                    <h3>Número de documento</h3>
+                                    <input type="text" id="form-checkout__identificationNumber" value=@Model.identificador />
+                                    <!--Númerodedocumento-->
+                                }
+                                <!--Titular tarjeta-->
+                                <h3>Titular de la tarjeta</h3>
+                                <input type="text" id="form-checkout__cardholderName" value=@Model.nombreUser />
+                                <!--Titular tarjeta-->
+                                <!--E-mail-->
+                                <h3>E-mail</h3>
+                                <input type="email" id="form-checkout__cardholderEmail" value=@Model.email />
+                                <!--E-mail-->
+                                <!--Autorización-->
+                                @{
+                                    var esCarga = 0;
+                                    foreach (var item in Model.tarjetas)
+                                    {
+                                        if (item.tarjetaCarga == 1)
+                                        {
+                                            esCarga = 1;
+                                        }
+                                    }
+                                    if (esCarga != 1)
+                                    {
+                                        <div class="checkbox_text">
+                                            <label><input id="sharedCard" type="checkbox" /> Autorizo compartir la tarjeta con mis cargas/beneficiarios</label>
+                                        </div>
+                                    }
+                                }
+
+
+                                <!--Autorización-->
+
+                                <div class="save_dates">
+                                    <a href="javascript:void(0);" id="manejoDatosMS" class="d-none d-lg-inline-block kt-widget4__title">Tus datos están seguros con nosotros</a>
+                                </div>
+                                <select id="form-checkout__issuer" hidden="hidden"></select>
+                                <select id="form-checkout__installments" hidden="hidden"></select>
+
+                                <!--Save-->
+                                <div class="save_cta">
+                                    <button type="submit" class="btn btn-primary" id="form-checkout__submit">Guardar tarjeta</button>
+                                </div>
+                            </form>
+                            <!--CamposOcultos-->
+                            <input type="hidden" id="iduser" value=@Model.idUser />
+                            <!--E-mail-->
+                        </div>
+                        <!--addedcards-->
+                        @*<div class="cards_addimage">
+                        <!--addcards-->
+                        <div class="addcards_box card-preview">
+                        <img src="~/img/PasarelaPago/Visa.png" alt="" />
+                        <label>Número de tarjeta</label>
+                        <input id="numberCard" type="text" class="input cardnumber" placeholder="**** **** **** 1234" disabled="disabled">
+                        <label class="d-none">Fecha Vencimiento (MM/YY)</label>
+                        <input id="dateExp" class="input name d-none" placeholder="00/00" disabled="disabled">
+                        <label class="toleft d-none">CCV</label>
+                        <input id="ccv" class="input toleft ccv d-none" placeholder="***">
+                        <label class="ubicacion-card">Juan San marino</label>
+                        </div>
+                        <!--addcards-->
+                        </div>*@
+                    </div>
+                    <!--Save-->
+                </div>
+                <!--cards-->
+                <!--S2-->
+            </div>
+            <!--Wallet-->
+        </div>
+        <!--Modal Seguridad-->
+        <div class="modal fade" id="modalGeneral" tabindex="-1" role="dialog" aria-labelledby="modal-orientacion" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm modal-seguridad" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1>Extremas medidas de seguridad</h1>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="fal fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="modalBodyGeneral">
+                        <p>
+                            Nos tomamos muy en serio a nuestros miembros en lo que respecta a la seguridad y la integridad de los datos.
+                            El estándar de seguridad de datos de la industria de tarjetas de pago (PCI DSS) es un estándar de seguridad de
+                            la información patentado para organizaciones que manejan tarjetas de crédito de marca de los principales esquemas de tarjetas,
+                            incluidos Visa, MasterCard, American Express, Discover y JCB.
+                        </p>
+                        <p>
+                            Las medidas de seguridad en torno a los servidores físicos reales que contienen datos de medismart.live incluyen 32 generadores de
+                            emergencia alimentados con diésel con una capacidad de 2250 kW para redundancia N+2, 200 000 galones de combustible en el lugar,
+                            sistemas redundantes de supresión y detección de incendios, seguridad armada alrededor del reloj.
+                            Tenemos administración y vigilancia en el lugar las 24 horas del día, los 7 días de la semana, los 365 días del año.
+                        </p>
+                        <p>
+                            Para garantizar tiempos de actividad extremos y un servicio ininterrumpido, contamos con monitoreo continuo del
+                            estado del servidor las 24 horas del día, los 7 días de la semana, los 365 días del año.
+                        </p>
+                        <p>
+                            No almacenamos contraseñas en absoluto, pero usamos el algoritmo criptográfico Bcrypt para cifrar contraseñas
+                            unidireccionales, de modo que solo almacenamos los llamados "hashes" de la contraseña. Eso nos permite saber si
+                            está ingresando la contraseña correcta o incorrecta, pero sin almacenar la contraseña real en nuestros servidores.
+                            Copias de seguridad encriptadas e incrementales fuera del servidor para una seguridad completa de los datos.
+                        </p>
+                        <p>
+                            Tráfico encriptado SSL entre su navegador y la plataforma Medismart.live. Este cifrado hace que sea imposible que un ISP,
+                            un gobierno o un pirata informático comprenda los datos que se transmiten.
+                        </p>
+                        <p>
+                            Riguroso sistema de permisos para el personal de Medismart.live. Incluso nuestro propio personal no puede acceder a ciertos datos
+                            a menos que tenga un permiso explícito.
+                            Replicación de servidores y centros de datos dispersos geográficamente redundantes en dos continentes geopolíticamente
+                            estables en caso de ataques terroristas,
+                            explosiones nucleares, guerras o fuerza mayor.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal" class="btn btn-success btn-guardar-info">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal Seguridad-->
+    <!--Modal Tarjeta Agregada-->
+    <div class="modal fade" id="modalTarjetaAgregada" tabindex="-1" role="dialog" aria-labelledby="modal-orientacion" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm modal-tarjeta-agregada" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="fal fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalBodyTarjetaAgregada">
+                    <h1> <img src="~/img/PasarelaPago/icon_eliminar-tarjeta.svg" alt="" /> Tarjeta agregada correctamente</h1>
+                    <img src="~/img/PasarelaPago/icon_check.svg" alt="" class="" />
+
+                    <button type="button" id="btnTarjetaAgregada" class="btn btn-success">Perfecto</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal Tarjeta Agregada-->
+<!--Modal Tarjeta Agregada-->
+<!--
+        <div class="modal fade" data-backdrop="static" id="modalConfirmarDeleteCard1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false">
+            <div class="modal-dialog modal-confirmarDeleteCard" role="document">
+                <div class="modal-content confirmarDeletete">
+                    <div class="modal-body" id="modalBodyconfirmarDeletete1">
+                        <div class="form-group row">
+                            <div>
+                                <br />
+                                <h3 id="titleModalConfirmarDeletete" style="text-align:left; margin-right: 240px; margin-top: 10px; font-size: 21px;">
+                                    <i class="fal fa-exclamation-triangle fa-2x" style="float:left; margin-right:20px; margin-left:60px;"></i>
+                                    La tarjeta será eliminada de su wallet, ¿Desea Continuar?
+                                </h3>
+                                <br />
+                                <div class="div divBtnAsistencia">
+                                    <button id="btnAceptarDelete" class="btn" type="button"><span style="display: inline-block; text-align:center; color:#0282A5">Si</span></button>
+                                </div>
+                                <div class="div divBtnAsistencia">
+                                    <button id="btnCancelarDelete" class="btn btnCancelarAsistencia" type="button"><span style="display: inline-block; text-align:center; color:#0282A5">No</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        Modal Eliminar Tarjeta-->
+<!--Modal Eliminar Tarjeta-->
+<div class="modal fade" id="modalConfirmarDeleteCard" tabindex="-1" role="dialog" aria-labelledby="modal-orientacion" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm modal-seguridad modal-quitar-metodo" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="fal fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBodyconfirmarDeletete">
+                <h2>
+                    Quitar método de pago
+                </h2>
+                <img src="~/img/PasarelaPago/icon_eliminar-tarjeta.svg" alt="" class="" />
+                <h3>
+                    ¿Estas seguro de quitar este método de pago?
+                </h3>
+
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" id="btnCancelarDelete" class="btn btn-default ">Cancelar</button>
+                <button id="btnAceptarDelete" type="button" class="btn btn-danger btn-guardar-info">Quitar</button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--Modal Eliminar Tarjeta-->
+@section Scripts {
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    @*<script src="~/js/PasarelaPago/MercadoPago/v2.js"></script>*@
+    <script>
+
+    </script>
+    <script src="~/js/Usuario/config.js?9rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script type="module">
+        import { init } from '../../js/PasarelaPago/HomeWallet.js?rnd=@NumeroRandom.GetRandom()';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+
+            var uid = @ViewBag.uid;
+            var servicesUrlPago = '@ViewBag.servicesUrlPago';
+
+            window.uid = uid;
+            window.servicesUrlPago = servicesUrlPago;
+            var idCliente = '@ViewBag.idCliente';
+            window.idCliente = idCliente;
+            window.host = '@ViewBag.HostURL';
+            window.publicKey = '@ViewBag.publicKey';
+
+        })()
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    }
+

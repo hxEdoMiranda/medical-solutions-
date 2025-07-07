@@ -1,0 +1,1205 @@
+﻿@using Microsoft.Extensions.Configuration
+@using System.Globalization
+@model WebMVC.Models.AtencionViewModel
+@inject IConfiguration Configuration
+
+@{
+    ViewData["Title"] = "Configuracion";
+    Layout = "_LayoutPaciente";
+    var baseUrlServices = Configuration["ServicesUrl"];
+}
+
+@{
+    ViewData["idEntidad"] = ViewBag.uid;
+    ViewData["uid"] = int.Parse(ViewBag.uid);
+}
+
+@{
+    ViewData["view"] = Roles.Paciente;
+}
+
+@section Styles {
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/css/Mexico/mexico.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/css/sura/sura.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid configuracion-paciente">
+    @*
+    <!-- Spinner -->
+    <div class="d-flex justify-content-center bakg_loading">
+    <div class="spinner-border" role="status"><span class="sr-only">Un momento por favor...</span></div>
+    </div>
+    <!-- Spinner -->*@
+    <!--Begin::App-->
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+        <!--Begin:: App Aside Mobile Toggle-->
+        <button class="kt-app__aside-close" id="kt_user_profile_aside_close">
+            <i class="la la-close"></i>
+        </button>
+        <!--End:: App Aside Mobile Toggle-->
+        <!--End:: App Aside Mobile Toggle-->
+        <div class="ps-panel active-panel">
+            <h2 class="ps-panel-header">
+                <span class="ps-panel--title">Programa Paciente @Model.programaSalud.Nombre</span>
+                <img src="../../img/programa-salud/icono-paciente-cronico-c.svg">
+            </h2>
+
+            <div class="pcronico-tabs-general mb-2 mt-3">
+                <div class="pcronico-tabs">
+                    <div>
+                        <div class="pcronico-tab-link pcronico-active" onclick="openTab('tab1')">
+                            Resumen
+                            <span class="pcronico-tab-bar"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="pcronico-tab-link" onclick="openTab('tab2')">
+                            Seguimiento
+                            <span class="pcronico-tab-bar"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="panel__tabs tabcontent" id="tab1">
+
+                <div class="ps-panel-content">
+                    <div class="ps-panel-datos-paciente">
+                        <div class="ps-panel-datos-title">
+                            <div class="ciclo-cronico-title">
+                                <h2>PACIENTE</h2>
+                            </div>
+                            @Html.Hidden("uid", (object)ViewBag.uid)
+                            @Html.HiddenFor(m => m.Atencion.Id)
+                            <div class="user-box ps-panel-userbox">
+                                @*PRUEBA*@
+                                <div class="pcronico-contenedor-imagen-cliente">
+                                    @if (@Model.fichaPaciente.rutaAvatar == null)
+                                    {
+                                        <div class="foto-user">
+                                            <span class="rounded-circle iniciales">@Model.fichaPaciente.Iniciales</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+
+                                        <div class="pcronico-image-container foto-user mr-3">
+                                            <img src="@(baseUrlServices+Model.fichaPaciente.rutaAvatar)" alt="" />
+                                        </div>
+
+                                    }
+                                    <div class="pcronico-patologias-general">
+                                        <h4>
+                                            @if (Model.fichaPaciente.Edad == 0)
+                                            {
+                                                @Model.fichaPaciente.nombreCompleto
+                                            }
+                                            else
+                                            {
+                                                @Model.fichaPaciente.nombreCompleto @(", " + Model.fichaPaciente.Edad)
+                                            }
+                                        </h4>
+                                        <div class="pcronico-patologias">
+                                            <b><span>Patologías: @Model.fichaPaciente.Enfermedades</span></b>
+
+                                        </div>
+
+                                        @if (ViewBag.numeroCiclo != null)
+                                        {
+                                            <div class="sub-data">
+                                                Ciclo de Atención: @ViewBag.numeroCiclo
+                                            </div>
+                                        }
+
+                                    </div>
+                                </div>
+                                @*FIN PRUEBA*@
+
+                            </div>
+                        </div>
+                        <div class="pcronico-buttons">
+                            <button id="interconsultas-tab">INTERCONSULTAS</button>
+                            <button id="examenes-tab">EXÁMENES</button>
+                            <button id="medicamentos-tab">MEDICAMENTOS</button>
+                        </div>
+                        <!-- Tab Interconsultas -->
+                        <div class="pcronico-detalles" id="interconsultas">
+                            @foreach (var item in Model.HistorialAtenciones)
+                            {
+                                string fecha = item.FechaText;
+                                DateTime fechaDateTime;
+                                bool fechaValida = DateTime.TryParse(fecha, out fechaDateTime);
+                                string nombreDia = fechaValida ? fechaDateTime.ToString("dddd", new CultureInfo("es-ES")) : "Fecha no válida";
+                                string nombreDiaMayuscula = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(nombreDia).Trim();
+                                string fechaFormateada = fechaValida ? $"{nombreDiaMayuscula} {fechaDateTime.Day} de {fechaDateTime.ToString("MMMM")}" : string.Empty;
+
+                                string hora24 = item.HoraDesdeText;
+                                DateTime? hora = DateTime.TryParseExact(hora24, "HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedHora)
+                                ? parsedHora
+                                : (DateTime?)null;
+
+                                var nombreCompleto = item.NombreMedico;
+                                var partesNombre = nombreCompleto.Split(' ');
+                                var nombre = partesNombre[0];
+                                var primerApellido = partesNombre[1];
+                                string hora12 = (hora ?? DateTime.MinValue).ToString("h:mm tt").ToUpper().Replace(".", "");
+                                <div class="pcronico-detalles-horas">
+                                    @if (item.FotoPerfil == null)
+                                    {
+                                        <div class="foto-user">
+                                            <span class="rounded-circle iniciales"></span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+
+                                        <div class="pcronico-detalles-horas-img">
+                                            <img src="@(baseUrlServices+item.FotoPerfil)" alt="" />
+                                        </div>
+
+                                    }
+                                    <div class="pcronico-detalles-atencion">
+                                        <div class="pcronico-detalles-nombredoc">
+                                            <span>@nombre @primerApellido</span>
+                                        </div>
+                                        <div class="pcronico-detalles-especialidaddoc">
+                                            <span>@item.Especialidad</span>
+                                        </div>
+                                        <div class="pcronico-detalles-cajafecha">
+                                            <div class="pcronico-detalles-atencion-icono">
+                                                <img src="/img/programa-salud/fa-calendar-ps.svg" alt="">
+                                                <span class="pcronico-detalle-fecha">
+                                                    @fechaFormateada | @hora12
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="pcronico-hora-cancelada">
+                                        @if (item.NspPaciente == false && item.Estado == "T")
+                                        {
+                                            <span>Sesión realizada</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Hora Cancelada</span>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <!-- Tab EXÁMENES -->
+                        <div class="pcronico-detalles" id="examenes" style="">
+                            @foreach (var examenes in Model.Examenes)
+                            {
+                                string fecha = examenes.Fecha.ToString();
+                                DateTime fechaDateTime;
+                                bool fechaValida = DateTime.TryParse(fecha, out fechaDateTime);
+                                string nombreDia = fechaValida ? fechaDateTime.ToString("dddd", new CultureInfo("es-ES")) : "Fecha no válida";
+                                string nombreDiaMayuscula = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(nombreDia).Trim();
+                                string fechaFormateada = fechaValida ? $"{nombreDiaMayuscula} {fechaDateTime.Day} de {fechaDateTime.ToString("MMMM")}" : string.Empty;
+                                @* <div class="pcronico-detalles-examenes">
+                            <div>
+                            @{
+                            var rutaDescargaArchivo = Configuration["ServicesUrl"] + "/agendamientos/archivo/DescargarArchivo?id=" + examenes.idenc;
+
+                            <div>
+                            <a href="@rutaDescargaArchivo">
+                            <div class="examen-file">
+                            <img src="/img/programa-salud/file.png" />
+
+
+                            </div>
+                            </a>
+                            </div>
+                            }
+                            </div>
+                            <div>
+                            <p>@examenes.Nombre</p>
+                            @fechaFormateada
+                            </div>
+                            <div class="mensaje-compra">
+                            @if (examenes.order_status_id == 5)
+                            {
+                            <p>Compra exitosa</p>
+                            <div class="linea-horizontal-mensaje-compra"></div>
+                            }
+                            else
+                            {
+                            <p>Comprar ahora</p>
+                            <div class="linea-horizontal-mensaje-compra"></div>
+                            }
+                            </div>
+                            </div>*@
+
+                                <div class="nombre-examen-new">
+
+                                    <div>
+
+                                        @{
+                                            var rutaDescargaArchivo = Configuration["ServicesUrl"] + "/agendamientos/archivo/DescargarArchivo?id=" + examenes.idenc;
+
+                                            <div>
+                                                <a href="@rutaDescargaArchivo">
+                                                    <div class="examen-file">
+                                                        <img src="/img/programa-salud/file.svg" />
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        }
+                                    </div>
+
+                                    <div class="nombre-fecha-new mt-3">
+                                        <div>
+                                            <p class="nombre-examen">@examenes.Nombre</p>
+                                        </div>
+
+                                        <div>
+                                            <p>@fechaFormateada</p>
+                                        </div>
+                                    </div>
+                                    <div class="compra-exitosa">
+                                        @if (examenes.order_status_id == 5)
+                                        {
+                                            <p>Compra exitosa</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Comprar ahora</p>
+
+                                        }
+                                    </div>
+                                </div>
+                                <div class="linea-horizontal-mensaje-compra mt-2"></div>
+                            }
+                        </div>
+                        <!-- Tab MEDICAMENTOS -->
+                        <div class="pcronico-detalles" id="medicamentos" style="display:none;">
+                            @foreach (var medicamentos in Model.AtencionMedicamentos)
+                            {
+                                string fecha = medicamentos.FechaCreacion.ToString();
+                                DateTime fechaDateTime;
+                                bool fechaValida = DateTime.TryParse(fecha, out fechaDateTime);
+                                string nombreDia = fechaValida ? fechaDateTime.ToString("dddd", new CultureInfo("es-ES")) : "Fecha no válida";
+                                string nombreDiaMayuscula = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(nombreDia).Trim();
+                                string fechaFormateada = fechaValida ? $"{nombreDiaMayuscula} {fechaDateTime.Day} de {fechaDateTime.ToString("MMMM")}" : string.Empty;
+                                <div class="pcronico-detalles-examenes">
+                                    @{
+                                        var rutaDescargaArchivo = Configuration["ServicesUrl"] + "/agendamientos/archivo/DescargarArchivo?id=" + medicamentos.idenc;
+
+                                        <div>
+                                            <a href="@rutaDescargaArchivo">
+                                                <div class="examen-file">
+                                                    <img src="/img/programa-salud/file.svg" />
+                                                    <p>Receta</p>
+
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            @fechaFormateada
+                                        </div>
+
+                                        <div class="mensaje-compra">
+                                            @if (medicamentos.EstadoCarrito == 5)
+                                            {
+                                                <p>Compra exitosa</p>
+                                                <div class="linea-horizontal-mensaje-compra"></div>
+                                            }
+                                            else
+                                            {
+                                                <p>Comprar ahora</p>
+                                                <div class="linea-horizontal-mensaje-compra"></div>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="ps-panel-ciclo__cronico">
+                        <div class="ciclo-cronico--grafico">
+                            <div class="ciclo-cronico-title">
+                                <h2>CICLO @Model.programaSalud.Nombre.ToUpper()</h2>
+                            </div>
+                            <div class="progress-circle">
+                                <div class="progress-circle__fill"></div>
+                                <div class="progress-circle__text">@Model.Porcentaje.ToString("0.##")%</div>
+                            </div>
+                        </div>
+                        <div class="ciclo-cronico-porcentajes">
+                            <div class="ciclo-cronico-title">
+                                <h2>DETALLE DE CICLO PACIENTE</h2>
+                                <p>Visualiza tus atenciones del programa crónico en estos gráficos informativos. Con esta herramienta podrás ver tu evolución.</p>
+                            </div>
+                            <div class="ps-panel-listado-especialidades">
+                                @foreach (var item in Model.programaSaludAtencionesEspecialidad)
+                                {
+                                    var progress = (decimal)item.NumAtenciones / item.Topes * 100;
+                                    var formattedProgress = progress.ToString("0.##");
+                                    <div class="row">
+                                        <div class="col-sm-10 num-atenciones--item-name">
+                                                @item.Nombre -
+                                            <span class="num-atenciones--item-count">
+                                                @item.NumAtenciones/@item.Topes
+                                                Atenciones
+                                            </span>
+                                            
+                                            @*- @(Math.Round((decimal)item.NumAtenciones / item.Topes * 100, 2)) %*@
+
+                                            <div class="progress-bar" data-progress="@formattedProgress"></div>
+                                        </div>
+
+                                        <div class="col-sm-2 num-atenciones--percentage">
+                                            @(Math.Round((decimal)item.NumAtenciones / item.Topes * 100, 2)) %
+                                        </div>
+                                        
+                                    </div>
+                                }
+                            </div>
+                            @if (Model.programaSaludAtencionesEspecialidad != null && Model.programaSaludAtencionesEspecialidad.Count == 0)
+                            {
+                                <div class="pcronico-agendar mt-5">
+                                    <div>
+                                        <p>
+                                            <span>Recuerda agendar</span> las atenciones que te falten
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <button id="agendarAtencion" class="pcronic-recuerda-agendar-button">Agendar</button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="ps-panel-proximas__atenciones">
+                    <div class="ciclo-cronico-title">
+                        <h2>PRÓXIMAS ATENCIONES</h2>
+                    </div>
+
+                    @if (Model.ProximasHorasPaciente.Any() || Model.programaSaludAtencionesEspecialidad.Any())
+                    {
+                        var atencionesPorEspecialidad = Model.ProximasHorasPaciente
+                        .GroupBy(a => a.Especialidad)
+                        .ToDictionary(g => g.Key, g => g.ToList());
+
+
+                        var atencionesEspecialidad = Model.programaSaludAtencionesEspecialidad
+                        .GroupBy(a => a.IdEspecialidad)
+                        .ToDictionary(g => g.Key, g => g.ToList());
+
+
+
+                        var atencionesPorEspecialidades = Model.programaSaludAtencionesEspecialidad
+                        .GroupBy(a => a.IdEspecialidad)
+                        .ToDictionary(g => g.Key, g => g.ToList());
+
+
+
+                        var atencionesProximasPorEspecialidad = Model.ProximasHorasPaciente
+                        .GroupBy(a => a.IdEspecialidad)
+                        .ToDictionary(g => g.Key, g => g.Count());
+
+
+                        List<string> especialidadesEncontradas = new List<string>();
+
+                        //espacialidades para concurrencia 
+                        if (atencionesPorEspecialidad.Any())
+                        {
+                            foreach (var especialidadGroup in atencionesPorEspecialidad)
+                            {
+                                foreach (var especialidadConcurrencia in atencionesEspecialidad)
+                                {
+                                    for (int i = 0; i < Math.Min(especialidadConcurrencia.Value.Count, 4); i++)
+                                    {
+                                        if (!especialidadesEncontradas.Contains(especialidadConcurrencia.Value[i].Nombre) && !atencionesPorEspecialidad.ContainsKey(especialidadConcurrencia.Value[i].Nombre))
+                                        {
+                                            especialidadesEncontradas.Add(especialidadConcurrencia.Value[i].Nombre);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            foreach (var especialidadConcurrencia in atencionesEspecialidad)
+                            {
+                                for (int i = 0; i < Math.Min(especialidadConcurrencia.Value.Count, 4); i++)
+                                {
+                                    if (!especialidadesEncontradas.Contains(especialidadConcurrencia.Value[i].Nombre))
+                                    {
+                                        especialidadesEncontradas.Add(especialidadConcurrencia.Value[i].Nombre);
+                                    }
+                                }
+                            }
+                        }
+
+                        <div class="ps-proximas-atenciones d-flex flex-column h-auto">
+                            @foreach (var especialidadGroup in atencionesPorEspecialidad)
+                            {
+                                var nombreEspecialidad = especialidadGroup.Key;
+                                var cancelarCita = false;
+                                <div class="caja-general-seccion mb-1 mt-4">
+                                    <h5>@nombreEspecialidad</h5>
+
+                                    @foreach (var cita in especialidadGroup.Value.GroupBy(c => c.NombreMedico))
+                                    {
+                                        var nombreMedico = cita.Key;
+                                        var nombreCompletos = nombreMedico;
+                                        var partesNombres = nombreCompletos.Split(' ');
+                                        var nombres = partesNombres[0];
+                                        var primerApellidos = partesNombres[1];
+                                        <div class="user-box">
+
+                                            <div class="header-user-box">
+                                                @if (cita.First().FotoPerfil == null)
+                                                {
+                                                    <div class="foto-user">
+                                                        <span class="rounded-circle iniciales">@cita.First().Inicial</span>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="foto-user sp-medico-foto">
+                                                        <img src="@(baseUrlServices+cita.First().FotoPerfil)" alt="">
+                                                    </div>
+                                                }
+
+                                                <div class="data-user">
+                                                    <div class="nombre-user ps-nombre-medico">
+                                                        Dr. @nombres @primerApellidos
+                                                    </div>
+                                                    <div class="sub-data ps-especialidad-medico mt-4">
+                                                        @cita.First().Especialidad
+                                                    </div>
+                                                    @* <div class="ps-cambiar-profesional">
+                                                        Cambiar de profesional
+                                                        </div>*@
+                                                </div>
+                                            </div>
+                                            @foreach (var citaDetalle in cita)
+                                            {
+                                                DateTime fecha = (DateTime)citaDetalle.Fecha;
+                                                string nombreDia = fecha.ToString("dddd", new CultureInfo("es-ES"));
+                                                string nombreDiaMayuscula = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(nombreDia).Trim();
+                                                string fechaFormateada = $"{nombreDiaMayuscula} {fecha.Day} de {fecha.ToString("MMMM")}";
+                                                string hora12 = "";
+                                                string hora24 = citaDetalle.HoraDesdeText.Trim();
+                                                DateTime hora;
+                                                if (DateTime.TryParseExact(hora24, "HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out hora))
+                                                {
+
+                                                    hora12 = hora.ToString("h:mm tt").ToUpper().Replace(".", "");
+                                                }
+                                                else if (DateTime.TryParseExact(hora24, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out hora))
+                                                {
+                                                    hora12 = hora.ToString("h:mm tt").ToUpper().Replace(".", "");
+                                                }
+
+                                                string idAgendar = "btnAgendar" + citaDetalle.IdAtencion;
+                                                var nombreCompleto = citaDetalle.NombreMedico;
+                                                var partesNombre = nombreCompleto.Split(' ');
+                                                var nombre = partesNombre[0];
+                                                var primerApellido = partesNombre[1];
+                                                <div class="ps-proximas-atenciones__fechas">
+                                                    <div class="inner-atenciones_fechas">
+                                                        <img src="~/img/programa-salud/fa-calendar-ps.svg" />@fechaFormateada
+                                                    </div>
+                                                    <div class="inner-atenciones_fechas">
+                                                        <img src="~/img/programa-salud/fa-clock-ps.svg" />@hora12
+                                                    </div>
+                                                </div>
+                                                <div class="footer-user-box">
+                                                    <a href="javascript:void(0);" class="ps-a-reagendar" id="@idAgendar" data-idmedico="@citaDetalle.IdMedico" data-cliente="@citaDetalle.IdCliente" data-fecha="@fecha" data-idconvenio="@citaDetalle.IdConvenio" data-idatencion="@citaDetalle.IdAtencion" data-nombremedico="@citaDetalle.NombreMedico" data-especialidad="@citaDetalle.Especialidad"   >Reagendar Hora</a>
+
+                                                    @foreach (var especialidadConcurrencia in atencionesEspecialidad)
+                                                    {
+                                                        @for (int i = 0; i < Math.Min(especialidadConcurrencia.Value.Count, 4); i++)
+                                                        {
+                                                            @if (nombreEspecialidad.Trim().ToLower() == especialidadConcurrencia.Value[i].Nombre.Trim().ToLower())
+                                                            {
+                                                                cancelarCita = true; 
+                                                            }
+                                                        }     
+                                                    }
+                                                    @if(cancelarCita){
+                                                        <a href="javascript:void(0);" class="ps-a-cancelar" data-idatencion="@citaDetalle.IdAtencion" data-cobrar="@citaDetalle.Cobrar" data-foto="@citaDetalle.FotoPerfil" data-fecha="@fecha"
+                                                           data-hora="@citaDetalle.HoraDesdeText"
+                                                           data-nombremedico="@citaDetalle.NombreMedico"
+                                                           data-especialidad="@citaDetalle.Especialidad">Cancelar Hora</a>
+                                                    }
+                                                </div>
+                                            }
+                                            @foreach (var especialidadGroupA in atencionesPorEspecialidades)
+                                            {
+                                                var idEspecialidad = especialidadGroupA.Key;
+                                                var atencionesProximas = atencionesProximasPorEspecialidad.ContainsKey(idEspecialidad) ? atencionesProximasPorEspecialidad[idEspecialidad] : 0;
+                                                @for (int i = 0; i < Math.Min(especialidadGroupA.Value.Count, 4); i++)
+                                                {
+                                                    var atencion = especialidadGroupA.Value[i];
+                                                    var medico = Model.TimelineData.FirstOrDefault(m => m.IdMedico == atencion.IdMedico);
+                                                    var nombreCompleto = medico.NombreMedico;
+                                                    var partesNombre = nombreCompleto.Split(' ');
+                                                    var nombre = partesNombre[0];
+                                                    var primerApellido = partesNombre[1];
+                                                    var atencionesPendientes = Math.Max(atencion.Topes - atencion.NumAtenciones - atencionesProximas, 0);
+                                                    var nombreEspecialidadA = atencion.Nombre;
+
+                                                    if(nombreEspecialidadA.Trim().ToLower() == nombreEspecialidad.Trim().ToLower())
+                                                    {
+                                                        @for (int j = 0; j < atencionesPendientes; j++)
+                                                        {
+
+                                                            <div class="user-box">
+                                                                <div class="header-user-box">
+
+                                                                    @if (medico.FotoPerfil == null)
+                                                                    {
+                                                                        <div class="foto-user">
+                                                                            <span class="rounded-circle iniciales">@medico.Inicial</span>
+                                                                        </div>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <div class="foto-user sp-medico-foto">
+                                                                            <img src="@(baseUrlServices+medico.FotoPerfil)" alt="">
+                                                                        </div>
+                                                                    }
+                                                                    <div class="data-user">
+                                                                        <div class="nombre-user ps-nombre-medico">
+                                                                            Dr. @nombre @primerApellido
+                                                                        </div>
+                                                                        <div class="sub-data ps-especialidad-medico">
+                                                                            @medico.Especialidad
+                                                                        </div>
+                                                                        @if (i == 0)
+                                                                        {
+                                                                            @*<div class="ps-cambiar-profesional" id="psCambiarProfesional" data-idespecialidad="@atencion.IdEspecialidad" data-     idprogramasaludespecialidad="@atencion.Id">
+                                                                                Cambiar de profesional
+                                                                                </div>*@
+                                                                            <div class="ps-agendar" id="psAgendar" data-idmedico="@medico.IdMedico" data-idespecialidad="@atencion.IdEspecialidad" data-especialidad="@atencion.Nombre">
+                                                                                Agendar
+                                                                            </div>
+                                                                        }
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        }
+                                                    }
+                                                }
+
+                                            }
+
+                                        </div>
+                                    }
+                                </div>
+                            
+                            }
+                            
+                            @foreach (var especialidadGroup in atencionesPorEspecialidades)
+                            {
+                                var idEspecialidad = especialidadGroup.Key;
+                                var atencionesProximas = atencionesProximasPorEspecialidad.ContainsKey(idEspecialidad) ? atencionesProximasPorEspecialidad[idEspecialidad] : 0;
+
+                                @for (int i = 0; i < Math.Min(especialidadGroup.Value.Count, 4); i++)
+                                {
+                                    var atencion = especialidadGroup.Value[i];
+                                    var medico = Model.TimelineData.FirstOrDefault(m => m.IdMedico == atencion.IdMedico);
+                                    var nombreCompleto = medico.NombreMedico;
+                                    var partesNombre = nombreCompleto.Split(' ');
+                                    var nombre = partesNombre[0];
+                                    var primerApellido = partesNombre[1];
+                                    var atencionesPendientes = Math.Max(atencion.Topes - atencion.NumAtenciones - atencionesProximas, 0);
+                                    var nombreEspecialidad = atencion.Nombre;
+                                    @foreach(var control in especialidadesEncontradas)
+                                    {
+                                        if(nombreEspecialidad.Trim().ToLower() == control.Trim().ToLower())
+                                        {
+                                            <div class="caja-general-seccion mb-1 mt-4">
+                                                <h5>@nombreEspecialidad</h5>
+                                                <div class="d-flex">
+                                                    @for (int j = 0; j < atencionesPendientes; j++)
+                                                    {
+
+                                                        <div class="user-box">
+                                                            <div class="header-user-box">
+
+                                                                @if (medico.FotoPerfil == null)
+                                                                {
+                                                                    <div class="foto-user">
+                                                                        <span class="rounded-circle iniciales">@medico.Inicial</span>
+                                                                    </div>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <div class="foto-user sp-medico-foto">
+                                                                        <img src="@(baseUrlServices+medico.FotoPerfil)" alt="">
+                                                                    </div>
+                                                                }
+                                                                <div class="data-user">
+                                                                    <div class="nombre-user ps-nombre-medico">
+                                                                        Dr. @nombre @primerApellido
+                                                                    </div>
+                                                                    <div class="sub-data ps-especialidad-medico">
+                                                                        @medico.Especialidad
+                                                                    </div>
+                                                                    @if (i == 0)
+                                                                    {
+                                                                        @*<div class="ps-cambiar-profesional" id="psCambiarProfesional" data-idespecialidad="@atencion.IdEspecialidad" data-idprogramasaludespecialidad="@atencion.Id">
+                                            Cambiar de profesional
+                                            </div>*@
+                                                                        <div class="ps-agendar" id="psAgendar" data-idmedico="@medico.IdMedico" data-idespecialidad="@atencion.IdEspecialidad" data-especialidad="@atencion.Nombre">
+                                                                            Agendar
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    }
+                                                </div>
+                                            </div>
+                                        }
+                                        
+                                        
+                                    }
+                                }
+                            }
+
+
+
+
+
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="ps-proximas-atenciones">
+                            No tienes atenciones próximas
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+            @*SECION*@
+
+            <div class="panel-seguimiento tabcontent" id="tab2">
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div class="modal fade" id="modalAnulacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-aviso">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="cont-aviso-modal">
+
+                        <h2>¿Vas a anular tu atención?</h2>
+                        <p class="m-0">
+                            Al anular tu atención perderás la hora reservada con el profesional.
+                        </p>
+
+                        <!--Aviso-->
+
+
+
+                        <div class="cont-aviso-atencion">
+                            <a href="#" class="link-aviso" id="" data-id="">
+
+                                <div class="aviso-atencion container-fluid mt-5">
+                                    <div class="cont-aviso row h-100 align-items-center">
+                                        <div class="col-auto cont-foto-profesional p-0 d-none d-md-block">
+
+                                            <img id="fotoMedicoModal" alt="image" class="foto-profesional" style="height:150px;width:150px;">
+                                        </div>
+                                        <div class="col-12 col-md col-xl pl-0 pl-md-3 pr-0">
+                                            <div class="data-atencion">
+                                                <span class="header-aviso-atencion"><i class="fal fa-calendar-alt"></i> <span>Próxima Atención</span></span>
+                                                <span class="nombre-profesional" id="nombreProfesionalModal"></span>
+                                                <span class="titulo-profesional" id="tituloMedicoModal"></span>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-12 col-md col-xl pr-md-3">
+                                            <div class="datos-fecha">
+                                                <span class="fecha-atencion" id="fechaAtencionModal"></span>
+                                                <span class="hora-atencion" id="horaAtencionModal"><span class="text-uppercase"></span></span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </a>
+                        </div>
+
+                        <!--Fin Aviso-->
+
+                    </div>
+
+                </div>
+                <div class="modal-footer footer-aviso">
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Volver</button>
+                    <button type="button" id="btnAnular" class="btn btn-danger btn-sm">Anular Atención</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*modal cambiar pro*@
+    @*primer modal*@
+    <div class="modal-background" id="modalBackground"></div>
+    <div class="modal-contenido" id="cambiarPro">
+
+        <div class="modal-uno">
+            <div class="img-texto">
+                <img src="~/img/programa-salud/robosmart.png" />
+            </div>
+
+            <div class="pregunta-modal-uno">
+                <h3>¿Estás seguro de cambiar a tu profesional?</h3>
+                <p class="mt-2">Al cambiar a tu médico se mantiene tu ciclo de programa crónico</p>
+            </div>
+        </div>
+
+        <div class="botones-modal-uno">
+            <button id="cerrarModalUno" class="btn-lo-vere">Lo veré después</button>
+            <button id="abrirSegundoModal" class="btn-cambiar-especialista">Cambiar especialista</button>
+        </div>
+    </div>
+    @*fin primer modal*@
+
+    @*segundo modal*@
+    <div class="modal-background" id="segundoModalBackground"></div>
+    <div class="modal-contenido" id="segundoModal">
+        <div class="modal-dos">
+            <div class="titulo-icono">
+
+                <h3>Cambio de Especialistas</h3>
+                <img src="~/img/programa-salud/icono-paciente-cronico.svg" />
+
+            </div>
+            <p>Revisa nuestras recomendaciones de profesionales disponibles para ti.</p>
+            <div class="linea-cambio-pro"></div>
+
+            <div class="pro-sugeridos mt-4">
+
+                <h5>PROFESIONALES SUGERIDOS</h5>
+
+                <div class="pro-sugeridos-list mb-3">
+                    <div class="pro-sugerido  mb-2 mt-2">
+
+                        <div class="foto-user-seguimiento">
+                            <img src="" alt="" />
+                        </div>
+
+                        <div>
+                            <p class="nombre-pro-sugerido">Mario Alvarez Grinch</p>
+                        </div>
+
+                        <div>
+                            <p>Catador</p>
+                        </div>
+
+                        <input type="checkbox" />
+
+                    </div>
+                    <div class="pro-sugerido  mb-2 mt-2">
+
+                        <div class="foto-user-seguimiento">
+                            <img src="" alt="" />
+                        </div>
+
+                        <div>
+                            <p class="nombre-pro-sugerido">Mario Alvarez Grinch</p>
+                        </div>
+
+                        <div>
+                            <p>Catador</p>
+                        </div>
+
+                        <input type="checkbox" />
+                    </div>
+
+                    <div class="pro-sugerido mb-2 mt-2">
+                        <div class="foto-user-seguimiento">
+                            <img src="" alt="" />
+                        </div>
+
+                        <div>
+                            <p class="nombre-pro-sugerido">Mario Alvarez Grinch</p>
+                        </div>
+
+                        <div>
+                            <p>Catador</p>
+                        </div>
+
+                        <input type="checkbox" />
+
+                    </div>
+                </div>
+            </div>
+            <button id="cambiarEspecialista">Cambiar Especialista</button>
+        </div>
+    </div>
+    @*fin segundo modal*@
+    @*fin modal cambiar pro*@
+
+    <div class="modal fade" id="modalReagendar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-aviso modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4><span id="nombreprofesional"></span></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="">
+
+                        <div class="row">
+                            <div class="col-md-12 mb-4 mb-lg-0 col-lg-12">
+
+                                <!-- Reserva Hora -->
+
+                                <div class="caja-reserva">
+                                    <div class="container-fluid">
+                                        <h4>Reagendar Hora</h4>
+                                        <p>
+                                            Selecciona si deseas en la mañana o en la tarde
+                                        </p>
+                                        <hr class="mb-4" />
+                                        <div class="row">
+                                            <div class="col-12 col-md-6 mb-4 mb-lg -0 calendario">
+
+                                                <!--Tags-->
+
+                                                <div class="kt-section__content kt-section__content--solid text-center mb-4" id="btnHorario">
+                                                    @*<button type="button" class="btn btn-brand btn-elevate btn-pill btn-am" id="btnManana">Mañana</button>&nbsp;
+                                                    <button type="button" class="btn btn-brand btn-elevate btn-pill btn-pm" id="btnTarde">Tarde</button>*@
+                                                </div>
+
+                                                <!--Tags-->
+                                                <!--Date Picker-->
+
+                                                <div class="col-lg-12" id="rowDatePicker">
+                                                </div>
+                                                <div class="col-lg-12 mt-5">
+                                                    Si no encuentras hora con el médico que seleccionaste no te preocupes, puedes anular esta hora y agendar una nueva con otro médico. Si tienes dudas no dudes en contáctarnos.
+                                                </div>
+                                                @*<div class="cont-datepicker" id="kt_datepicker_6">
+                                                </div>*@
+
+                                                <!--Date Picker-->
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="seleccion-horas">
+                                                    <div class="header-seleccion-horas" id="headerSeleccion">
+                                                    </div>
+                                                    <div class="body-seleccion-horas">
+                                                        <div class="body-seleccion-horas">
+                                                            <ul class="lista-horas" id="listaHoras">
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Reserva Hora -->
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer footer-aviso">
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Volver</button>
+                    <div id="btnConf"></div>
+                    @*<button type="button" class="btn btn-success btn-sm" id="btnConfirmarHora">Confirmar Hora</button>*@
+                </div>
+            </div>
+        </div>
+    </div>
+    @*Modal Cancelar*@
+    <div class="modal fade" id="modalAnulacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-aviso">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="cont-aviso-modal">
+
+                        <h2>¿Vas a anular tu atención?</h2>
+                        <p class="m-0">
+                            Al anular tu atención perderás la hora reservada con el profesional.
+                        </p>
+
+                        <!--Aviso-->
+
+
+
+                        <div class="cont-aviso-atencion">
+                            <a href="#" class="link-aviso" id="" data-id="">
+
+                                <div class="aviso-atencion container-fluid mt-5">
+                                    <div class="cont-aviso row h-100 align-items-center">
+                                        <div class="col-auto cont-foto-profesional p-0 d-none d-md-block">
+
+                                            <img id="fotoMedicoModal" alt="image" class="foto-profesional" style="height:150px;width:150px;">
+                                        </div>
+                                        <div class="col-12 col-md col-xl pl-0 pl-md-3 pr-0">
+                                            <div class="data-atencion">
+                                                <span class="header-aviso-atencion"><i class="fal fa-calendar-alt"></i> <span>Próxima Atención</span></span>
+                                                <span class="nombre-profesional" id="nombreProfesionalModal"></span>
+                                                <span class="titulo-profesional" id="tituloMedicoModal"></span>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-12 col-md col-xl pr-md-3">
+                                            <div class="datos-fecha">
+                                                <span class="fecha-atencion" id="fechaAtencionModal"></span>
+                                                <span class="hora-atencion" id="horaAtencionModal"><span class="text-uppercase"></span></span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </a>
+                        </div>
+
+                        <!--Fin Aviso-->
+
+                    </div>
+
+                </div>
+                <div class="modal-footer footer-aviso">
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Volver</button>
+                    <button type="button" id="btnAnular" class="btn btn-danger btn-sm">Anular Atención</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section PageScripts {
+    <script src="~/js/jquery.rut.js?rnd=@NumeroRandom.GetRandom()"></script>
+
+}
+
+
+<!--Panel Cuestionario Programa-->
+@*<div class="ps-panel-cuestionario">
+    <h1>
+        Cuestionario de Pittsburg de Calidad de sueño.
+
+    </h1>
+    <p>
+        <strong>Instrucciones:</strong>
+        Las siguientes cuestiones solo tienen que ver con sus hábitos de sueño durante el último
+        mes. En sus respuestas debe reflejar cual ha sido su comportamiento durante la mayoría
+        de los días y noches del pasado mes. Por favor, conteste a todas las cuestiones.
+    </p>
+
+    <div class="stepper-cuestionario-cronico">
+        <div class="step-cronico">
+            <div class="cont-icono">
+                <i class="fa fa-server"></i>
+            </div>
+            <div class="leyenda-icono">
+                CUESTIONARIO
+            </div>
+        </div>
+        <div class="step-cronico">
+            <div class="cont-icono">
+                <i class="fa fa-server"></i>
+            </div>
+            <div class="leyenda-icono">
+                AGENDAMIENTO
+            </div>
+        </div>
+    </div>
+
+    <!-- Pregunta 1 -->
+    <div class="enunciado">
+        <h3>1.- Durante el último mes, ¿cuál ha sido, normalmente, su hora de acostarse?</h3>
+        <div class="cont-opciones">
+            <input type="time" id="appt" name="appt" min="09:00" max="18:00" class="form-control" required>
+        </div>
+    </div>
+    <!-- end Pregunta 1 -->
+    <!-- Pregunta 2 -->
+    <div class="enunciado">
+        <h3>2.- ¿Cuánto tiempo habrá tardado en dormirse, normalmente, las noches del último mes?</h3>
+        <div class="cont-opciones">
+            <fieldset id="q2">
+
+                <label class="form-check form-check-custom form-check-solid" for="q2">
+                    <input type="radio" class="form-check-input" id="" name="q2" value="">
+                    Menos de 15 min
+                </label>
+
+                <label class="form-check form-check-custom form-check-solid" for="">
+                    <input type="radio" class="form-check-input" id="" name="q2" value="">
+                    Entre 16-30 min
+                </label>
+
+                <label class="form-check form-check-custom form-check-solid" for="">
+                    <input type="radio" class="form-check-input" id="" name="q2" value="">
+                    Entre 31-60 min
+                </label>
+
+                <label class="form-check form-check-custom form-check-solid" for="">
+                    <input type="radio" class="form-check-input" id="" name="q2" value="">
+                    Más de 60 min
+                </label>
+            </fieldset>
+        </div>
+    </div>
+    <!-- end Pregunta 2 -->
+    <!-- Pregunta 3 -->
+    <div class="enunciado">
+        <h3>3.- Durante el último mes, ¿a qué hora se ha levantado habitualmente por la mañana?</h3>
+        <div class="cont-opciones">
+            <input type="time" id="appt" name="appt" min="09:00" max="18:00" class="form-control" required>
+        </div>
+    </div>
+</div>*@
+
+
+
+
+
+@section Scripts {
+    <script src="~/signal/signalr.min.js"></script>
+    <script src="~/js/accesible.js"></script>
+    <script src="~/js/modal.js"></script>
+    <script src="~/js/Shared/chatBot.js"></script>
+    <script src="~/js/Usuario/config.js?9rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script type="module">
+        import { init } from '../../js/ProgramaSalud/panel-programa.js?rnd=@NumeroRandom.GetRandom()';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+            var baseUrlServicesJS = '@baseUrlServices';
+            window.baseUrl = baseUrlServicesJS;
+            var idCliente = '@ViewBag.idCliente';
+            window.idCliente = idCliente;
+            window.host = '@ViewBag.HostURL';
+            window.numeroCiclo = '@ViewBag.numeroCiclo';
+            var idProgramaSaludPaciente = '@ViewBag.idProgramaSaludPaciente';
+            window.idProgramaSaludPaciente = idProgramaSaludPaciente;
+
+            window.idPrograma  = @ViewBag.idPrograma;
+        })()
+    </script>
+
+    <script>
+
+        function openTab(tabName) {
+
+            console.log('tab', tabName)
+
+            const tabContents = document.getElementsByClassName("tabcontent");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].style.display = "none";
+            }
+
+            document.getElementById(tabName).style.display = "block";
+
+            const tabLinks = document.getElementsByClassName("pcronico-tab-link");
+            for (let i = 0; i < tabLinks.length; i++) {
+                tabLinks[i].classList.remove("pcronico-active");
+            }
+
+            const selectedTab = document.querySelector(`[onclick="openTab('${tabName}')"]`);
+            if (selectedTab) {
+                selectedTab.classList.add("pcronico-active");
+            }
+        }
+
+        openTab('tab1');
+    </script>
+
+
+    <script type="text/javascript">
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const abrirModal = document.getElementById("abrirModal");
+            const modal = document.getElementById("cambiarPro");
+            const cerrarModal = document.getElementById("cerrarModal");
+            const modalBackground = document.getElementById("modalBackground");
+
+            const abrirSegundoModal = document.getElementById("abrirSegundoModal");
+            const segundoModal = document.getElementById("segundoModal");
+            const cerrarSegundoModal = document.getElementById("cerrarSegundoModal");
+            const segundoModalBackground = document.getElementById("segundoModalBackground");
+
+
+            abrirModal?.addEventListener("click", function (event) {
+                event.preventDefault();
+                modal.style.display = "block";
+                modalBackground.style.display = "block";
+            });
+
+
+            cerrarModal?.addEventListener("click", function () {
+                modal.style.display = "none";
+                modalBackground.style.display = "none";
+            });
+
+
+            abrirSegundoModal?.addEventListener("click", function () {
+                modal.style.display = "none";
+                modalBackground.style.display = "none";
+                segundoModal.style.display = "block";
+                segundoModalBackground.style.display = "block";
+            });
+
+            cerrarSegundoModal?.addEventListener("click", function () {
+                segundoModal.style.display = "none";
+                segundoModalBackground.style.display = "none";
+            });
+
+
+            segundoModalBackground?.addEventListener("click", function (event) {
+                if (event.target === segundoModalBackground) {
+                    modal.style.display = "none";
+                    segundoModal.style.display = "none";
+                    segundoModalBackground.style.display = "none";
+                }
+            });
+
+            modalBackground?.addEventListener("click", function (event) {
+                if (event.target === modalBackground) {
+                    modal.style.display = "none";
+                    modalBackground.style.display = "none";
+                }
+            });
+        });
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    }

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="72"
+   height="64"
+   viewBox="0 0 72 64"
+   fill="none"
+   version="1.1"
+   id="svg13"
+   sodipodi:docname="icono-paciente-cronico-b.svg"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview15"
+     pagecolor="#ffffff"
+     bordercolor="#111111"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="6.5078125"
+     inkscape:cx="16.902761"
+     inkscape:cy="43.255702"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="1911"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg13" />
+  <path
+     d="M0 8C0 3.625 3.5 0 8 0H32C36.375 0 40 3.625 40 8V42C40 43.125 39 44 38 44C36.875 44 36 43.125 36 42V8C36 5.875 34.125 4 32 4H8C5.75 4 4 5.875 4 8V32H18C19 32 20 33 20 34C20 35.125 19 36 18 36H4V44H18C19 44 20 45 20 46C20 47.125 19 48 18 48H4V56C4 58.25 5.75 60 8 60H30C31 60 32 61 32 62C32 63.125 31 64 30 64H8C3.5 64 0 60.5 0 56V8ZM18 10C18 9 18.875 8 20 8C21 8 22 9 22 10V14H26C27 14 28 15 28 16C28 17.125 27 18 26 18H22V22C22 23.125 21 24 20 24C18.875 24 18 23.125 18 22V18H14C12.875 18 12 17.125 12 16C12 15 12.875 14 14 14H18V10ZM64 34C64 39.625 59.5 44 54 44C48.375 44 44 39.625 44 34C44 28.5 48.375 24 54 24C59.5 24 64 28.5 64 34ZM54 28C50.625 28 48 30.75 48 34C48 37.375 50.625 40 54 40C57.25 40 60 37.375 60 34C60 30.75 57.25 28 54 28ZM60.25 48C66.75 48 72 53.25 72 59.75C72 62.125 70 64 67.625 64H40.25C37.875 64 36 62.125 36 59.75C36 53.25 41.125 48 47.625 48H60.25ZM40.25 60H67.625C67.75 60 68 59.875 68 59.75C68 55.5 64.5 52 60.25 52H47.625C43.375 52 40 55.5 40 59.75C40 59.875 40.125 60 40.25 60Z"
+     fill="#5B5AC7"
+     id="path2" />
+  <path
+     d="M0 8C0 3.625 3.5 0 8 0H32C36.375 0 40 3.625 40 8V42C40 43.125 39 44 38 44C36.875 44 36 43.125 36 42V8C36 5.875 34.125 4 32 4H8C5.75 4 4 5.875 4 8V32H18C19 32 20 33 20 34C20 35.125 19 36 18 36H4V44H18C19 44 20 45 20 46C20 47.125 19 48 18 48H4V56C4 58.25 5.75 60 8 60H30C31 60 32 61 32 62C32 63.125 31 64 30 64H8C3.5 64 0 60.5 0 56V8ZM18 10C18 9 18.875 8 20 8C21 8 22 9 22 10V14H26C27 14 28 15 28 16C28 17.125 27 18 26 18H22V22C22 23.125 21 24 20 24C18.875 24 18 23.125 18 22V18H14C12.875 18 12 17.125 12 16C12 15 12.875 14 14 14H18V10ZM64 34C64 39.625 59.5 44 54 44C48.375 44 44 39.625 44 34C44 28.5 48.375 24 54 24C59.5 24 64 28.5 64 34ZM54 28C50.625 28 48 30.75 48 34C48 37.375 50.625 40 54 40C57.25 40 60 37.375 60 34C60 30.75 57.25 28 54 28ZM60.25 48C66.75 48 72 53.25 72 59.75C72 62.125 70 64 67.625 64H40.25C37.875 64 36 62.125 36 59.75C36 53.25 41.125 48 47.625 48H60.25ZM40.25 60H67.625C67.75 60 68 59.875 68 59.75C68 55.5 64.5 52 60.25 52H47.625C43.375 52 40 55.5 40 59.75C40 59.875 40.125 60 40.25 60Z"
+     fill="url(#paint0_linear_7_181)"
+     id="path4"
+     style="fill:#ffffff" />
+  <defs
+     id="defs11">
+    <linearGradient
+       id="paint0_linear_7_181"
+       x1="36"
+       y1="0"
+       x2="36"
+       y2="64"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         stop-color="#3BC1CD"
+         id="stop6" />
+      <stop
+         offset="1"
+         stop-color="#3BC1CD"
+         stop-opacity="0"
+         id="stop8" />
+    </linearGradient>
+  </defs>
+</svg>

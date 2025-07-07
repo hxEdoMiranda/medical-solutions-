@@ -1,0 +1,1049 @@
+:root {
+    --primary-color: #3BC1CD;
+    --secondary-color: #8A94B3;
+    --tertiary-color: #0282A6;
+    --gray-color: #666;
+    --accent-color: #FF7415;
+    --light-color: #FFF;
+    --title-color: #326295;
+    --image-border: #4DC5D4;
+    --background-body-color: #F5F5F5;
+    --hover-color: var(--tertiary-color);
+    --transition: all .3s ease-out;
+    --background-active: #F9C000;
+    --title-color-dos: #0076A9;
+    --content-footer: #FEFEFE;
+    --sub-header: #F1F1F1;
+}
+
+/*Global styles*/
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    overflow-x: hidden;
+    width: 100vw;
+}
+
+.caja-andes-container {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    overflow: hidden;
+    padding: 0 !important;
+}
+
+.caja-andes-menu-content p {
+    font-size: 12px;
+    /*cursor: pointer;*/
+    font-weight: bold;
+}
+
+.caja-andes-sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    width: 310px;
+    background-color: var(--light-color);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    min-height: 70vh;
+}
+
+.caja-andes-sidebar-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.caja-andes-saludo-sidebar p {
+    margin-top: 1rem;
+    font-size: 12px;
+}
+
+.caja-andes-saludo-sidebar {
+    padding: 2rem;
+}
+
+.caja-andes-sidebar h1 {
+    color: var(--tertiary-color);
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.caja-andes-content {
+    flex: 1;
+    overflow: auto;
+}
+
+.caja-andes-box-content {
+    padding: 1rem 3rem 1rem 3rem;
+}
+
+.caja-andes-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--light-color);
+    padding: 10px;
+    width: 100%;
+    height: 70px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.caja-andes-menu-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 1rem;
+    align-items: center;
+}
+
+.caja-andes-subheader {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
+    margin: auto;
+    background-color: var(--sub-header);
+    color: black;
+    padding: 10px;
+    width: 100%;
+    height: 30px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    font-size: 12px;
+}
+
+/*.caja-andes-subheader p {
+    cursor: pointer;
+}*/
+
+
+#btnCallAsistencia {
+    color: #fff !important;
+    background-color: var(--title-color-dos) !important;
+    font-size: 14px !important;
+    border-radius: 5px !important;
+    font-weight: 700 !important;
+    border: 1px solid var(--title-color-dos) !important;
+    margin: 0 auto;
+}
+
+.caja-andes-menu-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    margin-right: 3rem;
+}
+
+.icono-menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.iconos {
+    display: flex;
+    flex-direction: row;
+    gap: 1.2rem;
+    align-items: center;
+    margin-left: 4rem;
+}
+
+.iconos img {
+    width: 10rem;
+    cursor: pointer;
+}
+
+.icono-menu-header {
+    width: 18px;
+}
+
+.caja-andes-vertical-bar {
+    width: 0.1px;
+    /* background-color: #333;*/
+    background-color: rgba(174, 174, 174, .7);
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+.caja-andes-vertical-bar-nav {
+    width: 0.1px;
+    background-color: #333;
+    height: 32px;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+.icono-menu p {
+    font-size: 12px;
+}
+
+.caja-andes-menu-header button {
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    background-color: var(--light-color);
+    border-radius: 20px;
+    border: 2px solid var(--primary-color);
+    cursor: pointer;
+}
+
+.caja-andes-container {
+    padding: 2rem;
+}
+
+.caja-andes-caja-menu {
+    display: flex;
+    flex-direction: row;
+    justify-self: flex-start;
+    gap: 1rem;
+    padding: 0.5rem 2rem 0.5rem 2rem;
+    background-color: var(--background-active);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.caja-andes-imagen-salud {
+    margin-top: 2rem;
+}
+
+.caja-andes-imagen-salud img {
+    width: 100%;
+}
+
+.caja-andes-contend-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin: auto;
+    margin-top: 4rem;
+    max-width: 1400px;
+    gap: 1rem;
+    width: 96%;
+}
+
+.caja-andes-box {
+    padding: 1rem;
+    border-radius: 20px;
+    box-shadow: 2px 4px 17px 0px rgba(0, 0, 0, 0.12);
+    width: 30%;
+    max-width: 360px;
+    cursor: pointer;
+}
+
+.caja-andes-box a {
+    display: flex;
+    justify-content: start;
+    flex-direction: row;
+    align-items: center;
+}
+
+.caja-andes-box p {
+    color: var(--title-color);
+    font-weight: bold;
+    text-transform: uppercase !important;
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+.caja-andes-contrata-seguro {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    max-width: 1024px;
+    width: 96%;
+    margin: 4rem auto;
+    border: none;
+   
+}
+
+.caja-andes-contrata-seguro .btn-caja-fusion {
+    margin-right: 2rem;
+}
+
+.caja-andes-contrata-img img {
+    max-width: 294px;
+}
+
+.caja-andes-contrata-texto {
+    max-width: 340px;
+    width: 100%;
+    padding: 1rem;
+    margin-left: 2rem;
+    margin-right: auto;
+}
+
+.caja-andes-1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--title-color-dos);
+    margin-bottom: 0;
+}
+
+.caja-andes-2 {
+    font-size: 12px;
+    color: var(--secondary-color);
+}
+
+.caja-andes-contrata-boton {
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    align-self: flex-end;
+}
+
+.caja-andes-contrata-boton button {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    background-color: var(--title-color-dos);
+    border-radius: 20px;
+    color: white;
+    border: none;
+    margin-bottom: 1.3rem;
+    cursor: pointer;
+}
+
+.caja-andes-imagen-salud {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 90%;
+}
+
+.caja-andes-img {
+    margin: 0 auto;
+}
+
+.caja-andes-img img {
+    width: auto;
+    max-width: 100%;
+}
+
+.caja-andes-detalles-beneficios {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    border: 1px solid #eee;
+    border-radius: 0 16px 16px 0;
+    box-shadow: 16px 16px 22px #eee;
+}
+
+.caja-andes-detalles-beneficios h1 {
+    color: var(--title-color-dos);
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+}
+
+.caja-andes-detalles-beneficios p {
+    color: var(--gray-color);
+    font-size: 14px;
+}
+
+.caja-andes-content-contacto {
+    padding: 1rem;
+    box-shadow: 0px 1px 5px 0px rgba(178, 178, 178, 0.63);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    width: 94%;
+    max-width: 650px;
+    margin: auto;
+    margin-top: 6rem;
+    margin-bottom: 48px;
+}
+
+.caja-andes-box-contacto {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 1rem;
+}
+
+.caja-andes-box-phone-email {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    column-gap: 1rem;
+}
+
+.caja-andes-box-phone-email img {
+    width: 1rem;
+    margin-bottom: 0.4rem;
+}
+
+.caja-andes-box-phone-email p {
+    font-size: 14px;
+    margin: 0.1rem;
+    color: #081F41;
+}
+
+.caja-andes-footer {
+    display: flex;
+    justify-content: center;
+    background-color: var(--content-footer);
+    padding: 2rem 0;
+    z-index: 1;
+    margin: auto;
+    width: 96%;
+    max-width: 1040px;
+}
+
+.caja-andes-content-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.caja-andes-footer-terminos {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.caja-andes-footer-servicio-cliente {
+    display: flex;
+    flex-direction: column;
+}
+
+.caja-andes-footer-preguntas {
+    display: flex;
+    flex-direction: row;
+}
+
+.caja-andes-footer-terminos h3 {
+    font-size: 14px;
+}
+
+.caja-andes-footer-terminos p {
+    font-size: 12px;
+    margin: 0.2rem
+}
+
+.caja-andes-footer-servicio-cliente h3 {
+    font-size: 14px;
+}
+
+.caja-andes-logos-footer img {
+    width: 173px;
+    height: 68px;
+    flex-shrink: 0;
+}
+
+.caja-andes-terminos-pregunta {
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
+    max-width: 600px;
+}
+
+.caja-andes-terminos-pregunta .terminos {
+    display: grid;
+}
+
+.caja-andes-footer-preguntas {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+.caja-andes-footer-preguntas p {
+    font-size: 10px;
+    margin: 0.2rem
+}
+
+.caja-andes-footer-preguntas img {
+    width: 14px;
+}
+
+.footer-dos {
+    background-color: var(--title-color-dos);
+    color: var(--light-color);
+    text-align: center;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+.footer-dos p {
+    font-size: 14px;
+    opacity: 0.88;
+    width: 100%;
+}
+
+.active-sub-header {
+    color: var(--tertiary-color);
+    font-weight: bold;
+}
+
+/* Estilos para el menú de hamburguesa */
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: #333;
+}
+
+.caja-andes-img-salud {
+    display: block;
+}
+
+.caja-andes-img-salud-movil {
+    display: none;
+}
+
+.imagen-texto {}
+
+.caja-andes-volver {
+    display: none
+}
+
+
+/*Alertas*/
+/*Atencion Pendiente:*/
+
+.swal2-container.swal2-center.swal2-shown {
+    position: fixed;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 16px;
+    z-index: 9999;
+    height: -webkit-fill-available;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin: 0 auto;
+    box-sizing: content-box;
+}
+
+.swal2-popup.swal2-modal.swal2-show {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: #fff;
+    width: 655px;
+    height: 380px;
+    border-radius: 20px;
+}
+
+.swal2-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: var(--title-color-dos);
+    color: #fff;
+    border-radius: 20px 20px 0 0;
+}
+
+.swal2-icon.swal2-question {
+    border-color: #209CD4;
+    color: #209CD4;
+    justify-content: center;
+}
+
+.swal2-icon.swal2-question::before {
+    content: "?";
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: #fff;
+    color: var(--title-color-dos);
+    font-size: 2.5rem;
+    line-height: unset;
+    font-weight: bold;
+    margin: 1rem;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.swal2-container.swal2-center.swal2-shown .swal2-header .swal2-title {
+    width: -webkit-fill-available;
+    background: #fff;
+    color: var(--title-color-dos);
+    text-align: center;
+    padding: 3rem 2rem 3rem 2rem;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.swal2-container.swal2-center.swal2-shown .swal2-content {
+    margin-bottom: 2rem;
+    font-size: 18px;
+    letter-spacing: 0.6px;
+    color: #56504C;
+}
+
+.swal2-container.swal2-center.swal2-shown .swal2-actions button {
+    background-color: var(--title-color-dos);
+    border-radius: 2rem;
+    border: 1px solid var(--title-color-dos) !important;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    margin: 0 10px 0 10px;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+}
+
+.swal2-container.swal2-center.swal2-shown .swal2-actions button:hover {
+    border-color: #F5BE0B !important;
+    background-color: #F5BE0B !important;
+}
+
+/*Responsive*/
+
+@media (max-width: 768px) {
+
+    .caja-andes-box-pre-home {
+        display: none;
+    }
+    body {
+        overflow-x: auto !important;
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        width: 100%;
+    }
+
+    .caja-andes-contrata-seguro .btn-caja-fusion {
+        margin-right: 0;
+    }
+
+    .caja-andes-contrata-seguro img {
+        display: none;
+    }
+
+    .caja-andes-menu-content {
+        display: none;
+    }
+
+    .caja-andes-volver {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--tertiary-color);
+        font-weight: bold;
+    }
+
+    .caja-andes-contrata-img {
+        height: 186px;
+    }
+
+    .caja-andes-sidebar {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+        margin-right: 1rem;
+    }
+
+    #menu {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--light-color);
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    #menu.active {
+        display: block;
+    }
+
+    /* Estilos específicos para el menú desplegable en móvil */
+    .caja-andes-menu-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        padding: 1rem;
+    }
+
+    .icono-menu {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .caja-andes-icono-cardif {
+        display: none;
+    }
+
+    #subheader {
+        display: none;
+    }
+
+    .iconos {
+        display: flex;
+        flex-direction: row;
+        gap: 1.2rem;
+        align-items: center;
+        margin-left: 1rem;
+    }
+
+    .caja-andes-imagen-salud {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        min-height: unset;
+    }
+
+    .caja-andes-img-salud {
+        display: none;
+    }
+
+    .caja-andes-img-salud-movil {
+        display: block;
+    }
+
+    .caja-andes-img,
+    .caja-andes-img img {
+        width: 100%;
+        display: block;
+    }
+
+    .caja-andes-header {
+        margin: 0;
+        padding: 0;
+    }
+
+    .caja-andes-box-content {
+        padding: 1.2rem;
+    }
+
+    .caja-andes-detalles-beneficios {
+        width: auto;
+        padding: 1rem;
+        border: none;
+        border-radius: unset;
+        box-shadow: none;
+    }
+
+    .caja-andes-contend-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        width: 90%;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+        margin-bottom: 3rem;
+        margin: auto;
+    }
+
+    .caja-andes-box {
+        padding: 0.5rem;
+        border-radius: 20px;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 96%;
+        cursor: pointer;
+        height: 5rem;
+    }
+
+    .caja-andes-box a {
+        display: flex;
+        justify-content: start;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .caja-andes-contrata-seguro {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 94%;
+        margin: auto !important;
+     
+        margin-top: 4rem;
+        margin: 0;
+        border: none;
+        margin-top: 2rem !important;
+      
+    }
+
+    .caja-andes-contrata-img img {
+        width: 150px;
+        height: 150px;
+        /* width: 10rem; */
+        margin: auto;
+    }
+
+    .caja-andes-container {
+        display: flex;
+        flex: 1;
+        width: 100%;
+        overflow: auto;
+        overflow-x: hidden;
+        padding: 0 !important;
+    }
+
+    .caja-andes-contrata-boton {
+        align-self: center;
+    }
+
+    .caja-andes-contrata-texto {
+        width: 100%;
+        height: 75%;
+        margin: auto;
+    }
+
+    .caja-andes-contrata-boton {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-self: flex-end;
+        margin: auto;
+    }
+
+    .caja-andes-contrata-boton button {
+        padding: 1rem 1rem 1rem 1rem;
+    }
+
+    .caja-andes-content-contacto {
+        display: none;
+    }
+
+    .caja-andes-content-footer {
+        flex-direction: column;
+    }
+
+    .caja-andes-terminos-pregunta {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .caja-andes-logos-footer {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .caja-andes-vertical-bar-nav {
+        display: none;
+    }
+
+    .caja-andes-detalles-beneficios h1 {
+        color: #333;
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    .caja-andes-2 {
+        font-size: 13px;
+    }
+
+    .caja-andes-footer {
+        padding: 2rem 2rem 2rem 2rem
+    }
+}
+
+.caja-andes-box img {
+    max-width: 60px;
+    height: auto;
+    /*margin-right: 1rem;*/
+    min-width: 40px;
+    /* width: 40px;*/
+    /*   display: none;*/
+}
+
+
+a {
+    text-decoration: none;
+    font-size: 14px;
+    color: black;
+}
+
+.cont-item-subheader {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.cont-item-subheader p {
+    padding: 0 32px;
+    border-right: 1px solid #666;
+}
+
+.cont-item-subheader p:last-child {
+    border-right: none;
+}
+
+.caja-andes-subheader h1 {
+    color: rgba(105, 105, 105, 1);
+    font-weight: 500;
+    font-size: 20px;
+    display: none;
+}
+
+.caja-andes-caja-menu:nth-of-type(2),
+.caja-andes-caja-menu:nth-of-type(3) {
+    display: none;
+}
+
+.caja-andes-logos-footer {
+    width: 100%;
+    max-width: 390px;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    justify-content: space-between;
+}
+
+/*.caja-andes-terminos-pregunta {
+    max-width: 600px;
+}*/
+
+.caja-andes-footer-terminos {
+    max-width: 360px;
+}
+
+.caja-andes-footer-servicio-cliente {
+    max-width: 275px;
+}
+
+.caja-andes-container h3 {
+    color: #081F41;
+    margin-bottom: .25rem;
+    margin-top: 0;
+}
+
+
+
+/*.busqueda-profesionales .dropdown .btn {}*/
+
+.busqueda-profesionales .caja-busqueda .dropdown select{
+    padding: 1rem !important;
+}
+
+.caja-andes-footer-servicio-cliente>p {
+    font-size: 12px;
+    margin-bottom: 1rem;
+    margin-top: 0;
+}
+
+.btn-caja-fusion {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    background-color: var(--title-color-dos);
+    border-radius: 20px;
+    color: white;
+    border: none;
+    margin-bottom: 1.3rem;
+    cursor: pointer;
+}
+
+.caja-andes-menu-header button {
+    margin-top: 0%;
+}
+
+#concierge-chat {
+    display: none;
+}
+
+.kt-grid.kt-grid--desktop.kt-grid--ver.kt-grid--ver-desktop.kt-app.cont-faq {
+    width: 94%;
+    margin: auto;
+    margin-top: 17rem;
+    max-width: 1600px;
+}
+
+.cont-faq .container {
+    max-width: 1600px;
+}
+
+.cont-faq .top-banner {
+    max-width: 1600px;
+    margin-bottom: 2rem !important;
+}
+
+.cont-faq .top-banner img {
+    width: 60px !important;
+}
+
+.cont-faq .column2 img {
+    /*max-width: 300px;*/
+    margin: auto;
+}
+
+.cont-faq .accordion-header button {
+    font-size: 16px !important;
+}
+
+.cont-faq .accordion-body p {
+    font-size: 14px;
+    width: 100%;
+}
+
+.p-salud-caja-menu {
+    margin-top: 15px;
+}
+
+.cont-item-subheader .active-sub-header {
+    margin-bottom: 0;
+}
+
+.select2-selection {
+    border: 0px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #F5BE0B;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+}
+
+.select2-results__option {
+    padding: 6px !important;
+    color: #069 !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+}
+
+    .select2-results__option:hover, .select2-container--default .select2-results__option[aria-selected=true] {
+        color: white !important;
+        background-color: #3BC1CD !important;
+    }
+
+/*FIN NUEVO LOOK*/
+
+/*ANTIGUO CSS*/
+
+/*FIN ANTIGUO CSS*/
+
+

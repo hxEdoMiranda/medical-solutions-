@@ -1,0 +1,36 @@
+<div class="cont-icon-bar">
+    <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+    <div class="dropdown-bar">
+        <span>Filtrar por</span>
+
+        <div class="dropdown dropdown-biblioteca">
+          <button class="btn btn-secondary dropdown-toggle js-filter" type="button" 
+                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" 
+                     aria-expanded="false">
+                <i class="fal fa-file-alt"></i> Todos los temas
+            </button>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item js-filter" value="Todos los temas" data-tema="0">Todos los temas</a>
+                    <a class="dropdown-item js-filter" value="Recetas Saludables" data-tema="1">Recetas Saludables</a>
+                    
+                    
+                </div>      
+                
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<style>
+    .is-hidden {
+    display: none;
+}
+
+
+</style>
+
+

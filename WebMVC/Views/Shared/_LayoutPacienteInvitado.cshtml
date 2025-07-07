@@ -1,0 +1,683 @@
+@using Microsoft.AspNetCore.Http.Extensions
+@using WebMVC.Controllers
+@using Microsoft.AspNetCore.Http;
+@using System.Security.Claims;
+@using WebMVC.Models;
+@using Microsoft.Extensions.Configuration
+@using System.Web;
+@using System;
+@using System.Security.Cryptography;
+@using System.Text;
+@using System.Text.Json;
+@inject IConfiguration Configuration
+@{
+    var cliente = "";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <base href="">
+    <meta charset="utf-8" />
+    @{
+        cliente = "";
+        cliente = ((ClaimsIdentity)User.Identity).GetSpecificClaim("primarysid");
+    }
+ 
+        <title>Medical | Sitio Paciente</title>
+    
+
+    <meta name="description" content="Latest updates and statistic charts">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-227236350-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-227236350-1');
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T3GQHL7');</script>
+    <!-- End Google Tag Manager -->
+    
+
+    <!-- #region metronic-template -->
+    <!--begin::Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!--end::Fonts -->
+    <!--begin::Page Custom Styles(used by specific page) -->
+    @RenderSection("PageStyles", false)
+    <!--end::Page Custom Styles -->
+    <!--begin::Global Theme Styles(used by all pages) -->
+    <link href="~/metronic_demo7/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/metronic_demo7/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+   
+    <!--end::Global Theme Styles -->
+    <!--begin::Global Medismart Styles -->
+    @*<script src="https://kit.fontawesome.com/6ecd8f8e05.js?rand=@NumeroRandom.GetRandom()" crossorigin="anonymous"></script>*@
+    <script src="~/js/KitAwesome.js"></script>
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+
+
+    @{
+        
+        var codTelefono = ((ClaimsIdentity)User.Identity).GetSpecificClaim("CodigoTelefono");
+        if(codTelefono == "CO"){
+                <link href="~/css/Colombia/colombia.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+        }
+    }
+    <link href="~/css/Medismart/loader_medismart.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    @if (ViewBag.HostURL.ToString().Contains("clini."))
+    {
+        <link href="~/css/clini/clini.css?ver=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    
+    <!--end::Global Medismart Styles -->
+    <!-- #endregion -->
+    
+    <link rel="shortcut icon" href="~/metronic_demo7/assets/media/logos/logoFavicon.ico" />
+
+    @RenderSection("Styles", false)
+
+    @{
+        cliente = ((ClaimsIdentity)User.Identity).GetSpecificClaim("primarysid");
+        if (string.IsNullOrEmpty(cliente))
+        {
+            cliente = "-1";
+        }
+
+        var userConnect = "";
+        userConnect = ((ClaimsIdentity)User.Identity).GetSpecificClaim("nameidentifier");
+        if (string.IsNullOrEmpty(userConnect))
+        {
+            userConnect = "-1";
+        }
+
+    }
+
+
+    <!-- Hotjar Tracking Code for https://medical.medismart.live -->
+    <script>
+        (function (h, o, t, j, a, r) {
+            h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+            h._hjSettings = { hjid: 2677023, hjsv: 6 };
+            a = o.getElementsByTagName('head')[0];
+            r = o.createElement('script'); r.async = 1;
+            r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+    </script>
+    <script>
+        var userId = @userConnect // Replace your_user_id with your own if available.
+        window.hj('identify', userId, {
+            // Add your own custom attributes here. Some EXAMPLES:
+            // 'Signed up': '2019—06-20Z', // Signup date in ISO-8601 format.
+            // 'Last purchase category': 'Electronics', // Send strings with quotes around them.
+            // 'Total purchases': 15, // Send numbers without quotes.
+            // 'Last purchase date': '2019-06-20Z', // Send dates in ISO-8601 format.
+            // 'Last refund date': null, // Send null when no value exists for a user.
+        });
+    </script>
+</head>
+
+@{
+    cliente = "";
+    cliente = ((ClaimsIdentity)User.Identity).GetSpecificClaim("primarysid");
+    var fondo = "fondo-agendamiento";
+
+}
+<body class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--transparent kt-aside--enabled kt-aside--fixed kt-aside--minimize @fondo">
+    
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T3GQHL7"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+<!--Begin vars-->
+
+    @{
+        var auth = "";
+        auth = ((ClaimsIdentity)User.Identity).GetSpecificClaim("authentication");
+        if (string.IsNullOrEmpty(auth))
+        {
+            auth = "-1";
+        }
+
+        var _layout = new LayoutController();
+        var host = Configuration["ServicesUrl"];
+        var c = "";
+        //var btncargaPersonas = "hidden";
+
+
+        c = ((ClaimsIdentity)User.Identity).GetSpecificClaim("nameidentifier");
+        if (string.IsNullOrEmpty(c))
+        {
+            c = "0";
+        }
+
+        //CARGA LOGOEMPRESA DESDE LOS CLAIMS;
+        var campos = "";
+        campos = ((ClaimsIdentity)User.Identity).GetSpecificClaim("Empresa");
+        var logoEmpresa = "/img/isotipo.png";
+        
+         if (!campos.Equals(""))
+        {
+            string stringCampos = campos.Replace("\"", "");
+            var stringSplit = stringCampos.Split(",");
+            var stringLogo = stringSplit[Array.FindIndex(stringSplit, x => x.ToLower().Contains("logoempresa"))].Split(":"); //posición logoEmpresa
+            logoEmpresa = stringLogo[1];
+        }
+        @if (ViewBag.HostURL.ToString().Contains("clini."))
+        {
+            logoEmpresa = "/img/clini/logotipo.svg";
+        }
+        var idCliente = ((ClaimsIdentity)User.Identity).GetSpecificClaim("primarysid");
+        var codigoTelefono = ((ClaimsIdentity)User.Identity).GetSpecificClaim("CodigoTelefono");
+        
+        if (string.IsNullOrEmpty(idCliente))
+        {
+            idCliente = "0";
+            
+          
+
+
+        }
+
+        var configEmpresa = await _layout.GetConfigEmpresa(host, Convert.ToInt32(idCliente));
+
+
+
+        var texto = _layout.Notifications(Convert.ToInt32(c), host, Convert.ToInt32(idCliente));
+        
+        var url = Context.Request.GetEncodedUrl().ToString();
+        string isAtencion = "";
+        var showMsj = "";
+        var existeAtencion = new Notificacions();
+        if (url.Contains("Atencion_Box")){
+            isAtencion = url.Split("_Box/")[1];
+            existeAtencion = texto.Result.FirstOrDefault(x => x.IdAtencion == Convert.ToInt32(isAtencion));
+            showMsj = existeAtencion!=null?"d-none":"";
+        }
+
+        var claseMensaje = texto.Result.FirstOrDefault(x => x.Tipo == "Mensaje").ClaseNotificacion;
+     
+     
+
+
+
+
+        var btncargaPersonas = "hidden";
+        if (idCliente == "108" || idCliente == "204")
+            btncargaPersonas = " ";
+
+    }
+
+
+    <!-- Start Preloader Area -->
+    <!--<div class="loader-wrapper">
+        <div class="loader">
+            <div class="container-logo">
+                <img src="/img/Isotipo-medismart-blanco.png">
+            </div>
+        </div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>-->
+    <!-- End Preloader Area -->
+    <!--End vars-->
+    <!-- begin:: Page -->
+    <!-- begin:: Header Mobile -->
+
+    
+    
+    <div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed d-none">
+        <div class="kt-header-mobile__logo">
+            <a asp-controller="Paciente" asp-action="Index" class="logotipo-img logotipo-mobile" style="background-image:url(@logoEmpresa) !important">
+            </a>
+        </div>
+
+     
+        <div class="kt-header-mobile__toolbar">
+            <button class="kt-header-mobile__toolbar-toggler kt-header-mobile__toolbar-toggler--left" id="kt_aside_mobile_toggler"><span></span></button>
+            <button class="kt-header-mobile__toolbar-toggler" id="kt_header_mobile_toggler"><span></span></button>
+            <button class="kt-header-mobile__toolbar-topbar-toggler" id="kt_header_mobile_topbar_toggler"><i class="flaticon-more"></i></button>
+        </div>
+
+        <div class="toolbar-mobile d-block">
+            
+            <ul class="cont-toolbar-options">
+
+                <li class="d-none">
+                    <a href="javascript:void(0);" data-toggle="dropdown" data-target="drop-mensajes">
+                        <span class="circulo-alerta">
+                            <span class="circulo-alerta-numero">5</span>
+                        </span>
+                        <i class="fal fa-bell"></i>
+                        <span class="label-options">Alertas</span>
+                        <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-xl" id="drop-mensajes">
+                            <form>
+
+                                <!--begin: Head -->
+                                <div class="header-notificaciones">
+                                    <h1 class="titulo-notificaciones">
+                                        Alertas
+                                    </h1>
+                                <ul class="nav nav-tabs nav-tabs-line nav-tabs-bold nav-tabs-line-3x nav-tabs-line-brand  kt-notification-item-padding-x" role="tablist">
+                                    <li class="nav-item">
+                                          <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home-tab" role="tab" aria-controls="nav-home" aria-selected="true">Notificaciones</a>
+                                    </li>
+                               
+                                </ul> 
+                                </div>
+
+                                <!--end: Head -->
+          <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+	            <div class="kt-notification kt-margin-t-10 kt-margin-b-10 kt-scroll" data-scroll="true" data-height="300" data-mobile-height="200">
+                    @foreach (var lista in texto.Result.ToList().Where(x => x.Tipo == "Notificacion"))
+                    {
+                        <a href="#" class="kt-notification__item">
+                            <div class="kt-notification__item-icon">
+                                <i class="fal fa-info-square"></i>
+                            </div>
+                            <div class="kt-notification__item-details">
+                                <div class="kt-notification__item-title">
+                                    @lista.Mensaje
+                                </div>
+                            </div>
+                        </a>
+                    }
+                </div>
+              </div>
+    
+             </div>
+                            </form>
+                        </div>
+
+                    </a>
+           </li>
+
+                <li>
+                    <a asp-controller="Account" asp-action="Logout" asp-route-rol="Paciente" data-close="true">
+                        <i class="fal fa-sign-out"></i>
+                        <span class="label-options">Salir</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- end:: Header Mobile -->
+
+
+    <div class="kt-grid kt-grid--hor kt-grid--root">
+        <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
+
+            <!-- begin:: Aside -->
+            <button class="kt-aside-close " id="kt_aside_close_btn"><i class="la la-close"></i></button>
+            
+            <div class="kt-aside  kt-aside--fixed  kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop ms-aside ms-aside-invitado d-none" id="kt_aside" >
+
+
+                @{
+                    var cssClass = "kt-aside__brand-logo";
+                }
+
+
+                <!-- begin:: Brand -->
+               <div class="kt-aside__brand kt-grid__item " id="kt_aside_brand">
+                    <div class="@cssClass">
+                        <a asp-controller="Paciente" asp-action="Index" style="background-image:url(@logoEmpresa) !important">
+                        </a>
+
+                     
+
+                    </div>
+                </div>
+
+                <!-- end:: Brand -->
+               <!-- begin:: Aside Menu Menu MedismartBASE-->
+            <!--    <div class="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_aside_menu_wrapper">
+                    <div id="kt_aside_menu" class="kt-aside-menu  kt-aside-menu--dropdown" data-ktmenu-vertical="1" data-ktmenu-dropdown="1" data-ktmenu-scroll="0">
+                        <ul class="kt-menu__nav ">
+                            
+                             <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--submenu-fullheight kt-menu__item--open kt-menu__item--here d-none" style="text-align: center">
+                                <a asp-controller="Paciente" asp-action="Configuracion" class="kt-menu__link ms-menu__link">
+                                    <i class="ms-link-icon fal fa-file-alt mb-1"></i>
+                                    <span class="ms-label-menu">Documentos</span>
+                                </a>
+                            </li>
+                            <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--submenu-fullheight kt-menu__item--open kt-menu__item--here d-none" style="text-align: center">
+                                <a asp-controller="Paciente" asp-action="Configuracion" class="kt-menu__link ms-menu__link">
+                                    <i class="ms-link-icon fal fa-question-square mb-1"></i>
+                                    <span class="ms-label-menu">Ayuda</span>
+                                </a>
+                            </li>
+                            <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--submenu-fullheight kt-menu__item--open kt-menu__item--here d-none" style="text-align: center">
+                                <a asp-controller="Account" asp-action="Logout" asp-route-rol="Paciente" class="kt-menu__link ms-menu__link" data-close="true">
+                                    <i class="ms-link-icon fal fa-sign-out mb-1"></i>
+                                    <span class="ms-label-menu">Salir</span>
+                                </a>
+                            </li>
+                            <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--submenu-fullheight kt-menu__item--open kt-menu__item--here d-none" style="text-align: center">
+
+                                <a asp-controller="Account" asp-action="Logout" asp-route-rol="Paciente" class="mega-menu" data-close="true">
+                                    <i class="kt-menu__link-icon flaticon2-cross"></i>
+                                </a>
+
+                                <span>Salir</span>
+                            </li>
+                        <li>
+                                <div class="accesible-tools accesible-tools-desktop">
+                                    <div class="accesible-btn">
+                                        <button id="increase-font-desk">A+</button>
+                                        <button id="normal-font-desk">A</button>
+                                        <button id="decrease-font-desk">A-</button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>-->
+                <!-- end:: Aside Menu MedismartBASE-->
+
+
+
+            </div>
+            <div class="kt-aside-menu-overlay"></div>
+
+            <div id="kt_header" class="kt-header kt-grid kt-grid--ver  kt-header--fixed header-invitado d-none">
+
+
+                @if (ViewBag.HostURL.ToString().Contains("clini."))
+                {
+                    <img src="~/img/clini/logotipo.svg" alt="" />
+                    
+                }
+                else
+                {
+                    <img src="~/img/logo-mlive.svg" alt="" />
+                }
+
+            </div>
+            
+            <div id="kt_header" class="kt-header kt-grid kt-grid--ver  kt-header--fixed ms-header d-none">
+                <!-- begin: Header Menu -->
+                <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn" style="display: none"><i class="la la-close"></i></button>
+                <div class="kt-header-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_header_menu_wrapper">
+                    <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile  kt-header-menu--layout- ">
+
+                        <ul class="kt-menu__nav">
+                            <li class="kt-menu__item  kt-menu__item--active " aria-haspopup="true" style="min-width: 270px; max-width: 600px;"> @* max-width: 500px*@
+                              
+                                <div class="foto-usuario mr-4">
+                                    <img alt="image" id="fotoPerfil" class="rounded-circle">
+                                    <span class="rounded-circle iniciales d-none"></span>
+                                </div>
+
+                                <h5 id="nombreCompleto"></h5>
+                                <h5 id="page"></h5>
+                            </li>
+                        </ul>
+              
+                    </div>
+                </div>
+
+                <input type="hidden" id="iniciales" />
+                <div class="kt-header__topbar menu-top">
+                    <!--begin: Quick actions -->
+                    <div class="kt-header__topbar-item dropdown">
+
+                        <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px">
+                            <span class="kt-header__topbar-icon kt-header__topbar-icon--warning">
+                                <i class="fal fa-question-square"></i>
+                                <span class="text-uppercase d-none">Ayuda</span>
+                            </span>
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-xl">
+                            <form>
+
+                                <!--begin: Head -->
+                                <!--end: Head -->
+                                <!--begin: Grid Nav -->
+                                <!--end: Grid Nav -->
+                            </form>
+                        </div>
+                    </div>
+
+                    <!--end: Quick actions -->
+                    <!--Logo Mobile-->
+
+                    <div class="d-inline-block d-lg-none item-menu-top">
+                        <a asp-controller="Paciente" asp-action="Index" class="logotipo-mobile" style="background-image:url(@logoEmpresa) !important"></a>
+                    </div>
+                    <!--<img alt="Logo" src=@logoEmpresa class="d-md-none"/>-->
+                    <!--Logo Mobile-->
+                    <!--begin:: Accesibilidad-->
+                    <div class="dropdown item-menu-top d-md-none" data-toggle="tooltip" title="Accesibilidad" id="menu-accesible">
+                        <div class="kt-header__topbar-wrapper" data-toggle="dropdown">
+                          <a>
+                             <i class="fal fa-universal-access d-block"></i>
+                             <span class="text-uppercase label-menu">Accesibilidad</span>
+                           </a>
+                            <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-sm" id="dropdown-accesible">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h1 class="titulo-dropdown" metadata="layoutAccesibilidad">Accesibilidad</h1>
+                                            <div class="accesible-tools accesible-tools-mobile">
+                                                <div class="accesible-btn">
+                                                    <button id="increase-font">A+</button>
+                                                    <button id="normal-font">A</button>
+                                                    <button id="decrease-font">A-</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end:: Accesibilidad-->
+                   
+                    <!--begin: Salir -->
+                    <div class="item-menu-top" id="item-salir" data-toggle="tooltip" title="Salir" data-placement="bottom">
+                        <div class="kt-header__topbar-wrapper">
+
+                            <a asp-controller="Account" asp-action="Logout" asp-route-rol="Paciente" class="d-block" data-close="true">
+                                    <i class="fal fa-sign-out"></i>
+                                    <span class="text-uppercase label-menu">Salir</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!--end: Salir-->
+
+
+                </div>
+                
+
+                <!-- end: Header Menu -->
+            </div>
+                       <!--MedismartBASE-->
+             <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper kt-wrapper-invitado" id="kt_wrapper">
+             
+                <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+                
+                    @*begin:: Subheader*@
+                    <div class="kt-subheader kt-grid__item d-none" id="kt_subheader">
+                        <div class="kt-container  kt-container--fluid ">
+                            <div class="kt-subheader__main">
+                                <h3 class="kt-subheader__title">
+                                    <button class="kt-subheader__mobile-toggle kt-subheader__mobile-toggle--left" id="kt_subheader_mobile_toggle"><span></span></button>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    @RenderBody()
+                    <div class="powered d-lg-none">
+                        Powered by <strong>Medismart.live</strong>
+                    </div>
+                    <!-- begin::Scrolltop -->
+                    <div id="kt_scrolltop" class="kt-scrolltop">
+                        <i class="fa fa-arrow-up"></i>
+                    </div>
+                    <!-- end::Scrolltop -->
+                </div>
+            </div>
+            <!--MedismartBASE-->
+       
+
+        </div>
+         <!--Footer Coopeuch-->
+        <div class="kt-footer  kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop d-md-none" id="kt_footer">
+            <div class="kt-container  kt-container--fluid align-items-center">
+                <div class="footer-cliente">
+                    <img src="~/img/vidacamara/logo.svg" alt="Logo Cliente" />
+                </div>
+
+                <div class="kt-footer__copyright">
+                    2022&nbsp;&copy;&nbsp;<a href="#" target="_blank" class="kt-link" metadata="layoutFootLogo">Medical</a>
+                </div>
+                <div class="terminos">
+                    <a href="#" id="terminosFooter" metadata="layoutFootTerms">Términos y condiciones</a>
+                    <a href="#" id="politicas" metadata="layoutFootPolitics">Políticas de privacidad</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!--Modal Terminos-->
+
+    <div class="modal fade" id="modalTerminos" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" metadata="layoutModTerms">Términos y condiciones</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+                </div>
+                <div class="modal-body" id="modalTerminosBody">
+                    @*terminos y condiciones se cargan de forma dinamica*@
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btnCerrar" data-dismiss="modal" metadata="layoutModTermsClose">Cerrar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--Modal Politicas-->
+
+    <div class="modal fade" id="modalPoliticas" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" metadata="layoutModPolitycs">Políticas de privacidad</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+                </div>
+                <div class="modal-body" id="modalPoliticasBody">
+                    @*politicas de privacidad se cargan de forma dinamica*@
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btnCerrar" data-dismiss="modal" metadata="layoutModPolitycsClose">Cerrar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <audio id="ingresoBox">
+        <source src="../../Sounds/SonidoAtencion.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- #region metronic-template -->
+    <!-- begin::Global Config(global config for global JS sciprts) -->
+    <script>
+        var KTAppOptions = {
+            "colors": {
+                "state": {
+                    "brand": "#22b9ff",
+                    "light": "#ffffff",
+                    "dark": "#282a3c",
+                    "primary": "#5867dd",
+                    "success": "#34bfa3",
+                    "info": "#36a3f7",
+                    "warning": "#ffb822",
+                    "danger": "#fd3995"
+                },
+                "base": {
+                    "span": ["#c5cbe3", "#a1a8c3", "#3d4465", "#3e4466"],
+                    "shape": ["#f0f3ff", "#d9dffa", "#afb4d4", "#646c9a"]
+                }
+            }
+        };
+    </script>
+    <!-- end::Global Config -->
+    <!--begin::Global Theme Bundle(used by all pages) -->
+    <script src="~/signal/signalr.min.js"></script>
+    <script src="~/metronic_demo7/assets/plugins/global/plugins.bundle.js?4" type="text/javascript"></script>
+    <script src="~/metronic_demo7/assets/js/scripts.bundle.js?1" type="text/javascript"></script>
+    <script src="~/metronic_demo7/assets/js/pages/components/extended/sweetalert2.js"></script>
+    <script src="~/js/inputmask.min.js"></script>
+    <!--end::Global Theme Bundle -->
+    <!--begin::Page Scripts(used by specific page) -->
+<script src="~/js/terminos.js"></script>
+
+
+
+
+    @RenderSection("PageScripts", false)
+    <!--end::Page Scripts -->
+    <!-- #endregion -->
+    @*<script type="module" src="~/js/Shared/hostpais.js?rand=@NumeroRandom.GetRandom()"></script>*@
+    <script src="~/js/Shared/layout.js?rand=@NumeroRandom.GetRandom()"></script>
+     <!--<script src="~/js/Shared/layout-paciente.js?rand=@NumeroRandom.GetRandom()"></script>-->
+     <!--<script type="module">
+            import { init} from '../../js/Shared/layout-paciente.js?rnd=${@NumeroRandom.GetRandom()}';
+            init()
+        </script>-->
+<script type="text/javascript">
+    (function () {
+        var auth = "@auth";
+        var uid= @c;
+        window.uid = uid;
+        window.auth = auth;
+        var idCliente = @idCliente;
+        window.idCliente = idCliente;
+        window.hasTitle = "@ViewBag.hasTitleLayout";
+    })()
+    
+</script>
+   
+
+
+@RenderSection("Scripts", required: false)
+
+
+    <script type="module">
+        import { personaFotoPerfil, saludoPaciente } from '../js/shared/info-user.js?rnd=${@NumeroRandom.GetRandom()}';
+        if(window.hasTitle == "1") 
+            saludoPaciente();
+        window.onload = personaFotoPerfil();
+    </script>
+</body>
+</html>

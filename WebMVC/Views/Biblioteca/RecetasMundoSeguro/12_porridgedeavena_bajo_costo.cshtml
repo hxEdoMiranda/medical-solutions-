@@ -1,0 +1,88 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+    <section class="container-fluid note-section library featured" id="nota3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="cont-titulo-receta">
+                        <div class="cont-logo">
+                            <img src="~/img/cencosud/vida-sana/porridgedeavena.png" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <h2 class="subtitulo-receta">
+                        Ingredientes 1 porciones:
+                    </h2>
+
+                    <ol>
+                        <li>1 taza de leche descremada o 1 vaso de agua.</li>
+                        <li>½ taza de avena.</li>
+                        <li>1 taza de manzana</li>
+                    </ol>
+
+                    <h2 class="subtitulo-receta">
+                        Opcional:
+                    </h2>
+
+                    <ol>
+                        <li>1 cda de Chía </li>
+                        <li>Canela a gusto </li>
+                    </ol>
+
+                    <h2 class="subtitulo-receta">
+                        Preparación
+                    </h2>
+                    <ol>
+                        <li>Lava las frutas.</li>
+                        <li>Pica las frutas en cubitos. </li>
+                        <li>En un bowl porciona la leche, avena y chía, mézclalas y deja reposar.</li>
+                        <li>Agrega la fruta picada.</li>
+                        <li>Agrega canela a gusto.</li>
+                        <li>Sírvelo.</li>
+                    </ol>
+
+                    <p>
+                        <a href="@Url.Action("DescargarCenco", new { file = ViewBag.codigoNota})">
+                            Descargar receta
+                        </a>
+                        
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}
+

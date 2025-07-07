@@ -1,0 +1,740 @@
+﻿@model WebMVC.Models.FichaMedicoViewModel
+@{
+    ViewData["Title"] = "Agendar";
+    Layout = "_LayoutPaciente";
+
+}
+
+@section PageStyles  {
+    <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <style>
+        /*.swal2-styled.swal2-cancel{
+                position: absolute !important;
+                left: 75px !important;
+            }
+            .swal2-styled.swal2-confirm {
+                    position: absolute !important;
+                    right: 50px !important;
+        }*/
+
+    </style>
+}
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+    <!--Begin::App-->
+    <!-- Start:: Stepper-->
+    <!-- Stepper -->
+    
+    <div class="row">
+        <div class="col">
+            @{
+                if(ViewBag.idCliente == "108")
+                {
+                       
+                    <h1 class="titulo-servicio mb-4">Agendar atención</h1>
+                }
+
+            }
+        </div>
+    </div>
+    @{
+        if (ViewBag.HostURL.ToString().Contains("saludtumundoseguro."))
+        {
+            <!--CENCOSUD-->
+            <!-- MedismartBASE -->
+            <div class="stepper stepper-cencosud">
+                <div class="init-step"></div>
+                <div class="cont-steps">
+                    <!-- Step1 -->
+                    <div class="step ">
+                        <div class="step-icon">
+
+                            <i class="fal fa-user-md"></i>
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            1. Selección
+                        </div>
+                    </div>
+
+                    <i class="fas fa-chevron-right flecha"></i>
+
+                    <!-- Step2 -->
+                    <div class="step active">
+                        <div class="step-icon">
+                            <i class="fal fa-calendar-edit"></i>
+
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            2. Agendamiento
+                        </div>
+                    </div>
+
+                    <i class="fas fa-chevron-right flecha"></i>
+
+                    <!-- Step3 -->
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fal fa-check-circle"></i>
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            3. Confirmación
+                        </div>
+                    </div>
+                </div>
+                <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+            </div>
+            <!-- MedismartBASE End: -->
+            <!-- CENCOSUD End: -->
+        }
+    }
+    @{
+        if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+        {
+            <!--SCOTIABANK-->
+            <div class="stepper stepper-scotiabank">
+                <div class="cont-steps">
+                    <!-- Step1 -->
+                    <div class="step passed">
+                        <div class="step-icon">
+                            <img src="~/img/scotiabank/iconos/icon_seleccion_noactive.svg" />
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            1. Selección
+                        </div>
+                    </div>
+
+                    <i class="fas fa-chevron-right flecha"></i>
+
+                    <!-- Step2 -->
+                    <div class="step active">
+                        <div class="step-icon">
+                            <img src="~/img/scotiabank/iconos/icon_agendamiento_active.svg" />
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            2. Agendamiento
+                        </div>
+                    </div>
+
+                    <i class="fas fa-chevron-right flecha"></i>
+
+                    <!-- Step3 -->
+                    <div class="step">
+                        <div class="step-icon">
+                            <img src="~/img/scotiabank/iconos/icon_confirmacion_noactive.svg" />
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            3. Confirmación
+                        </div>
+                    </div>
+                </div>
+                <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+            </div>
+            <!-- SCOTIABANK End: -->
+        }
+        else if (ViewBag.HostURL.ToString().Contains("prevenciononcologica."))
+        {
+            
+        } else if (ViewBag.HostURL.ToString().Contains("prevenciononcologica.")){
+
+           <!-- Cajalosandes -->
+                <div class="stepper">
+                    <div class="init-step"></div>
+                    <div class="cont-steps">
+                        <!-- Step1 -->
+                        <div class="step">
+                            <div class="step-icon">
+                                <img src="~/img/cajalosandes/iconos/icon_seleccion_noactive.svg">
+                            </div>
+                            <div class="label-step fuente-accesible">
+                                1. Selección
+                            </div>
+                        </div>
+
+                        <i class="fas fa-chevron-right flecha"></i>
+                        <hr class="linea-stepper" />
+
+                        <!-- Step2 -->
+                        <div class="step active">
+                            <div class="step-icon">
+                                <img src="~/img/cajalosandes/iconos/icon_agendamiento_active.svg" />
+                            </div>
+                            <div class="label-step fuente-accesible">
+                                2. Agendamiento
+                            </div>
+                        </div>
+
+                        <i class="fas fa-chevron-right flecha"></i>
+                        <hr class="linea-stepper" />
+
+                        <!-- Step3 -->
+                        <div class="step">
+                            <div class="step-icon">
+                                <img src="~/img/cajalosandes/iconos/icon_confirmacion_noactive.svg" />
+                            </div>
+                            <div class="label-step fuente-accesible">
+                                3. Confirmación
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cajalosandes -->
+    }
+
+    else if (ViewBag.HostURL.ToString().Contains("masproteccionsalud.")){
+    
+           <!-- Cajalosandes -->
+                <div class="stepper">
+                    <div class="init-step"></div>
+                    <div class="cont-steps">
+                        <!-- Step1 -->
+                        <div class="step">
+                            <div class="step-icon">
+                                <img src="~/img/cajalosandes/iconos/icon_seleccion_noactive.svg">
+                            </div>
+                            <div class="label-step fuente-accesible">
+                                1. Selección
+                            </div>
+                        </div>
+
+                        <i class="fas fa-chevron-right flecha"></i>
+                        <hr class="linea-stepper" />
+
+                        <!-- Step2 -->
+                        <div class="step active">
+                            <div class="step-icon">
+                                <img src="~/img/cajalosandes/iconos/icon_agendamiento_active.svg" />
+                            </div>
+                            <div class="label-step fuente-accesible">
+                                2. Agendamiento
+                            </div>
+                        </div>
+
+                        <i class="fas fa-chevron-right flecha"></i>
+                        <hr class="linea-stepper" />
+
+                        <!-- Step3 -->
+                        <div class="step">
+                            <div class="step-icon">
+                                <img src="~/img/cajalosandes/iconos/icon_confirmacion_noactive.svg" />
+                            </div>
+                            <div class="label-step fuente-accesible">
+                                3. Confirmación
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cajalosandes -->
+        }
+        else @if (ViewBag.HostURL.ToString().Contains("vivetuseguro."))
+        {
+            <!-- Vivetuseguro -->
+            <div class="stepper">
+
+                <div class="init-step"></div>
+                <div class="cont-steps">
+                    <!-- Step1 -->
+                    <div class="step">
+                        <div class="step-icon">
+                            <img src="~/img/vivetuseguro/iconos/icon-seleccion-stepper.svg">
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            Selección
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right flecha"></i>
+                    <hr class="linea-stepper" />
+                    <!-- Step2 -->
+                    <div class="step active">
+                        <div class="step-icon">
+                            <img src="~/img/vivetuseguro/iconos/icono-agendamiento.svg" />
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            Agendamiento
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right flecha"></i>
+                    <hr class="linea-stepper" />
+                    <!-- Step3 -->
+                    <div class="step">
+                        <div class="step-icon">
+                            <img src="~/img/vivetuseguro/iconos/icon-confirmacion.svg" />
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            Confirmación
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Vivetuseguro -->
+        }
+        else
+        {
+    <!-- MedismartBASE -->
+    <div class="stepper">
+        <div class="init-step"></div>
+        <div class="cont-steps">
+            <!-- Step1 -->
+            <div class="step passed">
+                <div class="step-icon">
+                    <i class="fal fa-user-md"></i>
+                </div>
+                <div class="label-step fuente-accesible">
+                    1. Selección
+                </div>
+            </div>
+
+            <i class="fas fa-chevron-right flecha"></i>
+            <hr class="linea-stepper">
+            <!-- Step2 -->
+            <div class="step active">
+                <div class="step-icon">
+                    <i class="fal fa-calendar-edit"></i>
+                </div>
+                <div class="label-step fuente-accesible">
+                    2. Agendamiento
+                </div>
+            </div>
+            <i class="fas fa-chevron-right flecha"></i>
+                    <hr class="linea-stepper">
+            <!-- Step3 -->
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fal fa-check-circle"></i>
+                </div>
+                <div class="label-step fuente-accesible">
+                    3. Confirmación
+                </div>
+            </div>
+        </div>
+        <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+    </div>
+    <!-- MedismartBASE End: -->
+    }
+    }
+    <!-- Stepper -->
+    <!-- End:: Stepper-->
+
+
+
+
+    <div class="row cont-calendario">
+        <div class="col-md-9 mb-4 mb-lg-0 col-lg-8">
+
+            <!-- Reserva Hora -->
+
+            <div class="caja-reserva">
+                <div class="container-fluid">
+                    @{
+                        if(ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+                        {
+
+                            <input type="hidden" id="codigoPais" value="" />
+                            <h4 class="fuente-accesible">Reservar ahora</h4>
+                        }
+                        else
+                        {
+                            if(ViewBag.codigoPais == "CO")
+                            {						
+                                <input type="hidden" id="codigoPais" value="CO" />
+                                <h4 class="fuente-accesible">Reservar Cita</h4>
+                            }
+                            else if (ViewBag.codigoPais == "MX")
+                            {
+                                <input type="hidden" id="codigoPais" value="MX" />
+                                <h4 class="fuente-accesible">Reservar Hora</h4>
+                            }
+                            else
+                            {
+                                <input type="hidden" id="codigoPais" value="" />
+                                <h4 class="fuente-accesible">Reservar Hora</h4>
+                            }		
+                        }
+									
+					}
+						@Html.Hidden("idEntidad", ViewData["idEntidad"])
+                    <p class="fuente-accesible">
+                    @{
+                        if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+                        {
+                            <span>Selecciona el día y la hora de tu consulta</span>
+
+                        }
+                        else
+                        {
+                            <span>Selecciona si deseas en la mañana o en la tarde </span>
+                        }
+                    }
+                        
+                    </p>
+                        
+                    
+                    
+                    <hr />
+                    <div class="row">
+                        <div class="col-12 col-md-6 calendario">
+
+                            <!--Tags-->
+
+                             <div class="kt-section__content kt-section__content--solid text-center cont-jornadas">
+                                <button type="button" class="btn btn-elevate btn-pill btn-am active" id="btnManana">Mañana</button>&nbsp;
+                                <button type="button" class="btn btn-elevate btn-pill btn-pm" id="btnTarde">Tarde</button>
+                            </div>
+
+                            <!--Tags-->
+                            <!--Date Picker-->
+
+                            <div class="cont-datepicker fuente-accesible" id="kt_datepicker_6">
+
+                            </div>
+
+                            <div class="leyenda-date-picker fuente-accesible">
+                                Si quieres agendar para un día siguiente selecciona la fecha en el calendario
+                            </div>
+
+                            <div class="row leyenda-date-color">
+
+
+                                <div class="col-auto col-lg-12"><span class="indica-dia actual"></span> Día actual </div>
+                                <div class="col-auto col-lg-12"><span class="indica-dia seleccionado"></span> Día seleccionado</div>
+                                <div class="col-auto col-lg-12"><span class="indica-dia disponible"></span> Horas disponibles</div>
+
+                            </div>
+                            <!--Date Picker-->                              
+                        </div>
+                   
+                        <div class="col-12 col-md-6">
+                            <div class="seleccion-horas">
+                                <div class="header-seleccion-horas" id="headerSeleccion">
+                                </div>
+                                <div class="body-seleccion-horas">
+                                    <div class="body-seleccion-horas">
+                                        <ul class="lista-horas" id="listaHoras">
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>       
+                </div>                         
+            </div>
+            @{
+                if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+                {
+                 <br />
+                 <div class="btn_volver">
+                   <button type="button" class="btn btn-primary btn-sm" id="btnCerrar" data-dismiss="modal" onclick="history.back()">VOLVER</button>
+                 </div>
+                }
+            }
+            
+        </div>
+        <div class="col-md col-lg-4">
+            <div id="divPerfilProfesional"></div>
+
+
+            <!--Check-->
+            <div class="check-aceptacion d-none">
+                @{
+                    var textoMarca = "Medismart.live";
+                    if (ViewBag.textoMarca != null || ViewBag.textoMarca != "")
+                    {
+                        textoMarca = ViewBag.textoMarca;
+                    }
+
+                }
+                <input class="form-check-input"
+                       type="checkbox"
+                       value=""
+                       id="aceptaTerminos" />
+                
+
+                <label class="form-check-label fuente-accesible" for="defaultCheck1">
+                    *Acepto los <a id="terminos" href="#">términos y condiciones</a> del
+                    servicio de facilitación de consultas virtuales (que
+                    incluyen las condiciones de cancelación y reembolso de la
+                    consulta), y los términos y condiciones generales de
+                    @textoMarca. He leído la
+                    <a id="terminos" href="#">política de privacidad.</a> <br />
+                    <strong>Aviso:</strong> El servicio de consulta online es
+                    proporcionado por el especialista, y facilitado a nivel
+                    técnico por @textoMarca. <br />
+                    <a href="#">Saber más.</a>
+
+                </label>
+            </div>
+
+            <div class="accesible-tools mb-5 d-none">
+                <div class="accesible-btn">
+                    <button id="increase-font">A+</button>
+                    <button id="normal-font">A</button>
+                    <button id="decrease-font">A-</button>
+                </div>
+            </div>
+        </div>
+        <!-- Reserva Hora -->
+
+        <div class="cont-volver" id="contVolver"></div>
+    </div>
+
+
+
+    <input type="hidden" id="genero" />
+    <input type="hidden" id="fechaNacimiento" />
+
+</div>
+
+<!-- end:: Content -->
+
+<div class="modal fade" id="modalTerminos" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Términos y condiciones</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                @*terminos y condiciones se cargan de forma dinamica*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrar" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal fade" id="modalConsentimiento" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Consentimiento Informado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="fal fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBodyConsentimiento">
+                @*terminos y condiciones se cargan de forma dinamica*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarConsentimiento" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal fade" id="modalDeberes" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Deberes y Derechos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="modalBodyDeberes">
+                @*terminos y condiciones se cargan de forma dinamica*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarDeberes" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal fade" id="modalPoliticas" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Políticas de privacidad y tratamiento de datos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="modalBodyPoliticas">
+                @*Políticas de privacidad se cargan de forma dinamica*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarPoliticas" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal fade" id="modalTerminosClaro" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Términos y condiciones Claro</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="modalBodyClaro">
+                @*terminos y condiciones se cargan de forma dinamica*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarClaro" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal fade" id="kt_modal_3" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form id="formAgenda">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fuente-accesible" id="exampleModalLabel">Reservar hora</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <input type="hidden" name="idMedico" />
+                    <input type="hidden" name="idBloque" />
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <h5>Medico:</h5>
+                                <span id="nombreMedico" class="col-lg-12" name="nombreMedico"></span>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <h5>Fecha:</h5>
+                                <span class="col-lg-12" name="fecha"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <h5>Hora:</h5>
+                                <span class="col-lg-12" id="horaDesdeText" name="horaDesdeText"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <h5>Motivo de Consulta:</h5>
+                                <textarea rows="2" type="text" class="form-control" id="triageObservacion" name="triageObservacion" placeholder="¿Cuál es tu motivo de consulta? ¿Qué molestia tienes?. ¿Hace cuánto tiempo?, ¿tienes alguna enfermedad de base? ¿Fármacos que estás tomando?"></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        @*<div class="col-lg-4">
+                                <div class="form-group">
+                                    <h5>Tipo de molestia:</h5>
+                                    <select class="form-control" id="triageMolestia" name="triageMolestia"></select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <h5>Nivel de molestia:</h5>
+                                    <select class="form-control" id="triageNivel" name="triageNivel"></select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <h5>Tiempo de molestia:</h5>
+                                    <select class="form-control" id="triageTiempo" name="triageTiempo"></select>
+                                </div>
+                            </div>*@
+                        <div class="col-lg-6">
+                            <div class="mb-4">
+                                <label class="" style="    font-weight: 500;font-size: 1.25rem;">Sospecha Covid</label>
+                                <input type="checkbox" class="ml-3" name="sospechaCovid19" id="sospechaCovid19" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <h5>Telefono:</h5>
+                                <input type="text" class="form-control" style="margin-left: -5px; " id="telefonoPaciente" min="0" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <h5>Email:</h5>
+                                <input type="text" class="form-control" id="emailPaciente" maxlength="100" required />
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="btnGuardar">Reservar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+<!-- end:: Page -->
+<!-- begin::Scrolltop -->
+<div id="kt_scrolltop" class="kt-scrolltop">
+    <i class="fa fa-arrow-up"></i>
+</div>
+
+<!-- end::Scrolltop -->
+<!-- begin::Global Config(global config for global JS sciprts) -->
+@section PageScripts {
+
+    <script src="~/metronic_demo7/assets/js/pages/crud/forms/widgets/bootstrap-datepicker.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>
+
+}
+
+@section Scripts {
+    <script src="~/signal/signalr.min.js"></script>
+
+    <script src="~/js/accesible.js"></script>
+    <script type="module">
+
+        import { init } from '../../js/Paciente/agenda_2.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+
+            var uid = @ViewBag.uid;
+            var idMedico = @ViewBag.idMedico;
+            var fechaPrimeraHora = '@ViewBag.fechaPrimeraHora';
+            var m = '@ViewBag.m';
+            var r = '@ViewBag.r';
+            var c = '@ViewBag.c';
+            var textoMarca = '@ViewBag.textoMarca';
+            var tipoEspecialidad = '@ViewBag.tipoEspecialidad';
+            var host = '@ViewBag.HostURL';
+            window.uid = uid;
+            window.idMedico = idMedico;
+            window.fechaPrimeraHora = fechaPrimeraHora;
+            window.m = m;
+            window.r = r;
+            window.c = c;
+            window.textoMarca = textoMarca;
+            window.random = @NumeroRandom.GetRandom();
+            window.host = host;
+            window.tipoEspecialidad = tipoEspecialidad
+            var idCliente = @ViewBag.idCliente;
+            window.idCliente = idCliente;
+               var tipoatencion = '@ViewBag.tipoatencion';
+            window.tipoatencion = tipoatencion;
+            var especialidadFila = @ViewBag.especialidad;
+            window.especialidadFila = especialidadFila;
+            var pdfTerminos = '@ViewBag.pdfTerminos';
+            window.pdfTerminos = pdfTerminos;
+            var codigoTelefono = '@ViewBag.codigoPais';
+            window.codigoTelefono = codigoTelefono;
+            var isProgramaSalud = '@ViewBag.isProgramaSalud';
+            window.isProgramaSalud = isProgramaSalud;
+            var idProgramaSalud = '@ViewBag.idProgramaSalud';
+            window.idProgramaSalud = idProgramaSalud;
+        })()
+    </script>
+
+}

@@ -1,0 +1,554 @@
+﻿@model WebMVC.Models.FichaMedicoViewModel
+@using Microsoft.Extensions.Configuration
+@using Microsoft.AspNetCore.Http;
+@using System.Net.Http;
+@using System.Security.Claims;
+@using System;
+
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Configuracion";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    
+}
+
+@{
+    ViewData["idEntidad"] = ViewBag.idEdit;
+    ViewData["codEntidad"] = Entidades.FOTO_PERFIL;
+    ViewData["codEntidadRegistro"] = Entidades.CERTIFICADO_REGISTRO;
+    ViewData["codEntidadCertificaciones"] = Entidades.CERTIFICACIONES;
+    ViewData["codEntidadFirmaMedico"] = Entidades.FIRMA_MEDICO;
+    ViewData["uid"] = ViewBag.uid;
+    var codigoTelefono = ((ClaimsIdentity)User.Identity).GetSpecificClaim("CodigoTelefono");
+
+}
+@{
+    ViewData["view"] = Roles.Medico;
+}
+
+@section Styles  {
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/metronic_demo7/assets/plugins/select2/select2.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" />
+    <link href="~/metronic_demo7/assets/plugins/bootstrap-select/css/bootstrap-select.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" />
+    <link href="~/css/Medismart/admin.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+    <!--Begin::App-->
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+
+        <!--Begin:: App Aside Mobile Toggle-->
+        <button class="kt-app__aside-close" id="kt_user_profile_aside_close">
+            <i class="la la-close"></i>
+        </button>
+        <!--End:: App Aside Mobile Toggle-->
+
+        <div class="col-lg-12">
+            <div class="kt-portlet">
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">Información Personal</h3>
+                    </div>
+
+                </div>
+                <form id="formFichaMedico" class="kt-form kt-form--label-right">
+                    <div class="kt-portlet__body">
+                        <div class="kt-section kt-section--first">
+                            <div class="kt-section__body">
+                                <div class="row">
+                                    <div class="col-lg-6 text-right">
+                                        <div class="form-group row right">
+                                            @Html.HiddenFor(m => m.personasDatos.Id)
+                                            @Html.HiddenFor(m => m.personas.Id)
+                                            @Html.Hidden("idEntidad", ViewData["idEntidad"])
+                                            @Html.Hidden("codEntidad", ViewData["codEntidad"])
+                                            @Html.Hidden("codEntidadRegistro", ViewData["codEntidadRegistro"])
+                                            @Html.Hidden("codEntidadCertificaciones", ViewData["codEntidadCertificaciones"])
+                                            @Html.Hidden("codEntidadFirmaMedico", ViewData["codEntidadFirmaMedico"])
+                                            @Html.Hidden("uid", (object)ViewBag.uid)
+                                            @Html.Hidden("idCentroClinico", (object)ViewBag.IdCentroClinico)
+                                            @Html.Hidden("idEdit", (object)ViewBag.idEdit)
+                                            @Html.Hidden("idEdit", (object)ViewBag.idEdit)
+                                            @Html.HiddenFor(m => m.personasDatos.TempID)
+                                            @Html.HiddenFor(m => m.personasDatos.IdPersona)
+                                            @Html.HiddenFor(m => m.personasDatos.FechaCreacion)
+                                            @Html.HiddenFor(m => m.personasDatos.Estado)
+                                            @Html.HiddenFor(m => m.personas.Estado)
+                                            @Html.HiddenFor(m => m.personas)
+                                            <div class="col-lg-12 col-xl-12 text-center">
+                                                <div class="kt-avatar kt-avatar--outline" id="kt_user_avatar">
+                                                    @{
+                                                        var img1 = (object)ViewBag.uid + ".jpg";
+                                                    }
+                                                    @*@Configuration["ServicesUrl"]@Model.personasDatos.RutaVirtual*@
+                                                    @*<div class="kt-avatar__holder" style="background-image: url(/metronic_demo7/assets/media/users/@img1); height:300px;width:300px;"></div>*@<!--Imagen medico, por ahora en duro, ya que se encuentra en carpeta de prebas-->
+                                                    <div id="divAvatar" class=" dropzone accessibility-issue__headerkt-avatar__holder" style="height: 300px; width: 300px; background-size: cover; background-position: center center;">
+                                                        <div class="form-group row mb-2" id="cargaFoto" style="display: none">
+                                                            <div class="dropzone dropzone-default dropzone-brand mt-4" style="height: 100%; width: 100%" id="kt_dropzone_fotoavatar">
+                                                                <div class="dropzone-msg dz-message needsclick">
+                                                                    <h3 class="dropzone-msg-title">Arrastra tu foto de perfil aquí si deseas cambiarla.</h3>
+                                                                    <span class="dropzone-msg-desc">Archivos seleccionados se <strong>guardarán</strong> automáticamente.</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div><!--Imagen medico, por ahora en duro, ya que se encuentra en carpeta de prebas-->
+                                                    <label class="kt-avatar__upload editAvatar" data-toggle="kt-tooltip" title="" data-original-title="Agregar foto">
+                                                        <!--<i class="fa fa-pen"></i>-->
+                                                        <i class="fa fa-plus"></i>
+
+                                                    </label>
+                                                    <span class="kt-avatar__cancel" data-toggle="kt-tooltip" title="" data-original-title="Cancel avatar">
+                                                        <i class="fa fa-times"></i>
+                                                    </span>
+                                                    <div class="leyenda-avatar">
+                                                        Foto Médico Obligatoria
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Nombre</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                @Html.TextBoxFor(m => m.personas.Nombre, new { @class = "form-control", required = "required", maxlength = "150" })
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Apellido Paterno</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                @Html.TextBoxFor(m => m.personas.ApellidoPaterno, new { @class = "form-control", required = "required", maxlength = "150" })
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Apellido Materno</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                @Html.TextBoxFor(m => m.personas.ApellidoMaterno, new { @class = "form-control", maxlength = "150" })
+
+                                            </div>
+                                        </div>
+                                        @if (codigoTelefono == "MX")
+                                        {
+                                            <div class="form-group row mb-2">
+                                                <label class="col-xl-3 col-lg-3 col-form-label">Curp</label>
+                                                <div class="col-lg-8 col-xl-8 validate">
+                                                    @Html.TextBoxFor(m => m.personas.Identificador, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="form-group row mb-2">
+                                                <label class="col-xl-3 col-lg-3 col-form-label">Rut</label>
+                                                <div class="col-lg-8 col-xl-8 validate">
+                                                    @Html.TextBoxFor(m => m.personas.Identificador, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        }
+
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Fecha Nacimiento</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend"><span class="input-group-text"><i class="la la-calendar"></i></span></div>
+                                                    @Html.TextBoxFor(m => m.personas.FNacimiento, "{0:dd/MM/yyyy}", new { @class = "form-control datepicker", type = "text" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Género</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                @Html.DropDownListFor(m => m.personas.Genero, Model.personas.ObtenerSexo(), new { @class = "form-control m-input", style = "text-transform: uppercase" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Nacionalidad</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                @Html.TextBoxFor(m => m.personas.Nacionalidad, new { @class = "form-control", required = "required", maxlength = "150" })
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Zona Horaria</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                @Html.DropDownListFor(m => m.personas.ZonaHoraria, Model.personas.ZonasHorarias(), new { @class = "form-control m-input", style = "text-transform: uppercase" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Estado de profesional</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                @Html.DropDownListFor(m => m.personas.Estado, Model.personas.EstadoPersona(), new { @class = "form-control m-input", style = "text-transform: uppercase" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Habilitado Happ</label>
+                                            <div class="col-12 col-md-4 mt-2 pt-1 validate">
+                                                 @Html.CheckBoxFor(m => m.personasDatos.AtiendeHapp, new { @class = "" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Restricción Fila</label>
+                                            <div class="col-12 col-md-4 mt-2 pt-1">
+                                                @Html.CheckBoxFor(m => m.personasDatos.RestriccionPacienteFila, new { @class = "" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4 pt-3">
+                                    <div class="col-lg-6">
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-4 col-lg-3 col-form-label">Título Profesional</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+
+                                                @Html.DropDownListFor(model => model.personasDatos.IdTituloMedico, Enumerable.ToList(Model.prefijoProfesion).Select(x => new SelectListItem { Text = x.Nombre.ToString(), Value = x.Id.ToString() }), new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-4 col-lg-3 col-form-label">Prefijo Profesión</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                @Html.DropDownListFor(model => model.personasDatos.PrefijoProf, Enumerable.ToList(Model.prefijo).Select(x => new SelectListItem { Text = x.Detalle.ToString(), Value = x.Id.ToString() }), new { @class = "form-control" })
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-4 col-lg-3 col-form-label">Especialidades</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                @Html.DropDownListFor(model => model.personasDatos.IdEspecialidad, Enumerable.ToList(Model.especialidades).Select(x => new SelectListItem { Text = x.Nombre.ToString(), Value = x.Id.ToString() }), new { @class = "form-control", required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-4 col-lg-3 col-form-label">Número de Registro</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                @Html.TextBoxFor(m => m.personasDatos.NumeroRegistro, new { @class = "form-control", required = "required", maxlength = "50" })
+
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-4 col-lg-3 col-form-label">Fecha de Registro</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend"><span class="input-group-text"><i class="la la-calendar"></i></span></div>
+                                                    @Html.TextBoxFor(m => m.personasDatos.FechaRegistroMedico, new { @class = "form-control datepicker" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-4 col-lg-3 col-form-label">Alma Mater</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                @Html.TextBoxFor(m => m.personasDatos.AlmaMater, new { @class = "form-control", required = "required", maxlength = "150" })
+
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-4 col-lg-3 col-form-label">Año Graduación</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend"><span class="input-group-text"><i class="la la-calendar"></i></span></div>
+                                                    @Html.TextBoxFor(m => m.personasDatos.FechaGraduacion, "{0:dd/MM/yyyy}", new { @class = "form-control datepicker" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-4 col-lg-3 col-form-label"><i class="flaticon-doc" style="font-size: 1.5rem;"></i></label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                <button type="button" id="certificadoPDF" class="col-xl-6 text-left col-lg-3 col-form-label btn btn-font-hover-success font-weight-bold">Ver certificado registro</button>
+                                                <a href="javascript:void(0);" class="btn btn-clean btn-icon btn-sm eliminar_archivo_registro" id="eliminarCertificadoRegistro" style="display:none">
+                                                    <i class="flaticon-delete"></i>
+                                                </a>
+                                                @Html.Hidden("urlRegistro")
+                                                @Html.Hidden("urlCert")
+                                                <div class="form-group row mb-2" id="cargaCertificado" style="display: none">
+
+                                                    <div class="dropzone dropzone-default dropzone-brand mt-4" style="width: 100%" id="kt_dropzone_certificado">
+                                                        <div class="dropzone-msg dz-message needsclick">
+                                                            <h3 class="dropzone-msg-title">Arrastra el certificado de registro aquí.</h3>
+                                                            <span class="dropzone-msg-desc">Archivos seleccionados se <strong>guardarán</strong> automáticamente.</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-4 col-lg-3 col-form-label">Sucursal</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                <div class="input-group">
+                                                    @Html.TextBoxFor(m => m.personasDatos.IdSucursal, new { @class = "form-control", required = "required", maxlength = "10" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-4 col-lg-3 col-form-label">Lugar de Atención</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                <div class="input-group">
+                                                    @Html.TextBoxFor(m => m.personasDatos.IdLugarAtencion, new { @class = "form-control", required = "required", maxlength = "10" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-4 col-lg-3 col-form-label">Id Prestador</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                <div class="input-group">
+                                                    @Html.TextBoxFor(m => m.personasDatos.IdPrestador, new { @class = "form-control", required = "required", maxlength = "10" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-4 col-lg-3 col-form-label">Id Punto Atención</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                <div class="input-group">
+                                                    @Html.TextBoxFor(m => m.personasDatos.IdPuntoAtencion, new { @class = "form-control", required = "required", maxlength = "10" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-4 col-lg-3 col-form-label">Modalidad</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                <div class="input-group">
+                                                    <select name="modalidadPago" id="modalidadPago" class="form-control show-tick ms select2" multiple data-placeholder="Select"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-2" id="cvp" hidden>
+                                            <label class="col-xl-4 col-lg-3 col-form-label pb-0">CVP</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                <div class="input-group">
+                                                    @*<div class="input-group-append"><span class="input-group-text"><i class="fa fa-dollar-sign"></i></span></div>*@
+                                                    @Html.TextBoxFor(m => m.personasDatos.CVP, new { @class = "form-control", maxlength = "10" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-2" id="divProfesionalesAsociados">
+                                            <label class="col-xl-4 col-lg-3 col-form-label">Asociar Profesional</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                <div class="input-group">
+                                                    <select name="profesionalesAsociados" id="profesionalesAsociados" class="form-control show-tick ms select2" multiple data-placeholder="Select"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="form-group row mb-2" id="divCentrosClinicos">
+                                            <label class="col-xl-4 col-lg-3 col-form-label">Centro Clínico</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                <div class="input-group">
+                                                    <select name="centrosClinicos" required id="centrosClinicos" class="form-control show-tick ms select2" multiple data-placeholder="Select"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @*<div class="form-group row mb-2">
+            <label class="col-xl-4 col-lg-3 col-form-label"><i class="flaticon-doc" style="font-size: 1.5rem;"></i></label>
+            <div class="col-lg-8 col-xl-8 pull-right">
+                <button type="button" id="certificaciones" class="col-xl-6 text-left col-lg-3 col-form-label btn btn-font-hover-success font-weight-bold">Ver certificaciones profesional</button>
+
+                <div class="form-group row mb-2" id="cargaCertificaciones" style="display: none">
+                    <div class="dropzone dropzone-default dropzone-brand mt-4" style="width: 100%" id="kt_dropzone_certificaciones">
+                        <div class="dropzone-msg dz-message needsclick">
+                            <h3 class="dropzone-msg-title">Arrastra el documento con las certificaciones aquí.</h3>
+                            <span class="dropzone-msg-desc">Archivos seleccionados se <strong>guardarán</strong> automáticamente.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Teléfono móvil</label>
+                                            <div class="col-lg-9 col-xl-8">
+                                                @Html.TextBoxFor(m => m.personas.Telefono, new { @class = "form-control", required = "required" })
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Email</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                <div class="input-group">
+                                                    @Html.TextBoxFor(m => m.personas.Correo, new { @class = "form-control", @type = "text", required = "required", maxlength = "150" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-3 col-lg-3 col-form-label pb-0" style="line-height: 1!important;">Duración de Atención</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                <div class="input-group">
+                                                    @Html.DropDownListFor(model => model.personasDatos.IdDuracionAtencion, Enumerable.ToList(Model.duracionAtencion).Select(x => new SelectListItem { Text = x.Detalle.ToString(), Value = x.Id.ToString() }), new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-3 col-lg-3 col-form-label pb-0">Valor Tarifa</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                <div class="input-group">
+                                                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-dollar-sign"></i></span></div>
+                                                    @Html.TextBoxFor(m => m.personasDatos.ValorAtencion, new { @class = "form-control", required = "required", maxlength = "10" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-3 col-lg-3 col-form-label pb-0">Valor Convenio</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                <div class="input-group">
+                                                    <div class="input-group-append"><span class="input-group-text"><i class="fa fa-dollar-sign"></i></span></div>
+                                                    @Html.TextBoxFor(m => m.personasDatos.ValorConvenio, new { @class = "form-control", required = "required", maxlength = "10" })
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Redes Sociales</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                <div class="input-group">
+                                                    @Html.TextAreaFor(m => m.personasDatos.RedesSociales, new { @class = "form-control" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Biografía</label>
+                                            <div class="col-lg-8 col-xl-8 validate">
+                                                <div class="input-group">
+                                                    @Html.TextAreaFor(m => m.personasDatos.InfoPersona1, new { @class = "form-control", @rows = "3", maxlength = "300" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row mb-2">
+                                            <label class="col-xl-3 col-lg-3 col-form-label">Firma Digital</label>
+                                            <div class="col-lg-6 col-xl-6 validate">
+                                                <div class="input-group">
+
+
+                                                    <div class="kt-avatar kt-avatar--outline container-fluid" id="kt_user_avatar">
+                                                        <div id="divFirma" class=" dropzone accessibility-issue__headerkt-avatar__holder" style="height:200px;background: no-repeat;">
+                                                            <div class="form-group row mb-2" id="cargaFirma" style="display: none">
+                                                                <div class="dropzone dropzone-default dropzone-brand mt-4" style="height: 130px; width: 100%; padding-top: 0 !important;" id="kt_dropzone_firmamedico">
+                                                                    <div class="dropzone-msg dz-message needsclick">
+                                                                        <h3 class="dropzone-msg-title">Aún no existe firma. Arrastre una firma aquí.</h3>
+                                                                        <span class="dropzone-msg-desc">Los archivos se <strong>guardarán</strong> automáticamente.</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <label class="kt-avatar__upload editFirmaMedico" data-toggle="kt-tooltip" title="" data-original-title="Cambiar foto">
+                                                            <i class="fa fa-pen"></i>
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="kt-portlet__foot">
+                        <div class="kt-form__actions">
+                            <div class="row">
+                                <div class="col-lg-9 col-lg-12 text-right">
+                                    <button id="btnGuardar" type="submit" class="btn btn-success">Guardar</button>&nbsp;
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--End::App-->
+</div>
+<div class="modal fade" id="kt_modal_3" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-xl" role="document" style="height:800px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="titleModal"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody" style="height:800px;overflow-y:auto;">
+                @*<embed src="~/upload/certificadoRegistro/certificado.pdf" type="application/pdf" width="100%" height="800px" />*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal fade" id="kt_modal_4" name="kt_modal_4" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-xs" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <div class="form-group">
+                    <label class="kt-form__label">Ingrese password</label>
+                    <input type="password" class="form-control" id="password" name="password" autocomplete="new-password">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrar" data-dismiss="modal">Volver</button>
+                <button id="btnConfirmar" type="button" class="btn btn-brand">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- end:: Content -->
+
+@section Scripts {
+    <script src="~/metronic_demo7/assets/plugins/select2/select2.js?rnd=@NumeroRandom.GetRandom()"></script>
+    <script src="~/metronic_demo7/assets/plugins/cropper/cropper.js?rnd=@NumeroRandom.GetRandom()"></script>
+    <script src="~/metronic_demo7/assets/js/pages/components/extended/sweetalert2.js?rnd=@NumeroRandom.GetRandom()"></script>
+    <script src="~/metronic_demo7/assets/js/pages/custom/user/profile.js?rnd=@NumeroRandom.GetRandom()"></script>
+    <script src="~/js/Usuario/config.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/jquery.rut.js?rnd=@NumeroRandom.GetRandom()"></script>
+    <script type="module">
+        import { init } from '../../js/Admin/editarProfesional.js?rnd=@NumeroRandom.GetRandom()';
+
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+    <script src="~/js/Shared/archivos-FotoPerfilAdmin.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/Shared/archivos-certificadoRegistro.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/Shared/archivos-certificaciones.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+
+    <script src="~/js/Shared/archivos-firmaMedico.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script type="text/javascript">
+        (function() {
+           $('.select2').select2();
+            var uid = @ViewBag.uid;
+            var idEdit = @ViewBag.idEdit;
+           var IdCentroClinico = @ViewBag.IdCentroClinico;
+            window.uid = uid;
+            window.idEdit = idEdit;            
+            window.idCentroClinico = IdCentroClinico;
+
+
+
+
+
+        })()
+
+
+    </script>
+}
+
+
+

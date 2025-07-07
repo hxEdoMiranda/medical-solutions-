@@ -1,0 +1,86 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+    <section class="container-fluid note-section library featured" id="nota3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="cont-titulo-receta">
+                        <div class="cont-logo">
+                            <img src="~/img/cencosud/vida-sana/hamburguesadegarbanzos.png" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <h2 class="subtitulo-receta">
+                        Ingredientes 1 a 2 porciones:
+                    </h2>
+
+                    <ol>
+                        <li>150 gr de garbanzos.</li>
+                        <li>½ pimentón rojo. </li>
+                        <li>½ cebolla.</li>
+                        <li>½ limon.</li>
+                        <li>1 cda aceite oliva.</li>
+                        <li>Condimentos a gusto.</li>
+                    </ol>
+                    
+                    <h2 class="subtitulo-receta">
+                        Preparación
+                    </h2>
+                    <ol>
+                        <li>Remojar los garbanzos toda la noche.</li>
+                        <li>Una vez remojados, cocer los garbanzos a fuego medio por 40 minutos o hasta que el grano esté blando.</li>
+                        <li>Colar los garbanzos cocidos y utilizar una procesadora para molerlos hasta tener una pasta homogénea, agregar aceite de oliva y condimentar a gusto.</li>
+                        <li>Picar cebolla y pimentón en trozos pequeños, en un sartén hacer un sofrito sin aceite. Condimentar a gusto.</li>
+                        <li>Para formar las hamburguesas: Mezclar todos los ingredientes y agregar jugo de limón hasta obtener una masa de consistencia manejable.</li>
+                        <li>Darles forma de hamburguesa.</li>
+                        <li>Poner en sartén o al horno según su preferencia.</li>
+                        <li>Verter en una fuente.</li>
+                        <li>Hornear por 25 minutos. </li>
+                        <li>Dejar enfriar 5 a 10 minutos antes de servir.</li>
+                    </ol>
+
+                    <p>
+                        <a href="@Url.Action("DescargarCenco", new { file = ViewBag.codigoNota})">
+                            Descargar receta
+                        </a>
+                        
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}
+

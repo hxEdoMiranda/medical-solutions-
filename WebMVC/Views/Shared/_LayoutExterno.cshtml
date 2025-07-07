@@ -1,0 +1,486 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@using WebMVC.Controllers
+@using Microsoft.AspNetCore.Http;
+@using System.Security.Claims;
+@using WebMVC.Models;
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @*<title>@ViewData["Title"] - Medical</title>*@
+    <base href="">
+    <meta charset="utf-8" />
+    <title>Medical | Sitio Paciente</title>
+    <meta name="description" content="Latest updates and statistic charts">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-227236350-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-227236350-1');
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T3GQHL7');</script>
+    <!-- End Google Tag Manager -->
+    <!-- #region metronic-template -->
+    <!--begin::Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!--end::Fonts -->
+    <!--begin::Page Custom Styles(used by specific page) -->
+    @RenderSection("PageStyles", false)
+    <!--end::Page Custom Styles -->
+    <!--begin::Global Theme Styles(used by all pages) -->
+    <link href="~/metronic_demo7/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/metronic_demo7/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <!--end::Global Theme Styles -->
+    <!--begin::Global Medismart Styles -->
+    @*<script src="https://kit.fontawesome.com/6ecd8f8e05.js?rand=@NumeroRandom.GetRandom()" crossorigin="anonymous"></script>*@
+    <script src="~/js/KitAwesome.js"></script>
+    <link href="~/css/Medismart/main.css" rel="stylesheet" type="text/css" />
+
+        @*<link href="~/css/coopeuch/coopeuch.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />*@
+        <!--<link href="~/css/vidacamara/vidacamara.css" rel="stylesheet" type="text/css" />-->
+        @*<link href="~/css/coopeuch/coopeuch.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />*@
+   
+    <!--end::Global Medismart Styles -->
+    <!-- #endregion -->
+
+    <link rel="shortcut icon" href="~/metronic_demo7/assets/media/logos/logoFavicon.ico" />
+
+    @RenderSection("Styles", false)
+
+    @{
+     var cliente = "";
+        cliente = ((ClaimsIdentity)User.Identity).GetSpecificClaim("primarysid");
+        if (string.IsNullOrEmpty(cliente))
+        {
+            cliente = "-1";
+        }
+
+        var userConnect = "";
+        userConnect = ((ClaimsIdentity)User.Identity).GetSpecificClaim("nameidentifier");
+        if (string.IsNullOrEmpty(userConnect))
+        {
+            userConnect = "-1";
+        }
+    }
+    @if (Context.Request.GetEncodedUrl().ToUpper().Contains("ABODOC"))
+    {
+        <link rel="shortcut icon" href="~/img/abodoc/favicon.ico" />
+        <link href="~/css/abodoc/abodoc.css?rand=@NumeroRandom.GetRandom()" rel="stylesheet" />
+    }
+    <script>
+        (function (h, o, t, j, a, r) {
+            h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+            h._hjSettings = { hjid: 2677023, hjsv: 6 };
+            a = o.getElementsByTagName('head')[0];
+            r = o.createElement('script'); r.async = 1;
+            r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+    </script>
+    <script>
+        var userId = @userConnect // Replace your_user_id with your own if available.
+        window.hj('identify', userId, {
+            // Add your own custom attributes here. Some EXAMPLES:
+            // 'Signed up': '2019—06-20Z', // Signup date in ISO-8601 format.
+            // 'Last purchase category': 'Electronics', // Send strings with quotes around them.
+            // 'Total purchases': 15, // Send numbers without quotes.
+            // 'Last purchase date': '2019-06-20Z', // Send dates in ISO-8601 format.
+            // 'Last refund date': null, // Send null when no value exists for a user.
+        });
+    </script>
+</head>
+<body class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--transparent kt-aside--enabled kt-aside--fixed kt-aside--minimize kt-page--loading">
+    
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T3GQHL7"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+@{
+
+
+        var _layout = new LayoutController();
+        var host = Configuration["ServicesUrl"];
+        var c = "";
+
+
+        c = ((ClaimsIdentity)User.Identity).GetSpecificClaim("nameidentifier");
+        if (string.IsNullOrEmpty(c))
+        {
+            c = "-1";
+        }
+
+        //CARGA LOGOEMPRESA DESDE LOS CLAIMS;
+        var campos = "";
+        campos = ((ClaimsIdentity)User.Identity).GetSpecificClaim("Empresa");
+        var logoEmpresa = "/img/isotipo.png";
+        if (!campos.Equals(""))
+        {
+            string stringCampos = campos.Replace("\"", "");
+            var stringSplit = stringCampos.Split(",");
+            var stringLogo =stringSplit[Array.FindIndex(stringSplit, x => x.ToLower().Contains("logoempresa"))].Split(":"); //posición logoEmpresa
+            logoEmpresa = stringLogo[1];
+        }
+        var idCliente = ((ClaimsIdentity)User.Identity).GetSpecificClaim("primarysid");
+        if (string.IsNullOrEmpty(idCliente))
+        {
+            idCliente = "-1";
+                        @if (Context.Request.GetEncodedUrl().Contains("doctoronline"))
+            {
+                idCliente = "148";
+            }
+            else if (Context.Request.GetEncodedUrl().Contains("uoh."))
+            {
+                idCliente = "158";
+            }
+            else if (Context.Request.GetEncodedUrl().Contains("inmv."))
+            {
+                idCliente = "2";
+            }
+
+        }
+        var texto = _layout.Notifications(Convert.ToInt32(c), host, Convert.ToInt32(idCliente));
+        var claseMensaje = texto.Result.FirstOrDefault(x => x.Tipo == "Mensaje").ClaseNotificacion;
+
+                    @if ( ViewBag.HostURL.ToString().Contains("inmv."))
+        {
+            
+             logoEmpresa = "/img/iso-masvida.png";
+        }
+
+                    @if (Context.Request.GetEncodedUrl().Contains("doctoronline"))
+        {
+            logoEmpresa = "/img/colmena/seleccion-iso.svg";
+        }
+    }
+    <!-- begin:: Page -->
+    <!-- begin:: Header Mobile -->
+    <div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
+        <div class="kt-header-mobile__logo d-none">
+            <a href="javascript:void(0);">
+                <img alt="Logo" src="~/metronic_demo7/assets/media/logos/logo.png" />
+            </a>
+        </div>
+        <div class="kt-header-mobile__toolbar d-none">
+            <button class="kt-header-mobile__toolbar-toggler kt-header-mobile__toolbar-toggler--left d-none" id="kt_aside_mobile_toggler"><span></span></button>
+            <button class="kt-header-mobile__toolbar-toggler d-none" id="kt_header_mobile_toggler"><span></span></button>
+            <button class="kt-header-mobile__toolbar-topbar-toggler d-none" id="kt_header_mobile_topbar_toggler"><i class="flaticon-more"></i></button>
+        </div>
+@*
+        <div class="logo-home d-flex">
+
+
+            <a asp-controller="Paciente" asp-action="Index">
+
+                @if ( ViewBag.HostURL.ToString().Contains("inmv."))
+                {
+                    <img alt="Logo" src="~/img/iso-masvida.png" class="d-lg-none" style="width:100% !important; height:auto; max-width:60px;" />
+                }else{
+                    <img alt="Logo" src="~/img/isotipo.png" class="d-lg-none" style="margin-top:.5rem" />
+                }
+                
+              
+            </a>
+
+        </div>*@
+        <div class="menu-top ml-auto">
+
+            <!--begin:: Accesibilidad-->
+            <div class="dropdown item-menu-top d-md-none" data-toggle="tooltip" title="Accesibilidad">
+                <div class="kt-header__topbar-wrapper" data-toggle="dropdown">
+
+                    <a>
+                        <i class="fal fa-universal-access d-block"></i>
+                        <span class="text-uppercase label-menu">Accesibilidad</span>
+                    </a>
+                    
+
+                    @if(ViewBag.HostURL != null  && ViewBag.HostURL.ToString().Contains("clinicamundoscotia.") ){
+                         <span class="circulo-alerta">
+                            <span class="circulo-alerta-numero">5</span>
+                        </span>
+                        <img src="~/img/scotiabank/iconos/home/acces.svg">
+                    }
+       
+                    else
+                    {
+                        <a>
+                            <i class="fal fa-universal-access d-block"></i>
+                            <span class="text-uppercase label-menu">Accesibilidad</span>
+                        </a>
+                    }     
+
+
+                    <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-sm" id="dropdown-accesible">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <h1 class="titulo-dropdown">Accesibilidad</h1>
+                                    <div class="accesible-tools accesible-tools-mobile">
+                                        <div class="accesible-btn">
+                                            <button id="increase-font">A+</button>
+                                            <button id="normal-font">A</button>
+                                            <button id="decrease-font">A-</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end:: Accesibilidad-->
+            <!--begin: Ayuda -->
+            <div class="dropdown item-menu-top" id="item-ayuda">
+                <div class="" data-toggle="dropdown">
+
+                    <a class="" data-close="true">
+                        <i class="fal fa-question-circle"></i>
+                        <span class="text-uppercase label-menu">Ayuda</span>
+                    </a>
+
+                </div>
+                <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-sm">
+                    <div class="container opcion-ayuda">
+                        <div class="row">
+                            <div class="col">
+                                <h1 class="titulo-dropdown">Ayuda</h1>
+                                <ul>
+                                    <li>
+                                        <a href="https://wa.me/56948042543?text=Asistencia%20al%20Paciente" target="_blank"><i class="fab fa-whatsapp"></i> Whatsapp</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="https://www.facebook.com/Medismartchile" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="https://www.instagram.com/medismartchile/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+
+                                    </li>
+                                    <li>
+                                        <a href="mailto:contacto@medismart.live" target="_blank"><i class="fal fa-envelope"></i> Mail</a>
+
+                                    </li>
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end: Ayuda -->
+            <!--begin: Salir -->
+            <div class="item-menu-top" id="item-salir" data-toggle="tooltip" title="Salir" data-placement="bottom">
+                <div class="kt-header__topbar-wrapper">
+
+                    <a asp-controller="Account" asp-action="Logout" asp-route-rol="Paciente" data-close="true">
+                        <i class="fal fa-sign-out"></i>
+                        <span class="text-uppercase label-menu">Salir</span>
+                    </a>
+
+                </div>
+            </div>
+            <!--end: Salir-->
+        </div>
+
+    </div>
+    <!-- end:: Header Mobile -->
+
+    <div class="kt-grid kt-grid--hor kt-grid--root">
+        <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
+
+            <!-- begin:: Aside -->
+            <button class="kt-aside-close " id="kt_aside_close_btn"><i class="la la-close"></i></button>
+            <div class="kt-aside  kt-aside--fixed  kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop" id="kt_aside">
+
+                <!-- begin:: Brand -->
+                <div class="kt-aside__brand kt-grid__item " id="kt_aside_brand">
+                    <div class="kt-aside__brand-logo">
+                        <img alt="Logo" src="~/metronic_demo7/assets/media/logos/logo.png" />
+                       @* <a asp-controller="Paciente" asp-action="Index">
+                            @if (ViewBag.HostURL.ToString().Contains("inmv."))
+                            {
+                                <img style="width:100%; height:auto;" alt="Logo" src="~/img/iso-masvida.png"  />
+                            }else{
+                                <img alt="Logo" src="~/metronic_demo7/assets/media/logos/logo.png" />
+                            }
+                            
+                        </a>*@
+                    </div>
+                </div>
+
+                <!-- end:: Brand -->
+                <!-- begin:: Aside Menu -->
+                <div class="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_aside_menu_wrapper">
+                    <div id="kt_aside_menu" class="kt-aside-menu  kt-aside-menu--dropdown " data-ktmenu-vertical="1" data-ktmenu-dropdown="1" data-ktmenu-scroll="0">
+                        <ul class="kt-menu__nav ">
+                            <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--submenu-fullheight kt-menu__item--open kt-menu__item--here" style="text-align: center">
+                                @*<a asp-controller="Account" asp-action="LogoutExterno" asp-route-rol="Paciente" asp-route-canal="@canal" data-close="true">
+                                        <i class="kt-menu__link-icon flaticon2-cross"></i>
+                                        <span class="label-options">Salir</span>
+                                    </a>*@
+                                @*<a href="javascript:void(0);" id="retorno" data-close="true">
+                                        <i class="kt-menu__link-icon flaticon2-cross"></i>
+                                        <span class="label-options">Salir</span>
+                                    </a>*@
+                                <a asp-controller="Account" asp-action="Logout" asp-route-rol="Paciente" data-close="true">
+                                    <i class="fal fa-sign-out"></i>
+                                    <span class="text-uppercase label-menu">Salir</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- end:: Aside Menu -->
+
+            </div>
+            <div class="kt-aside-menu-overlay"></div>
+
+            <div id="kt_header" class="kt-header kt-grid kt-grid--ver  kt-header--fixed ">
+
+                <!-- begin: Header Menu -->
+                <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn"><i class="la la-close"></i></button>
+                <div class="kt-header-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_header_menu_wrapper">
+                    <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile  kt-header-menu--layout- ">
+                        <ul class="kt-menu__nav ">
+                            <li class="kt-menu__item  kt-menu__item--active " aria-haspopup="true">
+                                <h5 id="nombreCompleto"></h5>
+                                <h5 id="page"></h5>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- end: Header Menu -->
+                <!-- begin:: Header Topbar -->
+                <div class="kt-header__topbar">
+
+                </div>
+
+                <!-- end:: Header Topbar -->
+            </div>
+            <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
+                <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+
+                    @*begin:: Subheader*@
+                    <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+                        <div class="kt-container  kt-container--fluid ">
+                            <div class="kt-subheader__main">
+                                <h3 class="kt-subheader__title">
+                                    <button class="kt-subheader__mobile-toggle kt-subheader__mobile-toggle--left d-none" id="kt_subheader_mobile_toggle"><span></span></button>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    @RenderBody()
+
+                    <!-- begin::Scrolltop -->
+                    <div id="kt_scrolltop" class="kt-scrolltop">
+                        <i class="fa fa-arrow-up"></i>
+                    </div>
+                    <!-- end::Scrolltop -->
+
+                </div>
+                <div class="kt-footer  kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" id="kt_footer">
+                    <div class="kt-container  kt-container--fluid ">
+                        <div class="kt-footer__copyright">
+                            2022&nbsp;&copy;&nbsp;<a href="#" target="_blank" class="kt-link">Medical</a>
+                        </div>
+                        <div class="terminos">
+                            <a href="#" id="terminosFooter">Términos y condiciones</a>
+                            <a href="#" id="politicas">Políticas de privacidad</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <audio id="myAudio">
+        <source src="../../Sounds/SonidoAtencion.mp3" type="audio/mp3">
+    </audio>
+    <!-- #region metronic-template -->
+    <!-- begin::Global Config(global config for global JS sciprts) -->
+    <script>
+        var KTAppOptions = {
+            "colors": {
+                "state": {
+                    "brand": "#22b9ff",
+                    "light": "#ffffff",
+                    "dark": "#282a3c",
+                    "primary": "#5867dd",
+                    "success": "#34bfa3",
+                    "info": "#36a3f7",
+                    "warning": "#ffb822",
+                    "danger": "#fd3995"
+                },
+                "base": {
+                    "span": ["#c5cbe3", "#a1a8c3", "#3d4465", "#3e4466"],
+                    "shape": ["#f0f3ff", "#d9dffa", "#afb4d4", "#646c9a"]
+                }
+            }
+        };
+    </script>
+    <!-- end::Global Config -->
+    <!--begin::Global Theme Bundle(used by all pages) -->
+    <script src="~/metronic_demo7/assets/plugins/global/plugins.bundle.js?rand=@NumeroRandom.GetRandom()" type="text/javascript"></script>
+    <script src="~/metronic_demo7/assets/js/scripts.bundle.js?rand=@NumeroRandom.GetRandom()" type="text/javascript"></script>
+    <script src="~/js/inputmask.min.js?rand=@NumeroRandom.GetRandom()"></script>
+    <!--end::Global Theme Bundle -->
+    <!--begin::Page Scripts(used by specific page) -->
+    <script src="~/js/terminos.js"></script>
+
+    @RenderSection("PageScripts", false)
+    <!--end::Page Scripts -->
+    <!-- #endregion -->
+    @*<script type="module" src="~/js/Shared/hostpais.js?rand=@NumeroRandom.GetRandom()"></script>*@
+    <script src="~/js/Shared/layout.js?rand=@NumeroRandom.GetRandom()"></script>
+    @RenderSection("Scripts", required: false)
+
+    @{
+    var auth = "";
+    auth = ((ClaimsIdentity)User.Identity).GetSpecificClaim("authentication");
+    if (string.IsNullOrEmpty(auth))
+    {
+        auth = "-1";
+    }
+}
+    <script type="module">
+        import { init } from '../../js/shared/layout-externo.js?rnd=${@NumeroRandom.GetRandom()}';
+        init()
+    </script>
+    <script type="text/javascript">
+        (function () {
+            var auth = "@auth";
+            window.auth = auth;
+            var uid= @c;
+            window.uid = uid;
+            var idCliente = @idCliente;
+            window.idCliente = idCliente;
+
+            var HoraInicio = '@ViewBag.HoraInicio';
+            window.HoraInicio = HoraInicio;
+
+                 var HoraFin = '@ViewBag.HoraFin';
+            window.HoraFin = HoraFin;
+        
+     })()
+    </script>
+</body>
+</html>

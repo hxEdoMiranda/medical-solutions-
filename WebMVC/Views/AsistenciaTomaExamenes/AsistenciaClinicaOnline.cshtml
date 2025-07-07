@@ -1,0 +1,183 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_LayoutPaciente";
+}
+
+<link href="~/css/scotiabank/scotiabank.css" rel="stylesheet" type="text/css" />
+
+<div class="container-fluid cont-toma-examenes">
+
+    <div class="row">
+        <div class="col-12 col-md-auto">
+            <div class="card">
+                <form id="form">
+                    <div class="form-group-input">
+                        <label for="exampleFormControlSelect1">Selecciona el (los) exámen(es) a agendar:</label>
+                        <div class="card_box">                     
+                           <div class="typeahead">
+                               <input class="form-control" placeholder="Buscar por palabra clave" id="input_codigoExamen_0" type="text" dir="ltr">
+                               <div class="form-text text-muted">Ingrese mínimo 3 carácteres y seleccione una opción</div>
+                           </div>                          
+                           <ul id="listaTipoExamen"></ul>                 
+                            <button id="btnAdd" class="file-select"/>                         
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Selecciona tu región:</label>
+                          <div class="typeahead">
+                            <select class="form-control" id="listaRegion" name="regiones">
+                                <option value="0">Seleccionar...</option>
+                            </select>
+                        </div> 
+                      </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Selecciona tu comuna:</label>
+                         <div class="typeahead">
+                            <select class="form-control" id="listaComunas" name="comunas">
+                                <option value="0">Seleccionar...</option>
+                            </select>
+                        </div>  
+                      </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-12 col-md">
+            <div class="acontent_box">
+               <div class="acontent_ti">
+                   <div class="cont-ilustracion">
+
+                   </div>
+                    <!--<img src="~/img/scotiabank/examenes/ilustracion.svg" alt="...">-->
+
+
+                    <h2>Te ayudamos a agendar tus exámenes médicos.<br /><span>¡Contáctanos!</span></h2>
+                </div>
+               <div class="box_tex">
+                    <p>
+                        Con la ayuda de nuestro Centro de Atención, podrás agendar de forma simple y rápida tus exámenes médicos.
+                        Dinos qué fecha prefieres, el lugar que más te acomode y encontramos una hora y un laboratorio (o centro médico) perfecto para tus necesidades.
+                    </p>
+                    <p>
+                        Contáctanos directamente pinchando acá:
+                    </p>
+                </div>
+                <div class="nota-asistencia">
+                    <div class="col-md-6">
+                         <button id="btnCallAsistencia"  class="btn btn-primary">Llamar</button>
+                           <small class="data-asistencia">
+                            Llamarás directamente al <br />
+                            @ViewBag.Numero
+                        </small>
+                    </div>
+                    @if (!ViewBag.HostURL.Contains("masproteccionsalud.") && !ViewBag.HostURL.Contains("clinicamundoscotia."))
+                    {
+                        <div class="col-md-6">
+                            <button id="btnAsistencia" class="btn btn-primary">Videollamada</button>
+                        </div>
+                    }
+                    
+                </div>
+            </div>
+
+           
+                @*<div class="col-12 col-md-6 nota-asistencia">
+                        <button class="btn btn-primary" onclick="location.href='tel:56948042543'">Whatsapp</button>
+                        <small>
+                            Escribirás directamente al
+                            +56 9 5369 4225
+                        </small>
+                    </div>*@
+            
+        </div>
+    </div>
+
+</div>
+
+
+
+@section Scripts {
+
+ <script src="https://cdn.jsdelivr.net/gh/bigdatacloudapi/js-api-client@latest/bigdatacloud_api_client.min.js" type="text/javascript"></script>
+ <script src="https://cdn.jsdelivr.net/gh/bigdatacloudapi/js-client-ip-client@latest/bigdatacloud_client_ip.min.js" type="text/javascript"></script>
+ 
+ <script> 
+
+var apiKey = '875e06efb1c446d89eb05bfaca2ca3ec'; // Your api key found at: https://www.bigdatacloud.net/customer/account
+
+//vanilla implementation
+var client = new BDCApiClient(apiKey);
+/* You can set the default api language as needed */
+client.localityLanguage = 'es';
+
+
+ getBDCClientIp(
+    /* provide a callback function for receiving the client ip */
+    function (result) {
+
+        console.log(result);
+        client.call(
+            /* api endpoint */
+            'ip-geolocation-full',
+
+            /* api query parameters */
+            {
+                'ip': result.ipString,
+                localityLanguage: 'es'
+            },
+            function (jsonResult) {
+                window.dataLocalizacion = jsonResult;
+                console.log(window.dataLocalizacion);
+            },
+            function (err, code) {
+
+                console.log('Vanilla error', err, code);
+            }
+        );
+    }
+);
+</script>
+<script type="text/javascript">
+        (function () {
+            var host =  '@ViewBag.HostURL';
+             window.host = host;
+            var num = '@Html.Raw(@ViewBag.Numero)';
+            window.num = num;
+            var idCliente = '@ViewBag.idCliente';
+            window.idCliente = idCliente;
+            var codigoTelefono = '@ViewBag.codigoTelefono';
+            window.codigoTelefono = codigoTelefono;
+        })()
+    </script>
+<script type="module">
+    import { init } from '../../js/Paciente/examenes-asistencia.js?rnd=${@NumeroRandom.GetRandom()}';       
+    init(@Html.Raw(Json.Serialize(Model)))
+</script>
+}   
+
+  <script>
+
+    function eliminarInput(idInp) {
+        if ($('#divExamen_' + idInp).length > 0) {
+            $('#divExamen_' + idInp).remove();
+        }
+    }
+let btn = document.querySelector("#btnAdd");
+let form = document.querySelector("#form");
+    function validar() {
+        console.log()
+        let desabilitar = false;
+        if (form.input_codigoExamen_0.value === "") {
+            desabilitar = true;
+        }
+
+        if (desabilitar === true) {
+            btn.disabled = true;
+        } else {
+             btn.disabled = false;
+        }
+}
+form.addEventListener("onchange", validar)
+   
+  </script>              

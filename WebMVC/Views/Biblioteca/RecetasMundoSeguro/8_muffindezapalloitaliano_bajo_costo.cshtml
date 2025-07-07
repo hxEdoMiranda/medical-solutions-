@@ -1,0 +1,83 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+    <section class="container-fluid note-section library featured" id="nota3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="cont-titulo-receta">
+                        <div class="cont-logo">
+                            <img src="~/img/cencosud/vida-sana/muffindezapalloitaliano.png" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <h2 class="subtitulo-receta">
+                        Ingredientes:
+                    </h2>
+
+                    <ol>
+                        <li>1 zapallo italiano</li>
+                        <li>2 huevos </li>
+                        <li>½ taza de leche descremada </li>
+                        <li>2 tz harina con polvos de hornear</li>
+                        <li>1 cdta de polvos de hornear</li>
+                        <li>2 cdas de aceite </li>
+                        <li>Cebolla, ajo, sal.</li>
+                    </ol>
+                    
+                    <h2 class="subtitulo-receta">
+                        Preparación
+                    </h2>
+                    <ol>
+                        <li>Rallar el zapallo italiano, eliminar el exceso de agua. Aliñar con cebolla, ajo o aliños a gusto.</li>
+                        <li>En un bowl poner los huevos, leche, sal, aceite y polvos de hornear. Batir con batidora eléctrica.</li>
+                        <li>Agregar una a dos cucharadas de harina e integrar con movimientos envolventes. Repetir con toda la harina. </li>
+                        <li>Incorporar el zapallo italiano y mezclar bien.</li>
+                        <li>Vaciar la mezcla a los moldes de muffins (3/4) y hornear durante 20 a 25 minutos a 170ºC.</li>
+                        <li>Dejar enfriar y servir.</li>
+                    </ol>
+
+                    <p>
+                        <a href="@Url.Action("DescargarCenco", new { file = ViewBag.codigoNota})">
+                            Descargar receta
+                        </a>
+                        
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}
+

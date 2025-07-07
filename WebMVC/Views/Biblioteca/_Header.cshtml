@@ -1,0 +1,122 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@using WebMVC.Controllers
+@using Microsoft.AspNetCore.Http;
+@using System.Security.Claims;
+@using WebMVC.Models;
+@using Microsoft.Extensions.Configuration
+@using System.Web;
+@using System;
+@using System.Security.Cryptography;
+@using System.Text;
+@using System.Text.Json;
+@inject IConfiguration Configuration
+
+<div class="row hero-library">
+    <div class="col-12 col-lg-6">
+        @{
+            var cliente = "";
+            cliente = ((ClaimsIdentity)User.Identity).GetSpecificClaim("primarysid");
+        }
+        @if(ViewBag.HostURL.Contains("clinicamundoscotia."))
+        {
+            <div class="cont-title">
+                <h1 class="title-section-biblioteca">
+                    Bienvenido(a) a <span>@ViewBag.tituloBiblioteca</span>
+                </h1>
+                <p>
+                    Accede a nuestra biblioteca virtual y encuentra todo el contenido que
+                    necesitas para que t&uacute; y tu familia comiencen a cuidar de su salud.
+                    Junto a nuestro equipo de profesionales, estaremos ayund&aacute;ndote a
+                    mejorar tu calidad de vida.
+                </p>
+                <button class="btn btn-primary d-none" type="button">Empezar</button>
+            </div>
+        }
+        else if (@ViewBag.HostURL.Contains("saludtumundoseguro."))
+        {
+            <div class="cont-title">
+                <h1 class="title-section-biblioteca">
+                    Bienvenido a<br>
+                    <span>Vida +Sana</span>
+                </h1>
+            </div>
+        }
+        else if(@ViewBag.HostURL.Contains("prevenciononcologica."))
+        {
+            <div class="cont-title">
+                <h1 class="title-section-biblioteca">
+                    Te damos la bienvenida <br>
+                    a Vida +Sana
+                </h1>
+                <p>
+                    Accede a nuestra biblioteca virtual y encuentra todo el contenido que
+                    necesitas para que t&uacute; y tu familia comiencen a cuidar de su salud.
+                    Junto a nuestro equipo de profesionales, estaremos ayund&aacute;ndote a
+                    mejorar tu calidad de vida.
+                </p>
+                <button class="btn btn-primary d-none" type="button">Empezar</button>
+            </div>
+        }
+        else if(@ViewBag.HostURL.Contains("masproteccionsalud."))
+        {
+            <div class="cont-title">
+                <h1 class="title-section-biblioteca">
+                    Te damos la bienvenida <br>
+                    a Vida +Sana
+                </h1>
+                <p>
+                    Accede a nuestra biblioteca virtual y encuentra todo el contenido que necesitas para que t&uacute; y 
+                    tu familia comiencen a cuidar de su salud. 
+                    Junto a nuestro equipo de profesionales, estaremos ayudándote a mejorar tu calidad de vida saludable.
+                </p>
+                <button class="btn btn-primary d-none" type="button">Empezar</button>
+            </div>
+        }
+        else
+        {
+            <div class="cont-title">
+                <h1 class="title-section-biblioteca">
+
+                    Bienvenido a @ViewBag.tituloBiblioteca
+                </h1>
+                <p>
+                    Bienvenidos a nuestra biblioteca virtual, queremos establecer un v&iacute;nculo contigo y
+                    la comunidad entregando contenidos de valor en el &aacute;rea de la salud a trav&eacute;s de distintos
+                    formatos para acceder a los contenidos de inter&eacute;s en el &aacute;rea del bienestar en salud,
+                    prevenci&oacute;n de enfermedades y el conocer las m&aacute;s comunes con el objetivo de mantenerlos
+                    educarlos y contacto continuo con nosotros. Queremos acompa&ntilde;arte siempre con nuestro
+                    equipo de profesionales.
+                </p>
+                <button class="btn btn-primary d-none" type="button">Empezar</button>
+            </div>  
+        }
+
+
+    </div>
+    <div class="col-12 col-lg-6 slide-wiki">
+        <div class="cont-slide">
+            <div id="image-slider-biblioteca" class="splide image-slider">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <a asp-controller="Biblioteca" asp-action="Capsula1">
+
+                                <img src="~/img/biblioteca/s1.jpg" class="" alt="Cuidados COVID19" />
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a asp-controller="Biblioteca" asp-action="Capsula3">
+                                <img src="~/img/biblioteca/s3.jpg" class="" alt="Salud Mental en adultos mayores" />
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a asp-controller="Biblioteca" asp-action="Capsula4">
+                                <img src="~/img/biblioteca/s2.jpg" class="" alt="Telemedicina" />
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

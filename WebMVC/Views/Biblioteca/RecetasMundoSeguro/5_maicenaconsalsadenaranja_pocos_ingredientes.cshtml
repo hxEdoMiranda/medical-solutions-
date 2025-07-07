@@ -1,0 +1,83 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+    <section class="container-fluid note-section library featured" id="nota3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="cont-titulo-receta">
+                        <div class="cont-logo">
+                            <img src="~/img/cencosud/vida-sana/maicenaconsalsadenaranja.png" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <h2 class="subtitulo-receta">
+                        Ingredientes:
+                    </h2>
+
+                    <ol>
+                        <li>1 Lt de leche descremada</li>
+                        <li>90 grs de maicena </li>
+                        <li>180 grs de azúcar flor o tagatosa </li>
+                        <li>1 cdta esencia de vainilla</li>
+                        <li>Ralladura de limón </li>
+                        <li>4 naranjas</li>
+                        <li>40 grs de azúcar</li>
+                    </ol>
+                    
+                    <h2 class="subtitulo-receta">
+                        Preparación
+                    </h2>
+                    <ol>
+                        <li>En una olla colocar maicena, azúcar flor y ralladura de limón. Añadir la leche fría de a poco y mezclar bien.</li>
+                        <li>Llevar a fuego bajo, agregar vainilla. Revolver hasta que espese. Colocar la mezcla en un molde.</li>
+                        <li>Dejar enfriar y llevar al refrigerador por al menos dos horas. </li>
+                        <li>Para la salsa, retirar la cáscara de las naranjas sin la parte blanca. Cortar en tiras muy delgadas. </li>
+                        <li>Exprimir las naranjas y colar. Llevar a una olla, agregar el azúcar, luego agregar la cáscara de naranja.  Reducir hasta que tome forma de salsa. </li>
+                        <li>Servir la maicena con la salsa de naranja.</li>
+                    </ol>
+
+                    <p>
+                        <a href="@Url.Action("DescargarCenco", new { file = ViewBag.codigoNota})">
+                            Descargar receta
+                        </a>
+                        
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}
+

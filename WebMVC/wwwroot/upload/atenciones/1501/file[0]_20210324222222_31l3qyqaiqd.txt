@@ -1,0 +1,3341 @@
+/*
+
+    OpenDBDiff 0.13.0.191
+    https://github.com/OpenDBDiff/OpenDBDiff
+
+    Script created by DESKTOP-2SFPP31\crist on 23/03/2021 at 9:22:10.
+
+    Created on:  DESKTOP-2SFPP31
+    Source:      Medical on medicaldesa.database.windows.net
+    Destination: Medical on strixmedical.database.windows.net
+
+    ### This script performs actions to change the Destination schema to the Source schema. ###
+
+*/
+
+
+--
+-- DIFF-ERROR 0x00000002.001: Missing Alter script for Table 'Migracion'
+--
+
+DROP TABLE [dbo].[MigracionFaltantes]
+GO
+ALTER TABLE [dbo].[MedicosHoras] ADD 
+[ZonaHoraria] [smallint] NULL
+GO
+CREATE TABLE [dbo].[Hoja]
+(
+	[COD] [float] NULL,
+	[MNEMONICO] [nvarchar] (255) NULL,
+	[DESC1] [nvarchar] (255) NULL,
+	[DESC2] [nvarchar] (255) NULL,
+	[DESC3] [nvarchar] (255) NULL,
+	[DESC4] [nvarchar] (255) NULL
+)
+GO
+CREATE TABLE [dbo].[PaisZonaHoraria]
+(
+	[Id] [int] NOT NULL,
+	[Nombre] [varchar] (100) NULL,
+	[Gmt] [int] NULL
+)
+GO
+ALTER  VIEW [dbo].[VwMedicos]
+AS
+SELECT	u.UserId AS IdMedico	, 
+		es.CodigoPrestacion		, 
+		ISNULL	((SELECT TOP (1) RutaVirtual
+                        FROM      dbo.Archivo
+                        WHERE   (IdEntidadAsociada = u.UserId) AND (CodEntidadAsociada = 'FOTO_PERFIL')
+                        ORDER BY Fecha DESC), (CASE WHEN p.Genero = 'M' THEN '/upload/foto_perfil/noPerfilProfesional/ManAvatar.svg' WHEN p.Genero = 'F' THEN '/upload/foto_perfil/noPerfilProfesional/WomanAvatar.svg' END)) AS FotoPerfil,
+			tp.Prefijo  AS PrefijoProfesional, 
+			ISNULL(p.Nombre, '') + ' ' + ISNULL(p.ApellidoPaterno, '') + ' ' + ISNULL(p.ApellidoMaterno, '') AS NombreMedico,
+			tp.nombre AS Titulo
+			, es.Nombre AS Especialidad, me.IdEspecialidad, p.Identificador AS rutMedico, pd.NumeroRegistro, ISNULL(pd.ValorAtencion, 0) AS ValorAtencion, p.Estado, 
+			CASE WHEN idespecialidad = 1 THEN 'Medicina General' WHEN idespecialidad < 9 THEN 'Especialistas' ELSE 'Otros Profesionales' END AS CategoriaEspecialidad, pd.InfoPersona1, pd.IdDuracionAtencion,
+			Modalidad = (select STRING_AGG (IdModalidad, '|') from dbo.PersonasDatosModalidad where IdPersona = p.Id and Estado = 'V'),
+			CVP,
+			IdSucursal,
+			IdLugarAtencion,
+			p.Correo,
+			p.ZonaHoraria
+FROM    dbo.Users AS u INNER JOIN
+        dbo.UserRoles AS ur ON ur.UserId = u.UserId INNER JOIN
+        dbo.Roles AS r ON r.RoleId = ur.RoleId INNER JOIN
+        dbo.PersonasUsers AS pu ON pu.IdUsuario = u.UserId INNER JOIN
+        dbo.Personas AS p ON p.Id = pu.IdPersona INNER JOIN
+        dbo.MedicoEspecialidades AS me ON me.IdMedico = u.UserId INNER JOIN
+        dbo.Especialidades AS es ON es.Id = me.IdEspecialidad LEFT OUTER JOIN
+        dbo.PersonasDatos AS pd ON pd.IdPersona = p.Id 
+		inner join dbo.TipoProfesional tp ON tp.Id = pd.IdTituloMedico
+where	r.RoleId = 2 -- Medico
+GO
+ALTER VIEW [dbo].[VwFichaPacienteMedico]
+AS
+SELECT dbo.Personas.Identificador, dbo.Personas.Nombre, dbo.Personas.ApellidoPaterno, dbo.Personas.ApellidoMaterno, dbo.Personas.Correo, ISNULL(dbo.Personas.TelefonoMovil, '') AS Telefono, dbo.Personas.FNacimiento, 
+                  dbo.Personas.Altura, dbo.Personas.Alergias, dbo.Personas.Estado, dbo.Empresas.Nombre AS Empresa, dbo.Users.UserId, ISNULL(dbo.Personas.Nombre, ' ') + ' ' + ISNULL(dbo.Personas.ApellidoPaterno, ' ') 
+                  + ' ' + ISNULL(dbo.Personas.ApellidoMaterno, ' ') AS nombreCompleto, CASE WHEN Genero = 'F' THEN 'Femenino' WHEN Genero = 'M' THEN 'Masculino' END AS Genero, dbo.Personas.Direccion,
+                      (SELECT TOP (1) RutaVirtual
+                       FROM      dbo.Archivo
+                       WHERE   (CodEntidadAsociada = 'FOTO_PERFIL') AND (IdEntidadAsociada = dbo.Users.UserId)
+                       ORDER BY Fecha DESC) AS rutaAvatar, dbo.Personas.Prevision, dbo.Personas.FechaCambioEstado, dbo.Personas.FechaCreacion, dbo.Personas.IdUsuarioCreacion, dbo.Personas.Telefono AS TelefonoMovil, 
+                  dbo.Personas.CorreoPlataformaTercero, dbo.Personas.TelefonoPlataformaTercero, dbo.Personas.ZonaHoraria
+FROM     dbo.UserRoles INNER JOIN
+                  dbo.Users ON dbo.UserRoles.UserId = dbo.Users.UserId INNER JOIN
+                  dbo.Roles ON dbo.UserRoles.RoleId = dbo.Roles.RoleId RIGHT OUTER JOIN
+                  dbo.Personas LEFT OUTER JOIN
+                  dbo.PersonasUsers ON dbo.Personas.Id = dbo.PersonasUsers.IdPersona ON dbo.Users.UserId = dbo.PersonasUsers.IdUsuario LEFT OUTER JOIN
+                  dbo.Empresas ON dbo.Personas.Id = dbo.Empresas.Id LEFT OUTER JOIN
+                  dbo.PersonasEmpresas ON dbo.Personas.Id = dbo.PersonasEmpresas.IdPersona AND dbo.Empresas.Id = dbo.PersonasEmpresas.IdEmpresa
+WHERE  (dbo.Roles.RoleName = 'Paciente')
+GO
+ALTER VIEW [dbo].[VwHorasMedicos]
+		AS
+		SELECT ISNULL
+							  ((SELECT TOP (1) RutaVirtual
+								FROM      dbo.Archivo
+								WHERE   (IdEntidadAsociada = mh.IdMedico) AND (CodEntidadAsociada = 'FOTO_PERFIL')
+								ORDER BY Fecha DESC), (CASE WHEN pe.Genero = 'M' THEN '/upload/foto_perfil/noPerfilProfesional/ManAvatar.svg' WHEN pe.Genero = 'F' THEN '/upload/foto_perfil/noPerfilProfesional/WomanAvatar.svg' END)) AS FotoPerfil, 
+						  mh.IdMedico, RTRIM(pe.Nombre) + ' ' + RTRIM(pe.ApellidoPaterno) + ' ' + RTRIM(pe.ApellidoMaterno) AS NombreMedico, bh.HoraDesde, bh.HoraHasta, mh.Fecha, mh.Id AS IdHora, bh.Id AS IdBloqueHora, ate.Id AS IdAtencion, 
+						  usPe.UserId AS IdPaciente, RTRIM(pePa.Nombre) + ' ' + RTRIM(pePa.ApellidoPaterno) + ' ' + RTRIM(ISNULL(pePa.ApellidoMaterno, '')) AS NombrePaciente, ate.Estado AS EstadoAtencion, e.Nombre AS Especialidad, 
+						  pePa.Correo AS CorreoPaciente, pe.Correo AS CorreoMedico, ate.NSP, bh.IdDuracionAntencion, e.Id AS IdEspecialidad, 
+						  CASE WHEN IdEspecialidad = 1 THEN 'Medicina General' WHEN IdEspecialidad < 9 THEN 'Especialistas' ELSE 'Otros Profesionales' END AS CategoriaEspecialidad, mh.IdConvenio, ate.IngresoAtencionPaciente, ate.NspPaciente, 
+						  ate.FechaCreacion, ate.HoraNuevoOrden, ate.SolicitaFirma, ate.IdMedicoFirmante, ate.ConfirmaPaciente, CASE WHEN mh.IdModeloAtencion = 2 THEN 1 ELSE 0 END AS Cobrar, pe.Identificador AS RutMedico, 
+						  pePa.Identificador AS RutPaciente, ate.BonoPlataformaExterna,
+						  mh.ZonaHoraria
+		FROM     dbo.MedicosHoras AS mh INNER JOIN
+						  dbo.BloquesHoras AS bh ON bh.Id = mh.IdBloqueHora INNER JOIN
+						  dbo.Users AS us ON us.UserId = mh.IdMedico INNER JOIN
+						  dbo.UserRoles AS ur ON ur.UserId = us.UserId INNER JOIN
+						  dbo.PersonasUsers AS pu ON pu.IdUsuario = us.UserId INNER JOIN
+						  dbo.Personas AS pe ON pe.Id = pu.IdPersona INNER JOIN
+						  dbo.Atenciones AS ate ON ate.IdMedicoHora = mh.Id LEFT OUTER JOIN
+						  dbo.Users AS usPe ON usPe.UserId = ate.IdPaciente LEFT OUTER JOIN
+						  dbo.PersonasUsers AS puPe ON puPe.IdUsuario = usPe.UserId LEFT OUTER JOIN
+						  dbo.Personas AS pePa ON pePa.Id = puPe.IdPersona LEFT OUTER JOIN
+						  dbo.MedicoEspecialidades AS Me ON mh.IdMedico = Me.IdMedico LEFT OUTER JOIN
+						  dbo.Especialidades AS e ON Me.IdEspecialidad = e.Id
+		WHERE  (ur.RoleId = 2)
+GO
+ALTER   view [dbo].[VwMedicoAgenda]
+as
+select	IdMedico			=	usu.UserId				,
+		NombreMedico		=	per.Nombre + ' ' + ISNULL(per.ApellidoPaterno, '') + ' ' + ISNULL(per.ApellidoMaterno, '') 	,
+		IdEspecialidad		=	esp.Id				,
+		NombreEspecialidad	=	esp.Nombre			,
+		Fecha				=	meh.Fecha			,
+		HoraDesde			=	blo.HoraDesde		,
+		HoraHasta 			=	blo.HoraHasta		,
+		IdAtencion			=	ate.Id				,
+		IdPaciente			=	ate.IdPaciente		,
+		IdBloqueHora		=	blo.Id				,
+		IdAgendaMedico		=	meh.Id				,
+		meh.IdConvenio								,
+		meh.IdTipoAgenda							,
+		meh.IdModeloAtencion						,
+		ProfesionalesAsociados						,
+		con.AtencionDirecta							,
+		meh.ZonaHoraria			
+from	dbo.Especialidades esp
+
+		inner join dbo.MedicoEspecialidades mes
+		on mes.IdEspecialidad = esp.Id
+
+		--inner join dbo.vwmedicos med
+		--on	med.IdMedico = mes.IdMedico
+		--and med.Estado   = 'V'
+
+		inner join dbo.Users usu
+		on usu.UserId = mes.IdMedico
+
+		inner join dbo.PersonasUsers pus
+		ON pus.IdUsuario = usu.UserId 
+		
+		inner join dbo.Personas per 
+		ON per.Id = pus.IdPersona 
+
+		inner join dbo.MedicosHoras meh
+		on  meh.IdMedico = mes.IdMedico 
+		and meh.Estado   = 'V'
+		
+		inner join dbo.bloqueshoras blo 
+        on	blo.id = meh.IdBloqueHora 
+
+		left join dbo.Atenciones ate
+		on	ate.IdMedicoHora		=	meh.Id
+		and	ate.estado <> 'E' 
+
+		left join dbo.Convenios con
+		on con.Id	=	meh.IdConvenio	
+
+where	esp.Estado		 = 'V'
+GO
+ALTER Procedure [dbo].[Sp_RecetayReporte]
+(
+ @Id		int
+ )
+as
+
+-- Logica Medico Firmante, es el que se registra en IdUsuarioModifica
+select	NombreMedico,Especialidad,rutMedico,NumeroRegistro,IdMedico
+into	#medico
+from	dbo.VwMedicos with (nolock) where IdMedico in (select  IdUsuarioModifica  from dbo.Atenciones with (nolock) where Id = @Id)
+----------------------------------------------------------------------
+
+-- Saca cantidad de atenciones con receta RETENIDA -------------------
+declare @cantRecetasRetenidas int =isnull((	select	count(1)
+											from	dbo.atenciones a with (nolock)
+													inner join 	dbo.MedicosHoras mh
+													on mh.Id = a.IdMedicoHOra
+
+											where	mh.IdMedico = (select IdMedico from #medico)
+											and		a.estado = 'T'	
+											and		isnull(a.Nsp,0)	= 0 -- No NSP
+											and		exists (
+															SELECT	1
+															FROM	dbo.AtencionMedicamentos amed  with (nolock)
+																	inner join dbo.Medicamentos med with (nolock) 
+																	ON med.Id = amed.IdMedicamento 
+															WHERE	amed.IdAtencion = a.Id
+															AND		med.Retenido = 'S'
+															and		amed.IdAtencion = a.Id
+															)
+											),0)
+
+----------------------------------------------------------------------
+
+
+SELECT	RutPaciente				=	paciente.Identificador		,
+		AlergiasPaciente		=	paciente.Alergias			, 
+		NombreCompletoPaciente	=	paciente.nombreCompleto		,
+		GeneroPaciente			=	paciente.Genero				,
+		DireccionPaciente		=	paciente.Direccion			, 
+        
+		-- Logica de Medico Firmante ------------------------------------------------
+		NombreCompletoMedico	= (select NombreMedico from #medico), 
+		EspecialidadMedico		= (select Especialidad from #medico),  
+		RutMedico				= (select rutMedico from #medico),   
+		RegMedico				= (select NumeroRegistro from #medico),    
+		FirmaMedico				= (	select	top(1)  Ruta = 'https://services.medismart.live'    + replace(RutaVirtual,'\','/')   
+									from	dbo.Archivo ar  with (nolock)
+									where	ar.IdEntidadAsociada = (select IdMedico from #medico)
+									and		ar.CodEntidadAsociada = 'FIRMA-MEDICO' 
+									order by Fecha DESC),
+		----------------------------------------------------------------------------
+		a.DiagnosticoMedico, 
+		a.ExamenMedico, 
+		a.CertificadoMedico, 
+		a.TratamientoMedico, 
+   		MedicamentosMedico = 	isnull((SELECT	STRING_AGG(med.PrincipioActivo  + ' ' + amed.Posologia , CHAR(13) + CHAR(10)) WITHIN GROUP (ORDER BY med.PrincipioActivo )
+										 FROM	dbo.AtencionMedicamentos amed  with (nolock)
+												inner join dbo.Medicamentos med with (nolock) 
+												ON med.Id = amed.IdMedicamento 
+										WHERE	amed.IdAtencion = a.Id
+										),'') ,
+		a.ControlMedico, 
+		a.InicioAtencion, 
+		a.TerminoAtencion, 
+		Molestia				=	a.TriageObservacion		, 
+		TiempoMolestia			=	triageTiempo.Detalle	, 
+		Nivel					=	triageNivel.Detalle		, 
+		EdadPaciente			=		 DATEDIFF(month, FNacimiento, dbo.Getdate2()) / 12, -- DATEDIFF(year, paciente.FNacimiento, dbo.Getdate2()),
+		IdAtencion				=	a.Id, 
+		Patologias				=	STRING_AGG(p.Codigo + ' ' + p.Nombre, CHAR(13) + CHAR(10)) WITHIN GROUP (ORDER BY p.Nombre), 
+		FechaHoy				=	upper(FORMAT(dbo.Getdate2(), 'dd MMMM yyyy', 'es-ES')),
+
+		Examenes				=	(	SELECT STRING_AGG(ex.Codigo + ' ' + ex.Nombre, CHAR(13) + CHAR(10)) WITHIN GROUP (ORDER BY ex.Nombre)
+										FROM	Dbo.AtencionesExamenes aex with (nolock) 
+												LEFT JOIN Dbo.Examenes ex with (nolock) 
+												ON ex.Id = aex.IdExamen
+										WHERE  aex.IdAtencion = a.Id), 
+		
+		LogoConvenio = isnull((SELECT TOP (1) Ruta = 'https://qa.services.medismart.live' + replace(RutaVirtual, '\', '/')
+						FROM      Archivo ar with (nolock)
+						WHERE   ar.IdEntidadAsociada = horasMedicos.IdConvenio AND ar.CodEntidadAsociada = 'FOTO_CONVENIO'
+						ORDER BY Fecha DESC),'https://medical.medismart.live/metronic_demo7/assets/media/logos/LogoReporte.jpg'),
+
+		MedicamentosMedicoRetenido = 	isnull((	SELECT	STRING_AGG(med.PrincipioActivo  + ' ' + amed.Posologia , CHAR(13) + CHAR(10)) WITHIN GROUP (ORDER BY med.PrincipioActivo )
+											FROM	dbo.AtencionMedicamentos amed  with (nolock)
+											inner join dbo.Medicamentos med with (nolock) 
+											ON med.Id = amed.IdMedicamento 
+											WHERE	amed.IdAtencion = a.Id
+											AND		med.Retenido = 'S'
+											),'') ,
+		CantRecetasRetenidas =	@cantRecetasRetenidas + 1,
+		MedicamentosMedicoNormal = 	isnull((SELECT	STRING_AGG(med.PrincipioActivo  + ' ' + amed.Posologia , CHAR(13) + CHAR(10)) WITHIN GROUP (ORDER BY med.PrincipioActivo )
+										 FROM	dbo.AtencionMedicamentos amed  with (nolock)
+												inner join dbo.Medicamentos med with (nolock) 
+												ON med.Id = amed.IdMedicamento 
+										WHERE	amed.IdAtencion = a.Id
+										AND		isnull(med.Retenido,'') = ''
+										),'') 
+
+FROM     dbo.Atenciones AS a with (nolock) 
+		LEFT OUTER JOIN	dbo.VwFichaPacienteMedico AS paciente	with (nolock) ON paciente.UserId = a.IdPaciente 
+		LEFT JOIN		dbo.MedicosHoras AS horasMedicos		with (nolock) ON horasMedicos.Id = a.IdMedicoHora 
+		LEFT JOIN		dbo.VwMedicos AS medico					with (nolock) ON medico.IdMedico = horasMedicos.IdMedico 
+		LEFT JOIN		dbo.Parametros AS triageMolestia		with (nolock) ON triageMolestia.Id = a.IdTriageMolestia AND triageMolestia.Grupo = 'TRI_MOL' 
+		LEFT JOIN		dbo.Parametros AS triageNivel			with (nolock) ON triageNivel.Id = a.IdTriageNivel AND triageNivel.Grupo = 'TRI_NIV' 
+		LEFT JOIN		dbo.Parametros AS triageTiempo			with (nolock) ON triageTiempo.Id = a.IdTriageTiempo AND triageTiempo.Grupo = 'TRI_TIEMPO' 
+		LEFT JOIN		dbo.AtencionesPatologias ap				with (nolock) ON ap.IdAtencion = a.Id 
+		LEFT JOIN		dbo.Patologias p ON ap.IdPatologia = p.Id
+where  a.Id = @Id
+GROUP BY paciente.Identificador, paciente.Alergias, paciente.nombreCompleto, paciente.Genero, paciente.Direccion, medico.NombreMedico, medico.Especialidad, medico.rutMedico, a.DiagnosticoMedico, a.ExamenMedico, a.CertificadoMedico, 
+                  a.ControlMedico, a.TratamientoMedico, a.MedicamentosMedico, a.InicioAtencion, a.TerminoAtencion, triageMolestia.Detalle, triageNivel.Detalle, paciente.FNacimiento, a.Id, medico.NumeroRegistro, TriageTiempo.Detalle, 
+                  a.TriageObservacion, medico.IdMedico, horasMedicos.IdConvenio
+GO
+ALTER  procedure [dbo].[SpGetMedicosHoraProxima]
+(
+@IdEspecialidad	int	,
+@IdPaciente		int	,
+@ParaEspecialidad char(1) = '',
+@IdCliente	int = 0
+)
+as
+begin
+
+--insert into dbo.logConsulta select dbo.getdate2(),'Inicio Consulta'
+--	[dbo].[SpGetMedicosHoraProxima] 0,24,'S'    
+--	[dbo].[SpGetMedicosHoraProxima] 0,24,''    -- Cristian Farias Lazo -- Urologia -- Rayen
+--	[dbo].[SpGetMedicosHoraProxima] 1,24,''    -- Inti Paredes Lazo  -- MEdicina General -- On demmnad 
+--	[dbo].[SpGetMedicosHoraProxima] 8,24,''    -- Cristian Farias Lazo -- Urologia -- Rayen
+--	[dbo].[SpGetMedicosHoraProxima] 57,24,''    -- Paulina -- Medicina Veterinaria --   On demmnad 
+--	[dbo].[SpGetMedicosHoraProxima] 2,24,''    -- Amalia -- Medicina Familiar del Adulto--   Rayen
+set nocount on
+
+-------------------------------------------------------------------
+-- Datos de convenio del paciente
+-------------------------------------------------------------------
+--	drop table #convenios
+select	distinct pec.IdConvenio,co.Id,co.IdReglaPago,co.ValorReglaPago,co.IdModeloAtencion,co.AtencionDirecta,ZonaHoraria,CodConvenio,IdPaciente = usu.UserId  
+into	#convenios		
+from	dbo.Personas	per
+		inner join dbo.PersonasUsers peu
+		on peu.IdPersona = per.Id 
+		inner join dbo.Users usu
+		on usu.UserId	= peu.IdUsuario 
+		inner join dbo.PersonasConvenios pec
+		on pec.IdPersona = per.Id 
+		inner join dbo.Convenios  co
+		on co.Id = pec.IdConvenio
+where	UserId		=	@IdPaciente
+and		co.Estado	=	'V'
+and		pec.Estado	=	'V'
+and     dbo.getdate2() between co.FechaInicio and co.FechaTermino  
+
+--select '#convenios',* from #convenios	
+------------------------------------------------------------------------------------------
+-- AJUSTE HORA SEGUN ZONA HORARIA 
+------------------------------------------------------------------------------------------
+declare @getdate datetime = dbo.getdate2()
+
+--Id convenio Paciente (por ahora se asume que si tiene un convenio Boliva se aplica ajuste)
+declare @IdConvenio int
+select @IdConvenio = (select top 1 Id from #convenios where left(CodConvenio,3) = 'LBC')  -- error en codigo 21/12/2020 era 'LBCB' y tenian LBC
+
+
+--Ajuste si trae un convenio Bolivia
+if @IdConvenio is not null
+	select @getdate = dateadd(hour,dbo.FxAjusteHora(@IdConvenio),dbo.getdate2())
+
+--Fecha Hoy en base a ajuste
+declare @fechaHoy date = @getdate
+--return 0  
+--select @getdate,@IdConvenio
+
+-------------------------------------------------------------------------------------------
+-- Horas del medico agendas mayores a now 
+-------------------------------------------------------------------------------------------
+--drop table  #agenda -- ToDo : ver en integracion se duplica la asociacion de convenio persona
+select	distinct IdMedico,IdEspecialidad,IdAgendaMedico,IdConvenio = ISNULL(IdConvenio,1),IdTipoAgenda = isnull(IdTipoAgenda,0),IdModeloAtencion = isnull(IdModeloAtencion,0),FechaHora = (Cast(Fecha AS DATETIME) + Cast(HoraDesde AS DATETIME)) ,
+		IdBloqueHora	,
+		FechaText		=	upper(FORMAT(Fecha, 'dd MMM yyyy', 'es-ES')),  
+		HoradesDeText	=	substring(convert(nvarchar,HoraDesde), 1, 5),	
+		IdPaciente,
+		NombreEspecialidad, 
+		Fecha
+into	#agenda
+from	dbo.VwMedicoAgenda
+where	(Cast(Fecha AS DATETIME) + Cast(HoraDesde AS DATETIME) ) >= @getdate
+and		AtencionDirecta in (select AtencionDirecta from #convenios) -- FILTRA MISMO TIPO DE AGENDA > DIRECTA / AGENDA
+and		AtencionDirecta	<>	1  
+--select '#agendaLoad',* from #agenda
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Elimina agendas por Especialidad, si tiene una hora con un Medico de la misma especialidad en un rango de 2 horas solo si Convenio NO es ATENCION DIRECTA
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+if not exists(select 1 from #convenios where AtencionDirecta = 1) 
+begin
+	delete	#agenda 
+	where	exists (select 1 from #agenda b 
+					where	b.IdEspecialidad = #agenda.IdEspecialidad 
+					and		b.IdPaciente	 = @IdPaciente 
+					and		b.FechaHora  between @getdate and dateadd(hour,2,@getdate)
+					)
+	and		IdPaciente is null
+	and		Fecha = @fechaHoy
+end
+--select '#agenda',* from #agenda 
+
+--------------------------------------------------------------------------------------------------------------------------
+---- Elimina agendas tomadas por paciente a la misma hora
+--------------------------------------------------------------------------------------------------------------------------
+delete	#agenda 
+where	IdPaciente is null -- > NO tomada
+and		exists (select	1 from #agenda agT  
+				where	agT.IdPaciente	= @IdPaciente
+				and		agT.IdBloqueHora	=	#agenda.IdBloqueHora
+				and		agT.Fecha			=	#agenda.Fecha
+				)
+--select '#agendaD1',* from #agenda 
+----------------------------------------------------------------------------------------------------------------------
+---- Elimina agendas un paciente no puede tomar + de 2 horas al dia con el mismo Profesional
+--------------------------------------------------------------------------------------------------------------------------
+If ((	select	COUNT(1) 
+		from	dbo.VwHorasMedicoParaCalendario ate  
+				inner join #agenda age
+				on		ate.Fecha		= age.Fecha
+				and		ate.IdMedico	= age.IdMedico 
+				and		ate.IdPaciente	= age.IdPaciente 
+				and		ate.EstadoAtencion <> 'E'
+				and		ate.Fecha		= @fechaHoy
+				and		ate.IdPaciente	= @IdPaciente
+	) > 2)
+begin	
+	delete	#agenda 
+	where	IdPaciente is null -- > NO tomada
+	and		Fecha = @fechaHoy
+	and		exists (	select	1
+						from	dbo.VwHorasMedicoParaCalendario ate  
+						where	ate.Fecha		= #agenda.Fecha
+						and		ate.IdMedico	= #agenda.IdMedico 
+						and		ate.IdPaciente	= #agenda.IdPaciente 
+						and		ate.IdPaciente	= @IdPaciente
+					)
+end
+
+--select '#agenda22',* from #agenda 
+
+------------------------------------------------------------------------------------------------------------------------
+-- Elimina agendas tomadas por pacientes , es decir deja solo las libres
+------------------------------------------------------------------------------------------------------------------------
+delete #agenda where	IdPaciente is not null -- Tomada
+
+--select * from VwMedicoAgenda
+--where	IdPaciente is null --No tomada
+--and		(Cast(Fecha AS DATETIME) + Cast(HoraDesde AS DATETIME) ) >= dbo.getdate2()
+--and		ISNULL(IdConvenio,1) in (select IdConvenio from #convenios)
+
+-------------------------------------------------------------------------------------------
+-- Medicos con agenda
+-------------------------------------------------------------------------------------------
+--drop table #medicos
+SELECT	IdMedico		=	u.UserId , 
+		Especialidad	=	es.Nombre, 
+		NombreMedico	=	ISNULL(p.Nombre, '') + ' ' + ISNULL(p.ApellidoPaterno, '') + ' ' + ISNULL(p.ApellidoMaterno, '') , 
+		es.CodigoPrestacion, 
+		rutMedico =		p.Identificador, 
+		pd.ValorAtencion, 
+		PrefijoProfesional	=	tp.Prefijo, 
+		Titulo = tp.nombre, 
+		InfoPersona1	=	Isnull(pd.InfoPersona1, 'Sin Datos'), 
+		FotoPerfil		=	SPACE(500)	, 
+		IdAgendaMedicoSinConvenio			= 0	,
+		IdAgendaMedicoConConvenioExclusivo  = 0	,
+		IdAgendaMedicoConConvenioCompartida = 0	,
+		Modalidad							=	SPACE(50)	 	,
+		CVP										,
+		IdSucursal								,
+		IdLugarAtencion			,
+		p.Genero ,
+		p.Id,
+		CodigoEspecialidad = es.Id
+into	#medicos
+FROM    dbo.Users AS u INNER JOIN
+        dbo.UserRoles AS ur ON ur.UserId = u.UserId INNER JOIN
+        dbo.Roles AS r ON r.RoleId = ur.RoleId INNER JOIN
+        dbo.PersonasUsers AS pu ON pu.IdUsuario = u.UserId INNER JOIN
+        dbo.Personas AS p ON p.Id = pu.IdPersona INNER JOIN
+        dbo.MedicoEspecialidades AS me ON me.IdMedico = u.UserId INNER JOIN
+        dbo.Especialidades AS es ON es.Id = me.IdEspecialidad LEFT OUTER JOIN
+        dbo.PersonasDatos AS pd ON pd.IdPersona = p.Id  inner join dbo.TipoProfesional tp ON tp.Id = pd.IdTituloMedico
+where	p.estado = 'V'
+and		(me.idespecialidad =  @IdEspecialidad OR  @IdEspecialidad = 0 ) 
+and		me.IdMedico in (select IdMedico from #agenda)
+
+-- Sub campos, no se usa la vista para hacer mas ligera la consulta
+update	#medicos	
+set		Modalidad	= (select STRING_AGG (IdModalidad, '|') from dbo.PersonasDatosModalidad where IdPersona = #medicos.Id and Estado = 'V')
+		,FotoPerfil	=	ISNULL	((SELECT TOP (1) RutaVirtual
+									FROM      dbo.Archivo
+									WHERE   (IdEntidadAsociada = #medicos.IdMedico) AND (CodEntidadAsociada = 'FOTO_PERFIL')
+									ORDER BY Fecha DESC), 
+						(CASE WHEN #medicos.Genero = 'M' THEN '/upload/foto_perfil/noPerfilProfesional/ManAvatar.svg' 
+							  WHEN #medicos.Genero = 'F' THEN '/upload/foto_perfil/noPerfilProfesional/WomanAvatar.svg' END)) 
+--------------------------------------------------------------------------------------------------------------------------------
+-- Elimina agendas que tenga distinto modelo Atencion del paciente 1 y 2 ->  1 Suscripcion  2 OnDemmand   
+-- Si convenio del paciente tiene 3 no debe eliminar modelos di
+--------------------------------------------------------------------------------------------------------------------------------
+--select '#agendaAntes',* from #agenda
+if not exists(select 1 from #convenios where IdModeloAtencion = 3) -- Ambos
+delete	#agenda 
+where	IdModeloAtencion not in (select IdModeloAtencion from #convenios) 
+and		IdConvenio <> 1
+
+--select '#convenios',* from #convenios where IdModeloAtencion = 3
+--select '#agendaAntesEliminaModelo',* from #agenda
+---------------------------------------------------------------------------------------------------------------------------
+-- Horas del medico con logica de filtros saca la menor por medico y convenio POR TIPO AGENDA > 1 EXCLUSIVA - 2 COMPARTIDA
+---------------------------------------------------------------------------------------------------------------------------
+
+update	#medicos
+set		IdAgendaMedicoSinConvenio			= isnull((	select	top 1 IdAgendaMedico  -- Id de la prmera hora desde now
+														from	#agenda ag
+														where	ag.IdMedico = #medicos.IdMedico 
+														and		ag.IdConvenio = 1 -- Default
+														order by  FechaHora asc
+													),0),
+		IdAgendaMedicoConConvenioExclusivo	= isnull((	select	top 1 IdAgendaMedico  -- Id de la prmera hora desde now
+														from	#agenda ag
+														where	ag.IdMedico = #medicos.IdMedico 
+														and		ag.IdConvenio <> 1
+														and		ag.IdTipoAgenda = 1
+														and		ag.IdConvenio  in (select IdConvenio from #convenios) -- siempre que exista en el convenio de paciente
+														order by  FechaHora asc
+												),0),
+		IdAgendaMedicoConConvenioCompartida	= isnull((	select	top 1 IdAgendaMedico  -- Id de la prmera hora desde now
+														from	#agenda ag
+														where	ag.IdMedico = #medicos.IdMedico 
+														and		ag.IdConvenio <> 1
+														and		ag.IdTipoAgenda = 2
+														and		ag.IdConvenio  in (select IdConvenio from #convenios) -- siempre que exista en el convenio de paciente
+														order by  FechaHora asc
+												),0)
+										
+ --select '#medicosDespues',* from #medicos
+-- Paciente SIN convenio solo muestra las Agendas SIN convenio
+-- Paciente CON convenio muestra las Agendas SIN convenio y CON CONVENIO
+
+-----------------------------------------------------------------------------------------------------------------------
+-- Retorno de datos
+-----------------------------------------------------------------------------------------------------------------------
+--drop table #resultado
+
+--select * from Convenios 
+--select * from ConveniosEspecialidades 
+
+-- Tipo Agenda 
+--select * from Parametros where Grupo like '%agenda%'
+--Exclusiva		1
+--Compartida	2
+
+-- MODELO ATENCION
+--select * from Parametros where Grupo like '%modelo%'
+--Suscripción	1
+--On Demand		2
+--Ambos			3
+
+
+	---------------------------------------------------------------------------------------------	
+	-- Horas Con Convenio Medico Exclusiva - SOLO Match entre Paciente y Medico por Convenio
+	---------------------------------------------------------------------------------------------
+	select	h.IdMedico, 
+			h.Especialidad, 
+			h.NombreMedico, 
+			h.CodigoPrestacion,		--select 10000 * (10 / 100.0)
+			h.rutMedico, 
+			ValorAtencion			=	 case	when a.IdModeloAtencion = 1  then 0	-- Agende Medico IdModeloAtencion = 1 Suscripcion paga 0 
+												when a.IdModeloAtencion = 2 and c.IdReglaPago = 1  then convert(numeric(18,0),(h.ValorAtencion * (c.ValorReglaPago / 100.0)))    --IdModeloAtencion = On Demand / Regla Pago Porcentaje
+												when c.IdModeloAtencion = 2 and c.IdReglaPago = 2  then c.ValorReglaPago	--IdModeloAtencion = On Demand / Regla Pago Valor
+											else  h.ValorAtencion end,  
+			h.PrefijoProfesional, 
+			h.Titulo, 
+			InfoPersona1,
+			h.FotoPerfil			,
+			a.IdBloqueHora			,
+			a.FechaText				,
+			a.HoradesDeText			,
+			a.IdConvenio			,
+			a.IdTipoAgenda			,
+			c.IdModeloAtencion		,
+			c.IdReglaPago			,
+			a.FechaHora				,
+			a.Fecha					,
+			Modalidad				,
+			CVP						,
+			IdSucursal				,
+			IdLugarAtencion			,
+			Cobrar					= case when c.IdModeloAtencion = 2 then 1 else 0 end -- 1 en binario es true 0 false
+			,IdMedicoHora = a.IdAgendaMedico
+			,c.AtencionDirecta
+			,h.CodigoEspecialidad
+	into	#resultado
+	from	#medicos		h
+			inner join #agenda a   
+			on	a.IdAgendaMedico = h.IdAgendaMedicoConConvenioExclusivo 
+			inner join #convenios c
+			on c.Id = a.IdConvenio
+
+	---------------------------------------------------------------------------------------------			
+	-- Horas Con Convenio Medico Compartida - Se muestran horas compartidas de cualquier convenio
+	---------------------------------------------------------------------------------------------	
+	insert into #resultado
+	select	h.IdMedico, 
+			h.Especialidad, 
+			h.NombreMedico, 
+			h.CodigoPrestacion,		--select 10000 * (10 / 100.0)
+			h.rutMedico, 
+			ValorAtencion			=	 case	when a.IdModeloAtencion = 1  then 0	-- Agende Medico IdModeloAtencion = 1 Suscripcion paga 0 
+												when a.IdModeloAtencion = 2 and c.IdReglaPago = 1  then convert(numeric(18,0),(h.ValorAtencion * (c.ValorReglaPago / 100.0)))    --IdModeloAtencion = 2  On Demand / Regla Pago Porcentaje
+												when c.IdModeloAtencion = 2 and c.IdReglaPago = 2  then c.ValorReglaPago	--IdModeloAtencion = On Demand / Regla Pago Valor
+											else  h.ValorAtencion end,  
+			h.PrefijoProfesional, 
+			h.Titulo, 
+			InfoPersona1,
+			h.FotoPerfil			,
+			a.IdBloqueHora			,
+			a.FechaText				,
+			a.HoradesDeText			,
+			a.IdConvenio			,
+			a.IdTipoAgenda			,
+			c.IdModeloAtencion		,
+			c.IdReglaPago			,
+			a.FechaHora				,
+			a.Fecha					,
+			Modalidad				,
+			CVP						,
+			IdSucursal				,
+			IdLugarAtencion			,
+			Cobrar					= case when c.IdModeloAtencion = 2 then 1 else 0 end -- 1 en binario es true 0 false
+			,IdMedicoHora = a.IdAgendaMedico
+			,c.AtencionDirecta
+			,h.CodigoEspecialidad
+	from	#medicos		h
+			inner join #agenda a   
+			on	a.IdAgendaMedico = h.IdAgendaMedicoConConvenioCompartida 
+			cross join #convenios c			
+			--on 1 = 1  on c.Id = a.IdConvenio
+	where	h.IdMedico not in (select IdMedico from #resultado)
+	
+	---------------------------------------------------------------------------------------------------------------	
+	-- Horas  SOLO a Convenio Default (CONVENIO ON DEMMAND) 
+	---------------------------------------------------------------------------------------------------------------
+	insert into #resultado
+	select	h.IdMedico, 
+			h.Especialidad, 
+			h.NombreMedico, 
+			h.CodigoPrestacion, 
+			h.rutMedico, 
+			h.ValorAtencion			,			
+			h.PrefijoProfesional, 
+			h.Titulo, 
+			InfoPersona1,
+			h.FotoPerfil			,
+			a.IdBloqueHora			,
+			a.FechaText				,
+			a.HoradesDeText			,
+			a.IdConvenio			,
+			a.IdTipoAgenda			,
+			IdModeloAtencion		=	2	, --a.IdModeloAtencion		,
+			IdReglaPago				=	3	, --,c.IdReglaPago			
+			a.FechaHora				,
+			a.Fecha					,
+			Modalidad				,
+			CVP						,
+			IdSucursal				,
+			IdLugarAtencion 		,
+			Cobrar					=  1 -- 1 en binario es true 0 false
+			,IdMedicoHora = a.IdAgendaMedico
+			,c.AtencionDirecta
+			,h.CodigoEspecialidad
+	from	#medicos		h
+			inner join #agenda a   
+			on	a.IdAgendaMedico = h.IdAgendaMedicoSinConvenio 
+			inner join #convenios c
+			on c.Id = a.IdConvenio
+	where	h.IdMedico not in (select IdMedico from #resultado)
+	and		c.Id = 1 -- Id Convenio Defaut
+
+	--select '#convenios',* from #convenios		
+	--select '#medicos',* from #medicos
+	--select '#agenda',* from #agenda
+
+	--Excepcion RAYEN
+	declare @IdConvenioRayen int = (select Id  from #convenios where CodConvenio = 'EXRAYEN')
+	------------------------------------------------------------------------------------------------------------------------
+	-- Retorno de especialidades para llenar combo
+	-- Se cambiara ESPECIALIDAD (seleccion en el combo) POR MÉDICOS SUSCRIPCIÓN
+	------------------------------------------------------------------------------------------------------------------------
+	if (@ParaEspecialidad = 'S')
+	begin
+	
+		-- Excepcion para EXRAYEN 
+		if exists (select 1 from #convenios where IdConvenio = @IdConvenioRayen and @IdEspecialidad = 0)  --O es Primera carga
+		begin
+			select	Especialidad = 'MÉDICOS SUSCRIPCIÓN',IdEspecialidad = 0
+			union
+			select	distinct(NombreEspecialidad) as Especialidad,IdEspecialidad 
+			from	#agenda 
+			where	NombreEspecialidad in (select Especialidad from #resultado)
+			order by IdEspecialidad
+		end
+		else
+		begin
+			select	Especialidad = 'ESPECIALIDAD',IdEspecialidad = 0
+			union
+			select	distinct(NombreEspecialidad) as Especialidad,IdEspecialidad 
+			from	#agenda 
+			where	NombreEspecialidad in (select Especialidad from #resultado)
+		end
+		
+		return 0
+	end
+
+	------------------------------------------------------------------------------------------------------------------------
+	-- Agrupa y determina menor valor de atencion 
+	------------------------------------------------------------------------------------------------------------------------
+	-- Excepcion para EXRAYEN 
+	if exists (select 1 from #convenios where IdConvenio = @IdConvenioRayen and @IdEspecialidad = 0)  --O es Primera carga
+		delete #resultado where IdConvenio <> @IdConvenioRayen
+
+
+	alter table #resultado add Id int Identity 
+
+	SELECT	DISTINCT a.IdMedico, a.Id
+	into	#menorValor
+	FROM	#resultado a
+	INNER JOIN
+		(SELECT IdMedico, Id = min(Id) 
+		FROM	#resultado
+		GROUP BY IdMedico) b
+		ON	a.IdMedico = b.IdMedico 
+		AND a.Id = b.Id
+	
+	------------------------------------------------------------------------------------------------------------------------
+	--Ajuste regla INMV
+	----------------------------------------------------------------------------------------------------------------
+	if (@IdCliente  = 2)
+	begin
+
+		--select * from #convenios
+		-- Cantidad de atenciones del paciente por especialidad
+		select	me.IdEspecialidad,Cantidad = Count(1)
+		into	#pasoINMV
+		from	dbo.Atenciones a
+				inner join dbo.MedicosHoras mh
+				on mh.Id = a.IdMedicoHora 
+				inner join dbo.MedicoEspecialidades me
+				on me.IdMedico = mh.IdMedico 
+		where	IdPaciente in (select IdPaciente from #convenios)
+		and		me.IdEspecialidad	in (1,4) 
+		and		mh.Fecha			between convert(char(6),dbo.GetDate2(),112) + '01' and  eomonth(dbo.GetDate2()) -- del mes
+		group by IdEspecialidad
+
+		-- Logica de cobro segun nro de atenciones y especialidad
+		update	#resultado 
+		set		ValorAtencion  = case	when CodigoEspecialidad = 1 and isnull((select Cantidad from #pasoINMV where IdEspecialidad = 4),0) = 0   then 0		-- tiene 0 atencion la 1ra vale 0
+										when CodigoEspecialidad = 1 and isnull((select Cantidad from #pasoINMV where IdEspecialidad = 4),0) = 1   then 2000		-- tiene 1 atencion la 2da vale 2000
+										when CodigoEspecialidad = 1 and isnull((select Cantidad from #pasoINMV where IdEspecialidad = 4),0) > 2   then 6990		-- tiene 2 atencion la > a 3ra vale 6990
+
+										when CodigoEspecialidad = 4 and isnull((select Cantidad from #pasoINMV where IdEspecialidad = 4),0) = 0   then 0		-- tiene 0 atencion la 1ra vale 0
+										when CodigoEspecialidad = 4 and isnull((select Cantidad from #pasoINMV where IdEspecialidad = 4),0) = 1   then 2000		-- tiene 1 atencion la 2da vale 2000
+										when CodigoEspecialidad = 4 and isnull((select Cantidad from #pasoINMV where IdEspecialidad = 4),0) > 2   then 12990	-- tiene 2 atencion la > a 3ra vale 12990
+								 end 	
+	end
+	------------------------------------------------------------------------------------------------------------------------
+	--Retorno
+	----------------------------------------------------------------------------------------------------------------
+	select	* 	
+	from	#resultado 
+	where	Id in (select Id from #menorValor)
+	order by FechaHora
+
+--insert into dbo.logConsulta select dbo.getdate2(),'Fin  Consulta'
+
+/*
+-- Medical -----------------------------------------
+Al cargar
+	1. Si paciente tiene el convenio EXRAYEN debe mostrar solo agenda asociada a ese convenio
+	2. Crear categoria EXRAYEN
+	3. Si no tiene que siga normal
+
+Al seleccionar Especialidad
+	Filtrar Normal solo si no es EXRAYEN
+*/
+
+
+set nocount off
+end
+GO
+/*
+SpChatAtencion 481,3 -- CHILE
+go
+SpChatAtencion 481,44 -- BOL
+
+select * from dbo.ChatAtencion where IdAtencion = 481
+ 
+ select convert(varchar, getdate(), 121)
+ '2020-11-26 10:09:52.340', -- 
+
+ select convert(varchar,format(dbo.getdate2(),'hh:mm:ss' , 'es-es'))
+
+
+ select datepart(time,getdate())
+ select convert(char,getdate(),115)
+ 
+ */
+
+
+
+ALTER Procedure [dbo].[SpChatAtencion]
+(
+@IdAtencion	int	,
+@IdUsuario	int	
+
+)
+as
+begin 
+
+ declare @GmtServer smallint = (select Gmt from dbo.PaisZonaHoraria where Id = 1)
+
+	select	
+		ca.Id		,
+		ca.IdAtencion	,						
+		ca.Mensaje		,
+		ca.IdUsuario	,	
+		FechaText   	=  convert(varchar,(format(dateadd(hour,
+															((p.ZonaHoraria - @GmtServer) * -1) -- AJUSTE zona horaria del paciente VS Chile 
+															,ca.Fecha),'HH:mm' , 'es-es'))),
+		NombreCompleto  = isnull(p.Nombre,'') + ' '  + isnull(p.ApellidoPaterno,'') + ' ' + isnull(p.ApellidoMaterno,''),
+        rutaAvatar		= isnull((	select  Top 1 RutaVirtual 
+									from	dbo.Archivo 
+									where	IdEntidadAsociada = pu.IdUsuario
+									and		CodEntidadAsociada = 'FOTO_PERFIL' 
+									order by Fecha DESC),'') 
+	from dbo.ChatAtencion ca
+		
+		inner join dbo.PersonasUsers pu 
+		on	pu.IdUsuario = ca.IdUsuario
+                 
+		inner join dbo.Personas p 
+		on p.Id = pu.IdPersona
+
+	where ca.IdAtencion = @idAtencion 
+	order by ca.Fecha ASC
+
+end
+GO
+ALTER  Procedure [dbo].[SpMedicoAgenda]
+(
+ @IdMedico	int			
+,@Fecha		char(8)
+,@HoraIni	time
+,@HoraFin	time
+,@IdConvenio	int	= null	
+,@IdTipoAgenda	int	= null	
+,@IdModeloAtencion	int		= null
+,@ProfesionalesAsociados bit
+,@ZonaHoraria int = null
+)
+as
+
+/*
+Invocado Admin > Medico > Agenda
+*/
+
+begin
+set nocount on 
+
+/*
+[SpMedicoAgenda] 3,'20200810','09:00:00','11:00:00'
+
+Ej : Medico Id : Doctortes Prueba tes
+select * from dbo.Users where UserId = 3
+select * from dbo.PersonasUsers where IdUsuario  = 3
+select * from Personas where Id = 1
+select * from  PersonasDatos where IdPersona =1
+*/
+
+
+
+
+
+if @IdConvenio  is null 
+begin
+	set @IdConvenio = 1
+end 
+
+
+-- IdDuracionAtencion 1 = 15 / 2 = 20 / 3 = 30 / 4 = 2
+declare @IdDuracionTiempo int = (	select	IdDuracionAtencion 
+									from	dbo.PersonasUsers pu		
+											inner join dbo.Personas	pe
+											on	pe.Id		=	pu.IdPersona 
+											inner join dbo.Users	us
+											on us.UserId	=	pu.IdUsuario 
+											inner join dbo.PersonasDatos pd
+											on pd.IdPersona =	pe.Id 
+									where	us.UserId = @IdMedico	
+								)
+					 
+declare @Tiempo INT = (SELECT  Util1 FROM    Parametros where Grupo = 'DUR_ATENCION' AND ID = @IdDuracionTiempo)
+
+-- Regla fija si el convenio es ATENCION DIRECTA se asigna la duracion 2 min de bloques  // ESTA REGLA ESTA POR SOBRE LA DEL MEDICO EN SU PERFIL
+if ((select atencionDirecta from Convenios where Id = @IdConvenio) = 1)
+begin
+	set @IdDuracionTiempo = 4
+	set @Tiempo  = 2
+end 
+
+--select '@IdDuracionTiempo',@IdDuracionTiempo
+-------------------------------------------------------------------------------------------
+-- Crea tabla con horas 
+-------------------------------------------------------------------------------------------
+if @HoraFin = '00:00:00' 
+	set @HoraFin = '23:59:00'
+
+create table #horas (HoraIni time,HoraFin time,IdBloque int)
+declare @hora2 time = @HoraFin
+while @HoraIni < @HoraFin
+begin
+	set @hora2 = @HoraIni
+	set @HoraIni = dateadd(minute,@Tiempo,@HoraIni)
+	insert into #horas select @hora2,@HoraIni,0
+	if @HoraIni = '00:00:00' -- hora tope sale 
+		break
+end
+
+---select '#horas',* from #horas
+
+-------------------------------------------------------------------------------------------
+-- Saca Id del Bloque
+-------------------------------------------------------------------------------------------
+update	#horas
+set		IdBloque			=	blo.Id	
+from	dbo.BloquesHoras blo
+where	blo.HoraDesde			=	#horas.HoraIni	
+and		blo.HoraHasta			=	#horas.HoraFin	
+and		blo.IdDuracionAntencion	=	@IdDuracionTiempo
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Valida que exista agenda del medico ingresadas de otro Bloque (15 - 20 - 30) -- esto es restricitivo, Admin debe eliminaar esas horas antes de ingresar nueva agenda
+-- SE LEVANTA ESTA REGLA PARA PERMITIR AGENDAS DE DISTINTO BLOQUES !!
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--if exists (	select	1
+--			from	dbo.MedicosHoras m
+--					inner join dbo.BloquesHoras b
+--					on b.Id	= m.IdBloqueHora 
+--			where	m.IdMedico				=	@IdMedico
+--			and		m.Fecha					>=  @Fecha
+--			and		b.IdDuracionAntencion   <> @IdDuracionTiempo 
+--			)
+--begin
+--	select Estado = 'Existe agenda con otro intervalo de tiempo', TypeSwal= 'error'
+--	return
+--end
+
+-------------------------------------------------------------------------------------------
+-- INFORMA que existan HORAS tomadas para bloques enviados
+-- VwHorasMedicos = vista con horas de medicos tomadas (Ingresadas/Terminadas/Anuladas/NPS etc)
+-------------------------------------------------------------------------------------------
+	create table #Valida (Estado varchar(50), Descripcion varchar(100))
+
+	insert into #Valida
+	select	Estado = 'HORAS TOMADAS POR PACIENTES',Descripcion =  'Paciente : ' + NombrePaciente  + ' | Fecha : ' + convert(char(10),Fecha,103) + ' ' + convert(char(8),HoraDesde) + ' a ' + convert(char(8),HoraHasta)
+	from	dbo.VwHorasMedicos m
+	where	m.IdMedico		=	@IdMedico
+	and		m.IdBloqueHora  in (select IdBloque from #horas)
+	and		m.Fecha			=	@Fecha
+
+-------------------------------------------------------------------------------------------
+-- INFORMA si existe AGENDA horas para bloques enviados
+-------------------------------------------------------------------------------------------
+	insert into #Valida
+	select	Estado = 'HORAS FUERON INGRESADAS ANTERIORMENTE',Descripcion =  'Hora : ' + convert(char(10),HoraIni)  + ' a ' +  convert(char(8),HoraFin)
+	from	#horas h
+	where	exists (select 1 from dbo.MedicosHoras m where m.IdBloqueHora = h.IdBloque and m.Fecha = @Fecha and m.IdMedico = @IdMedico)
+
+------------------------------------------------------------------------------------------------------------
+-- INSERT a horas enviadas
+-- Quedan en estado I = Ingresadas y proceso de envio de agenda por correo debe pasar las tareas a estado V
+-- Solo inserta registros si no existen (llave IdMedico,IdBloque y Fecha)
+------------------------------------------------------------------------------------------------------------
+	insert into dbo.MedicosHoras
+	select	@IdMedico,IdBloque,@Fecha,'V', dbo.Getdate2(),null,0,null,@IdConvenio,@IdTipoAgenda,@IdModeloAtencion,@ProfesionalesAsociados,@ZonaHoraria--3 -- ZONA HORARIA DESDE FRONT
+	from	#horas h
+	where	not exists (select 1 from dbo.MedicosHoras m where m.IdBloqueHora = h.IdBloque and m.Fecha = @Fecha and m.IdMedico = @IdMedico)
+	
+	-- Devuelve estado Validacion
+	--select * from #Valida
+	SELECT	STRING_AGG(Descripcion,' | ') as Estado FROM #Valida
+
+	set nocount off
+
+end
+GO
+ALTER  PROCEDURE [dbo].[SpStatusDiario]
+(
+   @Accion		char(2)		,
+   @Fecha		varchar(10)	,
+   @IdMedico	int			
+)
+AS
+BEGIN
+
+/*
+
+SpStatusDiario 'A4','20210117',0
+
+Sp para desplegar data de las atenciones para mesa de ayuda
+
+A1 = muestra las atenciones
+A2 = muestra medicos con agenda para reagendar
+A3 = muesta las atenciones del dia e ingresadas para reasignacion
+
+-- VISOR INFO
+A4 = Muestra data estadistica 
+*/
+if (@Accion = 'A1')
+begin
+    select	a.id,a.Estado,
+			Nsp = isnull(a.Nsp,0),
+			NspPaciente  = isnull(a.NspPaciente,0) ,
+			Rut		 =  usP.USername ,
+			Paciente =	PeP.Nombre + ' ' + PeP.ApellidoPaterno +  ' '  + case when  a.HoraNuevoOrden is not null then ' (R)' else ''end, 
+			Email	=	PeP.Correo	,	
+			Telefono =	isnull(PeP.TelefonoMovil,'') + ' / '  + isnull(PeP.Telefono,'') , 
+			a.IngresoAtencionPaciente,
+			a.InicioAtencion,
+			a.TerminoAtencion,
+			TiempoAntencion = DATEDIFF(MINUTE, a.InicioAtencion , a.TerminoAtencion) ,
+			Medico		=  PeM.Nombre + ' ' + peM.ApellidoPaterno  ,
+			IdMedico	=	usM.UserId ,
+			TiempoEspera = case when a.Estado = 'I' and a.InicioAtencion is not null then DATEDIFF(MINUTE, a.IngresoAtencionPaciente,a.InicioAtencion)  -- Ingresada e iniciada la atencion
+								when a.Estado = 'I' then DATEDIFF(MINUTE, a.IngresoAtencionPaciente ,dbo.Getdate2())  -- Ingresada y NO iniciada la atencion (si no cae arriba)
+								when a.Estado = 'T' and NspPaciente <> 1 then  DATEDIFF(MINUTE, a.IngresoAtencionPaciente ,a.InicioAtencion) -- TERMINADA OK
+								when a.Estado = 'T' and NspPaciente = 1 then  DATEDIFF(MINUTE, a.IngresoAtencionPaciente ,a.TerminoAtencion) -- TERMINADA NSP Paciente
+							end 
+	from	dbo.atenciones  a with (nolock)
+			inner join dbo.Users usP with (nolock)
+				on usP.UserID = a.IdPaciente
+		
+				inner join  dbo.PersonasUsers puP with (nolock)
+				on puP.IdUsuario = usP.UserId
+		
+				inner join dbo.Personas peP with (nolock)
+				on peP.Id = puP.IdPersona
+
+				inner join dbo.MedicosHoras mh with (nolock)
+				on mh.Id = a.IdMedicoHora 
+
+				inner join dbo.Users usM with (nolock)
+				on usM.UserId = mh.IdMedico 
+		
+				inner join  dbo.PersonasUsers puM with (nolock)
+				on puM.IdUsuario = usM.UserId
+		
+				inner join dbo.Personas peM with (nolock)
+				on peM.Id = puM.IdPersona
+				
+
+	where	(
+				(convert(date,a.fechaCreacion) = @Fecha) -- Del Dia 
+			or	(convert(date,a.fechaCreacion) = convert(date, dateadd(day,-1,@Fecha)) and a.Estado = 'I') -- Pendientes de Ayer
+			)
+	and		a.IdSesionPlataformaExterna is not  null -- urgencia
+	order by a.id desc
+end
+
+if (@Accion = 'A2')
+begin
+	-- Saca bloque que corresponde a la hora
+	declare @IdBloqueActual int 
+	select	@IdBloqueActual = Id
+	from	Dbo.BloquesHoras 
+	where	IdDuracionAntencion = 4   -- atencion Directa
+	and		dbo.Getdate2()  between  (Cast(convert(char(8),dbo.Getdate2(),112) AS DATETIME) + Cast(HoraDesde  AS DATETIME)) and (Cast(convert(char(8),dbo.Getdate2(),112) AS DATETIME) + Cast(HoraHasta AS DATETIME))
+	
+	select	distinct IdMedico ,
+			NombreMedico
+	from	dbo.VwMedicoAgenda ag
+	where	AtencionDirecta		=	1
+	and		IdTipoAgenda		=	2 -- Compartida	
+	and		IdBloqueHora		=	@IdBloqueActual
+	and		Fecha = convert(date,dbo.GETDATE2())
+end
+
+if (@Accion = 'A3')
+begin
+	select	a.Id,
+			a.Estado	,
+			IdMedicoHora,
+			Paciente = usP.USername + ' ' + PeP.Nombre + ' ' + PeP.Correo + ' ' + isnull(peP.Telefono,''),
+			a.IngresoAtencionPaciente,
+			a.InicioAtencion,
+			a.TerminoAtencion,
+			Medico		=  PeM.Nombre + ' ' + peM.ApellidoPaterno  
+	from	dbo.atenciones  a with (nolock)
+
+			inner join dbo.Users usP with (nolock)
+			on usP.UserID = a.IdPaciente
+		
+			inner join  dbo.PersonasUsers puP with (nolock)
+			on puP.IdUsuario = usP.UserId
+		
+			inner join dbo.Personas peP with (nolock)
+			on peP.Id = puP.IdPersona
+
+			inner join dbo.MedicosHoras mh with (nolock)
+			on mh.Id = a.IdMedicoHora 
+
+			inner join dbo.Users usM with (nolock)
+				on usM.UserId = mh.IdMedico 
+		
+			inner join  dbo.PersonasUsers puM with (nolock)
+			on puM.IdUsuario = usM.UserId
+		
+			inner join dbo.Personas peM with (nolock)
+			on peM.Id = puM.IdPersona
+
+	where	convert(date,a.fechaCreacion) =   convert(date,dbo.GETDATE2())  
+	and		usM.UserId = @IdMedico
+	and		a.IdSesionPlataformaExterna is not  null -- urgencia
+	--and		a.Estado = 'I'
+	order by (case when a.HoraNuevoOrden is not null then a.HoraNuevoOrden else a.FechaCreacion end) asc
+	
+end
+
+if (@Accion = 'A4')
+begin
+
+	-- Data base
+	select	a.Id,
+			a.Estado,a.Nsp,a.NspPaciente, 
+			idMedicoHora,
+			IdPaciente,
+			Paciente = usP.USername + ' ' + PeP.Nombre ,
+			PeP.Correo ,
+			Telefono = isnull(peP.Telefono,''),
+			a.IngresoAtencionPaciente,
+			a.InicioAtencion,
+			a.TerminoAtencion,
+			Medico		=  PeM.Nombre + ' ' + peM.ApellidoPaterno , 
+			TiempoAtencion		= convert(decimal(5,2),datediff(ss,a.InicioAtencion,a.TerminoAtencion) / 60.0),
+			TiempoEspera		= convert(decimal(5,2),datediff(ss,a.IngresoAtencionPaciente,a.InicioAtencion) / 60.0),
+			TiempoNspPaciente	= convert(decimal(5,2),datediff(ss,a.IngresoAtencionPaciente,a.TerminoAtencion) / 60.0),
+			a.fechaCreacion
+	into	#data
+	from	dbo.atenciones  a with (nolock)
+			inner join dbo.Users usP with (nolock)
+			on usP.UserID = a.IdPaciente
+		
+			inner join  dbo.PersonasUsers puP with (nolock)
+			on puP.IdUsuario = usP.UserId
+		
+			inner join dbo.Personas peP with (nolock)
+			on peP.Id = puP.IdPersona
+
+			inner join dbo.MedicosHoras mh with (nolock)
+			on mh.Id = a.IdMedicoHora 
+
+
+			inner join dbo.Users usM with (nolock)
+			on usM.UserId = mh.IdMedico 
+		
+			inner join  dbo.PersonasUsers puM with (nolock)
+			on puM.IdUsuario = usM.UserId
+		
+			inner join dbo.Personas peM with (nolock)
+			on peM.Id = puM.IdPersona
+
+	where		convert(date,a.fechaCreacion) =  @Fecha 
+	and			IdSesionPlataformaExterna is not  null
+
+	select	Item = 'TERMINADAS EXITO',
+			CantidadAtenciones = Count(1),
+			TiempoPromedioAtencion = convert(decimal(10,2), sum(TiempoAtencion) / Count(1)),
+			CapacidadAtencionesPorHoraPorMedico = convert(decimal(10,2), 60 / (sum(TiempoAtencion) / Count(1))),
+			TiempoDeEsperaHastaAtencion =  convert(decimal(10,2), sum(TiempoEspera) / Count(1)) 
+	from	#data where Estado = 'T' and nspPaciente = 0 and nsp = 0 -- Con Exito
+	union
+	select	Item ='ATENDIDAS + NSP DOCTOR',
+			CantidadAtenciones = Count(1),
+			PromedioAtencion = convert(decimal(10,2), sum(TiempoAtencion) / Count(1)),
+			CapacidadAtencionesPorHoraPorMedico = convert(decimal(10,2), 60 / (sum(TiempoAtencion) / Count(1))),
+			TiempoDeEsperaHastaAtencion =  convert(decimal(10,2), sum(TiempoEspera) / Count(1)) 
+	from	#data where Estado = 'T' and nspPaciente <> 1  -- Con Exito + NSP Medico
+	
+	-- Resumen total
+	select	CantidadAtencionesTotal = Count(1),
+			TiempoPromedioAtencionTotal = convert(decimal(10,2),(select sum(TiempoAtencion) / Count(1) from	#data where Estado = 'T' and nspPaciente = 0)), -- Total CON NPS y SIN NSP PACIENTE
+		
+			CantidadAtencionesPendientes = (select Count(1) from	#data where Estado = 'I'), -- Ingresadas
+		
+			CantidadAtencionExito = (select Count(1) from	#data where Estado = 'T' and nspPaciente = 0 and nsp = 0), -- Con Exito 
+			TiempoPromedioAtencionExito = convert(decimal(10,2),(select sum(TiempoAtencion) / Count(1) from	#data where Estado = 'T' and nspPaciente = 0 and nsp = 0)), -- Con Exito  SIN NSP
+			CapacidadAtencionesPorHoraPorMedico = (select convert(decimal(10,2), 60.0 / (sum(TiempoAtencion) / Count(1))) from	#data where Estado = 'T' and nspPaciente = 0 and nsp = 0), -- en base a Con Exito,
+			TiempoDeEsperaHastaAtencion		=  convert(decimal(10,2),(select sum(TiempoEspera) / Count(1) from	#data where Estado = 'T' and nspPaciente = 0)), -- Sin Nsp Paciente
+			TiempoDeEsperaHastaNspPaciente	=  convert(decimal(10,2),(select sum(TiempoNspPaciente) / Count(1) from	#data where Estado = 'T' and nspPaciente = 1)), -- Sin Nsp Paciente
+
+			CantidadNSP				 = (select Count(1) from	#data where Estado = 'T' and Nsp = 1 and nspPaciente = 0), -- NspMedico
+			CantidadNspPaciente		 = (select Count(1) from	#data where Estado = 'T' and Nsp = 1 and nspPaciente = 1) -- NspPaciente
+	from	#data 
+
+	-- Por Hora
+
+	select	Hora =  datepart(hh,fechaCreacion),
+			CantidadAtencionesTotal = Count(1),
+			TiempoPromedioAtencionTotal =  convert(decimal(10,2),(select sum(TiempoAtencion) / Count(1) from	#data b where Estado = 'T' and nspPaciente = 0 and datepart(hh,b.fechaCreacion) = datepart(hh,a.fechaCreacion))), -- Total sin NSP PACIENTE
+		
+			CantidadAtencionesPendientes = (select Count(1) from	#data b where Estado = 'I' and datepart(hh,b.fechaCreacion) = datepart(hh,a.fechaCreacion)), -- Ingresadas
+		
+			CantidadAtencionExito = (select Count(1) from	#data b where Estado = 'T' and nspPaciente = 0 and nsp = 0 and datepart(hh,b.fechaCreacion) = datepart(hh,a.fechaCreacion)), -- Con Exito 
+			TiempoPromedioAtencionExito = convert(decimal(10,2),(select sum(TiempoAtencion) / Count(1) from	#data b where Estado = 'T' and nspPaciente = 0 and nsp = 0 and datepart(hh,b.fechaCreacion) = datepart(hh,a.fechaCreacion))), -- Con Exito 
+			CapacidadAtencionesPorHoraPorMedico = (select convert(decimal(10,2), 60.0 / (sum(TiempoAtencion) / Count(1))) from	#data b where Estado = 'T' and nspPaciente = 0 and nsp = 0 and datepart(hh,b.fechaCreacion) = datepart(hh,a.fechaCreacion)), -- Con Exito,
+			TiempoDeEsperaHastaAtencion =  convert(decimal(10,2),(select sum(TiempoEspera) / Count(1) from	#data b where Estado = 'T' and nspPaciente = 0 and nspPaciente = 0 and datepart(hh,b.fechaCreacion) = datepart(hh,a.fechaCreacion))), -- Sin Nsp Paciente
+			TiempoDeEsperaHastaNspPaciente	= convert(decimal(10,2),(select sum(TiempoNspPaciente) / Count(1) from	#data b where Estado = 'T' and nspPaciente = 1 and datepart(hh,b.fechaCreacion) = datepart(hh,a.fechaCreacion))), -- Sin Nsp Paciente
+			CantidadNSP				 = (select Count(1) from	#data b where Estado = 'T' and nsp = 1 and nspPaciente = 0 and datepart(hh,b.fechaCreacion) = datepart(hh,a.fechaCreacion)), -- NspMedico
+			CantidadNspPaciente		 = (select Count(1) from	#data b where Estado = 'T' and nsp = 1 and nspPaciente = 1 and datepart(hh,b.fechaCreacion) = datepart(hh,a.fechaCreacion)) -- NspPaciente
+	from	#data a
+	group by 
+			 datepart(hh,fechaCreacion)
+	order by datepart(hh,fechaCreacion) desc
+
+	-- Pacientes no atendidos
+	select	IdAtencion =  Id,
+			Estado,Nsp,NspPaciente, 
+			Paciente,
+			Correo ,
+			Telefono,
+			IngresoAtencionPaciente,
+			InicioAtencion,
+			TerminoAtencion,
+			TiempoAtencion,
+			Medico
+	from	#data
+	where	NSP = 1 
+	and		IdPaciente  not in (select IdPaciente from	#data where	Estado = 'T' and isnull(NSP,0) = 0 )
+	order by IdAtencion desc
+	
+	-- Enviado por Consalud
+	select  * from dbo.LogPlataformaExterna where	convert(date,FechaRegistro) =  @Fecha 	order by fechaRegistro desc 
+
+	-- Log en sala 
+	select * from PreAtencionPlataformaTerceros where convert(date,FechaRegistro) =  @Fecha  order by fechaRegistro desc
+
+end
+
+END
+GO
+ALTER  procedure [dbo].[SpGetMedicosHoraProxima_2]
+(
+@IdEspecialidad	int	,
+@IdPaciente		int	,
+@ParaEspecialidad char(1) = ''
+)
+as
+begin
+
+--insert into dbo.logConsulta select dbo.getdate2(),'Inicio Consulta'
+
+set nocount on
+
+-------------------------------------------------------------------
+-- Datos de convenio del paciente
+-------------------------------------------------------------------
+--	drop table #convenios
+select	pec.IdConvenio,co.Id,co.IdReglaPago,co.ValorReglaPago,co.IdModeloAtencion,co.AtencionDirecta,ZonaHoraria,CodConvenio 
+into	#convenios		
+from	dbo.Personas	per
+		inner join dbo.PersonasUsers peu
+		on peu.IdPersona = per.Id 
+		inner join dbo.Users usu
+		on usu.UserId	= peu.IdUsuario 
+		inner join dbo.PersonasConvenios pec
+		on pec.IdPersona = per.Id 
+		inner join dbo.Convenios  co
+		on co.Id = pec.IdConvenio
+where	UserId		=	@IdPaciente
+and		co.Estado	=	'V'
+and		pec.Estado	=	'V'
+and     dbo.getdate2() between co.FechaInicio and co.FechaTermino  
+
+select '#convenios',* from #convenios
+------------------------------------------------------------------------------------------
+-- AJUSTE HORA SEGUN ZONA HORARIA 
+------------------------------------------------------------------------------------------
+declare @getdate datetime = dbo.getdate2()
+
+--Id convenio Paciente (por ahora se asume que si tiene un convenio Boliva se aplica ajuste)
+declare @IdConvenio int
+select @IdConvenio = (select top 1 Id from #convenios where left(CodConvenio,4) = 'LBCB') 
+
+--Ajuste si trae un convenio Bolivia
+if @IdConvenio is not null
+	select @getdate = dateadd(hour,dbo.FxAjusteHora(@IdConvenio),dbo.getdate2())
+
+--Fecha Hoy en base a ajuste
+declare @fechaHoy date = @getdate
+--return 0  
+--select @getdate,@IdConvenio
+
+-------------------------------------------------------------------------------------------
+-- Horas del medico agendas mayores a now 
+-------------------------------------------------------------------------------------------
+--drop table  #agenda
+select	IdMedico,IdEspecialidad,IdAgendaMedico,IdConvenio = ISNULL(IdConvenio,1),IdTipoAgenda = isnull(IdTipoAgenda,0),IdModeloAtencion = isnull(IdModeloAtencion,0),FechaHora = (Cast(Fecha AS DATETIME) + Cast(HoraDesde AS DATETIME)) ,
+		IdBloqueHora	,
+		FechaText		=	upper(FORMAT(Fecha, 'dd MMM yyyy', 'es-ES')),  
+		HoradesDeText	=	substring(convert(nvarchar,HoraDesde), 1, 5),	
+		IdPaciente,
+		NombreEspecialidad, 
+		Fecha,
+		AtencionDirecta
+into	#agenda
+from	dbo.VwMedicoAgenda
+where	(Cast(Fecha AS DATETIME) + Cast(HoraDesde AS DATETIME) ) >= @getdate
+
+--select '#agenda',* from #agenda
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Elimina agendas por Especialidad, si tiene una hora con un Medico de la misma especialidad en un rango de 2 horas solo si Convenio NO es ATENCION DIRECTA
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+if not exists(select 1 from #convenios where AtencionDirecta = 1) 
+begin
+	delete	#agenda 
+	where	exists (select 1 from #agenda b 
+					where	b.IdEspecialidad = #agenda.IdEspecialidad 
+					and		b.IdPaciente	 = @IdPaciente 
+					and		b.FechaHora  between @getdate and dateadd(hour,2,@getdate)
+					)
+	and		IdPaciente is null
+	and		Fecha = @fechaHoy
+end
+--select '#agenda',* from #agenda 
+
+--------------------------------------------------------------------------------------------------------------------------
+---- Elimina agendas tomadas por paciente a la misma hora
+--------------------------------------------------------------------------------------------------------------------------
+delete	#agenda 
+where	IdPaciente is null -- > NO tomada
+and		exists (select	1 from #agenda agT  
+				where	agT.IdPaciente	= @IdPaciente
+				and		agT.IdBloqueHora	=	#agenda.IdBloqueHora
+				and		agT.Fecha			=	#agenda.Fecha
+				)
+--select '#agendaD1',* from #agenda 
+----------------------------------------------------------------------------------------------------------------------
+---- Elimina agendas un paciente no puede tomar + de 2 horas al dia con el mismo Profesional
+--------------------------------------------------------------------------------------------------------------------------
+If ((	select	COUNT(1) 
+		from	dbo.VwHorasMedicoParaCalendario ate  
+				inner join #agenda age
+				on		ate.Fecha		= age.Fecha
+				and		ate.IdMedico	= age.IdMedico 
+				and		ate.IdPaciente	= age.IdPaciente 
+				and		ate.EstadoAtencion <> 'E'
+				and		ate.Fecha		= @fechaHoy
+				and		ate.IdPaciente	= @IdPaciente
+	) > 2)
+begin	
+	delete	#agenda 
+	where	IdPaciente is null -- > NO tomada
+	and		Fecha = @fechaHoy
+	and		exists (	select	1
+						from	dbo.VwHorasMedicoParaCalendario ate  
+						where	ate.Fecha		= #agenda.Fecha
+						and		ate.IdMedico	= #agenda.IdMedico 
+						and		ate.IdPaciente	= #agenda.IdPaciente 
+						and		ate.IdPaciente	= @IdPaciente
+					)
+end
+
+--select '#agenda22',* from #agenda 
+
+------------------------------------------------------------------------------------------------------------------------
+-- Elimina agendas tomadas por pacientes , es decir deja solo las libres
+------------------------------------------------------------------------------------------------------------------------
+delete #agenda where	IdPaciente is not null -- Tomada
+
+--select * from VwMedicoAgenda
+--where	IdPaciente is null --No tomada
+--and		(Cast(Fecha AS DATETIME) + Cast(HoraDesde AS DATETIME) ) >= dbo.getdate2()
+--and		ISNULL(IdConvenio,1) in (select IdConvenio from #convenios)
+
+-------------------------------------------------------------------------------------------
+-- Medicos con agenda
+-------------------------------------------------------------------------------------------
+--drop table #medicos
+SELECT	IdMedico		=	u.UserId , 
+		Especialidad	=	es.Nombre, 
+		NombreMedico	=	ISNULL(p.Nombre, '') + ' ' + ISNULL(p.ApellidoPaterno, '') + ' ' + ISNULL(p.ApellidoMaterno, '') , 
+		es.CodigoPrestacion, 
+		rutMedico =		p.Identificador, 
+		pd.ValorAtencion, 
+		PrefijoProfesional	=	tp.Prefijo, 
+		Titulo = tp.nombre, 
+		InfoPersona1	=	Isnull(pd.InfoPersona1, 'Sin Datos'), 
+		FotoPerfil		=	SPACE(500)	, 
+		IdAgendaMedicoSinConvenio			= 0	,
+		IdAgendaMedicoConConvenioExclusivo  = 0	,
+		IdAgendaMedicoConConvenioCompartida = 0	,
+		Modalidad							=	SPACE(50)	 	,
+		CVP										,
+		IdSucursal								,
+		IdLugarAtencion			,
+		p.Genero ,
+		p.Id
+into	#medicos
+FROM    dbo.Users AS u INNER JOIN
+        dbo.UserRoles AS ur ON ur.UserId = u.UserId INNER JOIN
+        dbo.Roles AS r ON r.RoleId = ur.RoleId INNER JOIN
+        dbo.PersonasUsers AS pu ON pu.IdUsuario = u.UserId INNER JOIN
+        dbo.Personas AS p ON p.Id = pu.IdPersona INNER JOIN
+        dbo.MedicoEspecialidades AS me ON me.IdMedico = u.UserId INNER JOIN
+        dbo.Especialidades AS es ON es.Id = me.IdEspecialidad LEFT OUTER JOIN
+        dbo.PersonasDatos AS pd ON pd.IdPersona = p.Id  inner join dbo.TipoProfesional tp ON tp.Id = pd.IdTituloMedico
+where	p.estado = 'V'
+and		(me.idespecialidad =  @IdEspecialidad OR  @IdEspecialidad = 0 ) 
+and		me.IdMedico in (select IdMedico from #agenda)
+
+-- Sub campos, no se usa la vista para hacer mas ligera la consulta
+update	#medicos	
+set		Modalidad	= (select STRING_AGG (IdModalidad, '|') from dbo.PersonasDatosModalidad where IdPersona = #medicos.Id and Estado = 'V')
+		,FotoPerfil	=	ISNULL	((SELECT TOP (1) RutaVirtual
+									FROM      dbo.Archivo
+									WHERE   (IdEntidadAsociada = #medicos.IdMedico) AND (CodEntidadAsociada = 'FOTO_PERFIL')
+									ORDER BY Fecha DESC), 
+						(CASE WHEN #medicos.Genero = 'M' THEN '/upload/foto_perfil/noPerfilProfesional/ManAvatar.svg' 
+							  WHEN #medicos.Genero = 'F' THEN '/upload/foto_perfil/noPerfilProfesional/WomanAvatar.svg' END)) 
+--------------------------------------------------------------------------------------------------------------------------------
+-- Elimina agendas que tenga distinto modelo Atencion del paciente 1 y 2 ->  1 Suscripcion  2 OnDemmand   
+-- Si convenio del paciente tiene 3 no debe eliminar modelos di
+--------------------------------------------------------------------------------------------------------------------------------
+--select '#agendaAntes',* from #agenda
+if not exists(select 1 from #convenios where IdModeloAtencion = 3) -- Ambos
+delete	#agenda 
+where	IdModeloAtencion not in (select IdModeloAtencion from #convenios) 
+and		IdConvenio <> 1
+
+--select '#convenios',* from #convenios where IdModeloAtencion = 3
+--select '#agendaAntesEliminaModelo',* from #agenda
+---------------------------------------------------------------------------------------------------------------------------
+-- Horas del medico con logica de filtros saca la menor por medico y convenio POR TIPO AGENDA > 1 EXCLUSIVA - 2 COMPARTIDA
+---------------------------------------------------------------------------------------------------------------------------
+
+update	#medicos
+set		IdAgendaMedicoSinConvenio			= isnull((	select	top 1 IdAgendaMedico  -- Id de la prmera hora desde now
+														from	#agenda ag
+														where	ag.IdMedico = #medicos.IdMedico 
+														and		ag.IdConvenio = 1 -- Default
+														order by  FechaHora asc
+													),0),
+		IdAgendaMedicoConConvenioExclusivo	= isnull((	select	top 1 IdAgendaMedico  -- Id de la prmera hora desde now
+														from	#agenda ag
+														where	ag.IdMedico = #medicos.IdMedico 
+														and		ag.IdConvenio <> 1
+														and		ag.IdTipoAgenda = 1
+														order by  FechaHora asc
+												),0), 
+		IdAgendaMedicoConConvenioCompartida	= isnull((	select	top 1 IdAgendaMedico  -- Id de la prmera hora desde now
+														from	#agenda ag
+														where	ag.IdMedico		=	#medicos.IdMedico 
+														and		ag.IdConvenio	<>	1	-- <> convenio default
+														and		ag.IdTipoAgenda	=	2	-- Compartida
+														and		(ag.AtencionDirecta in (select AtencionDirecta from #Convenios)) -- solo con tipo atencion igual al que tienen el paciente
+														order by  FechaHora asc
+												),0)
+										
+ --select '#medicosDespues',* from #medicos
+-- Paciente SIN convenio solo muestra las Agendas SIN convenio
+-- Paciente CON convenio muestra las Agendas SIN convenio y CON CONVENIO
+
+-----------------------------------------------------------------------------------------------------------------------
+-- Retorno de datos
+-----------------------------------------------------------------------------------------------------------------------
+--drop table #resultado
+
+--select * from Convenios 
+--select * from ConveniosEspecialidades 
+
+-- Tipo Agenda 
+--select * from Parametros where Grupo like '%agenda%'
+--Exclusiva		1
+--Compartida	2
+
+-- MODELO ATENCION
+--select * from Parametros where Grupo like '%modelo%'
+--Suscripción	1
+--On Demand		2
+--Ambos			3
+
+
+	---------------------------------------------------------------------------------------------	
+	-- Horas Con Convenio Medico Exclusiva - SOLO Match entre Paciente y Medico por Convenio
+	---------------------------------------------------------------------------------------------
+	select	h.IdMedico, 
+			h.Especialidad, 
+			h.NombreMedico, 
+			h.CodigoPrestacion,		--select 10000 * (10 / 100.0)
+			h.rutMedico, 
+			ValorAtencion			=	 case	when a.IdModeloAtencion = 1  then 0	-- Agende Medico IdModeloAtencion = 1 Suscripcion paga 0 
+												when a.IdModeloAtencion = 2 and c.IdReglaPago = 1  then convert(numeric(18,0),(h.ValorAtencion * (c.ValorReglaPago / 100.0)))    --IdModeloAtencion = On Demand / Regla Pago Porcentaje
+												when c.IdModeloAtencion = 2 and c.IdReglaPago = 2  then c.ValorReglaPago	--IdModeloAtencion = On Demand / Regla Pago Valor
+											else  h.ValorAtencion end,  
+			h.PrefijoProfesional, 
+			h.Titulo, 
+			InfoPersona1,
+			h.FotoPerfil			,
+			a.IdBloqueHora			,
+			a.FechaText				,
+			a.HoradesDeText			,
+			a.IdConvenio			,
+			a.IdTipoAgenda			,
+			c.IdModeloAtencion		,
+			c.IdReglaPago			,
+			a.FechaHora				,
+			a.Fecha					,
+			Modalidad				,
+			CVP						,
+			IdSucursal				,
+			IdLugarAtencion			,
+			Cobrar					= case when c.IdModeloAtencion = 2 then 1 else 0 end -- 1 en binario es true 0 false
+			,IdMedicoHora = a.IdAgendaMedico
+			,c.AtencionDirecta
+	into	#resultado
+	from	#medicos		h
+			inner join #agenda a   
+			on	a.IdAgendaMedico = h.IdAgendaMedicoConConvenioExclusivo 
+			inner join #convenios c
+			on c.Id = a.IdConvenio
+
+	---------------------------------------------------------------------------------------------			
+	-- Horas Con Convenio Medico Compartida - Se muestran horas compartidas de cualquier convenio
+	---------------------------------------------------------------------------------------------	
+	insert into #resultado
+	select	h.IdMedico, 
+			h.Especialidad, 
+			h.NombreMedico, 
+			h.CodigoPrestacion,		--select 10000 * (10 / 100.0)
+			h.rutMedico, 
+			ValorAtencion			=	 case	when a.IdModeloAtencion = 1  then 0	-- Agende Medico IdModeloAtencion = 1 Suscripcion paga 0 
+												when a.IdModeloAtencion = 2 and c.IdReglaPago = 1  then convert(numeric(18,0),(h.ValorAtencion * (c.ValorReglaPago / 100.0)))    --IdModeloAtencion = 2  On Demand / Regla Pago Porcentaje
+												when c.IdModeloAtencion = 2 and c.IdReglaPago = 2  then c.ValorReglaPago	--IdModeloAtencion = On Demand / Regla Pago Valor
+											else  h.ValorAtencion end,  
+			h.PrefijoProfesional, 
+			h.Titulo, 
+			InfoPersona1,
+			h.FotoPerfil			,
+			a.IdBloqueHora			,
+			a.FechaText				,
+			a.HoradesDeText			,
+			a.IdConvenio			,
+			a.IdTipoAgenda			,
+			c.IdModeloAtencion		,
+			c.IdReglaPago			,
+			a.FechaHora				,
+			a.Fecha					,
+			Modalidad				,
+			CVP						,
+			IdSucursal				,
+			IdLugarAtencion			,
+			Cobrar					= case when c.IdModeloAtencion = 2 then 1 else 0 end -- 1 en binario es true 0 false
+			,IdMedicoHora = a.IdAgendaMedico
+			,c.AtencionDirecta
+	from	#medicos		h
+			inner join #agenda a   
+			on	a.IdAgendaMedico = h.IdAgendaMedicoConConvenioCompartida 
+			cross join #convenios c			
+			--on 1 = 1  on c.Id = a.IdConvenio
+	where	h.IdMedico not in (select IdMedico from #resultado)
+	
+	---------------------------------------------------------------------------------------------------------------	
+	-- Horas  SOLO a Convenio Default (CONVENIO ON DEMMAND) 
+	---------------------------------------------------------------------------------------------------------------
+	insert into #resultado
+	select	h.IdMedico, 
+			h.Especialidad, 
+			h.NombreMedico, 
+			h.CodigoPrestacion, 
+			h.rutMedico, 
+			h.ValorAtencion			,			
+			h.PrefijoProfesional, 
+			h.Titulo, 
+			InfoPersona1,
+			h.FotoPerfil			,
+			a.IdBloqueHora			,
+			a.FechaText				,
+			a.HoradesDeText			,
+			a.IdConvenio			,
+			a.IdTipoAgenda			,
+			IdModeloAtencion		=	2	, --a.IdModeloAtencion		,
+			IdReglaPago				=	3	, --,c.IdReglaPago			
+			a.FechaHora				,
+			a.Fecha					,
+			Modalidad				,
+			CVP						,
+			IdSucursal				,
+			IdLugarAtencion 		,
+			Cobrar					=  1 -- 1 en binario es true 0 false
+			,IdMedicoHora = a.IdAgendaMedico
+			,c.AtencionDirecta
+	from	#medicos		h
+			inner join #agenda a   
+			on	a.IdAgendaMedico = h.IdAgendaMedicoSinConvenio 
+			inner join #convenios c
+			on c.Id = a.IdConvenio
+	where	h.IdMedico not in (select IdMedico from #resultado)
+	and		c.Id = 1 -- Id Convenio Defaut
+
+	--select '#convenios',* from #convenios		
+	--select '#medicos',* from #medicos
+	--select '#agenda',* from #agenda
+
+	------------------------------------------------------------------------------------------------------------------------
+	-- Retorno de especialidades para llenar combo
+	------------------------------------------------------------------------------------------------------------------------
+	if (@ParaEspecialidad = 'S')
+	begin
+		select	distinct(NombreEspecialidad) as Especialidad,IdEspecialidad 
+		from	#agenda 
+		where	NombreEspecialidad in (select Especialidad from #resultado)
+		return 0
+	end
+	------------------------------------------------------------------------------------------------------------------------
+	-- Agrupa y determina menor valor de atencion 
+	------------------------------------------------------------------------------------------------------------------------
+	alter table #resultado add Id int Identity 
+
+	SELECT	DISTINCT a.IdMedico, a.Id
+	into	#menorValor
+	FROM	#resultado a
+	INNER JOIN
+		(SELECT IdMedico, Id = min(Id) 
+		FROM	#resultado
+		GROUP BY IdMedico) b
+		ON	a.IdMedico = b.IdMedico 
+		AND a.Id = b.Id
+	
+	------------------------------------------------------------------------------------------------------------------------
+	--Retorno
+	----------------------------------------------------------------------------------------------------------------
+	select	* 	
+	from	#resultado 
+	where	Id in (select Id from #menorValor)
+	order by FechaHora
+
+--insert into dbo.logConsulta select dbo.getdate2(),'Fin  Consulta'
+
+set nocount off
+end
+GO
+ALTER Procedure [dbo].[SpIntegracionCreaPersona_2]
+(
+ @Nombre			varchar(150)
+,@ApellidoPaterno	varchar(50)
+,@ApellidoMaterno	varchar(50)
+,@Identificador		varchar(20)
+,@Correo			varchar(100)
+,@FechaNacimiento	varchar(10)
+,@Genero			char(1)
+,@Telefono			varchar(50)
+,@TelefonoMovil		varchar(50)
+,@Comuna			varchar(50)
+,@Direccion			varchar(50)
+,@RutTitular		varchar(50)
+,@Password			varchar(200)
+,@Stamp				varbinary(1024)
+,@CodConvenio		varchar(500) 
+)
+as
+
+/*
+Invocado desde Servicio API y Invocado desde Login Externo
+- Se usa para registrar Persona y usuario 
+- En caso de enviar @RutTitular =  vacio, quiere decir que esta registrado un TITULAR
+- En caso de enviar @RutTitular <> vacio, quiere decir que esta registrado una CARGA
+
+- Pueden recepcionarse N convenios separados por ","
+
+
+
+select * from convenios
+select * from Personas where Id in (44)--,11600)
+select * from PersonasConvenios where IdPersona in (44)--,11600)   -- delete  PersonasConvenios where IdPersona in (44)
+select * from [dbo].[PreAtencionPlataformaTerceros]
+
+
+*/
+
+
+begin
+
+declare @idPersona	as int,
+		@idUser		as int,
+		@idTitular	as int,
+		@esNuevo	char(1) = 'N'
+
+
+set @Identificador = REPLACE(@Identificador,'.','')
+
+	/*	*************************************************************************************** */
+	-- INICIO VALIDACIONES
+	/*	*************************************************************************************** */
+
+	------------------------------------------------------------------------------------------
+	-- Si Usuario existe, es unico 
+	------------------------------------------------------------------------------------------
+	if (@Identificador		= '' or
+		@Nombre				= '' or
+		@ApellidoPaterno	= '' or
+		@Correo				= '' or
+		@Password			= '' 
+		--@FechaNacimiento	= '' or
+		--@Genero				= '' or
+		--@Telefono			= '' or
+		--@Comuna				= '' or
+		--@Direccion			= '' or
+		
+	)
+	Begin
+		select	'Estado'		=	'ERROR'				,
+				'DescEstado'	=	'Todos los datos son necesarios',
+				'UserId'		=	NULL
+		return
+	End
+	
+	
+	/*	*************************************************************************************** */
+	-- FIN VALIDACIONES
+	/*	*************************************************************************************** */
+
+
+	/*	*************************************************************************************** */
+	-- INICIO INSERT
+	/*	*************************************************************************************** */
+	
+	------------------------------------------------------------------------------------------
+	-- Saca Id Persona para determinar logica de insert o update -- si es null es NUEVO
+	------------------------------------------------------------------------------------------
+	select @idPersona = Id from Personas with (nolock) where Identificador = @Identificador
+	if @idPersona is null
+		set @esNuevo = 'S'
+
+	--set		@Correo = 'cfarias@strixsoft.com'
+	------------------------------------------------------------------------------------
+	--Insert a tabla de personas
+	------------------------------------------------------------------------------------
+	if (@esNuevo = 'S')
+	begin
+		insert into dbo.Personas (
+			Identificador,Nombre,ApellidoPaterno,ApellidoMaterno,Correo,Telefono,TelefonoMovil,Estado,Genero,FNacimiento,Comuna,Direccion,IdUsuarioCreacion,FechaCreacion,CorreoPlataformaTercero,TelefonoPlataformaTercero) 
+		values (
+			@Identificador,@Nombre,@ApellidoPaterno,@ApellidoMaterno,@Correo,@Telefono,@TelefonoMovil,'V',@Genero,@FechaNacimiento,@Comuna,@Direccion,0, dbo.Getdate2(),@Correo,@TelefonoMovil)
+
+		set @idPersona = IDENT_CURRENT('Personas')
+	end 
+	else
+	begin
+		update	dbo.Personas 
+		set		 Nombre				=	@Nombre 
+				,ApellidoPaterno	= 	@ApellidoPaterno
+				,ApellidoMaterno	=	@ApellidoMaterno 
+				,CorreoPlataformaTercero	=	@Correo
+				,TelefonoPlataformaTercero	=	@TelefonoMovil
+
+				--Logica CONSALUD no se actualiza base local en BD local ---------
+				--,Correo			=	@Correo -- case when @CodConvenio in ('CAPITADO','SPOT') then  Correo			else @Correo end
+				--,TelefonoMovil	=	@TelefonoMovil-- case when @CodConvenio in ('CAPITADO','SPOT') then  TelefonoMovil	else @TelefonoMovil end 
+				------------------------------------------------------------------------
+				,Telefono			=	@Telefono 
+				,Genero				=	@Genero
+				,FNacimiento		=	@FechaNacimiento
+				,Comuna				=	@Comuna
+				,Direccion			=	@Direccion
+				,IdUsuarioModifica	=	0 
+				,Fechamodifica		=	dbo.Getdate2()
+		where	Id = @idPersona
+	end
+
+	---------------------------------------------------------------------------------------
+	--Insert a tabla de usuarios > crea usuario si es nuevo / saca id usuario si es update
+	---------------------------------------------------------------------------------------
+	if (@esNuevo = 'S')
+	begin
+		insert into Users (
+			Username
+			,Password
+			,IsActive
+			,ActivationCode
+			,Stamp
+			,IdUsuarioCreacion 
+			,FechaCreacion 
+			,ChangePassword
+		) values (
+			 @Identificador
+			,@Password
+			,1
+			,'00000000-0000-0000-0000-000000000000'
+			,@Stamp
+			,0
+			, dbo.Getdate2()
+			,0
+		)
+		set @idUser = IDENT_CURRENT('Users')
+	end
+	else
+	begin
+		select @idUser = us.UserID	
+		from	Personas pe with (nolock)
+				inner join  dbo.PersonasUsers pu with (nolock)
+				on pu.IdPersona = pe.Id
+				inner join dbo.Users us with (nolock)
+				on us.UserID = pu.IdUsuario
+		where	pe.Id = @idPersona 
+	end
+	
+	------------------------------------------------------------------------------------
+	--Insert a tabla de personas usuarios / solo si es nuevo
+	------------------------------------------------------------------------------------
+	if (@esNuevo = 'S')
+	begin
+		insert into PersonasUsers(
+			IdPersona
+			,IdUsuario
+			,Estado
+			,IdUsuarioCreacion 
+			,FechaCreacion 
+		) values (
+			@idPersona
+			,@idUser
+			,'V'
+			,0
+			, dbo.Getdate2()
+		)
+
+		insert into UserRoles(
+			UserId
+			,RoleId
+			,IdUsuarioCreacion 
+			,FechaCreacion 
+		) values (
+			@idUser
+			,3 -- Usuario
+			,0
+			, dbo.Getdate2()
+		)
+	end
+
+	------------------------------------------------------------------------------------
+	--Insert a tabla de cargas
+	------------------------------------------------------------------------------------
+	if (@RutTitular <> '')
+	begin
+		if not exists(select 1 from dbo.PersonasGrupoFamiliar  with (nolock) where IdTitular = @idTitular and IdCarga = @idPersona)
+		begin
+			insert into dbo.PersonasGrupoFamiliar(IdTitular,IdCarga,Estado,IdUsuarioCreacion,FechaCreacion)
+			values (@idTitular,@idPersona,'V',0, dbo.Getdate2())
+		end
+	end
+
+	-- Insert a convenio 
+	insert into dbo.PersonasConvenios(IdPersona,IdConvenio,Estado,IdUsuarioCreacion,FechaCreacion)
+	values (@idPersona,1,'V',0, dbo.Getdate2())
+	   	
+
+	/*
+	titular
+	[dbo].[SpIntegracionCreaPersona]
+	 'Daniel'
+	,'Reyes'
+	,''
+	,'13676471-3'
+	,'c.farias@eazyroof.com'
+	,''
+	,''
+	,''
+	,''
+	,''
+	,''
+	,''
+	,'C9dNBimG2xYlg9qQ4pBly9pplo8Lsgn9akt5i3DatN4='
+	,null
+	,'CONSALUD1'
+
+	Cargar
+	[dbo].[SpIntegracionCreaPersona]
+	 'Jul'
+	,'Farey'
+	,'Lazo'
+	,'111222333-3'
+	,'jul.farias.n@gmail.com'
+	,''
+	,''
+	,''
+	,''
+	,''
+	,''
+	,'13676471-3'
+	,'nhwh5JO78fol33GOZbVbDDuPhfZWXseqvGA2OOsICWs'
+	,null
+	,'CONSALUD1'
+
+	
+	*/
+end
+GO
+/*
+--	select * from dbo.VwMedicoAgenda where IdMedico = 16 and Fecha = '20210302'
+select top 10 * from Users
+select top 10 * from Personas
+
+alter table Users drop column IdPaisUltimaConexion int null
+
+20566723-7 
+select * from Users where UserId = 11
+select * from Users where Username = '11111110-1' -- '17869526-6' -- '13676471-3'
+update Users  set IdPaisUltimaConexion = 2 where Username = '11111110-1' 
+
+
+select * from dbo.PaisZonaHoraria
+
+create table dbo.PaisZonaHoraria
+(
+Id			int	,
+Nombre		varchar(100)	,
+Gmt			int
+)
+11 > 11111110-1
+
+4 CHILE
+5 BOLIVIA
+
+insert into dbo.PaisZonaHoraria select 'Chile',-3
+insert into dbo.PaisZonaHoraria select 'Bolivia',-4
+
+
+sp_helptext VwMedicoAgenda
+select top 10 * from MedicosHoras
+alter table MedicosHoras add ZonaHoraria smallint
+
+1	VwMedicoAgenda y VwHorasMedicos
+2	SpGetMedicosHoraProxima_Huso
+3	SpGetMedicosHoraAgendaPaciente
+4	SpPacienteHomeAtenciones
+5	SpMedicoAgenda  -- desde front
+6	SpChatAtencion
+*/
+
+
+ALTER   procedure [dbo].[SpGetMedicosHoraProxima_Huso]
+(
+@IdEspecialidad	int	,
+@IdPaciente		int	,
+@ParaEspecialidad char(1) = ''
+)
+as
+begin
+
+--	insert into dbo.logConsulta select dbo.getdate2(),'Inicio Consulta'
+--	[dbo].[SpGetMedicosHoraProxima_Huso] 0,11,''     
+--	[dbo].[SpGetMedicosHoraProxima_Huso] 0,24,''     
+
+set nocount on
+-------------------------------------------------------------------
+-- Datos de convenio del paciente
+-------------------------------------------------------------------
+--	drop table #convenios
+select	distinct pec.IdConvenio,co.Id,co.IdReglaPago,co.ValorReglaPago,co.IdModeloAtencion,co.AtencionDirecta,CodConvenio,
+		Gmt = per.ZonaHoraria         -- zo.Gmt,IdPais = zo.Id 
+into	#convenios		
+from	dbo.Personas	per
+		inner join dbo.PersonasUsers peu
+		on peu.IdPersona = per.Id 
+		inner join dbo.Users usu
+		on usu.UserId	= peu.IdUsuario 
+		inner join dbo.PersonasConvenios pec
+		on pec.IdPersona = per.Id 
+		inner join dbo.Convenios  co
+		on co.Id = pec.IdConvenio
+
+		--inner join dbo.PaisZonaHoraria zo 		on zo.Id	=	usu.IdPaisUltimaConexion
+where	usu.UserId	=	@IdPaciente
+and		co.Estado	=	'V'
+and		pec.Estado	=	'V'
+and     dbo.getdate2() between co.FechaInicio and co.FechaTermino  
+and		isnull(co.AtencionDirecta,0) = 0
+
+--select '#convenios',* from #convenios	
+------------------------------------------------------------------------------------------
+-- AJUSTE HORA SEGUN ZONA HORARIA 
+------------------------------------------------------------------------------------------
+declare @gtm0				datetime	= GETUTCDATE()									-- HORA 0
+declare @zonaHoraPaciente	smallint	= (select top 1 Gmt from #convenios)			-- Zona Paciente
+declare @getdate			datetime	= dateadd(hour,@zonaHoraPaciente,GETUTCDATE())  -- Ajuste a getdate del Paciente
+
+--select  @getdate,@getdateBusquedaMedico,@zonaHoraPaciente,@diferenciaHora
+--return 0  
+
+-------------------------------------------------------------------------------------------
+-- Horas del medico agendas mayores a now (Ajustado por Zonza horaria)
+-- Acá hay que ver como ajustar la hora del paciente conectado con la hora del Medico que esta en diferente Huso
+-------------------------------------------------------------------------------------------
+-- En base a esta fecha se deben filtrar las fechas de los MEDICOS
+-- Ejemplo  Paciente Bolivia  11:00 >> Debe ir a buscar los medicos con HORAS 12:00 por la diferencia de HH
+
+
+--select * from Convenios 
+--8	Convenio La Boliviana
+--9	SALUD VIRTUAL
+
+--drop table  #agenda 
+select	distinct 
+		IdMedico			,
+		IdEspecialidad		,
+		IdAgendaMedico		,
+		IdConvenio			=	ISNULL(IdConvenio,1),
+		IdTipoAgenda		=	isnull(IdTipoAgenda,0),
+		IdModeloAtencion	=	isnull(IdModeloAtencion,0),
+		FechaHora			=	(Cast(Fecha AS DATETIME) + Cast(HoraDesde AS DATETIME)) ,
+		IdBloqueHora		,
+		IdPaciente			,
+		NombreEspecialidad	, 
+		Fecha				,
+		FechaHoraMedico		=	(Cast(Fecha AS DATETIME) + Cast(HoraDesde AS DATETIME)) ,	
+		DiffHora			=	datediff(hour,@getdate,dateadd(hour,ZonaHoraria,GETUTCDATE())) * -1	-- diferencia entre hora paciente y  hora del medico
+		
+		--ZonaPaciente		=	@zonaHoraPaciente, -- time zone del paciente
+		--HoraPaciente		=	dateadd(hour,@zonaHoraPaciente,@gtm0), -- hora del paciente ajustada
+		--ZonaHoraria			,  -- time zone del medico
+		--FiltroHora			=	dateadd(hour,(datediff(hour,@getdate,dateadd(hour,ZonaHoraria,GETUTCDATE()))),@getdate) , -- filtro ajustado para traer hora - es el que esta en el where
+		--FechaHoraPaciente  =	dateadd(hour,datediff(hour,@getdate,dateadd(hour,ZonaHoraria,GETUTCDATE())) * -1,(Cast(Fecha AS DATETIME) + Cast(HoraDesde AS DATETIME))) -- hora ajustada que se muestra al paciente
+into	#agenda
+from	dbo.VwMedicoAgenda
+where	(Cast(Fecha AS DATETIME) + Cast(HoraDesde AS DATETIME) ) >= dateadd(hour,(datediff(hour,@getdate,dateadd(hour,ZonaHoraria,GETUTCDATE()))),@getdate) 
+--																	-- a la hora del paciente se le +- la diferencia entre hora del paciente y la hora del medico
+and		AtencionDirecta	<>	1  
+
+-- Huso
+-- Hay que ver a fondo el tema de las horas
+update	#agenda
+set		FechaHora  = dateadd(hour,DiffHora,FechaHora)
+
+--select '#agendaLoad',* from #agenda
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Elimina agendas por Especialidad, si tiene una hora con un Medico de la misma especialidad en un rango de 2 horas solo si Convenio NO es ATENCION DIRECTA
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+if not exists(select 1 from #convenios where AtencionDirecta = 1) 
+begin
+	delete	#agenda 
+	where	exists (select 1 from #agenda b 
+					where	b.IdEspecialidad = #agenda.IdEspecialidad 
+					and		b.IdPaciente	 = @IdPaciente 
+					and		b.FechaHora  between @getdate and dateadd(hour,2,@getdate)
+					)
+	and		IdPaciente is null
+	and		Fecha = convert(date,@getdate)
+end
+
+--select '#agenda',* from #agenda 
+
+--------------------------------------------------------------------------------------------------------------------------
+---- Elimina agendas tomadas por paciente a la misma hora
+--------------------------------------------------------------------------------------------------------------------------
+delete	#agenda 
+where	IdPaciente is null -- > NO tomada
+and		exists (select	1 from #agenda agT  
+				where	agT.IdPaciente	= @IdPaciente
+				and		agT.IdBloqueHora	=	#agenda.IdBloqueHora
+				and		agT.Fecha			=	#agenda.Fecha
+				)
+--select '#agendaD1',* from #agenda 
+----------------------------------------------------------------------------------------------------------------------
+---- Elimina agendas un paciente no puede tomar + de 2 horas al dia con el mismo Profesional
+--------------------------------------------------------------------------------------------------------------------------
+If ((	select	COUNT(1) 
+		from	dbo.VwHorasMedicoParaCalendario ate  
+				inner join #agenda age
+				on		ate.Fecha		= age.Fecha
+				and		ate.IdMedico	= age.IdMedico 
+				and		ate.IdPaciente	= age.IdPaciente 
+				and		ate.EstadoAtencion <> 'E'
+				and		ate.Fecha		= convert(date,@getdate)
+				and		ate.IdPaciente	= @IdPaciente
+	) > 2)
+begin	
+	delete	#agenda 
+	where	IdPaciente is null -- > NO tomada
+	and		Fecha = convert(date,@getdate)
+	and		exists (	select	1
+						from	dbo.VwHorasMedicoParaCalendario ate  
+						where	ate.Fecha		= #agenda.Fecha
+						and		ate.IdMedico	= #agenda.IdMedico 
+						and		ate.IdPaciente	= #agenda.IdPaciente 
+						and		ate.IdPaciente	= @IdPaciente
+					)
+end
+
+--select '#agenda22',* from #agenda 
+
+------------------------------------------------------------------------------------------------------------------------
+-- Elimina agendas tomadas por pacientes , es decir deja solo las libres
+------------------------------------------------------------------------------------------------------------------------
+delete #agenda where	IdPaciente is not null -- Tomada
+
+--select * from VwMedicoAgenda
+--where	IdPaciente is null --No tomada
+--and		(Cast(Fecha AS DATETIME) + Cast(HoraDesde AS DATETIME) ) >= dbo.getdate2()
+--and		ISNULL(IdConvenio,1) in (select IdConvenio from #convenios)
+
+-------------------------------------------------------------------------------------------
+-- Medicos con agenda
+-------------------------------------------------------------------------------------------
+--drop table #medicos
+SELECT	IdMedico		=	u.UserId , 
+		Especialidad	=	es.Nombre, 
+		NombreMedico	=	ISNULL(p.Nombre, '') + ' ' + ISNULL(p.ApellidoPaterno, '') + ' ' + ISNULL(p.ApellidoMaterno, '') , 
+		es.CodigoPrestacion, 
+		rutMedico =		p.Identificador, 
+		pd.ValorAtencion, 
+		PrefijoProfesional	=	tp.Prefijo, 
+		Titulo = tp.nombre, 
+		InfoPersona1	=	Isnull(pd.InfoPersona1, 'Sin Datos'), 
+		FotoPerfil		=	SPACE(500)	, 
+		IdAgendaMedicoSinConvenio			= 0	,
+		IdAgendaMedicoConConvenioExclusivo  = 0	,
+		IdAgendaMedicoConConvenioCompartida = 0	,
+		Modalidad							=	SPACE(50)	 	,
+		CVP										,
+		IdSucursal								,
+		IdLugarAtencion			,
+		p.Genero ,
+		p.Id,
+		CodigoEspecialidad = es.Id
+into	#medicos
+FROM    dbo.Users AS u INNER JOIN
+        dbo.UserRoles AS ur ON ur.UserId = u.UserId INNER JOIN
+        dbo.Roles AS r ON r.RoleId = ur.RoleId INNER JOIN
+        dbo.PersonasUsers AS pu ON pu.IdUsuario = u.UserId INNER JOIN
+        dbo.Personas AS p ON p.Id = pu.IdPersona INNER JOIN
+        dbo.MedicoEspecialidades AS me ON me.IdMedico = u.UserId INNER JOIN
+        dbo.Especialidades AS es ON es.Id = me.IdEspecialidad LEFT OUTER JOIN
+        dbo.PersonasDatos AS pd ON pd.IdPersona = p.Id  inner join dbo.TipoProfesional tp ON tp.Id = pd.IdTituloMedico
+where	p.estado = 'V'
+and		(me.idespecialidad =  @IdEspecialidad OR  @IdEspecialidad = 0 ) 
+and		me.IdMedico in (select IdMedico from #agenda)
+
+-- Sub campos, no se usa la vista para hacer mas ligera la consulta
+update	#medicos	
+set		Modalidad	= (select STRING_AGG (IdModalidad, '|') from dbo.PersonasDatosModalidad where IdPersona = #medicos.Id and Estado = 'V')
+		,FotoPerfil	=	ISNULL	((SELECT TOP (1) RutaVirtual
+									FROM      dbo.Archivo
+									WHERE   (IdEntidadAsociada = #medicos.IdMedico) AND (CodEntidadAsociada = 'FOTO_PERFIL')
+									ORDER BY Fecha DESC), 
+						(CASE WHEN #medicos.Genero = 'M' THEN '/upload/foto_perfil/noPerfilProfesional/ManAvatar.svg' 
+							  WHEN #medicos.Genero = 'F' THEN '/upload/foto_perfil/noPerfilProfesional/WomanAvatar.svg' END)) 
+--------------------------------------------------------------------------------------------------------------------------------
+-- Elimina agendas que tenga distinto modelo Atencion del paciente 1 y 2 ->  1 Suscripcion  2 OnDemmand   
+-- Si convenio del paciente tiene 3 no debe eliminar modelos di
+--------------------------------------------------------------------------------------------------------------------------------
+--select '#agendaAntes',* from #agenda
+if not exists(select 1 from #convenios where IdModeloAtencion = 3) -- Ambos
+delete	#agenda 
+where	IdModeloAtencion not in (select IdModeloAtencion from #convenios) 
+and		IdConvenio <> 1
+
+--select '#convenios',* from #convenios where IdModeloAtencion = 3
+--select '#agendaAntesEliminaModelo',* from #agenda
+---------------------------------------------------------------------------------------------------------------------------
+-- Horas del medico con logica de filtros saca la menor por medico y convenio POR TIPO AGENDA > 1 EXCLUSIVA - 2 COMPARTIDA
+---------------------------------------------------------------------------------------------------------------------------
+
+update	#medicos
+set		IdAgendaMedicoSinConvenio			= isnull((	select	top 1 IdAgendaMedico  -- Id de la prmera hora desde now
+														from	#agenda ag
+														where	ag.IdMedico = #medicos.IdMedico 
+														and		ag.IdConvenio = 1 -- Default
+														order by  FechaHora asc
+													),0),
+		IdAgendaMedicoConConvenioExclusivo	= isnull((	select	top 1 IdAgendaMedico  -- Id de la prmera hora desde now
+														from	#agenda ag
+														where	ag.IdMedico = #medicos.IdMedico 
+														and		ag.IdConvenio <> 1
+														and		ag.IdTipoAgenda = 1
+														and		ag.IdConvenio  in (select IdConvenio from #convenios) -- siempre que exista en el convenio de paciente
+														order by  FechaHora asc
+												),0),
+		IdAgendaMedicoConConvenioCompartida	= isnull((	select	top 1 IdAgendaMedico  -- Id de la prmera hora desde now
+														from	#agenda ag
+														where	ag.IdMedico = #medicos.IdMedico 
+														and		ag.IdConvenio <> 1
+														and		ag.IdTipoAgenda = 2
+														and		ag.IdConvenio  in (select IdConvenio from #convenios) -- siempre que exista en el convenio de paciente
+														order by  FechaHora asc
+												),0)
+										
+ --select '#medicosDespues',* from #medicos
+-- Paciente SIN convenio solo muestra las Agendas SIN convenio
+-- Paciente CON convenio muestra las Agendas SIN convenio y CON CONVENIO
+
+-----------------------------------------------------------------------------------------------------------------------
+-- Retorno de datos
+-----------------------------------------------------------------------------------------------------------------------
+--drop table #resultado
+
+--select * from Convenios 
+--select * from ConveniosEspecialidades 
+
+-- Tipo Agenda 
+--select * from Parametros where Grupo like '%agenda%'
+--Exclusiva		1
+--Compartida	2
+
+-- MODELO ATENCION
+--select * from Parametros where Grupo like '%modelo%'
+--Suscripción	1
+--On Demand		2
+--Ambos			3
+
+
+	---------------------------------------------------------------------------------------------	
+	-- Horas Con Convenio Medico Exclusiva - SOLO Match entre Paciente y Medico por Convenio
+	---------------------------------------------------------------------------------------------
+	select	h.IdMedico, 
+			h.Especialidad, 
+			h.NombreMedico, 
+			h.CodigoPrestacion,		--select 10000 * (10 / 100.0)
+			h.rutMedico, 
+			ValorAtencion			=	 case	when a.IdModeloAtencion = 1  then 0	-- Agende Medico IdModeloAtencion = 1 Suscripcion paga 0 
+												when a.IdModeloAtencion = 2 and c.IdReglaPago = 1  then convert(numeric(18,0),(h.ValorAtencion * (c.ValorReglaPago / 100.0)))    --IdModeloAtencion = On Demand / Regla Pago Porcentaje
+												when c.IdModeloAtencion = 2 and c.IdReglaPago = 2  then c.ValorReglaPago	--IdModeloAtencion = On Demand / Regla Pago Valor
+											else  h.ValorAtencion end,  
+			h.PrefijoProfesional, 
+			h.Titulo, 
+			InfoPersona1,
+			h.FotoPerfil			,
+			a.IdBloqueHora			,
+			FechaText				=	upper(FORMAT(Fecha, 'dd MMM yyyy', 'es-ES')),  
+			HoradesDeText			=	upper(FORMAT(FechaHora, 'HH:mm', 'es-ES')), 
+			a.IdConvenio			,
+			a.IdTipoAgenda			,
+			c.IdModeloAtencion		,
+			c.IdReglaPago			,
+			a.FechaHora				,
+			a.Fecha					,
+			Modalidad				,
+			CVP						,
+			IdSucursal				,
+			IdLugarAtencion			,
+			Cobrar					= case when c.IdModeloAtencion = 2 then 1 else 0 end -- 1 en binario es true 0 false
+			,IdMedicoHora = a.IdAgendaMedico
+			,c.AtencionDirecta
+			,h.CodigoEspecialidad
+			,FechaHoraMedico
+	into	#resultado
+	from	#medicos		h
+			inner join #agenda a   
+			on	a.IdAgendaMedico = h.IdAgendaMedicoConConvenioExclusivo 
+			inner join #convenios c
+			on c.Id = a.IdConvenio
+
+	---------------------------------------------------------------------------------------------			
+	-- Horas Con Convenio Medico Compartida - Se muestran horas compartidas de cualquier convenio
+	---------------------------------------------------------------------------------------------	
+	insert into #resultado
+	select	h.IdMedico, 
+			h.Especialidad, 
+			h.NombreMedico, 
+			h.CodigoPrestacion,		--select 10000 * (10 / 100.0)
+			h.rutMedico, 
+			ValorAtencion			=	 case	when a.IdModeloAtencion = 1  then 0	-- Agende Medico IdModeloAtencion = 1 Suscripcion paga 0 
+												when a.IdModeloAtencion = 2 and c.IdReglaPago = 1  then convert(numeric(18,0),(h.ValorAtencion * (c.ValorReglaPago / 100.0)))    --IdModeloAtencion = 2  On Demand / Regla Pago Porcentaje
+												when c.IdModeloAtencion = 2 and c.IdReglaPago = 2  then c.ValorReglaPago	--IdModeloAtencion = On Demand / Regla Pago Valor
+											else  h.ValorAtencion end,  
+			h.PrefijoProfesional, 
+			h.Titulo, 
+			InfoPersona1,
+			h.FotoPerfil			,
+			a.IdBloqueHora			,
+			FechaText				=	upper(FORMAT(Fecha, 'dd MMM yyyy', 'es-ES')),  
+			HoradesDeText			=	upper(FORMAT(FechaHora, 'HH:mm', 'es-ES')), 
+			a.IdConvenio			,
+			a.IdTipoAgenda			,
+			c.IdModeloAtencion		,
+			c.IdReglaPago			,
+			a.FechaHora				,
+			a.Fecha					,
+			Modalidad				,
+			CVP						,
+			IdSucursal				,
+			IdLugarAtencion			,
+			Cobrar					= case when c.IdModeloAtencion = 2 then 1 else 0 end -- 1 en binario es true 0 false
+			,IdMedicoHora = a.IdAgendaMedico
+			,c.AtencionDirecta
+			,h.CodigoEspecialidad
+			,FechaHoraMedico
+	from	#medicos		h
+			inner join #agenda a   
+			on	a.IdAgendaMedico = h.IdAgendaMedicoConConvenioCompartida 
+			cross join #convenios c			
+			--on 1 = 1  on c.Id = a.IdConvenio
+	where	h.IdMedico not in (select IdMedico from #resultado)
+	
+	---------------------------------------------------------------------------------------------------------------	
+	-- Horas  SOLO a Convenio Default (CONVENIO ON DEMMAND) 
+	---------------------------------------------------------------------------------------------------------------
+	insert into #resultado
+	select	h.IdMedico, 
+			h.Especialidad, 
+			h.NombreMedico, 
+			h.CodigoPrestacion, 
+			h.rutMedico, 
+			h.ValorAtencion			,			
+			h.PrefijoProfesional, 
+			h.Titulo, 
+			InfoPersona1,
+			h.FotoPerfil			,
+			a.IdBloqueHora			,
+			FechaText				=	upper(FORMAT(Fecha, 'dd MMM yyyy', 'es-ES')),  
+			HoradesDeText			=	upper(FORMAT(FechaHora, 'HH:mm', 'es-ES')), 
+			a.IdConvenio			,
+			a.IdTipoAgenda			,
+			IdModeloAtencion		=	2	, --a.IdModeloAtencion		,
+			IdReglaPago				=	3	, --,c.IdReglaPago			
+			a.FechaHora				,
+			a.Fecha					,
+			Modalidad				,
+			CVP						,
+			IdSucursal				,
+			IdLugarAtencion 		,
+			Cobrar					=  1 -- 1 en binario es true 0 false
+			,IdMedicoHora = a.IdAgendaMedico
+			,c.AtencionDirecta
+			,h.CodigoEspecialidad
+			,FechaHoraMedico
+	from	#medicos		h
+			inner join #agenda a   
+			on	a.IdAgendaMedico = h.IdAgendaMedicoSinConvenio 
+			inner join #convenios c
+			on c.Id = a.IdConvenio
+	where	h.IdMedico not in (select IdMedico from #resultado)
+	and		c.Id = 1 -- Id Convenio Defaut
+
+	--select '#convenios',* from #convenios		
+	--select '#medicos',* from #medicos
+	--select '#agenda',* from #agenda
+
+	--Excepcion RAYEN
+	declare @IdConvenioRayen int = (select Id  from #convenios where CodConvenio = 'EXRAYEN')
+	------------------------------------------------------------------------------------------------------------------------
+	-- Retorno de especialidades para llenar combo
+	-- Se cambiara ESPECIALIDAD (seleccion en el combo) POR MÉDICOS SUSCRIPCIÓN
+	------------------------------------------------------------------------------------------------------------------------
+	if (@ParaEspecialidad = 'S')
+	begin
+	
+		-- Excepcion para EXRAYEN 
+		if exists (select 1 from #convenios where IdConvenio = @IdConvenioRayen and @IdEspecialidad = 0)  --O es Primera carga
+		begin
+			select	Especialidad = 'MÉDICOS SUSCRIPCIÓN',IdEspecialidad = 0
+			union
+			select	distinct(NombreEspecialidad) as Especialidad,IdEspecialidad 
+			from	#agenda 
+			where	NombreEspecialidad in (select Especialidad from #resultado)
+			order by IdEspecialidad
+		end
+		else
+		begin
+			select	Especialidad = 'ESPECIALIDAD',IdEspecialidad = 0
+			union
+			select	distinct(NombreEspecialidad) as Especialidad,IdEspecialidad 
+			from	#agenda 
+			where	NombreEspecialidad in (select Especialidad from #resultado)
+		end
+		
+		return 0
+	end
+
+	------------------------------------------------------------------------------------------------------------------------
+	-- Agrupa y determina menor valor de atencion 
+	------------------------------------------------------------------------------------------------------------------------
+	-- Excepcion para EXRAYEN 
+	if exists (select 1 from #convenios where IdConvenio = @IdConvenioRayen and @IdEspecialidad = 0)  --O es Primera carga
+		delete #resultado where IdConvenio <> @IdConvenioRayen
+
+
+	alter table #resultado add Id int Identity 
+
+	SELECT	DISTINCT a.IdMedico, a.Id
+	into	#menorValor
+	FROM	#resultado a
+	INNER JOIN
+		(SELECT IdMedico, Id = min(Id) 
+		FROM	#resultado
+		GROUP BY IdMedico) b
+		ON	a.IdMedico = b.IdMedico 
+		AND a.Id = b.Id
+	
+	------------------------------------------------------------------------------------------------------------------------
+	--Retorno
+	----------------------------------------------------------------------------------------------------------------
+	select	* 	
+	from	#resultado 
+	where	Id in (select Id from #menorValor)
+	order by FechaHora
+
+--insert into dbo.logConsulta select dbo.getdate2(),'Fin  Consulta'
+
+/*
+-- Medical -----------------------------------------
+Al cargar
+	1. Si paciente tiene el convenio EXRAYEN debe mostrar solo agenda asociada a ese convenio
+	2. Crear categoria EXRAYEN
+	3. Si no tiene que siga normal
+
+Al seleccionar Especialidad
+	Filtrar Normal solo si no es EXRAYEN
+*/
+
+
+set nocount off
+end
+GO
+ALTER Procedure [dbo].[SpGetValorizacionExcepciones]
+(
+	@IdCliente				int		,
+	@IdPaciente				int		,
+	@IdMedico				int
+)
+
+as
+begin
+
+	if (@IdCliente  = 2)
+	begin
+		
+		declare @CodigoEspecialidad int = (select top 1 IdEspecialidad  from  dbo.MedicoEspecialidades where IdMedico = @IdMedico) -- la relacion es 1 a 1 pero para evitar error se implenta top 1
+
+		--select * from #convenios
+		-- Cantidad de atenciones del paciente por especialidad
+		select	me.IdEspecialidad,Cantidad = Count(1)
+		into	#pasoINMV
+		from	dbo.Atenciones a
+				inner join dbo.MedicosHoras mh
+				on mh.Id = a.IdMedicoHora 
+				inner join dbo.MedicoEspecialidades me
+				on me.IdMedico = mh.IdMedico 
+		where	IdPaciente			=	@IdPaciente
+		and		me.IdEspecialidad	=	@CodigoEspecialidad
+		and		mh.Fecha			between convert(char(6),dbo.GetDate2(),112) + '01' and  eomonth(dbo.GetDate2()) -- del mes
+		group by IdEspecialidad
+
+		-- Logica de cobro segun nro de atenciones y especialidad
+		select	ValorAtencion  = case	when @CodigoEspecialidad = 1 and isnull((select Cantidad from #pasoINMV where IdEspecialidad = 4),0) = 0   then 0		-- tiene 0 atencion la 1ra vale 0
+										when @CodigoEspecialidad = 1 and isnull((select Cantidad from #pasoINMV where IdEspecialidad = 4),0) = 1   then 2000		-- tiene 1 atencion la 2da vale 2000
+										when @CodigoEspecialidad = 1 and isnull((select Cantidad from #pasoINMV where IdEspecialidad = 4),0) > 2   then 6990		-- tiene 2 atencion la > a 3ra vale 6990
+
+										when @CodigoEspecialidad = 4 and isnull((select Cantidad from #pasoINMV where IdEspecialidad = 4),0) = 0   then 0		-- tiene 0 atencion la 1ra vale 0
+										when @CodigoEspecialidad = 4 and isnull((select Cantidad from #pasoINMV where IdEspecialidad = 4),0) = 1   then 2000		-- tiene 1 atencion la 2da vale 2000
+										when @CodigoEspecialidad = 4 and isnull((select Cantidad from #pasoINMV where IdEspecialidad = 4),0) > 2   then 12990	-- tiene 2 atencion la > a 3ra vale 12990
+								 end 	
+	end
+end
+GO
+ALTER procedure [dbo].[SpGetHoraUrgencia]
+(
+@IdPaciente	int
+,@IdSession varchar(50)
+, @IdCliente int
+)
+ 
+as
+begin
+set nocount on
+
+	-------------------------------------------------------------------------------------------------------
+	-- Verifica atencion vigente en caso de refresco por parte del Paciente
+	-------------------------------------------------------------------------------------------------------
+	declare @IdAtencion int
+	select	@IdAtencion =	max(Id)
+	from	dbo.atenciones 
+	where	IdPaciente		=	 @IdPaciente  
+	and		Estado			=	'I' 
+	and		convert(date,FechaCreacion)	=	convert(date,dbo.getdate2())
+	and		IdSesionPlataformaExterna is not null -- DIRECTA
+	
+	if isnull(@IdAtencion,0) > 0
+	begin
+	
+		select	a.*,
+				dateadd(hour,dbo.FxAjusteHora(hm.IdConvenio),a.InicioAtencion) as InicioAtencionPaciente,
+				dateadd(hour,dbo.FxAjusteHora(hm.IdConvenio),a.TerminoAtencion) as TerminoAtencionPaciente,
+				conv.UrlConvenio As 'UrlConvenio', conv.TextoMarca as 'TextoMarca' ,
+				(select top(1) replace(RutaVirtual,'\','/') from Archivo where CodEntidadAsociada = 'FOTO_CONVENIO' and IdEntidadAsociada = conv.Id order by Archivo.Fecha DESC) as 'RutaVirtual',
+				(convert(varchar,Fecha,105) +' ' + substring(convert(varchar, HoraDesde),0,6)) as FechaText,convert(varchar, HoraDesde) as HoraDesdeText,
+				hm.NombreMedico,NombrePaciente = fp.NombreCompleto, TelefonoPaciente = fp.Telefono, 
+				hm.Especialidad,hm.CorreoPaciente,hm.CorreoMedico,hm.IdConvenio,hm.*
+		from	dbo.atenciones a 
+				left join VwHorasMedicos hm on IdAtencion = a.id 
+				left join VwFichaPacienteMedico fp on fp.UserId = a.IdPaciente 
+				inner join Convenios conv on conv.Id = hm.IdConvenio
+		where	a.id = @IdAtencion
+		return 0
+	end
+	
+	-------------------------------------------------------------------------------------------------------
+	-- Verifica si ID ya fue atendido
+	-------------------------------------------------------------------------------------------------------
+	if exists(	select	1  
+				from	dbo.atenciones 
+				where	IdPaciente	=	@IdPaciente  	
+				and		Estado		=	'T' 
+				and		IdSesionPlataformaExterna	=	@IdSession
+				)
+	begin
+		select	Id = -1	,
+				IdPaciente = @IdPaciente
+		return 0
+	end
+
+	-------------------------------------------------------------------
+	-- Datos de convenio del paciente
+	-------------------------------------------------------------------
+	--	drop table #convenios
+	select	pec.IdConvenio,CodConvenio 
+	into	#convenios		
+	from	dbo.Personas	per
+			inner join dbo.PersonasUsers peu
+			on peu.IdPersona = per.Id 
+			inner join dbo.Users usu
+			on usu.UserId	= peu.IdUsuario 
+			inner join dbo.PersonasConvenios pec
+			on pec.IdPersona = per.Id 
+			inner join dbo.Convenios  co
+			on co.Id = pec.IdConvenio
+	where	usu.UserId		=	@IdPaciente
+	and		co.Estado	=	'V'
+	and		pec.Estado	=	'V'
+	and		co.AtencionDirecta = 1
+	and     dbo.getdate2() between co.FechaInicio and co.FechaTermino  
+
+	--select * from #convenios		
+	-------------------------------------------------------------------------------------------
+	-- Horas del medico  del dia
+	-------------------------------------------------------------------------------------------
+	-- MATCH ENTRE CONVENIOS 
+	select	IdMedico		,
+			IdAgendaMedico	,
+			IdBloqueHora	,
+			IdPaciente		,
+			FechaHora			=	Cast(Fecha AS DATETIME) + Cast(HoraDesde AS DATETIME)	,
+			NombreMedico
+	into	#agenda
+	from	dbo.VwMedicoAgenda
+	where	IdConvenio	in (select IdConvenio from #convenios)
+	and		Fecha = convert(date,dbo.GETDATE2())		-- del dia ya no T- 12 H and		(Cast(Fecha AS DATETIME) + Cast(HoraDesde AS DATETIME) ) >= dateadd(hour,-12,dbo.Getdate2())
+	and		IdBloqueHora in (select	Id 	from	Dbo.BloquesHoras 	where	IdDuracionAntencion = 4 ) 
+
+
+	-- AGENDAS ATENCION DIRECTAS Y COMPARTIDAS 
+	insert into #agenda
+	select	IdMedico		,
+			IdAgendaMedico	,
+			IdBloqueHora	,
+			IdPaciente		,
+			FechaHora			=	Cast(Fecha AS DATETIME) + Cast(HoraDesde AS DATETIME)	,
+			NombreMedico
+	from	dbo.VwMedicoAgenda ag
+	where	AtencionDirecta		=	1
+	and		IdTipoAgenda		=	2 -- Compartida	
+	and		Fecha = convert(date,dbo.GETDATE2())		-- del dia ya no T- 12 H and	(Cast(Fecha AS DATETIME) + Cast(HoraDesde AS DATETIME) ) >= dateadd(hour,-12,dbo.Getdate2())
+	and		not exists (select 1 from #agenda a where a.IdAgendaMedico = ag.IdAgendaMedico)
+	and		IdBloqueHora in (select	Id 	from	Dbo.BloquesHoras 	where	IdDuracionAntencion = 4 ) 
+	
+	-- Regularizar
+	--delete #agenda where IdMedico in (1610) 
+	
+	-- LOGICA PARA ELIMINAR AGENDA DE MEDICOS QUE NO TIENEN HORAS EN NOW
+	-- Saca bloque que corresponde a la hora
+	declare @IdBloqueActual int 
+	select	@IdBloqueActual = Id
+	from	Dbo.BloquesHoras 
+	where	IdDuracionAntencion = 4   -- atencion Directa
+	and		dbo.Getdate2()  between  (Cast(convert(char(8),dbo.Getdate2(),112) AS DATETIME) + Cast(HoraDesde  AS DATETIME)) and (Cast(convert(char(8),dbo.Getdate2(),112) AS DATETIME) + Cast(HoraHasta AS DATETIME))
+	
+	-- Elimina medicos sin bloque
+	delete #agenda  where	IdMedico  not in (select IdMedico 	from #agenda  where	IdBloqueHora =  @IdBloqueActual)
+
+	
+	-- RUTINA ANTERIOR
+	---- Determina rango de fechas -- ToDo solucionar agendas en dos turnos el 10 a 14   y de 15 a 18 .. ahora toma de 10 a 18
+	--select	distinct	IdMedico	,
+	--		HoraMin = (select MIN(FechaHora) from  #agenda a where a.IdMedico = b.IdMedico ),
+	--		HoraMax = (select MAX(FechaHora) from  #agenda a where a.IdMedico = b.IdMedico )
+	--into	#agendaRanfo
+	--from	#agenda b
+
+	---- Elimina medicos sin agenda en hora en rangos 
+	--delete	#agenda  
+	--where	not exists (
+	--				select	1 
+	--				from	#agendaRanfo b
+	--				where	dbo.Getdate2()   between HoraMin and HoraMax -- dateadd(hour,0,dbo.Getdate2()) 
+	--				and		b.IdMedico = #agenda .IdMedico 
+	--				) 
+
+	--	delete #agenda where IdMedico not in (79)
+	
+	--16	Paulina Tapia
+	--86	María Consuelo Sobarzo  Undurraga 
+	--1610	Sebastián Apeleo Lobos 
+	--1613	Felipe Romero Vega	 
+	--1544	Nicolás Rotman Hinzpeter
+	-- 79	Renato vargas
+
+
+	--	8  a 10 soba
+	--	10 a 13 soba + apeleo
+	--	13 a 18 soba
+	--	18 a 24 apeleo
+	--> 24 otro 
+
+
+	-- Sin agenda
+	if ((select count(1) from #agenda) =  0 )
+	begin
+		select	IdAtencion = -1,
+				Estado =	'Profesionales sin agenda ingresada'
+		return 0
+	end
+
+	-------------------------------------------------------------------------------------------
+	-- Horas del medico agendas proxima agenda libre
+	-------------------------------------------------------------------------------------------
+	--	drop table #medicos
+	select	IdMedico		,
+			FechaHora		=	min(FechaHora)	,
+			NombreMedico	=	min(NombreMedico)
+	into	#medicos
+	from	#agenda
+	where	IdPaciente is null		-- que tome el 1er bloque  sin paciente -- and		FechaHora >= dbo.Getdate2()
+	group by IdMedico
+			
+	--select * from #medicos
+	--	drop table  #agendaLibre
+	select	IdMedico		,
+			IdAgendaMedico	=	(select IdAgendaMedico	from #agenda a where a.IdMedico = me.IdMedico and a.FechaHora = me.FechaHora)	,
+			IdBloqueHora	=	(select IdBloqueHora	from #agenda a where a.IdMedico = me.IdMedico and a.FechaHora = me.FechaHora)	,
+			FechaHora				,
+			EnCola				=	0	,-- False	
+			NroAtenciones		=	0	,
+			TiempoAtendiendo	=	0	,
+			NombreMedico
+	into	#agendaLibre
+	from	#medicos	me
+	
+	-- Sin agenda libre
+	if @@rowcount = 0 
+	begin
+		select IdAtencion = -2,
+				Estado	  = 'Sin agenda libre'
+		return 0
+	end
+	-------------------------------------------------------------------------------------------
+	-- Atenciones de las agendas t-1 para determinar estado y logicas de seleccion
+	-------------------------------------------------------------------------------------------
+	-- drop table #atenciones
+	select	IdMedico			,
+			ate.Estado			,
+			TiempoAtendiendo	=	case when estado = 'I' and InicioAtencion is not null then  datediff(ss,InicioAtencion,dbo.Getdate2()) else 0 end -- > 0 es por que tiene una atencion en curso
+	into	#atenciones
+	from	dbo.Atenciones ate
+			inner join #agenda age
+			on	age.IdAgendaMedico	=	ate.IdMedicoHora
+
+	--select * from #atenciones				
+	-------------------------------------------------------------------------------------------
+	-- Asigna contador de atenciones
+	-------------------------------------------------------------------------------------------
+	update	#agendaLibre
+	set		NroAtenciones		=	isnull((select count(1) from #atenciones a where a.IdMedico = #agendaLibre.IdMedico),0)						, -- ? se contabilizan todas
+			EnCola				=	isnull((select count(1) from #atenciones a where a.IdMedico = #agendaLibre.IdMedico and Estado = 'I'),0)	, -- Atenciones en espera ESTAOD I
+			TiempoAtendiendo	=	isnull((select sum(TiempoAtendiendo) from #atenciones a where a.IdMedico = #agendaLibre.IdMedico and Estado = 'I'),0) -- Segundos que lleva atendiendo SI tiene una atencion en proceso 
+	--select '#agendaLoad',* from #agenda
+
+	-------------------------------------------------------------------------------------------
+	-- Insert a atencion asignada
+	-------------------------------------------------------------------------------------------
+	
+	declare		@IdBloqueHora	int	,
+				@IdMedicoHora	int	
+	
+	-- Seleccion de medico en base a criterios de orden
+	select	top 1 
+			@IdBloqueHora	=	IdBloqueHora	,
+			@IdMedicoHora	=	IdAgendaMedico
+	from	#agendaLibre
+	order by
+			EnCola,NroAtenciones,TiempoAtendiendo desc,NombreMedico
+			-- Define el criterio de seleccion 
+			-- 1. Si esta libre (0 SI 1 N0)  /  2.Nro de atanciones realizadas  /  3.Tiempo atendendiendo (entre + tiempo se asume que esta por terminar)  / 4.Nombre
+
+	-- Insert a tabla 
+	insert into dbo.Atenciones(IdBloqueHora,IdPaciente,IdMedicoHora,Estado,FechaCreacion,IdUsuarioCreacion,IdSesionPlataformaExterna, IngresoAtencionPaciente, IdCliente) 
+	select	@IdBloqueHora,@IdPaciente,@IdMedicoHora,Estado = 'I',FechaCreacion = dbo.Getdate2(),@IdPaciente,@IdSession, dbo.Getdate2(), @IdCliente
+	
+	-- Retorno de datos para consulta
+	select	a.*,
+			dateadd(hour,dbo.FxAjusteHora(hm.IdConvenio),a.InicioAtencion) as InicioAtencionPaciente,
+			dateadd(hour,dbo.FxAjusteHora(hm.IdConvenio),a.TerminoAtencion) as TerminoAtencionPaciente,
+			conv.UrlConvenio As 'UrlConvenio', conv.TextoMarca as 'TextoMarca' ,
+			(select top(1) replace(RutaVirtual,'\','/') from Archivo where CodEntidadAsociada = 'FOTO_CONVENIO' and IdEntidadAsociada = conv.Id order by Archivo.Fecha DESC) as 'RutaVirtual',
+			(convert(varchar,Fecha,105) +' ' + substring(convert(varchar, HoraDesde),0,6)) as FechaText,convert(varchar, HoraDesde) as HoraDesdeText,
+			hm.NombreMedico,NombrePaciente = fp.NombreCompleto, TelefonoPaciente = fp.Telefono, 
+			hm.Especialidad,hm.CorreoPaciente,hm.CorreoMedico,hm.IdConvenio,hm.*
+	from	atenciones a 
+			left join VwHorasMedicos hm on IdAtencion = a.id 
+			left join VwFichaPacienteMedico fp on fp.UserId = a.IdPaciente 
+			inner join Convenios conv on conv.Id = hm.IdConvenio
+	where	a.id = @@IDENTITY
+
+
+	--select '#agendaLibre', * from #agendaLibre order by	EnCola,NroAtenciones,TiempoAtendiendo desc
+	--select '@IdBloqueHora' = @IdBloqueHora,'@IdPaciente' = @IdPaciente,'@IdMedicoHora' = @IdMedicoHora
+
+set nocount off
+end
+GO
+-- select top 100 * from  dbo.LogIntegracionApi order by FechaRegistro desc
+
+ALTER  Procedure [dbo].[SpIntegracionCreaPersona]
+(
+ @Nombre			varchar(150)
+,@ApellidoPaterno	varchar(50)
+,@ApellidoMaterno	varchar(50)
+,@Identificador		varchar(20)
+,@Correo			varchar(100)
+,@FechaNacimiento	varchar(10)
+,@Genero			char(1)
+,@Telefono			varchar(50)
+,@TelefonoMovil		varchar(50)
+,@Comuna			varchar(50)
+,@Direccion			varchar(50)
+,@RutTitular		varchar(50)
+,@Password			varchar(200)
+,@Stamp				varbinary(1024)
+,@CodConvenio		varchar(500) 
+,@IdCliente			int	=	0
+,@AtencionDirecta	bit = 0 -- 0 False 1 True
+)
+as
+
+/*
+Invocado desde : 
+-- Servicio API desde WEB ENROLL 
+-- Invocado desde Login Externo > Lo usa CONSALUD (Agenda y Directo) y HSG (Agenda)
+-- Invocado desde Api Medismart > La esta usando CONSALUD
+
+- Se usa para registrar Persona y usuario 
+- En caso de enviar @RutTitular =  vacio, quiere decir que esta registrado un TITULAR
+- En caso de enviar @RutTitular <> vacio, quiere decir que esta registrado una CARGA
+
+- Pueden recepcionarse N convenios separados por ","
+
+select * from convenios
+select * from Personas where Id in (44)--,11600)
+select * from PersonasConvenios where IdPersona in (44)--,11600)   -- delete  PersonasConvenios where IdPersona in (44)
+select * from [dbo].[PreAtencionPlataformaTerceros]
+
+*/
+
+
+begin
+
+declare @idPersona	as int,
+		@idUser		as int,
+		@idTitular	as int,
+		@esNuevo	char(1) = 'N',
+		@ChangePassword bit = 0
+
+------------------------------------------------------------------------------------
+-- Lógica Cliente/Convenio
+-- 1 Consalud
+
+-- Log datos enviado por API
+-- Cuando se invoca desde 
+------------------------------------------------------------------------------------
+declare @CodConvenioContrato varchar(100) = ''
+--select * from dbo.LogIntegracionApi
+If (@IdCliente = 1 and @AtencionDirecta = 0) -- AGENDA
+begin
+	-- alter table dbo.LogIntegracionApi add IdCliente int, CodConvenioContrato varchar(100)
+	set @CodConvenioContrato = 'CONSALUD_ESPECIALIDAD'
+	set @ChangePassword = 1
+end
+
+-- LOG
+insert into dbo.LogIntegracionApi
+select 
+ @Nombre			
+,@ApellidoPaterno	
+,@ApellidoMaterno	
+,@Identificador		
+,@Correo			
+,@FechaNacimiento	
+,@Genero			
+,@Telefono			
+,@TelefonoMovil		
+,@Comuna			
+,@Direccion			
+,@RutTitular		
+,@CodConvenio		
+,dbo.Getdate2()
+,@IdCliente
+,@CodConvenioContrato
+
+
+If (@IdCliente = 1 and @AtencionDirecta = 0)
+begin
+	-- Los clientes deben quedar asociados al @CodConvenioContrato que es el convenio por donde se canalizan los X convenios de CONSALUID, para no crear N convenios
+	set @CodConvenio = @CodConvenioContrato
+end
+
+------------------------------------------------------------------------------------------
+
+set @Identificador = REPLACE(@Identificador,'.','')
+
+	/*	*************************************************************************************** */
+	-- INICIO VALIDACIONES
+	/*	*************************************************************************************** */
+
+	------------------------------------------------------------------------------------------
+	-- Si Usuario existe, es unico 
+	------------------------------------------------------------------------------------------
+	if (@Identificador		= '' or
+		@Nombre				= '' or
+		@ApellidoPaterno	= '' or
+		@Correo				= '' or
+		@Password			= '' 
+		--@FechaNacimiento	= '' or
+		--@Genero				= '' or
+		--@Telefono			= '' or
+		--@Comuna				= '' or
+		--@Direccion			= '' or
+		
+	)
+	Begin
+		select	'Estado'		=	'ERROR'				,
+				'DescEstado'	=	'Todos los datos son necesarios',
+				'UserId'		=	NULL
+		return
+	End
+	
+	----------------------------------------------------------------------------------------------------
+	-- Si envia mismo rut en  : Rut Titular e  Identificado  > UN TITULAR NO PUEDE SER CARGA DE EL MISMO
+	----------------------------------------------------------------------------------------------------
+	if (@Identificador = @RutTitular)
+	begin
+			select	'Estado'		=	'ERROR'						,
+					'DescEstado'	=	'Titular no puede ser carga',
+					'UserId'		=	NULL
+			return
+	end
+
+	------------------------------------------------------------------------------------
+	-- Si envia Rut Titular, es que es una carga > SE VALIDA QUE EL TITULAR EXISTA
+	------------------------------------------------------------------------------------
+	if (@RutTitular <> '')
+	begin
+		-- Titular existe ?
+		set @idTitular = (select Id from Personas where Identificador = @RutTitular)
+		
+		if (@idTitular is null)
+		begin
+			select	'Estado'		=	'ERROR'				,
+					'DescEstado'	=	'Titular no existe',
+					'UserId'		=	NULL
+			return
+		end 
+	end
+
+	/*	*************************************************************************************** */
+	-- FIN VALIDACIONES
+	/*	*************************************************************************************** */
+
+
+	/*	*************************************************************************************** */
+	-- INICIO INSERT
+	/*	*************************************************************************************** */
+	
+	------------------------------------------------------------------------------------------
+	-- Saca Id Persona para determinar logica de insert o update -- si es null es NUEVO
+	------------------------------------------------------------------------------------------
+	select @idPersona = Id from Personas where Identificador = @Identificador
+	if @idPersona is null
+		set @esNuevo = 'S'
+
+	--set		@Correo = 'cfarias@strixsoft.com'
+	------------------------------------------------------------------------------------
+	--Insert a tabla de personas
+	------------------------------------------------------------------------------------
+
+	set @Correo = 's.rivas@consalud.cl'
+	set @TelefonoMovil = '11111111'
+
+	if (@esNuevo = 'S')
+	begin
+		insert into dbo.Personas (
+			Identificador,Nombre,ApellidoPaterno,ApellidoMaterno,Correo,Telefono,TelefonoMovil,Estado,Genero,FNacimiento,Comuna,Direccion,IdUsuarioCreacion,FechaCreacion,CorreoPlataformaTercero,TelefonoPlataformaTercero) 
+		values (
+			@Identificador,@Nombre,@ApellidoPaterno,@ApellidoMaterno,@Correo,@Telefono,@TelefonoMovil,'V',@Genero,@FechaNacimiento,@Comuna,@Direccion,0, dbo.Getdate2(),@Correo,@TelefonoMovil)
+
+		set @idPersona = IDENT_CURRENT('Personas')
+	end 
+	else
+	begin
+		update	dbo.Personas 
+		set		 Nombre				=	@Nombre 
+				,ApellidoPaterno	= 	@ApellidoPaterno
+				,ApellidoMaterno	=	@ApellidoMaterno 
+				,CorreoPlataformaTercero	=	@Correo
+				,TelefonoPlataformaTercero	=	@TelefonoMovil
+
+				--Logica CONSALUD no se actualiza base local en BD local ---------
+				--,Correo			=	@Correo -- case when @CodConvenio in ('CAPITADO','SPOT') then  Correo			else @Correo end
+				--,TelefonoMovil	=	@TelefonoMovil-- case when @CodConvenio in ('CAPITADO','SPOT') then  TelefonoMovil	else @TelefonoMovil end 
+				-- SACAR
+				------------------------------------------------------------------------
+				
+				,Telefono			=	@Telefono 
+				,Genero				=	@Genero
+				,FNacimiento		=	@FechaNacimiento
+				,Comuna				=	@Comuna
+				,Direccion			=	@Direccion
+				,IdUsuarioModifica	=	0 
+				,Fechamodifica		=	dbo.Getdate2()
+		where	Id = @idPersona
+	end
+
+	---------------------------------------------------------------------------------------
+	--Insert a tabla de usuarios > crea usuario si no existe
+	---------------------------------------------------------------------------------------
+	if  not exists (select 1 from dbo.Users where Username = @Identificador)
+	begin
+		insert into Users (
+			Username
+			,Password
+			,IsActive
+			,ActivationCode
+			,Stamp
+			,IdUsuarioCreacion 
+			,FechaCreacion 
+			,ChangePassword
+		) values (
+			 @Identificador
+			,@Password
+			,1
+			,'00000000-0000-0000-0000-000000000000'
+			,@Stamp
+			,0
+			, dbo.Getdate2()
+			,@ChangePassword
+		)
+		set @idUser = IDENT_CURRENT('Users')
+	end
+	else
+	begin
+		select @idUser = us.UserID	from	dbo.Users us where	Username = @Identificador
+	end
+	
+	------------------------------------------------------------------------------------
+	--Insert a tabla de personas usuarios 
+	------------------------------------------------------------------------------------
+	if  not exists (select 1 from dbo.PersonasUsers where IdPersona = @idPersona and IdUsuario = @idUser)
+	begin
+		insert into dbo.PersonasUsers(
+			IdPersona
+			,IdUsuario
+			,Estado
+			,IdUsuarioCreacion 
+			,FechaCreacion 
+		) values (
+			@idPersona
+			,@idUser
+			,'V'
+			,0
+			, dbo.Getdate2()
+		)
+	end
+
+	------------------------------------------------------------------------------------
+	--Insert a tabla de Roles
+	------------------------------------------------------------------------------------
+	if  not exists (select 1 from dbo.UserRoles where UserId = @idUser)
+	begin
+		insert into UserRoles(
+				UserId
+				,RoleId
+				,IdUsuarioCreacion 
+				,FechaCreacion 
+			) values (
+				@idUser
+				,3 -- Usuario
+				,0
+				, dbo.Getdate2()
+			)
+	end
+
+
+	------------------------------------------------------------------------------------
+	--Insert a tabla de cargas
+	------------------------------------------------------------------------------------
+	if (@RutTitular <> '')
+	begin
+		if not exists(select 1 from dbo.PersonasGrupoFamiliar where IdTitular = @idTitular and IdCarga = @idPersona)
+		begin
+			insert into dbo.PersonasGrupoFamiliar(IdTitular,IdCarga,Estado,IdUsuarioCreacion,FechaCreacion)
+			values (@idTitular,@idPersona,'V',0, dbo.Getdate2())
+		end
+	end
+
+	---------------------------------------------------------------------------------------------
+	--Asocia convenio - saca id de convenio y de no existir asigna Id  1 es convenio por defecto 
+	---------------------------------------------------------------------------------------------
+	-- No existe convenio entonces se debe asignar al 1 defaul
+	
+	-- Deja todos los convenios por defecto Eliminados  // desde el 01/02/2021 se define que los convenios se van complementado 
+	-- update dbo.PersonasConvenios set Estado = 'E' where IdPersona = @idPersona
+	
+	-- Convenios enviados
+	select	CodConvenio = value	into #convenios from STRING_SPLIT(@CodConvenio,',')
+	
+	-- Match con convenios registrados versus los enviados
+	--drop table #match
+	select	c2.CodConvenio	,
+			c2.Id
+	into	#match		
+	from	#convenios c1
+			inner join dbo.Convenios c2
+			on c2.CodConvenio = c1.CodConvenio 
+	where	c1.CodConvenio <> ''
+	and		c2.Estado = 'V'
+
+	-- Si hay match	
+	if (@@rowcount > 0)
+	begin
+		-- Activa los convenios que tienen match
+		update	dbo.PersonasConvenios 
+		set		Estado = 'V' 
+		where	IdPersona = @idPersona 
+		and		IdConvenio in (select Id from #match)
+		
+		-- Inserta los que no estan asociados a la persona
+		insert into dbo.PersonasConvenios(IdPersona,IdConvenio,Estado,IdUsuarioCreacion,FechaCreacion)
+		select	distinct @idPersona,Id,'V',0, dbo.Getdate2()
+		from	#match m
+		where	m.Id not in (select p.IdConvenio from dbo.PersonasConvenios p where p.idPersona = @idPersona)
+		
+	end
+	else
+	begin
+		-- Si no hay Match, lo asigna al convenio Default 1
+		-- Si no existe lo crea / si ya existe lo activa
+		if not exists(select 1 from dbo.PersonasConvenios where IdPersona = @idPersona and IdConvenio = 1)
+			insert into dbo.PersonasConvenios(IdPersona,IdConvenio,Estado,IdUsuarioCreacion,FechaCreacion)
+			values (@idPersona,1,'V',0, dbo.Getdate2())
+		else
+			update	dbo.PersonasConvenios set Estado = 'V' where IdPersona = @idPersona and IdConvenio = 1	
+	end
+
+
+	------------------------------------------------------------------------------------
+	--Retorno OK
+	------------------------------------------------------------------------------------
+	select	'Estado'		=	'OK'				,
+			'DescEstado'	=	'Registro creado correctamente',	
+			* ,
+			AtencionDirecta  = (-- ToDo : Definir que pasa cuando envian mas se un convenio con distinto tipo  AGENDA o DIRECTA
+								select	top 1 AtencionDirecta 
+								from	#convenios	c1
+								inner join dbo.Convenios co
+								on co.CodConvenio = c1.CodConvenio 
+								)
+	from	users where UserId = @idUser
+
+	/*
+	{"Titular":{"Rut":"13993883-6","Nombres":"CAMILO ANDRES","ApellidoPaterno":"GONZALEZ","ApellidoMaterno":"ESCOBAR","Sexo":"M","Fecha_Nacimiento":"02-10-1981","Telefono":"994511979","Email":"cgonzalez@saam.cl"},"Carga":null,"Timestamp":1611169552,"Modalidad":"COPAGO","CD_SESSION_ID":"B95D0E1756822F75E054B49691350955","Canal":"SV"}
+
+	 @Nombre			varchar(150)
+,@ApellidoPaterno	varchar(50)
+,@ApellidoMaterno	varchar(50)
+,@Identificador		varchar(20)
+,@Correo			varchar(100)
+,@FechaNacimiento	varchar(10)
+,@Genero			char(1)
+,@Telefono			varchar(50)
+,@TelefonoMovil		varchar(50)
+,@Comuna			varchar(50)
+,@Direccion			varchar(50)
+,@RutTitular		varchar(50)
+,@Password			varchar(200)
+,@Stamp				varbinary(1024)
+,@CodConvenio		varchar(500) 
+
+
+
+	titular
+	[dbo].[SpIntegracionCreaPersona]
+	 'CAMILO ANDRES'
+	,'GONZALEZ'
+	,'ESCOBAR'
+	,'13993883-6'
+	,'cgonzalez@saam.cl'
+	,'1981-10-02'
+	,'M'
+	,'994511979'
+	,''
+	,''
+	,''
+	,''
+	,'nhwh5JO78fol33GOZbVbDDuPhfZWXseqvGA2OOsICWs'
+	,null
+	,'COPAGO'
+
+	Cargar
+	[dbo].[SpIntegracionCreaPersona]
+	 'Jul'
+	,'Farey'
+	,'Lazo'
+	,'111222333-3'
+	,'jul.farias.n@gmail.com'
+	,''
+	,''
+	,''
+	,''
+	,''
+	,''
+	,'13676471-3'
+	,'nhwh5JO78fol33GOZbVbDDuPhfZWXseqvGA2OOsICWs'
+	,null
+	,'CONSALUD1'
+
+	
+	*/
+end
+GO
+--	[SpGetMedicosHoraAgendaPaciente] 11,16,9,'20210313',1
+--	select * from convenios
+CREATE  procedure [dbo].[SpGetMedicosHoraAgendaPaciente]
+(
+@IdPaciente	int	,
+@IdMedico	int	,
+@IdConvenio	int	,
+@Fecha		char(8),
+@Inicial	bit
+)
+as
+begin
+-- SP se ejcuta en PASO 2 Wizard Calendario
+
+	declare @zonaHoraPaciente smallint	
+	select	@zonaHoraPaciente = per.ZonaHoraria
+	from	dbo.Personas	per
+			inner join dbo.PersonasUsers peu
+			on peu.IdPersona = per.Id 
+			inner join dbo.Users usu
+			on usu.UserId	= peu.IdUsuario 
+			inner join dbo.PersonasConvenios pec
+			on pec.IdPersona = per.Id 
+			--inner join dbo.PaisZonaHoraria zo on zo.Id	=	usu.IdPaisUltimaConexion
+	where	usu.UserId	=	@IdPaciente -- 24
+
+	------------------------------------------------------------------------------------------
+	-- AJUSTE HORA SEGUN ZONA HORARIA 
+	------------------------------------------------------------------------------------------
+	declare @gtm0				datetime	= GETUTCDATE()									-- HORA 0
+	declare @getdate			datetime	= dateadd(hour,@zonaHoraPaciente,GETUTCDATE())  -- Ajuste a getdate del Paciente
+
+	SELECT	EstadoAtencion = hor.EstadoAtencion, mh.Idmedico,         vm.Especialidad,        vm.NombreMedico,        vm.ValorAtencion,        vm.PrefijoProfesional,        vm.Titulo,        
+			InfoPersona1 = Isnull(vm.infopersona1, 'Sin Datos'),        IdMedicoHora = mh.id                               ,       
+			FotoPerfil = (	SELECT Top(1) rutavirtual                      FROM   archivo                      
+							WHERE  identidadasociada = mh.idmedico                             AND codentidadasociada = 'FOTO_PERFIL'                      
+							ORDER  BY fecha DESC),       
+			NombrePaciente	=	case when hor.nombrepaciente is null then 'Disponible' else 'Ocupado' end,	 	   
+			FechaHoraMedico	=	(Cast(mh.Fecha AS DATETIME) + Cast(blo.HoraDesde AS DATETIME)) ,
+			FechaHora		=	(Cast(mh.Fecha AS DATETIME) + Cast(blo.HoraDesde AS DATETIME)) ,
+			'Mañana'		as TextoHorario,        
+			mh.IdBloqueHora	,
+			DiffHora			=	datediff(hour,@getdate,dateadd(hour,mh.ZonaHoraria,GETUTCDATE())) * -1	-- diferencia entre hora paciente y  hora del medico
+	into	#agenda
+	FROM   dbo.medicoshoras mh				        
+			inner join dbo.vwmedicos vm		 			on vm.IdMedico = mh.IdMedico  	   
+			inner join bloqueshoras blo		 			on blo.id = mh.idbloquehora 	   
+			left join dbo.vwhorasmedicos hor  			on	hor.IdMedico = mh.IdMedico 			
+			and	hor.IdBloqueHora	=	blo.Id 			
+			and hor.Fecha			=  mh.Fecha            
+			and	hor.EstadoAtencion <> 'E' 
+	where	mh.IdMedico				= @IdMedico  
+	and		mh.IdConvenio			= @IdConvenio -- '8' 
+	and		mh.Fecha				= @Fecha
+	and		(blo.HoraDesde <  CONVERT( TIME, '12:00:00' )  or @Inicial=@Inicial)  
+	and		(Cast(mh.Fecha  AS DATETIME) + Cast(blo.HoraDesde  AS DATETIME) ) >= dateadd(hour,(datediff(hour,@getdate,dateadd(hour,mh.ZonaHoraria,GETUTCDATE()))),@getdate)  
+									-- Ajuste para sacar las horas del medico segun ajuste ej : Bolivia : 9:00 es igual a las 10:00 de Chile, entonces se debe filtrar desde las 10:00 hacia adelante
+	order by IdBloqueHora asc
+	
+	update	#agenda set		FechaHora  = dateadd(hour,DiffHora,FechaHora) -- Ajuste para mostrar al paciente las 9:00 cuando la hora Chile Medico es 10:00
+
+	select * ,
+			FechaText				=	Convert(VARCHAR, FechaHora, 106),
+			HoraDesdeText			=	upper(FORMAT(FechaHora, 'HH:mm', 'es-ES')) 
+	from	#agenda
+	 order by IdBloqueHora asc
+
+	--SELECT EstadoAtencion = hor.EstadoAtencion, mh.Idmedico,         vm.Especialidad,        vm.NombreMedico,        vm.ValorAtencion,        vm.PrefijoProfesional,        vm.Titulo,        InfoPersona1 = Isnull(vm.infopersona1, 'Sin Datos'),        IdMedicoHora = mh.id                               ,        FotoPerfil = (SELECT Top(1) rutavirtual                      FROM   archivo                      WHERE  identidadasociada = mh.idmedico                             AND codentidadasociada = 'FOTO_PERFIL'                      ORDER  BY fecha DESC),       NombrePaciente = case when hor.nombrepaciente is null then 'Disponible' else 'Ocupado' end,	 	   HoraDesdeText =CONVERT(VARCHAR(5),blo.HoraDesde, 108)	,        FechaText = Convert(VARCHAR, mh.fecha, 106) ,        'Mañana' as TextoHorario,        mh.IdBloqueHora,vm.ValorAtencion  FROM   dbo.medicoshoras mh				        inner join dbo.vwmedicos vm		 			on vm.IdMedico = mh.IdMedico  	   inner join bloqueshoras blo		 			on blo.id = mh.idbloquehora 	   left join dbo.vwhorasmedicos hor  			on	hor.IdMedico = mh.IdMedico 			and	hor.IdBloqueHora =	blo.Id 			and hor.Fecha		 =  mh.Fecha            and	hor.EstadoAtencion <> 'E' where	mh.IdMedico = 16  and mh.IdConvenio = '8' and		mh.Fecha = '20210302'  and (blo.HoraDesde <  CONVERT( TIME, '12:00:00' )  or 1= 1)  and	  (CAST(mh.Fecha as DATETIME) + CAST(blo.HoraDesde AS DATETIME)) >= dateadd(hour,dbo.FxAjusteHora(mh.IdConvenio),dbo.getdate2()) order by IdBloqueHora asc
+
+end
+GO
+-- Dbo.SpPacienteHomeAtenciones 'A1',11
+-- Dbo.SpPacienteHomeAtenciones 'A2',11
+-- Dbo.SpPacienteHomeAtenciones 'A3',11
+
+CREATE Procedure [dbo].[SpPacienteHomeAtenciones]
+(
+@Accion		char(2)	,
+@IdPaciente int		
+)
+as
+begin
+	
+	------------------------------------------------------------------------------------------
+	-- AJUSTE HORA SEGUN ZONA HORARIA 
+	------------------------------------------------------------------------------------------
+
+	declare @zonaHoraPaciente smallint	
+	select	@zonaHoraPaciente = per.ZonaHoraria
+	from	dbo.Personas	per
+			inner join dbo.PersonasUsers peu
+			on peu.IdPersona = per.Id 
+			inner join dbo.Users usu
+			on usu.UserId	= peu.IdUsuario 
+			inner join dbo.PersonasConvenios pec
+			on pec.IdPersona = per.Id 
+			--inner join dbo.PaisZonaHoraria zo on zo.Id	=	usu.IdPaisUltimaConexion
+	where	usu.UserId	= @IdPaciente
+
+
+	if @Accion = 'A1'
+	begin
+		--HISTORIAL ATENCIONES --------------------------------------------------------------------------------------------------------
+		--drop table #data
+		select	historialAtenciones.*, 
+				NombreMedico	=	RTRIM(pe.Nombre) + ' ' + RTRIM(pe.ApellidoPaterno) + ' ' + RTRIM(pe.ApellidoMaterno), 
+				Especialidad	=	e.Nombre, 
+				FechaHoraMedico	=	(Cast(Fecha AS DATETIME) + Cast(HoraDesde AS DATETIME)),
+			    DiffHora		=	@zonaHoraPaciente - mh.ZonaHoraria
+		into	#dataA1			
+		from	dbo.atenciones historialAtenciones 
+				inner join MedicosHoras mh on mh.Id = historialAtenciones.IdMedicoHora 
+				inner join BloquesHoras bh on bh.Id = mh.IdBloqueHora 
+				inner join Users AS us ON us.UserId = mh.IdMedico 
+				inner join PersonasUsers AS pu ON pu.IdUsuario = us.UserId 
+				inner join Personas AS pe ON pe.Id = pu.IdPersona 
+				inner join MedicoEspecialidades As me on me.IdMedico = mh.IdMedico 
+				inner join Especialidades As e on e.Id = me.IdEspecialidad 
+		where	historialAtenciones.IdPaciente	= @IdPaciente 
+		and		historialAtenciones.Estado		= 'T' 
+
+		-- RETORNO DE DATOS ------------------------------------------------------------------------------------------------------------
+		select	*, 
+				HoraDesdeText	=	upper(FORMAT(dateadd(hour,DiffHora,FechaHoraMedico), 'HH:mm', 'es-ES')) ,
+				FechaText		=	CONVERT(char(10), dateadd(hour,DiffHora,FechaHoraMedico), 103), 
+				PatologiasString	=	(	select	STRING_AGG(pat.Codigo + '-' + pat.Nombre, ' | ') WITHIN GROUP(ORDER BY pat.Nombre) 
+											from	dbo.AtencionesPatologias apat 
+													inner join Patologias pat on pat.Id = apat.IdPatologia where apat.IdAtencion = a.Id
+										) 
+		from	#dataA1 a
+		order by FechaHoraMedico DESC
+	end
+
+	if @Accion = 'A2'
+	begin
+		-- Del dia --
+		--drop table #dataA2
+		select	IdBloqueHora = blo.Id,  
+				hor.NombreMedico, 
+				hor.Especialidad,
+				hor.IdMedico,
+				IdPaciente = hor.IdPaciente, 
+				NombrePaciente = isnull(hor.Nombrepaciente,'Disponible'), 
+				IdAtencion, 
+				EstadoAtencion = hor.EstadoAtencion, 
+				FotoPerfil, 
+				NSP,
+				hor.ConfirmaPaciente, 
+				hor.Cobrar, 
+				hor.IdConvenio,
+				DiffHora		=	@zonaHoraPaciente - hor.ZonaHoraria,
+				FechaHoraMedico	=	(Cast(hor.fecha  AS DATETIME) + Cast(blo.HoraDesde AS DATETIME))	,
+				blo.HoraDesde	,
+				blo.HoraHasta
+		into	#dataA2
+		from	dbo.BloquesHoras blo 
+				left join dbo.VwHorasMedicos hor 
+				on	hor.IdBloqueHora	=	blo.Id 
+				and hor.Fecha			=	convert(date, dbo.getdate2()) 
+		where	hor.IdPaciente			=	@IdPaciente   -- 11-- 
+		and		(hor.estadoAtencion		=	'I' or (hor.EstadoAtencion = 'T' and isnull(nsp,0) = 1)) 
+
+		select	*,
+				HoraDesdeText	= CONVERT(char(10), dateadd(hour,DiffHora,HoraDesde)),
+				HoraHastaText	= CONVERT(char(10), dateadd(hour,DiffHora,HoraHasta)),
+				Fecha			= dateadd(hour,DiffHora,FechaHoraMedico) 
+		from	#dataA2
+		order by FechaHoraMedico DESC
+
+	end
+
+	if @Accion = 'A3'
+	begin
+		-- Proximas horas paciente
+		--drop table #dataA3
+		select	IdMedico,
+				NombreMedico, 
+				IdHora, 
+				IdBloqueHora, 
+				IdAtencion,
+				IdPaciente,
+				NombrePaciente,
+				EstadoAtencion, 
+				Especialidad, 
+				CorreoPaciente, 
+				CorreoMedico, 
+				NSP,
+				HoraHasta	,
+				HoraDesde	,
+				Cobrar, 
+				confirmaPaciente, 
+				FotoPerfil, 
+				IdConvenio,
+				DiffHora		=	@zonaHoraPaciente - ZonaHoraria,
+				FechaHoraMedico	=	(Cast(Fecha  AS DATETIME) + Cast(HoraDesde AS DATETIME))	
+		into	#dataA3
+		from	VwHorasMedicos 
+		where	IdPaciente		= @IdPaciente  --11
+		and		EstadoAtencion	= 'I' 
+		and		Fecha > CONVERT(date, dbo.GetDate2())
+		--// Se elimina restriccion de 8 horas segun definió Inti 12/02/2020 and concat(convert(date, Fecha , 105), ' ', HoraDesde, '.000') >=  dateadd(hour,+8, dbo.getdate2())
+		
+		select	*,
+				HoraDesdeText	= CONVERT(char(5), dateadd(hour,DiffHora,HoraDesde)),
+				HoraHastaText	= CONVERT(char(5), dateadd(hour,DiffHora,HoraHasta)),
+				Fecha			= dateadd(hour,DiffHora,FechaHoraMedico), 
+				FechaText		= CONVERT(varchar(10),  dateadd(hour,DiffHora,FechaHoraMedico), 103)
+		from	#dataA3
+		order by FechaHoraMedico DESC
+
+		
+	end
+
+
+end
+GO

@@ -1,0 +1,132 @@
+﻿@model WebMVC.Models.AtencionViewModel
+@using Microsoft.Extensions.Configuration
+@using System.Globalization
+@inject IConfiguration Configuration
+
+@{
+    ViewData["Title"] = "Paciente";
+    Layout = "_LayoutPaciente";
+    var baseUrlServices = Configuration["ServicesUrl"];
+}
+
+
+@section Scripts {
+    <script type="module">
+        import { init } from '../../js/Paciente/compra-custom.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+            console.log(@ViewBag.Mensaje);
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+            var externo = '@ViewBag.externo';
+            window.externo = externo;
+            var idCliente = @ViewBag.idCliente;
+            window.idCliente = idCliente;
+            var host = '@ViewBag.HostURL';
+            window.host = host;
+            window.servicesUrl = '@ViewBag.servicesUrl';
+            window.servicesUrlPago = '@ViewBag.servicesUrlPago';
+            window.publicKey = '@ViewBag.publicKey';
+            var model = @Html.Raw(Json.Serialize(Model));
+            window.modelVista = model;
+        })()
+    </script>
+}
+
+<!-- WOW -->
+
+<div class="wow">
+    <div class="wow__title">
+        <h2>
+        </h2>@*
+        <button class="btn btn-outline-primary">
+        Descargar Boleta
+        </button>*@
+    </div>
+    <div class="wow__container">
+        <!-- Tabs -->
+        <!-- Tabs -->
+        <!-- Lista -->
+        <div class="wow__lista_compra">
+            <!-- Body Lista -->
+            <div class="wow__lista-body_compra">
+                <!-- Exámenes -->
+                <div class="tituloCompra">
+                    <img src="/img/check-circle.svg" class="imgCircleCheck" />
+                    <h2 class="titleCompra">COMPRA EXITOSA</h2>
+                </div>
+                @if (Model.interconsultas.Count > 0)
+                {
+                    <div class="wow__lista-item" id="listaInterconsulta">
+                        <div class="wow__lista-item-header">
+                            <div class="wow__lista-item-title">
+                                interconsultas
+                            </div>
+                        </div>
+                        <div class="wow__lista-item-body" style="flex-direction:column">
+                            @foreach (var esp in Model.interconsultas)
+                            {
+                                if (Convert.ToDecimal(esp.Id) > 0)
+                                {
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <div class="ddata-profesional">
+                                            <div class="nombre">@esp.NombreMedico</div>
+                                            <div class="especialidad">@esp.Especialidad</div>
+                                        </div>
+                                        <div class="interconsulta-horario">
+                                            @esp.FechaText<p id="precio_@esp.IdMedicoHora"></p>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+        <!-- Lista -->
+        <div class="d-flex">
+            <div class="wow__container-titulo-medico-compra">
+                <p class="tituloMedicoCompra">
+                    <b>¡Buenas noticias,</b> has encontrado todo en <b>un solo lugar!</b>
+                </p>
+                <p class="textoMedicoCompra-sinimg">
+                    Hemos validado tu medio de pago y te enviaremos un correo de confirmación en los próximos minutos con el detalle de tu compra.
+                </p>
+                <p class="textoMedicoCompra-sinimg-imp">IMPORTANTE:</p>
+                <p class="textoMedicoCompra">
+                    @*<img src="~/img/momento-wow/check-cuadro.svg" />*@
+                    Si compraste fármacos, te llegará el detalle desde nuestra farmacia FARMAZON.
+                </p>
+                <p class="textoMedicoCompra">
+                    @*<img src="~/img/momento-wow/check-cuadro.svg" />*@
+                    Si compraste una interconsulta, te llegará la confirmación de la hora.
+                </p>
+                <p class="textoMedicoCompra">
+                    @*<img src="~/img/momento-wow/check-cuadro.svg" />*@
+                    Si compraste exámenes, la boleta te llegará después de la toma de la muestra.
+                </p>
+                <p class="textoMedicoCompra-sinimg-footer">
+                    Medismart.live, en salud todo lo que necesitas en un solo lugar!
+                </p>
+
+                <div>
+                    <button id="volverInicio" class="btn btn-primary wow__btn-inicio">
+                        Ir al Inicio
+                    </button>
+                </div>
+            </div>
+
+            <div class="imgMedicoCompra">
+                <img src="~/img/momento-wow/Doc-1.png" class="imagenMedicoCompra__sm" />
+                <i class="elipseSombra"></i>
+                @*<i class="elipseColor"></i>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end: WOW -->

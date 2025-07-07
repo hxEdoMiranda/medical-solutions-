@@ -1,0 +1,516 @@
+﻿import { getMedicosHoraProxima } from '../apis/agendar-fetch.js'
+import { personByUser } from '../apis/personas-fetch.js';
+import { getRutUsuario, personaFotoPerfil, agendar } from "../shared/info-user.js";
+import { valorizar} from "../apis/medipass-fetch.js";
+
+
+
+
+
+var rutUsuario = "";
+var verificacionRedirect;
+
+function formatNumber(num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
+}
+
+export async function init(data) {
+
+    var parsedUrl = new URL(window.location.href);
+    verificacionRedirect = parsedUrl.href.substring(parsedUrl.href.lastIndexOf('=') + 1);
+    console.log(verificacionRedirect);
+
+    if (verificacionRedirect != "true")
+         verificacionRedirect = false;
+
+    await agendar(verificacionRedirect);
+
+    let page = document.getElementById('page');
+    page.innerHTML = "Agendar atención";
+
+
+    rutUsuario = await getRutUsuario();
+    
+
+
+    
+
+
+    var todayDate = moment().startOf('day');
+
+    var TODAY = todayDate.format('YYYY-MM-DD');
+    document.querySelector('[id="fechaBusqueda"]').value = TODAY;
+
+    cargarEspecialidades(data.especialidades);
+    cargarBloquesHora(data.bloquesHoras);
+
+    // let nombreSaludo = document.getElementById('nombreSaludo');
+    // nombreSaludo.textContent = 'Maira';
+
+    cargarMedicos();
+
+    $(".itemEspecialidad").click(function () {
+        //$("#especialidades").append('<a class="dropdown-item itemEspecialidad" data_id="' + especialidad.id + '" href="#">' + especialidad.nombre+'</a>');
+
+        var idEspecialidad = $(this).data("id");
+        var textEspecialidad = $(this).text();
+        $("#especialidadSeleccionada").val(idEspecialidad);
+        $("#dropdownMenuButton").text(textEspecialidad);
+
+        //alert("Id :" + $("#especialidadSeleccionada").val() + ", Nombre: " + textEspecialidad);
+        clearProfesionales();
+        cargarMedicos();
+
+
+    });
+    $("#bloquesHora").change(function () {
+
+        cargarMedicos();
+    });
+    $("#fechaBusqueda").change(function () {
+        if (document.querySelector('[id="fechaBusqueda"]').value < TODAY) {
+            Swal.fire("", "La fecha seleccionada no puede ser menor a la fecha de hoy", "warning");
+            document.querySelector('[id="fechaBusqueda"]').value = TODAY;
+            return;
+        }
+        cargarMedicos();
+    });
+    $("#emailPaciente").inputmask({
+        mask: "*{1,20}[.*{1,20}][.*{1,20}][.*{1,20}]@*{1,20}[.*{2,6}][.*{1,2}]",
+        greedy: false,
+        onBeforePaste: function (pastedValue, opts) {
+            pastedValue = pastedValue.toLowerCase();
+            return pastedValue.replace("mailto:", "");
+        },
+        definitions: {
+            '*': {
+                validator: "[0-9A-Za-z!#$%&'*+/=?^_`{|}~\-]",
+                cardinality: 1,
+                casing: "lower"
+            }
+        }
+    });
+    $("#telefonoPaciente").inputmask("mask", {
+        "mask": "(+56) 99 999 9999"
+    });
+
+
+};
+
+
+
+
+
+async function iterarMedicos(medico, index, array) {
+    {
+
+        //[Computed] public bool IdModeloAtencion { get; set; }
+        //[Computed] public bool IdReglaPago { get; set; }
+        console.log(medico)
+        let divCajMedico = document.createElement('div');
+        divCajMedico.classList.add('col-12');
+        divCajMedico.classList.add('col-sm-6');
+        divCajMedico.classList.add('col-lg-4');
+        divCajMedico.classList.add('col-xl-3');
+        divCajMedico.classList.add('mb-3');
+        divCajMedico.classList.add('cajaInfoMedico');
+        divCajMedico.setAttribute('data-idMedicoHora', medico.idMedicoHora);
+        divCajMedico.setAttribute('data-nombreMedico', medico.nombreMedico);
+        divCajMedico.setAttribute('data-tituloMedico', medico.especialidad);
+        divCajMedico.setAttribute('data-prefijoProfesional', medico.prefijoProfesional);
+        divCajMedico.setAttribute('data-infoMedico', medico.infoPersona1);
+        divCajMedico.setAttribute('data-idMedico', medico.idMedico);
+        divCajMedico.setAttribute('data-codigoPrestacion', medico.codigoPrestacion);
+        divCajMedico.setAttribute('data-rutMedico', medico.rutMedico);
+        divCajMedico.setAttribute('data-especialidad', medico.especialidad);
+        divCajMedico.setAttribute('data-fecha', medico.fecha);
+        divCajMedico.setAttribute('data-m', medico.idModeloAtencion);
+        divCajMedico.setAttribute('data-r', medico.idReglaPago);
+        divCajMedico.setAttribute('data-c', medico.idConvenio);
+        divCajMedico.setAttribute('data-idSucursal', medico.idSucursal.toString() );
+        divCajMedico.setAttribute('data-idLugarAtencion', medico.idLugarAtencion.toString() );
+
+
+        if (!medico.fotoPerfil.includes('Avatar.svg')) {
+            divCajMedico.setAttribute('data-fotoMedico', baseUrl + medico.fotoPerfil.replace(/\\/g, '/'));
+        }
+        else {
+            divCajMedico.setAttribute('data-fotoMedico', baseUrlWeb + medico.fotoPerfil);
+        }
+
+        //if (medico.fotoPerfil != null)
+        //    divCajMedico.setAttribute('data-fotoMedico', baseUrl + medico.fotoPerfil.replace(/\\/g, '/'));
+        //else
+        //    divCajMedico.setAttribute('data-fotoMedico', '/metronic_demo7/assets/media/users/noperfil.png');
+        divCajMedico.addEventListener("click", async function () {
+            //valorizarParticular(nombreEspecialidad,rutPaciente, rutMedico,codigoPrestacion, genero)
+
+
+            var targetElement = event.target || event.srcElement;
+            var cajaInfo = targetElement.closest('.cajaInfoMedico');
+
+            
+           
+            document.getElementById("divPerfilProfesional").innerHTML = "";
+
+
+            let divPerfilProfesional = document.createElement('div');
+            divPerfilProfesional.classList.add('perfil-profesional');
+
+
+            //Header Perfil
+            let divHeaderPerfil = document.createElement('div');
+            divHeaderPerfil.classList.add('header-perfil');
+
+            let divFotoProfesional = document.createElement('img');
+            divFotoProfesional.classList.add('foto-profesional');
+            divFotoProfesional.src = cajaInfo.getAttribute('data-fotoMedico');
+            divHeaderPerfil.appendChild(divFotoProfesional);
+
+            let divDataPerfil = document.createElement('div');
+            divDataPerfil.classList.add('data');
+
+
+            let spanNombreProfesional = document.createElement('span');
+            spanNombreProfesional.classList.add('nombre-profesional');
+
+            let spanPrefijoProfesional = document.createElement('span');
+            spanPrefijoProfesional.classList.add('titulo-profesional');
+            spanPrefijoProfesional.innerHTML = cajaInfo.getAttribute('data-prefijoProfesional') + ' ';
+
+
+            let labelNombreProfesional = document.createElement('span');
+            labelNombreProfesional.innerHTML = cajaInfo.getAttribute('data-nombreMedico');
+
+            spanNombreProfesional.appendChild(spanPrefijoProfesional);
+            spanNombreProfesional.appendChild(labelNombreProfesional);
+
+
+            divDataPerfil.appendChild(spanNombreProfesional);
+
+            let spanTituloProfesional = document.createElement('span');
+            spanTituloProfesional.classList.add('titulo-profesional');
+            spanTituloProfesional.innerHTML = cajaInfo.getAttribute('data-tituloMedico');
+
+            divDataPerfil.appendChild(spanTituloProfesional);
+
+
+            divHeaderPerfil.appendChild(divDataPerfil);
+
+            divPerfilProfesional.appendChild(divHeaderPerfil);
+            //Fin Header Perfil
+
+            //Body Profesional
+            let divBodyProfesional = document.createElement('div');
+            divBodyProfesional.classList.add('body-profesional');
+
+            let parrafoInfo = document.createElement('p');
+            parrafoInfo.innerHTML = cajaInfo.getAttribute('data-infoMedico');
+            divBodyProfesional.appendChild(parrafoInfo);
+
+            
+            var m = cajaInfo.getAttribute('data-m');
+            var r = cajaInfo.getAttribute('data-r');
+            
+            let tituloConvenios = document.createElement('h3');
+            tituloConvenios.innerHTML = "Convenios";
+            divBodyProfesional.appendChild(tituloConvenios);
+
+            let divImagenesConvenios = document.createElement('div');
+            divImagenesConvenios.classList.add('cont-convenios');
+
+            let divWebPay = document.createElement('img');
+            divWebPay.classList.add('img-convenio');
+            divWebPay.classList.add('mr-5');
+            divWebPay.src = "/img/webpay.png";
+            divImagenesConvenios.appendChild(divWebPay);
+
+            let divFonasa = document.createElement('img');
+            divFonasa.classList.add('img-convenio');
+            divFonasa.src = "/img/fonasa.svg";
+            divImagenesConvenios.appendChild(divFonasa);
+
+            divBodyProfesional.appendChild(divImagenesConvenios);
+
+
+            let divValorConsulta = document.createElement('div');
+            divValorConsulta.classList.add('valor-consulta');
+
+
+            let spanValorConvenio = document.createElement('span');
+            spanValorConvenio.classList.add('label-valor');
+            spanValorConvenio.innerHTML = "Valor Convenio ";
+            divValorConsulta.appendChild(spanValorConvenio);
+
+            let spanVConvenio = document.createElement('span');
+            spanVConvenio.classList.add('valor');
+            let smallSimbolo = document.createElement('small');
+            smallSimbolo.innerHTML = "$ ";
+            spanVConvenio.appendChild(smallSimbolo);
+            let spanPrecioConvenio = document.createElement('label');
+            spanPrecioConvenio.innerHTML = formatNumber(medico.valorAtencion);
+            spanVConvenio.appendChild(spanPrecioConvenio);
+
+            divValorConsulta.appendChild(spanVConvenio);
+
+            divBodyProfesional.appendChild(divValorConsulta);
+
+
+            divPerfilProfesional.appendChild(divBodyProfesional);
+            //Fin Body Profesional
+
+
+            //Boton Aceptar
+            let divBotones = document.createElement('div');
+            divBotones.classList.add('row');
+            divBotones.classList.add('mt-4');
+
+
+            let divCol = document.createElement('div');
+            divCol.classList.add('col');
+
+            let buttonInside = document.createElement('button');
+            buttonInside.setAttribute('class', 'btn btn-primary btn-block btn-sm');
+            buttonInside.innerHTML = "Aceptar";
+
+
+            buttonInside.addEventListener("click", async function () {
+
+
+
+                var url = "/Paciente/Agenda_1" + "?idMedico=" + cajaInfo.getAttribute('data-idMedico') + "&fechaPrimeraHora=" + cajaInfo.getAttribute('data-fecha') + "&m=" + cajaInfo.getAttribute('data-m') + "&r=" + cajaInfo.getAttribute('data-r') + "&c=" + cajaInfo.getAttribute('data-c');
+                window.location.href = url;
+
+            });
+
+
+            divBotones.appendChild(divCol);
+            divBotones.appendChild(buttonInside);
+
+
+
+
+
+            divPerfilProfesional.appendChild(divBotones);
+            //Fin boton Aceptar
+
+
+
+
+
+
+
+
+
+            document.getElementById("divPerfilProfesional").appendChild(divPerfilProfesional);
+            document.getElementById("divPerfilProfesional").style.display = "block";
+
+
+        });
+
+
+        let divCard = document.createElement('div');
+        divCard.classList.add('card');
+        divCard.classList.add('caja-profesional');
+
+        let fotoProfesional = document.createElement('img');
+        // fotoProfesional.classList.add('card-img-top');
+
+        if (!medico.fotoPerfil.includes('Avatar.svg')) {
+            fotoProfesional.src = baseUrl + medico.fotoPerfil.replace(/\\/g, '/');
+        }
+        else {
+            fotoProfesional.src = baseUrlWeb + medico.fotoPerfil;
+        }
+
+
+
+        let divCardBody = document.createElement('div');
+        divCardBody.classList.add('card-body');
+
+        let divContData = document.createElement('div');
+        divContData.classList.add('cont-data');
+
+        let divDataAtencion = document.createElement('div');
+        divDataAtencion.classList.add('data-atencion');
+
+
+        let calendarIcon = document.createElement('i');
+        calendarIcon.classList.add('fal');
+        calendarIcon.classList.add('fa-calendar-alt');
+
+        let spanHeader = document.createElement('span');
+        spanHeader.classList.add('header-aviso-atencion');
+        spanHeader.appendChild(calendarIcon);
+
+
+        let labelProximaAtencion = document.createElement('span');
+
+        labelProximaAtencion.innerHTML = "Próxima Atención";
+
+        spanHeader.appendChild(labelProximaAtencion);
+
+        divDataAtencion.appendChild(spanHeader);
+
+
+        let divClasificación = document.createElement('div');
+        divClasificación.classList.add("calificacion");
+
+        for (var i = 0; i < 5; i++) {
+            let divEstrellaPositiva = document.createElement('i');
+            divEstrellaPositiva.classList.add('fas');
+            divEstrellaPositiva.classList.add('fa-star');
+            divEstrellaPositiva.classList.add('positiva');
+            divClasificación.appendChild(divEstrellaPositiva);
+
+        }
+        for (var i = 0; i < 0; i++) {
+            let divEstrellaNeutra = document.createElement('i');
+            divEstrellaNeutra.classList.add('fal');
+            divEstrellaNeutra.classList.add('fa-star');
+            divClasificación.appendChild(divEstrellaNeutra);
+        }
+
+
+        divDataAtencion.appendChild(divClasificación);
+
+        let spanNombreMedico = document.createElement('span');
+        spanNombreMedico.classList.add('nombre-profesional');
+
+
+        let spanTituloProfesionalNombre = document.createElement('span');
+        spanTituloProfesionalNombre.classList.add('titulo-profesional');
+        spanTituloProfesionalNombre.textContent = medico.prefijoProfesional + ' ';
+
+        spanNombreMedico.appendChild(spanTituloProfesionalNombre);
+
+        let labelNombreProfesional = document.createElement('span');
+        labelNombreProfesional.innerHTML = medico.nombreMedico;
+        spanNombreMedico.appendChild(labelNombreProfesional);
+        divDataAtencion.appendChild(spanNombreMedico);
+
+
+        let spanTituloProfesional = document.createElement('span');
+        spanTituloProfesional.classList.add('titulo-profesional');
+        spanTituloProfesional.innerHTML = medico.especialidad;
+        divDataAtencion.appendChild(spanTituloProfesional);
+
+        let spanFechaAtencion = document.createElement('span');
+        spanFechaAtencion.classList.add('d-block');
+        spanFechaAtencion.classList.add('fecha-atencion');
+
+        let lblFechaAtencion = document.createElement('strong');
+        lblFechaAtencion.innerHTML = medico.fechaText;
+
+
+        spanFechaAtencion.appendChild(lblFechaAtencion);
+
+        divDataAtencion.appendChild(spanFechaAtencion);
+
+
+        let spanHoraAtencion = document.createElement('span');
+        spanHoraAtencion.classList.add('d-block');
+        spanHoraAtencion.classList.add('hora-atencion');
+
+        let lblHoraAtencion = document.createElement('span');
+        lblHoraAtencion.innerHTML = medico.horaDesdeText;
+
+        spanHoraAtencion.appendChild(lblHoraAtencion);
+        divDataAtencion.appendChild(spanHoraAtencion);
+
+        if (index === 0) {
+            let lblHoraMasProxima = document.createElement('span');
+            lblHoraMasProxima.classList.add('d-block');
+            lblHoraMasProxima.classList.add('aviso-hora');
+            lblHoraMasProxima.innerHTML = "Hora más próxima";
+            divDataAtencion.appendChild(lblHoraMasProxima);
+
+        }
+
+        let spanHoraAtencionProxima = document.createElement('span');
+        spanHoraAtencionProxima.classList.add('d-block');
+        spanHoraAtencionProxima.classList.add('aviso-hora');
+
+        let divOpciones = document.createElement('div');
+
+        let linkSearch = document.createElement('a');
+        linkSearch.href = "#";
+        let iconSearch = document.createElement('i');
+        iconSearch.classList.add("fal");
+        iconSearch.classList.add("fa-search");
+        linkSearch.appendChild(iconSearch);
+
+
+        let linkCalendar = document.createElement('a');
+        linkCalendar.href = "#";
+        let iconSearch2 = document.createElement('i');
+        iconSearch2.classList.add("fal");
+        iconSearch2.classList.add("fa-calendar-alt");
+        linkCalendar.appendChild(iconSearch2);
+
+
+        divOpciones.classList.add('caja-opciones');
+
+        divOpciones.appendChild(linkSearch);
+        divOpciones.appendChild(linkCalendar);
+
+
+        divContData.appendChild(divDataAtencion);
+        divContData.appendChild(divOpciones);
+        divCardBody.appendChild(divContData);
+        divCard.appendChild(fotoProfesional);
+        divCard.appendChild(divCardBody);
+        divCajMedico.appendChild(divCard);
+        let divProfesionales = document.getElementById('divProfesionales');
+
+        divProfesionales.appendChild(divCajMedico);
+
+    }
+}
+async function cargarMedicos() {
+    const especialidad = $("#especialidadSeleccionada").val();
+    const bloque = $("#bloquesHora").val();
+    const fecha = document.querySelector('[name="fechaBusqueda"]').value;
+
+    let formatoFecha = moment(fecha.replace("-", ""), "YYYYMMDD").format("DD-MM-YYYY")
+    //let persona = await personByUser(uid);
+
+    $("#tab-content").empty();
+    let medicos = await getMedicosHoraProxima(especialidad, bloque, fecha, uid);
+
+    let divMedicos = document.getElementById('tab-content');
+
+    if (medicos.length == 0) {
+        Swal.fire("", "No hay profesionales disponibles para la especialidad seleccionada", "info")
+    }
+
+
+    clearProfesionales('divProfesionales');
+
+    divProfesionales.innerHTML = "";
+    medicos.forEach(iterarMedicos);
+    if ($(".kt_widget4_tab1_content").length == 0) {
+
+        $("#tab-content").empty();
+        document.querySelector('[id="pnlMedicos"]').setAttribute('style', 'display:block')
+    }
+}
+
+
+async function clearProfesionales(elementID) {
+    document.getElementById(elementID).innerHTML = "";
+}
+
+
+
+function cargarEspecialidades(especialidades) {
+    especialidades.forEach(especialidad => {
+        $("#especialidades").append('<a class="dropdown-item itemEspecialidad" data-id="' + especialidad.id + '" href="#">' + especialidad.nombre + '</a>');
+    });
+}
+function cargarBloquesHora(bloqueshora) {
+    bloqueshora.forEach(bloques => {
+        $("#bloquesHora").append('<option value="' + bloques.idBloqueHora + '">' + moment(bloques.horaDesdeText, "HH:mm:ss").format("HH:mm") /*+ ' - ' + bloques.horaHastaText*/ + '</option>');
+    });
+}
+

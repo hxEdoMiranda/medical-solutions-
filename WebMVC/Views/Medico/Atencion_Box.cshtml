@@ -1,0 +1,1011 @@
+﻿@model WebMVC.Models.AtencionViewModel
+
+@{
+    ViewBag.Title = "Medical | Sitio Médicos";
+    Layout = "_Layout";
+    ViewData["view"] = Roles.Medico;
+
+    var atentionId = Model.Atencion.HoraMedico.IdEspecialidad;
+    var tituloInforme = atentionId.ToString() == "129" ? "Informe de enfermería" : "Informe Médico";
+    var hiddenUnab = "";
+    var hiddenUOHBoxEspecial = "";
+    var isPsicopedagogiaUnab = false;
+    var hiddenPsicopedagogiaUnab = "";
+    var tituloControl = "Control";
+    var tituloIndicaciones = "Indicaciones";
+    var tituloCertificadoMedico = "Certificado Médico";
+    var psicologia = false;
+    var isPositivaPsicologiaColombia = false;
+    var hiddenPositivaPsicologia = "";
+    var idClientePositiva = 722;
+    
+       @if (ViewBag.HostURL.ToString().Contains("localhost") || ViewBag.HostURL.ToString().Contains("qa.")){
+                 idClientePositiva = 443;
+           }
+    if (ViewBag.HostURL.ToString().Contains("uoh."))
+    {
+        tituloInforme = "Reporte de Salud";
+        hiddenUOHBoxEspecial = ViewBag.boxEspecial == 1 ? "hidden" : string.Empty;
+    }
+
+    if (ViewBag.boxEspecial == 1)
+    {
+        tituloIndicaciones = "Plan";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("unabactiva.") || ViewBag.HostURL.ToString().Contains("activa.unab."))
+    {
+        tituloIndicaciones = isPsicopedagogiaUnab ? "Acuerdos PSP" : "Plan de manejo";
+    }
+
+    var tituloForm = "Reporte Médico";
+    var tituloAnamesis = "Anamnesis/Hipótesis Diagnóstica";
+    var tituloDg = "Diagnóstico";
+    var hiddenPsico = "hidden";
+    var hiddenPNutri = "hidden";
+    var tituloOtrosEx = "Otros Exámenes";
+    var hiddenPsicoInput = "";
+    var hiddenNutriInput = "";
+
+    if (ViewBag.HostURL.ToString().Contains("unabactiva.") || ViewBag.HostURL.ToString().Contains("activa.unab."))
+    {
+        tituloInforme = "Reporte atención de salud";
+        hiddenUnab = "hidden";
+        tituloForm = "Reporte de salud";
+        tituloAnamesis = "Anamnesis / Antecedentes";
+        tituloIndicaciones = "Plan de manejo";
+
+        // Especialidad
+        string especialidad = Model.Atencion.HoraMedico?.Especialidad ?? Model.Atencion.Especialidad ?? string.Empty;
+        isPsicopedagogiaUnab = Util.RemoveAccent(especialidad).ToLower().Contains("psicopedagogia");
+
+        if (isPsicopedagogiaUnab)
+        {
+            tituloForm = "Reporte de Psicopedagogía";
+            tituloAnamesis = "Anamnesis / Antecedentes Psicopedagógicos";
+            tituloIndicaciones = "Acuerdos PSP";
+            tituloCertificadoMedico = "Sugerencias, derivaciones";
+            tituloControl = "Próxima sesión PSP";
+            hiddenPsicopedagogiaUnab = "hidden";
+        }
+    }
+
+    if (Model.Atencion.HoraMedico.IdEspecialidad == 47) // psicologia
+    {
+        tituloForm = "Reporte de salud";
+        tituloAnamesis = "Anamnesis/ Antecedentes área Psicología";
+        tituloDg = "Diagnostico C10 con Snomed";
+        hiddenPsico = "";
+        tituloOtrosEx = "Diagnóstico área psicológica";
+        tituloIndicaciones = "Indicaciones/Plan";
+        hiddenPsicoInput = "hidden";
+    }
+    else if (Model.Atencion.HoraMedico.IdEspecialidad == 54) // nutricion y dietetica
+    {
+        tituloForm = "Reporte de salud";
+        tituloAnamesis = "Anamnesis/ Antecedentes nutricionales - Hábitos";
+        tituloDg = "Diagnostico C10 con Snomed";
+        hiddenPNutri = "";
+        tituloOtrosEx = "Diagnóstico área nutricional";
+        tituloIndicaciones = "Plan/Indicaciones";
+        hiddenNutriInput = "hidden";
+
+    }
+    else if (Model.Atencion.HoraMedico.IdEspecialidad == 4) // pediatria
+    {
+        tituloAnamesis = "Anamnesis/ Antecedentes médicos/ Antecedentes familiares";
+        tituloDg = "Diagnostico C10 con Snomed";
+        tituloIndicaciones = "Indicaciones no farmacológicas";
+    }
+
+    if ((Model.Atencion.HoraMedico?.IdEspecialidad ?? Model.Atencion.IdEspecialidad) == 47) // psicologia
+    {
+        psicologia = true;
+
+
+    }
+    else if ((Model.Atencion.HoraMedico?.IdEspecialidad ?? Model.Atencion.IdEspecialidad) == 91) // psicologia
+    {
+        psicologia = true;
+    }
+
+    if (psicologia && Model.Atencion.IdCliente == idClientePositiva && Model.Atencion.CodigoPais == "CO"){
+        hiddenPositivaPsicologia = "hidden";
+        isPositivaPsicologiaColombia = true;
+        tituloControl = "Conclusiones y comentarios";
+    }
+    
+
+}
+@section Styles {
+    <link href="~/Toasty.js-master/assets/toasty-custom-styles.css" rel="stylesheet" />
+    <link href="~/Toasty.js-master/assets/prism/prism.css" rel="stylesheet" />
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css">
+    <link href="~/metronic_demo7/assets/plugins/select2-v4/select2.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" />
+    <link href="~/metronic_demo7/assets/plugins/bootstrap-select/css/bootstrap-select.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" />
+    <style>
+        .swal2-styled2 {
+            border-left-color: #5D5D5D !important;
+            border-right-color: #5D5D5D !important;
+        }
+
+        .iti {
+            width: 100%
+        }
+
+    </style>
+}
+@if (Model.Atencion.Peritaje == true && (ViewBag.idConvenio == 42 || ViewBag.codConvenio == "TELE_PERITAJE_INMV" || ViewBag.codConvenio == "TELE_PERITAJE_CONSALUD" || ViewBag.codConvenio == "TELE_PERITAJE_BANMEDICA") && ViewBag.teleperitajeView)
+{
+    <partial name="~/Views/Shared/_Box-Atencion-Profesional-Peritaje.cshtml" model="Model" view-data="ViewData" />
+}
+else
+{
+    //TODO colombia incorporar otro reporte :
+
+    <partial name="~/Views/Shared/_Box-Atencion-Profesional.cshtml" model="Model" view-data="ViewData" />
+}
+
+
+
+
+
+<input type="hidden" id="headName2" />
+
+<div class="modal fade" id="kt_modal_3" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">@tituloInforme</h5>
+            </div>
+            <div class="modal-body" id="modalBody">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrar" data-dismiss="modal">Volver</button>
+                <button id="btnFinalizar" type="button" class="btn btn-brand">Firmar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--Invitacion profesionales asociados-->
+
+<div class="modal fade" id="kt_modal_4" data-backdrop="static" name="kt_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xs" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Invitar Profesionales asociados</h5>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <div class="form-group row mb-2" id="divProfesionalesAsociados">
+                    <label class="col-xl-4 col-lg-3 col-form-label">Asociar Profesional</label>
+                    <div class="col-lg-8 col-xl-8 validate">
+                        <div class="input-group">
+                            @if (ViewBag.HostURL.ToString().Contains("unabactiva.") || ViewBag.HostURL.ToString().Contains("activa.unab."))
+                            {
+                                <select name="profesionalesAsociados" id="profesionalesAsociados" class="form-control show-tick ms" multiple data-placeholder="Select"></select>
+                            }
+                            else
+                            {
+                                <select name="profesionalesAsociados" id="profesionalesAsociados" class="form-control show-tick ms select2" multiple data-placeholder="Select"></select>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row mb-2 mt-5 pt-5" @hiddenUnab>
+                    <div class="col-lg-12 col-xl-12">
+                        <div class="input-group">
+                            <label class="label text-warning">Sólo puede seleccionar 3 invitados para la llamada.</label>
+                        </div>
+                    </div>
+                </div>
+                @*<embed src="" id="visorInforme" type="application/pdf" width="100%" height="800px" />*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button id="btnConfirmarInvitados" type="button" class="btn btn-brand">Invitar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="modal-informe" data-backdrop="static" name="kt_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="overflow-y: scroll;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">@tituloInforme</h5>
+            </div>
+
+            <div class="modal-body" id="modalBody" style="margin:5px;padding:3.5rem !important; border:solid 40px lightgray">
+                <div class="row" style="border-bottom-style: groove;">
+                    <div id="informe" class="col-lg-6">
+                        @tituloInforme
+                    </div>
+                    <div class="col-lg-6 text-right">
+                        <span id="fechaInforme"></span>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-lg-6">
+                        <img id="logoConvenio" style="height:inherit; width:inherit !important" @*src="https://localhost:44363/upload/foto_convenio/16/file[0]_20201115014718_rjiucim3gzj.jpg"*@ />
+                        @*<div id="logoConvenio"></div>*@
+                    </div>
+                    <div class="col-lg-6 text-right">
+                        <div>
+                            <span id="nombreMedico"></span>
+                        </div>
+                        <div>
+                            <span id="especialidadMedico"></span>
+                        </div>
+                        @if (Model.Atencion.CodigoPais == "CO" || Model.Atencion.CodigoTelefono == "CO" || ViewBag.HostURL.ToString().Contains("gallagher.") || ViewBag.HostURL.ToString().Contains("ajg.medismart.") || ViewBag.HostURL.ToString().Contains("rappi.") || ViewBag.HostURL.ToString().Contains("aecsa.") || ViewBag.HostURL.ToString().Contains("bonnahealth.") || ViewBag.HostURL.ToString().Contains("bu."))
+                        {
+                            <div>
+                                CC: <span id="rutMedico"></span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                RUT: <span id="rutMedico"></span>
+                            </div>
+                        }
+                        <div>
+                            <span id="regMedico"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-lg-8">
+                        <div>Nombre Paciente: <span id="nombrePaciente"></span></div>
+                        @if (Model.Atencion.CodigoPais == "CO" && psicologia || ViewBag.HostURL.ToString().Contains("positiva.")){
+                            <div> Dirección de residencia: <span id="direccionPacienteCo"></span></div>
+                            <div> Ciudad: <span id="ciudadPacienteCo"></span></div>
+                            <div> Departamento: <span id="departamentoPacienteCo"></span></div>
+                            <div> Estado civil: <span id="estadoCivilPacienteCo"></span></div>
+                            <div> Fecha de nacimiento: <span id="fechaNacimientoPacienteCo"></span></div>
+                            <div> Sexo: <span id="sexoPacienteCo"></span></div>
+                        }
+                        <div @hiddenPositivaPsicologia>Domicilio: <span id="domicilioPaciente"></span></div>
+                        @if (Model.Atencion.CodigoPais == "CO")
+                        {
+                            <div @hiddenPositivaPsicologia id="divEstadoCivilPaciente">Estado Civil: <span></span></div>
+                            <div @hiddenPositivaPsicologia id="divEscolaridadPaciente">Escolaridad: <span></span></div>
+                            <div @hiddenPositivaPsicologia id="divNombreAcompanante">Acompañante: <span></span></div>
+                            <div @hiddenPositivaPsicologia id="divNombreResponsable">Responsable: <span></span></div>
+                        }
+                    </div>
+                    <div class="col-lg-4">
+
+                        @if (Model.Atencion.CodigoPais == "CO" || Model.Atencion.CodigoTelefono == "CO" || ViewBag.HostURL.ToString().Contains("gallagher.") || ViewBag.HostURL.ToString().Contains("ajg.medismart.") || ViewBag.HostURL.ToString().Contains("rappi.") || ViewBag.HostURL.ToString().Contains("aecsa.") || ViewBag.HostURL.ToString().Contains("bonnahealth.") || ViewBag.HostURL.ToString().Contains("bu."))
+                        {
+                            <div>
+                                CC: <span id="rutPaciente"></span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                Rut: <span id="rutPaciente"></span>
+                            </div>
+                        }
+                        <div>
+                            Edad: <span id="edad"></span>
+                        </div>
+
+                        @if (Model.Atencion.CodigoPais == "CO" && psicologia || ViewBag.HostURL.ToString().Contains("positiva.")){
+                            <div> Celular: <span id="celularPacienteCo"></span></div>
+                            <div> Correo electrónico: <span id="correoPacienteCo"></span></div>
+                            <div> Ocupación: <span id="ocupacionPacienteCo"></span></div>
+                            <div> Municipio: <span id="municipioPacienteCo"></span></div>
+                            <div> EPS: <span id="epsPacienteCo"></span></div>
+                        }
+                        
+                        @if (Model.Atencion.CodigoPais == "CO")
+                        {
+                            <div @hiddenPositivaPsicologia id="divPaisNacimientoPaciente">Natural de: <span></span></div>
+                            <div @hiddenPositivaPsicologia id="divCiudadNacimientoPaciente">Procedente de: <span></span></div>
+                            <div @hiddenPositivaPsicologia id="divTelefonoAcompanante">Tel. acompañante: <span></span></div>
+                            <div @hiddenPositivaPsicologia id="divTelefonoResponsable">Tel. responsable: <span></span>
+
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-lg-12">
+                        <div>Motivo de consulta del paciente <p id="molestia"></p></div>
+                        <div @hiddenPositivaPsicologia id="divMotivoResumen">Motivo de consulta del médico <p id="motivoConsultaMedico"></p></div>
+                        <div @hiddenPositivaPsicologia>@tituloAnamesis <p id="diagnosticoMedico"></p></div>
+                        <div @(isPsicopedagogiaUnab ? string.Empty : "hidden")>Diagnóstico Psicopedagógico <p id="diagnosticoPsicopedagogico"></p></div>
+                        <div @(isPsicopedagogiaUnab ? string.Empty : "hidden")>Objetivos de la sesión <p id="objetivosDeLaSesion"></p></div>
+                        <div>@tituloDg <p id="patologias"></p></div>
+                        <div @hiddenUOHBoxEspecial @hiddenPsicoInput @hiddenPsicopedagogiaUnab>
+                            Exámenes
+                            <p id="examenes"></p>
+                            <p id="examenMedico" @hiddenNutriInput></p>
+                        </div>
+                        <div @hiddenPositivaPsicologia @hiddenUOHBoxEspecial @hiddenPsico>@tituloOtrosEx 
+                            <p id="examenMedico2"></p>
+                        </div>
+                        <div @hiddenUOHBoxEspecial @hiddenPNutri>
+                            @tituloOtrosEx
+                            <p id="examenMedico3"></p>
+                        </div>
+                        <div @hiddenUOHBoxEspecial @hiddenPsicoInput @hiddenNutriInput @hiddenPsicopedagogiaUnab>Medicamentos <p id="medicamentosMedico"></p></div>
+                        <div @hiddenPositivaPsicologia>@tituloIndicaciones <p id="tratamientoMedico"></p></div>
+                        <div @hiddenUOHBoxEspecial @hiddenNutriInput @hiddenPositivaPsicologia>@tituloCertificadoMedico <p id="certificadoMedico"></p></div>
+                        @if (Model.Atencion.CodigoPais == "CO" || Model.Atencion.CodigoTelefono == "CO" || ViewBag.HostURL.ToString().Contains("gallagher.") || ViewBag.HostURL.ToString().Contains("ajg.medismart.") || ViewBag.HostURL.ToString().Contains("rappi.") || ViewBag.HostURL.ToString().Contains("aecsa.") || ViewBag.HostURL.ToString().Contains("bonnahealth.") || ViewBag.HostURL.ToString().Contains("bu."))
+                        {
+                            <div @hiddenPositivaPsicologia>Incapacidad Médica<p id="incapacidadMedica"></p></div>
+                        }
+                        @if (Model.Atencion.CodigoPais == "CO" && psicologia || ViewBag.HostURL.ToString().Contains("positiva."))
+                        {
+                            <div id="containerHistoriaDelProblema"></div>
+                            <div id="containerDiagnostico"></div>
+                            <div id="containerPlanIntervencion"></div>
+                            <div id="containerAspectosSobresalientes"></div>
+                            <div id="containerAntecedentesHipotesisArea"></div>
+                            <div id="containerConclusiones"></div>
+                        }
+                        <div @hiddenUOHBoxEspecial @hiddenPositivaPsicologia>@tituloControl <p id="controlMedico"></p></div>
+                    </div>
+                </div>
+                <div class="form-group row mb-2 mt-5 pt-5">
+                    <div class="col-lg-12 col-xl-12">
+                        <div class="input-group">
+                        </div>
+                    </div>
+                </div>
+                @*<embed src="" id="visorInforme" type="application/pdf" width="100%" height="800px" />*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+                <button id="btnFirmar" type="button" class="btn btn-brand">Firmar</button>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+@if ((ViewBag.HostURL.ToString().Contains("positiva.") || ViewBag.HostURL.ToString().Contains("medical.")) && (Model.Atencion.IdCliente == idClientePositiva))
+{
+    <div id="modalDetallesContainer" class="modal-detalles-container modal" name="modalDetallesContainer" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-detalles p-5">
+        <div style="display: flex;justify-content: space-between;align-items: center;margin-bottom: 10px;">
+            <div class="shadow-sm p-2 rounded border border-light">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 16V12M12 8H12.01M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="#37A0AD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </div>
+
+            <button id="closeDetallesBtn" class="btn">
+                <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="#667085" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+        </div>
+       
+        <h2 class="mb-5">Datos de identificación - Paciente</h2>
+        <form id="form-modal-detalles">
+            <div class="d-flex flex-column">
+                <label class="font-weight-bold">Tipo y número de documento <span class="required-label">*</span></label>
+                <div class="d-inline-flex">
+                    @Html.DropDownListFor(m => m.atencionesAsistencias.TipoDocumento, @Model.fichaPaciente.GetTipoDocumento(), new { @class = "form-control rounded w-25 mr-3", id="detalles-tipo-documento" @*, required = "required"*@ })
+                    <input id="detalles-nro-documento" class="form-control w-75" type="text" value="@Model.fichaPaciente?.Identificador" placeholder="Ej: 11111000" />
+                </div>
+            </div>
+
+            <div class="d-flex flex-column">
+                <label for="nombre-asegurado" class="font-weight-bold">Nombre asegurado <span class="required-label">*</span></label>
+                 <input disabled name="nombre-asegurado" id="detalles-nombre-asegurado" class="form-control" type="text" value="" placeholder="Ej: Juan Perez" />
+            </div>
+
+            <div class="d-flex align-items-end">
+                <div class="d-flex flex-column mr-3 w-25">
+                    <label for="ciudad-asegurado" class="font-weight-bold">Ciudad asegurado</label>
+                    <input name="ciudad-asegurado" id="detalles-ciudad-asegurado" class="form-control" value="@Model.fichaPaciente?.Ciudad" placeholder="Ej: Cartagena" />
+                    
+                </div>
+
+                <div class="d-flex flex-column w-75">
+                    <label for="departamento-asegurado" class="font-weight-bold">Departamento asegurado</label>
+                    <input value="@Model.fichaPaciente?.Comuna" name="departamento-asegurado" id="detalles-departamento-asegurado" class="form-control" placeholder="Ej: Córdoba" />
+                    
+                </div>
+            </div>
+
+            <div class="d-flex align-items-end">
+                <div class="d-flex flex-column mr-3 w-25">
+                    <label for="estado-civil" class="font-weight-bold">Estado civil <span class="required-label">*</span></label>
+                    <select class="form-control rounded" name="estadoCivil" id="detalles-estado-civil">
+                        <!option value="S" @(Model.fichaPaciente?.EstadoCivil == "S" ? "selected" : "")>Soltero</!option>
+                        <!option value="C" @(Model.fichaPaciente?.EstadoCivil == "C" ? "selected" : "")>Casado</!option>
+                        <!option value="D" @(Model.fichaPaciente?.EstadoCivil == "D" ? "selected" : "")>Divorciado</!option>
+                        <!option value="V" @(Model.fichaPaciente?.EstadoCivil == "V" ? "selected" : "")>Viudo</!option>
+                    </select>
+                </div>
+
+                <div class="d-flex flex-column w-75">
+                    <label for="fecha-de-nacimiento" class="font-weight-bold">Fecha de nacimiento <span class="required-label">*</span></label>
+                    <input name="fecha-de-nacimiento" id="detalles-fecha-de-nacimiento" class="form-control" type="date"  />
+                </div>
+            </div>
+
+            <div class="d-flex align-items-end">
+                <div class="d-flex flex-column mr-3 w-25">
+                    <label for="edad" class="font-weight-bold">Edad <span class="required-label">*</span></label>
+                    <input disabled name="edad" id="detalles-edad" type="number" class="form-control" placeholder="Ej: 36" value="@Model.Atencion?.AtencionDatosAdicionales?.edad)" />
+                </div>
+
+                <div class="d-flex flex-column w-75">
+                    <label class="font-weight-bold">Sexo <span class="required-label">*</span></label>
+                    <div class="d-flex">
+                        <div class="d-flex align-items-center mr-3">
+                            <input id="detalles-sexo-masculino" name="sexo" value="M" class="form-control mr-3" type="radio" @(Model.fichaPaciente?.Genero == "M" ? "checked" : "") />
+                            <label for="sexo" class="m-0">Masculino</label>
+                        </div>
+                        <div class="d-flex align-items-center ">
+                            <input id="detalles-sexo-femenino" name="sexo" value="F" class="form-control mr-3" type="radio" @(Model.fichaPaciente?.Genero == "F" ? "checked" : "") />
+                            <label for="sexo" class="m-0">Femenino</label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="d-flex flex-column">
+                <label for="residencia" class="font-weight-bold">Dirección de residencia <span class="required-label">*</span></label>
+                <input name="residencia" id="detalles-direccion-de-residencia" class="form-control" type="text" value="@Model.fichaPaciente?.Direccion" placeholder="Ej: Calle 24 No 123-23" />
+            </div>
+
+            <div class="d-flex align-items-end">
+                <div class="d-flex flex-column mr-3 w-25">
+                    <label for="celular" class="font-weight-bold">Celular <span class="required-label">*</span></label>
+                    <input name="celular" id="detalles-celular" class="form-control" type="tel" value="@Model.fichaPaciente?.TelefonoMovil" />
+                </div>
+
+                <div class="d-flex flex-column w-75">
+                    <label for="correo-electronico" class="font-weight-bold">Correo electrónico <span class="required-label">*</span></label>
+                    <input name="correo-electronico" id="detalles-correo-electronico" class="form-control" type="email" value="@Model.fichaPaciente?.Correo" />
+                </div>
+            </div>
+
+            <div class="d-flex align-items-end">
+                <div class="d-flex flex-column mr-3 w-50">
+                    <label for="ocupacion" class="font-weight-bold">Ocupación <span class="required-label">*</span></label>
+
+                    <input value="@Model.Atencion.AtencionDatosAdicionales?.ocupacion" name="ocupacion" id="detalles-ocupacion" class="form-control" type="text" placeholder="Ej: Ingeniero" />
+                </div>
+
+                <div class="d-flex flex-column w-50">
+                    <label for="municipio" class="font-weight-bold">Municipio <span class="required-label">*</span></label>
+                    <input name="municipio" id="detalles-municipio" value="" class="form-control" placeholder="Ej: Montería" />
+                    
+                </div>
+            </div>
+
+            <div class="d-flex flex-column">
+
+                    <label for="empresa" class="font-weight-bold">Empresa <span class="required-label">*</span></label>
+                    <input value="@Model.fichaPaciente?.Empresa" disabled name="empresa" id="detalles-empresa" class="form-control" placeholder="Ej: Positiva" />
+
+            </div>
+          
+            <div class="d-flex flex-column">
+                <label for="eps" class="font-weight-bold">EPS <span class="required-label">*</span></label>
+                <input value="@Model.fichaPaciente?.eps" name="eps" id="detalles-eps" class="form-control" type="text" placeholder="Ej: Nueva eps" />
+            </div>
+
+            <div class="divbutton w-50 ml-auto">
+                <button type="button" id="guardarDetallesPaciente" class="btn w-100 h-100">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.83333 2.5V5.33333C5.83333 5.80004 5.83333 6.0334 5.92416 6.21166C6.00406 6.36846 6.13154 6.49594 6.28834 6.57584C6.4666 6.66667 6.69996 6.66667 7.16667 6.66667H12.8333C13.3 6.66667 13.5334 6.66667 13.7117 6.57584C13.8685 6.49594 13.9959 6.36846 14.0758 6.21166C14.1667 6.0334 14.1667 5.80004 14.1667 5.33333V3.33333M14.1667 17.5V12.1667C14.1667 11.7 14.1667 11.4666 14.0758 11.2883C13.9959 11.1315 13.8685 11.0041 13.7117 10.9242C13.5334 10.8333 13.3 10.8333 12.8333 10.8333H7.16667C6.69996 10.8333 6.4666 10.8333 6.28834 10.9242C6.13154 11.0041 6.00406 11.1315 5.92416 11.2883C5.83333 11.4666 5.83333 11.7 5.83333 12.1667V17.5M17.5 7.77124V13.5C17.5 14.9001 17.5 15.6002 17.2275 16.135C16.9878 16.6054 16.6054 16.9878 16.135 17.2275C15.6002 17.5 14.9001 17.5 13.5 17.5H6.5C5.09987 17.5 4.3998 17.5 3.86502 17.2275C3.39462 16.9878 3.01217 16.6054 2.77248 16.135C2.5 15.6002 2.5 14.9001 2.5 13.5V6.5C2.5 5.09987 2.5 4.3998 2.77248 3.86502C3.01217 3.39462 3.39462 3.01217 3.86502 2.77248C4.3998 2.5 5.09987 2.5 6.5 2.5H12.2288C12.6364 2.5 12.8402 2.5 13.0321 2.54605C13.2021 2.58688 13.3647 2.65422 13.5138 2.7456C13.682 2.84867 13.8261 2.9928 14.1144 3.28105L16.719 5.88562C17.0072 6.17387 17.1513 6.318 17.2544 6.48619C17.3458 6.63531 17.4131 6.79789 17.4539 6.96795C17.5 7.15976 17.5 7.36358 17.5 7.77124Z" stroke="white" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    Guardar
+                 </button>
+            </div>
+        </form>
+    </div>
+</div>
+}
+
+
+<div class="modal fade" id="modal-informe-peritaje" data-backdrop="static" name="kt_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Informe Peritaje</h5>
+            </div>
+            <div class="modal-body" id="modalBody" style="margin:5px;padding:3.5rem !important; border:solid 40px lightgray">
+                <div class="row" style="border-bottom-style: groove;">
+                    <div class="col-lg-6">
+                        Informe Peritaje
+                    </div>
+                    <div class="col-lg-6 text-right">
+                        <span id="fechaInforme2"></span>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-lg-6">
+                        <img id="logoConvenio2" @*src="https://localhost:44363/upload/foto_convenio/16/file[0]_20201115014718_rjiucim3gzj.jpg"*@ />
+                        @*<div id="logoConvenio"></div>*@
+                    </div>
+                    <div class="col-lg-6 text-right">
+                        <div>
+                            <span id="nombreMedico2"></span>
+                        </div>
+                        <div>
+                            <span id="especialidadMedico2"></span>
+                        </div>
+                        <div>
+
+                            <span id="rutMedico2"></span>
+                        </div>
+                        <div>
+                            <span id="regMedico2"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-lg-8">
+                        <div>Nombre Paciente: <span id="nombrePaciente2"></span></div>
+                        <div>Domicilio: <span id="domicilioPaciente2"></span></div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div>
+                            Rut: <span id="rutPaciente2"></span>
+                        </div>
+                        <div>
+                            Edad: <span id="edad2"></span>
+                        </div>
+
+                    </div>
+                </div>
+                @*peritajeee*@
+                <div class="row mt-3">
+                    <div class="col-lg-12">
+                        <div>Numero de Licencia <p id="licenciaInforme"></p></div>
+                        <div>Ocupación <p id="ocupacionInforme"></p></div>
+                        <div>Nº de días de reposo continuos autorizados por patología: <p id="reposoInforme"></p></div>
+                        <div>Historia Clinica <p id="historiaClinica"></p></div>
+                        <div>Antecedentes mórbidos <p id="historiahisMorbido"></p></div>
+                        <div>Antecedentes quirúrgicos <p id="historiahisQuirurgica"></p></div>
+                        <div>Antecedentes de alergias <p id="historiahisAlergias"></p></div>
+                        <div>Antecedentes sobre hábitos <p id="historiahisHabitoso"></p></div>
+                        <div>Antecedentes psiquiátricos personales <p id="historiahisPsiquiatrico"></p></div>
+                        <div>Antecedentes psiquiátricos familiares <p id="historiahisPsiquiatricoFamilia"></p></div>
+                        <div>Antecedentes biográficos <p id="historiahisBiografico"></p></div>
+                        <div display="display:none;">Anamnesis/Hipótesis Diagnóstica <p id="diagnosticoMedico2"></p></div>
+
+                        @*<div class="form-group">
+                            <label style="font-weight:bold">¿La patología que presenta actualmente, corresponde a situación laboral?</label>
+                            <br />
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="inlineRadio2">SI &nbsp; </label>
+                                <input type="checkbox" class="" name="checkistCausasInforme" id="checkistCausasInforme" />
+                            </div>
+                        </div>*@
+
+                        <div>Tratamiento Actual <p id="tratamientoActual"></p></div>
+                        <div>Estado Funcional <p id="estadoFuncional"></p></div>
+
+
+                        <div id="psiquiatria">
+                            <b>Diagnóstico de acuerdo con opinión del perito.</b>
+                            En caso de peritaje psiquiátrico completar la siguiente información:
+                            <ul>
+                                <li>EJE I: <p id="ejeiInforme"></li>
+                                <li>EJE II: <p id="ejeiiInforme"></li>
+                                <li>EJE III: <p id="ejeiiiInforme"></li>
+                                <li>EJE IV: <p id="ejeivInforme"></li>
+                                <li>EJE V: <p id="ejevInforme"></li>
+                            </ul>
+                        </div>
+                        <div>N° de Días de Prórroga: <p id="prorrogaInforme"></p></div>
+                        <div id="psiquiatria2">Aplicación EEAF para Peritajes psiquiátricos. <p id="eeafInforme"></p></div>
+                        <div id="psiquiatria3">Conclusión o resumen peritaje <p id="conclusionInforme"></p></div>
+
+                        <div class="kt-widget kt-widget--user-profile-1 mb-0 pb-0">
+                            <div class="form-group">
+                                <label style="font-weight:bold">Es patología GES</label>
+                                <br />
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="patologiaGesinforme" id="patologiaGesSI" value="1" disabled>
+                                    <label class="form-check-label" for="inlineRadio1">SI</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="patologiaGesinforme" id="patologiaGesNO" value="0" disabled>
+                                    <label class="form-check-label" for="inlineRadio2">NO</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label style="font-weight:bold">Recibe tratamiento a través de GES</label>
+                                <br />
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="tratamientoGesinforme" id="tratamientoGesSI" value="1" disabled>
+                                    <label class="form-check-label" for="inlineRadio1">SI</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="tratamientoGesinforme" id="tratamientoGesNO" value="0" disabled>
+                                    <label class="form-check-label" for="inlineRadio2">NO</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label style="font-weight:bold">Licencia emitida bajo régimen GES institucional</label>
+                                <br />
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="licenciaGesinforme" id="licenciaGesSI" value="1" disabled>
+                                    <label class="form-check-label" for="inlineRadio1">SI</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="licenciaGesinforme" id="licenciaGesNO" value="0" disabled>
+                                    <label class="form-check-label" for="inlineRadio2">NO</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label style="font-weight:bold">Amerita Reposo</label>
+                                <br />
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="reposoinforme" id="reposoSI" value="1" disabled>
+                                    <label class="form-check-label" for="inlineRadio1">SI</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="reposoinforme" id="reposoNO" value="0" disabled>
+                                    <label class="form-check-label" for="inlineRadio2">NO</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="reposoParcialTotalInforme" style="display:none;">
+                                <label style="font-weight:bold">Reposo o Parcial</label>
+                                <br />
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="reposoTotalInforme" id="reposoTotal" value="1" disabled>
+                                    <label class="form-check-label" for="inlineRadio1">Total</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="reposoTotalInforme" id="reposoParcial" value="2" disabled>
+                                    <label class="form-check-label" for="inlineRadio2">Parcial</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label style="font-weight:bold">Amerita Prórroga</label>
+                                <br />
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="Prorrogainforme" id="ProrrogaSI" value="1" disabled>
+                                    <label class="form-check-label" for="inlineRadio1">SI</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="Prorrogainforme" id="ProrrogaNO" value="0" disabled>
+                                    <label class="form-check-label" for="inlineRadio2">NO</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label style="font-weight:bold">N° de Días de Prórroga: </label>
+                                <input type="number" id="diasProrrogaInforme" name="diasProrrogaInforme" min="0" max="100" disabled>
+                            </div>
+
+                            <div class="form-group">
+                                <label style="font-weight:bold">Recuperabilidad</label>
+                                <br />
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="Recuperabilidadinforme" id="RecuperabilidadSI" value="1" disabled>
+                                    <label class="form-check-label" for="inlineRadio1">SI</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="Recuperabilidadinforme" id="RecuperabilidadNO" value="0" disabled>
+                                    <label class="form-check-label" for="inlineRadio2">NO</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label style="font-weight:bold">Iniciar Tramites de Invalidez</label>
+                                <br />
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="Invalidezinforme" id="InvalidezSI" value="1" disabled>
+                                    <label class="form-check-label" for="inlineRadio1">SI</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="Invalidezinforme" id="InvalidezNO" value="0" disabled>
+                                    <label class="form-check-label" for="inlineRadio2">NO</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label style="font-weight:bold">Origen de la Patología</label>
+                                <br />
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="OrigenInforme" id="OrigenSI" value="1" disabled>
+                                    <label class="form-check-label" for="inlineRadio1">Común</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="OrigenInforme" id="OrigenNO" value="0" disabled>
+                                    <label class="form-check-label" for="inlineRadio2">Laboral</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group row mb-2 mt-5 pt-5">
+                        <div class="col-lg-12 col-xl-12">
+                            <div class="input-group">
+                            </div>
+                        </div>
+                    </div>
+                    @*<embed src="" id="visorInforme" type="application/pdf" width="100%" height="800px" />*@
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+                    <button id="btnFirmarPeritaje" type="button" class="btn btn-brand">Firmar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade" data-backdrop="static" id="modalNotificaGes" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false">
+    <div class="modal-dialog modal-notificaGes" role="document">
+        <div class="modal-content notificaGes" style="width:auto;">
+            <div class="modal-body" id="modalBodyNotificaGes">
+                <div class="form-group row" style="text-align:center;">
+                    <div class="col-lg-12">
+                        <br />
+                        <p style="font-family:Segoe UI">
+                            La patología seleccionada corresponde a un diagnóstico <b>GES</b>, usted debe:
+                        <p>
+                            <br />- Notificar patología GES por medipass
+                            <br />- Recuerde dejar registro de la notificación en la ficha médica del paciente
+                        </p>
+                    </div>
+
+                    <div class="col-lg-12 divBtnGes">
+                        <button class="btn btnGes1">OK</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" data-backdrop="static" id="modalNotificaEno" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false">
+    <div class="modal-dialog modal-notificaEno" role="document">
+        <div class="modal-content notificaEno" style="width:auto;">
+            <div class="modal-body" id="modalNotificaEno">
+                <div class="form-group row" style="text-align:center;">
+                    <div class="col-lg-12">
+                        <br />
+                        <p style="font-family:Segoe UI;">
+                            La patología seleccionada corresponde a una patología de notificación obligatoria ENO usted debe notificar.
+                        </p>
+                    </div>
+
+                    <div class="col-lg-12 divBtnEno">
+                        <button class="btn btnEno">OK</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="modalRecurrencia" class="modal fade">
+    <div class="modal-content">
+        <span class="close-btn" id="closeModalBtn">&times;</span>
+        <p>Contenido del modal...</p>
+    </div>
+</div>
+
+
+<div class="modal fade" data-backdrop="static" id="modalNotificaEnoyGes" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false">
+    <div class="modal-dialog modal-modalNotificaEnoyGes" role="document">
+        <div class="modal-content notificaEnoyGes" style="width:auto;">
+            <div class="modal-body" id="modalNotificaEnoyGes">
+                <div class="form-group row" style="text-align:center;">
+                    <div class="col-lg-12">
+                        <br />
+                        <p style="font-family:Segoe UI" ;">
+                            La patología seleccionada corresponde a una patología de notificación obligatoria ENO usted debe notificar.
+                        </p>
+                    </div>
+
+                    <div class="col-lg-12 divbtnEnoyGes">
+                        <button class="btn btnEnoyGes">OK</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" data-backdrop="static" id="modalNotificaEnoyGesSolicitud" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false">
+    <div class="modal-dialog modal-modalNotificaEnoyGes" role="document">
+        <div class="modal-content notificaEnoyGes" style="width:auto;">
+            <div class="modal-body" id="modalNotificaEnoyGes">
+                <div class="form-group row" style="text-align:center;">
+                    <div class="col-lg-12">
+                        <br />
+                        <p style="font-family:Segoe UI" id="modalNotificaEnoyGesSolicitudText">
+                        </p>
+                    </div>
+
+                    <div class="col-lg-12 divbtnEnoyGes">
+                        <button class="btn btnEnoyGes id-btn-ok">Si</button>
+                        <button class="btn btnEnoyGes id-btn-no">No deseo notificar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*
+    <div class="modal fade" id="modal-paciente-detalles" data-backdrop="static" name="kt_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="overflow-y: scroll;">
+    <div class="modal-dialog modal-lg" role="document" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">modal</h5>
+             </div>
+
+            <div class="modal-body" id="modalBody" style="margin:5px;padding:3.5rem !important; border:solid 40px lightgray">
+               body
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+                <button id="btnFirmar" type="button" class="btn btn-brand">button</button>
+            </div>
+
+        </div>
+    </div>
+    </div>
+*@
+
+
+@section Scripts {
+    <script src="~/js/Shared/jitsi-call.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/whereby_embed_v1.js" type="module"></script>
+    <!--toasty js-->
+    <link href="~/Toasty.js-master/dist/toasty.css" rel="stylesheet" />
+    <script src="~/Toasty.js-master/dist/toasty.js"></script>
+    <script src="~/Toasty.js-master/assets/prism/prism.js"></script>
+    <!-------------------------------------------------------------------------------------------------->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.1.0/rxjs.umd.js"></script>
+    <script src="~/signal/signalr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+
+    <script src="~/metronic_demo7/assets/js/pages/components/extended/sweetalert2.js?rnd=@NumeroRandom.GetRandom()"></script>
+    <script src="~/js/Shared/atencion-box.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/Shared/archivos-adjuntos.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/Shared/chat.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/Shared/notificacion.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/KitAwesome.js"></script>
+    <script src="~/metronic_demo7/assets/plugins/select2-v4/select2.js?rnd=@NumeroRandom.GetRandom()"></script>
+
+    <script type="text/javascript">
+        (function () {
+            var uid = @ViewBag.uid;
+            var boxEspecial = @ViewBag.boxEspecial;
+            window.boxEspecial = boxEspecial;
+            window.uid = uid;
+            var host = '@ViewBag.HostURL';
+            window.host = host;
+            if (window.host.includes('uoh')) {
+                $('.select2').select2({
+                    maximumSelectionSize: 6
+                });
+            } else {
+                $('.select2').select2()
+            }
+        })()
+    </script>
+
+    @if (Model.Atencion.Peritaje == true && ViewBag.teleperitajeView && Model.Atencion.HoraMedico.IdEspecialidad == 63)
+    {
+        <script type="module">
+            import { init } from '../../js/Medico/atencion-box-peritaje.js?rnd=${@NumeroRandom.GetRandom()}';
+            init(@Html.Raw(Json.Serialize(Model)))
+        </script>
+    }
+    else if (Model.Atencion.Peritaje == true && ViewBag.teleperitajeView && Model.Atencion.HoraMedico.IdEspecialidad != 63)
+    {
+        <script type="module">
+            import { init } from '../../js/Medico/atencion-box-peritajeMulti.js?rnd=${@NumeroRandom.GetRandom()}';
+            init(@Html.Raw(Json.Serialize(Model)))
+        </script>
+    }
+    else
+    {
+        <script type="module">
+            import { init } from '../../js/Medico/atencion-box.js?rnd=${@NumeroRandom.GetRandom()}';
+            init(@Html.Raw(Json.Serialize(Model)))
+        </script>
+    }
+
+    <script type="text/javascript">
+        (function () {
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+            var host = '@ViewBag.HostURL';
+            window.host = host;
+            var codConvenio = '@ViewBag.codConvenio';
+            window.codConvenio = codConvenio;
+            var banmedica = '@ViewBag.banmedica';
+            window.banmedica = banmedica;
+            var isPsicopedagogiaUnab = @isPsicopedagogiaUnab.ToString().ToLower();
+            window.isPsicopedagogiaUnab = isPsicopedagogiaUnab;
+            var urlHistExterno = '@ViewBag.urlHistExterno';
+            window.urlHistExterno = urlHistExterno;
+        })()
+    </script>
+    <script>
+        // Warning before leaving the page (back button, or outgoinglink)
+        window.onbeforeunload = function () {
+            return "Seguro que quieres dejar la página, estas en medio de una atención?";
+            //if we return nothing here (just calling return;) then there will be no pop-up question at all
+            //return;
+        };
+    </script>
+    <script>
+        function goBack() {
+            return document.referrer;
+        }
+    </script>
+
+    <script>
+
+
+        const openModalBtn = document.getElementById("openModalBtn");
+        const closeModalBtn = document.getElementById("closeModalBtn");
+        const modalRecurrencia = document.getElementById("modalRecurrencia");
+
+        openModalBtn.addEventListener("click", openModal);
+
+        closeModalBtn.addEventListener("click", closeModal);
+
+        function openModal() {
+            modalRecurrencia.style.display = "block";
+        }
+
+        function closeModal() {
+            modalRecurrencia.style.display = "none";
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        window.initInterval = (milliseconds) => {
+            const cronn = document.querySelector(".containerCronn .cronn .val");
+            const millisA = milliseconds;
+            cronn.textContent = `00:00:00`;
+            let interval = null;
+            //interrumpir interval
+            clearInterval(window.initInterval);
+            return {
+                init: () => {
+                    interval = setInterval(() => {
+                        const millisB = Date.now();
+                        const a = new Date(millisB - millisA);
+                        cronn.textContent = `${("" + a.getUTCHours()).padStart(2, '0')}:${('' + a.getMinutes()).padStart(2, '0')}:${('' + a.getSeconds()).padStart(2, '0')}`;
+                    }, 1000)
+                },
+                clearInterval: () => {
+                    clearInterval(interval)
+                }
+            };
+        };
+        let cronn = window.initInterval(Date.now()).init();
+    </script>
+}

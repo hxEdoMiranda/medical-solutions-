@@ -1,0 +1,19 @@
+/*Notificaciones*/
+
+.titulo-notificaciones {
+    font-size: 1.2rem;
+    text-align: left;
+    padding: 1rem;
+    margin: 1rem 0;
+    color: #0081A4;
+    font-weight: 700;
+}
+
+    .titulo-notificaciones .indica-notificaciones {
+        color: #EB5757;
+        font-weight: 700;
+    }
+
+.kt-notification__item-icon i.danger {
+    color: #EB5757 !important
+}

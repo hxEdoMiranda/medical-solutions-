@@ -1,0 +1,31 @@
+<svg width="679" height="595" viewBox="0 0 679 595" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Home- LUDSA" clip-path="url(#clip0_0_1)">
+<rect width="1920" height="978" transform="translate(-1225 -383)" fill="#E9E9EA"/>
+<rect id="image 3" x="-1226" y="-387" width="1920" height="982" fill="url(#paint0_linear_0_1)"/>
+<g id="Group 503" style="mix-blend-mode:soft-light">
+<g id="Group 504">
+<g id="Vector" style="mix-blend-mode:soft-light">
+<path d="M358.801 696L400.022 455.788H243.499L230.861 529.516C215.111 621.444 272.373 696 358.801 696Z" fill="#0A9A9A"/>
+</g>
+<g id="Vector_2" style="mix-blend-mode:soft-light">
+<path d="M0 431.15H225.124L253.616 264.85H184.519C98.2679 264.85 15.6996 339.323 0 431.15Z" fill="#0A9A9A"/>
+</g>
+<g id="Vector_3" style="mix-blend-mode:soft-light">
+<path d="M431.829 264.85C345.928 264.85 263.506 339.323 247.852 431.15H403.421H495.023C580.924 431.15 663.346 356.677 679 264.85H431.829Z" fill="#48AE4D"/>
+</g>
+<g id="Vector_4" style="mix-blend-mode:soft-light">
+<path d="M388.824 247.409C389.017 247.305 389.211 247.305 389.501 247.201C390.275 246.994 391.146 246.786 391.92 246.579C392.985 246.268 394.146 246.061 395.21 245.75C395.307 245.75 395.501 245.646 395.598 245.646C404.404 243.572 413.403 242.12 422.499 241.394C422.693 241.394 422.886 241.394 423.08 241.394C424.338 241.291 425.596 241.187 426.854 241.187C427.144 241.187 427.435 241.187 427.822 241.083C428.983 240.98 430.144 240.98 431.305 240.98C431.692 240.98 431.983 240.98 432.37 240.98C433.821 240.98 435.273 240.876 436.724 240.876L449.304 166.944C464.981 74.7618 407.984 0 321.859 0L276.571 265.14L263.992 338.761C294.861 294.381 339.762 260.992 388.824 247.409Z" fill="#48AE4D"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_1" x1="-266" y1="-387" x2="-266" y2="595" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0A9A9A"/>
+<stop offset="1" stop-color="#48AE4D"/>
+</linearGradient>
+<clipPath id="clip0_0_1">
+<rect width="1920" height="978" fill="white" transform="translate(-1225 -383)"/>
+</clipPath>
+</defs>
+</svg>

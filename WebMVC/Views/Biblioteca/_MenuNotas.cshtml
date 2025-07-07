@@ -1,0 +1,44 @@
+<div class="cont-icon-bar">
+    <div class="icon-bar">
+        <a asp-controller="Biblioteca" asp-action="Notas" class="btn-icon color-blue">
+            <div class="inner-btn bg-blue">
+                <i class="fal fa-file-alt"></i>
+            </div>
+            Notas
+        </a>
+        <a asp-controller="Biblioteca" asp-action="Charlas" class="btn-icon color-orange">
+            <div class="inner-btn bg-orange">
+                <i class="fal fa-microphone"></i>
+            </div>
+            Charlas
+        </a>
+        <a asp-controller="Biblioteca" asp-action="Capsulas" class="btn-icon color-red">
+            <div class="inner-btn bg-red">
+                <i class="fal fa-podium-star"></i>
+            </div>
+            Cápsulas
+        </a>
+    </div>
+    <div class="dropdown-bar">
+        <span>Filtrar por</span>
+
+        <div class="dropdown dropdown-biblioteca">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fal fa-file-alt"></i> Todos los temas
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+               <a class="dropdown-item" href="#">Salud Mental</a>
+                <a class="dropdown-item" href="#">Salud del adulto</a>
+                <a class="dropdown-item" href="#">Salud del ni&ntilde;o</a>
+                <a class="dropdown-item" href="#">Salud del adulto mayor</a>
+                <a class="dropdown-item" href="#">Salud de la mujer</a>
+                <a class="dropdown-item" href="#">Veterinaria</a>
+                <a class="dropdown-item" href="#">Urgencias</a>
+                <a class="dropdown-item" href="#">Bienestar </a>
+                <a class="dropdown-item" href="#">Nutrici&oacute;n</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+

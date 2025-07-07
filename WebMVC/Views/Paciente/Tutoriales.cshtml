@@ -1,0 +1,155 @@
+﻿@{
+    ViewData["Title"] = "Tutoriales";
+    Layout = "_LayoutPaciente";
+}
+
+@section PageStyles  {
+    <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+    <!--Begin::App-->
+
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+
+        <div class="container-fluid">
+            <div class="row tutoriales-grid">  
+                    <div class="top-banner justify-content-between">
+                        <h1 class="legend order-2 order-md-1">Puedes revisar los tutoriales de guía de uso de la plataforma </h1>
+                        <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+                    </div>
+
+                    @*Este div en blanco mantiene la estructura de las columnas, por favor no borrar!*@
+                    <div class="w-100"></div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-12">
+                        <div class="cardFAQ mb-5">
+                            <img src="~/img/FAQ/PortalFarmacia.png" alt="Avatar" style="width:100%">
+                            <div class="containerFAQ">
+                                <h4><b>Portal Farmacia</b></h4>
+                            <p>Ingresa al portal farmacia y selecciona tus medicamentos de una forma fácil y rápida.</p>
+                                <div class="verinfo" onclick="abrirPdf('/preguntasfrecuentes/01_PortalFarmacias.pdf')">
+                                    <p>Ver Información</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                        <div class="cardFAQ mb-5">
+                            <img src="~/img/FAQ/Wikidoc.png" alt="Avatar" style="width:100%">
+                            <div class="containerFAQ">
+                                <h4><b>Wikidoc</b></h4>
+                                <p>Accede a material de interés de acuerdo con tus gustos, puedes encontrar charlas, notas, capsulas.</p>
+                                <div class="verinfo" onclick="abrirPdf('/preguntasfrecuentes/02_WikiDoc.pdf')">
+                                    <p>Ver Información</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-sm-12">
+                        <div class="cardFAQ mb-5">
+                            <img src="~/img/FAQ/GuíaBox.png" alt="Avatar" style="width:100%">
+                            <div class="containerFAQ">
+                                <h4><b>Guía Box</b></h4>
+                                <p>En el Box de atención podrás acceder a la consulta con el médico.</p>
+                                <div class="verinfo" onclick="abrirPdf('/preguntasfrecuentes/03_GuiaBox.pdf')">
+                                    <p>Ver Información</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                        <div class="cardFAQ mb-5">
+                            <img src="~/img/FAQ/PortalCargas.png" alt="Avatar" style="width:100%">
+                            <div class="containerFAQ">
+                                <h4>Portal Cargas</h4>
+                                <p>Administra tus beneficiarios, actualiza sus datos y podrán disfrutar de los servicios inmediatamente. </p>
+                                <div class="verinfo" onclick="abrirPdf('/preguntasfrecuentes/04_PortalCargas.pdf')">
+                                    <p>Ver Información</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                        <div class="cardFAQ mb-5">
+                            <img src="~/img/FAQ/GuíaActualizacióndedatos.png" alt="Avatar" style="width:100%">
+                            <div class="containerFAQ">
+                                <h4><b>Guía Actualización de datos</b></h4>
+                                <p>Actualiza tus datos personales y comienza a disfrutar de todos los beneficios que tenemos para ofrecerte.</p>
+                                <div class="verinfo" onclick="abrirPdf('/preguntasfrecuentes/05_GuiaActualizacionDatos.pdf')">
+                                    <p>Ver Información</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                        <div class="cardFAQ mb-5">
+                            <img src="~/img/FAQ/Pedirunacita.png" alt="Avatar" style="width:100%">
+                            <div class="containerFAQ">
+                                <h4><b>Pedir una cita</b></h4>
+                                <p>Conoce como pedir tu cita con medico general o con especialistas.</p>
+                                <div class="verinfo" onclick="abrirPdf('/preguntasfrecuentes/06_PedirCita.pdf')">
+                                    <p>Ver Información</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-12">
+                        <div class="cardFAQ mb-5">
+                            <img src="~/img/FAQ/PreguntasFrecuentes.png" alt="Avatar" style="width:100%">
+                            <div class="containerFAQ">
+                                <h4><b>Preguntas frecuentes</b></h4>
+                                <p>Resuelve todas tus dudas e inquietudes</p>
+                                <div class="verinfo" onclick="abrirPdf('/preguntasfrecuentes/07_PreguntasFrecuentes.pdf')">
+                                    <p>Ver Información</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    @*modal pdf*@
+    <div class="modal fade" data-backdrop="static" id="modalOpenPdf" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false">
+        <div class="modal-dialog modal-solicitarAsistencia" role="document">
+            <div class="modal-content solicitarAsistencia">
+                <div class="modal-body" id="modalBodysolicitarAsistencia">
+                    <div id="tetsid" class="div divBtnAsistencia">
+                        <button id="btnSolicitarAsistAmbulancia1" class="btn btnSolicitarAsistMedicoDomi1" type="button" onclick="closeModal()"><span style="display: inline-block; text-align:center; color:#0282A5">Cerrar X</span></button>
+                        <iframe id="pdfFrame" src="" style="width:100%;height:700px;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--End::App-->
+</div>
+@section Scripts{
+    <script src="~/js/Paciente/FAQ.js?9rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script>
+        function abrirPdf(ruta) {
+            $("#pdfFrame").attr("src", "../.." + ruta);
+            $("#modalOpenPdf").modal("show");
+        }
+        function closeModal() {
+            $("#modalOpenPdf").modal("hide");
+        }
+    </script>
+}

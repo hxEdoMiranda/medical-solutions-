@@ -1,0 +1,286 @@
+﻿@model WebMVC.Models.ReporteEnfermeria
+@{
+    ViewData["Title"] = "";
+    Layout = "_Layout";
+
+}
+
+
+@{
+    ViewData["view"] = Roles.Medico;
+}
+
+@section Styles  {
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+
+        <!--Begin:: App Aside Mobile Toggle-->
+        <button class="kt-app__aside-close" id="kt_user_profile_aside_close">
+            <i class="la la-close"></i>
+        </button>
+        <!--Begin::Section-->
+        <div class="col-xl-12">
+            <div class="kt-portlet">
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title"></h3>
+                    </div>
+
+                </div>
+                    <div class="kt-portlet__body kt-portlet__body--fit">
+                        <div class="row col-lg-12">
+                            <div class="kt-widget1 col-lg-6">
+                                <div class="kt-widget1__item">
+                                    <div class="kt-widget1__info col-lg-12">
+                                        <div class="form-group row mb-4">
+                                            <div class="col-6 col-md mb-4 mb-md-0">
+                                                <label class="form-label">Paciente<span style="color:transparent">*</span></label>
+                                                <span class="kt-widget1__desc">@Model.NombrePaciente</span><br>
+                                            </div>
+                                            <div class="col-6 col-md mb-4 mb-md-0">
+                                                <label class="form-label">Edad<span style="color:transparent">*</span></label>
+                                                <span class="kt-widget1__desc">@Model.Edad</span><br>
+                                            </div>
+                                            <div class="col-6 col-md mb-4 mb-md-0">
+                                                <label class="form-label">Profesional<span style="color:transparent">*</span></label>
+                                                <span class="kt-widget1__desc">@Model.NombreProfesional</span><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-no-padding row-col-separator-xl">
+                            <div class="col-md-12 col-lg-12 col-xl-6">
+                                <div class="kt-widget1">
+
+                                    <div class="kt-widget1__item">
+                                        <div class="kt-widget1__info col-lg-12">
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Motivo de Consulta</label><br />
+                                                    <span class="kt-widget1__desc">@Model.MotivoConsultaString</span><br>
+                                                </div>
+                                                @if (Model.MotivoConsulta == 3)
+                                                {
+                                                    <div class="col-12 col-md mb-4 mb-md-0" id="derivacion">
+                                                        <label class="form-label">Derivación Profesional</label><br />
+                                                        <span class="kt-widget1__desc">@Model.DerivacionProfesional</span><br>
+                                                    </div>
+                                                }
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="kt-widget1__item">
+                                        <div class="kt-widget1__info col-lg-12">
+                                            <h5 class="label-title mb-4">Valoración y diagnósticos de enfermería </h5>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Antecedentes Psicosociales</label><br />
+                                                    <span class="kt-widget1__desc">@Model.AntecedentesPsicosociales</span><br>
+                                                </div>
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Antecedentes Laborales</label><br />
+                                                    <span class="kt-widget1__desc">@Model.AntecedentesLaborales</span><br>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Antecedentes Académicos</label><br />
+                                                    <span class="kt-widget1__desc">@Model.AntecedentesAcademicos</span><br>
+                                                </div>
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Red de apoyo</label><br />
+                                                    <span class="kt-widget1__desc">@Model.RedApoyo</span><br>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Observaciones</label><br />
+                                                    <span class="kt-widget1__desc">@Model.Observacion</span><br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="kt-widget1__item">
+                                        <div class="kt-widget1__info col-lg-12">
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Indicaciones de enfermería</label><br />
+                                                    <span class="kt-widget1__desc">@Model.IndicacionEnfermeria</span><br>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="kt-widget1__item">
+                                        <div class="kt-widget1__info col-lg-12">
+                                            <div class="form-group col-12 mb-4 pl-0">
+                                                <div class="col-12 col-md mb-4 mb-md-0 pl-0">
+                                                    <label class="form-label">Control</label><br />
+                                                    <span class="kt-widget1__desc">@Model.ControlString</span><br>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="kt-widget1__item">
+                                        <div class="kt-widget1__info col-lg-12">
+                                            <h5 class="label-title mb-4">Antecedentes Médicos</h5>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Alergias</label><br />
+                                                    <span class="kt-widget1__desc">@Model.Alergias</span><br>
+                                                </div>
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Medicamentos de uso habitual</label><br />
+                                                    <span class="kt-widget1__desc">@Model.Medicamentos</span><br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!--end:: Widgets/Stats2-1 -->
+                            </div>
+                            <div class="col-md-12 col-lg-12 col-xl-6">
+                                <div class="kt-widget1">
+                                    <div class="kt-widget1__item">
+                                        <div class="kt-widget1__info col-lg-12">
+                                            <h5 class="label-title mb-4">Antecedentes Mórbidos</h5>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">HTA</label><br />
+                                                    <span class="kt-widget1__desc">@Model.HtaString</span><br>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">DMII</label><br />
+                                                    <span class="kt-widget1__desc">@Model.DmString</span><br>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Asma</label><br />
+                                                    <span class="kt-widget1__desc">@Model.AsmaString</span><br>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">EPOC</label><br />
+                                                    <span class="kt-widget1__desc">@Model.EpocString</span><br>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Dislipidemia</label><br />
+                                                    <span class="kt-widget1__desc">@Model.DislipidemiaString</span><br>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Depresión</label><br />
+                                                    <span class="kt-widget1__desc">@Model.DepresionString</span><br>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Trastorno del sueño</label><br />
+                                                    <span class="kt-widget1__desc">@Model.TrastornoSuenoString</span><br>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Otros<span style="color:transparent">*</span></label><br />
+                                                    <span class="kt-widget1__desc">@Model.OtrosAntecedentesMorbidos</span><br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="kt-widget1__item">
+                                        <div class="kt-widget1__info col-lg-12">
+                                            <div class="form-group col-12 mb-4 pl-0">
+                                                <div class="col-12 col-md mb-4 mb-md-0 pl-0">
+                                                    <label class="form-label">Antecedentes Quirúrgicos<span style="color:transparent">*</span></label><br />
+                                                    <span class="kt-widget1__desc">@Model.AntecedentesQuirurgicos</span><br>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="kt-widget1__item">
+                                        <div class="kt-widget1__info col-lg-12">
+                                            <h5 class="label-title mb-4">Hábitos</h5>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Alcohol</label><br />
+                                                    <span class="kt-widget1__desc">@Model.AlcoholString</span><br>
+                                                </div>
+                                                <div class="col-12 col-md mb-4 mb-md-0 pl-0">
+                                                    <label class="form-label">Observación Alcohol<span style="color:transparent">*</span></label><br />
+                                                    <span class="kt-widget1__desc">@Model.ObsAlcohol</span><br>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Tabaco</label><br />
+                                                    <span class="kt-widget1__desc">@Model.TabacoString</span><br>
+                                                </div>
+                                                <div class="col-12 col-md mb-4 mb-md-0 pl-0">
+                                                    <label class="form-label">Observación Tabaco<span style="color:transparent">*</span></label><br />
+                                                    <span class="kt-widget1__desc">@Model.ObsTabaco</span><br>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Actividad Física</label><br />
+                                                    <span class="kt-widget1__desc">@Model.ActividadFisicaString</span><br>
+                                                </div>
+                                                <div class="col-12 col-md mb-4 mb-md-0 pl-0">
+                                                    <label class="form-label">Observación Actividad Física<span style="color:transparent">*</span></label><br />
+                                                    <span class="kt-widget1__desc">@Model.ObsActividadFisica</span><br>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Otras Drogas</label><br />
+                                                    <span class="kt-widget1__desc">@Model.OtrasDrogasString</span><br>
+                                                </div>
+                                                <div class="col-12 col-md mb-4 mb-md-0 pl-0">
+                                                    <label class="form-label">Observación Otras Drogas<span style="color:transparent">*</span></label><br />
+                                                    <span class="kt-widget1__desc">@Model.ObsOtrasDrogas</span><br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!--end:: Widgets/Stats2-2 -->
+                            </div>
+                        </div>
+
+
+                    </div>
+                   
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/metronic_demo7/assets/js/pages/components/extended/sweetalert2.js?rnd=@NumeroRandom.GetRandom()"></script>
+    <script type="text/javascript">
+        (function () {
+         var uid = @ViewBag.uid;
+           window.uid = uid;
+        })()
+    </script>
+}

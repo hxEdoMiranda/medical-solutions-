@@ -1,0 +1,396 @@
+﻿@model WebMVC.Models.ModalDirecciones
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+    string titulo = string.Empty;
+    string porDefecto = string.Empty;
+    string direccionDefecto = string.Empty;
+    
+
+    if (Model.Type == "E")
+    {
+        titulo = "Busca la dirección para toma de Exámenes";
+        porDefecto = "Usar dirección para toma de Medicamentos";
+        direccionDefecto = "La dirección de toma de exámenes es:";
+    }
+    else if (Model.Type == "P")   //Abrir Modal Perfil Paciente
+    {
+        titulo = "Busca la dirección para tu perfil";
+        porDefecto = "Usar dirección para tu perfil";
+        direccionDefecto = "La dirección de toma de tu perfil es:";
+    }
+    else
+    {
+        titulo = "Busca la dirección para los Medicamentos";
+        porDefecto = "Usar dirección para despacho de Exámenes";
+        direccionDefecto = "La dirección de toma de medicamentos es:";
+    }
+}
+
+<style>
+    .pac-container.pac-logo {
+        position: absolute !important;
+        z-index: 100000 !important;
+    }
+    /*
+                                        #input-autocomplete {
+                                            width: 50%;
+                                        }*/
+</style>
+
+<!-- Modal Map -->
+
+<div class="wow-modal-overlay">
+    <div class="wow-modal wow-modal__container">
+        <div class="wow-modal__header">
+            <h1 class="title-Busca_Direccion">
+                @titulo
+            </h1>
+
+            <button id="btn-close-modal" class="close-modal_direccion">
+                <i class="fal fa-times"></i>
+            </button>
+        </div>
+        <div class="wow-modal__body">
+
+            <div class="wow-modal__address">
+                <input id="input-autocomplete" class="buscar-Direccion" type="text" ">
+                @*<input id="input-autocomplete" type="text" class="form-control__search">*@
+                <div class="address">
+                    <div class="legend-address">
+                        <label for="por-defecto">@direccionDefecto</label>
+                    </div>
+                    <div id="new-address" class="new_address"></div>
+                    <div id="new-address-error" class="address" style="color: red;"></div>
+                </div>
+                <div class="container__legend-address">
+                    <div class="legend-address" id="departamento">
+                        <p class="address_legend-wow">Piso/Departamento</p>
+                        <input type="text" class="legend-address form-control" id="departamento_address" value="" placeholder="Ingresa el apartamento">
+                    </div>
+                    <div class="legend-address" id="referencia">
+                        <p class="address_legend-wow">Referencia</p>
+                        <input type="text" class="legend-address form-control" id="referencia_address" value="" placeholder="Ingresa tu la referencia">
+                    </div>
+                </div>
+            </div>
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+        </div>
+        <div class="wow-modal__footer">
+            <div id="check-direccion" class="modal-checker_direccion">
+                <input id="por-defecto" type="checkbox">
+                <label style="vertical-align: middle;" for="por-defecto">@porDefecto</label>
+            </div>
+            <button id="guardar-direccion" class="btn btn-primary btn-guardar_direccion">
+                Guardar Dirección
+            </button>
+        </div>
+    </div>
+</div>
+<!-- end::Modal Map -->
+
+<script type="text/javascript">
+    (function () {
+        if (window.contieneExamenes == 0 || window.contieneMedicamentos == 0 || "@Model.Type" == "P") {
+            $("#check-direccion").css("visibility", "hidden");
+        }
+        const data = @Html.Raw(Json.Serialize(Model));
+        var map;
+        var autocomplete;
+        var marker;
+        var direccion;
+        var service;
+
+        // Functions
+        const initAutocomplete = function () {
+            debugger;
+            let input = document.getElementById("input-autocomplete");
+            let paisPaciente;
+            let codigoTelefonoPaciente = "@Model.Patient.CodigoTelefono";
+
+            if (codigoTelefonoPaciente === "MX") {
+                paisPaciente = "mx"; // Código para México
+            } else if (codigoTelefonoPaciente === "CL") {
+                paisPaciente = "cl"; // Código para Chile
+            } else {
+                paisPaciente = "cl"; // País por defecto
+            }
+
+            let options = {
+                types: ["address"],
+                componentRestrictions: { country: paisPaciente }
+            }
+
+            autocomplete = new google.maps.places.Autocomplete(input, options);
+            autocomplete.addListener("place_changed", function () {
+                const place = autocomplete.getPlace();
+                marker?.setMap(null);
+                $("#new-address").empty();
+                $("#new-address-error").empty();
+
+                if (place.address_components !== undefined) {
+                    map.setCenter(place.geometry.location);
+                    map.setZoom(17);
+                    marker = new google.maps.Marker({
+                        position: place.geometry.location,
+                        map: map
+                    });
+
+                    direccion = fillDirection(place);
+                } else {
+                    let request = {
+                        query: place.name,
+                        fields: ["name", "place_id"],
+                    };
+
+                    service.findPlaceFromQuery(request, function (results, status) {
+                        if (status === google.maps.places.PlacesServiceStatus.OK) {
+                            if (results.length > 0) {
+                                let request = {
+                                    placeId: results[0].place_id,
+                                    fields: ["name", "formatted_address", "geometry", "address_component"]
+                                };
+
+                                service.getDetails(request, function (detail, status) {
+                                    if (status == google.maps.places.PlacesServiceStatus.OK) {
+                                        direccion = fillDirection(detail, true);
+                                        map.setCenter(detail.geometry.location);
+                                        map.setZoom(17);
+                                        marker = new google.maps.Marker({
+                                            position: detail.geometry.location,
+                                            map: map
+                                        });
+                                    }
+                                });
+                            }
+                        } else {
+                            $("#new-address-error").html("Sin resultados");
+                        }
+                    });
+                }
+            })
+        }
+
+        const fillDirection = function (place, searched = false) {
+            let direccionFormateada = place.formatted_address;
+            $("#new-address").html(direccionFormateada);
+
+            if (searched)
+                $("#input-autocomplete").val(direccionFormateada);
+
+            $("#input-autocomplete").blur();
+
+            const numero = place.address_components.find(el => el.types[0] === "street_number")?.long_name ?? "S/N";
+            const calle = place.address_components.find(el => el.types[0] === "route")?.long_name ?? "";
+            const nombreCiudad = place.address_components.find(el => el.types[0] === "locality")?.long_name ?? place.address_components.find(el => el.types[0] === "administrative_area_level_3")?.long_name ?? "";
+            const nombreRegion = place.address_components.find(el => el.types[0] === "administrative_area_level_1")?.long_name ?? "";
+            const nombrePais = place.address_components.find(el => el.types[0] === "country")?.long_name ?? "";
+            const codigoPais = place.address_components.find(el => el.types[0] === "country")?.short_name ?? "";
+            const codigoPostal = place.address_components.find(el => el.types[0] === "postal_code")?.short_name ?? "";
+            const latitud = place.geometry.location.lat();
+            const longitud = place.geometry.location.lng();
+
+            return {
+                direccion: direccionFormateada,
+                numero: numero,
+                calle: calle,
+                nombreCiudad: nombreCiudad,
+                nombreRegion: nombreRegion,
+                nombrePais: nombrePais,
+                codigoPais: codigoPais,
+                codigoPostal: codigoPostal,
+                latitud: latitud.toString(),
+                longitud: longitud.toString(),
+                userId: @Model.UserId,
+                tipo: "@Model.Type",
+                departamento: departamento.toString(),
+                referencia: referencia.toString(),
+                idPersona: modelVista.id
+            }
+        }
+
+        const validateDirection = function () {
+            $("#new-address-error").empty();
+            if (!direccion) {
+                $("#new-address-error").html("Debe seleccionar una dirección");
+                return;
+            } else if (direccion.numero === "" || direccion.numero === "S/N") {
+                Swal.fire("¡Ups! La dirección no se guardó.", "Por favor ingrese una dirección con número e inténtalo nuevamente", "error");
+                return;
+            } else {
+                saveDirection();
+            }
+        }
+
+        const saveDirection = async function () {
+            try {
+                const porDefecto = $("input#por-defecto").is(":checked");
+                if ("@Model.Type" == "E") {
+                    direccion.porDefectoExamenes = porDefecto;
+                } else if ("@Model.Type" == "M") {
+                    direccion.porDefectoMedicamentos = porDefecto;
+                }
+                //Guardar dirección en perfil del paciente
+                else if ("@Model.Type" == "P") {
+                    direccion.porDefectoPerfil = true;
+                    const responsePersona = await fetch(`${window.baseUrl}/usuarios/personas/updateProfileAddress`, {
+                        method: "POST",
+                        headers: {
+                            "Accept": "application/json",
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(direccion)
+                    });
+                    if (responsePersona.ok) {
+                        $("#profileAddress").val(direccion.direccion);
+                    }
+                    else if (!responsePersona.ok) {
+                        Swal.fire("¡Ups! Algo salió mal.", "La dirección no se guardó en la tabla personas, por favor, inténtalo nuevamente", "error");
+                        console.error(responsePersona)
+                        return;
+                    }
+                } else {
+                    Swal.fire("¡Ups! Algo salió mal.", "Tipo de dirección no válido, por favor, inténtalo nuevamente", "error");
+                    return;
+                }
+
+                const response = await fetch(`${window.baseUrl}/usuarios/personas/saveAddress/@Model.Type`, {
+                    method: "POST",
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(direccion)
+                });
+
+                if (response.ok) {
+
+                    var paciente = @Html.Raw(Json.Serialize(Model.Patient));
+                    var data = await response.json();
+                    const billing_address = {
+                        region: data.nombreRegion,
+                        region_id: parseInt(data.idRegion),
+                        region_code: data.codigoRegion,
+                        country_id: data.codigoPais,
+                        street: [
+                            data.calle,
+                            data.numero,
+                            data.departamento,
+                            data.referencia
+                        ],
+                        telephone: paciente.telefonoMovil,
+                        postcode: data.codigoPostal,
+                        city: data.nombreCiudad,
+                        firstname: paciente.nombre,
+                        lastname: paciente.apellidoPaterno,
+                        customer_id: data.userId,
+                        email: paciente.correo,
+                        same_as_billing: 0,
+                        save_in_address_book: 0
+                    }
+                    var check = $("input#por-defecto").prop("checked");
+
+                    if ("@Model.Type" === "M") {
+
+                        window.billing_address = billing_address;
+
+                        $("#agregar-direccion-medicamentos").html(data.direccion);
+                        const button = document.getElementById("agregar-direccion-medicamentos");
+                        button.setAttribute("iddireccion", data.id);
+                        $("#seleccionar-direccion-medicamentos").show();
+
+                        if (check) {
+                            window.billing_addressEx = billing_address;
+                            $("#agregar-direccion-examenes").html(data.direccion);
+                            const buttonEx = document.getElementById("agregar-direccion-examenes");
+                            buttonEx.setAttribute("iddireccion", data.id);
+                            $("#seleccionar-direccion-examenes").show();
+                        }
+
+                    }
+                    else if ("@Model.Type" === "E") {
+
+                        window.billing_addressEx = billing_address;
+                        const button = document.getElementById("agregar-direccion-examenes");
+                        button.setAttribute("iddireccion", data.id);
+                        $("#agregar-direccion-examenes").html(data.direccion);
+                        $("#seleccionar-direccion-examenes").show();
+                        if (check) {
+                            window.billing_address = billing_address;
+                            $("#agregar-direccion-medicamentos").html(data.direccion);
+                            const buttonMed = document.getElementById("agregar-direccion-medicamentos");
+                            buttonMed.setAttribute("iddireccion", data.id);
+                            $("#seleccionar-direccion-medicamentos").show();
+                        }
+                    }
+
+                    $("#btn-close-modal").click();
+                } else {
+                    Swal.fire("¡Ups! Algo salió mal.", "La dirección no se guardó, por favor, inténtalo nuevamente", "error");
+                    console.error(response)
+                }
+            } catch (error) {
+                console.error("SaveDireccion", error);
+            }
+        }
+
+        $("#btn-close-modal").click((e) => {
+            $("#dynamic-modal").empty();
+            $("#dynamic-modal-div").modal("hide");
+        });
+
+        $("#guardar-direccion").click(() => {
+
+            direccion.departamento = $("#departamento_address")?.val() ?? "";
+            direccion.referencia = $("#referencia_address")?.val() ?? "";
+            direccion.direccion += (direccion.departamento != "") ? ". Depto/Piso: " + direccion.departamento : "";
+            direccion.direccion += (direccion.referencia != "") ? ". Referencia: " + direccion.referencia : "";
+            validateDirection();
+        });
+
+        // Attach your callback function to the `window` object
+        delete window.initMap;
+        window.initMap = function () {
+
+            let centroMapa;
+            let codigoTelefonoPaciente = "@Model.Patient.CodigoTelefono";
+
+            if (codigoTelefonoPaciente === "MX") {
+                centroMapa = { lat: 19.4326, lng: -99.1332 }; // Coordenadas para Ciudad de México, México
+            } else if (codigoTelefonoPaciente === "CL") {
+                centroMapa = { lat: -33.4489, lng: -70.6693 }; // Coordenadas para Santiago, Chile
+            } else {
+                centroMapa = { lat: -33.4489, lng: -70.6693 }; // Centro por defecto (Santiago, Chile)
+            }
+
+            // JS API is loaded and available
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: centroMapa,
+                zoom: 12,
+            });
+
+            service = new google.maps.places.PlacesService(map);
+
+            initAutocomplete()
+        };
+
+        if (typeof google === "undefined") {
+            // Create the script tag, set the appropriate attributes
+            var script = document.createElement("script");
+            script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyC9igtLSgxipwioIXKuCcKst89eZCF847o&libraries=places&callback=initMap";
+            script.async = true;
+
+            // Append the "script" element to "head"
+            document.head.appendChild(script);
+        } else {
+            window.initMap();
+        }
+    })();
+
+
+</script>

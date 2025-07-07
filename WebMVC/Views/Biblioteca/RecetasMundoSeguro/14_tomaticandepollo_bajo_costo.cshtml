@@ -1,0 +1,83 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+    <section class="container-fluid note-section library featured" id="nota3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="cont-titulo-receta">
+                        <div class="cont-logo">
+                            <img src="~/img/cencosud/vida-sana/tomaticandepollo.png" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <h2 class="subtitulo-receta">
+                        Ingredientes 10 porciones:
+                    </h2>
+
+                    <ol>
+                        <li>8 tomates sin pepas y cortados en cubos pequeños</li>
+                        <li>1 cebolla cortada en pluma </li>
+                        <li>500 grs de de pollo cortado en tiras </li>
+                        <li>3 tazas de choclo</li>
+                        <li>1 cucharada de aceite</li>
+                        <li>2 cdtas orégano</li>
+                        <li>½ cdta ají de color </li>
+                        <li>Sal y pimienta</li>
+                    </ol>
+
+                    <h2 class="subtitulo-receta">
+                        Preparación
+                    </h2>
+                    <ol>
+                        <li>Calentar el aceite en una olla grande a fuego alto. Agregar la cebolla y cocinar hasta que este transparente.</li>
+                        <li>Agregar las tiras de pollo hasta que estén doradas. </li>
+                        <li>Agregar orégano, ají de color, pimienta hasta integrar bien.</li>
+                        <li>Incluir los cubos de tomate, revolver por unos minutos y agregar 2 tazas de agua hirviendo, también puede ser caldo. Incorporar el choclo.</li>
+                        <li>Bajar el fuego y cocinar tapado por 8 a 10 minutos. Destapar y cocinar hasta lograr la consistencia deseada. Servir acompañado de papas doradas o arroz.</li>
+                    </ol>
+                   
+                    <p>
+                        <a href="@Url.Action("DescargarCenco", new { file = ViewBag.codigoNota})">
+                            Descargar receta
+                        </a>
+                        
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}
+

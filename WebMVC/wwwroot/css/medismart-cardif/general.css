@@ -1,0 +1,419 @@
+body {
+    font-family: 'Mulish', Arial, sans-serif !important;
+    background-color: #f9f9fc !important;
+    font-size: 1rem !important;
+    /*#f9f9fc*/
+}
+
+#kt_scrolltop {
+    display: none !important;
+}
+
+.titulo-seccion {
+    font-size: 22px;
+    color: #3BC1CD;
+    font-weight: 700;
+}
+
+.calificacion {
+    color: #3BC1CD;
+    font-size: 1rem;
+    text-align: center;
+}
+.calificacion2 {
+    color: #3BC1CD;
+    font-size: 1rem;
+    text-align: center;
+}
+.btn-outline-danger:not(:disabled):not(.disabled):active,
+.btn-outline-danger:not(:disabled):not(.disabled).active,
+.show > .btn-outline-danger.dropdown-toggle {
+    color: #fff !important;
+    background-color: #EA4335 !important;
+    border-color: #EA4335;
+}
+
+.btn-danger:not(:disabled):not(.disabled):active,
+.btn-danger:not(:disabled):not(.disabled).active,
+.show > .btn-danger.dropdown-toggle {
+    color: #fff !important;
+    background-color: #EA4335 !important;
+    border-color: #EA4335;
+}
+
+.btn-danger:focus, .btn-danger.focus {
+    background-color: #eb5757;
+    border-color: #eb5757;
+}
+
+.btn-outline-danger {
+    border-color: #F42534;
+    color: #F42534;
+}
+div[title=Accesibilidad] {
+    display: none;
+}
+/*
+.calificacion::after {
+    /* content: '\f274 Atenci\F3n m\E1s cercana';
+    content: 'Atenci\F3n m\E1s cercana';
+    font-size: 1.2rem;
+    width: 100%;
+    display: block;
+    text-align: center;
+    color: #3BC1CD;
+    font-weight: 700;
+    padding-top: 1rem;
+    margin-top: 1rem;
+    width: 100%;
+    border-top: 1px dashed #3BC1CD;";
+    font-family: 'Font Awesome 5 Pro'
+}
+
+*/
+
+.swal2-styled.swal2-confirm {
+    font-size: 1.0em!important;
+}
+
+.calificacion .positiva {
+    color: #FFAF36;
+}
+.calificacion2 .positiva {
+    color: #FFAF36;
+}
+    .calificacion .positiva
+
+    a {
+        transition: all ease-out .3s;
+    }
+
+.calificacion2 .positiva
+
+a {
+    transition: all ease-out .3s;
+}
+.btn {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.btn.dropdown-toggle {
+    box-shadow: none;
+}
+
+.caja-base {
+    background-color: #FFF;
+    color: #666;
+    border: 1px solid rgba(59, 193, 205, 0.3);
+    border-radius: 10px;
+    padding: 4rem 2rem;
+    margin-bottom: 2rem;
+}
+
+/*Forms*/
+.form-group .ms-label {
+    font-weight: 700 !important;
+    color: #0081A4 !important;
+}
+
+.kt-login.kt-login--v3 
+.kt-login__wrapper 
+.kt-login__container 
+.kt-form .form-control {
+    margin-top: 0;
+}
+
+.invalid-feedback {
+    color: #EB5757;
+    padding-left: 0 !important;
+}
+
+.has-error .form-control {
+    border-color: #e73d4a;
+}
+/*Buttons*/
+.btn {
+    cursor: pointer;
+    padding: 0.625rem 2.5rem !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.kt-login.kt-login--v3 
+.kt-login__wrapper 
+.kt-login__container 
+.kt-form .kt-login__actions 
+.kt-login__btn-secondary, 
+.kt-login.kt-login--v3 
+.kt-login__wrapper 
+.kt-login__container 
+.kt-form 
+.kt-login__actions 
+.kt-login__btn-primary {
+    height: 40px !important;
+}
+
+.btn-primary {
+    background-color: #3BC1CD;
+    border-color: #3BC1CD;
+}
+
+.btn-primary:hover {
+        background-color: #0081A4;
+        border-color: #0081A4;
+    }
+
+.btn-outline-primary {
+    color: #3BC1CD;
+    border-color: #3BC1CD;
+}
+
+    .btn-outline-primary:hover {
+        background-color: #3BC1CD;
+        border-color: #3BC1CD;
+        color: #FFF;
+    }
+
+
+    .btn-secondary-ms {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+.kt-aside__brand {
+    padding: 0 16px !important;
+}
+
+.titulo-data-horario {
+    border: 1px solid #ffb822;
+    color: #ffb822;
+    padding: 2rem;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 10px;
+    margin: 1rem;
+    margin-left: 0;
+}
+
+.powered {
+    width: 100%;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+    .powered strong {
+        color: #0081A4;
+    }
+
+/* Img Logos*/
+
+.kt-header-mobile .kt-header-mobile__logo {
+    min-width: 170px;
+}
+
+
+.logotipo-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: auto;
+}
+
+.logotipo-desktop {
+    max-width: 430px;
+    background-image: url(../../img/logo-mlive.svg);
+    height: 98px;
+}
+
+
+.terminos a {
+    margin-left: 1rem;
+}
+
+
+.kt-footer .kt-container {
+    padding-left: 125px;
+}
+/*.logotipo-mobile {
+    max-width: 300px;
+    background-image: url(../../img/logotipo.png);
+    height: 68px;
+}
+
+    */
+@media (max-width: 768px) {
+    .kt-header-mobile .kt-header-mobile__logo {
+        min-width: 80px;
+    }
+
+    .kt-footer .kt-container {
+        padding-left: 0;
+    }
+}
+
+
+.kt-portlet .kt-portlet__foot {
+    padding-top: 0 !important;
+    border-top: none;
+}
+
+
+.footer-cliente {
+  align-items: center;
+  display: none;
+}
+
+    .footer-cliente img {
+        width: 200px;
+    }
+
+/*Alertas*/
+
+.alert.alert-danger {
+    background-color: #eee;
+    border: 1px solid #eee;
+}
+
+    .alert.alert-danger .alert-text {
+        color: #EB5757;
+        font-weight: 700;
+    }
+
+
+    .servicio {
+        display: none;
+    }
+
+
+    /*Form Group*/
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+
+/*Header top especial*/
+
+.header-top {
+    display: none;
+}
+
+/*Mobile header Position*/
+
+.kt-header-mobile--fixed .kt-header__topbar {
+    top: 0;
+}
+
+.kt-grid.kt-grid--hor:not(.kt-grid--desktop):not(.kt-grid--desktop-and-tablet):not(.kt-grid--tablet):not(.kt-grid--tablet-and-mobile):not(.kt-grid--mobile) > .kt-grid__item.kt-grid__item--fluid, .kt-grid.kt-grid--hor:not(.kt-grid--desktop):not(.kt-grid--desktop-and-tablet):not(.kt-grid--tablet):not(.kt-grid--tablet-and-mobile):not(.kt-grid--mobile) > .kt-grid__item.kt-grid__item--fluid {
+    flex: 1 0 auto;
+}
+
+.modal .modal-content .modal-header .close:before {
+    display: none;
+}
+
+/*Atencion Directa Icono*/
+
+.icono-voucher i {
+    font-size: 140px; 
+    color: #3BC1CD;
+}
+
+@media (max-width: 991.98px) {
+    .kt-grid.kt-grid--hor:not(.kt-grid--desktop):not(.kt-grid--desktop-and-tablet):not(.kt-grid--tablet):not(.kt-grid--tablet-and-mobile):not(.kt-grid--mobile) > .kt-grid__item.kt-grid__item--fluid, .kt-grid.kt-grid--hor:not(.kt-grid--desktop):not(.kt-grid--desktop-and-tablet):not(.kt-grid--tablet):not(.kt-grid--tablet-and-mobile):not(.kt-grid--mobile) > .kt-grid__item.kt-grid__item--fluid {
+        flex: 0 0 0;
+        margin-bottom: 2rem;
+    }
+
+    #modalConveniosIngresar .prehome__plans {
+        flex-direction: column;
+        height: auto;
+    }
+
+    #modalConveniosIngresar .kt-form-modal {
+        margin-bottom: 3rem;
+        height: auto;
+    }
+
+    #modalConveniosIngresar .modal-footer {
+        margin-top: 1rem;
+        padding-bottom: 0 !important;
+        justify-content: center;
+    }
+
+    #modalConveniosIngresar .modal-title.title-convenio {
+        text-align: center;
+    }
+    #modalConveniosIngresar  .prehome__plan img {
+
+    }
+    #modalConveniosIngresar {
+    }
+
+        #modalConveniosIngresar .prehome-convenio .prehome__title {
+            padding: 1rem;
+            padding-top: 3rem;
+            margin-bottom: 0;
+        }
+
+    .prehome-convenio .prehome__title.h2 {
+        padding: 1rem !important;
+        padding-top: 1rem !important;
+        text-align: center;
+    }
+
+
+
+    #modalConveniosIngresar .prehome__plan {
+        height: auto !important;
+        width: 100%;
+        max-width: none;
+    }
+
+        #modalConveniosIngresar .prehome__plan ul {
+            min-height: 0;
+            max-height: none;
+        }
+
+        #modalConveniosIngresar .prehome__plan li {
+            line-height: 1.2;
+        }
+
+    #modalConveniosIngresar .modal-footer {
+        width: 100%;
+    }
+
+}
+
+
+#modalConveniosIngresar .modal-footer {
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+#modalConveniosIngresar .prehome__plan ul {
+    min-height: 0;
+    max-height: none;
+}
+
+#modalConveniosIngresar  .prehome__plan {
+    height: auto;
+    max-width: none;
+}
+
+    #modalConveniosIngresar .prehome__plan li {
+        line-height: 1.2
+    }
+
+    #modalConveniosIngresar .prehome__plan img {
+        margin-bottom: 1rem;
+    }
+
+#modalConveniosIngresar .prehome__plans {
+    height: auto;
+}

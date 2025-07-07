@@ -1,0 +1,914 @@
+﻿@model WebMVC.Models.AtencionViewModel
+@using Microsoft.Extensions.Configuration
+@using System.Globalization
+@inject IConfiguration Configuration
+
+@{
+    ViewData["Title"] = "Paciente";
+    Layout = "_LayoutPaciente";
+    var baseUrlServices = Configuration["ServicesUrl"];
+    
+}
+
+<!-- WOW -->
+
+<div class="wow wow__resumen">
+    <div class="wow__title">
+        <h2 class="wow__title_text">
+            Resumen Atención
+        </h2>@*
+        <button class="btn btn-outline-primary wow__btn_descargarResumen">
+        Descargar Resumen
+        </button>*@
+    </div>
+    <div class="wow__container wow__resumen">
+        <!-- Tabs -->
+
+        <div class="wow__tabs">
+            <div class="wow__menu-tabs">
+                <div class="wow__tab tab-antecedentes">Antecedentes</div>
+                <div class="wow__tab tab-examenes" hidden>Exámenes</div>
+                <div class="wow__tab tab-medicamentos" hidden>Medicamentos</div>
+                <!--<div class="wow__tab tab-interconsultas">Interconsultas</div> -->
+            </div>
+            <!-- Container Tabs -->
+            <!-- Antecedentes -->
+
+            <div class="wow__container-tab tab--antecedentes">
+                <!-- Tab Content -->
+                <div class="tab-content">
+                    <!-- Tab Header -->
+
+                    <div class="tab-content__header">
+                        @Html.Hidden("uid", (object)ViewBag.uid)
+                        @Html.HiddenFor(m => m.Atencion.Id) 
+                        <div class="user-box">
+                            @if (@Model.fichaPaciente.rutaAvatar == null)
+                            {
+                                    <div class="foto-user">
+                                        <span class="rounded-circle iniciales">@Model.fichaPaciente.Iniciales</span>
+                                    </div>
+                            }
+                            else
+                            {
+                                    <div class="foto-user">
+                                        <img src="@(baseUrlServices+Model.fichaPaciente.rutaAvatar)" alt="" />
+                                    </div>
+                            }
+                            <div class="data-user">
+                                <small>Paciente</small>
+                                <div class="nombre-user">
+                                    @Model.fichaPaciente.nombreCompleto
+                                </div>
+                                <div class="sub-data">
+                                    @Model.fichaPaciente.Identificador
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-box">
+                            <div class="foto-user">
+                                <img src="@(baseUrlServices+@Model.Atencion.HoraMedico.FotoPerfil)" alt="">
+                            </div>
+                            <div class="data-user">
+                                <small>Profesional</small>
+                                <div class="nombre-user">
+                                    @Model.Atencion.NombreMedico
+                                </div>
+                                <div class="sub-data">
+                                    @Model.Atencion.Especialidad
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    @*
+                    @if (Model.fichaPaciente.Telefono == "" && Model.fichaPaciente.TelefonoMovil == "")
+                    {
+                                <div class="wow__div-sinTelefonos">
+                                    <div id="msjSinTelefonoWallet">
+                                        <div class="wow__title-msg-card">
+                                            <span>Ingresa tu número telefónico</span>
+                                        </div>
+                                        <div class="wow__parrafo-msg-card">
+                                            <p>No hemos encontrado asociado un número telefónico, por favor ingrésalo.</p>
+                                        </div>
+                                        <div class="wow__border-msg-card">
+                                            <div class="wow__subtitle-msg-card">
+                                        @*<i class="fa fa-warning kt-font-waring" aria-hidden="false"></i>
+                                            <img id="imgIngresarTelefono" src="~/img/wow/alert-triangle.svg"/>
+                                                <input type="text" id="inputTelefono" placeholder="Ingresa solo números" pattern="[0-9]+" required>
+                                            </div>
+                                            <div class="btn btn-primary wow__btn-tel-card" id="buttonAddTel">Agregar</div>
+                                        </div>
+                                    </div>
+                                </div>
+                    }
+                    *@
+                    <!-- Tab Header -->
+                    <!-- Tab Body -->
+                    <div class="tab-content__body">
+                        <!-- Atecedentes Smartcheck -->
+                        @if (ViewBag.historialSmartcheck != null)
+                        {
+                                <div class="tab-data-smartcheck">
+                                    <small class="small__smart">Smartcheck</small>
+
+                                @foreach (var smartcheck in ViewBag.historialSmartcheck)
+                                {
+                                    var puntajeSalud1 = Convert.ToDouble(smartcheck["detail"]["health_Score"]);
+                                    var puntajeSalud = (Math.Truncate(puntajeSalud1 * 100) / 100);
+                                    var fechaCheck = smartcheck["header"]["measurement_Datetime"];
+                                    var colorSmart = "";
+                                    if (puntajeSalud >= 0 && puntajeSalud <= 16.65)
+                                    {
+                                        colorSmart = "rgba(225,82,65,1)";
+                                    }
+                                    else if (puntajeSalud >= 16.67 && puntajeSalud <= 33.3)
+                                    {
+                                        colorSmart = "rgba(226,148,143,1)";
+                                    }
+                                    else if (puntajeSalud >= 33.4 && puntajeSalud <= 66.6)
+                                    {
+                                        colorSmart = "rgba(249,236,161,1)";
+                                    }
+                                    else if (puntajeSalud >= 66.7 && puntajeSalud <= 83.35)
+                                    {
+                                        colorSmart = "rgba(55,180,93,1)";
+                                    }
+                                    else if (puntajeSalud >= 83.36 && puntajeSalud <= 100)
+                                    {
+                                        colorSmart = "rgba(36,115,60,1)";
+                                    }
+
+                                    var puntajeSalud2 = puntajeSalud.ToString("0.#");
+                                            <input type="hidden" id="calculoSmart" value=@puntajeSalud>
+                                            <div class="tarjeta--smartcheck tarjeta--smartcheck_resumen">
+                                                <div class="contenido-smartcheck wow__contenido-smartcheck">
+                                                    <div class="wow__puntaje-smartcheck_" style="color: @colorSmart"><b>@puntajeSalud2</b> / 100</div>
+                                                    <div class="wow__grafico-smartcheck_">
+                                                        <div class="form-group wow__group_smartcheck_">
+                                                            <span id="puntoSmartcheck" class="punto-smartcheck">
+                                                                <img class="wow__imagen-puntaje" src="/img/wow/arrow-down-smartcheck.svg">
+                                                            </span>
+                                                            <div class="divIndicador wow__divIndicador-smartcheck">
+                                                                &nbsp;
+                                                            </div>
+                                                            <span class="divCero">0</span><span class="divCien">100</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                }
+
+                               </div>
+                        }
+                        else
+                        {
+                                <div class="tab-data__list" style="margin-top: -10%">
+                                    <div class="tab-data__item">
+                                    </div>
+                                </div>
+                        }
+                        <!-- Atecedentes Smartcheck -->
+                        <!-- Atecedentes Lista -->
+                        @if (Model.Atencion.MotivoConsultaMedico != "" && Model.Atencion.DiagnosticoMedico != "")
+                        {
+                                <div class="tab-data__list">
+                                @if (Model.Atencion.MotivoConsultaMedico != "")
+                                {
+                                            <div class="tab-data__item">
+                                                <small>Síntomas</small>
+                                                <div class="tab-data__value">
+                                            @Model.Atencion.MotivoConsultaMedico
+                                                </div>
+                                            </div>
+                                }
+                                else
+                                {
+                                            <div class="tab-data__item">
+                                            </div>
+                                }
+                                @if (Model.Atencion.DiagnosticoMedico != "")
+                                {
+                                            <div class="tab-data__item">
+                                                <small>Diagnóstico</small>
+                                                <div class="tab-data__value">
+                                            @Model.Atencion.DiagnosticoMedico
+                                                </div>
+                                            </div>
+                                }
+                                else
+                                {
+                                            <div class="tab-data__item">
+                                            </div>
+                                }
+                                </div>
+                        }
+                        @if (Model.Atencion.TratamientoMedico != "" && Model.Atencion.ControlMedico != "")
+                        {
+                                <div class="tab-data__list">
+                                @if (Model.Atencion.TratamientoMedico != "")
+                                {
+                                            <div class="tab-data__item">
+                                                <small>Indicaciones</small>
+                                                <div class="tab-data__value">
+                                            @Model.Atencion.TratamientoMedico
+                                                </div>
+                                            </div>
+                                }
+                                else
+                                {
+                                            <div class="tab-data__item">
+                                            </div>
+                                }
+                                @if (Model.Atencion.ControlMedico != "" && Model.Atencion.ControlMedico != null)
+                                {
+                                            <div class="tab-data__item">
+                                                <small>Control</small>
+                                                <div class="tab-data__value">
+                                            @Model.Atencion.ControlMedico
+                                                </div>
+                                            </div>
+                                }
+                                else
+                                {
+                                            <div class="tab-data__item">
+                                            </div>
+                                }
+                                </div>
+                        }
+                        <!-- Atecedentes Lista -->
+                        <!-- Archivos de la Atención -->
+
+                        <div class="tab-data__files">
+                            <small>Archivos de la Atención</small>
+
+                            @if (Model.Atencion.Archivos.ToList().Count == 0)
+                            {
+                                    <div id="pnlArchivos" class="align-self-center" style="display:block">
+                                        <div class="row">
+                                            <div class="col-lg-12 kt-align-center">
+                                                <img src="~/metronic_demo7/assets/media/sinResultado.PNG" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 text-center">
+                                                <h5>No existen archivos asociados a esta atención.</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                            }
+                            else
+                            {
+                                    <div style="display: flex; flex-wrap: wrap;">
+                                    @foreach (var archivo in Model.Atencion.Archivos)
+                                    {
+                                                <ul class="tab-data__list-files archivos__atencion">
+                                            @{
+                                                var rutaDescargaArchivo = Configuration["ServicesUrl"] + "/agendamientos/archivo/DescargarArchivo?id=" + archivo.idenc;
+                                            }
+                                            @*@if (archivo.Nombre == "Interconsulta.pdf")
+                                    {
+                                    <li class="tab-data__list-files-li">
+                                    <a href="@rutaDescargaArchivo">
+                                    <i class="fal fa-file-pdf"></i>
+                                    <p class="textoFile">@archivo.Nombre</p>
+                                    </a>
+                                    </li>
+                                    }*@
+                                            @if (archivo.Estado != "E" && !Model.Atencion.Peritaje)
+                                            {
+                                                            <li class="tab-data__list-files-li">
+                                                                <a href="@rutaDescargaArchivo">
+                                                                    <i class="fal fa-file-pdf"></i>
+                                                                    <p class="textoFile">@archivo.Nombre</p>
+                                                                </a>
+                                                            </li>
+                                            }
+                                            else if (!Model.Atencion.Peritaje)
+                                            {
+                                                            <li>
+                                                                <div class="tipo-archivo">
+                                                        @archivo.Nombre
+                                                                </div>
+                                                                <button class="btn-archivo">
+                                                                    <i class="fal fa-file-pdf"></i>
+                                                                </button>
+                                                            </li>
+                                            }
+
+                                                </ul>
+                                    }
+                                    </div>
+                            }
+                        </div>
+
+                        <!-- Archivos de la Atención -->
+                    </div>
+                    <!-- Tab Body -->
+                </div>
+                <!-- Tab Content -->
+            </div>
+            <!-- Antecedentes -->
+            <!-- Exámenes -->
+
+            <div class="wow__container-tab tab--examenes" hidden>
+                
+            </div>
+            <!-- Exámenes -->
+            <!-- Medicamentos -->
+
+            <div class="wow__container-tab tab--medicamentos" hidden>
+                <!-- Tab Content -->
+                <!-- Tab Header -->
+                
+            </div>
+            <!-- Medicamentos -->
+            <!-- Interconsultas -->
+
+            <div class="wow__container-tab tab--interconsultas">
+                <!-- Tab Content -->
+                <!-- Tab Header -->
+                <div class="tab-content__header" style="display:flow">
+                    <h3 class="tab-content__title">Orden de interconsulta</h3>
+                    <!--<img src="" alt="" class="logo-vendor">-->
+                    <div class="">    
+                            @if (Model.EspecialidadesDerivacionProgramaName.Count > 0)
+                            {
+                                <small>Especialidades Derivadas</small>
+                                <br/>
+                                <ul class="tab-data__list-files" style="display:flow">
+                                    @foreach (var especialidadName in Model.EspecialidadesDerivacionProgramaName)
+                                    {
+                                    <li class="tab-data__list-files-li">● @especialidadName</li>
+                                    }
+                                </ul>
+                            }
+                            else
+                            {
+                                <div>
+                                    <h5 class="profesionalAsignaDerivacion">El profesional no te ha remitido a ninguna especialidad.</h5>
+                                </div>
+                            }
+                    </div>
+                    
+                    <div class="tab-list__items">
+                        <div class="tab-list__item_interconsulta">
+                            @if (Model.Atencion.IdEspecialidadDerivacion == 0)
+                            {
+
+                                <!-- <div>
+                                        <h5 class="profesionalAsignaDerivacion">El profesional no te ha remitido a ninguna especialidad.</h5>
+                                    </div>-->
+                            }
+                            else
+                            {
+                                @if (Model.Atencion.Archivos.ToList().Count == 0)
+                                {
+
+                                           <!-- <div>
+                                                <h5 class="profesionalAsignaDerivacion">El profesional no te ha remitido a ninguna especialidad.</h5>
+                                     </div>-->
+                                }
+                                else
+                                {
+                                            <div>
+                                                <h5 class="profesionalAsignaDerivacion">El profesional te ha asignado a las siguientes especialidades:</h5>
+                                            </div>
+                                    @foreach (var archivo in Model.Atencion.Archivos)
+                                    {
+                                                    <ul class="tab-data__list-files">
+                                            @{
+                                                var rutaDescargaArchivo = Configuration["ServicesUrl"] + "/agendamientos/archivo/DescargarArchivo?id=" + archivo.idenc;
+                                            }
+                                            @if (archivo.Nombre == "Interconsulta.pdf")
+                                            {
+                                                                <li>
+                                                                    <a href="@rutaDescargaArchivo">
+                                                                        <img src="/img/momento-wow/pdf-file.svg" class="filePDFWow" />
+                                                                    </a>
+                                                                </li>
+                                            }
+                                            else if (archivo.Estado != "E" && !Model.Atencion.Peritaje)
+                                            {
+                                                                <li class="tab-data__list-files-li" hidden>
+                                                                    <a href="@rutaDescargaArchivo">
+                                                                        <i class="fal fa-file-pdf" hidden></i>
+                                                                        <p class="textoFile" hidden>@archivo.Nombre</p>
+                                                                    </a>
+                                                                </li>
+                                            }
+                                            else if (!Model.Atencion.Peritaje)
+                                            {
+                                                                <li>
+                                                                    <div class="tipo-archivo">
+                                                        @archivo.Nombre
+                                                                    </div>
+                                                                    <button class="btn-archivo">
+                                                                        <i class="fal fa-file-pdf"></i>
+                                                                    </button>
+                                                                </li>
+                                            }
+
+                                                    </ul>
+                                    }
+
+                                            <div class="especialidadDerivacionTitle">
+                                                Consulta @Model.Atencion.GlosaEspecialidadDerivacion
+                                            </div>
+                                            <div class="especialidadDerivacionSubTitle">
+                                        @Model.Atencion.GlosaEspecialidadDerivacion
+                                            </div>
+                                }
+                            }
+                            @*<div class="tab-list__check">
+                            <input type="checkbox" name="" id="">
+                            <label for="">Item List</label>
+                            </div>
+                            <div class="tab-list__price">
+                            $ 12.990
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
+                <!-- Tab Header -->
+                <!-- Tab Body -->
+                <h3 class="tab-content__title">
+                    Selecciona profecional para interconsulta 
+                </h3>
+                <small>Si no encuentras la especialidad derivada en la Orden de interconsulta, es porque no hay disponibilidad para esa especialidad.</small>
+                <div class="tab-content__body" id="divContentInterconsulta">
+                    @{
+                        var i = 0;
+                        var especialidades = Model.EspecialidadesDerivacionPrograma.FindAll(x => Model.interconsultas.Exists(a => a.HoraMedico?.codigoEspecialidad == x));
+
+                        foreach (var esp in especialidades.Concat( Model.EspecialidadesDerivacionPrograma.FindAll(s => !especialidades.Exists(e=>e == s)) ))
+                        {
+                            var allhorasespecialidades = Model.HorasInterconsultasEspecialidades;
+                            var h = allhorasespecialidades.Find(x => x.codigoEspecialidad == esp);
+                            if (h == null)
+                                continue;
+                            var especialidad = h.Especialidad;
+
+                            var isLoaded = Model.interconsultas.FindAll(x => x.HoraMedico.codigoEspecialidad == esp || (x.HoraMedico.IdEspecialidad.ToString() == esp)).ConvertAll(x => x.HoraMedico).Count > 0;
+
+
+                            <div class="tab-list__vendors_int">
+                                <div class="dropdown wow__dropdown drop-ci" style="width: 100%;">
+                                    <input type="checkbox" id="@("chk-medico-interconsulta-tab_" + esp)" class="checkbox_tab__int check-inter-options" name="item" value="0" @(isLoaded ? "disabled checked" : "")>
+                                  
+                                    @{
+                                        var horaMedico = Model.HorasInterconsultasEspecialidades.Find(x => x.codigoEspecialidad == esp);
+                                        var medicoText = horaMedico?.NombreMedico;
+                                        var indexOfSecondSpaceMedico = medicoText?.IndexOf(" ", medicoText.IndexOf(" ") + 1);
+                                        if (indexOfSecondSpaceMedico != null && indexOfSecondSpaceMedico != -1)
+                                        {
+                                            medicoText = medicoText.Substring(0, indexOfSecondSpaceMedico.Value);
+                                        }
+                                    }
+
+                                   <div class="nombre-especialidad">
+                                        <!--<div class="nombre-medico-ci">@medicoText</div>-->
+                               
+                                    <div class="especialidad-ci">@especialidad</div>
+                                    
+                                    </div>
+
+
+                                    <select class="btn dropdown-toggle dropdown-toggle-mm wow__dropdow-togle toogle_int drop-ci" style="width: 65% !important; @(isLoaded? " -webkit-appearance: none; -moz-appearance: none; border-color: #fff0;":"")" type="button" id="@("lista-medico-interconsulta-tab_" + esp)" data-especialidad="@(esp)" @(isLoaded ? "disabled" : "")>
+                                        <option value="0">Selecciona Hora Profesional</option>
+
+                                        @foreach (var hora in Model.HorasInterconsultasEspecialidades.FindAll(x => x.codigoEspecialidad == esp))
+                                        {
+                                            var text = hora.NombreMedico;
+                                            var indexOfSecondSpaceHora = text.IndexOf(" ", text.IndexOf(" ") + 1);
+                                            if (indexOfSecondSpaceHora != -1)
+                                            {
+                                                text = text.Substring(0, indexOfSecondSpaceHora);
+                                            }
+                                            <option value="@hora.IdMedicoHora" data-value2="@hora.ValorAtencion" data-idmedico="@hora.IdMedico" class="dropdown-item wow__dropdown-item"
+                                                    data-namemedico="@(text)" data-especialidad="@(hora.Especialidad)" data-especialidadid="@(esp)" data-idmedicohora="@(hora.IdMedicoHora)" data-fecha="@(hora.FechaText)" data-hora="@(hora.HoraDesdeText)" data-price="@(String.Format("{0:n0}", Convert.ToDecimal(hora.ValorAtencion)).Replace(",","."))">
+                                                @hora.NombreMedico :
+                                                <div class="data-profesional">
+                                                     @hora.FechaText | @hora.HoraDesdeText Costo: $ <p id="precio_@hora.IdMedicoHora">@String.Format("{0:n0}", Convert.ToDecimal(@hora.ValorAtencion)).Replace(",",".")</p>
+                                                </div>
+                                            </option>
+                                        }
+                                        @foreach (var hora in Model.interconsultas.FindAll(x => x.HoraMedico.codigoEspecialidad == esp || (x.HoraMedico.IdEspecialidad.ToString() == esp)).ConvertAll(x => x.HoraMedico))
+                                        {
+                                            var text = hora.NombreMedico;
+                                            var indexOfSecondSpaceHora = text.IndexOf(" ", text.IndexOf(" ") + 1);
+                                            if (indexOfSecondSpaceHora != -1)
+                                            {
+                                                text = text.Substring(0, indexOfSecondSpaceHora);
+                                            }
+                                            <option value="@hora.IdMedicoHora" data-value2="@hora.ValorAtencion" data-idmedico="@hora.IdMedico" class="dropdown-item wow__dropdown-item" selected
+                                                    data-namemedico="@(text)" data-especialidad="@(hora.Especialidad)" data-especialidadid="@(esp)" data-idmedicohora="@(hora.IdMedicoHora)" data-fecha="@(hora.FechaText)" data-hora="@(hora.HoraDesdeText)" data-price="@(String.Format("{0:n0}", Convert.ToDecimal(hora.ValorAtencion)).Replace(",","."))">
+                                                @hora.NombreMedico :
+                                                <div class="data-profesional">
+                                                     @hora.FechaText | @hora.HoraDesdeText Costo: $ <p id="precio_@hora.IdMedicoHora">@String.Format("{0:n0}", Convert.ToDecimal(@hora.ValorAtencion)).Replace(",",".")</p>
+                                                </div>
+                                            </option>
+                                        }
+                                    </select>
+                                  
+                                </div>
+                            </div>
+                            i = i + 1;
+                        }
+                    }
+                </div>
+                
+                <!-- Tab Body -->
+                <!-- Tab Content -->
+
+            </div>
+            <!-- Interconsultas -->
+            <!-- Container Tabs -->
+        </div>
+        <!-- Tabs -->
+        <!-- Lista -->
+        <div class="wow__lista" id="divLista" style="display:none">
+            <!-- Header Lista -->
+            <div class="wow__lista-header">
+               
+                <div class="wow__guardar-lista" hidden>
+                    <input type="checkbox" id="guardarLista" name="guardarLista" value="guardar">
+                    <label for="guardarLista"> Guardar Lista</label>
+                </div>
+            </div>
+            <!-- Header Lista -->
+            <!-- Body Lista -->
+            <div class="wow__lista-body">
+                <div class="cobros-ci" id="divContentInterconsultaDetails">
+                    @{
+                        i = 0;
+                        foreach (var esp in Model.EspecialidadesDerivacionPrograma)
+                        {
+                            var h = Model.HorasInterconsultasEspecialidades.Find(x => x.codigoEspecialidad == esp);
+                            if (h == null)
+                                continue;
+                            var especialidad = h.Especialidad;
+
+                         <div id="@("item-medico-interconsulta-tab_" + esp)" class="cl-list-data-cobro not-visible" style="display: none;" data-especialidad="@(esp)">
+                            <input type="checkbox" class="item-medico-check  checkbox_tab__int check-inter-options">
+                            <div class="ci-list-pro-cobro">
+                       
+                            <div class="ci-list-nombre-doc-cobro">
+                                <h5 class="item-medico-name"></h5>
+                                <p class="item-medico-speciality">@especialidad</p>
+                            </div>
+    
+                            <div class="ci-linea-vertical-cobro"></div>
+                            <p class="item-medico-fecha">15-12-22</p>
+                            <p class="item-medico-hora">10:22 </p>
+                            <p>Costo $<span class="item-medico-price">0</span></p>
+                           
+                      
+                            </div>
+                         </div>
+
+                         i = i +1;
+                        }
+                    }
+
+                </div>
+               
+                <!-- Interconsultas -->
+                <!-- Totales -->
+
+                <div class="wow__totales" id="divTotalAPagar">
+                 
+                   
+                    <div class="wow__total final">
+                        <div class="wow__total-label total-label" id="totalLabel">Total a pagar</div>
+                        <div class="wow__total-price" id="totalPriceI">0</div>
+                        <div hidden id="totalPriceCarroI">0</div>
+                    </div>
+                </div>
+
+                <!-- Totales -->
+          
+                <!-- Body Lista -->
+                <!-- Footer Lista -->
+                <div class="wow__lista-footer">
+                           
+                   <div class="ci-boton-confirmar">
+                        <button id="pagarButton">
+                            CONFIRMAR AHORA
+                        </button>
+
+                        <div>
+
+                          <a href="#"><p>terminos y condiciones</p></a>  
+                    
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- Footer Lista -->
+                </>
+
+                <div id="loaderPagos" class="wow__loader-pagos" style="display: none;"></div>
+                <!-- Lista -->
+
+            </div>
+
+            <!-- Modal direcciones -->
+            <div class="modal fade wow-modal_dir" id="dynamic-modal-div" name="dynamic-modal-div" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true" style="">
+                <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content wow_modal-content">
+                        <div id="dynamic-modal"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Loader Pago Final
+            <div id="loader" class="wow-loader__pago" style="display: none;">
+                <img id"doctor" src="~/img/momento-wow/facedoc.png" class="docW ow"/>
+                <div class="wow-loading__pago"></div>
+                <div class="wow-loading__pago-message">
+                    <p>Estamos confirmando tu pago</p>
+                </div>
+            </div>-->
+            <!--Loader Pago Final-->
+
+            <div class="modal fade" id="loader" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-wow">
+                    <div class="modal-content">
+                        <div class="modal-body">
+
+                            <div class="wow_message-loader">
+                                <img id"doctor" src="~/img/momento-wow/facedoc.png" />
+
+                                <div class="message">
+
+                                    Estamos confirmando tu pago...
+                                </div>
+                                <div class="wow-loading__pago"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*Loader Redirección
+            <div id="loaderIni" class="wow-loader__pago" style="display: none;">
+            <img id"doctor" src="~/img/momento-wow/facedoc.png" class="docWow"/>
+            <div class="wow-loading__pago"></div>
+            <div class="wow-loading__pago-message">
+            <p>Estamos redirigiéndote a la página de pago</p>
+            </div>
+            </div>*@
+            @*Loader Redirección*@
+            <div class="modal fade" id="loaderIni" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-wow">
+                    <div class="modal-content">
+                        <div class="modal-body">
+
+                            <div class="wow_message-loader">
+                                <img id"doctor" src="~/img/momento-wow/facedoc.png" />
+
+                                <div class="message">
+
+                                    Estamos redirigiéndote a la página de pago...
+                                </div>
+                                <div class="wow-loading__pago"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="loaderCar" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-wow">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="wow_message-loader">
+                                <img id"doctor" src="~/img/momento-wow/facedoc.png" />
+                                <div class="message">
+                                    Estamos agendando tus citas...
+                                </div>
+                                <div class="wow-loading__pago"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="loaderCarBack" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-wow">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="wow_message-loader">
+                                <img id"doctor" src="~/img/momento-wow/facedoc.png" />
+                                <div class="message">
+                                    Espera un momento por favor...
+                                </div>
+                                <div class="wow-loading__pago"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*Loader Agendamiento
+            <div id="loaderInterc" class="wow-loader__pago" style="display: none;">
+            <img id"doctor" src="~/img/momento-wow/facedoc.png" class="docWow"/>
+            <div class="wow-loading__pago"></div>
+            <div class="wow-loading__pago-message" hidden>
+            </div>
+            </div>*@
+            @*Loader Agendamiento*@
+            <div class="modal fade" id="loaderInterc" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-wow">
+                    <div class="modal-content">
+                        <div class="modal-body">
+
+                            <div class="wow_message-loader">
+                                <img id"doctor" src="~/img/momento-wow/facedoc.png" />
+
+                                <div class="message">
+
+                                    Estamos generando tu interconsulta...
+                                </div>
+                                <div class="wow-loading__pago"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade modal-wow__modal-pagos" data-backdrop="static" id="modalGeneral" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body modal__wow-gral" id="modalBodyGeneral">
+                            <div class="form-group row">
+                                <div class="btn-proveedor wow__pago-transbank" id="DivPagoTransBank" hidden></div>
+                                <div class="btn-proveedor wow__pago-mercadopago" id="DivPagoMercadoPago" hidden></div>
+                                <div class="proveedor_box">
+
+                                    <button id="btnCerrarModalPago" type="button" data-dismiss="modal" class="btn-guardar-info wow__cerrar_pago">
+                                        <i class="fal fa-times"></i>
+                                    </button>
+                                    <div class="box_addcards wow__resumen-addcard" id="DivPayment">
+                                        <h2 id="titleTarjetas" class="wow__text-select-pay">Seleccione su opción de pago</h2>
+                                        <div id="bannerTarjetas" class="tarjetas_ok"> <img src="~/img/pasarelapago/tarjetas_ok.png" /></div>
+                                        <div class="credit_ctabox">
+                                            <div class="item01">
+                                                @* <form id="form-checkout" >
+                                                <select type="text" id="form-checkout__cardId"></select>
+                                                <div id="form-checkout__securityCode-container" class="container"></div>
+                                                <input name="token" id="token" hidden>
+                                                <button>Enviar</button>
+                                                </form>
+                                                *@
+                                                <div id="paymentBrick_container"></div>
+                                            </div>
+                                        </div>
+                                        <!--Save-->
+                                    </div>
+                                    <!--cards-->
+                                </div>
+                                <div id="PagoTrasbank" class="wow__transbank-legend">
+                                </div>
+                                <div class="wow__agregar-tarjetas wow__form-addcard">
+                                    <button id="agregarTarjetaMP" class="btn btn-primary wow__btn-add">Agregar Tarjeta</button>
+                                </div>
+                                <div id="pagoNoProcesadoMP" class="wow__error-pago" style="display: none;">
+                                    <p>Tu pago no pudo ser procesado*</p>
+                                </div>
+                                <div class="box_addcards wow__add-newcard" id="DivAddCard" style="display: none;">
+                                    <h2>Agrega los datos de la tarjeta</h2>
+                                    <div class="tarjetas_ok"> <img src="~/img/pasarelapago/tarjetas_ok.png" /></div>
+
+                                    <div class="credit_ctabox">
+                                        <div class="item01">
+                                            <form id="form-checkout">
+                                                <!--Número de tarjeta-->
+                                                <h3>Número de tarjeta</h3>
+                                                <div id="form-checkout__cardNumber"></div>
+                                                <!--Número de tarjeta-->
+
+                                                <div class="date_code">
+                                                    <!--Fecha caducidad-->
+                                                    <div class="box_date">
+                                                        <h3>Fecha de caducidad (MM/AA)</h3>
+                                                        <div id="form-checkout__expirationDate"></div>
+                                                    </div>
+                                                    <!--Fecha caducidad-->
+                                                    <!--Codigoseguridad-->
+                                                    <div class="box_code">
+                                                        <h3>Código de seguridad (CVV)  <i class="fal fa-info-circle d-none"></i> </h3>
+                                                        <div id="form-checkout__securityCode"></div>
+                                                    </div>
+                                                    <!--Codigoseguridad-->
+                                                </div>
+                                                <!--Tipo Documento tarjeta-->
+                                                <h3>Tipo de identificación títular</h3>
+                                                <select id="form-checkout__identificationType"></select>
+                                                <!--Tipo Documento tarjeta-->
+                                                <!--Númerodedocumento-->
+                                                <h3>Número de documento</h3>
+                                                <input type="text" id="form-checkout__identificationNumber" value=@Model.DatosTarjetasMercadoPago.identificador.Replace("-", "") />
+                                                <!--Númerodedocumento-->
+                                                <!--Titular tarjeta-->
+                                                <h3>Titular de la tarjeta</h3>
+                                                <input type="text" id="form-checkout__cardholderName" value=@Model.DatosTarjetasMercadoPago.nombreUser />
+                                                <!--Titular tarjeta-->
+                                                <!--E-mail-->
+                                                <h3>E-mail</h3>
+                                                <input type="email" id="form-checkout__cardholderEmail" value=@Model.DatosTarjetasMercadoPago.email />
+                                                <!--E-mail-->
+                                                <!--Autorización-->
+                                                @{
+                                                    var esCarga = 0;
+                                                    foreach (var item in Model.DatosTarjetasMercadoPago.tarjetas)
+                                                    {
+                                                        if (item.tarjetaCarga == 1)
+                                                        {
+                                                            esCarga = 1;
+                                                        }
+                                                    }
+                                                    if (esCarga != 1)
+                                                    {
+                                                                <div class="checkbox_text">
+                                                                    <label><input id="sharedCard" type="checkbox" /> Autorizo compartir la tarjeta con mis cargas/beneficiarios</label>
+                                                                </div>
+                                                    }
+                                                }
+
+
+                                                <!--Autorización-->
+
+                                                <div class="save_dates">
+                                                    <a href="javascript:void(0);" id="manejoDatosMS" class="d-none d-lg-inline-block kt-widget4__title">Tus datos están seguros con nosotros</a>
+                                                </div>
+                                                <select id="form-checkout__issuer" hidden="hidden"></select>
+                                                <select id="form-checkout__installments" hidden="hidden"></select>
+
+                                                <!--Save-->
+                                                <div class="wow__footer-addform">
+                                                    <div class="save_cta">
+                                                        <button type="submit" class="btn btn-primary btn-submit__wow" id="form-checkout__submit">Guardar tarjeta</button>
+                                                    </div>
+                                                    <div class="back_cta">
+                                                        <button type="button" class="btn btn-primary btn-back__wow" id="btnFormBack">Regresar</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <!--CamposOcultos-->
+                                            <input type="hidden" id="iduser" value=@Model.DatosTarjetasMercadoPago.idUser />
+                                            <input type="hidden" id="CustomerId" />
+                                            <!--E-mail-->
+                                        </div>
+                                    </div>
+                                    <!--Save-->
+                                </div>
+                                <div class="modal-footer modal__wow-footer-pagos">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- end: WOW -->
+    </div>
+
+
+    @section Scripts {
+
+            <script src="https://sdk.mercadopago.com/js/v2"></script>
+            <script type="module">
+                import { init } from '../../js/ProgramaSalud/confirmacion-interconsulta.js?rnd=${@NumeroRandom.GetRandom()}';
+                init(@Html.Raw(Json.Serialize(Model)))
+            </script>
+            <script type="text/javascript">
+                (function () {
+                    var servicesUrlPago = '@ViewBag.servicesUrlPago';
+                    console.log(@ViewBag.Mensaje);
+                    var uid = @ViewBag.uid;
+                    window.uid = uid;
+                    var externo = '@ViewBag.externo';
+                    window.externo = externo;
+                    var idCliente = @ViewBag.idCliente;
+                    window.idCliente = idCliente;
+                    var host = '@ViewBag.HostURL';
+                    window.host = host;
+                    var urlBase = '@ViewBag.urlBase'
+                    window.urlBase = urlBase;
+                    window.servicesUrl = '@ViewBag.servicesUrl';
+                    window.totalDirecciones = '@ViewBag.totalDirecciones';
+                    window.direccionExamenWOW = '@Html.Raw(ViewBag.direccionExamenWOW)';
+                    window.servicesUrlPago = '@ViewBag.servicesUrlPago';
+                    window.servicesUrlWeb = '@ViewBag.servicesUrlWeb';
+                    window.publicKey = '@ViewBag.publicKey';
+                    var model = @Html.Raw(Json.Serialize(Model));
+                    window.modelVista = model;
+                })()
+            </script>
+    }

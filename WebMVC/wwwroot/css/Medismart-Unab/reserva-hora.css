@@ -1,0 +1,304 @@
+/* Reserva de Horas */
+
+.caja-reserva {
+    border-radius: 10px;
+    transition: all ease-out .3s;
+    border: 1px solid rgba(59, 193, 205, 0.5);
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 2rem
+}
+
+/* Selector de horas */
+.seleccion-horas {
+    /* padding: 2rem;
+    margin: 2rem;*/
+    padding-left: 2rem;
+}
+
+.seleccion-horas .header-seleccion-horas {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.titulo-data-horario {
+    font-size: 1.2rem;
+    display: block;
+    font-weight: 900;
+}
+
+.hora-top {
+    font-size: 2.5rem;
+    color: #3BC1CD;
+    font-weight: 900;
+}
+
+.selector-horas {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.selector-horas i {
+    font-size: 18px;
+    color: #3BC1CD;
+}
+
+.selector-horas:hover i {
+    color: #FFAF36;
+}
+
+.data-horario {
+    font-size: 1.2rem;
+    color: #0081A4;
+}
+
+.data-horario .rango-horario {
+    font-size: .8rem;
+}
+
+.titulo-data-horario {
+    font-weight: 700;
+}
+
+.lista-horas {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.lista-horas .hora {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid rgba(59, 193, 205, 0.5);
+    align-items: center;
+    cursor: pointer;
+    transition: all .3s ease-out;
+}
+
+.lista-horas .hora:hover {
+    background-color: #f7f7f7;
+}
+
+.horario {
+    display: flex;
+    align-items: center;
+}
+
+.horario .hora-top {
+    margin-right: .5rem;
+}
+
+.detalle-hora {
+    font-size: 1.875rem;
+    color: #C4C4C4;
+    margin-right: 2rem;
+    display: inline-block;
+}
+
+.estado-hora {
+    width: 150px;
+    text-align: center;
+}
+
+.estado-hora small {
+    font-size: 0.8rem;
+    padding: .2rem;
+    text-align: center;
+    border-radius: 10px;
+    width: 100px;
+    display: inline-block;
+}
+
+.hora.disponible small {
+    background-color: #3BC1CD;
+    color: #FFF;
+}
+
+.hora.ocupado small {
+    background-color: #DDD;
+    color: #999;
+    padding: 0.625rem 6.5rem;
+    justify-content: center;
+    font-size: 1rem;
+    display: flex;
+}
+
+.hora.seleccionado small {
+    background-color: #FFAF36;
+    color: #FFF;
+}
+
+.hora.disponible .detalle-hora{
+    color: #3BC1CD;
+}
+
+.hora.ocupado .detalle-hora{
+    color: #c4c4c4;
+}
+
+.hora.seleccionado .detalle-hora{
+    color: #FFAF36;
+}
+
+.cont-datepicker {
+    display: flex;
+    justify-content: center;
+}
+
+.caja-reserva .btn {
+    padding: 0.625rem 1rem !important;
+    font-weight: 900;
+}
+
+.caja-reserva .btn-pill {
+    box-shadow: none !important;
+    font-size: .8rem !important;
+}
+
+.caja-reserva .btn-am {
+    background-color: #3BC1CD;
+    border-color: #3BC1CD;
+    color: #FFF;
+}
+.caja-reserva .btn-pm {
+    background-color: #FFAF36;
+    border-color: #FFAF36;
+    color: #FFF;
+}
+
+
+@media (max-width: 1280px) {
+    .seleccion-horas {
+        padding-left: 0rem;
+     
+    }
+    .titulo-data-horario {
+        padding: 1rem;
+    }
+
+    .hora.disponible small {
+        padding: 0.625rem 5.5rem !important;
+    }
+    .hora.ocupado small {
+        background-color: #DDD;
+        color: #999;
+        padding: 0.625rem 5.5rem !important;
+        display: flex;
+        justify-content: center;
+    }
+    .titulo-data-horario {
+        padding: 1rem;
+        margin: 0 0 1rem 0;
+        font-weight: 700;
+        font-size: 12px;
+    }
+    .hora-top {
+        font-size: 2.3rem;
+        color: #3BC1CD;
+        font-weight: 900;
+    }
+
+}
+
+    @media (max-width: 1024px) {
+        .seleccion-horas {
+            margin: 0;
+            padding: 0;
+        }
+
+        .estado-hora {
+            display: none;
+        }
+
+        .lista-horas {
+            display: flex;
+            justify-content: space-evenly;
+            margin-bottom: 0;
+            margin-top: 1rem;
+            padding-top: .5rem;
+            border-top: 1px solid rgba(59, 193, 205, 0.5);
+        }
+
+            .lista-horas .hora {
+                border-top: none;
+                padding: 0 .5rem;
+                text-align: center;
+                border-radius: 10px;
+            }
+
+        .detalle-hora {
+            font-size: 1.4rem;
+            margin-right: 0;
+            font-weight: 900;
+        }
+
+        .titulo-data-horario {
+            font-size: 1rem;
+            margin: 0;
+            padding: .5rem;
+        }
+
+        .data-horario {
+            font-size: 1rem;
+        }
+
+        .hora-top {
+            font-size: 2rem;
+        }
+
+        .caja-confirmacion-hora .row {
+            margin-right: 0;
+            margin-left: 0;
+        }
+
+        .formulario-confirma-hora h1 {
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .formulario-confirma-hora .row p {
+            margin-top: 1rem;
+        }
+    }
+
+    .indica-dia {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+    }
+
+        .indica-dia.actual {
+            background: rgba(34, 185, 255, 0.7) !important;
+        }
+
+        .indica-dia.today {
+            background: rgba(34, 185, 255, 0.7) !important;
+        }
+
+
+        .indica-dia.seleccionado {
+            background: #1da70c;
+        }
+
+        .indica-dia.disponible {
+            background: #3BC1CD;
+        }
+
+    @media (max-width: 768px) {
+        .caja-reserva {
+            padding: 1.5rem 1rem;
+        }
+    }
+
+@media screen and (max-width: 640px) and (min-width: 376px) {
+    .cont-consentimiento-informado {
+        background: #f0f0f0;
+        width: 100%;
+        margin: 0 auto;
+        min-height: 80px;
+    }
+}
+    #modalReagendar .modal-body {
+        padding-bottom: 0;
+    }

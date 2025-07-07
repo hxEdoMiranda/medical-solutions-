@@ -1,0 +1,85 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+    <section class="container-fluid note-section library featured" id="nota3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="cont-titulo-receta">
+                        <div class="cont-logo">
+                            <img src="~/img/cencosud/vida-sana/ensaladadequinoa.png" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <h2 class="subtitulo-receta">
+                        Ingredientes 4 porciones:
+                    </h2>
+
+                    <ol>
+                        
+                        <li>200 gr quinoa. </li>
+                        <li>½ lechuga crespa o repollo.</li>
+                        <li>½ pimentón rojo</li>
+                        <li>1 zanahoria</li>
+                        <li>1 tomate en cubos</li>
+                        <li>Sal y pimienta a gusto</li>
+                    </ol>
+                    
+                    <h2 class="subtitulo-receta">
+                        Preparación
+                    </h2>
+                    <ol>
+                        
+                        
+                        <li>Lavar bajo la llave de agua la quinoa hasta que salga agua transparente para quitar el amargor.</li>
+                        <li>Cocinar la quinoa con 2 tazas de líquido hirviendo por cada 1 taza de quinoa por 20 minutos. Escúrrela si es necesario y deja reposar.</li>
+                        <li>Lava las verduras y escurre.</li>
+                        <li>Troza las verduras en cubitos y colócalas en una ensaladera. Agrega la quinoa cuando este fría y mezcla.</li>
+                        <li>Aliña a gusto y estará lista para servir</li>
+                     
+                    </ol>
+
+                    <p>
+                        <a href="@Url.Action("DescargarCenco", new { file = ViewBag.codigoNota})">
+                            Descargar receta
+                        </a>
+                        
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}
+

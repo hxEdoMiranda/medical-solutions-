@@ -1,0 +1,779 @@
+/*clini*/
+
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');*/
+
+:root {
+    --primary: #5B398E;
+    --secondary: #DD3488;
+    --tertiary: #AA8EC2;
+    --fourtiary: #FFF;
+    --purple: #7F25C6;
+    --accent: #1F61F7;
+    --light: #FFF;
+    --font-family: 'Mulish', sans-serif;
+}
+
+body {
+    /* font-family: var(--font-family) !important;*/
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family) !important;
+}
+/*Login*/
+.logotipo-desktop {
+    background-image: url(../../img/clini/logotipo.svg);
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/clini/logotipo.svg);
+}
+
+.clini-linea{
+    background-image: url('../../img/clini/linea.svg');
+    background-repeat: repeat-y;
+    background-position: center top;
+
+   
+}
+
+
+
+#invitado h3 {
+    color: white;
+}
+
+.head-crear-usuario h4 {
+    color: white;
+}
+
+.kt-divider{
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head {
+    margin-top: 1rem;
+    margin-bottom: 0 !important;
+}
+
+#kt_login_forgot {
+    color: white !important;
+    font-weight: bold !important;
+    font-size: 14px !important;
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 8% !important;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: var(--fourtiary);
+    font-weight: 900 !important;
+}
+
+.form-group .ms-label {
+    color: var(--fourtiary) !important;
+}
+
+.btn-primary {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.divider-medismart {
+    /* display: none;*/
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+.logo-convenios {
+    /* display: none;*/
+}
+
+
+/* Imágenes Login */
+/*.img1 {
+    background-image: url(../../img/clini/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/clini/login/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/clini/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/clini/login/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/clini/login/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/clini/login/960x978.jpg);
+}*/
+.body-home {
+    background-image: linear-gradient(177.84deg, #5B398E -33.55%, #DD3488 145.23%);
+    background-blend-mode: multiply;
+    /*background-position: right 90%;*/
+}
+
+    .body-home .logo-home img {
+        width: 200px;
+    }
+
+    .top-banner .legend {
+        font-weight: 500;
+    }
+
+.menu-top .item-menu-top i,
+.menu-top .label-menu {
+    color: var(--tertiary);
+}
+
+
+.menu-top .item-menu-top:hover i, .menu-top .item-menu-top:hover .label-menu {
+    color: var(--primary) !important;
+}
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--primary)
+}
+
+    .kt-menu__item a .ms-label-menu {
+        color: var(--fourtiary)
+    }
+
+    .kt-menu__item:hover a, .kt-menu__item:hover i {
+        color: var(--secondary) !important;
+    }
+
+.stepper-sv .step-icon {
+    background-color: var(--secondary)
+}
+
+.titulo-servicio {
+    color: var(--secondary)
+}
+
+.accesible-btn button {
+    color: var(--secondary);
+    border: 1px solid var(--secondary);
+}
+
+    .accesible-btn button:hover {
+        background-color: var(--primary);
+        border-color: var(--primary)
+    }
+
+    .caja-busqueda .dropdown .btn{
+        background-color: var(--light);
+        color: var(--primary);
+    }
+
+.data-atencion span{
+    color: var(--primary) !important;
+}
+.busqueda-profesionales {
+    border: 2px solid var(--purple);
+}
+    .busqueda-profesionales i {
+        color: var(--purple)
+    }
+    .busqueda-profesionales .btn-outline-primary {
+        color: var(--light)
+    }
+
+.caja-especialidad.active {
+    background-color: var(--primary);
+}
+
+.caja-especialidad {
+    background-color: var(--secondary);
+}
+
+.inner-especialidad strong {
+    color: var(--light)
+}
+
+.step.active .step-icon {
+    background-color: var(--secondary);
+}
+
+.stepper {
+    background-image: url(../../img/clini/fondo-banner2.svg);
+}
+
+    .stepper .flecha {
+        color: var(--primary)
+    }
+
+    .stepper img {
+        border-color: #AA8EC2;
+    }
+
+.step.active .label-step {
+    color: var(--primary)
+}
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: var(--fourtiary)
+}
+
+.caja-profesional .fecha-atencion {
+    color: var(--secondary);
+    border-color: var(--secondary)
+}
+
+.front-fecha-atencion {
+    border: 1px solid rgba(35,33, 114, .3)
+}
+
+    .front-fecha-atencion strong:before {
+        color: var(--secondary);
+        font-weight: 900;
+    }
+
+.especialidad-profesional {
+    color: var(--fourtiary)
+}
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+
+.top-banner {
+    background-image: url(../../img/clini/fondo-banner.svg);
+}
+    .top-banner img {
+        border-color: rgba(255, 255, 255, .3)
+    }
+    .top-banner .legend {
+        color: var(--secondary)
+    }
+
+.banner_topsc .legend .text-warning {
+    color: var(--primary) !important;
+}
+
+.top-banner.banner_topsc img {
+    border: 3px solid #AA8EC2;
+}
+
+.container-login {
+    width: 100%;
+   
+    max-width: 1200px;
+    margin: auto;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    width: 356px;
+    margin: 0 auto;
+}
+
+.top-banner.banner_topsc {
+    background-image: url(../../img/clini/fondo-banner2.svg);
+}
+
+.stepper-sv .titulo-step {
+    color: var(--secondary)
+}
+
+.stepper-sv .label-step {
+    color: var(--secondary)
+}
+
+.text-warning {
+    color: var(--light) !important;
+}
+
+.menu-top .item-menu-top .logotipo-mobile {
+    width: 110px !important;
+}
+
+.body-home .menu-top .item-menu-top:hover i,
+.body-home .menu-top .item-menu-top:hover .label-menu {
+    color: #ffb822 !important;
+}
+
+.total-valor {
+    margin-bottom: 2rem;
+}
+/*Sala espera*/
+.hotspot-icon .cont-icon {
+    background-color: var(--tertiary)
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+.cont-icon.hotspot-redes {
+    background-color: #000;
+}
+
+
+.toolbar-option {
+    color: var(--primary)
+}
+
+.toolbar-option.active {
+    color: var(--secondary)
+}
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--tertiary)
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--secondary)
+}
+
+.btn-sala:hover {
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion, .cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+    .cont-btn-panel .btn-atencion:hover, .cont-btn-vc .btn-atencion:hover {
+        background-color: rgba(237, 110, 0, 0.1);
+        color: var(--primary);
+    }
+
+.hotspot-icon {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+    .hotspot-icon i {
+        text-shadow: none;
+    }
+
+    .hotspot-icon:hover {
+        color: #FFF;
+    }
+
+    .card {
+        border: 1px solid var(--secondary)
+    }
+
+.caja-base.mensaje-confirmacion {
+    border: 1px solid var(--secondary)
+}
+
+.mensaje-confirmacion .caja-profesional {
+    border: 1px solid #EEE;
+}
+.perfil-profesional div{
+    color: var(--primary);
+}
+
+.data span {
+    color: var(--primary);
+}
+.header-stepper img {
+    max-width: 200px;
+    height: auto;
+    margin-right: 2rem;
+}
+
+@media (max-width: 668px) {
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .top-banner .legend {
+        text-align: left;
+        font-size: 1.3rem;
+    }
+}
+
+#invitado {
+    display: none;
+}
+
+.btn {
+    background-color: #5B3A8E;
+    border: none;
+    color: white;
+}
+
+    .btn:hover {
+        background-color: #DB4097 !important;
+        color: white;
+    }
+
+.login-clini {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 1rem;
+    max-width: 72%;
+    margin: 0 auto;
+    padding-top: 0rem;    
+}
+
+
+
+.logotipo-desktop {
+    max-width: 332px;
+    height: 36px;
+    display: inline-flex;
+}
+
+#form-crea-user {
+
+    display: none !important;
+}
+
+/*#kt_login_forgot_cancel2{
+    display: none;
+}
+*/
+
+.logo-redes .btn-redes {
+    background-color: #DEC9EF;
+}
+
+#kt_login_forgot_cancel2 {
+    background-color: #DB4097 !important;
+}
+
+    #kt_login_forgot_cancel2:hover {
+        background-color: #5B3A8E !important;
+    }
+.clini-hiden {
+    display: none;
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper {
+    padding: 0px 0 40px;
+}
+
+.head-crear-usuario h3{
+    color: white;
+}
+
+.kt-login__head h3 {
+ 
+}
+
+.clini-title {
+    color: white;
+    width: 73% !important;
+    margin: auto;
+    margin-bottom: 2rem;
+}
+
+
+.nuevo-fondo {
+    background-image: url('../../img/clini/login/fondo-login.jpg') !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#imgLogin {
+    display: none;
+}
+
+.bkg-login {
+    display: none !important;
+}
+
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .nuevo-fondo { 
+        background-image: url('../../img/clini/login/fondo-login.jpg') !important;
+    }
+
+ 
+/*    .img1 {
+        background-image: url(../../img/clini/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/clini/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/clini/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/clini/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/clini/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/clini/login/548x850.jpg);
+    }*/
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+
+    .nuevo-fondo {
+        background-image: url('../../img/clini/login/fondo-login.jpg') !important;
+    }
+
+    /*.img1 {
+        background-image: url(../../img/clini/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/clini/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/clini/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/clini/login/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/clini/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/clini/login/960x978.jpg);
+    }*/
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+        margin-top: 8% !important;
+        width: 73%;
+    }
+}
+
+
+/*Atencion Directa Icono*/
+
+.icono-voucher i {
+    color: var(--primary);
+    display: block;
+    margin: auto;
+}
+
+
+/*Prohome*/
+
+.prehome__plans {
+    height: 450px;
+}
+
+.prehome__plan {
+    width: 100%;
+    padding: 0;
+}
+
+.prehome__plan ul {
+    list-style-image: url('../../img/clini/bullet.svg');
+   
+    margin-top: 32px;
+    height: 350px;
+    font-size: 16px;
+}
+
+.prehome__title {
+    color: #FFF;
+}
+
+.kt-login__extra.registro {
+    display: none;
+}
+
+.logo-convenios.convenioChile + hr {
+    display: none;
+}
+
+.kt-login.kt-login--v3.kt-login--signin .kt-login__signin .titulo-card-farmacia {
+    text-align: center;
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary)
+}
+
+.linea-horizontal {
+   display: none;
+}
+
+titulo-ingresa{
+    display: none;
+}
+
+.linea-divider {
+    display: none;
+}
+
+.btn-crear {
+    padding-left: 0.8rem !important;
+    padding-right: 0.8rem !important;
+}
+
+
+
+@media (max-width: 991.98px) {
+
+    #invitado h3 {
+        color: white;
+        font-weight: 600;
+        font-size: 18px;
+    }
+
+   
+
+    .logotipo-mobile {
+        height: 35px;
+        margin-top: 4.9% !important;
+        margin-left: 60% !important;
+    }
+
+    #kt_login_forgot {
+        color: white !important;
+        
+        font-size: 12px !important;
+    }
+
+    .input-group-append {
+        margin-left: -1px;
+        width: 45%;
+    }
+
+    .btn-crear {
+        padding-left:1.4rem !important;
+        padding-right: 1.4rem !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    .prehome__plans {
+        height: auto;
+    }
+
+    .container-login {
+        width: 100%;
+        margin: auto;
+        display: flex;
+        flex-direction: column !important;
+        background-color: transparent;
+    }
+
+    .linea-divider {
+        display: block;
+        
+        color: white !important;
+        margin-top: 2.5rem !important;
+        border-block-color: white;
+    }
+
+    .login-clini {
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 10px;
+        max-width: 87%;
+        margin: 0 auto;
+        /* max-height: 40%; */
+        /* display: flex; */
+        /* justify-content: center; */
+        /* align-items: center; */
+        padding-top: 0rem;
+        padding-bottom: 3%;
+    }
+
+    .clini-linea {
+        background-image: none;
+    }
+
+    .linea-horizontal {
+        display: block;
+        margin-top: 2rem !important;
+        background-color: white;
+    }
+
+    .kt-login.kt-login--v3 .kt-login__wrapper {
+        padding: 0;
+    }
+
+        .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form {
+            margin: 0;
+        }
+
+    .kt-login__head h3 {
+        color: white;
+        width: 100% !important;
+        margin-bottom: 5px;
+    }
+
+    .kt-login.kt-login--v3 .kt-login__wrapper {
+        max-width: 351px;
+    }
+
+    .clini-title {
+        width: 100%;
+        margin: 0 auto;
+        padding: 0.8rem;
+    }
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+        width: 100%;
+        margin: 0 auto;
+        padding: 0.8rem;
+    }
+
+    .kt-login__head h3 {
+        color: white;
+        width: 100% !important;
+        margin-bottom: 5px;
+        font-size: 18px;
+        font-weight: 600
+    }
+
+    .form-group .ms-label {
+        font-weight: 500 !important;
+        font-size: 1.5rem;
+        color: #111111 !important;
+    }
+
+    .login-footer .kt-container {
+        display: flex;
+        justify-content: center;
+        padding: 0;
+        align-items: center;
+        text-align: center;
+    }
+}

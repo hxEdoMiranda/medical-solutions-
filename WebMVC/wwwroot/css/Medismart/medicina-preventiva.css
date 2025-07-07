@@ -1,0 +1,552 @@
+/*Medicina Preventiva*/
+
+
+.modal-inferior {
+    max-width: 1025px;
+    margin: auto;
+    background-color: #FFF;
+    padding: 60px 80px;
+    border-radius: 28px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: none;
+    border: 4px solid #3BC1CD;
+}
+
+.inner-modal-inferior {
+    display: flex;
+    gap: 92px
+}
+
+.cont-medicina-preventiva .breadcrumb-medismart {
+    font-size: 16px;
+    color: #c4c4c4;
+    margin-bottom: 42px;
+}
+
+.cont-medicina-preventiva .breadcrumb-medismart strong {
+    color: #3BC1CD !important;
+}
+
+    .medicina-preventiva h1 {
+        font-size: 27px;
+        margin-bottom: 1rem;
+    }
+
+    .medicina-preventiva h1 strong {
+        display: block;
+    }
+
+    .medicina-preventiva p {
+        font-size: 18px;
+        margin-bottom: 24px;
+    }
+
+.medicina-preventiva .content {
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+}
+
+    .medicina-preventiva .content .btn {
+        margin-top: auto;
+    }
+
+    .medicina-preventiva .opciones {
+        display: flex;
+        gap: 28px;
+        justify-content: space-evenly
+    }
+
+.medicina-preventiva .opciones img {
+    border-radius: 10px;
+    border: 1px solid #DDD;
+}
+
+.cont-medicina-preventiva {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 80px;
+}
+
+.cont-ilustracion-medicina-preventiva {
+    padding: 120px 80px;
+}
+
+
+.cont-medicina-preventiva .col:first-child .opcion-interior {
+    border-right: 1px solid red;
+}
+
+
+    .cont-medicina-preventiva h2 {
+        font-size: 27px;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+.cont-medicina-preventiva p {
+    font-size: 22px;
+    color: #666;
+    margin-bottom: 3rem;
+}
+
+.cont-medicina-preventiva .opcion-interior {
+    text-align: center;
+}
+
+    .cont-medicina-preventiva .opcion-interior img {
+        max-width: 180px;
+        display: block;
+        margin: auto;
+        margin-top: 60px;
+        margin-bottom: 28px;
+    }
+
+    .cont-medicina-preventiva .opcion-interior h2 {
+        font-size: 27px;
+        color: #111;
+    }
+
+    .cont-medicina-preventiva .opcion-interior p {
+        font-size: 20px;
+        color: #111;
+        margin-bottom: 4rem;
+        max-width: 540px;
+    }
+
+    .cont-medicina-preventiva .opcion-interior {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+
+        .cont-medicina-preventiva .opcion-interior .btn {
+            margin-top: auto;
+            max-width: 280px;
+            margin: auto;
+            border-radius: 46px;
+        }
+
+.cont-ilustracion-medicina-preventiva .opcion-interior .btn {
+    max-width: none;
+    width: 100%;
+}
+
+
+        .cont-medicina-preventiva .opcion-interior.primera-opcion {
+            border-right: 1px solid #3BC1CD;
+        }
+
+.cont-medicina-preventiva img {
+    width: 90%;
+    margin: auto;
+}
+
+.cont-medicina-preventiva ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+    .cont-medicina-preventiva .opcion-interior.restricciones h2 {
+        text-align: left;
+        color: #646C9A;
+        margin-bottom: 0;
+        font-weight: 900;
+    }
+
+    .cont-medicina-preventiva .opcion-interior.restricciones {
+        text-align: left;
+        color: #646C9A;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+        .cont-medicina-preventiva .opcion-interior.restricciones .btn {
+            margin-top: auto;
+            margin-bottom: 0;
+            max-width: 500px;
+            min-width: 300px;
+        }
+
+        .cont-medicina-preventiva .opcion-interior.restricciones ul {
+            color: #666;
+            width: 100%;
+            margin-bottom: 0;
+            
+        }
+
+            .cont-medicina-preventiva .opcion-interior.restricciones ul li {
+                margin-bottom: 27px;
+                font-size: 18px;
+                display: flex;
+                align-items: center;
+                gap: .5rem;
+            }
+
+                .cont-medicina-preventiva .opcion-interior.restricciones ul li::before {
+                    content: '';
+                    display: inline-block;
+                    width: 3px;
+                    height: 3px;
+                    background-color: #3BC1CD;
+                }
+
+                .header-opcion-interior {
+                    display: flex;
+                    margin-bottom: 80px;
+                    align-items: end;
+                    gap: 1rem;
+                }
+
+.header-opcion-interior  i{ 
+    font-size: 48px;
+}
+
+.cont-medicina-preventiva .ilustracion {
+    max-width: 500px;
+}
+
+.cont-medicina-preventiva .card-examen-preventivo .paso {
+    color: #646c9a;
+}
+
+.cont-medicina-preventiva .card-examen-preventivo {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.cont-medicina-preventiva .card-examen-preventivo label {
+    margin-top: 12px;
+}
+
+.cont-medicina-preventiva .btn-chequeo {
+    margin: auto;
+    margin-top: 54px;
+    max-width: 100%;
+    min-width: 500px;
+    border-radius: 46px;
+}
+
+.cont-medicina-preventiva .card-medicina-preventiva {
+    background-color: #FFF;
+    border: 1px solid #C4ECF0;
+    padding: 28px;
+    border-radius: 16px;
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+}
+
+.cont-medicina-preventiva .lista-examenes {
+    border-bottom: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    gap: .5rem;
+    margin-bottom: 0;
+}
+
+    .cont-medicina-preventiva .lista-examenes .item-lista-examenes {
+        width: 49%;
+        display: flex;
+        gap: .5rem;
+    }
+
+    .cont-medicina-preventiva .lista-examenes label {
+        margin-bottom: 0;
+    }
+
+    .cont-medicina-preventiva .icono-recomendacion {
+        margin-top: 1rem;
+       
+    }
+
+        .cont-medicina-preventiva .icono-recomendacion + span {
+            margin-bottom: 35px;
+            display: block;
+        }
+
+.cont-orden-medica {
+    padding:2rem; 
+    margin-bottom: 2rem;
+    min-height: 190px;
+}
+
+.cont-medicina-preventiva .mensaje-inferior {
+    margin-top: auto;
+}
+
+.cont-medicina-preventiva .titulo-examenes-preventivos {
+    color: #0282A6 !important;
+    margin-bottom: 1rem;
+}
+
+#vista-examen .modal-body {
+    margin: 5px;
+    margin-bottom: 1rem;
+    padding: 2rem;
+    border: none;
+
+    overflow-y: auto;
+}
+
+#resultExamenes .card-medicina-preventiva {
+    margin-bottom: 2rem;
+}
+
+.cont-medicina-preventiva .opcion-interior .logo-farmacia {
+    margin: 0 auto;
+    max-width: 80px;
+    display: inline-block;
+}
+    .cont-medicina-preventiva .opcion-interior .logo-farmacia img {
+        margin: 0 auto;
+        width: 100%
+    }
+
+.btn-img {
+    align-items: center;
+    border: 1px solid #3BC1CD;
+    border-radius: 4px;
+    justify-content: space-between;
+}
+
+    .btn-img .input-group-append {
+        width: 60%;
+    }
+    .btn-img .input-group-append .btn {
+        border-radius: 4px;
+        width: 100%;
+    }
+
+    .logo-farmacia img {
+        max-width: 80px;
+        margin: auto 3rem;
+    }
+
+
+    @media (max-width: 991.98px) {
+        .cont-medicina-preventiva h2 {
+        font-size: 22px;
+    }
+    .cont-medicina-preventiva img {
+        max-width: 50px;
+    }
+    .cont-medicina-preventiva .btn-chequeo {
+        min-width: 0;
+    }
+    .header-opcion-interior {
+        margin-bottom: 1rem;
+    }
+    .card-examen-preventivo {
+        margin-bottom: 1rem;
+        height: auto;
+    }
+    .cont-medicina-preventiva {
+        padding: 1rem;
+        margin: 1rem auto;
+    }
+    .cont-medicina-preventiva .card-medicina-preventiva {
+        height: auto;
+    }
+        .btn-img .input-group-append {
+            width: 100%;
+        }
+
+        .logo-farmacia {
+            width: 100%;
+        }
+
+        .cont-medicina-preventiva .logo-farmacia img {
+            max-width: 100px !important;
+            margin: 1rem auto !important;
+            display: block;
+        }
+}
+    /*smart check new*/
+.smartcheck-new{
+    display: flex;
+    flex-direction: row;
+   /* align-content: center;
+    align-items:center;*/
+   width: 99%;
+}
+
+.smartcheck-info{
+    width: 55%;
+}
+
+.degradado-horizontal {
+    background: linear-gradient(to right, #0282A6, #5B5AC7); /* Cambia los colores a tu elección */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.smart-title-icon{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.title{
+    display:flex;
+    flex-direction: column;
+}
+
+.smart-title-icon img{
+    width: 5rem;
+    margin: 0;
+}
+
+.title h1 {
+    font-weight: 900;
+    margin: 0;
+}
+
+.smartcheck-description {
+    padding: 1rem;
+    background-color: #E9ECFF;
+    border: 1px solid #3BC1CD;
+    border-radius: 10px;
+    
+}
+
+.smartcheck-description p {
+    margin: 0;
+    font-size: 15px;
+}
+
+.smartcheck-cam-act{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-content: center;
+    align-items: start;
+
+}
+
+    .smartcheck-cam-act p {
+        font-size: 13px;
+        color: #666666;
+        margin: 0;
+    }
+
+.smartcheck-cam-act img{
+    width: 62px;
+    margin: 0;
+}
+
+    .smartcheck-cam-act span {
+        color: #0282A6;
+        font-weight: 700;
+    }
+
+.dotted-line {
+    border-top: 1px dotted #0282A6;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.smartcheck-check {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+    .smartcheck-check p {
+        font-size: 12px;
+        color: #646C9A;
+        margin: 0;
+    }
+
+    .smartcheck-check input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        border: 1px solid #47BCCA !important;
+        color: #47BCCA !important;
+    }
+
+
+        .smartcheck-check input[type="checkbox"]::before {
+            content: "";
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #47BCCA !important;
+            color: #47BCCA !important;
+            border-radius: 3px;
+        }
+
+        .btn-smartcheck {
+            text-align:right;
+        }
+
+            .btn-smartcheck button {
+                width: 50%;
+                padding: 0.8rem 1rem 0.8rem 1rem;
+                background-color: #1DA70C;
+                color: white;
+                font-weight: 400;
+                box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+                border-radius:3px;
+            }
+#btnAnura[disabled] {
+    background-color: gray;
+    cursor: not-allowed; 
+}
+
+@media (max-width: 767px) {
+
+    .smartcheck-new {
+        flex-direction: column;
+    }
+
+    .smartcheck-info {
+        width: 100%;
+    }
+
+    .smartcheck-cam-act img {
+        width: 90px;
+    }
+
+    .cont-medicina-preventiva img {
+        display: none;
+    }
+
+    .cont-medicina-preventiva {
+        margin-top: 2rem;
+    }
+
+    .smartcheck-check {
+        align-items: flex-start;
+      
+    }
+
+    .btn-smartcheck{
+        text-align:center;
+    }
+
+    .smartcheck-check input[type="checkbox"] {
+        width: 25px;
+        height: 20px;
+     
+    }
+}
+
+.cont-examenes-preventivos.cont-medicina-preventiva .header-opcion-interior {
+    margin-bottom: 40px;
+}
+
+.cont-examenes-preventivos.cont-medicina-preventiva .header-opcion-interior img  {
+    max-width: 80px;
+    margin: auto 1rem 0 0;
+}
+
+
+

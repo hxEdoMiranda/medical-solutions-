@@ -1,0 +1,222 @@
+/* General */
+body {
+    background: #582f8d !important;
+}
+
+/* Menú lateral */
+.kg-aside__brand {
+    background: #7d43c9;
+}
+
+.kt-aside-menu-wrapper {
+    background: #582f8d;
+}
+
+.kt-aside-menu-wrapper .kt-aside-menu {
+    background: #582f8d;
+}
+
+/* login */
+.bkg-login {
+    background: #f9f9fc;
+}
+
+.logotipo-desktop,
+.logotipo-mobile   {
+    background-image: url(../../img/logo-h.svg)
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: #FFF;
+}
+
+.kt-login__signin .form-group {
+    color: #FFF;
+}
+
+.kt-login__signin .form-group .form-control {
+    color: #FFF !important;
+}
+
+.kt-login__signin .form-group .form-control::placeholder {
+    color: #FFFFFF9F !important;
+}
+
+.kt-login__signin .form-group .ms-label {
+    color: #FFF !important;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__extra .kt-login__link {
+    color: #FFF;
+}
+
+.btn-primary {
+    background-color: #2FBFC0;
+    border-color: #2FBFC0;
+}
+
+.btn-primary:hover {
+    background-color: #31a7a7;
+    border-color: #31a7a7;
+}
+
+.btn-primary:focus {
+    background-color: #582F8D;
+    border-color: #582F8D;
+}
+
+.btn-guardar-info, .btn-success {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    
+}
+
+.btn-guardar-info:hover, .btn-success:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--primary)
+}
+
+.btn.btn-outline-secondary {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--primary)
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+}
+
+#reporte:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+#hs-g .cont-icon {
+    background-color: var(--primary);
+}
+
+#hs-g:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+.kt-login__extra.registro {
+    display: none;
+}
+
+.kt-login__extra span {
+    color: #FFF;
+}
+
+.kt-login__divider .kt-divider span {
+    color: #FFF;
+}
+
+.divider-medismart {
+    display: none;
+}
+
+.logo-convenios {
+    display: none;
+}
+
+/* Imágenes Login */
+.img1 {
+    background-image: url(../../img/login7.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/login8.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/login7.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/login8.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/login7.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/login8.jpg);
+}
+
+/* Menu */
+.kt-aside__brand {
+    background: #582F8D;
+}
+
+.kt-aside__brand-logo a {
+    background-image: url(../../img/isotipo-abodoc.svg);
+}
+
+.kt-menu__item a, .kt-menu__item i {
+    color: #FACC27 !important;
+}
+
+.kt-menu__item:hover a, .kt-menu__item:hover i {
+    color: #2FBFC0 !important;
+}
+
+/* Inicio */
+.top-banner .legend {
+    color: #582F8D;
+}
+
+.text-warning {
+    color: #FACC27 !important;
+}
+
+.busqueda-profesionales h2 {
+    color: #FACC27;
+}
+
+#kt_wrapper {
+    background: #F8F8FF;
+}
+
+.divider-abodoc {
+    display: block;
+}
+
+@media only screen and (max-width: 991.98px) {
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+        color: #582F8D;
+    }
+    
+    .kt-login__signin .form-group {
+        color: #582F8D;
+    }
+    
+    .kt-login__signin .form-group::placeholder {
+        color: #582F8D;
+        opacity: 0.7;
+    }
+    
+    .kt-login__signin .form-group .ms-label {
+        color: #582F8D !important;
+    }
+    
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__extra .kt-login__link {
+        color: #582F8D;
+    }
+
+    .kt-login__extra span {
+        color: #582F8D;
+    }
+    
+    .kt-login__divider .kt-divider span {
+        color: #582F8D;
+    }
+}
+
+@media only screen and (min-width: 991.99px) {
+    .kt-login__container .logo-convenios {
+        background: #FFF;
+        padding: 10px;
+        border-radius: 7px;
+    }
+}

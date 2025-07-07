@@ -1,0 +1,7 @@
+/*Tooltip*/
+
+@media (min-width: 768px) {
+    .tooltip {
+        /* display: none;*/
+    }
+}

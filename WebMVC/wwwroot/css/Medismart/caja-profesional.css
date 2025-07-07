@@ -1,0 +1,537 @@
+/* Caja Profesional */
+
+.caja-profesional {
+    border-radius: 10px;
+    min-height: 500px;
+    /* width: 15rem; */
+    transition: all ease-out .3s;
+    border: none;
+    border: 1px solid rgba(59, 193, 205, 0.3);
+    background-color: transparent;
+}
+
+
+
+    .caja-profesional:hover {
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+        border: 1px solid #3BC1CD;
+    }
+
+    .caja-profesional img {
+        object-fit: cover;
+        width: 112px;
+        height: 112px;
+        border-radius: 100px;
+        margin: 1rem auto;
+        margin-bottom: 1rem;
+        border: 1px solid rgba(59, 193, 205, .3);
+        display: block
+    }
+
+    .caja-profesional .cont-data {
+        display: flex;
+        align-items: stretch;
+        height: 100%;
+        justify-content: space-between;
+    }
+
+    .caja-profesional .header-aviso-atencion {
+        margin-bottom: .8rem;
+        display: none;
+        font-weight: 700;
+    }
+
+    .caja-profesional .fecha-atencion {
+        text-align: center;
+        font-weight: 700;
+        font-size: 24px;
+        color: #0081A4;
+    }
+
+    .caja-profesional .hora-atencion {
+        text-align: center;
+        color: #0081A4;
+        font-size: 1.6rem;
+        font-weight: 900;
+        margin-bottom: 1rem;
+        display: none !important;
+    }
+
+
+    .caja-profesional .header-aviso-atencion,
+    .caja-profesional .header-aviso-atencion i {
+        color: #3BC1CD;
+    }
+
+    .caja-profesional .card-body {
+        /*max-width: 230px;*/
+        /* max-width: 90%;*/
+        max-width: 100%;
+        margin: auto 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .caja-profesional.no-flip {
+        background-color: #FFF;
+    }
+
+.caja-opciones {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-between;
+    display: none;
+}
+
+    .caja-opciones a {
+        color: #3BC1CD;
+        font-size: 22px;
+    }
+
+        .caja-opciones a:hover {
+            color: #0081A4;
+        }
+
+.caja-profesional .titulo-profesional {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #8A94B3;
+    max-width: 90%;
+    margin: 0 auto;
+    text-transform: capitalize;
+    line-height: 1.2;
+}
+
+.especialidad-profesional {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #8A94B3;
+    max-width: 90%;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 12.8rem;
+    text-align: center;
+    left: 0;
+    right: 0;
+}
+
+.div1 {
+    /*margin-right: 20px;*/
+    margin-left: 13px;
+    background: #f2f2f5;
+    width: 335px;
+    height: 500px;
+    border-radius: 10px;
+    padding-bottom: 30px;
+}
+
+.h1_1 {
+    width: 120px;
+    height: 120px;
+    border-radius: 72px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    
+}
+.h1_2 {
+    width: 25px;
+    height: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7px;
+    
+}
+.h1_3 {
+    height: 30px;
+    width: 85px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+  
+}
+
+.h1_4 {
+    width: 150px;
+    height: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    
+}
+
+.h1_5 {
+    width: 100px;
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    
+}
+
+.h1_6 {
+    width: 80px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    border-radius: 5px;
+}
+
+.h1_7 {
+    width: 280px;
+    height: 65px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 22px;
+    border-radius: 5px;
+}
+
+.h1_8 {
+    width: 280px;
+    height: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.fade-in {
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+}
+
+
+
+.placeholder-squeleton {
+    background: #ccc;
+    animation-name: placeholder;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes placeholder {
+
+    0% {
+        background: #d8d8d896;
+    }
+
+    50% {
+        background: #eee;
+    }
+
+    100% {
+        background: #d8d8d896;
+    }
+}
+
+
+
+.back-especialidad {
+    position: static;
+}
+
+.aviso-hora {
+    color: #FFAF36;
+    display: none;
+}
+
+.cont-img-card {
+    width: 200px;
+    height: 200px;
+    border-radius: 150px;
+    overflow: hidden;
+    display: block;
+    margin: 2rem auto;
+}
+
+    .cont-img-card img {
+        object-fit: cover;
+        width: 100%;
+    }
+
+.data .titulo-profesional {
+    text-align: left;
+    font-size: .9rem;
+}
+.data .nombre-profesional {
+    text-align: left;
+    font-size: 20px;
+}
+
+
+.btn-agendar {
+    margin: 0 auto;
+    max-width: 80%;
+}
+
+.front .btn-agendar {
+    position: absolute;
+    bottom: 1rem;
+    left: 0;
+    right: 0;
+    padding: 0.625rem 1.5rem !important;
+}
+
+.front-fecha-atencion {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 5.4rem;
+    font-size: 14px !important;
+    padding: 1rem;
+    margin: 0 2rem;
+    border-radius: .5rem;
+    border: 1px solid rgba(59, 193, 205, 0.3);
+}
+
+    .front-fecha-atencion strong {
+        font-weight: 900;
+    }
+
+    .front .data-atencion .calificacion {
+        position: absolute;
+        bottom: 14.8rem;
+        left: 0;
+        right: 0;
+    }
+
+.front-fecha-atencion strong:before {
+    content: 'Atenci\00f3n m\00e1s cercana';
+    display: block;
+    /*font-size: 14px;*/
+    font-size: 11px;
+    color: #3BC1CD;
+    /*padding-left: .9rem;*/
+    text-transform: uppercase;
+}
+
+
+    .btn-horarios {
+        margin: 0 auto;
+        margin-top: 1rem;
+        max-width: 80%;
+        padding: 0.625rem 2.5rem !important;
+        text-transform: uppercase;
+        color: #FFAF36 !important;
+        transition: all .3s ease-out;
+        display: block;
+        text-align: center;
+        font-weight: 700;
+        font-size: 0.875rem;
+        border-radius: 0.2rem;
+    }
+
+    .btn-horarios:hover {
+        background-color: #F0F0F0;
+    }
+
+
+    /* Flip Caja Profesional*/
+    .cajaInfoMedico {
+    }
+
+    .cajaInfoMedico .caja-profesional {
+        display: block;
+        transition: transform 1s;
+        transform-style: preserve-3d;
+        cursor: pointer;
+        position: relative;
+        transition: all .3s ease-out;
+    }
+
+        .cajaInfoMedico .caja-profesional.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .cajaInfoMedico .caja-profesional .front,
+        .cajaInfoMedico .caja-profesional .back,
+        .cajaInfoMedico .caja-profesional .front-fonasa {
+            position: absolute;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transform-style: preserve-3d;
+            background-color: #FFF;
+            height: 100%;
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .cajaInfoMedico .caja-profesional .back {
+            transform: rotateY(180deg);
+        }
+
+.back .loader {
+    display: block;
+    text-align: center;
+    padding: 2rem;
+}
+
+.loader i {
+    color: #3BC1CD;
+}
+
+/*Caja Status*/
+
+.atencion-status-top {
+    width: 160px;
+    background-color: rgba(59, 193, 205, 0.3);
+    border-radius: 0px 8px;
+    color: #0081A4;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.atencion-status-top .leyenda {
+
+}
+
+@media (max-width: 668px) {
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+}
+
+
+/* ----------- Retina Screens ----------- */
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+    .front-fecha-atencion strong {
+        font-size: .9rem;
+    }
+
+        .front-fecha-atencion strong:before {
+            font-size: .8rem;
+        }
+}
+
+
+@media (max-width: 768px) {
+    .caja-profesional {
+        min-height: 0;
+    }
+    .caja-profesional img {
+        height: 50px;
+        width: 50px;
+        display: inline-block;
+        margin: 0;
+        vertical-align: top;
+    }
+
+    .caja-profesional .cont-data {
+        display: inline-block;
+        width: 230px;
+        margin-left: 0;
+    }
+
+    .data-atencion {
+        margin: 0;
+    }
+
+        .data-atencion .nombre-profesional {
+            text-align: left;
+            margin-bottom: 0;
+            font-size: 18px;
+        }
+
+            .data-atencion .nombre-profesional br {
+                display: none;
+            }
+
+            .data-atencion .titulo-profesional {
+                text-align: left;
+                display: none;
+            }
+
+        .caja-profesional .card-body {
+            align-items: center;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+            padding-bottom: .5rem;
+        }
+
+    .front .data-atencion .calificacion {
+        position: static;
+        display: none;
+    }
+
+    .front .data-atencion .especialidad-profesional {
+        position: static;
+        text-align: left;
+        padding-left: 1rem;
+    }
+
+    .front .data-atencion .calificacion {
+        position: static;
+        text-align: left;
+        padding-left: 1rem;
+    }
+
+    .front-fecha-atencion, .front .btn-agendar {
+        position: static;
+    }
+
+    .btn-agendar {
+        max-width: none;
+        width: 100%;
+        box-shadow: none;
+    }
+
+    .front-fecha-atencion {
+        margin: 0;
+        padding: 0;
+        text-align: left;
+        padding-top: 1rem;
+        border: none;
+        /*border-top: 1px solid rgba(59, 193, 205, 0.3);
+            margin-top: 1rem;
+        */
+        border-radius: 0;
+    }
+
+    .caja-profesional .fecha-atencion {
+        text-align: left;
+        padding-top: .5rem;
+        padding-left: 1rem;
+
+    }
+
+    .front-fecha-atencion strong:before {
+        padding-left: 0;
+    }
+
+    .cajaInfoMedico .caja-profesional .front, .cajaInfoMedico .caja-profesional .back {
+        position: static;
+        height: auto !important;
+    }
+
+    .front-fecha-atencion strong {
+        font-size: 1.2rem;
+    }
+
+    .front-fecha-atencion strong:before {
+        font-size: .8rem;
+    }
+
+}
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+    .especialidad-profesional {
+        font-size: 1rem;
+    }
+    .caja-profesional .titulo-profesional {
+        font-size: .9rem;
+    }
+    .front .data-atencion .calificacion {
+        bottom: 16rem;
+    }
+}

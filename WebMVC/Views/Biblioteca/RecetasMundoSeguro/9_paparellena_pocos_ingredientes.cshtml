@@ -1,0 +1,89 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+    <section class="container-fluid note-section library featured" id="nota3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="cont-titulo-receta">
+                        <div class="cont-logo">
+                            <img src="~/img/cencosud/vida-sana/paparellena.png" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <h2 class="subtitulo-receta">
+                        Ingredientes:
+                    </h2>
+
+                    <ol>
+                        <li>1 kilo de papas cocidas en agua con sal</li>
+                        <li>½ taza de harina</li>
+                        <li>2 huevos levemente batidos</li>
+                        <li>1 taza de pan rallado</li>
+                        <li>1 cebolla chica picada en cubos pequeños</li>
+                        <li>2 dientes de ajo</li>
+                        <li>500 gramos de carne molida</li>
+                        <li>Sal y pimienta</li>
+                    </ol>
+                    
+                    <h2 class="subtitulo-receta">
+                        Preparación
+                    </h2>
+                    <ol>
+                        <li>Cocinar las papas en agua hirviendo con sal, hasta que estén blandas (15 a 20 minutos). Colar las papas y luego molerlas hasta tener un puré liso. Dejar enfriar levemente.</li>
+                        <li>Agregar la sal y media taza de harina. Revolver y si aún está muy líquido agregar más harina. Reservar.</li>
+                        <li>Para el pino, calentar un sartén. Agregar la cebolla y cocinar hasta que esté blanda y transparente.</li>
+                        <li>Condimentar con sal pimienta y ajo.</li>
+                        <li>Agregar la carne molida. Revolver y cocinar hasta que la carne esté cocida, reservar.</li>
+                        <li>Para armar las papas, formar con el puré un disco sobre las manos harinadas.</li>
+                        <li>Agregar aproximadamente 1-2 cucharadas de pino.</li>
+                        <li>Subir un poco los bordes del disco para crear una forma de pocillo. La parte superior cubrirla con un poco más de puré. Dar forma con las manos, fijándose que no queden hoyos.</li>
+                        <li>Pasar la papa por el huevo levemente batido y luego por el pan rallado.</li>
+                        <li>Cocinar las papas rellenas por todos lados hasta que estén doradas.</li>
+                        <li>Servir</li>
+                    </ol>
+
+                    <p>
+                        <a href="@Url.Action("DescargarCenco", new { file = ViewBag.codigoNota})">
+                            Descargar receta
+                        </a>
+                        
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}
+

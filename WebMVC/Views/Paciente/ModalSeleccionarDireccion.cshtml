@@ -1,0 +1,325 @@
+﻿@model WebMVC.Models.ModalDirecciones
+
+@{
+    string titulo = string.Empty;
+    string porDefecto = string.Empty;
+
+    if (Model.Type == "M")
+    {
+        titulo = "Selecciona la dirección para toma de Medicamentos";
+        porDefecto = "Usar dirección para toma de Exámenes";
+    }
+    else if (Model.Type == "P")
+    {
+        titulo = "Selecciona la dirección para tu perfil";
+        porDefecto = "Usar dirección para tu perfil";
+    }
+    else
+    {
+        titulo = "Selecciona la dirección de despacho para los Exámenes";
+        porDefecto = "Usar dirección para despacho de Medicamentos";
+    }
+}
+
+<!-- Modal Map -->
+<div class="wow-modal-overlay">
+    <div class="wow-modal wow-modal__container">
+        <div class="wow-modal__header">
+            <h1 class="title-Busca_Direccion">
+                @titulo
+            </h1>
+            <button id="btn-close-modal" class="close-modal_direccion">
+                <i class="fal fa-times"></i>
+            </button>
+        </div>
+        <div class="wow-modal__body">
+            <div class="cont-radio">
+                @foreach (var item in Model.Addresses.Take(3))
+                {
+                    <label for="radio-@item.Id" class="wow__label-radio">
+                        <input id="radio-@item.Id" type="radio" name="direccion" value="@item.Id" checked="@((Model.Type == "E" && item.PorDefectoExamenes) || (Model.Type == "M" && item.PorDefectoMedicamentos) || (item.PorDefectoPerfil))">
+                        @item.Direccion
+                    </label>
+                    <button id="delete-address-btn" type="button" class="wow__btn_danger btn-eliminar-direccion" data-id-direccion="@item.Id" @(item.PorDefectoPerfil ? "hidden" : "")>
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                    <br />
+                }
+            </div>
+            <div id="error-no-seleccion" style="display: none; color: red;">Debe seleccionar una dirección</div>
+            <div class="map-container">
+                <div id="map"></div>
+            </div>
+        </div>
+
+        <div class="wow-modal__footer">
+            <div id="check-direccion" class="modal-checker_direccion">
+                <input type="checkbox" name="" id="check-dir-ambos">
+                <label style="vertical-align: middle;" for="check-dir-ambos">@porDefecto</label>
+            </div>
+
+            <button id="seleccionar-direccion" class="btn btn-primary btn-guardar_direccion">
+                Seleccionar Dirección
+            </button>
+        </div>
+
+    </div>
+</div>
+<!-- end::Modal Map -->
+<!-- start::Modal Script -->
+<script type="text/javascript">
+    (function () {
+        const data = @Html.Raw(Json.Serialize(Model));
+        var map;
+        var marker;
+        if (window.contieneExamenes == 0 || window.contieneMedicamentos == 0 || "@Model.Type" === "P") {
+            $("#check-direccion").css("visibility", "hidden");
+        }
+        $("#btn-close-modal").off().click(function (e) {
+            $("#dynamic-modal-div").modal("hide");
+        });
+
+        $("input[type=radio][name=direccion]").off().change(function () {
+            $("#error-no-seleccion").hide("fast");
+            const value = $(this).val() ?? "";
+
+            if (value != "") {
+                const item = data.addresses.find(el => el.id === parseInt(value));
+                const location = { lat: parseFloat(item.latitud), lng: parseFloat(item.longitud) };
+                map.setCenter(location);
+                map.setZoom(17);
+                marker = new google.maps.Marker({
+                    position: location,
+                    map: map
+                });
+            }
+        });
+
+        $("#seleccionar-direccion").off().click(async function (e) {
+            e.preventDefault();
+            let value = $("input[type=radio][name=direccion]:checked").val() ?? "";
+            $("#error-no-seleccion").hide("fast");
+
+            if (value !== "") {
+                seleccionarDireccion(value, data)
+                var inputType = "medicamentos";
+                if (data.type == "E")
+                    inputType = "examenes";
+
+                const button = document.getElementById("agregar-direccion-" + inputType);
+                button.setAttribute("iddireccion", value);
+
+                if (data.type == "P") {
+                    const item = data.addresses.find(el => el.id === parseInt(value));
+                    item.porDefectoPerfil = true;
+                    //const addressProfile = $("#profileAddress");
+                    //addressProfile.val(item.direccion);
+                    const responsePersona = await fetch(`${window.baseUrl}/usuarios/personas/updateProfileAddress`, {
+                        method: "POST",
+                        headers: {
+                            "Accept": "application/json",
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(item)
+                    });
+                    if (responsePersona.ok) {
+                        const item = data.addresses.find(el => el.id === parseInt(value));
+                        const responsePerfil = await fetch(`${window.baseUrl}/usuarios/personas/porDefectoPerfilAddress`, {
+                            method: "POST",
+                            headers: {
+                                "Accept": "application/json",
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(item)
+                        });
+                        $("#profileAddress").val(item.direccion);
+                    }
+                    else if (!responsePersona.ok) {
+                        Swal.fire("¡Ups! Algo salió mal.", "La dirección no se guardó en la tabla personas, por favor, inténtalo nuevamente", "error");
+                        console.error(responsePersona)
+                        return;
+                    }
+                }
+            }
+
+            else
+                $("#error-no-seleccion").show("fast");
+        });
+
+        // Attach your callback function to the `window` object
+        delete window.initMap;
+        window.initMap = function () {
+            let centroMapa;
+            let codigoTelefonoPaciente = "@Model.Patient.CodigoTelefono";
+
+            if (codigoTelefonoPaciente === "MX") {
+                centroMapa = { lat: 19.4326, lng: -99.1332 }; // Coordenadas para Ciudad de México, México
+            } else if (codigoTelefonoPaciente === "CL") {
+                centroMapa = { lat: -33.4489, lng: -70.6693 }; // Coordenadas para Santiago, Chile
+            } else {
+                centroMapa = { lat: -33.4489, lng: -70.6693 }; // Centro por defecto (Santiago, Chile)
+            }
+
+            // JS API is loaded and available
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: centroMapa,
+                zoom: 12,
+            });
+        };
+
+        const seleccionarDireccion = function (id, data) {
+            const paciente = @Html.Raw(Json.Serialize(Model.Patient));
+            const item = data.addresses.find(el => el.id === parseInt(id));
+
+            const billing_address = {
+                customer_delivery_address_id: item.id,
+                region: item.nombreRegion,
+                region_id: parseInt(item.idRegion),
+                region_code: item.codigoRegion,
+                country_id: item.codigoPais,
+                street: [
+                    item.calle,
+                    item.numero,
+                    item.departamento,
+                    item.referencia
+                ],
+                telephone: paciente.telefonoMovil,
+                postcode: item.codigoPostal,
+                city: item.nombreCiudad,
+                firstname: paciente.nombre,
+                lastname: paciente.apellidoPaterno,
+                customer_id: data.userId,
+                email: paciente.correo,
+                same_as_billing: 0,
+                save_in_address_book: 0
+            }
+
+            var check = $("#check-dir-ambos").prop("checked");
+
+            if ("@Model.Type" === "M") {
+
+                window.billing_address = billing_address;
+
+                const id = "@Model.Type" === "E" ? "#agregar-direccion-examenes" : "#agregar-direccion-medicamentos";
+                $(id).html(item.direccion);
+                if (check) {
+                    var idEx = "#agregar-direccion-examenes";
+                    window.billing_addressEx = billing_address;
+                    $(idEx).html(item.direccion);
+                    const button = document.getElementById("agregar-direccion-examenes");
+                    button.setAttribute("iddireccion", item.id);
+                }
+            }
+
+            if ("@Model.Type" === "E") {
+
+                window.billing_addressEx = billing_address;
+
+                const idEx = "@Model.Type" === "E" ? "#agregar-direccion-examenes" : "#agregar-direccion-medicamentos";
+                $(idEx).html(item.direccion);
+                if (check) {
+                    var id = "#agregar-direccion-medicamentos";
+                    window.billing_address = billing_address;
+                    $(id).html(item.direccion);
+                    const button = document.getElementById("agregar-direccion-medicamentos");
+                    button.setAttribute("iddireccion", item.id);
+                }
+            }
+
+            $("#dynamic-modal").empty();
+            $("#dynamic-modal-div").modal("hide");
+        }
+
+        if (typeof google === "undefined") {
+            // Create the script tag, set the appropriate attributes
+            var script = document.createElement("script");
+            script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyC9igtLSgxipwioIXKuCcKst89eZCF847o&libraries=places&callback=initMap";
+            script.async = true;
+
+            // Append the "script" element to "head"
+            document.head.appendChild(script);
+        } else {
+            window.initMap();
+        }
+
+        const deleteAddress = async function (id) {
+
+            const response = await fetch(`${window.baseUrl}/usuarios/personas/deleteAddress/${id}`, {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+            });
+            if (response.ok) {
+
+                if ("@Model.Type" === "P") {
+                    const direccion = data.addresses.find(dir => dir.id === parseInt(id));
+                    const responsePersona = await fetch(`${window.baseUrl}/usuarios/personas/deleteProfileAddress`, {
+                        method: "POST",
+                        headers: {
+                            "Accept": "application/json",
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(direccion)
+                    });
+                    if (responsePersona.ok) {
+                        const addressProfile = $("#profileAddress");
+                        addressProfile.val(direccion.direccion);
+                        return true;
+                    }
+                }
+                return true;
+            }
+            return false;
+
+
+        }
+
+        //const deleteAddressBtn = document.getElementById("delete-address-btn");
+        //deleteAddressBtn.addEventListener("click", async () => {
+        const deleteAddressBtns = document.querySelectorAll(".btn-eliminar-direccion");
+        deleteAddressBtns.forEach((btn) => {
+            btn.addEventListener("click", async () => {
+                // Obtener el id de la dirección a eliminar
+                const idDireccion = btn.dataset.idDireccion;
+                Swal.fire({
+                    tittle: "Eliminar dirección",
+                    text: "La dirección seleccionada se va a eliminar, ¿deseas continuar?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Aceptar",
+                    cancelButtonText: "Cancelar"
+                }).then((result) => {
+                    if (result.value) {
+                        // Llamar a la función deleteAddress
+                        deleteAddress(idDireccion);
+                        var cantDirecciones = $('.cont-radio label').length;
+                        if (cantDirecciones < 2) {
+                            $("#seleccionar-direccion-examenes").hide();
+                            $("#seleccionar-direccion-medicamentos").hide();
+                        }
+                        document.querySelectorAll("[iddireccion='" + btn.dataset.idDireccion + "']").forEach(function (el) {
+
+                            if (el.getAttribute("class") == "agregarDireccionExamenes")
+                                window.billing_addressEx = undefined
+                            else if (el.getAttribute("class") == "agregar-direccion__medicamentos")
+                                window.billing_address = undefined
+                            el.innerHTML = "Agregar dirección";
+                        });
+
+                        $("#dynamic-modal-div").modal("hide");
+                    } else {
+                        return;
+                    }
+                });
+            });
+        });
+    })();
+
+</script>
+
+<script type="text/javascript">
+
+</script>
+<!-- end::Modal Script -->

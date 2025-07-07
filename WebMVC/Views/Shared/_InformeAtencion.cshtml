@@ -1,0 +1,795 @@
+﻿@model WebMVC.Models.AtencionViewModel
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+@{
+    ViewData["Title"] = "InformeAtencion";
+    string urlAgendar = "javascript;;";
+    var archivoOrientacion = "SIN-ATENCIONES";
+    if (ViewBag.idEspecialidad == 77)
+    {
+        archivoOrientacion = "ATENCIONES-CERTIFICADOS"; // ESTE CODIGO ENTIDAD NO EXISTE, SE USA PARA QUE HAGA NADA EL FILTRO CUANDO NO ES ORIENTACION
+    }
+
+    if (@Model.HoraDerivacion != null)
+        urlAgendar = "/Paciente/Agenda_2" + "?idMedico=" + @Model.HoraDerivacion.IdMedico + "&fechaPrimeraHora=" + @ViewBag.fechaProximaHora + "&m=" + @Model.HoraDerivacion.IdModeloAtencion + "&r=" + @Model.HoraDerivacion.IdReglaPago + "&c=" + @Model.HoraDerivacion.IdConvenio + "&especialidad=" + @Model.Atencion.IdEspecialidadDerivacion;
+    var tituloObservacionProf = "Observación Profesional (no visible para paciente)";
+
+    if (ViewBag.HostURL.ToString().Contains("uoh."))
+    {
+        tituloObservacionProf = "Reporte de Salud";
+    }
+
+    var hiddenAchs = string.Empty;
+    var isAchs = false;
+    if (ViewBag.HostURL.ToString().Contains("achs."))
+    {
+        isAchs = true;
+        hiddenAchs = "hidden";
+    }
+    var peritajepdf = Model.Atencion.IdConvenio == 64 ? "fal fa-file-pdf" : "fal fa-file-word";
+    //64 id de productivo --- 65 Id de qa, convenio Banmedica   
+}
+
+@section Styles {
+    <link href="~/css/Medismart/resumen-atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+@if (isAchs)
+{
+    <style scoped>
+        .card-informe .btn {
+            position: unset !important;
+            margin: auto !important;
+            width: 100% !important;
+        }
+    </style>
+}
+
+<!-- end:: Subheader -->
+<!-- begin:: Content -->
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+
+        <!--Begin:: App Aside Mobile Toggle-->
+        <button class="kt-app__aside-close" id="kt_user_profile_aside_close">
+            <i class="la la-close"></i>
+        </button>
+        <div class="container-fluid cont-informe">
+            <div class="row">
+
+                <div class="col-12 col-md-auto">
+                    <h3 class="mb-3 titulo-seccion titulo-informe">Resumen de Atención</h3>
+                    <div class="card-informe informe" style="height: @(isAchs ? "auto" : string.Empty)">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-12 col-md columna-paciente">
+                                    @Html.Hidden("uid", (object)ViewBag.uid)
+                                    @Html.HiddenFor(m => m.Atencion.Id)
+                                    <!--Paciente-->
+                                    <div class="item-resumen">
+                                        <div class="legend-resumen">
+                                            Paciente
+                                        </div>
+                                        <div class="info-resumen">
+                                            <div class="nombre-paciente">
+                                                @Model.fichaPaciente.nombreCompleto
+                                            </div>
+
+                                            <div class="rut-paciente">
+                                                @Model.fichaPaciente.Identificador
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!--Paciente-->
+                                    <!--Profesional-->
+                                    <div class="item-resumen">
+                                        <div class="legend-resumen">
+                                            Profesional
+                                        </div>
+                                        <div class="info-resumen">
+                                            <div class="nombre-profesional">
+                                                @Model.Atencion.NombreMedico
+
+                                            </div>
+                                            <div class="especialidad">
+                                                @Model.Atencion.Especialidad
+
+                                            </div>
+                                            <!--HORA DE LA ATENCION-->
+                                            @if (ViewData["view"].Equals(Roles.Paciente))
+                                            {
+                                                <div class="especialidad">
+                                                    @Model.Atencion.InicioAtencionPacienteInforme
+
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="especialidad">
+                                                    @Model.Atencion.InicioAtencionMedicoInforme
+                                                </div>
+                                            }
+                                            @if (Model.Atencion.NSP)
+                                            {
+                                                <div id="divNSP">
+                                                    <div>
+                                                        <label style="color:red;font-weight: bold;font-size: 14px;">Atención No Realizada</label>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <!--Profesional-->
+                                    <!--Diagnostico-->
+                                    @if (!Model.Atencion.Peritaje)
+                                    {
+                                        <div class="item-resumen" @hiddenAchs>
+                                            <div class="legend-resumen">
+                                                Diagnóstico
+                                            </div>
+                                            <div class="info-resumen">
+                                                @foreach (var diagnostico in Model.Atencion.Patologias)
+                                                {
+                                                    <span class="kt-widget1__desc">
+                                                        @diagnostico.Nombre
+                                                    </span>
+
+                                                    <br>
+                                                }
+                                            </div>
+                                        </div>
+                                        <!--Diagnostico-->
+                                        <!--Sintomas
+
+                                        <div class="item-resumen">
+                                            <div class="legend-resumen">
+                                                Síntomas
+                                            </div>
+                                            <div class="info-resumen">
+                                                Anamnesis/Hipótesis diagnostica
+
+                                        @Model.Atencion.DiagnosticoMedico
+                                            </div>
+                                        </div>
+                                        Sintomas-->
+                                        <div class="item-resumen" @hiddenAchs>
+                                            <div class="legend-resumen">
+                                                Anamnesis/Hipótesis diagnostica
+                                            </div>
+                                            <div class="info-resumen">
+
+                                                @Model.Atencion.DiagnosticoMedico
+                                            </div>
+                                        </div>
+                                        <!--indicaciones-->
+
+                                        <div class="item-resumen" @hiddenAchs>
+                                            <div class="legend-resumen">
+                                                Indicaciones
+                                            </div>
+                                            <div class="info-resumen">
+                                                @Model.Atencion.TratamientoMedico
+                                            </div>
+                                        </div>
+                                        <!--indicaciones-->
+                                        <!--Control-->
+                                        if (Model.Atencion.ControlMedico != "" && Model.Atencion.ControlMedico != null)
+                                        {
+                                            <div class="item-resumen" @hiddenAchs>
+                                                <div class="legend-resumen">
+                                                    Control
+                                                </div>
+                                                <div class="info-resumen">
+                                                    @Model.Atencion.ControlMedico
+                                                </div>
+                                            </div>
+
+                                        }
+                                        <div class="item-resumen" @hiddenAchs>
+                                            <div class="legend-resumen">
+                                                Interconsulta
+                                            </div>
+                                            <div class="info-resumen">
+                                                @if (ViewBag.derivaciones != null && ViewBag.derivaciones.Count > 0)
+                                                {
+                                                    <ul>
+                                                        @foreach (var especialidad in ViewBag.derivaciones)
+                                                        {
+                                                            <li>@especialidad</li>
+                                                        }
+                                                    </ul>
+                                                }
+                                                else
+                                                {
+                                                    <p>No hay interconsulta</p>
+                                                }
+                                            </div>
+                                        </div>
+
+                                        <!--Control-->
+                                        @if (ViewData["view"].Equals(Roles.Medico))
+                                        {
+                                            <div class="item-resumen" @hiddenAchs>
+                                                <div class="legend-resumen">
+                                                    @tituloObservacionProf
+                                                </div>
+                                                <div class="info-resumen">
+                                                    @Model.Atencion.Observaciones
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+
+                                <div class="col-12 col-md columna-archivos" style="border-left: 1px dashed #C4ECF0; ">
+                                    <div class="legend-resumen" @hiddenAchs>
+                                        Archivos de la Atenci&oacute;n
+                                    </div>
+                                    @{
+                                        var recetaElectronica = false;
+                                        var archivoMedikit = Model.Archivo.FirstOrDefault(x => x.nombreArchivo == "Medikit.pdf");
+                                    }
+                                    @if (Model.Atencion.Archivos.ToList().Count == 0)
+                                    {
+                                        <div id="pnlArchivos" class="align-self-center" style="display:block">
+                                            <div class="row">
+                                                <div class="col-lg-12 kt-align-center">
+                                                    <img src="~/metronic_demo7/assets/media/sinResultado.PNG" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12 text-center" @hiddenAchs>
+                                                    <h5>No existen archivos asociados a esta atención.</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        @* @foreach (var historialAtencion in Model.HistorialAtenciones)
+                                        {
+                                            <div class="archivos-atencion">
+                                                @if (archivoMedikit != null && historialAtencion.statusMedikit == "Correcto")
+                                                {
+                                                    <ul>
+                                                        @if (archivoMedikit.nombreArchivo == "Medikit.pdf" && archivoMedikit != null && archivoMedikit.statusMedikit != null)
+                                                        {
+                                                            <li>
+                                                                <div class="tipo-archivo">
+                                                                    @archivoMedikit.nombreArchivo
+                                                                </div>
+                                                                <button onclick="location.href='@archivoMedikit.url'" class="btn-archivo">
+                                                                    <i class="fal fa-file-pdf"></i>
+                                                                </button>
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                }
+                                            </div>
+                                        } *@
+                                        
+                                        @if (ViewData["view"].Equals(Roles.Medico) || ViewData["view"].Equals(Roles.Administrador))
+                                        {
+                                            
+                                            @foreach (var archivo in Model.Atencion.Archivos.Where(x => x.CodEntidadAsociada == "ATENCIONES-INFORME" || x.CodEntidadAsociada == "ATENCIONES" || x.CodEntidadAsociada == "ATENCIONES-PERITAJES" || x.CodEntidadAsociada == archivoOrientacion || x.CodEntidadAsociada == "ATENCIONES-PERITAJES-NSP"))
+                                            {
+                                                <div class="archivos-atencion">
+                                                    @{
+                                                        var rutaDescargaArchivo = "";
+                                                        if (archivo.Nombre.Contains("Informe"))
+                                                        {
+                                                            rutaDescargaArchivo = Configuration["ServicesUrl"] + "/reportes/reportes/getInformeAtencion?idAtencion=" + Model.Atencion.Id;
+                                                        }
+                                                        else if (archivo.Nombre.Contains("Examen"))
+                                                        {
+                                                            rutaDescargaArchivo = Configuration["ServicesUrl"] + "/reportes/reportes/getExamenes?idAtencion=" + Model.Atencion.Id;
+                                                        }
+                                                        else if (archivo.Nombre.Contains("Receta"))
+                                                        {
+                                                            rutaDescargaArchivo = Configuration["ServicesUrl"] + "/reportes/reportes/getReceta?idAtencion=" + Model.Atencion.Id;
+                                                        }
+                                                        else
+                                                        {
+                                                            rutaDescargaArchivo = archivo.Ruta.Contains("http") ? archivo.RutaVirtual : Configuration["ServicesUrl"] + "/agendamientos/archivo/DescargarArchivo?id=" + archivo.idenc;
+                                                        }
+                                                    }
+                                                    <ul>
+                                                        @if (archivo.Estado != "E" && archivo.CodEntidadAsociada != "ATENCIONES-PERITAJES" && archivo.CodEntidadAsociada != "ATENCIONES-PERITAJES-NSP")
+                                                        {
+                                                            <li>
+                                                                <div class="tipo-archivo">
+                                                                    @archivo.Nombre
+                                                                </div>
+                                                                <button onclick="location.href='@rutaDescargaArchivo'" class="btn-archivo">
+                                                                    <i class="fal fa-file-pdf"></i>
+                                                                </button>
+                                                            </li>
+                                                        }
+                                                        else if (archivo.CodEntidadAsociada == "ATENCIONES-PERITAJES" || archivo.CodEntidadAsociada == "ATENCIONES-PERITAJES-NSP")
+                                                        {
+                                                            <li>
+                                                                <div class="tipo-archivo">
+                                                                    @archivo.Nombre
+                                                                </div>
+                                                                <button onclick="location.href='@rutaDescargaArchivo'" class="btn-archivo" style=" background-color: transparent;  border-radius: 4px;  color: #285394;">
+
+                                                                    <i class="@peritajepdf"></i>
+                                                                </button>
+                                                            </li>
+                                                        }
+                                                        else
+                                                        {
+                                                            <li>
+                                                                <div class="tipo-archivo">
+                                                                    @archivo.Nombre
+                                                                </div>
+                                                                <button class="btn-archivo">
+                                                                    <i class="fal fa-file-pdf"></i>
+                                                                </button>
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                    <p class="kt-widget4__text">
+                                                        @archivo.NombreCompleto - @archivo.FechaMedico.ToString()
+                                                    </p>
+                                                </div>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (ViewBag.recetaElectronica == true)
+                                            {
+                                                recetaElectronica = true;
+                                            }
+                                        }
+                                        @foreach (var archivo in Model.Atencion.Archivos)
+                                        {
+                                            @if (archivo.Nombre == "Informe.pdf" && (ViewData["view"].Equals(Roles.Medico)))
+                                            {
+                                                continue;
+                                            }
+                                            <div class="archivos-atencion">
+                                                @{
+                                                    var rutaDescargaArchivo = "";
+                                                    if (archivo.Nombre.Contains("Informe"))
+                                                    {
+                                                        rutaDescargaArchivo = Configuration["ServicesUrl"] + "/reportes/reportes/getInformeAtencion?idAtencion=" + Model.Atencion.Id;
+                                                    }
+                                                    else if (archivo.Nombre.Contains("Examen"))
+                                                    {
+                                                        rutaDescargaArchivo = Configuration["ServicesUrl"] + "/reportes/reportes/getExamenes?idAtencion=" + Model.Atencion.Id;
+                                                    }
+                                                    else if (archivo.Nombre.Contains("Receta"))
+                                                    {
+                                                        rutaDescargaArchivo = Configuration["ServicesUrl"] + "/reportes/reportes/getReceta?idAtencion=" + Model.Atencion.Id;
+                                                    }
+                                                    else
+                                                    {
+                                                        rutaDescargaArchivo = Configuration["ServicesUrl"] + "/agendamientos/archivo/DescargarArchivo?id=" + archivo.idenc;
+                                                    }
+                                                }
+                                                <ul>
+                                                    @if (archivo.Estado != "E" && !Model.Atencion.Peritaje)
+                                                    {
+                                                        <li>
+                                                            @if (archivo.Nombre == "Receta.pdf" && archivoMedikit != null)
+                                                            {
+                                                                <div class="tipo-archivo">
+                                                                    @archivoMedikit.nombreArchivo
+                                                                </div>
+                                                                <button onclick="window.open('@archivoMedikit.url', '_blank')" class="btn-archivo">
+                                                                    <i class="fal fa-file-pdf"></i>
+                                                                </button>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="tipo-archivo">
+                                                                    @archivo.Nombre
+                                                                </div>
+                                                                <button onclick="location.href='@rutaDescargaArchivo'" class="btn-archivo">
+                                                                    <i class="fal fa-file-pdf"></i>
+                                                                </button>
+                                                            }
+                                                        </li>
+                                                    }
+                                                    else if (!Model.Atencion.Peritaje)
+                                                    {
+                                                        <li>
+                                                            <div class="tipo-archivo">
+                                                                @archivo.Nombre
+                                                            </div>
+                                                            <button class="btn-archivo">
+                                                                <i class="fal fa-file-pdf"></i>
+                                                            </button>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                        }
+                                    }
+                                    <div>
+                                        @if ((ViewData["view"].Equals(Roles.Medico) && (!Model.Atencion.NSP && !ViewBag.sendInforme) && !Model.Atencion.Peritaje))
+                                        {
+
+                                            <button type="button" class="btn btn-brand" id="btnEnviarInforme">ENVIAR A PACIENTE</button>
+
+                                        }
+                                    </div>
+                                    @if (ViewBag.HostURL.ToString().Contains("laaraucana."))
+                                    {
+
+                                        <div class="mt-5 buoh">
+
+                                            <h5 class="mt-2 mb-4 title-b">COMPRA LISTA | COTIZA EN OTRAS FARMACIAS</h5>
+
+                                            <div class="buho-row">
+                                                <a href="https://www.buhochile.com/?utm_source=araucana&utm_medium=affiliate&utm_campaign=medismart" target="_blank">
+                                                    <div class="cont-buho">
+                                                        <img src="~/img/la-araucana/buho.svg" />
+
+                                                    </div>
+                                                </a>
+
+                                                <a class="title-buho" href="https://www.buhochile.com/?utm_source=araucana&utm_medium=affiliate&utm_campaign=medismart" target="_blank"> <u>Cotiza aquí tu lista de medicamentos</u> </a>
+
+
+                                            </div>
+
+
+
+                                            <div>
+                                            </div>
+
+                                        </div>
+                                    }
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--COMENTANDO  MOMENTO MIENTRAS SE LIBERAN LAS OPCIONES DE EXAMENES, FARMACIA Y BIBLIOTECA-->
+                @if (@Model.medicamentosAtencion != null && @Model.medicamentosAtencion.ToList().Count > 0 && (@Model.Atencion.LinkYapp != null || @Model.Atencion.LinkPharol != null || @Model.Atencion.LinkFarmalisto != null || @Model.Atencion.LinkVitau != null))
+                {
+                    <div class="col-auto columna-medicamentos">
+                        <h3 class="mb-3 titulo-seccion titulo-informe">Medicamentos</h3>
+                        <div class="card-informe">
+                            @if (!ViewBag.HostURL.Contains("clinicamundoscotia") && !ViewBag.HostURL.Contains("prevenciononcologica") && !ViewBag.HostURL.Contains("masproteccionsalud"))
+                            {
+                                <h4>
+                                    Hemos encontrado tus medicamentos en nuestras farmacias asociadas
+                                </h4>
+                            }
+
+                            <div class="medicamentos">
+                                <h3 class="titulo-card-farmacia">
+                                    Medicamentos
+                                </h3>
+                                <ul class="lista-medicamentos">
+                                    @foreach (var atemed in Model.AtencionMedicamentos)
+                                        @foreach (var med in Model.medicamentosAtencion)
+                                        {
+                                            @if (atemed.IsComercial == 0)
+                                            {
+                                                <li>@med.PrincipioActivo</li>
+                                            }
+                                            else
+                                            {
+                                                <li>@med.product_name</li>
+                                            }
+                                        }
+                                </ul>
+                                @if (!ViewBag.HostURL.Contains("clinicamundoscotia") && !ViewBag.HostURL.Contains("prevenciononcologica") && !ViewBag.HostURL.Contains("masproteccionsalud"))
+                                {
+                                    @if (Model.Atencion.LinkFarmalisto == null)
+                                    {
+                                        <h3 class="subtitulo-card-farmacia">
+                                            Compra Lista
+                                        </h3>
+                                    }
+
+                                    <ul class="lista-proveedores">
+                                        @if (ViewBag.HostURL.ToString().Contains("segurossura."))
+                                        {
+                                            <li>
+                                                <div class="btn-proveedor">
+                                                    <a href="https://sura.yapp.cl/?utm_source=link_Medismart&utm_medium=boton&utm_campaign=Derivacion_SURA_Medismart/" target="_blank"><img src="~/img/farmacias/logo-yapp.svg" alt="Yapp" /></a>
+                                                </div>
+                                                <div class="leyenda-proveedor">
+                                                    <a href="https://sura.yapp.cl/?utm_source=link_Medismart&utm_medium=boton&utm_campaign=Derivacion_SURA_Medismart/" target="_blank">Revisa todas nuestras ofertas</a>
+                                                </div>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            @if (Model.HistorialAtencionesFarmacia.Count > 0 && @ViewBag.historialAtencionesFarmacia?[0].LinkYapp != null && @ViewBag.historialAtencionesFarmacia?[0].LinkYapp != "error")
+                                            {
+                                                <li>
+                                                    <div class="btn-proveedor">
+                                                        <a target="_blank" href="@Model.Atencion.LinkYapp"><img src="~/img/farmacias/logo-yapp.svg" alt="Yapp" /></a>
+                                                    </div>
+                                                    <div class="leyenda-proveedor">
+                                                        <a target="_blank" href="@Model.Atencion.LinkYapp">Revisa todas nuestras ofertas</a>
+                                                    </div>
+                                                </li>
+                                            }
+                                        }
+                                        @if (Model.Atencion.LinkPharol != null)
+                                        {
+                                            <li>
+                                                <div class="btn-proveedor">
+                                                    <a target="_blank" href="@Model.Atencion.LinkPharol"><img src="~/img/farmacias/logo-pharol.svg" alt="Pharol" /></a>
+                                                </div>
+                                                <div class="leyenda-proveedor">
+                                                    <a target="_blank" href="@Model.Atencion.LinkPharol">Despacho Gratis con codigo: MEDISMART</a>
+                                                </div>
+                                            </li>
+                                        }
+                                        @if (Model.Atencion.LinkFarmalisto != null)
+                                        {
+                                            <li>
+                                                <div class="btn-proveedor">
+                                                    <a target="_blank" href="@Model.Atencion.LinkFarmalisto"><img src="~/img/farmacias/logo-farmalisto.png" alt="Farmalisto" /></a>
+                                                </div>
+                                                <div class="leyenda-proveedor">
+                                                    <a target="_blank" href="@Model.Atencion.LinkFarmalisto">Revisa todas nuestras ofertas</a>
+                                                </div>
+                                            </li>
+                                        }
+                                        @if (Model.Atencion.LinkVitau != null)
+                                        {
+                                            <li>
+                                                <div class="btn-proveedor">
+                                                    <a target="_blank" href="@Model.Atencion.LinkVitau"><img src="~/img/farmacias/logo-vitau.svg" alt="Farmalisto" /></a>
+                                                </div>
+                                                <div class="leyenda-proveedor">
+                                                    <a target="_blank" href="@Model.Atencion.LinkVitau">Revisa todas nuestras ofertas</a>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+
+                            </div>
+
+                        </div>
+                    </div>
+                }@{
+                    if (Model.Examenes != null && Model.Examenes.Count() > 0)
+                    {
+                        if (Model.Atencion.CodigoPais == "CO" && !ViewBag.HostURL.ToString().Contains("glory.medismart"))
+                        {
+                            if (ViewBag.pagoPayzenHabilitado)
+                            {
+                                int idCheck = 0;
+                                string fieldValor = "";
+                                string fieldCheck = "";
+
+                                <div class="col-auto col-examenes">
+                                    <h3 class="mb-3 titulo-seccion">Exámenes</h3>
+                                    <div class="card-informe">
+                                        <h4>
+                                            Selecciona tu ciudad y los exámenes que deseas.
+                                        </h4>
+                                        @if (@ViewBag.vads_amount != "000")
+                                        {
+                                            <div class="ciudad_box">
+                                                <label>Ciudad</label>
+                                                <select class="btn-outline-primary dropdown-toggle" id="ciudades">
+                                                </select>
+                                            </div>
+                                        }
+                                        <div class="examenes">
+                                            <!--<h2 class="titulo-card-farmacia">
+                                                Exámenes
+                                            </h2>-->
+                                            <!--examenesbox-->
+                                            <div class="examenes_title">
+                                                <div class="service"><h2>Servicio</h2></div>
+                                                <div class="precio"><h2>Precio</h2></div>
+                                                <div class="precio_medismart"><h2>Descuento Especial*</h2></div>
+                                                <div></div>
+                                            </div>
+                                            <!--examenesbox end-->
+                                            <div class="examenes_box">
+                                                @foreach (var ex in Model.Examenes)
+                                                {
+                                                    idCheck += 1;
+                                                    fieldValor = "valor" + idCheck;
+                                                    fieldCheck = "seleccion" + idCheck;
+                                                    <div class="examenes_items">
+                                                        <div class="name_item">@ex.Nombre</div>
+                                                        <div class="tarifa_item"><del>@ex.TarifaMedismart.ToString("C0")</del></div>
+                                                        <div class="tarifaoferta_item">@ex.TarifaOfertaMedismart.ToString("C0")</div>
+                                                        @if (ex.EstadoPago == "CAPTURED")
+                                                        {
+                                                            <div class="valor_item">Pagado</div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="valor_item"><input type="checkbox" id=@ex.IdExamen name="chkValor" checked="checked" value=@ex.IdExamen /></div>
+                                                        }
+                                                    </div>
+                                                }
+                                            </div>
+
+
+
+                                        </div>
+                                        <div class="lista-proveedores">
+
+                                            @if (@ViewBag.vads_amount != "000")
+                                            {
+                                                <div class="proveedor_box">
+                                                    <div class="btn-proveedor"><img src="~/img/examenes/logo-payzen.png" alt="Yapp" /></div>
+                                                </div>
+                                            }
+
+                                            <div class="pago_box">
+                                                <div class="leyenda-proveedor">
+                                                    <form method="POST" action="https://secure.payzen.lat/vads-payment/" id="formPagar">
+                                                        <input type="hidden" id="vads_action_mode" name="vads_action_mode" value=@ViewBag.vads_action_mode />
+                                                        <input type="hidden" id="vads_amount" name="vads_amount" />
+                                                        <input type="hidden" id="vads_ctx_mode" name="vads_ctx_mode" value=@ViewBag.vads_ctx_mode />
+                                                        <input type="hidden" id="vads_currency" name="vads_currency" value=@ViewBag.vads_currency />
+                                                        <input type="hidden" id="vads_order_id" name="vads_order_id" value=@ViewBag.vads_trans_id />
+                                                        <input type="hidden" id="vads_page_action" name="vads_page_action" value=@ViewBag.vads_page_action />
+                                                        <input type="hidden" id="vads_payment_config" name="vads_payment_config" value=@ViewBag.vads_payment_config />
+                                                        <input type="hidden" id="vads_site_id" name="vads_site_id" value=@ViewBag.vads_site_id />
+                                                        <input type="hidden" id="vads_trans_date" name="vads_trans_date" value=@ViewBag.vads_trans_date />
+                                                        <input type="hidden" id="vads_trans_id" name="vads_trans_id" />
+                                                        <input type="hidden" id="vads_version" name="vads_version" value=@ViewBag.vads_version />
+                                                        <input type="hidden" id="signature" name="signature" value=@ViewBag.signature />
+
+                                                        @if (@ViewBag.vads_amount != "000")
+                                                        {
+                                                            <input type="button" id="pagar" name="pagar" disabled="disabled" value="Pagar" />
+                                                        }
+                                                    </form>
+                                                    <input type="hidden" id="cadenaSignature" name="cadenaSignature" value=@ViewBag.KeySha />
+                                                </div>
+                                                <div class="linea-voucher total">
+                                                    <div class="total-valor">
+                                                        <div style="width:35%; float: left; margin: -15px 10px 0 0;">Total a pagar</div>   <span class="valor-consulta"> <span id="valorAtencion"></span><small> COP</small></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>*Precio de descuento por lanzamiento</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="col-auto columna-examenes">
+                                <h3 class="mb-3 titulo-seccion">Exámenes</h3>
+
+                                <div class="card-informe">
+
+                                    @if (!ViewBag.HostURL.Contains("clinicamundoscotia") && !ViewBag.HostURL.Contains("prevenciononcologica"))
+                                    {
+                                        <h4>
+                                            Hay opciones para la toma de exámenes médicos solicitados en tu atenci&oacute;n.
+                                        </h4>
+                                    }
+
+                                    <div class="examenes">
+                                        <h3 class="titulo-card-farmacia">
+                                            Exámenes
+                                        </h3>
+                                        <ul class="lista-medicamentos">
+                                            @foreach (var ex in Model.Examenes)
+                                            {
+                                                <li>@ex.Nombre</li>
+                                            }
+                                        </ul>
+
+                                    </div>
+                                    @if (!ViewBag.HostURL.Contains("clinicamundoscotia") && !ViewBag.HostURL.Contains("prevenciononcologica") && !ViewBag.HostURL.Contains("masproteccionsalud") && !ViewBag.HostURL.ToString().Contains("vivetuseguro.wedoctorsmx.mx"))
+                                    {
+                                        <h3 class="subtitulo-card-farmacia">
+                                            Exámenes en línea
+                                        </h3>
+                                        <ul class="lista-proveedores">
+                                            <li>
+
+                                                @if (ViewBag.HostURL.ToString().Contains("mx.medical"))
+                                                {
+                                                    <a href="https://examedi.com/widget/medismartmx/" target="_blank">
+                                                        <div class="btn-proveedor"><img src="~/img/examenes/logo-examedi.png" alt="Yapp" /></div>
+                                                    </a>
+                                                    <div class="leyenda-proveedor">
+                                                        <a href="https://examedi.com/widget/medismartmx/" target="_blank">Cotiza tus exámenes de laboratorio</a>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <a href="https://examedi.com/widget/medismart/" target="_blank">
+                                                        <div class="btn-proveedor"><img src="~/img/examenes/logo-examedi.png" alt="Yapp" /></div>
+                                                    </a>
+                                                    <div class="leyenda-proveedor">
+                                                        <a href="https://examedi.com/widget/medismart/" target="_blank">Cotiza tus exámenes de laboratorio</a>
+                                                    </div>
+                                                }
+
+
+                                            </li>
+                                            @if (ViewBag.activaBlanco == 1 && ViewBag.codigoTelefono.ToString().Contains("CL"))
+                                            {
+                                                <li>
+
+                                                    <a href="/asistenciatomaexamenes/asistenciaExamenes">
+                                                        <div class="btn-proveedor"><img src="~/img/examenes/logo-blanco.png" alt="Examedi" /></div>
+                                                    </a>
+                                                    <div class="leyenda-proveedor">
+                                                        <a href="/asistenciatomaexamenes/asistenciaExamenes">Realiza de forma presencial tus exámenes</a>
+                                                    </div>
+
+                                                </li>
+                                            }
+
+                                        </ul>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+                @if (@Model.HoraDerivacion != null && @Model.HoraDerivacion.IdMedico > 0 && @Model.Atencion.IdEspecialidadDerivacion != 0)
+                {
+                    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-3 cajaInfoMedico">
+                        <h3 class="mb-3 titulo-seccion titulo-informe">Derivar a:</h3>
+                        <div class="card caja-profesional no-flip card-informe">
+                            <div class="front">
+                                <div class="card-body">
+                                    <img src="@(ViewBag.urlBase+@Model.HoraDerivacion.FotoPerfil.Replace('\\','/'))" />
+                                    <div class="cont-data">
+                                        <div class="data-atencion">
+                                            <span class="header-aviso-atencion"><i class="fal fa-calendar-alt" aria-hidden="true"></i><span>Próxima Atención</span></span>
+                                            <span class="nombre-profesional"><span class="titulo-profesional">@Model.HoraDerivacion.PrefijoProfesional</span><span>@Model.HoraDerivacion.NombreMedico @Model.HoraDerivacion.ApellidoPaternoMedico @Model.HoraDerivacion.ApellidoMaternoMedico</span><small>@Model.HoraDerivacion.AlmaMater</small></span>
+                                            <span class="especialidad-profesional fuente-accesible">@Model.HoraDerivacion.Especialidad</span>
+                                            <div class="calificacion">
+                                                <i class="fas fa-star positiva" aria-hidden="true"></i><i class="fas fa-star positiva" aria-hidden="true"></i><i class="fas fa-star positiva" aria-hidden="true"></i>
+                                                <i class="fas fa-star positiva" aria-hidden="true"></i><i class="fas fa-star positiva" aria-hidden="true"></i>
+                                            </div>
+
+                                        </div>
+                                        <div class="caja-opciones">
+                                            <a href="#"><i class="fal fa-search" aria-hidden="true"></i></a><a href="#"><i class="fal fa-calendar-alt" aria-hidden="true"></i></a>
+                                        </div>
+                                        <span class="d-block fecha-atencion front-fecha-atencion"><strong>@Model.HoraDerivacion.FechaText - @Model.HoraDerivacion.HoraDesdeText HRS</strong></span>
+                                    </div>
+                                    <button id="agendarInforme" class="btn btn-primary btn-block btn-sm my-2 btn-agendar">Agendar</button>
+                                    <!--<a href='@urlAgendar' class="horarios-disponibles"> <span class="especialidad-profesional">Ver más horarios disponibles</span></a>-->
+                                    <a href='@urlAgendar' class="btn btn-outline-primary btn-block btn-sm my-2 btn-agendar">Ver más horarios disponibles</a>
+                                </div>
+
+                            </div>
+                            <!--<div class="back"></div>-->
+                        </div>
+
+                    </div>
+
+                }
+
+
+
+            </div>
+        </div>
+
+
+
+        <!--end:: Informe de Atenci&oacute;n-->
+
+    </div>
+</div>
+<!-- end:: Content -->

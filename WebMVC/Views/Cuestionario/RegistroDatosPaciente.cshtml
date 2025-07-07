@@ -1,0 +1,90 @@
+﻿@using Microsoft.Extensions.Configuration
+@model WebMVC.Models.PersonasViewModel
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Configuracion";
+    Layout = "_LayoutPaciente";
+
+}
+
+
+@{
+    ViewData["idEntidad"] = ViewBag.uid;
+    ViewData["codEntidad"] = Entidades.FOTO_PERFIL;
+    ViewData["uid"] = int.Parse(ViewBag.uid);
+}
+@{
+    ViewData["view"] = Roles.Paciente;
+}
+
+@section Styles  {
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/css/Mexico/mexico.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+     @if(ViewBag.HostURL.ToString().Contains("vidasecurity.") ){
+         <link href="~/css/vidasecurity/vidasecurity.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />    
+
+     }
+    
+}
+
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid configuracion-paciente">
+
+
+    <div id="loaderNom35">
+
+     
+    </div>
+
+
+
+            <!-- Aquí va el formulario -->
+            <div class="form_nom035">
+                <h2>Registro Trabajador</h2>
+                <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+                    <button class="kt-app__aside-close" id="kt_user_profile_aside_close">
+                        <i class="la la-close"></i>
+                    </button>
+
+                    <div class="col-lg-12 px-0 px-md-2">
+                        <partial name="~/Views/Shared/_PerfilPacienteNom035.cshtml" model="Model" view-data="ViewData" />
+                    </div>
+
+                </div>
+
+            </div>
+
+</div>
+    
+     
+
+
+@section Scripts {
+    <script src="~/js/Usuario/config.js?9rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/Shared/archivos-FotoPerfil.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script type="module">
+        window.ocupacional = '@ViewBag.ocupacional';;
+        import { init } from '../../js/Cuestionario/PacienteDatosBasicos.js?rnd=@NumeroRandom.GetRandom()';
+        document.addEventListener("DOMContentLoaded", function () {
+            init(@Html.Raw(Json.Serialize(Model)));
+        });
+    </script>
+    <script type="text/javascript">
+        (function () {
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+             var idCliente = '@ViewBag.idCliente';
+            window.idCliente = idCliente;
+            window.host = '@ViewBag.HostURL';
+        })()
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    
+}
+
+<style>
+    .text-danger{
+        display: inline-block;
+        width: 50%;
+    }
+</style>

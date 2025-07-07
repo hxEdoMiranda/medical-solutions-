@@ -1,0 +1,195 @@
+﻿
+
+<div class="container-fluid cont-toma-examenes lab-blanco">
+
+    <h1 class="titulo-seccion d-md-none">Asistencia Exámenes</h1>
+
+    <div class="row">
+        <div class="col-12 col-md-auto">
+            <div class="card">
+                <form id="form">
+                    <div class="form-group-input" style="border-bottom: solid 2px #cdcbcba6;">
+                        <label for="exampleFormControlSelect1">Selecciona el (los) exámen(es) a agendar:</label>
+                    </div>
+                    <div class="form-group-input" id="seleccionExamen">
+                        <label for="exampleFormControlSelect1">Selecciona tu Examen:</label>
+                        <div class="card_box">
+                            @if (ViewBag.HostURL.Contains("essilorluxottica") || ViewBag.HostURL.Contains("vivetuseguro"))
+                            {
+                                <div class="typeahead" style="width: 100%;">
+                                    <input class="form-control" placeholder="Buscar por palabra clave" id="input_codigoExamen_0" type="text" dir="ltr" style="margin-bottom: 10px;">
+                                    <div class="selected-options">
+                                        <!-- Opciones seleccionadas se agregan aquí -->
+                                    </div>
+                                </div>
+                            }
+                            else if (ViewBag.HostURL.Contains("cardif.wedoctorsmx."))
+                            {
+                                <div class="typeahead">
+                                    <input class="form-control" placeholder="Buscar por palabra clave" id="input_codigoExamen_0" type="text" dir="ltr" style="margin-bottom: 10px;">
+                                    <div class="selected-options">
+                                        <!-- Opciones seleccionadas se agregan aquí -->
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="typeahead">
+                                    <input class="form-control" placeholder="Buscar por palabra clave" id="input_codigoExamen_0" type="text" dir="ltr">
+                                    <div class="form-text text-muted">Ingrese mínimo 3 carácteres y seleccione una opción</div>
+                                </div>
+                                <ul id="listaTipoExamen"></ul>
+                                <button id="btnAdd" class="file-select" />
+                            }
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Selecciona tu Estado:</label>
+                        <div class="typeahead">
+                            <select class="form-control" id="listaRegion" name="regiones">
+                                <option value="0">Seleccionar...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Selecciona tu Sucursal:</label>
+                        <div class="typeahead">
+                            <select class="form-control" id="listaComunas" name="comunas">
+                                <option value="0">Seleccionar...</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+
+                @if (!ViewBag.HostURL.Contains("essilorluxottica"))
+                {
+                    <div class="nota-asistencia">
+                        <div class="col-lg-12" style="text-align:center;">
+                            <button type="button" id="btnAgendar" class="btn btn-primary">Agendar</button>
+                        </div>
+                    </div>
+
+
+                }
+            </div>
+        </div>
+        <div class="col-12 col-md">
+            <div class="acontent_box">
+                <div class="acontent_ti">
+                    @*<div class="cont-ilustracion">
+                        </div>*@
+                    @if (ViewBag.HostURL.Contains("vivetuseguro"))
+                    {
+                        <img src="~/img/vivetuseguro/examenes/foto.png" alt="..." class="d-none d-lg-block">
+                    }
+                    else if (ViewBag.HostURL.Contains("cardif.wedoctorsmx."))
+                    {
+                        <div class="cardifcolab-col ml-4">
+                            <div class="cardifcolab-row">
+                                <img src="~/img/vivetuseguro/examenes/foto.png" alt="..." class="d-none d-lg-block">
+                                <div class="cardifcolab-title">
+                                    <h2>
+                                        ¡Estamos contigo!
+                                    </h2>
+                                    <div class="cardifcolab-p">
+                                        <p style="margin: 0%; color: #209CD4; font-size: 30px; font-weight: 800; line-height: normal;">
+                                            Te ayudamos a agendar
+                                            tus exámenes médicos.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <p style="margin: 0%; font-size: 16px;" class="mt-5">
+                                En nuestro Centro de Atención, podrás agendar de forma simple y rápida, tus exámenes médicos.
+                                Dinos qué fecha prefieres, el lugar que más te acomode para encontrar una hora y un laboratorio o centro médico, perfecto para tus necesidades.
+                            </p>
+                        </div>
+                    }
+                    else
+                    {
+                        <img src="~/img/mexico/essilor/essilor-ilustracion.svg" alt="..." class="d-none d-lg-block">
+                    }
+                    <div>
+                        @if (!ViewBag.HostURL.Contains("cardif.wedoctorsmx."))
+                        {
+                            <h2 class="lux-titulo">
+                                ¡Estamos contigo!
+                            </h2>
+                        }
+                        <br /><br />
+                        <div class="box_tex" style="margin: 0%;">
+                            @if (!ViewBag.HostURL.Contains("cardif.wedoctorsmx."))
+                            {
+                                <p class="lux-parrafo" style="margin: 0%; color: #209CD4;">
+                                    Te ayudamos a agendar tus exámenes médicos.
+                                </p>
+                            }
+                            <br />
+                            @if (!ViewBag.HostURL.Contains("cardif.wedoctorsmx."))
+                            {
+
+                                <p style="margin: 0%;" class="lux-p-2">
+                                    En nuestro Centro de Atención, podrás agendar de forma simple y rápida, tus exámenes médicos.
+                                    Dinos qué fecha prefieres, el lugar que más te acomode para encontrar una hora y un laboratorio o centro médico, perfecto para tus necesidades.
+                                </p>
+                            }
+
+                        </div>
+
+                    </div>
+
+                </div>
+                @if (ViewBag.HostURL.Contains("essilorluxottica.wedoctorsmx"))
+                {
+                    <p style="margin: 0%;" class="lux-p-footer">
+                        En nuestra plataforma podrás generar de manera simple y rápida tu solicitud para tus exámenes médicos.
+                    </p>
+                    <div class="lux-contenedor-footer">
+
+                        <div class="nota-asistencia">
+                            <div class="col-lg-12" style="text-align:center;">
+                                <button type="button" id="btnAgendar" class="btn btn-primary btn-agendar-examen">AGENDAR EXÁMENES</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="cont-tabla table-responsive">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+@if (ViewBag.HostURL.Contains("essilorluxottica") || ViewBag.HostURL.Contains("cardif"))
+{
+    <div class="modal fade" id="tuModalId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog dialog-atenciones" role="document">
+            <div class="modal-content modalControlAtencionAgendadaCancela modal-atenciones">
+                <div class="modal-body" id="bodyControlAtencionAgendadaCancela">
+                    <div class="data-modal">
+                        <img src="~/img/mexico/essilor/img-modal.jpg" alt="" class="img-modal-luxo">
+                        <h5 class="modal-luxo-titulo">¿Te interesa realizarte los exámenes de laboratorio?</h5>
+                        <p class="modal-luxo-parrafo">Te recomendamos hacerlos para verificar tu estado de salud y luego<br />concertar una cita con un médico general para revisar los resultados.</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btnAhoraNo btn-outline-success" href="/Paciente/Home" id="btnExamCancel">No quiero realizarlo ahora</button>
+                    <button class="btn btn-sm btn-light btnAnulaAtencionx" id="btnAnulaAtencionx" data-dismiss="modal" style="float:right;">Quiero realizar los exámenes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        // Aquí abrirás el modal cuando la página se cargue
+        $('#tuModalId').modal('show');
+    });
+</script>
+

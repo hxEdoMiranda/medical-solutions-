@@ -1,0 +1,948 @@
+﻿@model WebMVC.Models.Atenciones
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Agendar";
+    Layout = "_LayoutPaciente";
+    var tipoProgramaSalud = ViewBag.tipoProgramaSalud == 1 ? "cronico" : "clinicasueno";
+}
+
+@section PageStyles  {
+    <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <style>
+        /*.swal2-styled.swal2-cancel{
+                position: absolute !important;
+                left: 75px !important;
+            }
+            .swal2-styled.swal2-confirm {
+                    position: absolute !important;
+                    right: 50px !important;
+        }*/
+
+    </style>
+}
+
+    <div class="confirmar-container">
+        <div class="confirmar-icon-container">
+        <div class="confirmar-icon active-step">
+            <img src="/img/programa-salud/agendamiento-step-1.svg" alt="" >
+
+            </div>
+            <div class="confirmar-line"></div>
+
+            <div class="confirmar-icon active-step">
+            <img src="/img/programa-salud/agendamiento-step-2.svg" alt="" >
+
+            </div>
+        </div>
+        <div class="confirmar-box-general">
+            <div class="confirmar-titulo">
+                 <img src="/img/programa-salud/logo-titulo.svg" alt="">
+            <h2>Confirmación de agendamiento</h2>
+            </div>
+            <div>
+               <p>Has agendado tu hora con la enfermera. Te enviaremos un correo con el detalle de horario y fecha. Recuerda que siempre puedes revisar tus citas en la plataforma </p>
+            </div>
+        </div>
+        <div class="confirmar-box-info">
+                <h2>Estimado(a) <strong>@Model.NombrePaciente</strong></h2>
+                <span>¡Tu hora ha sido confirmada con la enfermera!</span>
+                <div class="confirmar-box-info-detalle">
+                    <div class="confirmar-box-info-detalle-uno">
+                        <div class="confirmar-box-imagen-detalle">
+                           
+                               <img src="."
+                         class="confirmar-round-image"
+                         alt="Foto Médico"
+                         id="fotoMedico" />
+                            <div class="confirmar-detalle">
+                                <div class="confirmar-nombre-doc">
+                                    <span>@Model.NombreMedico.ToLower() | @Model.Especialidad</span>
+                                </div>
+                                <div class="confirmar-data">
+                                    <img src="/img/programa-salud/fa-clock-ps.svg"  alt="">
+                                    <p><span>@Model.HoraDesdeTextPaciente.Substring(0, 5) / @Model.FechaText.Substring(0, 10)</span></p></div>
+
+                                <div class="confirmar-data">
+                                    <img src="/img/programa-salud/video-icon.svg" alt="">
+                                    <p>A través de: <span>Video conferencia de la plataforma.</span></p></div>
+
+                                <div class="confirmar-data">
+                                     <img src="/img/programa-salud/notificacion.svg" alt="">
+                                    <p>Ingresa 10 minutos antes</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="confirmar-recuerda-que">
+                       Recuerda que: 
+                       <div class="confirmar-recuerda-que-detalle">
+                      <img src="/img/programa-salud/check.svg" alt="">
+                        <span>Una asistente virtual te contactará para que nos confirmes tu hora médica</span>
+                       </div>
+                       <div class="confirmar-recuerda-que-detalle">
+                        <img src="/img/programa-salud/check.svg" alt="">
+                        <span>Tus documentos digitales se enviarán a tu correo una vez finalizada tu atencíon. También puedes revisarlos en tu perfil si lo necesitas</span>
+                       </div>
+                       <div class="confirmar-btn">
+
+                        <a href="/ProgramaSalud/home?tipo=@tipoProgramaSalud"><input type="button" value="Volver al Inicio" /> </a>
+                       </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+@*<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+    <!--Begin::App-->
+    <!-- Start:: Stepper-->
+    <!-- Stepper -->
+  @{
+    if(ViewBag.HostURL.ToString().Contains("clinicamundoscotia.")){
+        <!--SCOTIABANK-->
+            <div class="stepper stepper-scotiabank">
+                    <div class="cont-steps">
+                <!-- Step1 -->
+                <div class="step passed">
+                    <div class="step-icon">
+                        <img src="~/img/scotiabank/iconos/icon_seleccion_noactive.svg" />
+                    </div>
+                    <div class="label-step fuente-accesible">
+                        1. Selección
+                    </div>
+                </div>
+
+                <i class="fas fa-chevron-right flecha"></i>
+
+                <!-- Step2 -->
+                <div class="step">
+                    <div class="step-icon">
+                         <img src="~/img/scotiabank/iconos/icon_agendamiento_noactive.svg" />
+                    </div>
+                    <div class="label-step fuente-accesible">
+                        2. Agendamiento
+                    </div>
+                </div>
+
+                <i class="fas fa-chevron-right flecha"></i>
+
+                <!-- Step3 -->
+                <div class="step  active">
+                    <div class="step-icon">
+                            <img src="~/img/scotiabank/iconos/icon_confirmacion_active.svg" />
+                    </div>
+                    <div class="label-step fuente-accesible">
+                        3. Confirmación
+                    </div>
+                </div>
+            </div>
+            <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+            </div>
+    <!-- SCOTIABANK End: -->
+        }
+        else if (ViewBag.HostURL.ToString().Contains("prevenciononcologica.") || ViewBag.HostURL.ToString().Contains("masproteccionsalud."))
+        {
+           <!-- Cajalosandes -->
+                <div class="stepper">
+                    <div class="init-step"></div>
+                    <div class="cont-steps">
+                        <!-- Step1 -->
+                        <div class="step">
+                            <div class="step-icon">
+                                <img src="~/img/cajalosandes/iconos/icon_seleccion_noactive.svg">
+                            </div>
+                            <div class="label-step fuente-accesible">
+                                1. Selección
+                            </div>
+                        </div>
+
+                        <i class="fas fa-chevron-right flecha"></i>
+                    <hr class="linea-stepper" />
+                        <!-- Step2 -->
+                        <div class="step">
+                            <div class="step-icon">
+                                <img src="~/img/cajalosandes/iconos/icon_agendamiento_noactive.svg" />
+                            </div>
+                            <div class="label-step fuente-accesible">
+                                2. Agendamiento
+                            </div>
+                        </div>
+
+                        <i class="fas fa-chevron-right flecha"></i>
+                        <hr class="linea-stepper" />
+                        <!-- Step3 -->
+                        <div class="step active">
+                            <div class="step-icon">
+                                <img src="~/img/cajalosandes/iconos/icon_confirmacion_active.svg" />
+                            </div>
+                            <div class="label-step fuente-accesible">
+                                3. Confirmación
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- Cajalosandes -->
+        }
+        else{ 
+            <!-- MedismartBASE -->
+             <div class="stepper">
+                    <div class="init-step"></div>
+                    <div class="cont-steps">
+                        <!-- Step1 -->
+                        <div class="step passed">
+                            <div class="step-icon">
+                                <i class="fal fa-user-md"></i>
+                            </div>
+                            <div class="label-step fuente-accesible">
+                                1. Selección
+                            </div>
+
+                        </div>
+
+                    <i class="fas fa-chevron-right flecha"></i>
+                    <hr class="linea-stepper">
+                    <!-- Step2 -->
+                    <div class="step passed">
+                        <div class="step-icon">
+                            <i class="fal fa-calendar-edit"></i>
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            2. Agendamiento
+                        </div>
+                    </div>
+
+                    <i class="fas fa-chevron-right flecha"></i>
+                    <hr class="linea-stepper">
+
+                    <!-- Step3 -->
+                    <div class="step active">
+                        <div class="step-icon">
+                            <i class="fal fa-check-circle"></i>
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            3. Confirmación
+                        </div>
+
+                        <!--<i class="fas fa-chevron-right flecha"></i>-->
+                
+                    </div>
+                     </div>
+                    <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+               
+            </div>
+        <!-- MedismartBASE End: -->
+        }
+        }
+    <!-- Stepper -->
+    <!-- End:: Stepper-->
+    <!-- Mensaje confirmación Hora -->
+    <!-- Mensaje final Hora -->
+
+
+    @{
+        if(ViewBag.checkAnura==1){
+             <div class="container caja-base mensaje-confirmacion confirmacion-smartcheck">
+            @{
+                if (ViewBag.idCliente == "108")
+                {
+
+                    <h1 class="titulo-servicio mb-4">Tu reserva</h1>
+                }
+
+            }
+            <div class="row cont-confirmacion atencion-agendable">
+
+                <div class="col">
+                    <div class="mensaje">
+                        <div class="header-mensaje">
+                            @{
+                                var baseL = Configuration["ServicesUrl"];
+                                var logo = "~/img/logotipo.png";
+                                if (Model.RutaVirtual != null)
+                                {
+                                    logo = baseL + Model.RutaVirtual;
+                                }
+
+                                string textoMarca = string.Empty;
+                                string defaultTextoMarca = "Medismart.live";
+                                if (ViewBag.HostURL.ToString().Contains("medical."))
+                                {
+                                    textoMarca = defaultTextoMarca;
+                                }
+                                else if (ViewBag.HostURL.ToString().Contains("unabactiva.") || ViewBag.HostURL.ToString().Contains("activa.unab."))
+                                {
+                                    textoMarca = "Unab Activa";
+                                }
+                                else if (ViewBag.HostURL.ToString().Contains("masproteccionsalud.") || ViewBag.HostURL.ToString().Contains("prevenciononcologica"))
+                                {
+                                    textoMarca = "+Protección";
+                                }
+                                else if (!string.IsNullOrEmpty(Model.TextoMarca))
+                                {
+                                    textoMarca = Model.TextoMarca;
+                                }
+                                else
+                                {
+                                    textoMarca = defaultTextoMarca;
+                                }
+
+                            }
+                            @if (!ViewBag.HostURL.ToString().Contains("clinicamundoscotia.") && !ViewBag.HostURL.Contains("prevenciononcologica") && ViewBag.HostURL.ToString().Contains("unabactiva.") && ViewBag.HostURL.ToString().Contains("activa.unab."))
+                            {
+                                <img src="@logo" class="logotipo" alt="">
+                            }
+                            <i class="fal fa-check-circle d-none"></i>
+                        </div>
+                        @if (ViewBag.idCliente == "148")
+                        {
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="fuente-accesible">
+                                            Estimado(a) <strong>@Model.NombrePaciente</strong>: Te agradecemos por confiar en <strong>@textoMarca</strong>
+                                        </p>
+                                        <p class="fuente-accesible">
+                                            Recuerda que las recetas, certificados y otros documentos, llegarán a tu correo electrónico tras finalizar la atención.
+                                            También estarán disponibles en la sección <strong>Atenciones.</strong>
+                                        </p>
+                                    </div>
+                                    <div class="col-12 order-last">
+                                        <div class="cont-icon-confirma">
+                                            <i class="fal fa-check-circle icon-confirma"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else if (ViewBag.idCliente == "108")
+                        {
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <!--Logo Coopeuch-->
+                                        <div class="cont-logo-coopeuch d-none">
+                                            <img src="~/img/coopeuch/logos/salud-proteccion-gris.svg" alt="Salud protección" />
+                                        </div>
+                                        <!--Logo Coopeuch-->
+                                        <p class="fuente-accesible">
+                                            Estimado(a)<strong>@Model.NombrePaciente</strong>:
+                                        </p>
+
+                                        <p class="fuente-accesible">
+                                            ¡Felicitaciones! Tu hora ha sido agendada, te agradecemos por confiar en <strong>Salud Protección</strong>.
+                                        </p>
+                                        <p class="fuente-accesible">
+                                            Recuerda que las recetas, certificados y otros documentos, llegarán a tu correo electrónico
+                                            tras finalizar la atención y también estarán disponibles en la sección <strong>Atenciones</strong> de la página de <strong>Salud Protección</strong>.
+                                        </p>
+                                    </div>
+                                    <div class="col-12 order-last">
+                                        <div class="cont-icon-confirma">
+                                            <i class="fal fa-check-circle icon-confirma"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+                        {
+                            <div class="container-fluid">
+                                <div class="row align-items-center">
+                                    <div class="col-12">
+                                        <div class="cont-icon-confirma">
+                                            <img alt="Logo" src="/img/scotiabank/home/logo_mdhome.png" class="d-lg-inline-block">
+                                        </div>
+                                        <p class="fuente-accesible">
+                                            Estimado(a) <strong>@Model.NombrePaciente</strong>, tu hora ha sido agendada.
+
+                                        </p>
+                                        <p class="fuente-accesible">
+                                            Recuerda que tus recetas, certificados y otros documentos serán enviados a a tu correo electrónico tras finalizada la atención.
+                                            También estarán disponibles en la sección <strong>Atenciones.</strong>
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+
+                        else if (ViewBag.HostURL.ToString().Contains("prevenciononcologica."))
+                        {
+                            <div class="container-fluid">
+                                <div class="row align-items-center">
+                                    <div class="col-12">
+                                        <div class="confirmacion-los-andes">
+                                                <div class="cont-icon-confirma">
+                                                    <img alt="Logo" src="/img/cajalosandes/iconos/icon_calendar.svg" class="d-lg-inline-block">
+                                                </div>
+                                                <div class="confirma-texto">
+                                                    <p class="fuente-accesible">
+                                                        Estimado(a) <strong>@Model.NombrePaciente</strong>: ¡Felicitaciones! Tu hora ha sido agendada exitosamente. Gracias por confiar en nosotros.
+
+                                                    </p>
+                                                    <p class="fuente-accesible">
+                                                        Recuerda que tus recetas, certificados y otros documentos serán enviados a a tu correo electrónico tras finalizada la atención.
+                                                        También estarán disponibles en la sección <strong>Atenciones.</strong>
+                                                    </p>
+                                                </div>
+                                                <div class="cont-icon-confirma d-none">
+                                                    <i class="fal fa-check-circle icon-confirma"></i>
+                                                </div>
+                                        </div>
+                                        
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+                        else if (ViewBag.codigoTelefono == "CO")
+                        {
+                            <div class="container-fluid">
+                                <div class="row align-items-center">
+                                    <div class="col-12">
+                                        <p class="fuente-accesible">
+                                            Estimado(a) <strong>@Model.NombrePaciente</strong>: ¡Felicitaciones! Tu cita ha sido agendada, te agradecemos por confiar en <strong>@textoMarca</strong>
+                                        </p>
+                                        <p class="fuente-accesible">
+                                            Recuerda que las recetas, certificados y otros documentos, llegarán a tu correo electrónico tras finalizar la atención
+                                            y también estarán disponibles en la sección <strong>Atenciones.</strong>
+                                        </p>
+                                    </div>
+                                    <div class="col-12 order-last">
+                                        <div class="cont-icon-confirma">
+                                            <i class="fal fa-check-circle icon-confirma"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="container-fluid">
+                                <div class="row align-items-center">
+                                    <div class="col-12">
+                                        <img alt="Logo" src="~/img/logo-mlive.svg" class="d-lg-inline-block logo-medismart-confirmacion">
+                                        <p class="fuente-accesible">
+                                            Estimado(a) <strong>@Model.NombrePaciente</strong>: ¡Felicitaciones! Tu hora ha sido agendada, te agradecemos por confiar en <strong>@textoMarca</strong>
+                                        </p>
+                                        <p class="fuente-accesible">
+                                            Recuerda que las recetas, certificados y otros documentos, llegarán a tu correo electrónico tras finalizar la atención
+                                            y también estarán disponibles en la sección <strong>Atenciones.</strong>
+                                        </p>
+                                    </div>
+                                    <div class="col-12 order-last">
+                                        <div class="iconos-confirmacion">
+                                            <img src="~/img/anura/check-anura.svg" alt="" />
+                                            <img src="~/img/anura/check-atencion.svg" alt="" />
+                                        </div>
+                                        <!--
+                                        <div class="cont-icon-confirma">
+                                            <i class="fal fa-check-circle icon-confirma"></i>
+                                        </div>
+                                        -->
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        }
+
+                    </div>
+                </div>
+
+                <!--Columna Caja Profesional -->
+
+                <div class="col-12 col-lg-4">
+
+                    <!-- Caja Profesional -->
+
+                    <div class="card caja-profesional">
+
+                        <img src="."
+                         class="card-img-top"
+                         alt="Foto Médico"
+                         id="fotoMedico" />
+                        <div class="card-body">
+                            <div class="cont-data">
+                                <div class="data-atencion">
+                                    <span class="header-aviso-atencion">
+                                        <i class="fal fa-calendar-alt"></i> Próxima
+                                        Atención
+                                    </span>
+
+                                    <span class="nombre-profesional">
+                                        @if (ViewBag.idEspecialidad != 79 && ViewBag.idEspecialidad != 77)
+                                        {
+                                            <span class="titulo-profesional">Dr.</span>
+                                        }
+                                        @Model.NombreMedico
+
+                                        <!--
+                                        <small>
+                                            Universidad de Chile - 111111
+                                        </small>
+                                        -->
+                                    </span>
+                                    <div class="calificacion2">
+                                        <i class="fas fa-star positiva"></i>
+                                        <i class="fas fa-star positiva"></i>
+                                        <i class="fas fa-star positiva"></i>
+                                        <i class="fas fa-star positiva"></i>
+                                        <i class="fas fa-star positiva"></i>
+                                    </div>
+
+                                    @{
+                                        if (ViewBag.idCliente == "108")
+                                        {
+
+                                            <span class="d-block fecha-atencion">
+                                                <span class="titulo-profesional"> @Model.Especialidad</span>
+                                                <strong>@Model.FechaText.Substring(0, 10)</strong>
+                                            </span>
+                                            <span class="d-block hora-atencion">@Model.HoraDesdeTextPaciente.Substring(0, 5) </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="titulo-profesional"> @Model.Especialidad</span>
+                                            <span class="d-block fecha-atencion">
+                                                <strong>@Model.FechaText.Substring(0, 10)</strong>
+                                            </span>
+                                            <span class="d-block hora-atencion">@Model.HoraDesdeTextPaciente.Substring(0, 5) </span>
+                                        }
+
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Caja Profesional -->
+                </div>
+
+                <!-- end:: Columna Caja Profesional -->
+
+            </div>
+            @if ((ViewBag.idCliente == "108"))
+            {
+                <div class="row">
+                    <div class="col offset-lg-8">
+                        <button class="btn btn-primary btn-block btn-sm fuente-accesible" id="volverInicio">
+                            Ir a mis atenciones
+                        </button>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col-12 text-right">
+                        <button class="btn btn-primary btn-block btn-sm fuente-accesible btn-ir-atencion" id="volverInicio">
+                            Volver al Inicio
+                        </button>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+        }else{
+            <div class="container caja-base mensaje-confirmacion">
+                @{
+                    if (ViewBag.idCliente == "108")
+                    {
+
+                        <h1 class="titulo-servicio mb-4">Tu reserva</h1>
+                    }
+
+                }
+                <div class="row cont-confirmacion">
+                    <div class="col-12 col-lg-auto">
+                        <!-- Caja Profesional -->
+                        <div class="card caja-profesional">
+                            <img src=""
+                             class="card-img-top"
+                             alt="Foto Médico"
+                             id="fotoMedico" />
+                            <div class="card-body">
+                                <div class="cont-data">
+                                    <div class="data-atencion">
+                                        <span class="header-aviso-atencion">
+                                            <i class="fal fa-calendar-alt"></i> Próxima
+                                            Atención
+                                        </span>
+
+                                        <span class="nombre-profesional">
+                                            @if (ViewBag.idEspecialidad != 79 && ViewBag.idEspecialidad != 77)
+                                            {
+                                                <span class="titulo-profesional">Dr.</span>
+                                            }
+                                            @Model.NombreMedico
+
+                                            <!--
+                                            <small>
+                                                Universidad de Chile - 111111
+                                            </small>
+                                            -->
+                                        </span>
+                                        <div class="calificacion2">
+                                            <i class="fas fa-star positiva"></i>
+                                            <i class="fas fa-star positiva"></i>
+                                            <i class="fas fa-star positiva"></i>
+                                            <i class="fas fa-star positiva"></i>
+                                            <i class="fas fa-star positiva"></i>
+                                        </div>
+
+                                        @{
+                                            if (ViewBag.idCliente == "108")
+                                            {
+
+                                                <span class="d-block fecha-atencion">
+                                                    <span class="titulo-profesional"> @Model.Especialidad</span>
+                                                    <strong>@Model.FechaText.Substring(0, 10)</strong>
+                                                </span>
+                                                <span class="d-block hora-atencion">@Model.HoraDesdeTextPaciente.Substring(0, 5) </span>
+                                            }
+                                            else
+                                            {
+                                                <span class="titulo-profesional"> @Model.Especialidad</span>
+                                                <span class="d-block fecha-atencion">
+                                                    <strong>@Model.FechaText.Substring(0, 10)</strong>
+                                                </span>
+                                                <span class="d-block hora-atencion">@Model.HoraDesdeTextPaciente.Substring(0, 5) </span>
+                                            }
+
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Caja Profesional -->
+                    </div>
+                    <div class="col col-lg-6">
+                        <div class="mensaje">
+                            <div class="header-mensaje">
+                                @{
+                                    var baseL = Configuration["ServicesUrl"];
+                                    var logo = "~/img/logotipo.png";
+                                    if (Model.RutaVirtual != null)
+                                    {
+                                        logo = baseL + Model.RutaVirtual;
+                                    }
+                                    var textoMarca = "Medismart.live";
+                                    if (Model.TextoMarca != null)
+                                    {
+                                        textoMarca = Model.TextoMarca;
+                                    }
+
+                                    if (ViewBag.HostURL.ToString().Contains("unabactiva.") || ViewBag.HostURL.ToString().Contains("activa.unab."))
+                                    {
+                                        textoMarca = "Unab Activa";
+                                    }
+                                    if (ViewBag.HostURL.ToString().Contains("masproteccionsalud.") || ViewBag.HostURL.ToString().Contains("prevenciononcologica"))
+                                    {
+                                        textoMarca = "+Protección";
+                                    }
+
+                                }
+                                @if (!ViewBag.HostURL.ToString().Contains("clinicamundoscotia.") && !ViewBag.HostURL.Contains("prevenciononcologica") && ViewBag.HostURL.ToString().Contains("unabactiva.") && ViewBag.HostURL.ToString().Contains("activa.unab."))
+                                {
+                                    <img src="@logo" class="logotipo" alt="">
+                                }
+                                <i class="fal fa-check-circle d-none"></i>
+                            </div>
+                            @if (ViewBag.idCliente == "148")
+                            {
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <p class="fuente-accesible">
+                                                Estimado(a) <strong>@Model.NombrePaciente</strong>: Te agradecemos por confiar en <strong>@textoMarca</strong>
+                                            </p>
+                                            <p class="fuente-accesible">
+                                                Recuerda que las recetas, certificados y otros documentos, llegarán a tu correo electrónico tras finalizar la atención.
+                                                También estarán disponibles en la sección <strong>Atenciones.</strong>
+                                            </p>
+                                        </div>
+                                        <div class="col-12 order-last">
+                                            <div class="cont-icon-confirma">
+                                                <i class="fal fa-check-circle icon-confirma"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else if (ViewBag.idCliente == "108")
+                            {
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <!--Logo Coopeuch-->
+                                            <div class="cont-logo-coopeuch d-none">
+                                                <img src="~/img/coopeuch/logos/salud-proteccion-gris.svg" alt="Salud protección" />
+                                            </div>
+                                            <!--Logo Coopeuch-->
+                                            <p class="fuente-accesible">
+                                                Estimado(a) <strong>@Model.NombrePaciente</strong>:
+                                            </p>
+
+                                            <p class="fuente-accesible">
+                                                ¡Felicitaciones! Tu hora ha sido agendada, te agradecemos por confiar en <strong>Salud Protección</strong>.
+                                            </p>
+                                            <p class="fuente-accesible">
+                                                Recuerda que las recetas, certificados y otros documentos, llegarán a tu correo electrónico
+                                                tras finalizar la atención y también estarán disponibles en la sección <strong>Atenciones</strong> de la página de <strong>Salud Protección</strong>.
+                                            </p>
+                                        </div>
+                                        <div class="col-12 order-last">
+                                            <div class="cont-icon-confirma">
+                                                <i class="fal fa-check-circle icon-confirma"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+                            {
+                                <div class="container-fluid">
+                                    <div class="row align-items-center">
+                                        <div class="col-12">
+                                            <div class="cont-icon-confirma">
+                                                <img alt="Logo" src="/img/scotiabank/home/logo_mdhome.png" class="d-lg-inline-block">
+                                            </div>
+                                            <p class="fuente-accesible">
+                                                Estimado(a) <strong>@Model.NombrePaciente</strong>, tu hora ha sido agendada.
+
+                                            </p>
+                                            <p class="fuente-accesible">
+                                                Recuerda que tus recetas, certificados y otros documentos serán enviados a a tu correo electrónico tras finalizada la atención.
+                                                También estarán disponibles en la sección <strong>Atenciones.</strong>
+                                            </p>
+                                            <div class="cont-icon-confirma d-md-none">
+                                                <i class="fal fa-check-circle icon-confirma"></i>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+                            else if (ViewBag.HostURL.ToString().Contains("prevenciononcologica."))
+                            {
+                                <div class="container-fluid">
+                                    <div class="row align-items-center">
+                                        <div class="col-12">
+                                        <div class="confirmacion-los-andes">
+                                                <div class="cont-icon-confirma">
+                                                    <img alt="Logo" src="/img/cajalosandes/iconos/icon_calendar.svg" class="d-lg-inline-block">
+                                                </div>
+                                                <div class="confirma-texto">
+                                                    <p class="fuente-accesible">
+                                                        Estimado(a) <strong>@Model.NombrePaciente</strong>: ¡Felicitaciones! Tu hora ha sido agendada exitosamente. Gracias por confiar en nosotros.
+
+                                                    </p>
+                                                    <p class="fuente-accesible">
+                                                        Recuerda que tus recetas, certificados y otros documentos serán enviados a a tu correo electrónico tras finalizada la atención.
+                                                        También estarán disponibles en la sección <strong>Atenciones.</strong>
+                                                    </p>
+                                                </div>
+                                                <div class="cont-icon-confirma d-none">
+                                                    <i class="fal fa-check-circle icon-confirma"></i>
+                                                </div>
+                                        </div>
+                                           
+                                            
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+                            else if (ViewBag.HostURL.ToString().Contains("masproteccionsalud."))
+                            {
+                                <div class="container-fluid">
+                                    <div class="row align-items-center">
+                                        <div class="col-12">
+                                            <div class="confirmacion-los-andes">
+                                                <div class="cont-icon-confirma">
+                                                    <img alt="Logo" src="/img/cajalosandes/iconos/icon_calendar.svg" class="d-lg-inline-block">
+                                                </div>
+                                                <div class="confirma-texto">
+                                                    <p class="fuente-accesible">
+                                                        Estimado(a) <strong>@Model.NombrePaciente</strong>: ¡Felicitaciones! Tu hora ha sido agendada exitosamente. Gracias por confiar en nosotros.
+
+                                                    </p>
+                                                    <p class="fuente-accesible">
+                                                        Recuerda que tus recetas, certificados y otros documentos serán enviados a a tu correo electrónico tras finalizada la atención.
+                                                        También estarán disponibles en la sección <strong>Atenciones.</strong>
+                                                    </p>
+                                                </div>
+                                                <div class="cont-icon-confirma d-none">
+                                                    <i class="fal fa-check-circle icon-confirma"></i>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+                            else if (ViewBag.codigoTelefono == "CO")
+                            {
+                                <div class="container-fluid">
+                                    <div class="row align-items-center">
+                                        <div class="col-12">
+                                            <p class="fuente-accesible">
+                                                Estimado(a) <strong>@Model.NombrePaciente</strong>: ¡Felicitaciones! Tu cita ha sido agendada, te agradecemos por confiar en <strong>@textoMarca</strong>
+                                            </p>
+                                            <p class="fuente-accesible">
+                                                Recuerda que las recetas, certificados y otros documentos, llegarán a tu correo electrónico tras finalizar la atención
+                                                y también estarán disponibles en la sección <strong>Atenciones.</strong>
+                                            </p>
+                                        </div>
+                                        <div class="col-12 order-last">
+                                            <div class="cont-icon-confirma">
+                                                <i class="fal fa-check-circle icon-confirma"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="container-fluid">
+                                    <div class="row align-items-center">
+                                        <div class="col-12">
+                                        @{
+                                                string fechaHora = @Model.FechaText;
+                                                DateTime fecha = DateTime.ParseExact(fechaHora, "dd-MM-yyyy HH:mm", System.Globalization.CultureInfo.InvariantCulture);
+                                                string fechaFormateada = fecha.ToString("dd 'de' MMMM 'de' yyyy 'a las' HH:mm");
+                                        }
+                                        <h3>
+                                                Estimado(a) <strong>@Model.NombrePaciente.</strong><br>Tu hora ha sido confirmada y agendada automáticamente
+                                                el @fechaFormateada, recuerda que:
+                                                
+                                                
+                                        </h3>
+                                            <ul>
+                                                <li>Una Asistente Virtual te contactará para que nos confirmes tu hora médica</li>
+                                                <li>La receta, orden de exámenes y otros certificados digitales quedarán en tu correo post atención y en tu perfil POR SIEMPRE!</li>
+                                            </ul>
+                                            <p class="fuente-accesible">
+                                                ¡Te agradecemos por confiar en <strong>@textoMarca</strong>, esperamos que tengas la mejor experiencia<br>  en salud!
+                                            </p>
+                                            <div class="fuente-accesible">
+                                            
+                                           
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-12 order-last d-none">
+                                            <div class="cont-icon-confirma">
+                                                <i class="fal fa-check-circle icon-confirma"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                 <!--Prueba-->
+
+
+                                <!--Prueba-->
+                            }
+
+                        </div>
+                    </div>
+                </div>
+                @if (ViewBag.idCliente == "108" || ViewBag.HostUrl.Contains("clinicamundoscotia."))
+                {
+                    <div class="row">
+                        <div class="col offset-lg-8">
+                            <button class="btn btn-primary btn-block btn-sm fuente-accesible" id="volverInicio">
+                                Ir a mis atenciones
+                            </button>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="row">
+                        <div class="col offset-lg-8">
+                            <button class="btn btn-primary btn-block btn-sm fuente-accesible" id="volverInicio">
+                                Ir al Inicio
+                            </button>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        }
+    }
+    
+
+
+
+
+
+
+
+ 
+
+
+
+    <div class="accesible-tools mb-5 d-none">
+        <div class="accesible-btn">
+            <button id="increase-font">A+</button>
+            <button id="normal-font">A</button>
+            <button id="decrease-font">A-</button>
+        </div>
+    </div>
+    @if(ViewBag.HostUrl.Contains("saludproteccion") || ViewBag.HostUrl.Contains("masproteccionsalud") || ViewBag.HostUrl.Contains("clinicamundoscotia") || ViewBag.HostUrl.Contains("prevenciononcologica")){
+        <div class="cont-volver" id="contVolver"><a class="btn btn-outline-secondary btn-block btn-sm" href="javascript:history.back()">Volver</a></div>
+    }
+
+</div>
+*@
+
+<!-- begin::Scrolltop -->
+<div id="kt_scrolltop" class="kt-scrolltop">
+    <i class="fa fa-arrow-up"></i>
+</div>
+
+<!-- end::Scrolltop -->
+<!-- begin::Global Config(global config for global JS sciprts) -->
+@section Scripts {
+
+    <script src="~/signal/signalr.min.js"></script>
+    <script src="~/js/accesible.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/confirmarPago.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+
+            var uid = @ViewBag.uid;
+
+            window.uid = uid;
+             var idCliente = @ViewBag.idCliente;
+            window.idCliente = idCliente;
+               var tipoatencion = '@ViewBag.tipoatencion';
+            window.tipoatencion = tipoatencion;
+            
+            window.host = '@ViewBag.HostURL';
+
+           
+             var checkAnura = @ViewBag.checkAnura;
+            window.checkAnura = checkAnura;
+
+        })()
+    </script>
+}

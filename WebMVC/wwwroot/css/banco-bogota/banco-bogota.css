@@ -1,0 +1,605 @@
+/*banco-bogota*/
+
+:root {
+    --primary: #1F46A7;
+    --secondary: #FFB822;
+    --tertiary: #1A1A1A;
+    --accent: #C4C4C4;
+    --fourth: #63A532;
+    --fifth: #8A94B3;
+    --light: #FFF;
+}
+
+body {
+    background: #FFF;
+    background-color: #FFF !important;
+}
+
+/*Login*/
+
+.body-home .logo-home img {
+    width: 120px;
+}
+
+.logotipo-desktop {
+    background-image: url(../../img/banco-bogota/logotipo.png) !important;
+    height: 80px;
+    /*background-size: 168px;*/
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/banco-bogota/logotipo.png) !important;
+    height: 138px;
+    /*background-size: 100px;*/
+}
+
+.kt-login__container .titulo-card-farmacia, kt-login__container .subtitulo-card-farmacia {
+    text-align: center;
+}
+
+.kt-login__container #hs-b .titulo-card-farmacia {
+    margin-top: 40px;
+}
+
+.kt-login__container #hs-b img {
+    margin: 16px auto;
+    display: block;
+}
+
+.body-home .logo-home img {
+    max-width: 158px;
+    width: 100%;
+}
+
+.body-home .pronto {
+    color: #FFF;
+    background-color: #1DA70C;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+        color: var(--primary);
+        font-weight: 900 !important;
+        font-size: 26px;
+    }
+
+.form-group .ms-label {
+    color: var(--tertiary) !important;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+    .btn-primary:hover {
+        background-color: var(--secondary);
+        border-color: var(--secondary);
+    }
+
+.logo-convenios {
+    justify-content: space-between;
+    margin-top: 3rem;
+}
+
+/* Imágenes Login */
+.img1 {
+    background-image: url(../../img/banco-bogota/login/960x978.jpg) !important;
+}
+
+.img2 {
+    background-image: url(../../img/banco-bogota/login/960x978.jpg) !important;
+}
+
+.img3 {
+    background-image: url(../../img/banco-bogota/login/960x978.jpg) !important;
+}
+
+.img4 {
+    background-image: url(../../img/banco-bogota/login/960x978.jpg) !important;
+}
+
+.img5 {
+    background-image: url(../../img/banco-bogota/login/960x978.jpg) !important;
+}
+
+.img6 {
+    background-image: url(../../img/banco-bogota/login/960x978.jpg) !important;
+}
+
+.body-home {
+    background-image: none;
+    background-blend-mode: multiply;
+    background-color: var(--light) !important;
+}
+
+    .body-home .top-banner .legend {
+        color: var(--primary)
+    }
+
+    .body-home .menu-top .item-menu-top i, .body-home .menu-top .item-menu-top .label-menu {
+        color: var(--primary)
+    }
+
+    .body-home .cont-card .card {
+        background-color: var(--primary);
+        color: var(--light);
+    }
+
+    .body-home .footer-home {
+        color: var(--primary);
+    }
+
+.col.text-center .btn-primary {
+    background-color: var(--secondary);
+}
+
+.body-home .footer-home .terminos a {
+    color: var(--primary);
+}
+
+    .body-home .cont-card h1 {
+        font-size: 1rem;
+        text-align: center;
+        text-transform: uppercase;
+        margin: 1rem auto 2rem;
+        color: var(--primary);
+        max-width: 170px;
+        font-weight: 700;
+    }
+
+.body-home .card-plan .costo, .body-home .card-plan .pronto-card {
+    background-color: var(--fourth);
+    color: var(--light);
+}
+
+.leyenda-card-home {
+    color: var(--primary);
+}
+
+
+.menu-top .item-menu-top i,
+.menu-top .label-menu {
+    color: var(--primary);
+}
+
+.menu-top .item-menu-top:hover i, .menu-top .item-menu-top:hover .label-menu {
+    color: var(--secondary)
+}
+
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--primary)
+}
+
+.kt-menu__item:hover a, .kt-menu__item:hover i {
+    color: var(--secondary) !important;
+}
+
+.kt-menu__item a .ms-label-menu {
+    color: var(--primary);
+}
+
+.accesible-btn button {
+    color: var(--light);
+    border: 1px solid var(--primary);
+    background-color: var(--primary);
+}
+
+    .accesible-btn button:hover {
+        background-color: var(--light);
+        border-color: var(--primary);
+        color: var(--primary);
+    }
+
+.login-footer .terminos a {
+    color: var(--primary);
+}
+
+.busqueda-profesionales {
+    border: 2px solid var(--primary);
+}
+
+    .busqueda-profesionales i {
+        color: var(--primary);
+    }
+
+    .busqueda-profesionales .btn-outline-primary {
+        color: var(--primary)
+    }
+
+.caja-especialidad.active {
+    background-color: var(--primary);
+}
+
+.caja-especialidad {
+    background-color: var(--primary);
+}
+
+.busqueda-profesionales h2 {
+    color: var(--primary);
+}
+
+.inner-especialidad strong {
+    color: var(--primary)
+}
+
+.step.active .step-icon {
+    background-color: var(--primary);
+}
+
+.stepper {
+    background-image: url(../../img/banco-bogota/fondo-banner2.svg);
+}
+
+    .stepper .flecha {
+        color: var(--primary)
+    }
+
+    .stepper img {
+        border-color: var(--primary);
+        border: none;
+    }
+.step.active .label-step {
+    color: var(--primary);
+}
+
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: var(--fifth)
+}
+
+.caja-profesional .fecha-atencion {
+    color: var(--secondary)
+}
+
+.front-fecha-atencion {
+    border: 1px solid rgba(35,33, 114, .3)
+}
+
+    .front-fecha-atencion strong {
+        color: var(--primary);
+    }
+
+    .front-fecha-atencion strong:before {
+        color: #056DCB;
+        font-weight: 900;
+    }
+
+.inner-especialidad strong {
+    color: #FFF;
+}
+
+.especialidad-profesional {
+    color: var(--fifth)
+}
+
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+
+.top-banner {
+    background-image: url(../../img/banco-bogota/fondo-banner.svg);
+}
+
+    .top-banner img {
+        border-color: rgba(237, 110, 0, .3);
+        border: none;
+    }
+
+    .top-banner .legend {
+        color: var(--secondary)
+    }
+
+.text-warning {
+    color: var(--tertiary) !important;
+}
+
+.hotspot-icon {
+    text-shadow: none;
+    font-size: 1.2rem;
+}
+
+.menu-top .label-menu-pac {
+    color: var(--primary);
+}
+
+    .menu-top:hover .label-menu-pac {
+        color: var(--secondary) !important;
+    }
+    /*Sala espera*/
+    .alerta-sala {
+        background-color: var(--secondary);
+    }
+
+.hotspot-icon .cont-icon {
+    background-color: var(--light);
+    color: var(--primary);
+}
+
+    .hotspot-icon:hover .cont-icon {
+        background-color: var(--primary);
+        color: var(--light);
+    }
+
+
+.sala-espera-mobile {
+    padding: 1rem;
+}
+
+.sala-espera-mobile .btn-sala {
+    text-shadow: none;
+}
+
+.cont-icon.hotspot-redes {
+    background-color: var(--primary);
+    color: var(--light);
+}
+
+
+.toolbar-option {
+    color: var(--primary)
+}
+
+    .toolbar-option.active {
+        color: var(--secondary)
+    }
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--primary)
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--secondary)
+}
+
+.cont-btn-panel .btn-atencion, .cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+    .cont-btn-panel .btn-atencion:hover, .cont-btn-vc .btn-atencion:hover {
+        background-color: rgba(237, 110, 0, 0.1);
+        color: var(--primary);
+    }
+
+.hotspot-icon:hover {
+    color: #FFF;
+}
+
+@media (max-width: 668px) {
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+}
+
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/banco-bogota/login/548x850.jpg) !important;
+    }
+
+    .img2 {
+        background-image: url(../../img/banco-bogota/login/548x850.jpg) !important;
+    }
+
+    .img3 {
+        background-image: url(../../img/banco-bogota/login/548x850.jpg) !important;
+    }
+
+    .img4 {
+        background-image: url(../../img/banco-bogota/login/548x850.jpg) !important;
+    }
+
+    .img5 {
+        background-image: url(../../img/banco-bogota/login/548x850.jpg) !important;
+    }
+
+    .img6 {
+        background-image: url(../../img/banco-bogota/login/548x850.jpg) !important;
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/banco-bogota/login/960x978.jpg) !important;
+    }
+
+    .img2 {
+        background-image: url(../../img/banco-bogota/login/960x978.jpg) !important;
+    }
+
+    .img3 {
+        background-image: url(../../img/banco-bogota/login/960x978.jpg) !important;
+    }
+
+    .img4 {
+        background-image: url(../../img/banco-bogota/login/960x978.jpg) !important;
+    }
+
+    .img5 {
+        background-image: url(../../img/banco-bogota/login/960x978.jpg) !important;
+    }
+
+    .img6 {
+        background-image: url(../../img/banco-bogota/login/960x978.jpg) !important;
+    }
+}
+
+/*Prohome*/
+
+.prehome__plan ul {
+    list-style-image: url('../../img/banco-bogota/bullet.svg');
+    padding-left: 20px;
+    margin-top: 32px;
+}
+
+.prehome__title {
+    font-weight: 700;
+}
+
+.prehome__plan {
+    border-right: none;
+}
+    .prehome__plan li {
+        border-bottom: 1px solid rgba(0, 58, 112, .3);
+        padding-bottom: 14px;
+    }
+
+        .prehome__plan li:last-child {
+            border-bottom: none;
+        }
+
+
+        .prehome__plans {
+            border-right: none;
+            background-image: url('../../img/banco-bogota/fondo-prehome.svg');
+            background-position: center top;
+            background-repeat: repeat-y;
+        }
+
+.footer__banco-bogota {
+    /*position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0*/
+    display: flex;
+    padding: 24px 0;
+    background-color: #F7F7F7;
+    flex-direction: column;
+}
+
+.cont-logos {
+    width: 100%;
+    display: flex;
+    max-width: 1140px;
+    margin: auto;
+    margin-bottom: 24px;
+    align-items: center;
+    
+}
+
+.divisor {
+    width: 1px;
+    background-color: #999;
+    margin: 0 1rem;
+    height: 36px;
+
+
+}
+    .cont-logos img:nth-of-type(2n),
+    .cont-logos img:nth-of-type(3n) {
+        width: auto !important;
+        height: max-content;
+    }
+
+    .footer__banco-bogota .frase-banco {
+        text-align: center;
+        width: 100%;
+        color: var(--tertiary);
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+    }
+
+.cont-steps {
+    background-color: #FFF;
+}
+
+.wow__historial .tarjeta__title {
+    color: var(--primary);
+}
+
+.wow__historial .tarjeta__fecha {
+    color: var(--primary);
+}
+
+.wow__historial .wow__tarjeta {
+    border: 1px solid var(--primary);
+}
+
+.wow__title h2 {
+    color: var(--primary);
+}
+
+.wow .tag:hover {
+    border: 1px solid var(--secondary);
+}
+
+.card .form-group label, .card .form-group-input label {
+    color: var(--primary);
+}
+
+.card-profile h3 {
+    color: #646C9A
+}
+
+.caja-especialidad.active {
+    background-color: #056DCB
+}
+
+.ms-aside {
+    border-right: 1px solid #b3b3b3 !important;
+}
+
+.kt-header--fixed:not(.kt-subheader--fixed) .kt-header {
+    border-bottom: 1px solid #b3b3b3 !important;
+}
+
+.card {
+    border: 1px solid var(--primary)
+}
+
+.front-fecha-atencion {
+    border: 1px solid var(--primary)
+}
+
+.divider-medismart {
+    display: flex;
+}
+
+@media (max-width: 1024px) {
+
+    .leyenda-card-home {
+        color: var(--light);
+    }
+    .footer-home {
+        flex-direction: column;
+    }
+
+    .footer__banco-bogota .frase-banco {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .cont-logos {
+        flex-direction: column;
+        margin-bottom: 0;
+    }
+
+    .cont-logos .divisor {
+        display: none;
+    }
+}

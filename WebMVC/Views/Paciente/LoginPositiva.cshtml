@@ -1,0 +1,351 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@model LoginViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @*<title>@ViewData["Title"] - Medical</title>*@
+    <base href="">
+    <meta charset="utf-8" />
+    <title>Medical | Sitio Paciente</title>
+    <meta name="description" content="Latest updates and statistic charts">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-227236350-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-227236350-1');
+    </script>
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-T3GQHL7');
+    </script>
+    <!-- End Google Tag Manager -->
+    <!-- #region metronic-template -->
+    <!--begin::Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Mulish&display=swap" rel="stylesheet">
+    <!--end::Fonts -->
+    <link href="~/metronic_demo7/assets/css/pages/login/login-3.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <!--begin::Global Theme Styles(used by all pages) -->
+    <link href="~/metronic_demo7/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/metronic_demo7/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <!--end::Global Theme Styles -->
+    <!--begin::Global Medismart Styles -->
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/css/positiva/positivav2.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <!--end::Global Medismart Styles -->
+    <!-- #endregion -->
+    <script>
+        (function (h, o, t, j, a, r) {
+            h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+            h._hjSettings = { hjid: 2677023, hjsv: 6 };
+            a = o.getElementsByTagName('head')[0];
+            r = o.createElement('script'); r.async = 1;
+            r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+    </script>
+</head>
+
+<body class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--transparent kt-aside--enabled kt-aside--fixed kt-aside--minimize kt-page--loading">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T3GQHL7" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- begin:: Page -->
+    <div class="kt-grid kt-grid--ver kt-grid--root kt-page">
+        <div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v3 kt-login--signin" id="kt_login">
+            <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+                <div class="kt-login__logo mb-0 d-md-none d-block text-center cont-logo-mobile">
+                    <a href="#" class="px-0 logotipo-img logotipo-mobile">
+                        <!--<img alt="Logo" class="logotipo" src="~/img/logotipo.png" />-->
+                    </a>
+                </div>
+                <div class="container-fluid container-login">
+                    <div class="row d-flex ">
+                        <div class="col-md-6 bkg-login d-none d-md-block">
+                            <div id="imgLogin" class="imgLogin"></div>
+                            <!--<img alt="Medismart.live" src="~/img/login6.png" id="imgLogin" />-->
+                            <!--<img src="~/img/login4.jpg" alt="Medismart.live"/>-->
+                        </div>
+                        <div class="col col-md-6">
+                            <div class="kt-login__wrapper">
+                                <div class="kt-login__container fletcher_login">
+                                    <div class="kt-login__logo mb-0 d-none d-md-block">
+                                        <a href="#" class="px-0 logotipo-img logotipo-desktop">
+                                            <!--<img alt="Logo" class="logotipo" src="~/img/logotipo.png" />-->
+                                        </a>
+                                    </div>
+                                    <div class="kt-login__signin">
+                                        <div class="kt-login__head">
+                                            <h3 class="kt-login__title">Ingreso de Usuario</h3>
+                                        </div>
+                                        <form class="kt-form" asp-controller="Account" asp-action="Login" method="post" role="form">
+                                            <div class="form-group" id="loginTipo">
+                                                <label class="d-block ms-label fuente-accesible clave-escritorio">Tipo Documento</label>
+                                                <label class="clave-mobile">Tipo Documento</label>
+                                                <select class="form-control" aria-label="Tipo Documento" asp-for="Tipo">
+                                                    <option selected>Seleccion un Tipo de Documento</option>
+                                                    <option value="CC">Cedula de ciudadania</option>
+                                                    <option value="CE">Cedula de extranjeria</option>
+                                                    <option value="CD">Carnet diplomatico</option>
+                                                    <option value="TI">Tarjeta de identidad</option>
+                                                    <option value="PA">Pasaporte</option>
+                                                    <option value="PE">Permiso especial de trabajo</option>
+                                                    <option value="PT">Permiso de proteccion</option>
+                                                    <option value="NI">NIT</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group mb-3" id="loginUsername">
+                                                <label class="d-block ms-label fuente-accesible" id="labelIdentificador">Ingresa tu Documento<img alt="" class="interrogacion" src="~/img/positiva/interrogacion.svg"/></label>
+                                                <label class="dcto-mobile">Ingresa tu Documento</label>
+                                                <input class="form-control" type="text" id="kt_rut" placeholder="111111111" autocomplete="off" asp-for="Username">
+                                                <input class="form-control" type="hidden" id="JsonData" asp-for="JsonData">
+                                            </div>
+                                           @* <div class="form-group" id="loginPassword" style="display: none;">
+                                                <label class="d-block ms-label fuente-accesible clave-escritorio">Contraseña</label>
+                                                <label class="clave-mobile">Clave</label>
+                                                <input class="form-control" type="password" placeholder="Clave" asp-for="Password">
+                                            </div>*@
+                                            <div id="divCodigoValidacion" style="display: none;">
+                                                <label class="d-block ms-label fuente-accesible">Ingresa el código de validación que ha sido enviado a tu correo</label>
+                                                <input class="form-control" type="text" id="txtCodigoValidacion" asp-for="Codigo">
+                                            </div>
+                                            <input hidden name="rol" value="@Roles.Paciente" />
+                                            <input hidden name="returnUrl" value="@ViewData[" ReturnUrl"]" />
+                                            <div class="row kt-login__extra_02 align-items-center mt-0">
+                                                <div class="col-5">
+                                                
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="kt-login__actions mt-0">
+                                                        @*<button type="submit" class="btn btn-default">Log in</button>*@
+                                                        <button id="kt_login_signin_submit" class="btn btn-primary btn-elevate kt-login__btn-primary btn-block mt-0 fuente-accesible">Ingresar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <a href="https://wa.me/573212723083?text=Asistencia%20Paciente" target="_blank"
+                                           class="text-left"
+                                           id="hs-b">
+
+                                            <h3 class="titulo-card-farmacia fuente-accesible">
+                                                <i class="fab fa-whatsapp"></i> Mesa de Ayuda
+                                            </h3>
+                                        </a>
+                                    </div>
+                                   
+                                    <div class="kt-reset__password">
+                                        <div class="kt-login__head">
+                                            <h3 class="kt-login__title">Ingresa tu nueva clave</h3>
+                                        </div>
+                                        <form class="kt-form" method="post" role="form">
+                                            <div class="input-group mb-2">
+                                                <input class="form-control" type="password" placeholder="Clave" asp-for="Password">
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <input class="form-control" type="password" placeholder="Repetir Clave" asp-for="RepeatPassword">
+                                            </div>
+                                            <input hidden name="rol" value="@Model.rol" />
+                                            <input hidden name="ActivationCode" value="@Model.ActivationCode" />
+                                            <input hidden name="username" value="@Model.Username" />
+                                            <input hidden name="returnUrl" value="@ViewData[" ReturnUrl"]" />
+                                            <div class="text-left">
+                                                <p style="font-size:12px !important">
+                                                    <strong>La clave debe tener :</strong><br /><br />
+                                                    - Entre 8 a 15 caracteres. <br />
+                                                    - Al menos una letra mayúscula / Al menos una letra minúscula / Al menos un número <br />
+                                                </p>
+                                            </div>
+                                            <div class="kt-login__actions mt-0">
+                                                @*<button type="submit" class="btn btn-default">Log in</button>*@
+                                                <button id="kt_password_reset_submit" class="btn btn-brand btn-elevate kt-login__btn-primary">Modificar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                   
+
+                                  
+                                    <!-- begin:: No Account-->
+                                    <div class="accesible-tools d-block">
+                                        <div class="accesible-btn text-center ">
+                                            <button id="increase-font" class="letras-login">A+</button>
+                                            <button id="normal-font" class="letras-login">A</button>
+                                            <button id="decrease-font" class="letras-login">A-</button>
+                                        </div>
+                                    </div>
+                                    <div class="img-login-positiva">
+                                        <img alt="Logo" class="positiva-cuida" src="~/img/positivav2/positiva-cuida.png" />
+                                        <img alt="Logo" src="~/img/positivav2/orientacion-psicologica.png" />
+                                    </div>
+                                    
+                                   
+                                    <div class="kt-login__divider mt-5">
+                                        <div class="kt-divider ">    
+                                            <span></span>
+                                            <span class="alianza">Una alianza de</span>
+                                            <span></span>                                            
+                                        </div>                                      
+                                     </div>
+
+                                    <div class="logo-medismart">
+                                        <img  src="~/img/azteca/logo-medismart.svg" />
+                                    </div>
+                                    
+                                    <!--Convenios-->
+                                    <div class="kt-footer  kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop login-footer d-md-none" id="kt_footer">
+                                        <div class="kt-container  kt-container--fluid ">
+                                            <div class="terminos">
+                                                <a href="#" id="terminosFooter">Términos y condiciones</a>
+                                                <a href="#" id="politicas">Políticas de privacidad</a>
+                                            </div>
+                                            <div class="kt-footer__copyright d-block">
+                                                2022&nbsp;&copy;&nbsp;<a href="#" target="_blank" class="kt-link">Medical</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="myModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tu e-email está asociado a los siguientes usuarios:</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <table width="100%" style="margin-top: 30px;margin-bottom: 30px" id="tablaUsuarios">
+                        <tr>
+                            <td>Nombre Usuario</td>
+                            <td><button type="button" class="btn btn-primary">Seleccionar</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal Terminos-->
+    <div class="modal fade" id="modalTerminos" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Términos y condiciones</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+                </div>
+                <div class="modal-body" id="modalTerminosBody">
+                    @*terminos y condiciones se cargan de forma dinamica*@
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btnCerrar" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal Politicas-->
+    <div class="modal fade" id="modalPoliticas" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Políticas de privacidad</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+                </div>
+                <div class="modal-body" id="modalPoliticasBody">
+                    @*politicas de privacidad se cargan de forma dinamica*@
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btnCerrar" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #region metronic-template -->
+    <!-- begin::Global Config(global config for global JS sciprts) -->
+    <script>
+        var KTAppOptions = {
+            "colors": {
+                "state": {
+                    "brand": "#22b9ff",
+                    "light": "#ffffff",
+                    "dark": "#282a3c",
+                    "primary": "#5867dd",
+                    "success": "#34bfa3",
+                    "info": "#36a3f7",
+                    "warning": "#ffb822",
+                    "danger": "#fd3995"
+                },
+                "base": {
+                    "label": ["#c5cbe3", "#a1a8c3", "#3d4465", "#3e4466"],
+                    "shape": ["#f0f3ff", "#d9dffa", "#afb4d4", "#646c9a"]
+                }
+            }
+        };
+    </script>
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-analytics.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-firestore.js"></script>
+    <script src="~/js/Paciente/loginFirebase.js"></script>
+    <!-- end::Global Config -->
+    <!--begin::Global Theme Bundle(used by all pages) -->
+    <script src="~/metronic_demo7/assets/plugins/global/plugins.bundle.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/gh/bigdatacloudapi/js-api-client@latest/bigdatacloud_api_client.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/gh/bigdatacloudapi/js-client-ip-client@latest/bigdatacloud_client_ip.min.js" type="text/javascript"></script>
+    @*<script type="text/javascript">
+    //jQuery implementation
+    if (typeof jQuery != 'undefined') {
+    (function($) {
+    $.BDCApi('ip-geolocation-full', {
+    data: {
+    ip: '8.8.8.8',
+    key: apiKey,
+    localityLanguage: 'en'
+    },
+    success: function(jsonResult) {;
+    console.log('jQuery result', jsonResult);
+    },
+    error: function(error, code) {;
+    console.error('jQuery eror', error, code);
+    }
+    });
+    })(jQuery);
+    }
+    </script>*@
+    <script src="~/metronic_demo7/assets/js/scripts.bundle.js" type="text/javascript"></script>
+    <script src="~/js/jquery.rut.js?rnd=@NumeroRandom.GetRandom()"></script>
+    <!--end::Global Theme Bundle -->
+    <!-- #endregion -->
+    <script src="~/metronic_demo7/assets/js/pages/custom/login/login-colombia-positiva.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/validator-messages-es.js"></script> <!-- traducción del validador -->
+    <script src="~/js/random-image.js"></script><!-- random image login -->
+    <script src="~/js/accesible.js"></script>
+    <script src="~/js/terminos.js"></script>
+</body>
+
+</html>

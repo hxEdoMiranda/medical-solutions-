@@ -1,0 +1,728 @@
+﻿@model WebMVC.Models.AseguradoraEspecialidadUsuario
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Paciente";
+    Layout = "_LayoutHome";
+    var index = 0;
+    string PlanClass = "multiple-plan";
+    if (ViewBag.Especialidades.Count == 1)
+    {
+        PlanClass = "single-plan";
+    }
+    else if (ViewBag.Especialidades.Count == 2)
+    {
+        PlanClass = "double-plan";
+    }
+}
+@section Styles {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/css/Medismart/prehome.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    @switch (ViewBag.idCliente)
+    {
+        case "148":
+            <link href="~/css/colmena/colmena.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+            break;
+        case "108":
+            <link href="~/css/coopeuch/coopeuch.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+            break;
+    }
+    @if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+    {
+        <link href="~/css/scotiabank/scotiabank.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    else if (ViewBag.HostURL.ToString().Contains("vidasecurity."))
+    {
+        <link href="~/css/vidasecurity/vidasecurity.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    else if (ViewBag.HostURL.ToString().Contains("nestle."))
+    {
+        <link href="~/css/nestle/nestle.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    else if (ViewBag.HostURL.ToString().Contains("micuidado."))
+    {
+        <link href="~/css/scotiaco/scotiaco.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    else if (ViewBag.HostURL.ToString().Contains("unabactiva.") || ViewBag.HostURL.ToString().Contains("activa.unab."))
+    {
+        <link href="~/css/unab/unab.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    else if (ViewBag.HostURL.ToString().Contains("prevenciononcologica."))
+    {
+        <link href="~/css/cajalosandes/cajalosandes.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    else if (ViewBag.HostURL.ToString().Contains("rappi."))
+    {
+        <link href="~/css/rappi/rappi.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    else if (ViewBag.HostURL.ToString().Contains("aecsa."))
+    {
+        <link href="~/css/aecsa/aecsa.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    else if (ViewBag.HostURL.ToString().Contains("gallagher."))
+    {
+        <link href="~/css/aseguradora-solidaria/aseguradora-solidaria.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    else if (ViewBag.HostURL.ToString().Contains("camanchaca."))
+    {
+        <link href="~/css/camanchaca/camanchaca.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    else if (ViewBag.HostURL.ToString().Contains("oaxacasalud."))
+    {
+        <link href="~/css/oaxaca/oaxaca.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    else if (ViewBag.HostURL.ToString().Contains("programadp."))
+    {
+        <link href="~/css/daviplata/daviplata.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    else if (ViewBag.HostURL.ToString().Contains("ajg.medismart."))
+    {
+        <link href="~/css/gallagher/gallagher.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    else if (ViewBag.HostURL.ToString().Contains("bonnahealth."))
+    {
+        <link href="~/css/bonnahealth/bonnahealth.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    else if (ViewBag.HostURL.ToString().Contains("bicevida.") || ViewBag.HostURL.ToString().Contains("bicevidapersonas."))
+    {
+        <link href="~/css/bicevida/bicevida.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    else if (ViewBag.HostURL.ToString().Contains("grupodefensa."))
+    {
+        <link href="~/css/grupodefensa/grupodefensa.css?ver=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    else if (ViewBag.HostURL.ToString().Contains("didi.wedoctorsmx"))
+    {
+        <link href="~/css/didi/didi.css?ver=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    else if (ViewBag.HostURL.ToString().Contains("segurossura."))
+    {
+        <link href="~/css/sura/sura.css?ver=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    else if (ViewBag.HostURL.ToString().Contains("vidacamara."))
+    {
+        <link href="~/css/vidacamara/vidacamara.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    else if (ViewBag.HostURL.ToString().Contains("zurich."))
+    {
+        <link href="~/css/zurich/zurich.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    else if (ViewBag.HostURL.ToString().Contains("sekure."))
+    {
+        <link href="~/css/sekure/sekure.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    else if (ViewBag.HostURL.ToString().Contains("azteca.medismart"))
+    {
+        <link href="~/css/azteca/azteca.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    else if (ViewBag.HostURL.ToString().Contains("mexicanadebecas."))
+    {
+        <link href="~/css/palig/palig.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+    else if (ViewBag.HostURL.ToString().Contains("calma."))
+    {
+        <link href="~/css/calma/calma.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    }
+
+}
+<div class="cont-home">
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+        <!--Nuevo Home-->
+        <div class="prehome @PlanClass">
+            @{
+                var textoPrePlan = "Recibe una consulta médica donde te encuentres";
+                if (ViewBag.HostURL.ToString().Contains("cns."))
+                {
+                    textoPrePlan = "Selecciona el convenio que necesitas";
+                }
+                else if (ViewBag.HostURL.ToString().Contains("didi.wedoctorsmx."))
+                {
+                    textoPrePlan = "¡Recibe una consulta médica donde te encuentres!";
+                }
+                else if (ViewBag.HostURL.ToString().Contains("masproteccionsalud.cl"))
+                {
+                    textoPrePlan = "¡Aprovecha al máximo tus beneficios y cuida tu salud. !";
+                }
+                else if (ViewBag.HostURL.ToString().Contains("bienestar.medismart"))
+                {
+                    textoPrePlan = "¡Recibe una consulta médica donde te encuentres!";
+                }
+            }
+            <h1 class="prehome__title">@textoPrePlan</h1>
+            <div class="prehome__card">
+                <div class="prehome__plans">
+                    @{
+                        if (ViewBag.HostURL.ToString().Contains("metlife.")) //PLANES SEGUROS METLIFE
+                        {
+
+                            <div class="prehome__plan">
+
+                                <div class="header-plan">
+                                    <img src="~/img/metlife/home/iconos/prehome-saludclic.svg" alt="" />
+                                    <h2>
+                                        Salud a un Clic
+                                    </h2>
+                                </div>
+
+                                <ul class="caracteristicas__plan">
+                                    <li>
+                                        <span class="item">
+                                            Médico General <small>Telemedicina 24/7</small>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="item">
+                                            Médico Internista <small>Telemedicina</small>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="item">
+                                            Nutricionista <small>Telemedicina</small>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="item">
+                                            Ginecólogo <small>Telemedicina</small>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="item">
+                                            Dermatólogo <small>Telemedicina</small>
+                                        </span>
+                                    </li>
+
+                                    <li>
+                                        <span class="item">
+                                            Enfermera Virtual <small>Telemedicina</small>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="item">
+                                            Médico a Domicilio
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="item">
+                                            Exámenes de Laboratorio
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="item">
+                                            Traslado Médico <small>Cobertura Nacional</small>
+                                        </span>
+                                    </li>
+                                </ul>
+
+
+                            </div>
+
+                            <div class="prehome__plan">
+
+                                <div class="header-plan">
+                                    <img src="~/img/metlife/home/iconos/prehome-bienestar.svg" alt="" />
+                                    <h2>
+                                        Bienestar Integral
+                                    </h2>
+                                </div>
+
+                                <ul class="caracteristicas__plan">
+                                    <li>
+                                        <span class="item">
+                                            Yoga <small>Video Consulta</small>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="item">
+                                            Pilates <small>Video Consulta</small>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="item">
+                                            Entrenador Personal <small>Video Consulta</small>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="item">
+                                            Mindfulness <small>Video Consulta</small>
+                                        </span>
+                                    </li>
+                                </ul>
+
+
+
+
+                            </div>
+                            <div class="prehome__plan">
+
+                                <div class="header-plan">
+                                    <img src="~/img/metlife/home/iconos/prehome-saludmental.svg" alt="" />
+                                    <h2>
+                                        Salud Mental
+                                    </h2>
+                                </div>
+
+                                <ul class="caracteristicas__plan">
+                                    <li>
+                                        <span class="item">
+                                            Psicología General <small>Video Consulta</small>
+                                        </span>
+                                    </li>
+                                </ul>
+
+
+                            </div>
+
+
+
+                            <!-- Button trigger modal-->
+                            <!-- Modal-->
+                        }
+                        else
+                        {
+                            foreach (var item in @ViewBag.Especialidades)
+                            {
+                                if (ViewBag.HostURL.ToString().Contains("segurossura.")) //PLANES SEGUROS SEURA
+                                {
+                                    if (item.IdCliente == 397)
+                                    {
+                                        <div class="prehome__plan">
+                                            <div class="header-plan">
+                                                <h2>@(item.Identificador)</h2>
+                                                <h2>Costo Preferente</h2>
+                                                <h3>Desde $7.990</h3>
+                                            </div>
+
+                                            <ul class="caracteristicas__plan">
+                                                <li> <img src="~/img/sura/iconos-prehome/video.svg" alt="" /> Videoconsulta / Medicina General</li>
+                                                <li> <img src="~/img/sura/iconos-prehome/video.svg" alt="" /> Videoconsulta / Medicina Especialista</li>
+                                                <li><img src="~/img/sura/iconos-prehome/usuarios.svg" alt="" /> Ilimitado para tí y tu familia</li>
+                                            </ul>
+                                            <button type="button" class="btn btn-primary" id="id-pre-home-@(index)">ingresa a tu plataforma</button>
+                                            @{
+                                                index += 1;
+                                            }
+
+                                            <!-- Button trigger modal-->
+                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#informate-mas-@(index)">
+                                                INFÓRMATE MÁS
+                                            </button>
+
+                                            <!-- Modal-->
+                                            <div class="modal fade modal-sura" id="informate-mas-@(index)" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+
+                                                        <div class="modal-body">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <i aria-hidden="true" class="fa fa-close"></i>
+                                                            </button>
+                                                            <div class="prehome__plan">
+                                                                <h2>@(item.Identificador)</h2>
+                                                                <ul class="lista-especialidades">
+                                                                    @foreach (var esp in item.Especialidades)
+                                                                    {
+                                                                        <li>@esp</li>
+                                                                    }
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="prehome__plan">
+                                            <div class="header-plan">
+                                                <h2>@(item.Identificador)</h2>
+                                                <h2>Costo Cero</h2>
+                                                <h3>$ 0</h3>
+                                            </div>
+
+                                            <ul class="caracteristicas__plan">
+                                                <li><img src="~/img/sura/iconos-prehome/video.svg" alt="" /> Videoconsulta / Medicina General</li>
+                                                <li><img src="~/img/sura/iconos-prehome/video.svg" alt="" /> Videoconsulta / Medicina Especialista*</li>
+                                                <li><img src="~/img/sura/iconos-prehome/cronico.svg" alt="" /> Programa Paciente Crónico</li>
+                                                <li><img src="~/img/sura/iconos-prehome/usuarios.svg" alt="" /> Ilimitado para tí y tu familia</li>
+                                            </ul>
+                                            <p class="mb-0 ml-4">*Algunas especialidades médicas con costo preferente</p>
+                                            <button type="button" class="btn btn-primary" id="id-pre-home-@(index)">ingresa a tu plataforma</button>
+                                            @{
+                                                index += 1;
+                                            }
+                                            <!-- Button trigger modal-->
+                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#informate-mas-@(index)">
+                                                INFÓRMATE MÁS
+                                            </button>
+
+                                            <!-- Modal-->
+                                            <div class="modal fade modal-sura" id="informate-mas-@(index)" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+
+
+                                                        <div class="modal-body">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <i aria-hidden="true" class="fa fa-close"></i>
+                                                            </button>
+                                                            <div class="prehome__plan">
+                                                                <h2>@(item.Identificador)</h2>
+                                                                <ul class="lista-especialidades">
+                                                                    @foreach (var esp in item.Especialidades)
+                                                                    {
+                                                                        <li>@esp</li>
+                                                                    }
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    <!-- <ul>
+
+                                    </ul>-->
+                                }
+                                else if (ViewBag.HostURL.ToString().Contains("cns."))
+                                {
+                                    <div class="prehome__plan">
+                                        <h2>@(item.Identificador)</h2>
+                                        <button type="button" class="btn btn-primary" id="id-pre-home-@(index)">ingresa a tu plataforma</button>
+                                        @{
+                                            index += 1;
+                                        }
+                                    </div>
+                                }
+                                else if (ViewBag.HostURL.ToString().Contains("masproteccionsalud."))
+                                {
+                                    <div class="prehome__plan">
+
+                                    <div class="planrow">
+                                       <img src="~/img/cajalosandes/iconos/icon-check.svg"/>
+                                      <h2>@(item.Identificador)</h2>
+                                    </div>
+                                      
+                                        <button type="button" class="btn btn-primary" id="id-pre-home-@(index)">Ingresar</button>
+                                        @{
+                                            index += 1;
+                                        }
+                                    </div>
+
+
+
+                                }
+                                else if (ViewBag.HostURL.ToString().Contains("onassist."))
+                                {
+                                    <div class="prehome__plan">
+                                        <h2>@(item.Identificador)</h2>
+                                        <ul>
+                                            @foreach (var esp in item.Especialidades)
+                                            {
+                                                <li>@esp</li>
+                                            }
+                                        </ul>
+                                        <button type="button" class="btn btn-primary" id="id-pre-home-@(index)">ingresar</button>
+                                        @{
+                                            index += 1;
+                                        }
+                                    </div>
+                                }
+                                else if (ViewBag.HostURL.ToString().Contains("masterdescuentos.medismart"))
+                                {
+                                    <div class="prehome__plan">
+                                        <h2>@(item.Identificador)</h2>
+                                        <ul>
+                                            @foreach (var esp in item.Especialidades)
+                                            {
+                                                <li>@esp</li>
+                                            }
+                                        </ul>
+                                        <button type="button" class="btn btn-primary" id="id-pre-home-@(index)">Ingresar</button>
+                                        @{
+                                            index += 1;
+                                        }
+                                    </div>
+                                }
+                                else if (ViewBag.HostURL.ToString().Contains("lider."))
+                                {
+                                    <div class="prehome__plan">
+                                        <h2>@(item.Identificador)</h2>
+                                        <ul>
+                                            @foreach (var esp in item.Especialidades)
+                                            {
+                                                <li>@esp</li>
+                                            }
+                                        </ul>
+                                        <button type="button" class="btn btn-primary" id="id-pre-home-@(index)">Ingresar</button>
+                                        @{
+                                            index += 1;
+                                        }
+                                    </div>
+                                }
+                                else if (ViewBag.HostURL.ToString().Contains("entel."))
+                                {
+                                    <div class="prehome__plan">
+                                        <h2>@(item.Identificador)</h2>
+                                        <ul>
+                                            @foreach (var esp in item.Especialidades)
+                                            {
+                                                <li>@esp</li>
+                                            }
+                                        </ul>
+                                        <button type="button" class="btn btn-primary" id="id-pre-home-@(index)">Ingresar</button>
+                                        @{
+                                            index += 1;
+                                        }
+                                    </div>
+                                }
+
+                                else if (ViewBag.HostURL.ToString().Contains("naucare."))
+                                {
+                                    <div class="prehome__plan">
+                                        <h2>@(item.Identificador)</h2>
+                                        <ul>
+                                            @foreach (var esp in item.Especialidades)
+                                            {
+                                                <li class="fuente-accesible">@esp</li>
+                                            }
+                                        </ul>
+                                        <button type="button" class="btn btn-primary" id="id-pre-home-@(index)">Ingresar</button>
+                                        @{
+                                            index += 1;
+                                        }
+                                    </div>
+                                }
+                                else if (ViewBag.HostURL.ToString().Contains("onassist."))
+                                {
+                                    <div class="prehome__plan">
+                                        <h2>@(item.Identificador)</h2>
+                                        <ul>
+                                            @foreach (var esp in item.Especialidades)
+                                            {
+                                                <li class="fuente-accesible">@esp</li>
+                                            }
+                                        </ul>
+                                        <button type="button" class="btn btn-primary" id="id-pre-home-@(index)">Ingresar</button>
+                                        @{
+                                            index += 1;
+                                        }
+                                    </div>
+                                }
+                                else if (ViewBag.HostURL.ToString().Contains("advance.medismart"))
+                                {
+                                    <div class="prehome__plan">
+                                        <h2>@(item.Identificador)</h2>
+                                        <ul>
+                                            @foreach (var esp in item.Especialidades)
+                                            {
+                                                <li>@esp</li>
+                                            }
+                                        </ul>
+                                        <button type="button" class="btn btn-primary" id="id-pre-home-@(index)">Ingresar</button>
+                                        @{
+                                            index += 1;
+                                        }
+                                    </div>
+                                }
+                                else if (ViewBag.HostURL.ToString().Contains("didi.wedoctorsmx."))
+                                {
+                                    var identificadorDidi = (item.Identificador.Replace("DIDI-", "").Replace("-A", " A").Replace("-B", " B"));
+                                    var images = new Dictionary<string, string>
+                    {
+                    { "Medicina General", "medicina-general.svg" },
+                    { "Medicina General Inmediata", "medicina-general-inmediata.svg" },
+
+                    { "Psicología Adulto", "psicologia.svg" },
+                    { "Nutrición y Dietética", "nutricion.svg" }
+                    };
+                                    if (item.Especialidades.Count == 1)
+                                    {
+                                        <div class="prehome__plan didi-a-plan">
+
+                                            <h2 class="identificadorDidi">@(identificadorDidi)</h2>
+                                            <div class="st_didi">
+                                                <h2 class="subtitleValorDidi">$@(item.Valor)<span> MXN / Mes</span></h2>
+                                            </div>
+                                            @if (item.CantCargas > 0)
+                                            {
+                                                <h3 class="cargas_didi">Titular + @(item.CantCargas) Beneficiarios </h3>
+                                            }
+                                            <ul class="lista-especialidades">
+                                                @foreach (var esp in item.Especialidades)
+                                                {
+                                                    <li>
+                                                        @if (images.ContainsKey(esp))
+                                                        {
+                                                            <img src="@Url.Content("~/img/didi/prehome/" + images[esp])" alt="@esp" />
+                                                        }
+                                                        @esp
+                                                    </li>
+                                                }
+                                             
+                                            </ul>
+                                            <button type="button" class="btn btn-primary" id="id-pre-home-@(index)">Contrata @(identificadorDidi)</button>
+                                            @{
+                                                index += 1;
+                                            }
+                                        </div>
+                                    }
+                                    else if (item.Especialidades.Count >= 2)
+                                    {
+                                        <div class="prehome__plan didi-b-plan">
+                                            <h2 class="identificadorDidi">@(identificadorDidi)</h2>
+                                            <div class="st_didi">
+                                                <h2 class="subtitleValorDidi">$@(item.Valor)<span> MXN / Mes</span></h2>
+                                            </div>
+                                            @if (item.CantCargas > 0)
+                                            {
+                                                <h3 class="cargas_didi">Titular + @(item.CantCargas) Beneficiarios </h3>
+                                            }
+                                            <ul class="lista-especialidades">
+                                                @foreach (var esp in item.Especialidades)
+                                                {
+                                                    <li>
+                                                        @if (images.ContainsKey(esp))
+                                                        {
+                                                            <img src="@Url.Content("~/img/didi/prehome/" + images[esp])" alt="@esp" />
+                                                        }
+                                                        @esp
+                                                    </li>
+                                                }
+                                          
+                                            </ul>
+                                            <button type="button" class="btn btn-primary" id="id-pre-home-@(index)" data-idcliente="@item.IdCliente">Contrata @(identificadorDidi)</button>
+                                            @{
+                                                index += 1;
+                                            }
+                                        </div>
+                                    }
+                                }
+                                else if (ViewBag.HostURL.ToString().Contains("calma."))
+                                {
+                                    <div class="prehome__plan">
+                                        <h2>@(item.Identificador)</h2>
+                                        <ul>
+                                            @foreach (var esp in item.Especialidades)
+                                            {
+                                                <li class="fuente-accesible">@esp</li>
+                                            }
+                                        </ul>
+                                        <button type="button" class="btn btn-primary" id="id-pre-home-@(index)">ingresar</button>
+                                        @{
+                                            index += 1;
+                                        }
+                                    </div>
+                                }
+                                else if (ViewBag.HostURL.ToString().Contains("bienestar.medismart"))
+                                {
+                                    <div class="prehome__plan">
+                                        <h2>@(item.Identificador)</h2>
+                                        <ul>
+                                            @foreach (var esp in item.Especialidades)
+                                            {
+                                                <li class="fuente-accesible">@esp</li>
+                                            }
+                                        </ul>
+                                        <button type="button" class="btn btn-primary" id="id-pre-home-@(index)">ingresar</button>
+                                        @{
+                                            index += 1;
+                                        }
+                                    </div>
+                                }
+                                else //PLANES BASE
+                                {
+                                    <div class="prehome__plan">
+                                        <h2>@(item.Identificador)</h2>
+                                        <ul>
+                                            @foreach (var esp in item.Especialidades)
+                                            {
+                                                <li class="fuente-accesible">@esp</li>
+                                            }
+                                        </ul>
+                                        <button type="button" class="btn btn-primary" id="id-pre-home-@(index)">ingresa a tu plataforma</button>
+                                        @{
+                                            index += 1;
+                                        }
+                                    </div>
+                                }
+
+                            }
+                        }
+                    }
+                </div>
+                @{
+                    if (ViewBag.HostURL.ToString().Contains("metlife."))
+                    {
+                        <button type="button" class="btn btn-primary btn-ingresar" id="id-pre-home-0" style="display:block;">Ingresar</button>
+                    }
+                    // else if (ViewBag.HostURL.ToString().Contains("bienestar.medismart"))
+                    // {
+                    //     <button type="button" class="btn btn-primary" id="id-pre-home-0" style="display:block;">Ingresar</button>
+                    // }
+
+                }
+            </div>
+            @if (ViewBag.HostURL.ToString().Contains("masproteccionsalud.cl"))
+            
+            {
+                <div class="caja-andes-box-pre-home">
+                    <div class="caja-andes-box-phone-email">
+                        <img src="~/img/masproteccionsalud-nuevo/iconos-nuevo-look/fono.svg" alt="">
+                        <div>
+                            <p>Llama a nuestra línea de atención:</p>
+                            <p><b>+56 2 242 935 26</b></p>
+                        </div>
+                    </div>
+                    <div class="caja-andes-vertical-bar"></div>
+                    <div class="caja-andes-box-phone-email">
+                        <img src="~/img/masproteccionsalud-nuevo/iconos-nuevo-look/email.svg" alt="">
+                        <div>
+                            <p>Atención por email</p>
+                            <p><b><a href="mailto:contacto@masproteccion.cajalosandes.cl">contacto@masproteccion.cajalosandes.cl</a></b></p>
+                        </div>
+                    </div>
+                </div>
+            }
+              
+
+           
+        </div>
+
+    </div>
+  
+
+</div>
+<!--Modal Medicamentos-->
+<script src="https://cdn.jsdelivr.net/gh/bigdatacloudapi/js-api-client@latest/bigdatacloud_api_client.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/gh/bigdatacloudapi/js-client-ip-client@latest/bigdatacloud_client_ip.min.js" type="text/javascript"></script>
+<!--Modal Wellness-->
+<!--Modal Servicios-->
+@section Scripts {
+    <script src="~/signal/signalr.min.js"></script>
+    <script src="~/js/accesible.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/pre-home.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(ViewBag.Especialidades)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+            var idCliente = @ViewBag.idCliente;
+            window.idCliente = idCliente;
+            var host = '@ViewBag.HostURL';
+            window.host = host;
+
+            var isNewUserFirebase = "@ViewBag.isNewUserFirebase";
+            window.isNewUserFirebase = isNewUserFirebase;
+
+            var isNewUser = "@ViewBag.isNewUser";
+            window.isNewUser = isNewUser;
+        })()
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+}
+<!--end: Modal Orientación-->

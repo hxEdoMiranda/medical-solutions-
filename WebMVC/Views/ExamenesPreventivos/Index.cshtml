@@ -1,0 +1,61 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+    Layout = "_LayoutPaciente";
+    var urlSmartcheck = Configuration["ServiceUrlSmartcheck"];
+}
+<!--Vista 1-->
+
+
+<div class="container-fluid cont-medicina-preventiva">
+    <div class="breadcrumb-medismart">
+        Home > <strong>Medicina Preventiva</strong>
+    </div>
+
+    <h2>Medicina preventiva</h2>
+    <p>@(ViewBag.HostURL.Contains("vivetuseguro.")?"Puedes comenzar a prevenir con este beneficio gratuito y que puedes realizar con dos tipos de servicios:":"Puedes comenzar a prevenir con este beneficio gratuito y que puedes realizar las veces que necesites con dos tipos de servicios")</p>
+    <div class="row cont-chequeos">
+        <div class="col-12 col-md">
+            <div class="opcion-interior primera-opcion">
+                <img src="~/img/medicina-preventiva/icon-chequeo.svg" alt="Chequeo preventivo">
+                <h2>Chequeo preventivo</h2>
+                <p>El Formulario es un beneficio gratuito y que puedes realizar para acceder a exámenes de prevención</p>
+                <button id="btnComenzar" class="btn btn-primary btn-block">@(ViewBag.HostURL.Contains("vivetuseguro.")?"EMPEZAR EL CHEQUEO MEDICO":"Comenzar")</button>
+            </div>
+        </div>
+        <div class="col-12 col-md smart-check">
+            <div class="opcion-interior">
+                <img src="~/img/medicina-preventiva/icon-smartcheck.svg" alt="Smart Check">
+                <h2>Smart Check</h2> <!--aqui va anura-->
+                <p>Smart Check de signos vitales es un exámen realizado con ayuda de la I.A. en nuestra plataforma</p>
+                <button class="btn btn-primary btn-block" id="btnAnura">
+                    @(ViewBag.HostURL.Contains("vivetuseguro.")?"REALIZAR EL SMARTCHECK":"Comenzar")
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--end:: Vsita 1-->
+<!--Vista 2-->
+@section Scripts {
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="module">
+        import { init } from '../../js/Paciente/examenes-preventivos-index.js?rnd=${@NumeroRandom.GetRandom()}';
+        init()
+    </script>
+    <script type="text/javascript">
+        (function () {
+            var urlSmartcheck = '@urlSmartcheck';
+            window.urlSmartcheck = urlSmartcheck;
+        })();
+    </script>
+}
+

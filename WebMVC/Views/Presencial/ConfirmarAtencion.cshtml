@@ -1,0 +1,192 @@
+﻿@model WebMVC.Models.ConfirmaViewModel
+@{
+    ViewData["Title"] = "Agendar";
+    Layout = "_LayoutPaciente";
+
+}
+
+@section PageStyles  {
+    <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <style>
+        /*.swal2-styled.swal2-cancel{
+                position: absolute !important;
+                left: 75px !important;
+            }
+            .swal2-styled.swal2-confirm {
+                    position: absolute !important;
+                    right: 50px !important;
+        }*/
+
+    </style>
+}
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+    <!--Begin::App-->
+    <!-- Start:: Stepper-->
+    <!-- Stepper -->
+    <div class="stepper">
+        <div class="init-step"></div>
+        <div class="cont-steps">
+            <!-- Step1 -->
+            <div class="step passed">
+                <div class="step-icon">
+                    <i class="fal fa-user-md"></i>
+                </div>
+                <div class="label-step fuente-accesible">
+                    Selección
+                </div>
+            </div>
+
+            <i class="fas fa-chevron-right flecha"></i>
+
+            <!-- Step2 -->
+            <div class="step passed">
+                <div class="step-icon">
+                    <i class="fal fa-calendar-edit"></i>
+                </div>
+                <div class="label-step fuente-accesible">
+                    Agendamiento
+                </div>
+            </div>
+
+            <i class="fas fa-chevron-right flecha"></i>
+
+            <!-- Step3 -->
+            <div class="step active">
+                <div class="step-icon">
+                    <i class="fal fa-check-circle"></i>
+                </div>
+                <div class="label-step fuente-accesible">
+                    Confirmación
+                </div>
+            </div>
+        </div>
+        <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+    </div>
+
+
+    <!-- Mensaje confirmación Hora -->
+    <!-- Mensaje final Hora -->
+    <div class="container caja-base mensaje-confirmacion">
+        <div class="row">
+            <div class="col-12 col-lg-3">
+                <!-- Caja Profesional -->
+                <div class="card caja-profesional">
+                    <img src=""
+                         class="card-img-top"
+                         alt="Foto Médico"
+                         id="fotoMedico" />
+                    <div class="card-body">
+                        <div class="cont-data">
+                            <div class="data-atencion">
+                                <span class="header-aviso-atencion">
+                                    <i class="fal fa-calendar-alt"></i> Próxima
+                                    Atención
+                                </span>
+
+                                <span class="nombre-profesional">
+                                    <span class="titulo-profesional">Dr.</span>
+                                    @Model.idMedico
+
+                                    <!--
+        <small>
+            Universidad de Chile - 111111
+        </small>
+                -->
+                                </span>
+                                <div class="calificacion2">
+                                    <i class="fas fa-star positiva"></i>
+                                    <i class="fas fa-star positiva"></i>
+                                    <i class="fas fa-star positiva"></i>
+                                    <i class="fas fa-star positiva"></i>
+                                    <i class="fas fa-star positiva"></i>
+                                </div>
+                                <span class="titulo-profesional"> </span>
+                                <span class="d-block fecha-atencion">
+                                    <strong></strong>
+                                </span>
+                                <span class="d-block hora-atencion"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Caja Profesional -->
+            </div>
+            <div class="col">
+                <div class="mensaje">
+                    <div class="header-mensaje">
+                       
+                        @*<img src="@logo" class="logotipo" alt="">*@
+                        <i class="fal fa-check-circle d-none"></i>
+                    </div>
+                    <div class="container-fluid">
+                            <div class="col-12 order-last">
+                                <div class="cont-icon-confirma">
+                                    <i class="fal fa-check-circle icon-confirma"></i>
+                                </div>
+                            </div>
+                        <div class="row align-items-center">
+                        
+                            <div class="col-12">
+                                <p class="fuente-accesible">
+                                    Estimado(a) <strong id="nameStrong"></strong> : ¡Felicitaciones! Tu hora ha sido agendada, te agradecemos por confiar en <strong>@Model.idMedico</strong> 
+                                </p>
+                                <p id="informaDireccion">
+                                   El profesional estará presencialmente en la siguiente dirección: <strong>@Model.lugar</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col offset-lg-8">
+                <button class="btn btn-primary btn-block btn-sm fuente-accesible" id="volverInicio">
+                    Ir a tus atenciones
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="accesible-tools mb-5">
+        <div class="accesible-btn">
+            <button id="increase-font">A+</button>
+            <button id="normal-font">A</button>
+            <button id="decrease-font">A-</button>
+        </div>
+    </div>
+
+</div>
+<!-- begin::Scrolltop -->
+<div id="kt_scrolltop" class="kt-scrolltop">
+    <i class="fa fa-arrow-up"></i>
+</div>
+
+<!-- end::Scrolltop -->
+<!-- begin::Global Config(global config for global JS sciprts) -->
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.3/signalr.min.js?rnd=@NumeroRandom.GetRandom()"></script>
+    <script src="~/js/accesible.js"></script>
+    <script type="module">
+        import { init } from '../../js/Presencial/confirmarPago.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+            var uid = @ViewBag.uid;
+            var lugar = '@ViewBag.lugar';
+            var idCliente = '@ViewBag.idCliente';
+            window.uid = uid;
+            var idMedico = '@ViewBag.idMedico';
+            window.idCliente = idCliente;
+            window.idMedico = idMedico;
+            window.lugar = lugar;
+        })()
+    </script>
+}

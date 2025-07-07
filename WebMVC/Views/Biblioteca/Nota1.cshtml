@@ -1,0 +1,129 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+
+    <section class="container-fluid note-section library featured" id="nota1">
+        <div class="container">
+            <div class="row">
+                <div class="col-auto">
+                    <div class="cont-icons">
+                        <div class="icon account-type">
+                            <i class="fal fa-heart"></i>
+                        </div>
+                        <div class="icon">
+                            <i class="fal fa-file-alt"></i>
+                        </div>
+                    </div>
+
+                    <h1 class="title-section">
+                        Aprende reanimación cardio pulmonar: salvar una vida puede estar en tus manos.
+                    </h1>
+                    <p>
+                        Valeska González, enfermera egresada de Universidad Diego Portales, instructora y miembro de la sociedad AHA (American Heart Association).
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <p>
+                        De acuerdo a estadísticas de la OMS, las dos principales causas de muerte en el mundo durante los últimos 15 años son
+                        la cardiopatía isquémica y los ataques cerebrovasculares, con una cifra de 15 millones de víctimas aproximadamente.
+                    </p>
+                    <p>
+                        Más de la mitad de la población nacional fallece por enfermedades crónicas (muchas de ellas relacionadas con el corazón)
+                        tales como infartos, enfermedades arterioescleróticas, arritmia, diabetes, enfermedades respiratorias, cáncer, entre otras.
+                        Otro dato, entregado por la Encuesta Nacional de Salud (2019) muestra factores que influyen con el daño al corazón: el 40%
+                        fuma tabaco, 39% de la población tiene sobrepeso (25% obesidad), 88% son sedentarios, un 29% tiene hipertensión, y un 99%
+                        consume más sal de la recomendada internacionalmente.
+
+                    </p>
+                    <p>
+                        Un PCR (paro cardiorrespiratorio) se define como una interrupción brusca e inesperada de la actividad mecánica del corazón y
+                        de la respiración espontánea, y potencialmente reversible si se identifica a tiempo y se inicia una reanimación básica. En Chile,
+                        particularmente, existe una mortalidad cercana al 98% por paros cardiorrespiratorios en situaciones donde no hay profesionales de
+                        la salud; si un testigo circunstancial sabe cómo practicar una reanimación, podría triplicar la tasa de supervivencia frente a esto.
+                    </p>
+
+                    <p>
+                        La reanimación cardiopulmonar, también conocida como RCP, consiste en un conjunto de maniobras sincronizadas que, primero, ayudan a
+                        sustituir la circulación y respiración espontánea, y para luego restaurarla. Para que una RCP tenga éxito debe ser correctamente aplicada
+                        pues, si se realiza a tiempo, puede perfectamente salvar la vida de una persona. Valeska González, enfermera miembro de la Asociación americana
+                        del corazón, instructora AHA y experta en primeros auxilios, explica los pasos que seguir:
+                    </p>
+
+                    <ol>
+                        <li>
+                            <strong>Constatar que el paciente está en paro:</strong> acercarse a la víctima y comprobar si responde, dejando libre el tórax y presionando de forma enérgica
+                            para chequear si hay respiración. Si la respuesta es no, se procede a activar el sistema de respuesta de emergencia (ambulancia, bomberos o
+                            carabineros), y a solicitar un desfibrilador (DEA) inmediatamente.
+                        </li>
+                        <li>
+                            <strong>Inicio de RCP de alta calidad:</strong> posicionar las manos en la mitad del esternón, manteniendo los brazos totalmente rectos, creando un ángulo recto entre la cadera y
+                            los brazos para que se utilice la fuerza de todo el cuerpo al deprimir el tórax. Se debe realizar 100 a 120 compresiones por minuto, con una profundidad de al
+                            menos 5 cm al deprimir, y siempre sobre una superficie lisa y dura.
+
+                        </li>
+                        <li>
+                            <strong>Desfibrilación:</strong> un desfibrilador es un aparato que transmite corriente al músculo cardíaco en forma indirecta a través de la pared torácica. En el caso de contar con
+                            uno, se debe utilizar apenas esté disponible, siguiendo las instrucciones que posee (este será capaz de analizar si el paciente requerirá una descarga eléctrica).
+                            Se deben instalar los electrodos en el pecho de la víctima, asegurarse de que nadie lo toque, esperar la cantidad de descargas que sean necesarias y, cuando indique,
+                            reanudar el masaje cardíaco anterior.
+                        </li>
+                        <li>
+                            <strong>Llegada de soporte vital avanzado (ambulancia o similar):</strong> finalmente, este será capaz de entregar el cuidado profesional y que lo traslade a un centro adecuado y calificado.
+
+                        </li>
+                    </ol>
+                    <p>
+                        Si se ha tenido éxito, luego de aquello el paciente recibirá el tratamiento post paro, y finalmente logrará la recuperación.
+                    </p>
+                    <p>
+                        <em>
+                            “Es importante saber que, por ley, todos los centros con alta concurrencia de gente (empresas, estadios, malls, aeropuertos, colegios, universidades) deben contar con un
+                            DEA para estos casos, pero la gente también debe informarse sobre cómo usarlos y cómo reaccionar en general. Las personas pueden morir por la falta de este conocimiento,
+                            y puede estar en sus manos salvar vidas”
+                        </em> indica la enfermera.
+
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+                    </div>
+                    
+
+                    <partial name="~/Views/Biblioteca/_ColumnasNotas.cshtml" model="Model" view-data="ViewData" />
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}

@@ -1,0 +1,85 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+    <section class="container-fluid note-section library featured" id="nota3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="cont-titulo-receta">
+                        <div class="cont-logo">
+                            <img src="~/img/cencosud/vida-sana/zapalloitalianorelleno.png" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <h2 class="subtitulo-receta">
+                        Ingredientes 1 - 2 porciones:
+                    </h2>
+
+                    <ol>
+                        <li>1 zapallo italiano.</li>
+                        <li>½ cebolla.</li>
+                        <li>½ salsa de tomate natural.</li>
+                        <li>1 ½ taza de carne de soya.</li>
+                        <li>Aceite de oliva</li>
+                        <li>Condimentos a gusto</li>
+                    </ol>
+
+                    <h2 class="subtitulo-receta">
+                        Preparación
+                    </h2>
+                    <ol>
+                        <li>Precalentar el horno a 180°C.</li>
+                        <li>Remojar la carne de soya durante 1 hora, luego colar el agua.</li>
+                        <li>Corta la cebolla en cubitos.</li>
+                        <li>Corta el zapallo por la mitad y vacíalo, reserva la pulpa.</li>
+                        <li>En un sartén caliente agrega la cebolla, la pulpa, la salsa de tomate natural y la carne de soya. Cocina hasta que las verduras estén listas.</li>
+                        <li>Si está muy seco, puedes agregarle agua.</li>
+                        <li>Rellena las mitades del zapallo con el sofrito.</li>
+                        <li>Lleva al horno por 10 -15 minutos o hasta que sea vea dorado.</li>
+                        <li>Sirve en un plato</li>
+                    </ol>
+                   
+                    <p>
+                        <a href="@Url.Action("DescargarCenco", new { file = ViewBag.codigoNota})">
+                            Descargar receta
+                        </a>
+                        
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}
+

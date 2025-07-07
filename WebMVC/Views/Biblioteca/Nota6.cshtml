@@ -1,0 +1,112 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+
+    <section class="container-fluid note-section library featured" id="nota6">
+        <div class="container">
+            <div class="row">
+                <div class="col-auto">
+                    <div class="cont-icons">
+                        <div class="icon account-type">
+                            <i class="fal fa-heart"></i>
+                        </div>
+                        <div class="icon">
+                            <i class="fal fa-file-alt"></i>
+                        </div>
+                    </div>
+
+                    <h1 class="title-section">
+                        Beneficios de la telemedicina en el seguimiento y control de pacientes con patologías crónicas.
+                    </h1>
+                    <p>
+                        Entrevista a Raúl Aguilar, Enfermero Magister en economía aplicada a políticas publicas
+
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <p>
+                        La existencia de la pandemia aceleró el desarrollo del sistema de salud público y privado del país necesariamente; acciones como asistir a citas médicas, 
+                        realizarse exámenes y otros procedimientos se volvieron un obstáculo que afectó especialmente a 
+                        quienes padecen enfermedades crónicas y se encontraban en tratamiento permanente y controlado.
+                    </p>
+                    <p>
+                        En este escenario, la telemedicina se convirtió en una pieza clave frente a estas dificultades logísticas -cómo contactarse con el médico tratante, 
+                        cómo obtener una licencia o receta, cómo resolver una duda inmediata, etc. Plataformas como Medismart.live, que entregan múltiples servicios pensados 
+                        en facilitar el tratamiento a los pacientes, contribuyen a la solución y disminuyen la probabilidad de deserción de tratamientos.
+
+                    </p>
+                    <p>
+                        “Medismart.live tiene un ecosistema de teleconsulta para enfermos crónicos que les permite tomarse exámenes de control en su casa, que la orden médica 
+                        les llegue en la teleconsulta, sus medicamentos pueden ser despachados a domicilio, etc. Lo que intentamos es poner la tecnología al servicio de la 
+                        solución de estos problemas, para impedir que una persona que está en tratamiento crónico deje de tomar sus medicamentos y promover el autocuidado” 
+                        señala Raúl Aguilar, Enfermero magister en economía aplicada a políticas públicas.
+
+                    </p>
+
+                    <p>
+                        El concepto de ecosistema es la esencia de este servicio, pues abarca la telemedicina, la relación con las farmacias, el despacho de medicamentos y 
+                        exámenes a domicilio en un solo lugar; gracias a ello, es posible ahorrar viajes, tiempo, gastos de movilización y, en el caso de pacientes crónicos, 
+                        retardar o prevenir complicaciones que se evitan con los controles.
+                    </p>
+
+                    <p>
+                        Existen algunas restricciones, como los casos de urgencia, pues lógicamente no pueden tratarse por esta vía; sin embargo, la plataforma permite acceder 
+                        a orientación inmediata cuando hay dudas de alguna sintomatología de riesgo, y un médico puede identificarlos y determinar si es necesario acudir a 
+                        un servicio de urgencia -es decir, gracias a la prevención, es posible disminuir los ingresos hospitalarios por razones evitables. Por otra parte, 
+                        en los casos donde son necesarios exámenes físicos, igualmente será necesario concurrir a una consulta presencial.
+                    </p>
+                    <p>
+                        Con el objetivo de ser una solución para todos, MediSmart fue creada como una plataforma accesible y amigable, partiendo por el hecho de ser 
+                        pensada en consumir la mínima cantidad de internet posible; así, se incluye a comunidades que no tengan fácil acceso y se disminuyen las barreras 
+                        de entrada a la teleconsulta. Igualmente, el historial digital de un paciente pertenece a él en un 100%: se almacena en una cuenta individual que 
+                        cumple con todos los protocolos de seguridad y privacidad de información -solo el titular de la cuenta tiene acceso a sus datos. Además, si el paciente 
+                        requiere tratarse con un profesional fuera de la plataforma, pueden descargarlos y utilizarlos con libertad. “Los enfermos crónicos necesitan de sus datos, 
+                        porque hay diferentes especialistas en diferentes prestadores que les atienden, y es necesario ser portador de sus propios datos, y nuestra tecnología 
+                        colabora con eso”, afirma Aguilar.
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+
+                    </div>
+
+                    <partial name="~/Views/Biblioteca/_ColumnasNotas.cshtml" model="Model" view-data="ViewData" />
+
+                    
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}

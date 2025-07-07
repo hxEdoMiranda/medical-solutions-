@@ -1,0 +1,144 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+
+    <section class="container-fluid note-section library featured" id="nota7">
+        <div class="container">
+            <div class="row">
+                <div class="col-auto">
+                    <div class="cont-icons">
+                        <div class="icon account-type">
+                            <i class="fal fa-heart"></i>
+                        </div>
+                        <div class="icon">
+                            <i class="fal fa-file-alt"></i>
+                        </div>
+                    </div>
+
+                    <h1 class="title-section">
+                        Salud mental y tecnología: Aliados para tu bienestar.
+                    </h1>
+                    
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    
+                    <p>
+                        La salud mental es un componente esencial de nuestra vida que a menudo no recibe
+                        la atención que merece. A medida que la tecnología se integra cada vez más en nuestra cotidianidad,
+                        su influencia en cómo abordamos y cuidamos nuestra salud mental se ha vuelto innegable. 
+                        En este blog, vamos a explorar la trascendencia de la salud mental y cómo la tecnología puede ser una aliada 
+                        valiosa en su promoción y mejora. Además, te proporcionaremos recomendaciones y herramientas tecnológicas que 
+                        pueden contribuir a mejorar el estado de bienestar emocional.
+
+                    </p> <br />
+                    <strong>
+                        La relevancia de la salud mental
+                        </strong>
+                    <p>
+                        La salud mental no se limita a la ausencia de trastornos psicológicos, sino que abarca el bienestar emocional y 
+                        capacidad de afrontar desafíos y situaciones estresantes. Su influencia se refleja en nuestras decisiones, 
+                        relaciones interpersonales y en la calidad de vida que experimentamos.
+
+
+                    </p><br />
+                    <strong>
+                        La revolución tecnológica en la promoción de la salud mental
+                        </strong>
+                    <p>
+                        En la última década, hemos sido testigos de una transformación en la forma en que abordamos nuestra salud mental 
+                        gracias a la tecnología. Aplicaciones móviles, plataformas en línea y dispositivos portátiles han democratizado 
+                        el acceso a recursos para gestionar el estrés, la ansiedad y la depresión de manera efectiva.
+
+                    </p><br />
+                    <p>
+                        A continuación, te presentamos algunas herramientas tecnológicas que pueden ser de gran ayuda para mejorar tu salud mental:
+
+                    </p>
+
+                    <ol>
+                        <br />
+                        <li>
+                            <strong>Aplicaciones de meditación y mindfulness:</strong> <a href="https://play.google.com/store/apps/details?id=com.calm.android&hl=es&gl=US" target="_blank">Calm</a> y <a href="https://play.google.com/store/apps/details?id=com.getsomeheadspace.android&hl=es&gl=US" target="_blank">Headspace</a> ofrecen meditaciones guiadas y ejercicios de
+                            atención plena para reducir el estrés y la ansiedad.
+
+                        </li>
+                        <br />
+                        <li>
+                            <strong>Monitores de estrés y ritmo cardíaco:</strong> Dispositivos wearables como los smartwatches pueden rastrear 
+                            tu nivel de estrés y ritmo cardíaco, proporcionando información útil sobre tu bienestar emocional.
+
+
+                        </li>
+                        <br />
+                        <li>
+                            <strong>Aplicaciones de diario emocional:</strong> Apps como <a href="https://play.google.com/store/apps/details?id=com.yanaapp&hl=es&gl=US" target="_blank">Yana</a> te permiten llevar un registro diario de tus
+                            emociones y pensamientos, lo que puede ayudarte a identificar patrones y desencadenantes emocionales.
+
+                        </li>                                           
+                    </ol>
+                    
+                    <p>
+                        A pesar de los avances tecnológicos, es importante recordar que la atención profesional es fundamental para 
+                        abordar problemas más complejos o graves. Nuestro equipo de especialistas en salud mental y mindfulness está 
+                        disponible para brindarte orientación personalizada y apoyo en tu camino hacia un bienestar emocional. 
+                        Si sientes que necesitas ayuda más allá de las herramientas tecnológicas, no dudes en programar una consulta con 
+                        nuestros expertos.
+
+                    </p>
+                    <p>
+                        La tecnología es un complemento valioso, pero la atención profesional sigue siendo esencial en muchas situaciones. 
+                        Tu salud mental merece la mejor atención posible.
+                    </p>
+                    <br />
+                    <strong>
+                        Consulta con nuestros profesionales de la salud mental y Mindfulness
+                    </strong>               
+                    
+                    <div class="cont-btnNota7">
+                        <button class="btn btn-primary" onclick="location.href='/Paciente/Agendar?tipo=suscripcion'">Agendar cita</button>
+                    </div>
+                   
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+                    </div>
+                    
+
+                    <partial name="~/Views/Biblioteca/_ColumnasNotas.cshtml" model="Model" view-data="ViewData" />
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}

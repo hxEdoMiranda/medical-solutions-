@@ -1,0 +1,741 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model WebMVC.Models.AtencionViewModel
+
+@{
+    var urlSmartcheck = Configuration["ServiceUrlSmartcheck"];
+    ViewData["idEntidad"] = Model.Atencion.Id;
+    ViewData["uid"] = int.Parse(ViewBag.uid);
+    ViewData["codEntidad"] = Entidades.ATENCIONES;
+    var formularioSuenoenfermera = false;
+    var programaSalud = false;
+    var tipeProgramaSalud = 0;
+    @if (ViewData["view"].Equals(Roles.Medico))
+    {
+        formularioSuenoenfermera = (Model.Atencion.HoraMedico.IdEspecialidad.ToString() == ViewBag.idFormularioEnfermera) && (Model.Atencion.IsProgramaSalud == true);
+        programaSalud = (Model.Atencion.HoraMedico.IdEspecialidad.ToString() == ViewBag.idFormularioEnfermera) && (Model.Atencion.IsProgramaSalud == true);
+        tipeProgramaSalud = (Model.programaSaludPaciente != null) ? Model.programaSaludPaciente.IdProgramaSalud : 0;
+    }
+    var hiddenNSP = "";
+    var hiddenBoxEspecial = "";
+    var hiddenUnab = "";
+    var hiddenUoh = "";
+    var tituloForm = "Reporte Médico";
+    var tituloAnamesis = formularioSuenoenfermera ? "Anamnesis/ hábitos/ antecedentes psicosociales y del entorno" : "Anamnesis/ Antecedentes/ Plan";
+    var tituloObservacionProf = formularioSuenoenfermera ? "Observaciones de hábitos / resultado del test" : "Observación Profesional (no visible para paciente)";
+    var iframeAnura = "";
+    var tituloDg = "Diagnóstico";
+    var hiddenPsico = "";
+    var hiddenPNutri = "";
+    var hiddenProgramaSalud = programaSalud ? "" : "hidden";
+    var hiddenPsicopedagogiaUnab = "";
+    var tituloOtrosEx = "Otros Exámenes";
+    var tituloCertificadoMedico = "Certificado Médico";
+    var tituloControl = "Control";
+    var isPsicopedagogiaUnab = false;
+    var isUnab = false;
+    var telefono = string.Empty;
+    var hiddenSueno = (programaSalud && tipeProgramaSalud == 2) ? "" : "hidden";
+    var hiddenCronico = (programaSalud && tipeProgramaSalud == 1) ? "" : "hidden";
+    var tituloReporteEnfermero = (programaSalud && tipeProgramaSalud == 2) ? "Reporte De Enfermería Clínica Del Sueño" : "Reporte De Enfermería Clínica Crónico";
+
+    // Obtener teléfono
+    if (!string.IsNullOrEmpty(Model.fichaPaciente.TelefonoMovil))
+    {
+        telefono = Model.fichaPaciente.TelefonoMovil ?? string.Empty;
+    }
+    else
+    {
+        if (!string.IsNullOrEmpty(Model.fichaPaciente.Telefono))
+        {
+            telefono = Model.fichaPaciente.Telefono ?? string.Empty;
+        }
+    }
+
+    var hiddeIncendio = "";
+
+
+
+    telefono.Replace(" ", string.Empty).Replace("+", string.Empty).Replace("(", string.Empty).Replace(")", string.Empty);
+
+    // Agregar código país (sólo Chile de momento)
+    if (telefono.Length == 9)
+    {
+        telefono = $"56{telefono}";
+    }
+
+    if (!ViewData["view"].Equals(Roles.Invitado))
+        iframeAnura = urlSmartcheck+"/smart_results/user/" + Model.Atencion.HoraMedico.IdPaciente;
+
+    if (ViewData["view"].Equals(Roles.Invitado))
+        hiddenNSP = "hidden";
+
+    var tituloIndicaciones = formularioSuenoenfermera ? "Plan" : "Indicaciones";
+    if (ViewBag.HostURL.ToString().Contains("unabactiva.") || ViewBag.HostURL.ToString().Contains("activa.unab."))
+    {
+        isUnab = true;
+        hiddenUnab = "hidden";
+        tituloForm = "Reporte de salud";
+        tituloAnamesis = "Anamnesis / Antecedentes";
+        tituloObservacionProf = "Observaciones de uso interno";
+        tituloIndicaciones = "Plan de manejo";
+
+        // Especialidad
+        string especialidad = Model.Atencion.HoraMedico?.Especialidad ?? Model.Atencion.Especialidad ?? string.Empty;
+        isPsicopedagogiaUnab = Util.RemoveAccent(especialidad).ToLower().Contains("psicopedagogia");
+
+        if (isPsicopedagogiaUnab)
+        {
+            tituloForm = "Reporte de Psicopedagogía";
+            tituloAnamesis = "Anamnesis / Antecedentes Psicopedagógicos";
+            tituloIndicaciones = "Acuerdos PSP";
+            tituloCertificadoMedico = "Sugerencias, derivaciones";
+            tituloControl = "Próxima sesión PSP";
+            hiddenPsicopedagogiaUnab = "hidden";
+        }
+    }
+    else if ((Model.Atencion.HoraMedico?.IdEspecialidad ?? Model.Atencion.IdEspecialidad) == 47) // psicologia
+    {
+        tituloForm = "Reporte de salud";
+        tituloAnamesis = "Anamnesis/ Antecedentes área Psicología";
+        tituloDg = "Diagnostico C10 con Snomed";
+        hiddenPsico = "hidden";
+        tituloOtrosEx = "Diagnóstico área psicológica";
+        tituloIndicaciones = "Indicaciones/Plan";
+    }
+    else if ((Model.Atencion.HoraMedico?.IdEspecialidad ?? Model.Atencion.IdEspecialidad) == 54) // nutricion y dietetica
+    {
+        tituloForm = "Reporte de salud";
+        tituloAnamesis = "Anamnesis/ Antecedentes nutricionales - Hábitos";
+        tituloDg = "Diagnostico C10 con Snomed";
+        hiddenPNutri = "hidden";
+        tituloOtrosEx = "Diagnóstico área nutricional";
+        tituloIndicaciones = "Plan/Indicaciones";
+
+    }
+    else if ((Model.Atencion.HoraMedico?.IdEspecialidad ?? Model.Atencion.IdEspecialidad) == 4) // pediatria
+    {
+        tituloAnamesis = "Anamnesis/ Antecedentes médicos/ Antecedentes familiares";
+        tituloDg = "Diagnostico C10 con Snomed";
+        tituloIndicaciones = "Indicaciones no farmacológicas";
+    }
+
+    var hiddenAchs = "";
+    if (ViewBag.HostURL.ToString().Contains("achs."))
+    {
+        hiddenAchs = "hidden";
+    }
+
+    if (ViewBag.boxEspecial == 1)
+    {
+        hiddenBoxEspecial = "hidden";
+        tituloIndicaciones = "Plan";
+    }
+
+    if (ViewBag.HostURL.ToString().Contains("uoh."))
+    {
+        tituloForm = "Reporte de Salud";
+        hiddenUoh = "hidden";
+        tituloObservacionProf = "Reporte de Salud";
+    }
+
+    var btnAchs = false;
+    if (ViewBag.HostURL.ToString().Contains("achs."))
+    {
+        hiddenBoxEspecial = string.Empty;
+        btnAchs = true;
+    }
+
+    var isOrientacion = Model.Atencion.HoraMedico != null && (Model.Atencion.HoraMedico.IdEspecialidad == 77 || btnAchs) ? 1 : 0;
+    if (isOrientacion == 1)
+        ViewData["codEntidad"] = Entidades.ATENCIONES_CERTIFICADOS;
+    else
+        ViewData["codEntidad"] = Entidades.ATENCIONES;
+
+    var hiddenComercial = "";
+    if (Model.Atencion.CodigoPais == "MX")
+    {
+        hiddenComercial = "hidden";
+    }
+}
+
+<style>
+    .kt-timeline-v2:before {
+        content: '';
+        position: absolute;
+        left: 2rem;
+        width: 0.214rem;
+        top: 5px;
+        bottom: 5px;
+        height: calc(100% - 5px);
+        background-color: #E7E9F5;
+    }
+
+    .kt-portlet__content {
+        height: 75vh;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+</style>
+<!-- end:: Subheader -->
+<!-- begin:: Content -->
+@{
+    ViewData["especialidad"] = Model.Atencion.Especialidad;
+}
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid medismart-atencion" id="cont-vc">
+
+    <!--Begin::Dashboard 7-->
+    <!--Begin::Row-->
+
+    <div class="row">
+        <div class="col-12 col-md-8 p-0 mt-3 mt-md-0">
+            @Html.Hidden("uid", (object)ViewBag.uid)
+            @Html.Hidden("rol", ViewData["view"])
+            @Html.HiddenFor(m => m.Atencion.Id)
+            @Html.HiddenFor(m => m.Atencion.InicioAtencion)
+            @Html.HiddenFor(m => m.Atencion.SolicitaFirma)
+            @Html.HiddenFor(m => m.Atencion.IdMedicoFirmante)
+            @Html.HiddenFor(m => m.Atencion.IdCliente)
+             <div class="video-container" style="display:block; padding:5px;">
+                <whereby-embed background="on" room="@Model.urlVideoCall" style="height:100%;">
+                </whereby-embed>
+            </div>
+
+        </div>
+
+        <div class="col-12 col-md-4 order-2 order-lg-1 my-4 my-lg-0">
+            <!--<div style="overflow-y: scroll; height:80vh">-->
+            <div class="cont-widgets">
+                <!--Begin::Portlet-->
+                <div class="kt-portlet body-widgets">
+                    <div id="divChat" style="display:none">
+                        <div class="kt-portlet__head text-center">
+
+                            <!--Titulo Chat-->
+
+                            <div class="titulo-chat">
+                                <div class="user-chat">
+                                    <span class="nombre-profesional" id="headName"></span>
+                                    <!--   <div class="status-profesional online"></div> <div class="leyenda-status">En Línea</div>-->
+                                    <div class="status-profesional offline" id="estilo"></div> <span class="leyenda-status" id="onLine">Offline</span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="kt-portlet__body card-body h-100">
+                            <div class="scroll scroll-pull" id="scroll" style="overflow: auto;" data-height="375" data-mobile-height="300">
+
+                                <!-- Chat -->
+
+                                <div class="cont-chat" id="divContChat">
+                                </div>
+
+                                <!-- end Chat -->
+                                <!--begin::Messages-->
+                                <div class="messages" id="divMensaje">
+
+                                    <!--fin mensaje in-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-portlet__foot align-items-center">
+                            <!--begin::Compose-->
+                            <div id="txtMsj">
+                                <textarea class="form-control border-0 p-0" id="mensaje" rows="2" placeholder="Escribe..."></textarea>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="mr-3 d-none">
+                                </div>
+                                <div class="d-flex align-items-center justify-content-end chat-tools mt-3">
+                                    <div class="kt_chat__tools d-none">
+
+                                        <a href="#"><i class="flaticon2-photograph"></i></a>
+                                        <a href="#"><i class="flaticon2-photo-camera"></i></a>
+                                    </div>
+
+                                    <button type="button" id="btnEnviar" class="btn btn-brand btn-md btn-upper btn-bold kt-chat__reply">Responder</button>
+                                </div>
+                            </div>
+                            <!--begin::Compose-->
+                        </div>
+                        <!--end::Footer-->
+                    </div>
+
+                    <!-------------BOX DE ATENCIONES -------------------------------------------------------------------------------------------->
+
+                    <div id="divArchivos" style="display:none">
+                        <partial name="~/Views/Shared/_ArchivosAdjuntos.cshtml" model="Model.Atencion.Archivos" view-data="ViewData" />
+                    </div>
+                    <div id="divHistorial" style="display:none">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title">
+                                    Historial atenciones
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div class="kt-portlet__body">
+                            @if (Model.HistorialAtenciones.Count == 0)
+                            {
+                                <div id="pnlHistorial" class="align-self-center" style="display:block">
+                                    <div class="row">
+                                        <div class="col-lg-12 kt-align-center">
+                                            <img src="~/metronic_demo7/assets/media/sinResultado.PNG" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <h5>No existen atenciones anteriores</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="kt-timeline-v2">
+                                    <div class="kt-timeline-v2__items  kt-padding-top-25 kt-padding-bottom-30">
+                                        @foreach (var historialAtencion in Model.HistorialAtenciones)
+                                        {
+                                            <div class="kt-timeline-v2__item">
+                                                <div class="kt-timeline-v2__item-cricle" style="left:0">
+                                                    <i class="fa fa-genderless kt-font-danger"></i>
+                                                </div>
+
+                                                <div class="kt-timeline-v2__item-text kt-padding-top-5 item-historial" style="padding: 0.35rem 0 0 1.6rem;">
+                                                    @historialAtencion.FechaText @historialAtencion.HoraDesdeText.Substring(0, @historialAtencion.HoraDesdeText.LastIndexOf(":")) <br>
+                                                    Dr/a. @historialAtencion.NombreMedico<br>
+                                                    @historialAtencion.Especialidad  <br>
+                                                    @historialAtencion.DiagnosticoMedico <br>
+                                                    @historialAtencion.PatologiasString<br>
+                                                    @if (!string.IsNullOrEmpty(historialAtencion.IdConsultaTeledoc))
+                                                    {
+                                                        <a href="/Medico/InformeTeledoc?idConsulta=@(historialAtencion.IdConsultaTeledoc)&username=@(historialAtencion.username)" target="_blank" type="button" class="btn btn-label-brand btn-bold btn-sm btn-informe">ver Informe</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="/Medico/InformeAtencion?idAtencion=@(historialAtencion.Id)&sendInforme=false" target="_blank" type="button" class="btn btn-label-brand btn-bold btn-sm btn-informe">ver Informe</a>
+                                                    }
+                                                    @if (!string.IsNullOrEmpty(historialAtencion.IdConsultaTeledoc))
+                                                    {
+                                                        <a href="#" class="btn btn-bold btn-sm teledoc-btn" style="background-color: #6a1b9a; color: #ffffff; border-radius: 20px;" disabled>Teledoc</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="#" class="btn btn-bold btn-sm medismart-btn" style="background-color: #6699ff; color: #ffffff; border-radius: 20px;">Medismart</a>
+                                                    }
+                                                </div>
+
+
+
+                                            </div>
+                                        }
+
+                                    </div>
+                                </div>
+                            }
+                            <!--Begin::Timeline 3 -->
+                            <!--End::Timeline 3 -->
+                        </div>
+                    </div>
+
+                    <div id="divReporte">
+                        <partial name="~/Views/Shared/_Reporte-Box-Atencion.cshtml" model="Model" view-data="ViewData" />
+                        <div id="atencion-datos-paciente">
+                            <hr style="width: 100%;">
+                            <h5>Datos del paciente</h5>
+                            <div class="form-group">
+                                <label id="lblConsulta" style="font-weight:bold">Consulta por primera vez o control</label>
+                                <input class="form-control" rows="3" name="consulta" id="consulta">
+                            </div>
+                            <div class="form-group">
+                                <label id="lblNombrePaciente" style="font-weight:bold">Nombre</label>
+                                <input class="form-control" id="Nombre" maxlength="50" name="Nombre" required="required" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label id="lblApellidoPaciente" style="font-weight:bold">Apellido</label>
+                                <input class="form-control" rows="3" name="apellidoPaciente" id="apellidoPaciente">
+                            </div>
+                            <div class="form-group">
+                                <label id="lblEdadPaciente" style="font-weight:bold">Edad</label>
+                                <input class="form-control" rows="3" name="edadPaciente" id="edadPaciente">
+                            </div>
+                            <div class="form-group">
+                                <label id="lblFechaNacimiento" style="font-weight:bold">Fecha de nacimiento</label>
+                                <input class="form-control" type="date" rows="3" name="fechaNacimiento" id="fechaNacimiento">
+                            </div>
+                            <div class="form-group">
+                                <label id="lblTipoDocumento" style="font-weight:bold">Tipo de documento</label>
+                                <input class="form-control" rows="3" name="tipoDocumento" id="tipoDocumento">
+                            </div>
+                            <div class="form-group">
+                                <label id="lblNumeroDocumento" style="font-weight:bold">Numero de documento</label>
+                                <input class="form-control" rows="3" name="numeroDocumento" id="numeroDocumento">
+                            </div>
+                            <div class="form-group">
+                                <label id="lblDireccion" style="font-weight:bold">Direccion</label>
+                                <input class="form-control" rows="3" name="direccion" id="direccion">
+                            </div>
+                            <div class="form-group">
+                                <label id="lblTelefono" style="font-weight:bold">Telefono</label>
+                                <input class="form-control" rows="3" name="telefono" id="telefono">
+                            </div>
+                            <div class="form-group">
+                                <label id="lblOcupacion" style="font-weight:bold">Ocupacion</label>
+                                <input class="form-control" rows="3" name="ocupacion" id="ocupacion">
+                            </div>
+                            <div class="form-group">
+                                <label id="lblEstadoCivil" style="font-weight:bold">Estado civil</label>
+                                <select class="form-control m-input" id="EstadoCivil" name="EstadoCivil" required="required" style="text-transform: Capital">
+                                    <option value="">Seleccione</option>
+                                    <option value="C">Casado</option>
+                                    <option value="S">Soltero</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label id="lblTelefono" style="font-weight:bold">Telefono</label>
+                                <input class="form-control" rows="3" name="telefono" id="telefono">
+                            </div>
+                            <div class="form-group">
+                                <label id="lblSexo" style="font-weight:bold">Sexo</label>
+                                <select class="form-control m-input" id="Genero" name="Genero" required="required" aria-describedby="Genero-error" aria-invalid="false">
+                                    <option value="">Seleccione</option>
+                                    <option value="F">Femenino</option>
+                                    <option value="M">Masculino</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label id="lblEscolaridad" style="font-weight:bold">Escolaridad</label>
+                                <input class="form-control" rows="3" name="escolaridad" id="escolaridad">
+                            </div>
+                            <div class="form-group">
+                                <label id="lblResponsable" style="font-weight:bold">Responsable</label>
+                                <input class="form-control" rows="3" name="responsable" id="responsable">
+                            </div>
+                           <div class="form-group">
+                                <label id="lblTelefonoResponsable" style="font-weight:bold">Teléfono responsable</label>
+                                <input class="form-control" rows="3" name="telefonoResponsable" id="telefonoResponsable">
+                            </div>
+                            <div class="form-group">
+                                <label id="lblParentesco" style="font-weight:bold">Parentesco</label>
+                                <input class="form-control" rows="3" name="parentesco" id="parentesco">
+                            </div>
+                            <div class="form-group">
+                                <label id="lblFechaAtencion" style="font-weight:bold">Fecha de atención</label>
+                                <input class="form-control" type="date" rows="3" name="fechaAtencion" id="fechaAtencion">
+                            </div>
+                            <div class="form-group">
+                                <label id="lblAcompanante" style="font-weight:bold">Acompañante</label>
+                                <input class="form-control" rows="3" name="acompanante" id="acompanante">
+                            </div>
+                            <div class="form-group">
+                                <label id="lblTelefonoAcompanante" style="font-weight:bold">Teléfono acompañante</label>
+                                <input class="form-control" rows="3" name="telefonoAcompanante" id="telefonoAcompanante">
+                            </div>
+                            <div class="form-group">
+                                <label id="lblConvenio" style="font-weight:bold">Convenio</label>
+                                <input class="form-control" rows="3" name="convenio" id="convenio">
+                            </div>
+                            <div class="form-group">
+                                <label id="lblCiudadAtencion" style="font-weight:bold">Ciudad de atención</label>
+                                <input class="form-control" rows="3" name="ciudadAtencion" id="ciudadAtencion">
+                            </div>
+                            <div class="form-group">
+                                <label id="lblCorreoElectronico" style="font-weight:bold">Correo electrónico</label>
+                                <input class="form-control" rows="3" name="correo" id="correo">
+                            </div>
+                            <div class="form-group">
+                                <label id="lblCorreoAlterno" style="font-weight:bold">Correo alterno</label>
+                                <input class="form-control" rows="3" name="correoAlterno" id="correoAlterno">
+                            </div>
+                            <hr style="width: 100%;">
+                        </div>
+                        <div id="datos-medicos">
+                            <h5>Datos del Medicos del paciente</h5>
+                            <div class="form-group">
+                                <label style="font-weight:bold">Antecedentes</label>
+                                <textarea class="form-control" rows="2" id="antecedentes" name="antecedentes"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label style="font-weight:bold">Patologicos</label>
+                                <textarea class="form-control" rows="2" id="patologicos" name="patologicos"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label style="font-weight:bold">Quirurgicos</label>
+                                <textarea class="form-control" rows="2" id="quirurgicos" name="quirurgicos"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label style="font-weight:bold">Ginecologicos-obstetricos</label>
+                                <textarea class="form-control" rows="2" id="ginecologicos" name="ginecologicos"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label style="font-weight:bold">Toxicos - alergicos</label>
+                                <textarea class="form-control" rows="2" id="toxicos" name="toxicos"></textarea>
+                            </div> 
+                        </div>
+                        <div id="examenes-fisicos">
+                            <hr style="width: 100%;">
+                            <h5>Examenes fisicos</h5>
+                            <div class="form-group">
+                                <label style="font-weight:bold">Signos vitales F.C</label>
+                                <input class="form-control" rows="3" name="signos" id="signos">
+                            </div>
+                            <div class="form-group">
+                                <label style="font-weight:bold">F.R</label>
+                                <input class="form-control" rows="3" name="fr" id="fr">
+                            </div>
+                            <div class="form-group">
+                                <label style="font-weight:bold">T°</label>
+                                <input class="form-control" rows="3" name="to" id="to">
+                            </div>
+                            <div class="form-group">
+                                <label style="font-weight:bold">TA Acostado</label>
+                                <input class="form-control" rows="3" name="tacostado" id="tacostado">
+                            </div>
+                            <div class="form-group">
+                                <label style="font-weight:bold"> Peso (Kg)</label>
+                                <input class="form-control" rows="3" name="peso" id="peso">
+                            </div>
+                            <div class="form-group">
+                                <label style="font-weight:bold">Talla (Cm)</label>
+                                <input class="form-control" rows="3" name="talla" id="talla">
+                            </div>
+                            <div class="form-group">
+                                <label style="font-weight:bold">IMC</label>
+                                <input class="form-control" rows="3" name="imc" id="imc">
+                            </div>
+                            <div class="form-group">
+                                <label style="font-weight:bold">TA Sentado</label>
+                                <input class="form-control" rows="3" name="tasentado" id="tasentado">
+                            </div>
+                            <div class="form-group">
+                                <label style="font-weight:bold">TA Pie</label>
+                                <input class="form-control" rows="3" name="tapie" id="tapie">
+                            </div>
+                            <div class="form-group">
+                                <label style="font-weight:bold">Exámenes previos de laboratorio e imágenes diagnósticas</label>
+                                <textarea class="form-control" rows="2" id="examprelab" name="examprelab"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label style="font-weight:bold">Análisis y comentarios</label>
+                                <textarea class="form-control" rows="2" id="analisiscoment" name="analisiscoment"></textarea>
+                            </div> 
+                        </div>
+
+                        
+
+                    </div>
+                    <div id="divAntecedentesMedicos" style="display:none">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title">
+                                    Antecedentes Médicos
+                                </h3>
+                            </div>
+                        </div>
+                        <form id="form_edit_am" class="kt-form kt-form--label-right">
+                            <div class="kt-portlet__body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="kt-widget kt-widget--user-profile-1 mb-0 pb-0">
+                                            <div class="form-group">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Alergias</label>
+                                                    @Html.TextAreaFor(m => m.fichaPaciente.Alergias, new { @class = "form-control", type = "text", id = "Alergias", name = "Alergias" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Medicamentos</label>
+                                                    @Html.TextAreaFor(m => m.fichaPaciente.Medicamentos, new { @class = "form-control", type = "text", id = "Medicamentos" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Enfermedades</label>
+                                                    @Html.TextAreaFor(m => m.fichaPaciente.Enfermedades, new { @class = "form-control", type = "text", id = "Enfermedades" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-12 col-md mb-4 mb-md-0">
+                                                    <label class="form-label">Cirugías</label>
+                                                    @Html.TextAreaFor(m => m.fichaPaciente.Cirugias, new { @class = "form-control", type = "text", id = "Cirugias" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-12 col-md mb-1 mb-md-0">
+                                                    <label class="form-label">Hábitos</label>
+                                                    @Html.TextAreaFor(m => m.fichaPaciente.Habitos, new { @class = "form-control", type = "text", id = "Habitos" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kt-portlet__foot">
+                                <div class="kt-form__actions">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6 col-lg-9 offset-lg-3 text-right">
+                                            <button type="submit" id="btn_guardar_am" class="btn btn-success btn-block">Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="divCuestionarioProgramaSaludSueno" class="kt-portlet__content" style="display:none">
+                        <div class="kt-portlet__head" id="contentLabel">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title">
+                                    Cuestionario
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="kt-portlet__body">
+                            @{
+                                if (Model.cuestionarioSueno != null)
+                                {
+                                    <partial name="~/Views/Shared/_VistaCuestionarioSueno.cshtml" model="Model" view-data="ViewData" />
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div id="divCuestionarioProgramaSaludCronico" class="kt-portlet__content" style="display:none">
+                        <div class="kt-portlet__head" id="contentLabel">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title">
+                                    Cuestionario
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="kt-portlet__body">
+                            @{
+                                if (Model.programaSaludCuestionario != null)
+                                {
+                                    <partial name="~/Views/Shared/_VistaCuestionarioCronico.cshtml" model="Model" view-data="ViewData" />
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!--End::Portlet-->
+            </div>
+        </div>
+
+
+        <div class="col-12 order-1 order-md-2">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-md-8">
+                        <div class="cont-btn-vc">
+                            <button id="reload" class="btn-atencion" type="button" title="Recargar Atención"><i class="fal fa-sync"></i> <span class="fuente-accesible">Recargar Atención</span></button>
+                            @if (ViewData["view"].Equals(Roles.Medico))
+                            {
+                                <button id="volverLlamar" class="btn-atencion" type="button" title="Llamada Paciente"><i class="fal fa-mic"></i> <span class="fuente-accesible">Llamar Paciente</span></button>
+                            }
+                            <button class="btn-atencion" type="button" title="Invitar Contactos" id="btnInvitar" hidden><i class="fal fa-user-plus"></i> <span>Invitar Contactos</span></button>
+                            <button id="panel_reporte" type="button" class="btn-atencion ml-2 mt-3 mt-lg-0"><i class="fal fa-file-alt"></i> <span>@tituloForm</span></button>
+                            <button id="panel_cuestionarioSueno" type="button" class="btn-atencion ml-2 mt-3 mt-lg-0" @hiddenSueno @hiddenUnab @hiddenBoxEspecial @hiddenUoh @hiddenAchs><i class="fal fa-file-alt"></i> <span>Cuestionario Sueño</span></button>
+                            <button id="panel_cuestionarioCronico" type="button" class="btn-atencion ml-2 mt-3 mt-lg-0" @hiddenCronico @hiddenUnab @hiddenBoxEspecial @hiddenUoh @hiddenAchs><i class="fal fa-file-alt"></i> <span>Cuestionario Cronico</span></button>
+                            <button id="panel_reporteEnfermeria" type="button" class="btn-atencion ml-2 mt-3 mt-lg-0" @hiddenUnab @hiddenBoxEspecial @hiddenUoh @hiddenAchs @hiddenProgramaSalud><i class="fal fa-file-alt"></i> <span>Reporte Enfermería</span></button>
+                            @if (Model.Atencion.CodigoPais == "CO" || ViewBag.HostURL.ToString().Contains("gallagher.") || ViewBag.HostURL.ToString().Contains("ajg.medismart.") || ViewBag.HostURL.ToString().Contains("rappi.") || ViewBag.HostURL.ToString().Contains("aecsa.") || ViewBag.HostURL.ToString().Contains("bonnahealth."))
+                            {
+                                <div>
+                                    <button id="btnSolicitarAsistencia" type="button" class="btn-atencion ml-2 mt-3 mt-lg-0" @hiddenUnab @hiddenBoxEspecial @hiddenUoh @hiddenAchs><i class="fal flaticon-warning"></i> <span> &nbsp;Solicitar asistencia &nbsp;&nbsp;</span><i class="fal fa-chevron-up"></i></button>
+                                    <div id="listaAsistencia" style="display:none;">
+                                        <ul class="lista-asistencia">
+                                            <li><button id="btnSolicitarAsistMedicoDomi" type="button" class="btn-atencion ml-2 mt-3 mt-lg-0" @hiddenUnab @hiddenBoxEspecial @hiddenUoh @hiddenAchs style="background-color:#17B2C2"><i class="fal fa-ambulance" style="color:#FFFFFF"></i> <span style="width: 129px;display: inline-block; text-align:left; color:#FFFFFF">&nbsp;Ambulancia</span></button></li>
+                                            <li><button id="btnSolicitarAsistAmbulancia" type="button" class="btn-atencion ml-2 mt-3 mt-lg-0" @hiddenUnab @hiddenBoxEspecial @hiddenUoh @hiddenAchs style="background-color:#17B2C2"><i class="fal fa-user-md" style="color:#FFFFFF"></i> <span style="width: 133px;display: inline-block; text-align:left; color:#FFFFFF">&nbsp;    Medico Domiciliario</span></button></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="cont-btn-panel">
+                            <button id="panel_anura" type="button" class="btn-atencion ml-2 mt-3 mt-lg-0" @hiddenUnab @hiddenBoxEspecial @hiddenUoh @hiddenAchs><i class="fal fa-file-alt"></i> <span>SmartCheck</span></button>
+                            <button id="panel_archivos" class="btn-atencion" type="button" title="Adjuntos" @hiddenAchs><i class="fal fa-paperclip"></i> <span class="fuente-accesible">Adjuntos</span></button>
+                            <button id="panel_historial" class="btn-atencion" type="button" title="Historial" @hiddenBoxEspecial @hiddenAchs><i class="fal fa-history"></i> <span class="fuente-accesible">Historial</span></button>
+                            <button id="panel_antecedentes_medicos" class="btn-atencion" type="button" title="Antecedentes Médicos" @hiddenAchs><i class="fal fa-history"></i> <span>Antecedentes Médicos</span></button>
+                            <button id="panel_chat" href="javascript:void(0)" class="btn-atencion btn-chat ml-auto" type="button" title="Chat"><i class="fal fa-comments"></i> <span class="fuente-accesible">Chat</span> </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="div-call" class="col-12 col-md-3 mt-2 d-none">
+                        <h5>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
+                            </svg> Llamar a paciente
+                        </h5>
+                        <div class="input-group mb-2">
+                            <input type="text" class="form-control" placeholder="Ingrese Teléfono" aria-label="Ingrese Teléfono" aria-describedby="Campo para ingresar fono de paciente" name="phone-number" value="@telefono" id="phone-number" size="11" />
+                            <button type="button" id="call" class="btn btn-primary btn-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
+                                    <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z" />
+                                    <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                                </svg>
+                                <span>Llamar</span>
+                            </button>
+                            <button type="button" id="hangup" class="btn btn-danger btn-sm d-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-phone" viewBox="0 0 16 16">
+                                    <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z" />
+                                    <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                                </svg>
+                                Colgar
+                            </button>
+
+                        </div>
+                        <div id="status"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="headName2" />
+<style>
+    .box {
+        height: 60px;
+        width: 120px;
+        font: bold 1.6em dotum, "lucida sans", arial;
+        align-content: center;
+        border-radius: 9px;
+    }
+
+</style>
+
+@section Scripts {
+    <script src="~/js/Usuario/config.js?9rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/config.js?rnd=@NumeroRandom.GetRandom()';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+            var idEdit = @ViewBag.idEdit;
+            window.idEdit = idEdit;
+            var idCliente = '@ViewBag.idCliente';
+            window.idCliente = idCliente;
+            var isPsicopedagogiaUnab = @isPsicopedagogiaUnab.ToString().ToLower();
+            window.isPsicopedagogiaUnab = isPsicopedagogiaUnab;
+        })()
+    </script>
+    <script src="~/js/Paciente/atencion-box.js" type="module"></script>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}

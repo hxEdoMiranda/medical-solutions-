@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+
+<div class="fade-in lecture">
+    <section class="container-fluid library">
+        <div class="container inner-section">
+            <partial name="~/Views/Biblioteca/_Header.cshtml" model="Model" view-data="ViewData" />
+        </div>
+    </section>
+
+    <section class="container-fluid main">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12">
+                    <partial name="~/Views/Biblioteca/_HeaderSeccion.cshtml" model="Model" view-data="ViewData" />
+                </div>
+            </div>
+            
+            <partial name="~/Views/Biblioteca/_CardsCharlas.cshtml" model="Model" view-data="ViewData" />
+
+
+        </div>
+    </section>
+
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+        <script src="~/js/Biblioteca/biblioteca.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}

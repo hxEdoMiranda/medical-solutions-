@@ -1,0 +1,920 @@
+/*ccu*/
+
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');*/
+
+:root {
+    --primary: #080707;
+    --secondary: #0A4E31;
+    --tertiary: #27273F;
+    --accent: #58AD30;
+    --light: #FFF;
+    --font-family: 'Mulish', sans-serif;
+}
+
+
+.andes{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.mensaje-confirmacion.caja-base {
+    padding: 2rem 2rem;
+    max-width: 1200px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    padding: 32px 24px;
+    padding-bottom: 1.5rem;
+    /* background-image: url(../../img/check-confirmacion.svg); */
+    background-repeat: no-repeat;
+    background-position: 95% 76%;
+    background-size: 140px;
+}
+
+body {
+    /* font-family: var(--font-family) !important;*/
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-family) !important;
+}
+
+/*Login*/
+.logotipo-desktop {
+    background-image: url(../../img/andes-salud/logotipo.png);
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/andes-salud/logotipo.png);
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: var(--primary);
+    font-weight: 900;
+}
+
+.form-group .ms-label {
+    color: var(--tertiary) !important;
+}
+
+.btn-primary {
+    background-color: #003DA5;
+    border-color: #003DA5;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.divider-medismart {
+    display: flex !important;
+    margin-bottom: 2rem;
+}
+
+.logo-convenios {
+    /* display: none;*/
+    margin-bottom: 2rem;
+}
+
+/* Im�genes Login */
+.img1 {
+    background-image: url(../../img/andes-salud/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/andes-salud/login/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/andes-salud/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/andes-salud/login/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/andes-salud/login/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/andes-salud/login/960x978.jpg);
+}
+
+/*Home*/
+
+.body-home {
+    background-image: url(../../img/home/logo-fondo.svg), linear-gradient(180deg, #54C8E8 0%, #5186BE) !important;
+    background-repeat: no-repeat !important;
+    background-position: bottom right !important;
+    background-attachment: fixed !important;
+}
+
+.body-home .logo-home img {
+    width: 130px;
+}
+
+.body-home .menu-top .item-menu-top .menu-top .label-menu,
+.body-home .menu-top .item-menu-top .menu-top .label-menu-pac {
+    color: #fff;
+    font-weight: bold;
+}
+
+.top-banner .legend {
+    font-weight: 500;
+}
+
+.body-home .card-plan .preferente::after {
+    content: 'Precio Preferente' !important;
+}
+
+.body-home #btnOrientacion .pronto {
+    display: none;
+}
+
+.menu-top .item-menu-top i,
+.menu-top .label-menu {
+    color: #003DA5;
+}
+
+.menu-top .item-menu-top:hover i,
+.menu-top .item-menu-top:hover .label-menu,
+.menu-top .item-menu-top:hover .label-menu-pac {
+    color: #C4C4C4 !important;
+}
+
+
+.menu-top .label-menu, .menu-top .label-menu-pac {
+    color: #003DA5;
+    font-weight: bold;
+    margin: 0 6px;
+}
+
+.kt-menu__item a,
+.kt-menu__item i {
+    color: #003DA5
+}
+
+    .kt-menu__item a .ms-label-menu {
+        color: #003DA5
+    }
+
+.kt-menu__item:hover a,
+.kt-menu__item:hover i {
+    color: #54C8E8 !important;
+}
+
+.accesible-btn button {
+    color: #0081A4;
+    border: 1px solid #003DA5;
+}
+
+.accesible-btn button:hover {
+    background-color: var(--primary);
+    border-color: var(--primary)
+}
+
+.busqueda-profesionales {
+    border: 2px solid #003DA5;
+}
+
+    .busqueda-profesionales i {
+        color: #003DA5
+    }
+
+    .busqueda-profesionales .btn-outline-primary {
+        color: #003DA5
+    }
+
+.caja-especialidad.active {
+    background-color: #54C8E8;
+}
+
+.caja-especialidad {
+    background-color: var(--secondary);
+}
+
+.inner-especialidad strong {
+    color: var(--light)
+}
+
+.step.active .step-icon {
+    background-color: #003DA5;
+}
+
+.stepper {
+    background-image: url(../../img/andes-salud/fondo-banner2.svg);
+}
+
+    .stepper .flecha {
+        color: #003DA5
+    }
+
+    .stepper img {
+        border-color: #003DA5
+    }
+
+.step-triage .titulo-step,
+.step-triage .label-step{
+    color: var(--primary);
+}
+
+.step-triage .step-icon{
+    background-color: var(--primary);
+}
+
+.step.active .label-step {
+    color: var(--primary)
+}
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: #003DA5
+}
+
+.caja-profesional .fecha-atencion {
+    color: #646C9A
+}
+
+.front-fecha-atencion {
+    border: 1px solid rgba(35, 33, 114, .3)
+}
+
+    .front-fecha-atencion strong:before {
+        color: #003DA5;
+        font-weight: 900;
+    }
+
+.especialidad-profesional {
+    color: #003DA5
+}
+
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+
+.top-banner {
+    background-image: url(../../img/andes-salud/fondo-banner.svg);
+}
+
+.top-banner img {
+    border-color: rgba(255, 255, 255, .3)
+}
+
+.top-banner .legend {
+    
+    font-weight: 700 !important
+}
+
+.banner_topsc .legend .text-warning {
+    color: var(--primary) !important;
+}
+
+.top-banner.banner_topsc {
+    background-image: url(../../img/ccu/fondo-banner2.svg);
+}
+
+.text-warning {
+    color: #003BAA !important;
+    font-weight: 700 !important
+}
+
+.menu-top .item-menu-top .logotipo-mobile {
+    width: 100px !important;
+    position: relative;
+    top: 7px;
+    left: -5px;
+}
+
+/*Sala espera*/
+.hotspot-icon .cont-icon {
+    background-color: #003DA5;
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: #fff;
+    color: #003DA5
+}
+
+.cont-icon.hotspot-redes {
+    background-color: #003DA5;
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+}
+
+.btn-guardar-info,
+.btn-success {
+    background-color: var(--primary);
+    border-color: var(--primary);
+
+}
+
+.btn-guardar-info:hover,
+.btn-success:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--primary)
+}
+
+.btn.btn-outline-secondary {
+    background-color: #003DA5;
+    border-color: #003DA5;
+    color: #fff
+}
+
+#reporte .cont-icon {
+    background-color: #003DA5;
+}
+
+#reporte:hover .cont-icon {
+    background-color: #fff;
+    color: #003DA5
+}
+
+#hs-g .cont-icon {
+    background-color: var(--primary);
+}
+
+#hs-g:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+.toolbar-option {
+    color: #003DA5
+}
+
+.toolbar-option.active {
+    color: var(--secondary)
+}
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: #003DA5;
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--accent);
+}
+
+.btn-sala:hover {
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion,
+.cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion:hover,
+.cont-btn-vc .btn-atencion:hover {
+    background-color: rgba(237, 110, 0, 0.1);
+    color: var(--primary);
+}
+
+.hotspot-icon {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.hotspot-icon i {
+    text-shadow: none;
+}
+
+.hotspot-icon:hover {
+    color: #FFF;
+}
+
+@media (max-width: 668px) {
+
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+
+    .cont-consentimiento-informado {
+        height: auto;
+        max-height: 60px;
+        min-height: unset;
+    }
+
+    div#kt_content {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .top-banner .legend {
+        text-align: left;
+        font-size: 1.3rem;
+    }
+}
+
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/andes-salud/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/andes-salud/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/andes-salud/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/andes-salud/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/andes-salud/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/andes-salud/login/548x850.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/andes-salud/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/andes-salud/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/andes-salud/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/andes-salud/login/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/andes-salud/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/andes-salud/login/960x978.jpg);
+    }
+}
+
+
+/*Prehome*/
+
+.prehome__plans {
+    height: 450px;
+}
+
+.prehome__plan {
+    width: 100%;
+    padding: 0;
+}
+
+.prehome__plan ul {
+    list-style-image: url('../../img/ccu/bullet.svg');
+
+    margin-top: 32px;
+    height: 350px;
+    font-size: 16px;
+}
+
+.prehome__title {
+    color: #FFF;
+}
+/*
+.kt-login__extra.registro {
+    display: none;
+}*/
+
+.logo-convenios.convenioChile+hr {
+    display: none;
+}
+
+.kt-login.kt-login--v3.kt-login--signin .kt-login__signin .titulo-card-farmacia {
+    text-align: center;
+}
+
+@media (max-width: 991.98px) {
+    .prehome__plans {
+        height: auto;
+    }
+}
+
+.ccu-modal-contenedor {
+    display: flex;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 32px;
+    width: 660px;
+    height: 354px;
+    background-image: url(../../img/ccu/dr-modal.png);
+    background-repeat: no-repeat, repeat;
+    background-position: 4% 2rem, 0;
+    flex-direction: row;
+}
+
+.modal-paciente .modal-content {
+    margin: auto;
+    margin-top: 8rem;
+    border: none;
+    padding: 5px 32px;
+}
+
+.ccu-modal-contenedor-titulos {
+    padding: 2rem 0rem 0rem 14rem;
+}
+
+.ccu-modal-dr {
+    height: 23rem;
+    width: 29rem;
+}
+
+.ccu-modal-logo {
+    padding: 1rem 0rem 1rem 0rem;
+}
+
+
+.ccu-modal-contenedor-imagen {
+    padding: 0rem;
+}
+
+.ccu-modal-titulo-uno {
+    color: #004E91;
+    font-family: Mulish;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    padding-bottom: 0.5rem;
+}
+
+
+.ccu-modal-titulo-dos {
+    color: #004E91;
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    padding-bottom: 0.5rem;
+}
+
+.login-footer .kt-container {
+    display: none;
+}
+
+.letras-login {
+    color: #003BAA !important;
+    border: 1px solid #003BAA !important;
+}
+
+.iconos-centrados{
+    display: flex;
+    justify-content: center
+}
+
+.body-home .card-plan .costo::after, .body-home .card-plan .pronto-card::after {
+    content: 'VALOR PREFERENTE';
+    display: inline-block;
+}
+
+.body-home .card-plan .costo, .body-home .card-plan .pronto-card, .body-home .card-plan .atencion-24 {
+   
+    width: 130px;
+    
+}
+
+.accesible-tools-desktop .accesible-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.terminos{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.copy{
+    color: #fff;
+    font-weight: 600 !important
+}
+#terminosFooter {
+    color: #fff;
+    font-weight: 600 !important
+}
+
+#politicas {
+    color: #fff;
+    font-weight: 600 !important
+}
+.front .btn-agendar {
+    background-color: #003DA5 !important;
+    color: #FFF !important;
+}
+
+.card {
+    border: 1px solid #54C8E8;
+}
+
+.icono-carga {
+    width: 48px;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.cargas {
+    margin-top: 5px;
+}
+
+.body-home .menu-top .item-menu-top i, .body-home .menu-top .item-menu-top .label-menu {
+    color: #fff;
+}
+
+.atenciones-vive{
+    display: none !important;
+}
+
+
+
+.contenedor {
+    border-radius: 12px;
+    max-width: 65rem;
+    width: 90%;
+    background: #fff;
+    padding: 20px;
+    margin: 20px auto;
+}
+
+.contenedor-titulo {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+}
+
+.titulo {
+    font-family: "Mulish", sans-serif;
+    font-size: 16px;
+    color: #475467;
+    font-weight: 400;
+    margin-top: 1rem;
+}
+
+.subtitulos {
+    font-family: "Mulish", sans-serif;
+    font-size: 14px;
+    color: #475467;
+    font-weight: 500;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 2px solid #D0D5DD;
+    border-radius: 8px;
+    height: 44px;
+}
+
+    input[type="text"]::placeholder {
+        color: #667085;
+        /* color del texto del placeholder */
+        font-family: "Mulish", sans-serif;
+        font-weight: 400;
+    }
+
+.cont-btn {
+    display: flex;
+    margin-top: 2rem;
+    justify-content: end;
+}
+
+.btn-crear {
+    background: #003DA5;
+    border: 1px solid #003DA5;
+    color: #fff;
+    width: 156px;
+    height: 34px;
+    border-radius: 4px;
+}
+
+@media only screen and (max-width: 600px) {
+    .contenedor {
+        padding: 10px;
+    }
+}
+
+.cerrar {
+    cursor: pointer;
+    color: #475467;
+    font-size: 24px;
+}
+
+.convenioChile {
+    display: block !important;
+}
+
+.logos-andes {
+    display: flex !important;
+    justify-content: space-around;
+}
+
+.head-crear-usuario h4 {
+    color: #646C9A !important;
+    font-weight: 400; 
+
+}
+
+.registrate-aqui {
+    color: #003DA5 !important;
+    font-weight: 700;
+}
+
+.atenciones-logo{
+    display: none !important;
+}
+
+.wow .tag.active {
+    background-color: #003DA5 !important;
+    color: var(--light);
+    border: 1px solid #003DA5;
+}
+
+.wow .tag:hover {
+    background-color: #54C8E8 !important;
+    color: var(--light);
+    border: 1px solid #54C8E8 !important;
+}
+
+.modal-header.header-cons {
+    border-bottom: none !important;
+    padding: 0 !important;
+}
+
+.close-cons {
+    float: right;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 0;
+    color: #000;
+    text-shadow: 0 4px 0 #979797;
+}
+
+.modal-header .close-cons {
+    padding: 0;
+    margin: -1rem -1rem -1rem auto;
+    background: #B3B3B3;
+    color: #fff;
+    border-radius: 30px;
+    width: 55px;
+    height: 55px;
+
+}
+
+
+
+.mod-cons-title {
+    font-size: 36px;
+    color: #003DA5;
+
+}
+.mod-cons-p {
+    color: #333333;
+    font-size: 16px;
+    margin-top: 2rem;
+}
+.mod-cons-btns {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5rem;
+}
+
+.modal .modal-content {
+    border-radius: 20px !important;
+    max-width: 805px !important;
+}
+
+.modal-content.content-cons {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ebedf2;
+    border-radius: 16px;
+    outline: 0;
+    padding: 2rem;
+}
+
+.modal.show.modal-dialog.dialog-cons {
+    margin: auto;
+    transform: none;
+    width: 805px;
+}
+
+.modal.show.modal-dialog.dialog-cons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+@media (min-width: 576px) {
+    .modal-dialog.dialog-cons {
+        max-width: 805px;
+        margin: 1.75rem auto;
+    }
+}
+
+.btn-no-acepto {
+    border: 1px solid #003DA5 !important;
+    color: #003DA5;
+    width: 138px;
+    height: 38px;
+    font-weight: 800;
+    background: #FFF;
+    font-size: 11px;
+}
+
+.btn-acepto {
+    border: 1px solid #003DA5 !important;
+    color: #fff;
+    width: 138px;
+    height:38px;
+    font-weight: 800;
+    background: #003DA5;
+    font-size: 11px;
+}
+/*.modal-content-cons {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ebedf2;
+    border-radius: 16px;
+    outline: 0;
+}
+
+.modal .modal-content-cons {
+    
+    max-width: 805px !important
+        
+}
+
+@media (min-width: 576px) {
+    .modal-dialog-cons {
+        max-width: 805px;
+        margin: 11.75rem auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+}*/

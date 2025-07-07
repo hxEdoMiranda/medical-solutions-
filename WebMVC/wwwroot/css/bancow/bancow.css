@@ -1,0 +1,973 @@
+/*Banco W*/
+
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');*/
+
+
+/* Global styles: */
+
+:root {
+    --primary: #3bc1cd;
+    --secondary: #7f56d9;
+    --tertiary: #2d2d2d;
+    --accent: #fdb727;
+    --light: #fff;
+    --font-family: 'Mulish', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-family) !important;
+}
+
+
+/*scrollbar Track */
+*::-webkit-scrollbar-track {
+    background-color: blue !important;
+}
+
+/* Handle */
+*::-webkit-scrollbar-thumb {
+    background-color: red !important;
+}
+
+    /* Handle on hover */
+    *::-webkit-scrollbar-thumb:hover {
+        background-color: lawngreen !important;
+    }
+
+.fila-unica.alerta-sala-new {
+   background-color: #044254;
+}
+
+/*dropdown vet bancow*/
+
+.dropdown-listVet {
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+/*fin dropdown vet bancow*/
+/*Login*/
+
+.logotipo-desktop {
+    background-image: url(../../img/bancow/logotipo.svg);
+    width: 360px;
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/bancow/logotipo.svg);
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 0px;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: var(--primary);
+    font-weight: 900;
+}
+
+.kt-login__signin .kt-login__extra {
+    margin: 3rem auto 1rem auto !important
+}
+
+.form-group .ms-label {
+    color: var(--tertiary) !important;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.divider-medismart {
+    display: flex !important;
+    margin-bottom: 2rem;
+}
+
+/*
+
+.logo-convenios {
+    margin-bottom: 2rem !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+}
+
+.logo-convenios img {
+    width: 210px;
+    height: auto;
+}
+
+*/
+
+.kt-login .whatsapp {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.kt-login .whatsapp h3 {
+    text-transform: uppercase;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.kt-login .whatsapp h3 i {
+    font-size: 36px;
+    color: #3BC1CD;
+}
+
+/* Imagenes Login */
+.img1, .img2, .img3, .img4, .img5, .img6 {
+    background-image: url(../../img/bancow/login/960x978.jpg) !important;
+}
+
+
+.body-home {
+    background-color: #fff !important;
+    background-image: url(../../img/bancow/logo-fondo.svg) !important;
+    background-repeat: no-repeat !important;
+    background-position: top 300px right 100px, left 1vw top 33vh !important;
+    background-attachment: fixed !important;
+    background-size: 500px, 40px !important;
+}
+
+.body-home .logo-home img {
+    width: 130px;
+}
+
+.body-home .card-plan .costo,
+.body-home .card-plan .pronto-card,
+.body-home .card-plan .atencion-24 {
+    background-color: var(--secondary);
+    color: #ffffff;
+}
+
+.body-home #btnAtencionDirectaGeneral .atencion-24 {
+    display: inline-flex;
+}
+
+.body-home .cont-card h1 {
+    color: var(--secondary);
+    font-weight: 800;
+    max-width: 130px;
+}
+
+.body-home .cont-card .card {
+    background-color: #fff;
+    border: 1px solid #eeee;
+    box-shadow: 0px 0px 10px #eee;
+}
+
+.body-home .footer-home .terminos * {
+    color: var(--primary) !important;
+    display: none
+}
+
+.body-home .footer-home .accesible-btn {
+    gap: 10px;
+}
+
+.body-home .footer-home .accesible-btn button {
+    color: var(--tertiary);
+    border: 1px solid var(--tertiary);
+}
+
+.modal-especialidad .logo-cliente {
+    max-width: 300px !important;
+}
+
+.top-banner .legend {
+    font-weight: 500;
+    color: var(--primary);
+}
+
+.menu-top .item-menu-top i,
+.menu-top .label-menu,
+.menu-top .label-menu-pac {
+    color: var(--primary) !important;
+}
+
+.menu-top .label-menu,
+.menu-top .label-menu-pac {
+    font-weight: 600;
+}
+
+.menu-top .item-menu-top:hover i,
+.menu-top .item-menu-top:hover .label-menu,
+.menu-top .item-menu-top:hover .label-menu-pac {
+    color: #3BC1CD !important;
+}
+
+.kt-menu__item a,
+.kt-menu__item i {
+    color: var(--primary) !important;
+}
+
+.kt-menu__item a .ms-label-menu {
+    color: var(--primary) !important;
+}
+
+.kt-menu__item:hover a,
+.kt-menu__item:hover i,
+.kt-menu__item a:hover .ms-label-menu {
+    color: #3BC1CD !important;
+}
+
+.accesible-btn button {
+    color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+.accesible-btn button:hover {
+    background-color: var(--primary);
+    border-color: var(--primary)
+}
+
+.busqueda-profesionales {
+    border: 2px solid var(--tertiary);
+}
+
+.busqueda-profesionales i {
+    color: var(--tertiary)
+}
+
+.busqueda-profesionales .btn-outline-primary {
+    color: var(--tertiary)
+}
+
+select#especialidades {
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.caja-especialidad.active {
+    background-color: var(--secondary);
+}
+
+.caja-especialidad {
+    background-color: var(--tertiary);
+}
+
+.inner-especialidad strong {
+    color: var(--light)
+}
+
+.step.active .step-icon {
+    background-color: var(--tertiary);
+}
+
+.stepper {
+    background-image: url(../../img/bancow/fondo-banner2.svg);
+}
+
+.stepper .flecha {
+    color: var(--primary)
+}
+
+.stepper img {
+    border-color: var(--primary)
+}
+
+.step.active .label-step {
+    color: var(--tertiary);
+}
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: var(--tertiary)
+}
+
+.caja-profesional .fecha-atencion {
+    color: var(--secondary)
+}
+
+.front-fecha-atencion {
+    border: 1px solid rgba(35, 33, 114, .3)
+}
+
+.front-fecha-atencion strong:before {
+    color: var(--secondary);
+    font-weight: 900;
+}
+
+.especialidad-profesional {
+    color: var(--tertiary)
+}
+
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+
+.top-banner {
+    background-image: url(../../img/bancow/fondo-banner.svg);
+}
+
+.top-banner img {
+    border-color: rgba(255, 255, 255, .3)
+}
+
+.top-banner .legend {
+    margin-left: 11vw;
+    color: var(--tertiary) !important;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.text-warning {
+    color: var(--tertiary) !important;
+}
+
+.banner_topsc .legend .text-warning {
+    color: var(--primary) !important;
+}
+
+.top-banner.banner_topsc {
+    background-image: url(../../img/bancow/fondo-banner.svg);
+}
+
+.menu-top .item-menu-top .logotipo-mobile {
+    width: 60px !important;
+    background-position: center;
+}
+
+/*Sala espera*/
+
+.hotspot-icon .cont-icon {
+    background-color: var(--primary);
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: var(--light);
+}
+
+.hotspot-icon .cont-icon i {
+    color: var(--light) !important;
+}
+
+.hotspot-icon:hover .cont-icon i {
+    color: var(--tertiary) !important;
+}
+
+.cont-icon.hotspot-redes {
+    background-color: var(--primary);
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+}
+
+.btn-guardar-info,
+.btn-success {
+    background-color: var(--primary);
+    border-color: var(--primary);
+
+}
+
+.btn-guardar-info:hover,
+.btn-success:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--primary)
+}
+
+.btn.btn-outline-secondary {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--primary)
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+}
+
+#reporte .cont-icon i {
+    color: var(--light) !important;
+}
+
+
+
+.bancow-icon .cont-icon {
+    background-color: var(--primary) !important;
+}
+
+.bancow-icon .cont-icon i {
+    color: var(--light) !important;
+}
+
+
+#reporte:hover .cont-icon i {
+    color: var(--tertiary) !important;
+}
+
+#reporte:hover .cont-icon {
+    background-color: var(--light);
+}
+
+#hs-g .cont-icon {
+    background-color: var(--light);
+}
+
+#hs-g:hover .cont-icon {
+    background-color: var(--primary);
+}
+
+.toolbar-option {
+    color: var(--primary)
+}
+
+.toolbar-option.active {
+    color: var(--secondary)
+}
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--tertiary)
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--secondary)
+}
+
+.btn-sala:hover {
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion,
+.cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion:hover,
+.cont-btn-vc .btn-atencion:hover {
+    background-color: rgba(237, 110, 0, 0.1);
+    color: var(--primary);
+}
+
+.hotspot-icon {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.hotspot-icon i {
+    text-shadow: none;
+}
+
+.hotspot-icon:hover {
+    color: #FFF;
+}
+
+@media (max-width: 668px) {
+
+    .body-home {
+        background-image: url(../../img/bancow/vigilado.svg);
+        background-repeat: no-repeat;
+        background-position: left 1vw top 40vh;
+        background-attachment: fixed;
+        background-size: 30px;
+    }
+
+    .body-home .cont-home {
+        margin-bottom: 2rem;
+    }
+
+    .powered,
+    .powered * {
+        color: var(--primary) !important;
+    }
+
+    div#kt_footer {
+        flex-direction: column;
+        margin: 3rem 0 0 0;
+        gap: 3rem;
+    }
+
+    .leyenda-card-home {
+        color: var(--primary);
+    }
+
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+
+    .body-home .logo-home {
+        row-gap: 1rem;
+    }
+
+    .top-banner .legend {
+        text-align: left;
+        font-size: 16px;
+        margin-left: auto;
+    }
+
+    .directorio-vet h3 {
+        text-align: center !important;
+    }
+
+
+    .directorio-vet h2 {
+        text-align: center !important;
+    }
+
+    .bancow-dirVet-pdf {
+        margin-top: 1rem !important;
+    }
+}
+
+#ciudadesList li {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.list-ciudades-dir-vet {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+
+.list-ciudades-dir-vet::-webkit-scrollbar {
+    width: 5px;
+    background-color: #f4f4f4;
+
+}
+
+.list-ciudades-dir-vet::-webkit-scrollbar-thumb {
+    background-color: #3498db;
+}
+
+
+.list-ciudades-dir-vet {
+    scrollbar-width: thin;
+    scrollbar-color: #3498db #f4f4f4;
+}
+
+#ciudadesList hr {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+#ciudadesList {
+    font-size: 11px;
+}
+
+.body-home .footer-home {
+    color: #FFF;
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 9rem;
+    max-width: 1200px;
+    margin: auto;
+    margin-top: 5rem;
+}
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/bancow/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/bancow/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/bancow/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/bancow/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/bancow/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/bancow/login/548x850.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/bancow/login/960x978.jpg) !important;
+    }
+
+    .img2 {
+        background-image: url(../../img/bancow/login/960x978.jpg) !important;
+    }
+
+    .img3 {
+        background-image: url(../../img/bancow/login/960x978.jpg) !important;
+    }
+
+    .img4 {
+        background-image: url(../../img/bancow/login/960x978.jpg) !important;
+    }
+
+    .img5 {
+        background-image: url(../../img/bancow/login/960x978.jpg) !important;
+    }
+
+    .img6 {
+        background-image: url(../../img/bancow/login/960x978.jpg) !important;
+    }
+}
+
+
+/*Prehome*/
+.prehome__card {
+    padding: 4rem 0;
+}
+
+.prehome__plans {
+    height: 450px;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.prehome__plan {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    flex-shrink: 1;
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.prehome__plan:first-child {
+    border-right: 1px solid #ddd;
+}
+
+.prehome__plan h2 {
+    width: 80%;
+    min-height: 4.5rem;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--secondary);
+}
+
+.prehome__plan ul {
+    margin: 32px auto 0 auto;
+    width: 80%;
+    height: 350px;
+    padding-left: 24px;
+}
+
+
+
+.prehome__plan ul li {
+    list-style-image: url(../../img/bancow/bullet.png);
+    text-align: left;
+}
+
+.prehome__title {
+    color: #98A2B3;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.prehome__plan .btn {
+    margin: auto auto 0;
+    border: 1px solid var(--secondary);
+    background: #fff;
+    color: var(--secondary);
+    font-weight: bold;
+}
+
+.kt-login__extra.registro {
+    display: none;
+}
+
+.logo-convenios.convenioChile+hr {
+    display: none;
+}
+
+.kt-login.kt-login--v3.kt-login--signin .kt-login__signin .titulo-card-farmacia {
+    text-align: center;
+}
+
+@media (max-width: 991.98px) {
+    .prehome__plans {
+        height: auto;
+    }
+
+    .prehome__plan:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        margin-top: 3rem;
+        border-top: 1px solid #ddd;
+        padding-top: 3rem;
+    }
+
+    .directorio-vet .row.d-flex {
+        flex-direction: column;
+        margin: 1rem auto;
+        padding: 8px;
+        align-items: center;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .sala-espera-mobile img {
+        margin-top: -580px !important;
+    }
+
+
+}
+
+.bancow-modal-contenedor {
+    display: flex;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 32px;
+    width: 660px;
+    height: 354px;
+    background-image: url(../../img/bancow/dr-modal.png);
+    background-repeat: no-repeat, repeat;
+    background-position: 4% 2rem, 0;
+    flex-direction: row;
+}
+
+.modal-paciente .modal-content {
+    margin: auto;
+    margin-top: 8rem;
+    border: none;
+    padding: 5px 32px;
+}
+
+.bancow-modal-contenedor-titulos {
+    padding: 2rem 0rem 0rem 14rem;
+}
+
+.bancow-modal-dr {
+    height: 23rem;
+    width: 29rem;
+}
+
+.bancow-modal-logo {
+    padding: 1rem 0rem 1rem 0rem;
+}
+
+
+.bancow-modal-contenedor-imagen {
+    padding: 0rem;
+}
+
+.bancow-modal-titulo-uno {
+    color: #004E91;
+    font-family: Mulish;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    padding-bottom: 0.5rem;
+}
+
+
+.bancow-modal-titulo-dos {
+    color: #004E91;
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    padding-bottom: 0.5rem;
+}
+
+/*Directorio Veterinario Landing*/
+
+.directorio-vet {
+    margin: 3rem auto;
+    padding: 3rem;
+    border-radius: 16px;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.directorio-vet h2,
+.directorio-vet h3 {
+    margin-bottom: 2rem;
+    font-family: 'Mulish', sans-serif !important;
+}
+
+.directorio-vet h2 .small-text {
+    font-size: 36px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #0282A6 -2.27%, #5B5AC7 89.98%);
+    background-clip: text;
+}
+
+.directorio-vet h2 .large-text {
+    font-size: 48px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #0282A6 -2.27%, #5B5AC7 89.98%);
+    background-clip: text;
+
+}
+
+.directorio-vet h3 {
+    color: #646C9A;
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 24px;
+    text-align: left;
+}
+
+.directorio-vet img.portada {
+    display: block;
+    width: 100%;
+}
+
+/*Dropdown directorio veterinario*/
+
+.directorio-vet .dropdown-menu {
+    min-width: 250px;
+}
+
+.directorio-vet .dropdown-item {
+    cursor: pointer;
+}
+
+.dropdown-toggle {
+    width: 100% !important;
+    border: 1px solid #37A0AD;
+    color: #0282A6;
+    text-transform: unset;
+    font-weight: 700;
+    letter-spacing: normal;
+}
+
+.directorio-vet .content {
+    display: none;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #f6f6f6;
+    margin: 2rem auto;
+    border-radius: 10px;
+    min-height: 130px;
+    max-height: 130px;
+    overflow-y: scroll;
+}
+
+.dirvet-wrap .content * {
+    color: #646C9A !important;
+}
+
+.dirvet-wrap .content h3 {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.dirvet-wrap .content p {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 0.5px solid rgb(100 108 154 / 40%);
+}
+
+.bancow-dirVet-pdf {
+    display: flex;
+    align-self: flex-end;
+    gap: 10px;
+    margin-top: auto;
+    padding: 16px 20px !important;
+    max-width: 260px;
+    text-transform: unset;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    line-height: 20px;
+    border: 1px solid #37A0AD;
+}
+
+.bancow-dirVet-pdf:hover,
+.bancow-dirVet-pdf:active,
+.bancow-dirVet-pdf:focus {
+    background-color: var(--primary);
+}
+
+/*Scrollbar*/
+
+
+/* Track */
+.content::-webkit-scrollbar-track  {
+    background-color: blue !important;
+}
+
+
+/* Handle */
+.content::-webkit-scrollbar-thumb {
+    background-color: #67bce1 !important;
+}
+
+/* Handle on hover */
+.content::-webkit-scrollbar-thumb:hover {
+    background-color: #67bce1 !important;
+}
+
+
+
+.term-none {
+    display: none !important
+}
+
+.footer-bancow {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5rem;
+    padding: 2rem;
+}
+
+.footer-home .terminos {
+
+    display: none;
+
+}
+
+/*.terminos-bancow {
+    display: flex !important
+}*/

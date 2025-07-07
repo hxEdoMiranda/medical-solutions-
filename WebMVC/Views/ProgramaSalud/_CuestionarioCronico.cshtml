@@ -1,0 +1,97 @@
+﻿<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid configuracion-paciente">
+
+    <div class="confirmar-icon-container">
+        <div class="confirmar-icon active-step">
+            <img src="/img/programa-salud/agendamiento-step-1.svg" alt="">
+
+        </div>
+        <div class="confirmar-line"></div>
+
+        <div class="confirmar-icon ">
+            <img src="/img/programa-salud/agendamiento-step-2.svg" alt="">
+
+        </div>
+    </div>
+    <div id="loaderNom35">
+    </div>
+    <div class="ps-cuestionario">
+        <div class="ps-cuestionario-content">
+            <!-- Header -->
+            <h2 class="ps-cuestionario-header">
+                <span class="ps-cuestionario--icon"></span>
+                <span class="ps-cuestionario--title">Cuestionario para Paciente Crónico</span>
+            </h2>
+            <!-- Instructions -->
+            <div class="ps-cuestionario-instrucciones">
+                <div class="row">
+                    <div class="col-12 my-4">
+                        <!-- <img class="ps-cuestionario-instrucciones--icon" src="../../img/sura/programa-salud/ps-notes-icon.svg"> -->
+                        <span class="ps-cuestionario-instrucciones--item"><strong>Instrucciones:</strong> Comienza a responder las siguientes preguntas escogiendo sólo una alternativa. Al finalizar haz click en "siguiente" para inscribirte en el programa y agendar una hora con la enfermera.</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Form -->
+            <form class="ps-cuestionario--form" id="psCuestionario1">
+                <h3>Completa tus datos personales y algunos detalles de tu historial clínico ¡Solo tomará unos minutos!</h3>
+                <div class="form-group ps-form-group row">
+                    <div class="col-sm-3">
+                        <label for="inputFirstname">Edad</label>
+                        <input type="number" class="form-control" id="inputEdad" placeholder="" min="1" max="150" required>
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="psCuestionario1__Sexo">Sexo</label>
+                        <select class="form-control selectpicker" id="psCuestionario1__Sexo" title="Seleccione:">
+                            <option>Masculino</option>
+                            <option>Femenino</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="psCuestionario1__Peso">Peso (Kg)</label>
+                        <input type="number" class="form-control selectpicker" id="psCuestionario1__Peso" placeholder="Peso" min="1" max="300" required>
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="inputAddressLine2">Altura (cm)</label>
+                        <input type="number" class="form-control" id="psCuestionario1__Altura" placeholder=" " min="80" max="300" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-3">
+                        <p>Tabaco</p>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="psCuestionario1Radio1" name="psCuestionario1Radio1" class="custom-control-input" required>
+                            <label class="custom-control-label" for="psCuestionario1Radio1">Si</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="psCuestionario1Radio2" name="psCuestionario1Radio1" class="custom-control-input" required>
+                            <label class="custom-control-label" for="psCuestionario1Radio2">No</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <p>Actividad fisica</p>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="psCuestionario1Radio3" name="psCuestionario1Radio2" class="custom-control-input">
+                            <label class="custom-control-label" for="psCuestionario1Radio3">Si</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="psCuestionario1Radio4" name="psCuestionario1Radio2" class="custom-control-input">
+                            <label class="custom-control-label" for="psCuestionario1Radio4">No</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <!-- <label for="inputLastname">Sexo</label> -->
+                        <input type="text" class="form-control" id="inputEspecificar" placeholder="Especifique...">
+                    </div>
+                </div>
+
+                <!-- <button type="button" class="btn btn-primary px-4 float-right">Save</button> -->
+                <div class="form_nom035">
+                    <div class="row">
+                        <div class="col cont-guardar-info">
+                            <a href=# type="button" id="SiguientePs" class="btn btn-success btn-block" metadata="configuracionGuardarPerfil">Siguiente</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

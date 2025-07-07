@@ -1,0 +1,1683 @@
+﻿@using System.Security.Claims
+@using Microsoft.Extensions.Configuration
+@model WebMVC.Models.FichaMedicoViewModel
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Agendar";
+    Layout = "_LayoutPaciente";
+
+}
+
+@section PageStyles  {
+    <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+}
+
+    @{
+    ViewData["idEntidad"] = ViewBag.idAtencion;
+    ViewData["codEntidad"] = Entidades.ATENCIONES;
+    ViewData["uid"] = int.Parse(ViewBag.uid);
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css">
+    <style>
+        .iti {
+            width: 100%;
+        }
+    </style>
+        
+    <style>
+        .swal2-popup.swal2-modal.swal2-show {
+            width: 450px !important;
+        }
+    </style>
+}
+
+@{
+    var urlSmartcheck = Configuration["ServiceUrlSmartcheck"];
+    var smartcheckEspecialidadesObj = ViewBag.smartcheckEspecialidades as List<SmartcheckEspecialidades>;
+    var especialidadPerson = ViewBag.especialidad;
+    bool campoEspecialidad = smartcheckEspecialidadesObj.Any(x => x.IdEspecialidad == especialidadPerson);
+}
+    @Html.Hidden("idEntidad", ViewData["idEntidad"])
+    @Html.Hidden("codEntidad", ViewData["codEntidad"])
+    @Html.Hidden("uid", ViewData["uid"])
+    <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+        <!--Begin::App-->
+        <!-- Start:: Stepper-->
+        <!-- Stepper -->
+        @{
+        var hiddenDirecta = "";
+        var hiddenAgenda = "hidden";
+        var confirmarAnura = "Confirma tu hora";
+        if (Model.personas.CodigoTelefono == "CO")
+        {
+            confirmarAnura = "Confirma tu cita";
+        }
+        var imgAnura = "/img/anura/anura.png";
+        var checkIcon = "/img/anura/icon-check.svg";
+        var hiddenAnura = "";
+        var tituloAnura = "Te invitamos a realizarte un exámen de tus signos vitales con la ayuda de I.A en nuestra plataforma.";
+        if (ViewBag.tipoatencion == "I")
+        {
+            confirmarAnura = "Ir a la atención";
+            tituloAnura = "Los resultados de Smart Check han sido guardados y están disponibles para tu atención médica.";
+        }
+
+        if (ViewBag.checkAnura)
+        {
+            tituloAnura = "Los resultados de smart check han sido guardados y están disponibles para tu atención.";
+            imgAnura = "/img/anura/anura2.jpg";
+            checkIcon = "/img/anura/icon-check2.svg";
+            hiddenAnura = "hidden";
+        }
+        if (ViewBag.tipoatencion != "I")
+        {
+            hiddenDirecta = "hidden";
+            hiddenAgenda = "";
+        }
+
+    }
+    <div class="row">
+        <div class="col">
+            @{
+                if (ViewBag.idCliente == "108")
+                {
+
+                    <h1 class="titulo-servicio mb-4">Agendar atención</h1>
+                }
+
+            }
+        </div>
+    </div>
+    @{
+        if (ViewBag.HostURL.ToString().Contains("saludtumundoseguro."))
+        {
+            <!--CENCOSUD-->
+            <!-- MedismartBASE -->
+            <div class="stepper stepper-cencosud">
+                <div class="init-step"></div>
+                <div class="cont-steps">
+                    <!-- Step1 -->
+                    <div class="step ">
+                        <div class="step-icon">
+
+                            <i class="fal fa-user-md"></i>
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            1. Selección
+                        </div>
+                    </div>
+
+                    <i class="fas fa-chevron-right flecha"></i>
+
+                    <!-- Step2 -->
+                    <div class="step ">
+                        <div class="step-icon">
+                            <i class="fal fa-calendar-edit"></i>
+
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            2. Agendamiento
+                        </div>
+                    </div>
+
+                    <i class="fas fa-chevron-right flecha"></i>
+
+                    <!-- Step3 -->
+                    <div class="step active">
+                        <div class="step-icon">
+                            <i class="fal fa-check-circle"></i>
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            3. Confirmación
+                        </div>
+                    </div>
+                </div>
+                <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+            </div>
+            <!-- MedismartBASE End: -->
+            <!-- CENCOSUD End: -->
+        }
+    }
+   
+    @{
+        if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+        {
+            <!--SCOTIABANK-->
+            <div class="stepper stepper-scotiabank" @hiddenAgenda>
+                <div class="cont-steps">
+                    <!-- Step1 -->
+                    <div class="step passed">
+                        <div class="step-icon">
+                            <img src="~/img/scotiabank/iconos/icon_seleccion_noactive.svg" />
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            1. Selección
+                        </div>
+                    </div>
+
+                    <i class="fas fa-chevron-right flecha"></i>
+
+                    <!-- Step2 -->
+                    <div class="step">
+                        <div class="step-icon">
+                            <img src="~/img/scotiabank/iconos/icon_agendamiento_noactive.svg" />
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            2. Agendamiento
+                        </div>
+                    </div>
+
+                    <i class="fas fa-chevron-right flecha"></i>
+
+                    <!-- Step3 -->
+                    <div class="step  active">
+                        <div class="step-icon">
+                            <img src="~/img/scotiabank/iconos/icon_confirmacion_active.svg" />
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            3. Confirmación
+                        </div>
+                    </div>
+                </div>
+                <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+            </div>
+            <!-- SCOTIABANK End: -->
+        }else if (ViewBag.HostURL.ToString().Contains("masproteccionsalud.")){
+    
+           <!-- Cajalosandes -->
+            <div class="stepper" @hiddenAgenda>
+                    <div class="init-step"></div>
+                    <div class="cont-steps">
+                        <!-- Step1 -->
+                        <div class="step">
+                            <div class="step-icon">
+                                <img src="~/img/cajalosandes/iconos/icon_seleccion_noactive.svg">
+                            </div>
+                            <div class="label-step fuente-accesible">
+                                1. Selección
+                            </div>
+                        </div>
+
+                        <i class="fas fa-chevron-right flecha"></i>
+                        <hr class="linea-stepper" />
+
+                        <!-- Step2 -->
+                        <div class="step">
+                            <div class="step-icon">
+                                <img src="~/img/cajalosandes/iconos/icon_agendamiento_noactive.svg" />
+                            </div>
+                            <div class="label-step fuente-accesible">
+                                2. Agendamiento
+                            </div>
+                        </div>
+
+                        <i class="fas fa-chevron-right flecha"></i>
+                        <hr class="linea-stepper" />
+
+                        <!-- Step3 -->
+                        <div class="step  active">
+                            <div class="step-icon">
+                                <img src="~/img/cajalosandes/iconos/icon_confirmacion_active.svg" />
+                            </div>
+                            <div class="label-step fuente-accesible">
+                                3. Confirmación
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cajalosandes -->
+    }
+        else @if (ViewBag.HostURL.ToString().Contains("prevenciononcologica."))
+        {
+            <!-- Cajalosandes -->
+            <div class="stepper">
+                <div class="init-step"></div>
+                <div class="cont-steps">
+                    <!-- Step1 -->
+                    <div class="step">
+                        <div class="step-icon">
+                            <img src="~/img/cajalosandes/iconos/icon_seleccion_noactive.svg">
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            1. Selección
+                        </div>
+                    </div>
+
+                    <i class="fas fa-chevron-right flecha"></i>
+                    <hr class="linea-stepper" />
+
+                    <!-- Step2 -->
+                    <div class="step">
+                        <div class="step-icon">
+                            <img src="~/img/cajalosandes/iconos/icon_agendamiento_noactive.svg" />
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            2. Agendamiento
+                        </div>
+                    </div>
+
+                    <i class="fas fa-chevron-right flecha"></i>
+                    <hr class="linea-stepper" />
+
+                    <!-- Step3 -->
+                    <div class="step active">
+                        <div class="step-icon">
+                            <img src="~/img/cajalosandes/iconos/icon_confirmacion_active.svg" />
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            3. Confirmación
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Cajalosandes -->
+        }
+        else @if (ViewBag.HostURL.ToString().Contains("vivetuseguro."))
+        {
+            <!-- vivetuseguro -->
+            <div class="stepper" @hiddenAgenda>
+                <div class="init-step"></div>
+                <div class="cont-steps">
+                    <!-- Step1 -->
+                    <div class="step">
+                        <div class="step-icon">
+                            <img src="~/img/vivetuseguro/iconos/icon-seleccion-stepper.svg">
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            Selección
+                        </div>
+                    </div>
+
+                    <i class="fas fa-chevron-right flecha"></i>
+
+                    <!-- Step2 -->
+                    <div class="step">
+                        <div class="step-icon">
+                            <img src="~/img/vivetuseguro/iconos/icono-agendamiento.svg" />
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            Agendamiento
+                        </div>
+                    </div>
+
+                    <i class="fas fa-chevron-right flecha"></i>
+
+                    <!-- Step3 -->
+                    <div class="step active">
+                        <div class="step-icon">
+                            <img src="~/img/vivetuseguro/iconos/icon-confirmacion.svg" />
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            Confirmación
+                        </div>
+                    </div>
+                </div>
+                <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+
+            </div>
+            <!-- vivetuseguro -->
+        }
+        
+        else
+        {
+            <!-- MedismartBASE -->
+            <div class="stepper" @hiddenAgenda>
+                <div class="init-step"></div>
+                <div class="cont-steps">
+                    <!-- Step1 -->
+                    <div class="step passed">
+                        <div class="step-icon">
+                            <i class="fal fa-user-md"></i>
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            1. Selección
+                        </div>
+                    </div>
+
+                    <i class="fas fa-chevron-right flecha"></i>
+
+                    <!-- Step2 -->
+                    <div class="step passed">
+                        <div class="step-icon">
+                            <i class="fal fa-calendar-edit"></i>
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            2. Agendamiento
+                        </div>
+                    </div>
+
+                    <i class="fas fa-chevron-right flecha"></i>
+
+                    <!-- Step3 -->
+                    <div class="step active">
+                        <div class="step-icon">
+                            <i class="fal fa-check-circle"></i>
+                        </div>
+                        <div class="label-step fuente-accesible">
+                            3. Confirmación
+                        </div>
+                    </div>
+                </div>
+                <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+            </div>
+            <!-- MedismartBASE End: -->
+        }
+    }
+    <!-- Stepper -->
+    <!-- Stepper -->
+    <div class="stepper stepper-sv" @hiddenDirecta>
+        <div class="init-step"></div>
+        <div class="cont-steps triage">
+
+
+            @if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+            {
+                <div class="step step-triage color-triage">
+                    <div class="titulo-step fuente-accesible">
+                        Triage Médico
+                    </div>
+                    <div class="step-icon">
+                        <i class="fal fa-check-circle"></i>
+                    </div>
+                    <div class="label-step fuente-accesible">
+                        Etapa 1 de 1
+                    </div>
+                </div>
+            }
+            else if (ViewBag.HostURL.ToString().Contains("azteca.medismart"))
+            {
+                <!-- Step3 -->
+                <div class="step step-triage cuadro-triage">
+                    <div class="titulo-step fuente-accesible">
+                        Triage Médico
+                    </div>
+                    <div class="step-icon">
+                        <i class="fal fa-check-circle"></i>
+                    </div>
+                    <div class="label-step fuente-accesible">
+                        Etapa 1 de 1
+                    </div>
+                </div>
+                <!-- Step3 -->
+            }else 
+            {
+                <!-- Step3 -->
+                <div class="step step-triage color-triage">
+                    <div class="titulo-step fuente-accesible">
+                        Triage Médico
+                    </div>
+                    <div class="step-icon">
+                        <i class="fal fa-check-circle"></i>
+                    </div>
+                    <div class="label-step fuente-accesible">
+                        Etapa 1 de 1
+                    </div>
+                </div>
+                <!-- Step3 -->
+            }
+
+        </div>
+        <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+    </div>
+    <!-- End:: Stepper-->
+    <!-- Confirmación Hora -->
+
+    <div class="container-fluid caja-base caja-confirmacion-hora">
+        <div class="row">
+            @if (!ViewBag.VisibleAnura)
+            {
+                <div class="col-12 px-0 px-lg-4 col-lg">
+                    <div class="formulario-confirma-hora">
+                        <h1> Prepara tu próxima atención</h1>
+                        <div class="header-formulario">
+
+
+                            @if (ViewBag.especialidad != 77)
+                            {
+                                <i class="fal fa-check-circle"></i>
+                            }
+                            @if (ViewBag.tipoatencion == "I")
+                            {
+                                <p class="fuente-accesible" id="textoTriage">
+                                    Por favor ingresa información médica relevante para tu atención.
+                                </p>
+                            }
+                            else if (ViewBag.IdCliente == "108" && ViewBag.especialidad != 77)
+                            {
+                                <p class="fuente-accesible" id="textoTriage">
+                                    Por favor, ingresa información médica relevante para tu atención y confirma tu hora.
+                                </p>
+                            }
+                            else if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+                            {
+                                if (ViewBag.especialidad == 77)
+                                {
+                                    <p class="fuente-accesible" id="textoTriage">
+                                        Por favor, ingresa información relevante para tu asesoría y confirma tu hora para el <label id="fechaTextInfo"></label> a las <label id="bloqueHoraText"></label> horas.
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p class="fuente-accesible" id="textoTriage">
+                                        Por favor, ingresa información médica relevante para tu atención y confirma tu hora para el <label id="fechaTextInfo"></label> a las <label id="bloqueHoraText"></label> horas.
+                                    </p>
+                                }
+
+                            }
+                             else if (ViewBag.HostURL.ToString().Contains("masproteccionsalud."))
+                            {
+                               
+                                <p class="fuente-accesible" id="textoTriage">
+                                    Por favor, ingresa información médica relevante para tu atención y confirma tu hora para el <label id="fechaTextInfo"></label> a las <label id="bloqueHoraText"></label> horas.
+                                </p>
+
+                            }
+                            else if (Model.personas.CodigoTelefono == "CO")
+                            {
+                                <p class="fuente-accesible" id="textoTriage">
+                                    Por favor, ingresa información médica relevante para tu atención y confirma tu cita para el <span id="fechaTextInfo"></span> a las <span id="bloqueHoraText"></span> horas.
+                                </p>
+                            }
+                            else
+                            {
+                                <p class="fuente-accesible" id="textoTriage">
+                                    Por favor ingresa información médica relevante para tu atención y confirma tu hora para el <span id="fechaTextInfo"></span> a las <span id="bloqueHoraText"></span> horas.
+                                </p>
+                            }
+                        </div>
+                        <div class="body-formulario">
+                            <!-- Form -->
+                            <form action="" class="container-fluid p-0">
+                                <div class="form-group row">
+                                    @{
+                                        if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+                                        {
+                                            if (ViewBag.tipoEspecialidad == "orientacion")
+                                            {
+                                                <p class="fuente-accesible )">
+                                                    Elige el motivo de tu consulta
+                                                </p>
+                                            }
+                                        }
+                                    }
+                                    @{
+                                        if (ViewBag.especialidad == 77 && !ViewBag.HostURL.ToString().Contains("tratame."))
+                                        {
+                                            <select class="btn btn-outline-primary dropdown-toggle itemEspecialidad" @(ViewBag.tipoEspecialidad=="examenes"?"disabled":"") id="motivoConsulta">
+                                                @foreach (var lista in ViewBag.opcionesOrientacion)
+                                                {
+                                                    <option class="dropdown-item" data-id="@lista.Codigo" value="@lista.Codigo">@lista.Detalle</option>
+                                                }
+                                            </select>
+                                        }
+                                        <div class="col-12 p-0 @(ViewBag.especialidad != 77?"":"d-none")">
+                                            <p class="fuente-accesible">
+                                                Cuéntame, ¿cuál es tu molestia o necesidad de atención?
+                                            </p>
+                                            <textarea class="form-control fuente-accesible" rows="3" placeholder="Escribe un comentario" maxlength="140" id="triageObservacion" name="triageObservacion"></textarea>
+                                            <p style="font-size:12px;"><span id="counter">0</span> / 140</p>
+
+                                            <script type="text/javascript">
+                                                function count() {
+                                                    document.getElementById("counter").textContent = document.getElementById("triageObservacion").value.length;
+                                                }
+                                                document.getElementById("triageObservacion").addEventListener("input", count);
+                                            </script>
+
+                                        </div>
+
+
+                                    }
+                                </div>
+                                @{
+                                    if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia.") && ViewBag.especialidad == 77)
+                                    {
+                                        <div class="form-group row mb-lg-0">
+                                            <div class="col-12 p-0">
+                                                <p class="fuente-accesible">
+                                                    Describe tu consulta
+                                                </p>
+                                                <textarea class="form-control fuente-accesible" rows="3" placeholder="Escribe un comentario" maxlength="140" id="antecedentesMedicos" name="antecedentesMedicos"></textarea>
+                                            </div>
+                                        </div>
+                                    }
+                                    else if (ViewBag.VisibleAnura)
+                                    {
+                                        <div class="form-group row mb-lg-0 d-none">
+                                            <div class="col-12 p-0">
+                                                <p class="fuente-accesible">
+                                                    Cuéntame, ¿tienes antecedentes médicos previos?
+                                                </p>
+                                                <textarea class="form-control fuente-accesible" rows="3" placeholder="Escribe tus diagnóticos y medicamentos en uso" maxlength="140" id="antecedentesMedicos" name="antecedentesMedicos"></textarea>
+                                                <p style="font-size:12px;"><span id="counter">0</span> / 140</p>
+                                                <script type="text/javascript">
+                                                    function count() {
+                                                        document.getElementById("counter2").textContent = document.getElementById("antecedentesMedicos").value.length;
+                                                    }
+                                                    document.getElementById("antecedentesMedicos").addEventListener("input", count);
+                                                </script>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="form-group row mb-lg-0">
+                                            <div class="col-12 p-0">
+                                                <p class="fuente-accesible">
+                                                    Cuéntame, ¿tienes antecedentes médicos previos?
+                                                </p>
+                                                <textarea class="form-control" rows="3" placeholder="Escribe tus diagnóticos y medicamentos en uso" maxlength="140" id="antecedentesMedicos" name="antecedentesMedicos"></textarea>
+                                                <p style="font-size:12px;"><span id="counter2">0</span> / 140</p>
+                                                <script type="text/javascript">
+                                                    function count() {
+                                                        document.getElementById("counter2").textContent = document.getElementById("antecedentesMedicos").value.length;
+                                                    }
+                                                    document.getElementById("antecedentesMedicos").addEventListener("input", count);
+                                                </script>
+                                            </div>
+                                        </div>
+
+                                    }
+                                }
+                                <!--Check-->
+                            </form>
+                            <!-- Form -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="carga-archivos">
+                        @{
+                            if (ViewBag.especialidad == 24)
+                            {
+                                <div class="row align-items-start">
+                                    <div class="col-auto d-flex align-items-start">
+                                        <i class="far fa-exclamation-circle fa-3x" style="color: red;"></i>
+                                    </div>
+                                    <div class="col">
+                                        <p class="mb-3">
+                                            <strong>Dermatología:</strong> para una cita exitosa el médico debe evaluar las lesiones de piel a través de fotografías. Deben adjuntarse al menos 3, de cerca y de lejos, <strong>sin flash, buena iluminación natural</strong>, buena resolución y con la piel bien descubierta.
+                                        </p>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        <h3 class="fuente-accesible">¿Deseas subir un archivo?</h3>
+
+                        <div class="cont-carga-archivos" @*d-none d-md-block*@>
+                            <div class="dropzone dropzone-default dropzone-brand" id="kt_dropzone_0">
+                                <div class="dropzone-msg dz-message needsclick">
+                                    <h3 class="dropzone-msg-title fuente-accesible">Haz clic o arrastra un archivo</h3>
+                                    <span class="dropzone-msg-desc fuente-accesible">Receta, imagen o radiografía</span>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        @*<div class="cont-carga-archivos d-lg-none">
+                    <div class="input-group mb-3">
+                    <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">Subir, receta, imagen o radiografía</label>
+                    </div>
+                    </div>
+                    </div>*@
+
+                        <div class="container-fluid p-0">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div id="ejemImg" class="row d-none ml-2 mt-2">
+                                        <p class="mr-2 fuente-accesible" style="font-style: italic; font-size: 14px;">Ejemplo: Antígeno</p>
+                                        <div class="input-group-append" id="input-info">
+                                            <span class=""><i class="fal fa-2x fa-question-circle"></i></span>
+                                        </div>
+                                        <div class="tip-documento" id="tipDoc">
+                                            <button class="btn-close"><i class="fal fa-times" id="btnClose"></i></button>
+                                            <img src="~/img/ImgExamen.jpeg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="kt-portlet__body">
+
+                                        <div id="lista_archivos" class="kt-widget4 lista-archivos">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row btn-mobile-advance">
+                                <div class="col-6 col-md-6  mb-md-0 order-last order-md-first">
+
+                                    <button class="btn btn-outline-secondary btn-block btn-sm mt-auto" id="btnCancelarAtencion">
+                                        Cancelar
+                                    </button>
+                                </div>
+                                <div class="col-6 col-md-6">
+                                    <button class="btn mb-3 btn-primary btn-block btn-sm @("nroPlan=" + ViewBag.IdCliente)" id="btnConfirmar">
+                                        Confirma
+                                    </button>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        @if (ViewBag.HostUrl.Contains("clinicamundoscotia") || ViewBag.HostUrl.Contains("saludproteccion") || ViewBag.HostUrl.Contains("prevenciononcologica") || ViewBag.HostUrl.Contains("masproteccionsalud"))
+                        {
+                            <div class="" id="checks"></div>                        
+
+                            <input type="hidden" id="correoUsuario"/>
+                            <input type="hidden" id="genero"/>
+                            <input type="hidden" id="fechaNacimiento"/>
+                        }
+                        </div>
+                        
+                </div>
+            }
+            else
+            {
+                <!--EXCEPCIÓN ESPECIALIDAD ANURA-->
+                if (!campoEspecialidad)
+                {
+                    <div class="col-12 px-0 px-lg-4 col-lg">
+                    <div class="formulario-confirma-hora">
+                        <h1> Prepara tu próxima atención</h1>
+                        <div class="header-formulario">
+
+
+                            @if (ViewBag.especialidad != 77)
+                            {
+                                <i class="fal fa-check-circle"></i>
+                            }
+                            @if (ViewBag.tipoatencion == "I")
+                            {
+                                <p class="fuente-accesible" id="textoTriage">
+                                    Por favor ingresa información médica relevante para tu atención.
+                                </p>
+                            }
+                            else if (ViewBag.IdCliente == "108" && ViewBag.especialidad != 77)
+                            {
+                                <p class="fuente-accesible" id="textoTriage">
+                                    Por favor, ingresa información médica relevante para tu atención y confirma tu hora.
+                                </p>
+                            }
+                            else if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+                            {
+                                if (ViewBag.especialidad == 77)
+                                {
+                                    <p class="fuente-accesible" id="textoTriage">
+                                        Por favor, ingresa información relevante para tu asesoría y confirma tu hora para el <label id="fechaTextInfo"></label> a las <label id="bloqueHoraText"></label> horas.
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p class="fuente-accesible" id="textoTriage">
+                                        Por favor, ingresa información médica relevante para tu atención y confirma tu hora para el <label id="fechaTextInfo"></label> a las <label id="bloqueHoraText"></label> horas.
+                                    </p>
+                                }
+
+                            }
+                             else if (ViewBag.HostURL.ToString().Contains("masproteccionsalud."))
+                            {
+                               
+                                <p class="fuente-accesible" id="textoTriage">
+                                    Por favor, ingresa información médica relevante para tu atención y confirma tu hora para el <label id="fechaTextInfo"></label> a las <label id="bloqueHoraText"></label> horas.
+                                </p>
+
+                            }
+                            else if (Model.personas.CodigoTelefono == "CO")
+                            {
+                                <p class="fuente-accesible" id="textoTriage">
+                                    Por favor, ingresa información médica relevante para tu atención y confirma tu cita para el <span id="fechaTextInfo"></span> a las <span id="bloqueHoraText"></span> horas.
+                                </p>
+                            }
+                            else
+                            {
+                                <p class="fuente-accesible" id="textoTriage">
+                                    Por favor ingresa información médica relevante para tu atención y confirma tu hora para el <span id="fechaTextInfo"></span> a las <span id="bloqueHoraText"></span> horas.
+                                </p>
+                            }
+                        </div>
+                        <div class="body-formulario">
+                            <!-- Form -->
+                            <form action="" class="container-fluid p-0">
+                                <div class="form-group row">
+                                    @{
+                                        if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+                                        {
+                                            if (ViewBag.tipoEspecialidad == "orientacion")
+                                            {
+                                                <p class="fuente-accesible )">
+                                                    Elige el motivo de tu consulta
+                                                </p>
+                                            }
+                                        }
+                                    }
+                                    @{
+                                        if (ViewBag.especialidad == 77 && !ViewBag.HostURL.ToString().Contains("tratame."))
+                                        {
+                                            <select class="btn btn-outline-primary dropdown-toggle itemEspecialidad" @(ViewBag.tipoEspecialidad=="examenes"?"disabled":"") id="motivoConsulta">
+                                                @foreach (var lista in ViewBag.opcionesOrientacion)
+                                                {
+                                                    <option class="dropdown-item" data-id="@lista.Codigo" value="@lista.Codigo">@lista.Detalle</option>
+                                                }
+                                            </select>
+                                        }
+                                        <div class="col-12 p-0 @(ViewBag.especialidad != 77?"":"d-none")">
+                                            <p class="fuente-accesible">
+                                                Cuéntame ¿cuál es tu molestia o necesidad de atención?
+                                            </p>
+                                            <textarea class="form-control fuente-accesible" rows="3" placeholder="Escribe un comentario" maxlength="140" id="triageObservacion" name="triageObservacion"></textarea>
+                                            <p style="font-size:12px;"><span id="counter">0</span> / 140</p>
+
+                                            <script type="text/javascript">
+                                                function count() {
+                                                    document.getElementById("counter").textContent = document.getElementById("triageObservacion").value.length;
+                                                }
+                                                document.getElementById("triageObservacion").addEventListener("input", count);
+                                            </script>
+
+                                        </div>
+
+
+                                    }
+                                </div>
+                                @{
+                                    if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia.") && ViewBag.especialidad == 77)
+                                    {
+                                        <div class="form-group row mb-lg-0">
+                                            <div class="col-12 p-0">
+                                                <p class="fuente-accesible">
+                                                    Describe tu consulta
+                                                </p>
+                                                    <textarea class="form-control fuente-accesible" rows="3" placeholder="Escribe un comentario" maxlength="140" id="antecedentesMedicos" name="antecedentesMedicos"></textarea>
+                                            </div>
+                                        </div>
+                                    }
+                                   
+                                        <div class="form-group row mb-lg-0">
+                                            <div class="col-12 p-0">
+                                                <p class="fuente-accesible">
+                                                    Cuéntame, ¿tienes antecedentes médicos previos?
+                                                </p>
+                                                <textarea class="form-control" rows="3" placeholder="Escribe tus diagnóticos y medicamentos en uso" maxlength="140" id="antecedentesMedicos" name="antecedentesMedicos"></textarea>
+                                                <p style="font-size:12px;"><span id="counter2">0</span> / 140</p>
+                                                <script type="text/javascript">
+                                                    function count() {
+                                                        document.getElementById("counter2").textContent = document.getElementById("antecedentesMedicos").value.length;
+                                                    }
+                                                    document.getElementById("antecedentesMedicos").addEventListener("input", count);
+                                                </script>
+                                            </div>
+                                        </div>
+
+                                    
+                                }
+                                <!--Check-->
+                            </form>
+                            <!-- Form -->
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="col">
+                        <div class="carga-archivos">
+                            @{
+                                if (ViewBag.especialidad == 24)
+                                {
+                                    <div class="row align-items-start">
+                                        <div class="col-auto d-flex align-items-start">
+                                            <i class="far fa-exclamation-circle fa-3x" style="color: red;"></i>
+                                        </div>
+                                        <div class="col">
+                                            <p class="mb-3">
+                                                <strong>Dermatología:</strong> para una cita exitosa el médico debe evaluar las lesiones de piel a través de fotografías. Deben adjuntarse al menos 3, de cerca y de lejos, <strong>sin flash, buena iluminación natural</strong>, buena resolución y con la piel bien descubierta.
+                                            </p>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        <h3 class="fuente-accesible">¿Deseas subir un archivo?</h3>
+
+                        <div class="cont-carga-archivos" @*d-none d-md-block*@>
+                            <div class="dropzone dropzone-default dropzone-brand" id="kt_dropzone_0">
+                                <div class="dropzone-msg dz-message needsclick">
+                                    <h3 class="dropzone-msg-title fuente-accesible">Haz clic o arrastra un archivo</h3>
+                                    <span class="dropzone-msg-desc fuente-accesible">Receta, imagen o radiografía</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        @*<div class="cont-carga-archivos d-lg-none">
+                    <div class="input-group mb-3">
+                    <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">Subir, receta, imagen o radiografía</label>
+                    </div>
+                    </div>
+                    </div>*@
+
+                        <div class="container-fluid p-0">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div id="ejemImg" class="row d-none ml-2 mt-2">
+                                        <p class="mr-2 fuente-accesible" style="font-style: italic; font-size: 14px;">Ejemplo: Antígeno</p>
+                                        <div class="input-group-append" id="input-info">
+                                            <span class=""><i class="fal fa-2x fa-question-circle"></i></span>
+                                        </div>
+                                        <div class="tip-documento" id="tipDoc">
+                                            <button class="btn-close"><i class="fal fa-times" id="btnClose"></i></button>
+                                            <img src="~/img/ImgExamen.jpeg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="kt-portlet__body">
+
+                                        <div id="lista_archivos" class="kt-widget4 lista-archivos">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6 col-md-6  mb-md-0 order-last order-md-first">
+
+                                    <button class="btn btn-outline-secondary btn-block btn-sm mt-auto" id="btnCancelarAtencion">
+                                        Cancelar
+                                    </button>
+                                </div>
+                                <div class="col-6 col-md-6">
+                                    <button class="btn mb-3 btn-primary btn-block btn-sm" id="btnConfirmar">
+                                        Confirmar
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        @if (ViewBag.HostUrl.Contains("clinicamundoscotia") || ViewBag.HostUrl.Contains("saludproteccion") || ViewBag.HostUrl.Contains("prevenciononcologica") || ViewBag.HostUrl.Contains("masproteccionsalud"))
+                        {
+                            <div class="" id="checks"></div>                        
+
+                            <input type="hidden" id="correoUsuario"/>
+                            <input type="hidden" id="genero"/>
+                            <input type="hidden" id="fechaNacimiento"/>
+                        }
+                           
+                        </div>
+                        
+                </div>
+                }
+                else
+                {
+                    <div class="col-12 px-0 px-lg-4 col-lg">
+                        <div class="formulario-confirma-hora">
+                            <h1> Confirmación</h1>
+                            <div class="header-formulario">
+
+
+                                @if (ViewBag.especialidad != 77)
+                                {
+                                    <i class="fal fa-check-circle"></i>
+                                }
+                                @if (ViewBag.tipoatencion == "I")
+                                {
+                                    <p class="fuente-accesible" id="textoTriage">
+                                        Por favor ingresa información médica relevante para tu atención.
+                                    </p>
+                                }
+                                else if (ViewBag.IdCliente == "108" && ViewBag.especialidad != 77)
+                                {
+                                    <p class="fuente-accesible" id="textoTriage">
+                                        Por favor, ingresa información médica relevante para tu atención y confirma tu hora.
+                                    </p>
+                                }
+                                else if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+                                {
+                                    if (ViewBag.especialidad == 77)
+                                    {
+                                        <p class="fuente-accesible" id="textoTriage">
+                                            Por favor, ingresa información relevante para tu asesoría y confirma tu hora para el <label id="fechaTextInfo"></label> a las <label id="bloqueHoraText"></label> horas.
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p class="fuente-accesible" id="textoTriage">
+                                            Por favor, ingresa información médica relevante para tu atención y confirma tu hora para el <label id="fechaTextInfo"></label> a las <label id="bloqueHoraText"></label> horas.
+                                        </p>
+                                    }
+
+                                }
+                                else if (Model.personas.CodigoTelefono == "CO")
+                                {
+                                    <p class="fuente-accesible" id="textoTriage">
+                                        Por favor, ingresa información médica relevante para tu atención y confirma tu cita para el <span id="fechaTextInfo"></span> a las <span id="bloqueHoraText"></span> horas.
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p class="fuente-accesible" id="textoTriage">
+                                        Por favor ingresa información médica relevante para tu atención y confirma tu hora para el <span id="fechaTextInfo"></span> a las <span id="bloqueHoraText"></span> horas.
+                                    </p>
+                                }
+                            </div>
+                            <div class="body-formulario">
+                                <!-- Form -->
+                                <form action="" class="container-fluid p-0">
+                                    <div class="form-group row">
+                                        @{
+                                            if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+                                            {
+                                                if (ViewBag.tipoEspecialidad == "orientacion")
+                                                {
+                                                    <p class="fuente-accesible )">
+                                                        Elige el motivo de tu consulta
+                                                    </p>
+                                                }
+                                            }
+                                        }
+                                        @{
+                                            if (ViewBag.especialidad == 77 && !ViewBag.HostURL.ToString().Contains("tratame."))
+                                            {
+                                                <select class="btn btn-outline-primary dropdown-toggle itemEspecialidad" @(ViewBag.tipoEspecialidad=="examenes"?"disabled":"") id="motivoConsulta">
+                                                    @foreach (var lista in ViewBag.opcionesOrientacion)
+                                                    {
+                                                        <option class="dropdown-item" data-id="@lista.Codigo" value="@lista.Codigo">@lista.Detalle</option>
+                                                    }
+                                                </select>
+                                            }
+                                            <div class="col-12 @(ViewBag.especialidad != 77?"":"d-none")">
+                                                <p class="fuente-accesible">
+                                                    Cuéntame ¿cuál es tu molestia o necesidad de atención?
+                                                </p>
+                                                <textarea class="form-control fuente-accesible" rows="3" placeholder="Escribe un comentario" maxlength="140" id="triageObservacion" name="triageObservacion"></textarea>
+                                                <p style="font-size:12px;"><span id="counter">0</span> / 140</p>
+
+                                                <script type="text/javascript">
+                                                    function count() {
+                                                        document.getElementById("counter").textContent = document.getElementById("triageObservacion").value.length;
+                                                    }
+                                                    document.getElementById("triageObservacion").addEventListener("input", count);
+                                                </script>
+                                            </div>
+                                        }
+                                    </div>
+                                    @{
+                                        if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia.") && ViewBag.especialidad == 77)
+                                        {
+                                            <div class="form-group row mb-lg-0">
+                                                <div class="col-12 p-0">
+                                                    <p class="fuente-accesible">
+                                                        Describe tu consulta
+                                                    </p>
+                                                    <textarea class="form-control fuente-accesible" rows="3" placeholder="Escribe un comentario" maxlength="140" id="antecedentesMedicos" name="antecedentesMedicos"></textarea>
+                                                </div>
+                                            </div>
+                                        }
+                                        else if (ViewBag.VisibleAnura)
+                                        {
+                                            <div class="form-group row mb-lg-0 d-none">
+                                                <div class="col-12 p-0">
+                                                    <p class="fuente-accesible">
+                                                        Cuéntame, ¿tienes antecedentes médicos previos?
+                                                    </p>
+                                                    <textarea class="form-control" rows="3" placeholder="Escribe tus diagnóticos y medicamentos en uso" maxlength="140" id="antecedentesMedicos" name="antecedentesMedicos"></textarea>
+                                                    <p style="font-size:12px;"><span id="counter">0</span> / 140</p>
+                                                    <script type="text/javascript">
+                                                        function count() {
+                                                            document.getElementById("counter2").textContent = document.getElementById("antecedentesMedicos").value.length;
+                                                        }
+                                                        document.getElementById("antecedentesMedicos").addEventListener("input", count);
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="form-group row mb-lg-0">
+                                                <div class="col-12 p-0">
+                                                    <p class="fuente-accesible">
+                                                        Cuéntame, ¿tienes antecedentes médicos previos?
+                                                    </p>
+                                                    <textarea class="form-control" rows="3" placeholder="Escribe tus diagnóticos y medicamentos en uso" maxlength="140" id="antecedentesMedicos" name="antecedentesMedicos"></textarea>
+                                                    <p style="font-size:12px;"><span id="counter">0</span> / 140</p>
+                                                    <script type="text/javascript">
+                                                        function count() {
+                                                            document.getElementById("counter2").textContent = document.getElementById("antecedentesMedicos").value.length;
+                                                        }
+                                                        document.getElementById("antecedentesMedicos").addEventListener("input", count);
+                                                    </script>
+                                                </div>
+                                            </div>
+
+                                        }
+                                    }
+                                    <!--Check-->
+                                </form>
+                                <!-- Form -->
+                            </div>
+                        </div>
+                        <div class="carga-archivos">
+                            @{
+                                if (ViewBag.especialidad == 24)
+                                {
+                                    <div class="row align-items-start">
+                                        <div class="col-auto d-flex align-items-start">
+                                            <i class="far fa-exclamation-circle fa-3x" style="color: red;"></i>
+                                        </div>
+                                        <div class="col">
+                                            <p class="mb-3">
+                                                <strong>Dermatología:</strong> para una cita exitosa el médico debe evaluar las lesiones de piel a través de fotografías. Deben adjuntarse al menos 3, de cerca y de lejos, <strong>sin flash, buena iluminación natural</strong>, buena resolución y con la piel bien descubierta.
+                                            </p>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            <h3 class="fuente-accesible">¿Deseas subir un archivo?</h3>
+
+                            <div class="cont-carga-archivos" @*d-none d-md-block*@>
+                                <div class="dropzone drop dropzone-default dropzone-brand" id="kt_dropzone_0">
+                                    <div class="dropzone-msg dz-message needsclick">
+                                        <h3 class="dropzone-msg-title fuente-accesible">Haz clic o arrastra un archivo</h3>
+                                        <span class="dropzone-msg-desc fuente-accesible">Receta, imagen o radiografía</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="container-fluid p-0">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div id="ejemImg" class="row d-none ml-2 mt-2">
+                                            <p class="mr-2 fuente-accesible" style="font-style: italic; font-size: 14px;">Ejemplo: Antígeno</p>
+                                            <div class="input-group-append" id="input-info">
+                                                <span class=""><i class="fal fa-2x fa-question-circle"></i></span>
+                                            </div>
+                                            <div class="tip-documento" id="tipDoc">
+                                                <button class="btn-close"><i class="fal fa-times" id="btnClose"></i></button>
+                                                <img src="~/img/ImgExamen.jpeg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="kt-portlet__body">
+
+                                            <div id="lista_archivos" class="kt-widget4 lista-archivos">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @*<div class="" id="checks"></div>
+
+                    <input type="hidden" id="correoUsuario"/>
+                    <input type="hidden" id="genero"/>
+                    <input type="hidden" id="fechaNacimiento"/>*@
+
+                        </div>
+                    </div>
+                    <div class="col">
+                        @if (ViewBag.tipoatencion == "I")
+                        {
+                            if (!ViewBag.checkAnura)
+                            {
+
+                                <div class="check-anura">
+                                    
+                                    <div class="mensaje-anura atencion-inmediata">
+                                        <img src="~/img/anura/icon-check.svg" class="" alt="" />
+                                        <p class="fuente-accesible">
+                                            Te invitamos a revisar tus signos vitales a través de <strong>Smartcheck en solo 30 segundos (sin costo).</strong>
+                                        </p>
+
+                                    </div>
+
+                                    <div class="check-anura">
+
+                                        <img src="@checkIcon" alt="" />
+                                        <p class="label-check-anura">
+                                            @tituloAnura
+                                        </p>
+
+
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                
+                                <div class="check-anura">
+                                    <img src="@checkIcon" alt="" />
+                                    <p class="label-check-anura">
+                                        Los resultados de Smart Check han sido guardados y están disponibles para tu atención médica.
+                                    </p>
+                                </div>
+                            }
+                            if (!ViewBag.checkAnura)
+                            {
+
+                                if (ViewBag.HostURL.ToString().Contains("falabella.medismart"))
+                                {
+                                    <div class="aviso-atencion-domiciliaria">
+                                        <img src="../../img/banco-falabella/info-circle.svg" />
+                                        <p><strong class="recuerda">Recuerda: </strong> El profesional de la salud podrá activar el servicio de <strong>Médico Domiciliario</strong> teniendo en cuenta tus necesidades médicas y diagnóstico de la atención.</p>
+                                    </div>
+                                }
+                                <!-- <img src="@imgAnura" class="screen-anura" alt="" />-->
+                                <div class="mensaje-anura atencion-inmediata">
+                                    <img src="~/img/anura/icon-check.svg" class="" alt="" />
+                                    <p class="fuente-accesible">
+                                        Te invitamos a revisar tus signos vitales a través de <strong>Smartcheck en solo 30 segundos (sin costo).</strong>
+                                    </p>
+
+                                </div>
+
+                            }
+                            else
+                            {
+
+                                <img src="@imgAnura" class="screen-anura-vuelta" alt="" />
+                            }
+
+                        }
+                        else
+                        {
+                            <p @hiddenAnura class="d-none">
+                                Realiza tu examen para ver tus signos vitales antes de ver tu hora con tu médico.
+                            </p>
+                        }
+                        <div class="cont-anura">
+                            @if (ViewBag.tipoatencion != "I")
+                            {
+                                @if (!ViewBag.checkAnura)
+                                {
+                                    <!--<img src="@imgAnura" class="screen-anura" alt="" />-->
+                                    <!--<img src="~/img/anura/atencion-agendable.png" class="" alt="" />-->
+
+                                    <div class="mensaje-anura atencion-agendable">
+                                        <img src="~/img/anura/icon-check.svg" class="" alt="" />
+                                        <p class="fuente-accesible">
+                                            Te invitamos a revisar tus signos vitales a través de <strong>Smartcheck en solo 30 segundos (sin costo).</strong>
+                                        </p>
+
+                                    </div>
+
+                                    <div class="check-anura">
+
+                                        <img src="@checkIcon" alt="" />
+                                        <p class="label-check-anura">
+                                            @tituloAnura
+                                        </p>
+
+
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="check-anura">
+
+                                        <img src="@checkIcon" alt="" />
+                                        <p class="label-check-anura">
+                                            @tituloAnura
+                                        </p>
+                                    </div>
+                                    <img src="@imgAnura" class="screen-anura-vuelta" alt="" />
+                                }
+                            }
+                            <div class="toolbar-anura">
+                                @if (!ViewBag.checkAnura)
+                                {
+                                    <button class="btn btn-outline-primary btn-block btn-sm fuente-accesible" id="btnAnura">
+                                        Atención con Smartcheck
+                                    </button>
+                                    <button class="btn btn-primary btn-block btn-sm fuente-accesible" id="btnConfirmar">
+                                        @*@confirmarAnura*@
+                                        Atención Normal
+                                    </button>
+                                    <!-- boton oculto para anura-->
+                                    <button class="btn btn-outline-secondary btn-block btn-sm mt-auto d-none" id="btnCancelarAtencion">
+                                        Cancelar
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-primary btn-block btn-sm btn-confirma-anura" id="btnConfirmar">
+                                        @confirmarAnura
+                                    </button>
+                                    <button class="btn btn-outline-secondary btn-block btn-sm mt-auto d-none" id="btnCancelarAtencion" hidden>
+                                        Cancelar
+                                    </button>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            }
+            @if (!ViewBag.HostUrl.Contains("clinicamundoscotia") && !ViewBag.HostUrl.Contains("prevenciononcologica") && !ViewBag.HostUrl.Contains("masproteccionsalud") && !ViewBag.HostUrl.Contains("saludproteccion"))
+            {
+                 <div class="col-12">
+                    <div class="cont-checks-anura">
+                        <div class="" id="checks">
+                            <input type="hidden" id="correoUsuario" />
+                            <input type="hidden" id="genero" />
+                            <input type="hidden" id="fechaNacimiento" />
+                        </div>
+                    </div>
+                </div>                
+            }
+
+        </div>
+
+    </div>
+
+    <div class="col-md col-lg-4">
+        <div id="divPerfilProfesional"></div>
+        @if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia.") && ViewBag.especialidad == 77)
+        {
+            <div class="cont-volver" id="contVolver"><a class="btn btn-outline-secondary btn-block btn-sm" href="javascript:history.back()">Volver</a></div>
+        }
+        <div class="accesible-tools mb-3 d-none">
+            <div class="accesible-btn">
+                <button id="increase-font">A+</button>
+                <button id="normal-font">A</button>
+                <button id="decrease-font">A-</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-am" tabindex="-1" aria-labelledby="modal-validacion" data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Antecedentes Médicos</h3>
+                <button type="button"
+                        id="cierreModalAntecedentes"
+                        class=""
+                        aria-label="Close"
+                        style="font-size: 24px; margin-top: -10px; color:black;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="pl-4 pr-4 pb-5">
+                <div class="container-fluid">
+                    <form id="form_edit_am" class="kt-form kt-form--label-right">
+                        <div class="kt-portlet__body pb-0">
+                            <div class="kt-section kt-section--first pb-0 mb-0">
+                                <div class="kt-section__body">
+                                    <h5 class="font-weight-bold">Para una mejor atención te pedimos completar las siguientes preguntas acerca de tu estado de salud:</h5>
+                                    <div class="row pt-3">
+                                        <div class="col-lg-12">
+                                            <div class="kt-widget kt-widget--user-profile-1 mb-0 pb-0">
+                                                <div class="form-group row align-items-center">
+                                                    <div class="col-12 col-md-6 mb-2 mb-md-0">
+                                                        <label class="form-label font-weight-bold pregunta-antecedente pregunta-modal">¿Alergias?</label>
+                                                        <label class="form-check-label mr-4 " for="flexRadioDefault1">
+                                                            Si
+                                                        </label>
+                                                        <input class="form-check-input" type="radio" name="radioAlergia" id="radioAlergia1" value="true" />
+
+                                                        <label class="form-check-label ml-3 mr-4" for="flexRadioDefault2">
+                                                            No
+                                                        </label>
+                                                        <input class="form-check-input" type="radio" name="radioAlergia" id="radioAlergia2" value="false">
+
+                                                    </div>
+                                                    <div class="col-12 col-md-6 mb-2 mb-md-0">
+                                                        @Html.TextAreaFor(m => m.personas.Alergias, new { @class = "form-control d-none", type = "text", placeholder = "Anota los medicamentos, animales u otros que te provoquen alergia.", id = "Alergias", name = "Alergias" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row  align-items-center">
+                                                    <div class="col-12 col-md mb-2 mb-md-0">
+                                                        <label class="form-label font-weight-bold pregunta-antecedente pregunta-modal">¿Enfermedades?</label>
+                                                        <label class="form-check-label mr-4" for="flexRadioDefault1">
+                                                            Si
+                                                        </label>
+                                                        <input class="form-check-input" type="radio" name="radioEnfermedad" id="radioEnfermedad1" value="true">
+
+                                                        <label class="form-check-label ml-3 mr-4" for="flexRadioDefault2">
+                                                            No
+                                                        </label>
+                                                        <input class="form-check-input" type="radio" name="radioEnfermedad" id="radioEnfermedad2" value="false">
+
+                                                    </div>
+                                                    <div class="col-12 col-md-6 mb-2 mb-md-0">
+                                                        @Html.TextAreaFor(m => m.personas.Enfermedades, new { @class = "form-control d-none", type = "text", id = "Enfermedades", placeholder = "Anota las enfermedades que padeces." })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row  align-items-center">
+                                                    <div class="col-12 col-md mb-2 mb-md-0">
+                                                        <label class="form-label font-weight-bold pregunta-antecedente pregunta-modal">¿Medicamentos?</label>
+                                                        <label class="form-check-label mr-4" for="flexRadioDefault1">
+                                                            Si
+                                                        </label>
+                                                        <input class="form-check-input" type="radio" name="radioMedicamento" id="radioMedicamento1" value="true">
+
+                                                        <label class="form-check-label ml-3 mr-4" for="flexRadioDefault2">
+                                                            No
+                                                        </label>
+                                                        <input class="form-check-input" type="radio" name="radioMedicamento" id="radioMedicamento2" value="false">
+
+
+                                                    </div>
+                                                    <div class="col-12 col-md-6 mb-2 mb-md-0">
+                                                        @Html.TextAreaFor(m => m.personas.Medicamentos, new { @class = "form-control d-none", type = "text", id = "Medicamentos", placeholder = "Anota los medicamentos que utilizas." })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row  align-items-center">
+                                                    <div class="col-12 col-md mb-2 mb-md-0">
+                                                        <label class="form-label font-weight-bold pregunta-antecedente pregunta-modal pregunta-modal">¿Cirugías previas?</label>
+                                                        <label class="form-check-label mr-4" for="flexRadioDefault1">
+                                                            Si
+                                                        </label>
+                                                        <input class="form-check-input" type="radio" name="radioCirugia" id="radioCirugia1" value="true">
+
+                                                        <label class="form-check-label ml-3 mr-4" for="flexRadioDefault2">
+                                                            No
+                                                        </label>
+                                                        <input class="form-check-input" type="radio" name="radioCirugia" id="radioCirugia2" value="false">
+
+                                                    </div>
+                                                    <div class="col-12 col-md mb-2 mb-md-0">
+                                                        @Html.TextAreaFor(m => m.personas.Cirugias, new { @class = "form-control d-none", type = "text", id = "Cirugias", placeholder = "Anota las cirugías que se te han realizado." })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row align-items-center">
+                                                    <div class="col-12 col-md mb-1 mb-md-0">
+                                                        <label class="form-label font-weight-bold pregunta-antecedente pregunta-modal">¿Tabaco, alcohol, drogas?</label>
+                                                        <label class="form-check-label mr-4" for="flexRadioDefault1">
+                                                            Si
+                                                        </label>
+                                                        <input class="form-check-input" type="radio" name="radioHabito" id="radioHabito1" value="true">
+
+                                                        <label class="form-check-label ml-3 mr-4" for="flexRadioDefault2">
+                                                            No
+                                                        </label>
+                                                        <input class="form-check-input" type="radio" name="radioHabito" id="radioHabito2" value="false">
+                                                    </div>
+                                                    <div class="col-12 col-md-6 mb-1 mb-md-0">
+                                                        @Html.TextAreaFor(m => m.personas.Habitos, new { @class = "form-control d-none", type = "text", id = "Habitos", placeholder = "Anota el hábito." })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="kt-portlet__foot">
+                            <div class="kt-form__actions">
+                                <div class="row">
+                                    <div class="col-12 col-md-6 offset-md-3 col-lg-3 offset-lg-9 text-right">
+                                        <button type="submit" id="btn_guardar_am" class="btn btn-success btn-block">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-validacion-datos" tabindex="-1" aria-labelledby="modal-validacion-datos" data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg validation">
+        <div class="modal-content">
+            <div class="modal-validacion-datos">
+
+
+                <div class="img_modal">
+                    <img src="~/img/img-validation-modal.jpg" alt="validation">
+                </div>
+            <div class="form-validation">
+
+          
+                    <div class="header-title-form">
+                            <h2>Por favor, confirma tus datos personales.</h2>
+
+                            <div class="header-form-update">
+                                <img src="~/img/arrow-modal-validation.png" alt="validation">
+                                <p id="fechaModificaMedical"></p>
+
+
+                            </div>
+                    </div>
+
+
+            
+
+                    @*  <h4 class="mt-2" id="nombreUsuarioModalValidacion"></h4>
+                    <p>
+                        Por favor, necesitamos que valides tu mail y teléfono para continuar. La información de salud será
+                        enviada por el médico al correo que decidas.
+                    </p> *@
+                    <div class="mt-3">
+                    
+                        <div class="container-fluid">
+                            <div class="row align-items-center datos-validacion">
+                                <div class="col-11 col-lg-6">
+                                    <label for="">Nombre</label>
+                                    <input type="text" class="form-control" id="nombreMedical" disabled />
+                                </div>
+                                <div class="col-11 col-lg-6">
+                                    <label for="">Apellido</label>
+                                    <input type="text" class="form-control" id="apellidoMedical" disabled />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container-fluid">
+                            <div class="row align-items-center datos-validacion fecha-cedula">
+                                <div class="col-11 col-lg-6">
+                                    <label for="">Cédula identidad*</label>
+                                    <input type="text" class="form-control" id="cedulaMedical" disabled />
+                                </div>
+                                <div class="col-11 col-lg-6">
+                                    <label for="">Fecha de Nacimiento*</label>
+                                    <input type="date" class="form-control" id="fechanacMedical" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container-fluid">
+                            <div class="row align-items-center datos-validacion">
+                                <div class="col-11 col-lg-6">
+                                    <label for="">Correo Electrónico</label>
+                                    <input type="text" class="form-control" id="correoMedical" required />
+                                </div>
+                                <div class="col-11 col-lg-6">
+                                    <label for="">Teléfono</label>
+                                    <input type="text" class="form-control" id="telefonoMedical" required />
+                                </div>
+                            </div>
+                        </div>
+                       @* //ocultar hasta que haya indicaicion *@
+                        <div class="container-fluid d-none">
+                            <div class="row align-items-left datos-validacion">
+                                <div class="col-11 col-lg-6">
+                                    <label for="">Previsión</label>
+                                    <select id="previsionMedical" class="form-control">
+                                        <option value="opcion1">Opción 1</option>
+                                        <option value="opcion2">Opción 2</option>
+                                        <option value="opcion3">Opción 3</option>
+                                    </select>
+
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="container-fluid py-2">
+                        <div class="row">
+                        </div>
+                        <div class="cont-btns mt-4" style="text-align :right">
+                            <button type="button" id="btnModificarTelefonoEmail" class="btn btn-primary btn-sm btn-validacion">Guardar</button>
+                        </div>
+                    </div>
+            
+            </div>
+
+
+              
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalTerminos" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Términos y condiciones</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                @*terminos y condiciones se cargan de forma dinamica*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrar" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal fade" id="modalConsentimiento" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Consentimiento Informado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="modalBodyConsentimiento">
+                @*terminos y condiciones se cargan de forma dinamica*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarConsentimiento" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal fade" id="modalDeberes" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Deberes y Derechos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="modalBodyDeberes">
+                @*terminos y condiciones se cargan de forma dinamica*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarDeberes" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal fade" id="modalPoliticas" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Políticas de privacidad y tratamiento de datos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="modalBodyPoliticas">
+                @*terminos y condiciones se cargan de forma dinamica*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarPoliticas" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- end:: Content -->
+<!-- end:: Page -->
+<!-- begin::Scrolltop -->
+<div id="kt_scrolltop" class="kt-scrolltop">
+    <i class="fa fa-arrow-up"></i>
+</div>
+
+<!-- end::Scrolltop -->
+<!-- begin::Global Config(global config for global JS sciprts) -->
+@section PageScripts {
+    <script src="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
+    <script src="~/js/Shared/archivos-agenda-3.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+
+    <!--
+        <script src="~/js/modal.js"></script>
+    -->
+}
+
+    @section Scripts {
+    <script src="~/signal/signalr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+    <script src="~/js/accesible.js"></script>
+    <script type="module">
+
+        import { init } from '../../js/Paciente/agenda_3.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+            //ViewBag.uid = uid;
+
+            //ViewBag.idMedico = idMedico;
+            //ViewBag.idMedicoHora = idMedicoHora;
+            //ViewBag.idBloqueHora = idBloqueHora;
+            //ViewBag.fechaSeleccion = fechaSeleccion;
+            var urlSmartcheck = '@urlSmartcheck';
+            window.urlSmartcheck = urlSmartcheck;
+            var uid = @ViewBag.uid;
+            var idMedico = @ViewBag.idMedico;
+            var idMedicoHora = @ViewBag.idMedicoHora;
+            var idAtencion = @ViewBag.idAtencion;
+            var idBloqueHora = @ViewBag.idBloqueHora;
+            var fechaSeleccion = '@ViewBag.fechaSeleccion';
+            var fechaText = '@ViewBag.fechaText';
+            var horaText = '@ViewBag.horaText';
+            var horario = @ViewBag.horario.ToString().ToLower();
+            var textoMarca = '@ViewBag.textoMarca';
+            var especialidad = @ViewBag.especialidad;
+            var tipoEspecialidad = '@ViewBag.tipoEspecialidad';
+            var m = '@ViewBag.m';
+            var r = '@ViewBag.r';
+            var c = '@ViewBag.c';
+            var host = '@ViewBag.HostURL';
+            var fechaAgenda2 = '@ViewBag.fechaAgenda2';
+            window.textoMarca = textoMarca;
+
+            window.uid = uid;
+            window.idMedico = idMedico;
+            window.idMedicoHora = idMedicoHora;
+            window.idAtencion = idAtencion;
+            window.idBloqueHora = idBloqueHora;
+            window.fechaSeleccion = fechaSeleccion;
+            window.fechaText = fechaText;
+            window.horaText = horaText;
+            window.horario = horario;
+            window.host = host;
+            window.especialidad = especialidad;
+            window.tipoEspecialidad = tipoEspecialidad;
+            window.m = m;
+            window.r = r;
+            window.c = c;
+            window.fechaAgenda2 = fechaAgenda2;
+            var tipoatencion = '@ViewBag.tipoatencion';
+            window.tipoatencion = tipoatencion;
+            var idCliente = @ViewBag.idCliente;
+            window.idCliente = idCliente;
+            var especialidadFila = @ViewBag.especialidad;
+            window.especialidadFila = especialidadFila;
+
+        })()
+
+
+
+    </script>
+
+
+}

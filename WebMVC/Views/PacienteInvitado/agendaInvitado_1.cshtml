@@ -1,0 +1,262 @@
+﻿@model WebMVC.Models.AgendaViewModel
+@{
+    ViewData["Title"] = "Agendar";
+    Layout = "_LayoutPacienteInvitado";
+    
+}
+
+@section PageStyles  {
+    <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <style>
+                /*.swal2-styled.swal2-cancel{
+                position: absolute !important;
+                left: 75px !important;
+            }
+            .swal2-styled.swal2-confirm {
+                    position: absolute !important;
+                    right: 50px !important;
+        }*/
+
+    </style>
+}
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+    <!--Begin::App-->
+    <!-- Start:: Stepper-->
+    <!-- Stepper -->
+    @{ 
+        var hidden = "";
+        if (ViewBag.c == "21")
+            hidden = "hidden";
+    }
+    <div class="stepper" @hidden>
+        <div class="init-step"></div>
+        <div class="cont-steps">
+            <!-- Step1 -->
+            <div class="step active">
+                <div class="step-icon">
+                    <i class="fal fa-user-md"></i>
+                </div>
+                <div class="label-step">
+                    Selección
+                </div>
+            </div>
+
+            <i class="fas fa-chevron-right flecha"></i>
+
+            <!-- Step2 -->
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fal fa-calendar-edit"></i>
+                </div>
+                <div class="label-step">
+                    Agendamiento
+                </div>
+            </div>
+
+            <i class="fas fa-chevron-right flecha"></i>
+
+            <!-- Step3 -->
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fal fa-check-circle"></i>
+                </div>
+                <div class="label-step">
+                    Confirmación
+                </div>
+            </div>
+        </div>
+        <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+    </div>
+    <!-- Stepper -->
+    <!-- End:: Stepper-->
+    <!-- Formulario Agendamiento -->
+    <div class="container-fluid formulario-agendamiento">
+        <div class="row">
+            <div class="col-12 mb-5 mb-md-0 col-md p-0 d-none d-md-block">
+                <div class="aviso-plataforma">
+                    <div class="foto-profesional">
+                        <img src="~/img/doctor.jpg" class="rounded-circle" alt="" />
+                    </div>
+                    <h1>
+                        Hola <span id="nombrePaciente1"></span>, antes de continuar...
+                    </h1>
+                    <p>
+                        Necesito que completes todos tus datos, tu información es
+                        importante para mi.
+                    </p>
+                    
+    <div class="check-aceptacion invisible">
+        <input class="form-check-input"
+               type="checkbox"
+               value=""
+               checked
+               id="aceptaTerminos"/>
+        <label class="form-check-label" for="defaultCheck1" >
+            *Acepto los <a href="#">términos y condiciones</a> del
+            servicio de facilitación de consultas virtuales (que
+            incluyen las condiciones de cancelación y reembolso de la
+            consulta), y los términos y condiciones generales de
+            Medismart.live. He leído la
+            <a href="#">política de privacidad.</a> <br />
+            <strong>Aviso:</strong> El servicio de consulta online es
+            proporcionado por el especialista, y facilitado a nivel
+            técnico por Medismart.live. <br />
+            <a href="#">Saber más.</a>
+        </label>
+    </div>
+        
+                </div>
+            </div>
+            <div class="col-12 col-md-8 p-0">
+                <div class="formulario-confirmacion">
+                    <div class="header-formulario">
+                        <i class="fal fa-exclamation-square"></i>
+                        <h3>
+                            <strong>Hola <span id="nombrePaciente2"></span> </strong> ¿confirmas que estos datos
+                            están correctos?
+                        </h3>
+                    </div>
+                    <!-- Form -->
+                    <form action="" class="container-fluid">
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <label for="">Nombres</label>
+                                <input type="text" class="form-control" id="nombres" readonly />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <label for="">Apellidos</label>
+                                <input type="text" class="form-control" id="apellidos" readonly/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-12 mb-3 mb-md-0">
+                                <label for="">Correo</label>
+                                <input type="email" class="form-control" id="email" readonly/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            
+                            <div class="col-12 col-md-6">
+                                <label for="">Fono</label>
+                                <div class="input-group">
+
+                                    <input type="tel"
+                                           class="form-control"
+                                           aria-label="Sizing example input"
+                                           aria-describedby="inputGroup-sizing-default"
+                                           id="telefono" readonly/>
+                                </div>
+                            </div>
+                       
+                           
+                            <div class="col-12 col-md-6 mt-3 mt-sm-0">
+                                <label for="">Fecha Nacimiento</label>
+                                <input type="text" class="form-control" id="fechaNacimiento" readonly/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            
+                            <div class="col-12 col-md-6 mb-3 mb-md-0">
+                                <label for="">RUT</label>
+                                <input type="text" class="form-control" id="rut" readonly />
+                            </div>
+                            <div class="col-12 col-md-6" id="divNumDoc">
+                                <label for="">Número documento (Ej: sin puntos)</label>
+                                <div class="input-group mb-3 num-doc">
+                                    <input type="text" class="form-control" id="numeroDocumento" maxlength="20">
+                                    <div class="input-group-append" id="input-info">
+                                        <span class="input-group-text"><i class="fal fa-question-circle"></i></span>
+                                    </div>
+                                    <div class="tip-documento" id="tipDoc">
+                                        <button class="btn-close"><i class="fal fa-times" id="btnClose"></i></button>
+                                        <img src="~/img/rut.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12 col-sm-6 mb-2 mb-sm-0">
+                                <a class="btn btn-danger btn-block btn-sm text-white" href="@Url.Action("Configuracion")" target="_blank">
+                                   Editar perfil
+                                </a>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                
+                                <button class="btn btn-primary btn-block btn-sm" id="buttonConfirma">
+                                    Confirmo Datos
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Formulario Agendamiento -->
+    
+    
+
+</div>
+
+<!-- end:: Content -->
+
+<!-- end:: Page -->
+<!-- begin::Scrolltop -->
+<div id="kt_scrolltop" class="kt-scrolltop">
+    <i class="fa fa-arrow-up"></i>
+</div>
+
+<!-- end::Scrolltop -->
+<!-- begin::Global Config(global config for global JS sciprts) -->
+@section PageScripts {
+    <script src="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
+
+}
+
+@section Scripts {
+    <script src="~/signal/signalr.min.js"></script>
+    
+    <script type="module">
+
+        import { init } from '../../js/PacienteInvitado/agendaInvitado_1.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+
+            var uid = @ViewBag.uid;
+            var idMedico = @ViewBag.idMedico;
+            var fechaPrimeraHora = '@ViewBag.fechaPrimeraHora';
+            var m = '@ViewBag.m';
+            var r = '@ViewBag.r';
+            var c = '@ViewBag.c';
+            var especialidad = @ViewBag.especialidad;
+            var host = '@ViewBag.HostURL';
+            window.host = host;
+            window.uid = uid;
+            window.idMedico = idMedico;
+            window.fechaPrimeraHora = fechaPrimeraHora;
+            window.m = m;
+            window.r = r;
+            window.c = c;
+            window.especialidad = especialidad;
+            var idCliente = @ViewBag.idCliente;
+            window.idCliente = idCliente;
+            var tipoatencion = '@ViewBag.tipoatencion';
+            window.tipoatencion = tipoatencion;
+        })()
+    </script>
+
+}

@@ -1,0 +1,136 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+
+    <section class="container-fluid note-section library featured" id="nota11">
+        <div class="container">
+            <div class="row">
+                <div class="col-auto">
+                    <div class="cont-icons">
+                        <div class="icon account-type">
+                            <i class="fal fa-heart"></i>
+                        </div>
+                        <div class="icon">
+                            <i class="fal fa-file-alt"></i>
+                        </div>
+                    </div>
+
+                    <h1 class="title-section">
+                        El camino a la salud: Guía práctica de bienestar
+                    </h1>
+                    
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    
+                    <p>
+                        La conexión entre la salud física y el bienestar mental es innegable. Al cuidar de su cuerpo, también están cuidando de su mente y su capacidad para enfrentar los desafíos laborales con una actitud positiva. A continuación, presentamos algunos consejos simples pero poderosos para mejorar su bienestar durante la jornada laboral y maximizar su rendimiento.
+
+                    </p> <br />
+                    <strong>
+                        1. Realiza breves pausas para estirarte y moverte
+                    </strong>
+                    <p>
+                        Es fundamental dedicar tiempo a nuestras tareas, pero también es esencial dar un respiro a nuestros músculos y mente. <strong>Programe pausas cortas en sus agendas para levantarse, estirarse y moverse.</strong> Aquí algunos ejercicios simples que pueden realizar:
+                    </p>
+                    <br />
+                        <ul>
+                            <li>
+                                <strong>Estiramiento de cuello:</strong> Inclina la cabeza hacia un lado, mantén durante 10 segundos y cambia de lado. Repite varias veces para aliviar la tensión en el cuello.
+                            </li>
+                            <li>
+                                <strong>Estiramiento de hombros y espalda:</strong> Lleva los brazos hacia arriba y luego hacia adelante, estirando los hombros y la parte superior de la espalda.
+                            </li>
+                            <li>
+                                <strong>Caminata corta:</strong> Levántate y camina durante unos minutos. Puede ser una vuelta por la oficina o el pasillo. Esto ayuda a mejorar la circulación y a despejar la mente.
+                            </li>
+                        </ul>
+                    <p>
+                        Estos estiramientos no solo alivian la tensión muscular, sino que también mejoran la circulación y aumentan la concentración, contribuyendo a un mejor rendimiento.
+                    </p>
+                    <br />
+                    <strong>
+                        2. Ergonomía: Tu aliado en el espacio de trabajo
+                    </strong>
+                    <p>
+                        Una postura adecuada es clave para evitar molestias en la espalda y el cuello, y mantener una buena salud a largo plazo. <strong>Asegúrense de que sus sillas y pantallas estén ajustadas ergonómicamente.</strong> Aquí algunos consejos para mejorar la ergonomía de su espacio de trabajo:
+                    </p><br />
+                    <ul>
+                        <li>
+                            <strong>Altura de la silla:</strong> Ajusta la silla de manera que tus pies estén completamente apoyados en el suelo y las rodillas formen un ángulo de 90 grados.
+                        </li>
+                        <li>
+                            <strong>Posición del monitor:</strong> La parte superior de la pantalla debe estar al nivel de los ojos para evitar tensiones en el cuello. Mantén el monitor a una distancia de aproximadamente un brazo de largo.
+                        </li>
+                        <li>
+                            <strong>Apoyo lumbar:</strong> Usa un cojín o una silla con soporte lumbar para mantener la curva natural de la espalda.
+                        </li>
+                    </ul>
+                    <p>
+                        Adoptar estas prácticas de ergonomía no solo ayuda a prevenir dolores y molestias, sino que también contribuye a una mayor productividad y comodidad durante la jornada laboral.
+                    </p><br />
+                    <strong>
+                        3. Hidratación y alimentación saludable
+                    </strong>
+                    <p>
+                        Mantenerse hidratado y alimentarse de forma equilibrada es fundamental para un rendimiento óptimo.<strong> La hidratación es esencial para mantenerse alerta y enfocado.</strong> Aquí algunas recomendaciones para una buena hidratación y alimentación en el trabajo:
+                    </p>
+                    <br />
+                    <ul>
+                        <li>
+                            <strong>Beber agua regularmente:</strong> Mantén una botella de agua en tu escritorio y establece recordatorios para beber agua durante el día.
+                        </li>
+                        <li>
+                            <strong>Snacks saludables:</strong> Opta por frutas, nueces o yogur en lugar de opciones altas en azúcar y grasas saturadas.
+                        </li>
+                        <li>
+                            <strong>Almuerzos equilibrados:</strong> Incluye una variedad de alimentos en tus comidas, como proteínas magras, verduras y granos enteros, para mantener niveles de energía constantes.
+                        </li>
+                    </ul>
+                    <p>
+                        Una adecuada hidratación y una alimentación saludable no solo proporcionan la energía necesaria para enfrentar la jornada, sino que también ayudan a mantener un estado de ánimo positivo y a mejorar la concentración.
+                    </p> <br />
+                   
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+                    </div>
+                    
+
+                    <partial name="~/Views/Biblioteca/_ColumnasNotas.cshtml" model="Model" view-data="ViewData" />
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}

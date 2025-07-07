@@ -1,0 +1,153 @@
+﻿@model AgendaProfesionales
+@{
+    ViewData["Title"] = "ListaProfesionales";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    
+}
+
+@section PageStyles  {
+    <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+    @*<div class="alert alert-light alert-elevate" role="alert">
+            <div class="alert-icon"><i class="flaticon-warning kt-font-brand"></i></div>
+            <div class="alert-text">
+                Datatable initialized from remote JSON source with local(frontend) pagination, column order and search support.
+            </div>
+        </div>*@
+    <div class="kt-portlet kt-portlet--mobile">
+        <div class="kt-portlet__head kt-portlet__head--lg">
+            <div class="kt-portlet__head-label">
+                <span class="kt-portlet__head-icon">
+                    <i class="kt-font-brand flaticon2-user"></i>
+                </span>
+                <h3 class="kt-portlet__head-title">
+                    Agendas
+                    @*<small>initialized from remote json file</small>*@
+                </h3>
+            </div>
+
+        </div>
+
+        <div class="kt-portlet__body">
+            <!--begin: Search Form -->
+            <div class="kt-form kt-form--label-right kt-margin-t-20 kt-margin-b-10">
+                <div class="row align-items-center">
+                    <div class="col-xl-12 order-2 order-xl-1">
+                        <div class="row align-items-center">
+                            <div class="col-md-6 kt-margin-b-20-tablet-and-mobile">
+                                <div class="kt-form__group kt-form__group--inline">
+                                    <div class="kt-form__label">
+                                        <label>Ver profesionales</label>
+                                        <br/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 order-2 order-xl-1">
+                        <div class="row align-items-center mt-4">
+                            <div class="col-md-7 kt-margin-b-20-tablet-and-mobile">
+                                <div class="kt-input-icon kt-input-icon--left">
+                                    <input type="text" class="form-control" placeholder="Buscar..." id="generalSearch">
+                                    <span class="kt-input-icon__icon kt-input-icon__icon--left">
+                                        <span><i class="la la-search"></i></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-3 kt-margin-b-20-tablet-and-mobile">
+                                <div class="kt-form__group kt-form__group--inline">
+                                    <div class="kt-form__label">
+                                        <label>Especialidad:</label>
+                                    </div>
+                                    <div class="kt-form__control">
+                                        <select class="form-control bootstrap-select" id="especialidades"  style="width: 50%">
+                                            <option value="">Todos</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 kt-margin-b-20-tablet-and-mobile">
+                                <div class="kt-form__group kt-form__group--inline">
+                                    <div class="kt-form__label">
+                                        <label>Estado:</label>
+                                    </div>
+                                    <div class="kt-form__control">
+                                        <select class="form-control bootstrap-select" id="kt_form_status"  style="width: 90%">
+                                            <option value="">Todos</option>
+                                            <option value="V">Activo</option>
+                                            <option value="I">Inactivo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--end: Search Form -->
+        </div>
+        <div class="kt-portlet__body kt-portlet__body--fit">
+
+            <!--begin: Datatable -->
+            <div class="kt-datatable" id="json_data"></div>
+
+            <!--end: Datatable -->
+        </div>
+    </div>
+
+</div>
+
+
+
+<!-- end:: Page -->
+<!-- begin::Scrolltop -->
+<div id="kt_scrolltop" class="kt-scrolltop">
+    <i class="fa fa-arrow-up"></i>
+</div>
+
+<!--<button onclick="playAudio()" type="button">Play Audio</button>
+<button onclick="pauseAudio()" type="button">Pause Audio</button>-->
+
+<audio id="myAudio">
+    <source src="~/metronic_demo7/assets/media/demo/sonido.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+@section PageScripts {
+    <script src="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>
+
+}
+
+@section Scripts {
+    <script>
+        var x = document.getElementById("myAudio");
+
+        function playAudio() {
+            x.play();
+        }
+
+        function pauseAudio() {
+            x.pause();
+        }
+    </script>
+    <script type="module">
+        import { init } from '../../js/Admin/verAgendas.js?rnd=@NumeroRandom.GetRandom()';
+        init(@Html.Raw(Json.Serialize(Model)), '@Html.Raw(Url.Action("CrearAgenda"))')
+    </script>
+    <script type="text/javascript">
+        (function () {
+            var uid = @ViewBag.uid;
+
+            window.uid = uid;
+        })()
+    </script>
+    @*<script src="~/js/Paciente/index.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>*@
+}
+

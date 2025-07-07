@@ -1,0 +1,701 @@
+/*L'Oreal*/
+
+/*
+
+Custom Fonts example:
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap')
+
+/*Global Styles*/
+
+:root {
+    --primary: #1c1c1a;
+    --secondary: #333333;
+    --tertiary: #111;
+    --accent: #E3A535;
+    --light: #FFF;
+    --font-family: 'Mulish', sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-family);
+}
+
+/*Ayuda Dropdown*/
+.titulo-dropdown,
+.wp_box h3,
+.opcion-ayuda a {
+    color: #1c1c1a;
+}
+
+
+.wp_box h3,
+.opcion-ayuda a:hover{
+    font-weight: bold;
+    color: #1c1c1a;
+}
+
+div#drop-mensajes-turno {
+    background-color: #1c1c1a;
+}
+
+/*Login*/
+.logotipo-desktop {
+    background-image: url(../../img/loreal/logotipo.png);
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/loreal/logotipo.png);
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: #1c1c1a !important;
+    text-align: center;
+    font-size: 38px;
+}
+
+a#kt_login_forgot {
+    color: #4D4084 !important;
+}
+
+button#kt_login_signin_submit {
+    background-color: #E3A535;
+    border: 1px solid #FFC800;
+    color: #0F1C14;
+    transition: all 0.2s ease-in-out;
+}
+
+button#kt_login_signin_submit:hover {
+    background-color: #1c1c1a;
+    color: #fff;
+}
+
+.form-group .ms-label {
+    color: #1c1c1a !important;
+}
+
+.btn-primary {
+    background-color: #4D4084;
+    border-color: #4D4084;
+}
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+    background-color: #1c1c1a !important;
+    border-color: #1c1c1a !important;
+}
+
+.divider-medismart {
+    display: flex !important;
+    margin-bottom: 2rem;
+}
+
+.logo-convenios {
+    margin-bottom: 2rem;
+    align-items: end;
+}
+
+/* Imagenes Login */
+.img1 {
+    background-image: url(../../img/loreal/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/loreal/login/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/loreal/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/loreal/login/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/loreal/login/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/loreal/login/960x978.jpg);
+}
+
+/*Home*/
+
+.body-home {
+    background: #fff;
+}
+
+.body-home .logo-home {
+    background-color: #1c1c1a;
+    margin-bottom: 3rem;
+}
+
+.body-home .logo-home img {
+    width: 130px !important;
+}
+
+.body-home .top-banner .legend {
+    font-weight: bold;
+    color: #1c1c1a !important;
+    font-size: 28px;
+}
+
+.body-home .card-plan .costo {
+    background-color: #E3A535;
+    color: #000;
+}
+
+.body-home #btnOrientacion .pronto {
+    display: none !important;
+}
+
+.menu-top .item-menu-top i,
+.menu-top .label-menu,
+.menu-top .label-menu-pac {
+    color: var(--tertiary);
+    
+}
+
+.menu-top .label-menu,
+.menu-top .label-menu-pac {
+    font-weight: 900;
+}
+
+.menu-top .item-menu-top:hover i,
+.menu-top .item-menu-top:hover .label-menu,
+.menu-top .item-menu-top:hover .label-menu-pac{
+    color: var(--accent) !important;
+}
+
+.kt-menu__item a,
+.kt-menu__item i {
+    color: #1c1c1a;
+}
+
+.kt-menu__item a .ms-label-menu {
+    color: #1c1c1a;
+}
+
+.kt-menu__item:hover a,
+.kt-menu__item:hover i {
+    color: #4D4084 !important;
+}
+
+.body-home .saludo-usuario {
+    color: var(--accent) !important;
+}
+
+.body-home .cont-card .card {
+    background-color: #1c1c1a;
+    color: #fff;
+}
+
+.body-home .cont-card h1 {
+    color: #1c1c1a;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+.body-home .card-plan .preferente {
+
+    background-color: var(--accent);
+    color: var(--light);
+    border-radius: 0px 16px 0px 8px;
+
+}
+
+.body-home .footer-home {
+margin: 1rem auto 3rem auto;
+}
+
+.body-home .footer-home,
+.body-home .footer-home .terminos a {
+    color: #1c1c1a !important;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.accesible-tools-desktop .accesible-btn {
+    width: auto;
+    max-width: 1024px;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.accesible-btn button {
+    color: #4D4084;
+    border: 1px solid #4D4084;
+}
+
+.accesible-btn button:hover {
+    background-color: #1c1c1a;
+    border-color: #fff;
+    transition: all 0.2s ease-in-out;
+}
+
+/*Agendar*/
+
+.titulo-servicio {
+    color: #1c1c1a;
+}
+
+.btn-agendar {
+    background-color: #4D4084;
+    border: none;
+    transition: all 0.1s ease-in-out;
+}
+
+.btn-agendar:hover,
+.btn-agendar:active,
+.btn-agendar:focus
+ {
+background-color: #E3A535 !important;
+}
+
+.busqueda-profesionales {
+    border: 2px solid #1c1c1a;
+    transition: all 0.1s ease-in-out;
+}
+.busqueda-profesionales:hover,
+
+ {
+    border-color: #4D4084 !important;
+}
+.busqueda-profesionales i {
+    color: #1c1c1a;
+}
+
+
+
+select#especialidades {
+    color: #1c1c1a;
+}
+
+.busqueda-profesionales:hover i,
+select#especialidades:hover {
+    color: #4D4084 !important;
+}
+
+.caja-especialidad.active,
+.caja-especialidad:hover,
+.caja-especialidad:focus {
+    background-color: #4D4084;
+}
+
+.caja-especialidad {
+    background-color: #1c1c1a;
+}
+
+.inner-especialidad strong {
+    color: var(--light)
+}
+
+.step.active .step-icon {
+    background-color: #1c1c1a;
+}
+
+.stepper {
+    background-image: url(../../img/loreal/fondo-banner2.svg);
+}
+
+.stepper .flecha {
+    color: #1c1c1a;
+}
+
+.stepper img {
+    border-color: #1c1c1a;;
+}
+
+.step.active .label-step,
+.stepper-sv .titulo-step,
+.stepper-sv .label-step {
+    color: #1c1c1a;
+}
+
+.stepper-sv .step-icon {
+    background-color: #1c1c1a;
+}
+
+.mensaje-superior {
+    color: var(--secondary);
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional,
+.especialidad-profesional {
+    color: #8F8F8F;
+}
+
+.caja-profesional:hover {
+    box-shadow: 0px 4px 10px rgb(77 64 132 / 70%);; 
+    border: 1px solid rgb(77 64 132 / 70%);
+}
+
+.caja-profesional .fecha-atencion {
+    color: #1c1c1a;
+    border: 1px solid #1c1c1a;
+}
+
+.front-fecha-atencion {
+    border: #1c1c1a;
+}
+
+.front-fecha-atencion strong:before {
+    color: #1c1c1a;
+    font-weight: 900;
+}
+
+#contVolver .btn.btn-outline-secondary{
+    background-color: #2C506D;
+    border: none;
+    color: #fff;
+}
+
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+
+.top-banner {
+    background-image: url(../../img/loreal/fondo-banner.svg);
+}
+
+.top-banner img {
+    border-color: rgba(255, 255, 255, .3)
+}
+
+/*.top-banner .legend {
+    color: var(--secondary)
+}*/
+
+.banner_topsc .legend .text-warning {
+    color: #1c1c1a !important;
+}
+
+.top-banner.banner_topsc {
+    background-image: url(../../img/loreal/fondo-banner2.svg);
+}
+
+.text-warning {
+    color: var(--light) !important;
+}
+
+.menu-top .item-menu-top .logotipo-mobile {
+    width: 110px !important;
+}
+
+/*Sala espera*/
+.hotspot-icon .cont-icon {
+    background-color: #1c1c1a;
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: #4D4084;
+}
+
+.cont-icon.hotspot-redes {
+    background-color: #000;
+}
+
+#reporte .cont-icon {
+    background-color: #1c1c1a;
+}
+
+.btn-guardar-info,
+.btn-success {
+    background-color: #1c1c1a;
+    border-color: #1c1c1a;
+
+}
+
+.btn-guardar-info:hover,
+.btn-success:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: #1c1c1a
+}
+
+.btn.btn-outline-secondary {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: #1c1c1a
+}
+
+#reporte .cont-icon {
+    background-color: #1c1c1a;
+}
+
+#reporte:hover .cont-icon {
+    background-color: #4D4084;
+}
+
+#hs-g .cont-icon {
+    background-color: #1c1c1a;
+}
+
+#hs-g:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+.toolbar-option {
+    color: #1c1c1a
+}
+
+.toolbar-option.active {
+    color: var(--secondary)
+}
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--tertiary)
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--secondary)
+}
+
+.btn-sala:hover {
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion,
+.cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion:hover,
+.cont-btn-vc .btn-atencion:hover {
+    background-color: rgba(237, 110, 0, 0.1);
+    color: #1c1c1a;
+}
+
+.hotspot-icon {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.hotspot-icon i {
+    text-shadow: none;
+}
+
+.hotspot-icon:hover {
+    color: #FFF;
+}
+
+/*Prehome*/
+
+.prehome__plans {
+    height: 450px;
+}
+
+.prehome__plan {
+    width: 100%;
+    padding: 0;
+}
+
+.prehome__plan ul {
+    list-style-image: url('../../img/loreal/bullet.svg');
+
+    margin-top: 32px;
+    height: 350px;
+    font-size: 16px;
+}
+
+.prehome__title {
+    color: #FFF;
+}
+
+.kt-login__extra.registro {
+    display: none;
+}
+
+.logo-convenios.convenioChile+hr {
+    display: none;
+}
+
+.kt-login.kt-login--v3.kt-login--signin .kt-login__signin .titulo-card-farmacia {
+    text-align: center;
+}
+
+.modal-paciente .modal-content {
+    margin: auto;
+    margin-top: 8rem;
+    border: none;
+    padding: 5px 32px;
+}
+
+/* Wow */
+
+.wow__header .wow__title h2,
+.wow__historial .tarjeta__title {
+    color: #1c1c1a;
+}
+
+.wow__tarjeta.tarjeta--smartcheck {
+    border-color: #1c1c1a;
+}
+
+.wow .tag.active {
+    background-color: #4D4084 !important;
+    color: #fff;
+    border: 1px solid #4D4084;
+}
+
+.wow .tag {
+
+    border: 1px solid #1c1c1a;
+
+    background-color: #fff;
+    color: #1c1c1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-align: center;
+    height: max-content;
+}
+
+.wow .tag:hover {
+    background-color: #4D4084;
+    color: #fff;
+}
+
+
+/*Media Queries*/
+
+
+
+@media (max-width: 991.98px) {
+    .top-banner .legend {
+        text-align: left;
+        font-size: 24px;
+    }
+
+    .leyenda-card-home {
+        color: #fff;
+    }
+
+    .body-home .powered,
+    .body-home .powered strong {
+        /*        display: none;*/
+        color: #1c1c1a;
+    }
+}
+
+@media (max-width: 668px) {
+    .body-home .top-banner {
+        max-width: 90vw;
+        margin: 0 auto 1rem auto;
+        height: auto;
+    }
+
+    .body-home .top-banner .legend {
+        text-align: left;
+        font-size: 1.5rem;
+    }
+
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+
+
+}
+
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/loreal/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/loreal/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/loreal/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/loreal/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/loreal/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/loreal/login/548x850.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/loreal/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/loreal/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/loreal/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/loreal/login/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/loreal/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/loreal/login/960x978.jpg);
+    }
+}
+
+
+@media (max-width: 991.98px) {
+    .prehome__plans {
+        height: auto;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .sala-espera-mobile img {
+        margin-top: -580px !important;
+    }
+}

@@ -1,0 +1,260 @@
+/*ChatGPT*/
+
+#concierge-chat.cont-chat {
+    width: 100%;
+    max-width: 300px;
+    position: fixed;
+    bottom: 1px;
+    right: 4px;
+}
+
+.cont-asistente {
+    border-radius: 14px 14px 0px 0px;
+    background: linear-gradient(151deg, rgba(59, 193, 205, 0.80) 0%, rgba(33, 145, 176, 0.30) 100%);
+    display: flex;
+    justify-content: center;
+    margin-bottom: -1px;
+    /*height: 160px;*/
+}
+
+    .cont-asistente .chat-superior {
+        max-width: 300px;
+        width: 100%;
+        height: 90px;
+        margin: 0;
+    }
+
+    .cont-btn {
+        width: 100%;
+    }
+
+.cont-btn-chat .btn-chat {
+    width: 100%;
+    border-radius: 10px;
+    padding: 16px;
+    color: #646C9A;
+    font-weight: 700;
+    font-size: 12px;
+    text-align: left;
+    background-color: #fff;
+    border: none;
+    background-image: url(../../img/chatgpt/rocket.svg);
+    background-repeat: no-repeat;
+    background-position: 95% 7px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+    .cont-btn-chat .btn-chat:hover {
+        background-color: #DDD;
+    }
+
+.cont-conversacion {
+    color: #646C9A;
+    background-color: transparent;
+    border-radius: 10px;
+    width: 100%;
+    position: fixed;
+    width: 100%;
+    max-width: 300px;
+    bottom: 3px;
+    right: 4px;
+    display: none;
+}
+
+    .cont-conversacion p {
+        /* padding-top: 0; */
+        font-size: 12px;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .cont-conversacion strong {
+        color: #0081A4;
+    }
+
+.input-chat {
+    width: 100%;
+    border-top: 1px solid #C8DDF8;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FFF;
+    border-radius: 0 0 10px 10px;
+}
+
+    .input-chat input {
+        border: none;
+        outline: none;
+        padding: 0 14px;
+        font-size: 13px;
+    }
+
+.conversacion {
+    padding: 10px;
+    max-height: 430px;
+    overflow-y: auto;
+    background-color: #FFF;
+}
+
+.btn-enviar {
+    background-image: url(../../img/chatgpt/rocket.svg);
+    background-repeat: no-repeat;
+    background-position: 94% 6px;
+    border: 1px solid transparent;
+    background-color: #fff;
+    height: 48px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding-left: -1000px;
+    color: transparent;
+    margin-right: 1rem;
+}
+
+.intro {
+    display: none;
+}
+
+.globo {
+    padding: 1rem;
+}
+
+.globo-asistente {
+    background: #EEE;
+    color: #79797A;
+    border-radius: 1rem 1rem 1rem 0;
+    width: 80%;
+}
+
+.globo-paciente {
+    border-radius: 1rem 1rem 0 1rem;
+    background-color: #0081A4;
+    color: #FFF;
+}
+
+.cont-globo {
+    display: flex;
+    align-items: flex-end;
+    gap: .5rem;
+}
+
+.avatar {
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(161deg, #C5DBF6 0%, #4E7C94 100%);
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: .7rem;
+}
+
+    .avatar img {
+        width: 100%;
+    }
+
+/*Scroll*/
+
+/* Track */
+.conversacion::-webkit-scrollbar-track {
+    background: rgba(80, 80, 80, 0.2);
+}
+
+
+/* Handle */
+.conversacion::-webkit-scrollbar-thumb {
+    background: #67bce1;
+}
+
+    /* Handle on hover */
+    .conversacion::-webkit-scrollbar-thumb:hover {
+        background: #67bce1;
+    }
+
+.list-options {
+    list-style: none;
+    border: solid 1px #80808047;
+    border-radius: 4px;
+    width: 137px;
+    padding: 2%;
+    text-align: center;
+    margin: auto;
+}
+
+.option-list{
+    cursor: pointer;
+}
+
+.contain-close {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: right;
+    top: .5rem;
+    margin-right: 1rem;
+    color: white;
+    cursor: pointer;
+}
+
+.x-close {
+    margin-right: .5rem;
+    cursor: pointer;
+    color: #FFF;
+    margin-right: 1rem;
+}
+
+
+/*Terminos*/
+
+.footer-home.gpt-activo .terminos {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: flex-start;
+}
+
+.footer-home.gpt-activo #terminosFooter {
+    margin-left: 2rem;
+}
+
+
+
+@media (max-width: 1024px) {
+    #concierge-chat.cont-chat {
+        display: none;
+    }
+
+}
+
+
+/*puntos chat*/
+
+.typing-dots {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+    animation: typing 2s steps(3, end) infinite;
+    margin-bottom: 2px;
+}
+
+@keyframes typing {
+    0%, 100% {
+        width: 0;
+    }
+
+    33.33% {
+        width: 0.25em;
+    }
+
+    66.66% {
+        width: 0.5em;
+    }
+
+    100% {
+        width: 0.75em;
+    }
+}
+
+

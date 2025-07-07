@@ -1,0 +1,450 @@
+/* Isapre Colmena*/
+
+
+.kt-aside__brand-logo.iso-colmena a {
+    background-image: url(../../img/colmena/isotipo.png);
+}
+
+
+.logo-colmena {
+    background-image: url(../../img/colmena/logo-colmena.svg);
+    background-position: 0;
+}
+
+
+.logotipo-desktop {
+    background-image: url(../../img/colmena/ingreso-logo-lg.svg);
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/colmena/ingreso-logo-lg.svg);
+}
+
+
+
+.logo-convenios .iso-colmena {
+    background-image: url(../../img/logotipo.svg);
+    margin-right: 1rem;
+    width: 200px;
+    height: 90px;
+    background-repeat: no-repeat;
+}
+
+    .logo-convenios .iso-colmena:nth-of-type(1) {
+        display: none;
+    }
+
+    .logo-convenios .iso-colmena:nth-of-type(2) {
+        background-image: url(../../img/colmena/ingreso-logo-dronline.svg);
+        margin-right: 0;
+    }
+
+.logo-convenios {
+   justify-content: center;
+}
+
+.divider-medismart {
+    display: none;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: #0075c9;
+}
+
+
+
+/* Imágenes Login */
+.img1 {
+    background-image: url(../../img/colmena/ingreso-01.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/colmena/ingreso-02.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/colmena/ingreso-03.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/colmena/ingreso-01.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/colmena/ingreso-02.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/colmena/ingreso-03.jpg);
+}
+
+/*Home Colmena*/
+
+
+
+.body-home {
+    background: #0075c9;
+    background-image: url('../../img/colmena/home/fondo.svg'), linear-gradient(180deg, #0075c9 0%, rgba(0, 117, 201, 1) 100%);
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+    .body-home .cont-card .card img {
+        max-width: 216px;
+        max-height: 216px;
+    }
+
+    .body-home .container-colmena {
+        min-height: 540px;
+    }
+
+    .body-home .fecha-atencion {
+        color: #0075c9;
+    }
+
+    .body-home .btn-icon {
+        color: #0075c9;
+    }
+
+    .body-home .pronto {
+        color:#FFF ;
+    }
+
+    .body-home .menu-top .item-menu-top i,
+    .body-home .menu-top .item-menu-top .label-menu {
+        color: rgba(255,255,255, .7) !important;
+    }
+
+
+    .body-home .menu-top .item-menu-top:hover i,
+    .body-home .menu-top .item-menu-top:hover .label-menu {
+        color: #ffb822 !important;
+    }
+
+    .body-home .menu-top .item-menu-top .opcion-ayuda ,
+    .body-home .menu-top .item-menu-top .opcion-ayuda i {
+        color: #0075c9 !important;
+    }
+
+    .body-home .opcion-ayuda a {
+        color: #0075c9 !important;
+    }
+
+        .body-home .opcion-ayuda a:hover {
+            color: #ffb822 !important;
+        }
+
+.opcion-ayuda a {
+    color: #0075c9;
+}
+
+.opcion-ayuda a:hover {
+    color: #ffb822;
+}
+
+@media (max-width: 1024px) {
+    .body-home .cont-card .card img {
+        width: 60px;
+        height: 60px;
+    }
+        .body-home .container-colmena {
+            min-height: auto !important;
+        }
+
+    .cont-toolbar-options li a {
+        color: #0075c9;
+    }
+}
+
+
+    /* Buttons*/
+
+.btn-primary, .btn-success {
+    background-color: #0075c9;
+    border-color: #0075c9;
+}
+
+.accesible-btn button {
+    border: 1px solid #AED1ED !important;
+    color: #0075c9;
+}
+
+    .accesible-btn button:hover {
+        background-color: #0075c9 !important;
+        border-color: #0075c9 !important;
+    }
+
+.logo-home .btn-home {
+    color: rgba(255, 255, 255, .8);
+    cursor: pointer;
+}
+
+#btnSelectBeneficiario {
+    /*margin-right: 2rem;*/
+}
+
+
+/*Agendar*/
+.kt-menu__item a, .kt-menu__item i {
+    color: #0075c9 !important;
+}
+
+
+.menu-top .item-menu-top i {
+    color: #0075c9 !important;
+}
+
+.menu-top .label-menu {
+    color: #0075c9 !important;
+}
+
+.titulo-seccion {
+    color:#0075c9 
+}
+
+.cont-banner img {
+    border: 1px solid #AED1ED;
+}
+
+
+.busqueda-profesionales {
+    border: 2px solid #0075c9;
+}
+
+    .busqueda-profesionales i {
+        color: #0075c9;
+    }
+
+    .caja-especialidad {
+        background-color: #0075c9;
+    }
+
+.btn-outline-primary {
+    color: #0075c9;
+}
+
+.btn.btn-outline-primary.dropdown-toggle.itemEspecialidad:hover {
+    color: #AED1ED !important;
+}
+
+.caja-profesional .hora-atencion {
+    color: #0075c9;
+}
+
+.front-fecha-atencion {
+    color: #0075c9;
+    border: 1px solid #AED1ED;
+}
+
+    .front-fecha-atencion strong:before {
+        color: #0075c9;
+    }
+
+.caja-profesional:hover {
+    border: 1px solid #AED1ED;
+}
+
+.cont-banner video {
+    border-radius: 16px;
+    margin: 0 auto;
+}
+
+
+@media (max-width: 991.98px) {
+    .container-login {
+        min-height: calc(100vh - 108px);
+    }
+}
+
+@media (max-width: 1024px) {
+    .toolbar-option {
+        color: #0075c9;
+    }
+}
+
+/*Aviso Atencion*/
+
+.aviso-atencion {
+    background-color: #0075c9;
+}
+
+/*Caja Profesional*/
+.caja-profesional .header-aviso-atencion,
+.caja-profesional .header-aviso-atencion i {
+    color: #0075c9;
+}
+
+.caja-opciones a {
+    color: #0075c9;
+}
+
+/*Box Atencion*/
+
+.cont-btn-panel .btn-atencion, .cont-btn-vc .btn-atencion {
+    border: 1px solid #0075c9 !important;
+    color: #0075c9 !important;
+}
+
+.kt-portlet .kt-portlet__head .kt-portlet__head-label .kt-portlet__head-title {
+    color: #0075c9 !important;
+}
+
+/*Voucher*/
+
+.title-voucher {
+    display: inline-block;
+    font-size: 24px;
+    color: #0075C9 !important;
+    margin-top: 0;
+    font-weight: 900;
+}
+
+    .title-voucher i {
+        font-size: 22px;
+        color: #0075C9;
+        margin-bottom: 2rem;
+    }
+
+.linea-voucher {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #0081A4;
+    font-size: 18px;
+    margin-bottom: .5rem;
+}
+
+.valor-voucher {
+    font-size: 24px;
+}
+
+.linea-voucher strong {
+    font-weight: 900;
+    color: #0081A4;
+    font-size: 18px;
+}
+
+small.resta::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 4px;
+    background-color: #0081A4;
+    margin-right: .5rem;
+}
+
+.linea-voucher.total {
+    color: #0075C9;
+    font-size: 22px;
+    border-top: 1px solid rgba(0, 117, 201, .5);
+    margin-top: 1rem;
+    font-weight: 900;
+}
+
+.linea-final {
+    border-bottom: 1px solid rgba(0, 117, 201, .5);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.legend-voucher {
+    font-size: 16px;
+}
+
+.valor-voucher {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.total-legend {
+    text-transform: uppercase;
+}
+
+.total-valor {
+    font-weight: 900;
+}
+
+
+.total-valor small {
+    font-weight: 900;
+    font-size: 26px;
+}
+
+    .total-valor strong {
+        font-size: 32px;
+        color: #0075C9;
+    }
+
+.label-atencion {
+    border-radius: .5rem;
+    border: 1px solid #0075C9;
+    padding: 1rem;
+    font-size: 16px;
+    text-align: center;
+    color: #0075C9;
+    width: 174px;
+}
+
+    .label-atencion strong {
+        color: #0075C9;
+    }
+
+
+@media (max-width: 668px) {
+
+    .img-voucher {
+        margin: 0 auto;
+        max-width: 100px;
+        display: block
+    }
+
+    .label-atencion {
+        margin: 0 auto;
+        margin-bottom: 2rem;
+        margin-top: 0;
+    }
+
+    .title-voucher {
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+
+        .title-voucher i {
+            font-size: 16px;
+        }
+
+        .linea-voucher {
+            font-size: 12px;
+        }
+
+    small.resta::before {
+        width: 12px;
+    }
+
+    .linea-voucher.total {
+        font-size: 12px;
+    }
+}
+
+.body-home .card-plan .costo {
+    display: none;
+}
+
+
+/*Sala de Espera*/
+@media (min-width: 1921px) {
+
+    /*  .hotspots {
+        width: 100%;
+        height: 960px;
+        background-image: url(../../img/fondo-sala-colmena.jpg);
+        background-size: cover;
+    }*/
+
+    .hotspots img {
+        width: 100%;
+        height: auto;
+    }
+}

@@ -1,0 +1,84 @@
+/* Paneles */
+.panel-sala {
+  background-color: rgba(255, 255, 255, 0.9);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 400px;
+  z-index: 100;
+  transform: translateX(calc(100% + 400px));
+  transition: all .3s ease-out;
+  padding: 2rem 1rem;
+}
+
+.panel-sala .btn-icon {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+  transition: all .3s ease-out;
+}
+
+.panel-sala .btn-icon:hover {
+  background-color: #0081A4;
+}
+
+.panel-sala.show-panel {
+  transform: translateX(0);
+}
+
+    .panel-sala .caja-base {
+        background-color: transparent;
+        color: #666;
+        border: none;
+        border-radius: 0;
+        padding: 1rem 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .panel-sala .carga-archivos {
+        border-left: none;
+        padding-left: 1rem;
+    }
+
+
+    .panel-sala .nav .nav-tabs {
+        border-bottom: 4px solid transparent !important;
+    }
+
+    .panel-sala .nav-tabs li {
+        padding: 1rem;
+        padding-bottom: 0;
+    }
+
+
+    .panel-sala .nav-tabs {
+        margin: 0 -1rem 25px -1rem;
+        padding-bottom: .5rem;
+        border-bottom: none;
+    }
+
+
+    @media (max-width: 991.98px) {
+        .panel-sala {
+    width: 100%;
+    max-width: 400px;
+    position: absolute;
+    transform: translateX(0);
+    display: none;
+  }
+  .panel-sala.show-panel {
+    display: block;
+    transform: translateX(0);
+  }
+}
+/*# sourceMappingURL=panel-sala.css.map */

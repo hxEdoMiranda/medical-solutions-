@@ -1,0 +1,425 @@
+/*simplee*/
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&display=swap');
+
+:root {
+    --primary: #00CC99;
+    --secondary: #0A6EEE;
+    --tertiary: #222222;
+    --fourtiary: #BDBBBB;
+    --light: #FFF;
+    --accent: #6461ED;
+    --base-font-family: 'Rubik', sans-serif;
+}
+
+body {
+    font-family: var( --base-font-family) !important;
+}
+
+a {
+    color: var(--primary);
+}
+
+a:hover {
+    color: var(--secondary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var( --base-font-family) !important;
+}
+/*Login*/
+.logotipo-desktop {
+    background-image: url(../../img/simplee/logotipo.svg);
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/simplee/logotipo.svg);
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: var(--tertiary);
+    font-weight: 700 !important;
+}
+
+.form-group .ms-label {
+    color: var(--tertiary) !important;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.btn-guardar-info, .btn-success {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    
+}
+
+.btn-guardar-info:hover, .btn-success:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--primary)
+}
+
+.btn.btn-outline-secondary {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--primary)
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+}
+
+#reporte:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+#hs-g .cont-icon {
+    background-color: var(--primary);
+}
+
+#hs-g:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+.divider-medismart {
+    display: none;
+}
+
+.logo-convenios {
+    display: none;
+}
+
+/* Im�genes Login */
+.img1 {
+    background-image: url(../../img/simplee/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/simplee/login/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/simplee/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/simplee/login/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/simplee/login/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/simplee/login/960x978.jpg);
+}
+
+.body-home {
+    background-image: none !important;
+    background: var(--secondary) !important;
+}
+
+    .body-home .logo-home img {
+        width: 170px;
+    }
+
+
+    .body-home .cont-card .card img {
+        max-width: 140px;
+    }
+
+    .menu-top .item-menu-top i,
+    .menu-top .label-menu {
+        color: var(--primary);
+    }
+
+.menu-top .item-menu-top i {
+    color: var(--primary);
+}
+
+        .menu-top .item-menu-top:hover i, .menu-top .item-menu-top:hover .label-menu {
+            color: var(--secondary)
+        }
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--primary)
+}
+
+.kt-menu__item:hover a, .kt-menu__item:hover i {
+    color: var(--secondary) !important;
+}
+
+.ms-label-menu {
+    color: var(--tertiary)
+}
+
+.accesible-btn button {
+    color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+    .accesible-btn button:hover {
+        background-color: var(--primary);
+        border-color: var(--primary)
+    }
+
+.busqueda-profesionales {
+    border: 2px solid var(--secondary);
+}
+    .busqueda-profesionales i {
+        color: var(--secondary)
+    }
+    .busqueda-profesionales .btn-outline-primary {
+        color: var(--secondary)
+    }
+
+.caja-especialidad.active {
+    background-color: var(--primary);
+}
+
+.caja-especialidad {
+    background-color: var(--secondary);
+}
+
+.inner-especialidad strong {
+    color: var(--accent)
+}
+
+.step.active .step-icon {
+    background-color: var(--primary);
+}
+
+.stepper {
+    background-image: url(../../img/simplee/fondo-banner2.svg);
+}
+
+    .stepper .flecha {
+        color: var(--primary)
+    }
+
+    .stepper img {
+        border-color: #BBD2E8;
+    }
+
+.step.active .label-step {
+    color: var(--primary)
+}
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: var(--tertiary)
+}
+
+.caja-profesional .fecha-atencion {
+    color: var(--secondary)
+}
+
+.front-fecha-atencion {
+    border: 1px solid rgba(35,33, 114, .3)
+}
+
+    .front-fecha-atencion strong:before {
+        color: var(--secondary);
+        font-weight: 900;
+    }
+
+.especialidad-profesional {
+    color: var(--tertiary)
+}
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary);
+
+}
+
+.titulo-seccion {
+    color: var(--tertiary);
+    font-weight: 500;
+}
+
+.titulo-servicio {
+    color: var(--tertiary);
+}
+
+.card-profile h3 {
+    font-weight: 500;
+    color: var(--tertiary);
+}
+
+.card .form-group label, .card .form-group-input label {
+    color: var(--tertiary);
+}
+
+.kt-portlet .kt-portlet__head .kt-portlet__head-label .kt-portlet__head-title {
+    color: var(--tertiary);
+    font-weight: 500;
+}
+
+
+.top-banner {
+    background-image: url(../../img/simplee/fondo-banner2.svg);
+}
+
+.body-home .top-banner {
+    background-image: url(../../img/simplee/fondo-banner.svg);
+}
+
+    .top-banner img {
+        border-color: #FFF;
+    }
+    .top-banner .legend {
+        color: var(--tertiary);
+        font-weight: 500;
+    }
+
+    .top-banner.banner_topsc img {
+        border-color: #BBD2E8;
+    }
+
+.text-warning {
+    color: var(--accent) !important;
+}
+
+.legend .text-warning {
+    
+}
+
+.body-home .legend .text-warning {
+    color: var(--light) !important;
+}
+/*Sala espera*/
+.hotspot-icon .cont-icon {
+    background-color: var(--accent)
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: var(--primary)
+}
+
+.cont-icon.hotspot-redes {
+    background-color: #000;
+}
+
+
+.toolbar-option {
+    color: var(--primary)
+}
+
+.toolbar-option.active {
+    color: var(--secondary)
+}
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--primary)
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--secondary)
+}
+
+.cont-btn-panel .btn-atencion, .cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+    .cont-btn-panel .btn-atencion:hover, .cont-btn-vc .btn-atencion:hover {
+        background-color: rgba(237, 110, 0, 0.1);
+        color: var(--primary);
+    }
+
+.hotspot-icon {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+    .hotspot-icon i {
+        text-shadow: none;
+    }
+
+    .hotspot-icon:hover {
+        color: #FFF;
+    }
+
+@media (max-width: 668px) {
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+}
+
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/simplee/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/simplee/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/simplee/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/simplee/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/simplee/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/simplee/login/548x850.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/simplee/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/simplee/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/simplee/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/simplee/login/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/simplee/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/simplee/login/960x978.jpg);
+    }
+}

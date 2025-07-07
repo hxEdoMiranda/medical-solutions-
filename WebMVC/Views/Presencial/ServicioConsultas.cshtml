@@ -1,0 +1,454 @@
+﻿@model WebMVC.Models.AtencionViewModel
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Paciente";
+    Layout = "_LayoutPaciente";
+
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;500&display=swap" rel="stylesheet">
+    <title>Landing</title>
+</head>
+
+<body>
+    <div class="abc-content">
+        <div class="abc-img">
+            <!-- <img src="./assets/img/imagen_1.jpg" alt=""> -->
+            
+
+        </div>
+        <div class="abc-info">
+            <div class="abc-title-icon">
+                @if (@ViewBag.HostURL.ToString().Contains("bcf-corona.medismart"))
+                {
+                    <img src="~/img/corona/bcf-medica-presencial/svg/icon_smart.svg" alt="icono" />
+                    
+                } else
+                {
+                    <img src="~/img/abc/bcf-medica-presencial/svg/icon_smart.svg" alt="icono" />
+                    
+                }
+                <div class="abc-title">
+                    <h3> BCF Consulta </h3>
+                    <h3> Médica presencial </h3>
+                </div>
+            </div>
+            <div class="abc-title-dos">
+                @if (@ViewBag.HostURL.ToString().Contains("bcf-corona.medismart"))
+                {
+                    <img src="~/img/corona/bcf-medica-presencial/svg/users-medical-red.svg" alt="icono" />
+
+                } else
+                {
+                    
+                <img src="~/img/abc/bcf-medica-presencial/svg/users-medical-red.svg" alt="icono" />
+                }
+
+                <p>Elige la especialidad médica que quieres asistir</p>
+            </div>
+            <div class="abc-select-service">
+                <select class="abc-select-custom" id="abc-select">
+                    <option value="medicina-general">BCF Consulta Medica General o Familiar</option>
+                    <option value="ginecologia">Consulta Especialista Ginecología y Obstetricia</option>
+                    @if (!@ViewBag.HostURL.ToString().Contains("bcf-corona.medismart"))
+                    {
+                    <option value="oftalmologia">Consulta Médica Especialistas Oftalmología</option>
+                        
+                    }
+                    <option value="pediatria">
+                        Consulta Médica Especialistas Pediatría o Medicina General Infantil
+                    </option>
+                    <option value="traumatologia">Consulta Médica Especialistas Traumatología y Ortopedia</option>
+                    <option value="urologia">Consulta Médica Especialistas en Urología</option>
+                </select>
+            </div>
+            <div id="text-especialitie">
+            </div>
+
+            <div class="abc-par-select">
+                <div class="abc-par-uno">
+                    <div class="abc-par-uno-title">
+                        @if (!@ViewBag.HostURL.ToString().Contains("bcf-corona."))
+                        {
+                            <img src="~/img/abc/bcf-medica-presencial/svg/icon-check-abc.svg" alt="icono" />
+
+                        }
+                        else
+                        {
+
+                            <img src="~/img/corona/bcf-medica-presencial/svg/icon-check-abc.svg" alt="icono" />
+                        }
+                        <h4>Eventos Disponibles</h4>
+                    </div>
+
+
+                    <div class="abc-select-abc" id="abc-select-evento" title="6 Eventos Anuales">
+
+                        @if (@ViewBag.HostURL.ToString().Contains("bcf-corona."))
+                        {
+                            <div class="tooltip-box">
+                                <div class="tooltip-arrow"></div>
+                                4 Eventos como límite único y combinado para el grupo familiar
+                            </div>
+
+                            <div class="abc-eventos" id="id_eventos">
+                                <h6>4 Eventos Anuales</h6>
+                            </div>
+                        } else
+                        {
+                            <div class="tooltip-box">
+                                <div class="tooltip-arrow"></div>
+                                6 Eventos como límite único y combinado para el grupo familiar
+                            </div>
+
+                            <div class="abc-eventos" id="id_eventos">
+                                <h6>6 Eventos Anuales</h6>
+                            </div>
+                        }
+
+                       
+                    </div>
+                </div>
+                <div class="abc-par-uno">
+                    <div class="abc-par-uno-title">
+
+                        @if (!@ViewBag.HostURL.ToString().Contains("bcf-corona."))
+                        {
+                            <img src="~/img/abc/bcf-medica-presencial/svg/icon-user.svg" alt="icono" />
+
+                        } else
+                        {
+                            
+                        <img src="~/img/corona/bcf-medica-presencial/svg/icon-user.svg" alt="icono" />
+                        }
+
+                        <h4>Selecciona tu previsión</h4>
+                    </div>
+
+                    <div class="abc-select-abc">
+                        <select class="abc-select-prevision-evento" id="abc-select-prevision">
+
+                            <option value="">SELECCIONA TU PREVISIÓN</option>
+                            <option value="isapre">ISAPRE</option>
+                            <option value="fonasa-a">FONASA A</option>
+                            <option value="fonasa-B-a-D">FONASA B a D</option>
+                            <option value="ffaa">FFAA</option>
+                            <option value="capredena">CAPREDENA</option>
+                            <option value="sin-prevision">SIN PREVISIÓN</option>
+                            <option value="particular">PARTICULAR</option>
+
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+
+
+    @*MODAL ISAPRE*@
+    <div id="modalIsapre" class="modal-bfc">
+        <div class="modal-bfc-content">
+            <div class="modal-bfc-header">
+                <img src="~/img/abc/bcf-medica-presencial/svg/check-verde.svg" alt="icono" />
+                <span class="close-modal-bfc">&times;</span>
+
+            </div>
+
+            <h5>Prevision ISAPRE o FONASA B a D</h5>
+            <p>
+                Para utilizar el servicio, comunícate directamente con el centro médico de tu elección.
+                Asegúrate de que disponga del sistema i-med y que tenga convenio con tu Isapre o Fonasa.
+                De esta manera, te podrás validar fácilmente mediante tu huella digital al momento de asistir a tu atención,
+                con copago  <b>costo $0</b>
+            </p>
+
+            <button class="close-modal-bfc" id="boton-confirmar">CONFIRMAR</button>
+        </div>
+    </div>
+
+    @*MODAL FONASA*@
+    <div id="modalFonasa" class="modal-bfc">
+        <div class="modal-bfc-content">
+            <div class="modal-bfc-header">
+                <img src="~/img/abc/bcf-medica-presencial/svg/check-verde.svg" alt="icono" />
+                <span class="close-modal-bfc">&times;</span>
+
+            </div>
+
+            <h5>Prevision ISAPRE o FONASA B a D</h5>
+            <p>
+                Para utilizar el servicio, comunícate directamente con el centro médico de tu elección.
+                Asegúrate de que disponga del sistema i-med y que tenga convenio con tu Isapre o Fonasa.
+                De esta manera, te podrás validar fácilmente mediante tu huella digital al momento de asistir a tu atención,
+                con copago  <b>costo $0</b>
+            </p>
+
+            <button class="close-modal-bfc" id="boton-confirmar">CONFIRMAR</button>
+        </div>
+    </div>
+
+    @*MODAL OTRAS PREVISIONES*@
+    <div id="modalOtras" class="modal-bfc">
+
+        <div class="modal-bfc-content">
+            <div class="modal-bfc-header">
+                <img src="~/img/abc/bcf-medica-presencial/svg/check-verde.svg" alt="icono" />
+                <span class="close-modal-bfc">&times;</span>
+
+            </div>
+
+            <h5>Otras Coberturas</h5>
+            <p>
+                Los Beneficiarios sin previsión, particular, Capredena o Fuerzas Armadas o Fonasa A,
+                deberán contactarse al teléfono <b>+@(ViewBag.HostURL.ToString().Contains("bcf-corona") ? 56223512517 : 56223512641)</b>
+                para solicitar la atención médica detallada en el cuadro de
+                prestaciones. Después de realizar la solicitud, el beneficiario será contactado y derivado a un prestador
+                en convenio,  <b>con costo</b> para el cliente.
+            </p>
+
+            <button class="close-modal-bfc" id="boton-confirmar">CONFIRMAR</button>
+        </div>
+    </div>
+
+</body>
+
+@if (!@ViewBag.HostURL.ToString().Contains("bcf-corona")) {
+    <script>
+
+        const select = document.getElementById('abc-select-prevision');
+        const modalIsapre = document.getElementById('modalIsapre');
+        const modalFonasa = document.getElementById('modalFonasa');
+        const modalOtras = document.getElementById('modalOtras');
+
+        select.addEventListener('change', function () {
+            if (select.value === 'isapre') {
+                modalIsapre.style.display = 'block';
+            } else if (select.value === 'fonasa-B-a-D') {
+                modalFonasa.style.display = 'block';
+            } else if (select.value === 'fonasa-a' || select.value === 'ffaa' || select.value === 'capredena' || select.value === 'sin-prevision' || select.value === 'particular') {
+                modalOtras.style.display = 'block';
+            }
+        });
+
+        document.querySelectorAll('.close-modal-bfc').forEach(closeButton => {
+            closeButton.addEventListener('click', function () {
+                modalIsapre.style.display = 'none';
+                modalFonasa.style.display = 'none';
+                modalOtras.style.display = 'none';
+            });
+        });
+
+        const tooltipContainer = document.getElementById('abc-select-evento');
+        const tooltipBox = tooltipContainer.querySelector('.tooltip-box');
+
+        tooltipContainer.addEventListener('mouseover', function () {
+            tooltipBox.style.display = 'block';
+        });
+
+        tooltipContainer.addEventListener('mouseout', function () {
+            tooltipBox.style.display = 'none';
+        });
+
+
+        const especialidades = [
+            {
+                "especialidad-name": "medicina-general",
+                "especialidad-text": `<p>Atención de un profesional de <span>Medicina General o familiar</span> que atiende de manera integral al paciente, respondiendo además temas de interés específico. Derivando a especialista si es necesario. Realiza diagnóstico con apoyo de exámenes médicos complementarios a la atención médica.</p><p><span>Monto máximo evento:</span> 100% cobertura copago Fonasa, Isapres o Prestación.</p>`,
+                "especialidad-img": '/img/abc/bcf-medica-presencial/img/medicina_presencial/imagen_1.jpg'
+            },
+            {
+                "especialidad-name": "ginecologia",
+                "especialidad-text": `<p>Atención médica ambulatoria entregada por un profesional <span>Especialista en Ginecología y Obstetricia</span> capacitado para diagnosticar y manejar diferentes patologías propias de la especialidad. Así mismo puede revisar los exámenes que se haya realizado el paciente para complementar diagnóstico clínico.</p><p><span>Monto máximo evento:</span> 100% cobertura copago Fonasa, Isapres o Prestación.</p>`,
+                "especialidad-img": '/img/abc/bcf-medica-presencial/img/medicina_presencial/ginecologia.jpg'
+            },
+            {
+                "especialidad-name": "oftalmologia",
+                "especialidad-text": `<p>Atención médica entregada por un <span>Médico Especialista en Oftalmología</span> quien diagnostica y entrega tratamiento a diversas patologías y dolencias o enfermedades de los ojos asociadas a la especialidad, entre ellas: vicios de refracción, estrabismo, lagrimal, párpado, musculatura ocular. Realiza el examen visual y entrega receta de lentes cuando corresponda.</p><p><span>Monto máximo evento:</span> 100% cobertura copago Fonasa, Isapres o Prestación.</p>`,
+                "especialidad-img": '/img/abc/bcf-medica-presencial/img/medicina_presencial/oftalmologia.jpg'
+            },
+            {
+                "especialidad-name": "pediatria",
+                "especialidad-text": `<p><span>Atención médica especializada en niños</span>, la entrega un médico con formación en atención pediátrica, capacitado para diagnosticar y manejar diversas patologías asociadas desde el nacimiento del niño hasta aproximadamente los 14 años y adolescencia, propias de su Desarrollo.</p><p><span>Monto máximo evento:</span> 100% cobertura copago Fonasa, Isapres o Prestación.</p>`,
+                "especialidad-img": '/img/abc/bcf-medica-presencial/img/medicina_presencial/pediatria.jpg'
+            },
+            {
+                "especialidad-name": "traumatologia",
+                "especialidad-text": `<p>Atención médica entregada por un <span>Médico Especialista en Traumatología</span> dedicado al estudio y tratamiento de lesiones o traumatismos en extremidades o columna y sus consecuencias como lo son: fracturas óseas, luxaciones, esquinces y contusiones.</p><p><span>Monto máximo evento:</span> 100% cobertura copago Fonasa, Isapres o Prestación.</p>`,
+                "especialidad-img": '/img/abc/bcf-medica-presencial/img/medicina_presencial/traumatologia.jpg'
+            },
+            {
+                "especialidad-name": "urologia",
+                "especialidad-text": `<p>Atención médica ambulatoria entregada por un profesional <span>Especialista en Urología</span> capacitado para diagnosticar y manejar diferentes patologías de la especialidad. Así mismo puede revisar los exámenes que se haya realizado el paciente para complementar diagnóstico clínico.</p><p><span>Monto máximo evento:</span> 100% cobertura copago Fonasa, Isapres o Prestación.</p>`,
+                "especialidad-img": '/img/abc/bcf-medica-presencial/img/medicina_presencial/urologia.jpg'
+            },
+        ];
+
+        const url = window.location.href;
+
+        const urlParams = new URL(url);
+        console.log('urlParams', urlParams)
+        const especialidadParam = urlParams.searchParams.get('servicio');
+        console.log(especialidadParam)
+
+        if (especialidadParam) {
+            document.getElementById('abc-select').value = especialidadParam;
+
+            const especialidadSeleccionada = especialidades.find(especialidad => especialidad["especialidad-name"] === especialidadParam);
+
+            if (especialidadSeleccionada) {
+                document.getElementById('text-especialitie').innerHTML = especialidadSeleccionada["especialidad-text"];
+
+                const imagenDiv = document.querySelector('.abc-img');
+                imagenDiv.innerHTML = `<img src="${especialidadSeleccionada["especialidad-img"]}" alt="">`;
+            }
+        }
+
+        const selectEspecialitie = document.getElementById('abc-select');
+
+
+        selectEspecialitie.addEventListener('change', function () {
+            const selectedOption = this.value;
+
+            const especialidadSeleccionada = especialidades.find(especialidad => especialidad["especialidad-name"] === selectedOption);
+
+            if (especialidadSeleccionada) {
+                document.getElementById('text-especialitie').innerHTML = especialidadSeleccionada["especialidad-text"];
+
+                const imagenDiv = document.querySelector('.abc-img');
+                imagenDiv.innerHTML = `<img src="${especialidadSeleccionada["especialidad-img"]}" alt="">`;
+            }
+        });
+
+    </script>
+} else
+{
+    <script>
+
+        const select = document.getElementById('abc-select-prevision');
+        const modalIsapre = document.getElementById('modalIsapre');
+        const modalFonasa = document.getElementById('modalFonasa');
+        const modalOtras = document.getElementById('modalOtras');
+
+        select.addEventListener('change', function () {
+            if (select.value === 'isapre') {
+                modalIsapre.style.display = 'block';
+            } else if (select.value === 'fonasa-B-a-D') {
+                modalFonasa.style.display = 'block';
+            } else if (select.value === 'fonasa-a' || select.value === 'ffaa' || select.value === 'capredena' || select.value === 'sin-prevision' || select.value === 'particular') {
+                modalOtras.style.display = 'block';
+            }
+        });
+
+        document.querySelectorAll('.close-modal-bfc').forEach(closeButton => {
+            closeButton.addEventListener('click', function () {
+                modalIsapre.style.display = 'none';
+                modalFonasa.style.display = 'none';
+                modalOtras.style.display = 'none';
+            });
+        });
+
+        const tooltipContainer = document.getElementById('abc-select-evento');
+        const tooltipBox = tooltipContainer.querySelector('.tooltip-box');
+
+        tooltipContainer.addEventListener('mouseover', function () {
+            tooltipBox.style.display = 'block';
+        });
+
+        tooltipContainer.addEventListener('mouseout', function () {
+            tooltipBox.style.display = 'none';
+        });
+
+
+        const especialidades = [
+            {
+                "especialidad-name": "medicina-general",
+                "especialidad-text": `<p>Atención de un profesional de <span>Medicina General o familiar</span> que atiende de manera integral al paciente, respondiendo además temas de interés específico. Derivando a especialista si es necesario. Realiza diagnóstico con apoyo de exámenes médicos complementarios a la atención médica.</p><p><span>Monto máximo evento:</span> 100% cobertura copago Fonasa, Isapres o Prestación.</p>`,
+                "especialidad-img": '/img/corona/bcf-medica-presencial/img/medicina_presencial/imagen_1.jpg'
+            },
+            {
+                "especialidad-name": "ginecologia",
+                "especialidad-text": `<p>Atención médica ambulatoria entregada por un profesional <span>Especialista en Ginecología y Obstetricia</span> capacitado para diagnosticar y manejar diferentes patologías propias de la especialidad. Así mismo puede revisar los exámenes que se haya realizado el paciente para complementar diagnóstico clínico.</p><p><span>Monto máximo evento:</span> 100% cobertura copago Fonasa, Isapres o Prestación.</p>`,
+                "especialidad-img": '/img/corona/bcf-medica-presencial/img/medicina_presencial/ginecologia.jpg'
+            },
+            {
+                "especialidad-name": "oftalmologia",
+                "especialidad-text": `<p>Atención médica entregada por un <span>Médico Especialista en Oftalmología</span> quien diagnostica y entrega tratamiento a diversas patologías y dolencias o enfermedades de los ojos asociadas a la especialidad, entre ellas: vicios de refracción, estrabismo, lagrimal, párpado, musculatura ocular. Realiza el examen visual y entrega receta de lentes cuando corresponda.</p><p><span>Monto máximo evento:</span> 100% cobertura copago Fonasa, Isapres o Prestación.</p>`,
+                "especialidad-img": '/img/corona/bcf-medica-presencial/img/medicina_presencial/oftalmologia.jpg'
+            },
+            {
+                "especialidad-name": "pediatria",
+                "especialidad-text": `<p><span>Atención médica especializada en niños</span>, la entrega un médico con formación en atención pediátrica, capacitado para diagnosticar y manejar diversas patologías asociadas desde el nacimiento del niño hasta aproximadamente los 14 años y adolescencia, propias de su Desarrollo.</p><p><span>Monto máximo evento:</span> 100% cobertura copago Fonasa, Isapres o Prestación.</p>`,
+                "especialidad-img": '/img/corona/bcf-medica-presencial/img/medicina_presencial/pediatria.jpg'
+            },
+            {
+                "especialidad-name": "traumatologia",
+                "especialidad-text": `<p>Atención médica entregada por un <span>Médico Especialista en Traumatología</span> dedicado al estudio y tratamiento de lesiones o traumatismos en extremidades o columna y sus consecuencias como lo son: fracturas óseas, luxaciones, esquinces y contusiones.</p><p><span>Monto máximo evento:</span> 100% cobertura copago Fonasa, Isapres o Prestación.</p>`,
+                "especialidad-img": '/img/corona/bcf-medica-presencial/img/medicina_presencial/traumatologia.jpg'
+            },
+            {
+                "especialidad-name": "urologia",
+                "especialidad-text": `<p>Atención médica ambulatoria entregada por un profesional <span>Especialista en Urología</span> capacitado para diagnosticar y manejar diferentes patologías de la especialidad. Así mismo puede revisar los exámenes que se haya realizado el paciente para complementar diagnóstico clínico.</p><p><span>Monto máximo evento:</span> 100% cobertura copago Fonasa, Isapres o Prestación.</p>`,
+                "especialidad-img": '/img/corona/bcf-medica-presencial/img/medicina_presencial/urologia.jpg'
+            },
+        ];
+
+        const url = window.location.href;
+
+        const urlParams = new URL(url);
+        console.log('urlParams', urlParams)
+        const especialidadParam = urlParams.searchParams.get('servicio');
+        console.log(especialidadParam)
+
+        if (especialidadParam) {
+            document.getElementById('abc-select').value = especialidadParam;
+
+            const especialidadSeleccionada = especialidades.find(especialidad => especialidad["especialidad-name"] === especialidadParam);
+
+            if (especialidadSeleccionada) {
+                document.getElementById('text-especialitie').innerHTML = especialidadSeleccionada["especialidad-text"];
+
+                const imagenDiv = document.querySelector('.abc-img');
+                imagenDiv.innerHTML = `<img src="${especialidadSeleccionada["especialidad-img"]}" alt="">`;
+            }
+        }
+
+        const selectEspecialitie = document.getElementById('abc-select');
+
+
+        selectEspecialitie.addEventListener('change', function () {
+            const selectedOption = this.value;
+
+            const especialidadSeleccionada = especialidades.find(especialidad => especialidad["especialidad-name"] === selectedOption);
+
+            if (especialidadSeleccionada) {
+                document.getElementById('text-especialitie').innerHTML = especialidadSeleccionada["especialidad-text"];
+
+                const imagenDiv = document.querySelector('.abc-img');
+                imagenDiv.innerHTML = `<img src="${especialidadSeleccionada["especialidad-img"]}" alt="">`;
+            }
+        });
+
+    </script>
+}
+
+
+
+</html>
+

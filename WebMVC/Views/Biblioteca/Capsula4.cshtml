@@ -1,0 +1,61 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in capsule">
+
+    <section class="container-fluid bgk-grey library-videos">
+        <div class="container inner-section">
+            <h3 class="titulo-seccion">Telemedicina</h3>
+            <div class="row">
+                <div class="col-12 col-md">
+
+
+                    <!-- Video -->
+
+                    <div class="cont-video">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/CqzO3ywTBU0" title="YouTube video player" class="video"
+                                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+
+
+
+
+                </div>
+                <div class="col-12 col-md-auto sidebar">
+                    <partial name="~/Views/Biblioteca/_ColumnasCapsulas.cshtml" model="Model" view-data="ViewData" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid main">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12">
+                    <partial name="~/Views/Biblioteca/_Menu-contenidos.cshtml" model="Model" view-data="ViewData" />
+                </div>
+            </div>
+            <partial name="~/Views/Biblioteca/_CardsCapsulas.cshtml" model="Model" view-data="ViewData" />
+        </div>
+    </section>
+
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}

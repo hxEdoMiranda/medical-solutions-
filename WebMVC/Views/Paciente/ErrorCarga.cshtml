@@ -1,0 +1,28 @@
+@using Microsoft.Extensions.Configuration
+@{
+    ViewData["Title"] = "Lista Cargas";
+    Layout = "_LayoutPaciente";
+    if(ViewBag.layoutPaciente == 0){
+        Layout = "";
+    }
+
+}
+@section Styles  {
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+
+}
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+    <div class="cont-cargas">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                   <div class="text-center">
+                       <h2>Lo sentimos, esta cuenta no puede agregar beneficiarios.</h2>
+                       <a class="btn btn-warning mt-5" href="/">Ir al home</a>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,87 @@
+/*Ecuador*/
+
+/* Imágenes Login */
+.img1 {
+    background-image: url(../../img/ecuador/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/ecuador/login/960x978-1.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/ecuador/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/ecuador/login/960x978-1.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/ecuador/login/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/ecuador/login/960x978-1.jpg);
+}
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/ecuador/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/ecuador/login/548x850-1.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/ecuador/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/ecuador/login/548x850-1.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/ecuador/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/ecuador/login/548x850-1.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/ecuador/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/ecuador/login/960x978-1.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/ecuador/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/ecuador/login/960x978-1.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/ecuador/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/ecuador/login/960x978-1.jpg);
+    }
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper {
+    margin: 10% auto 0 auto !important;
+}
+
+.logo-convenios .logo-redes {
+    display: none !important;
+}

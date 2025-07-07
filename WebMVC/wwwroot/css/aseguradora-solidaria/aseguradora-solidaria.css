@@ -1,0 +1,434 @@
+/*aseguradora-solidaria*/
+
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap');
+
+
+:root {
+    --primary: #124372;
+    --secondary: #63666A;
+    --tertiary: #666;
+    --accent: #DC911B;
+    --light: #FFF;
+    --font-family: 'Open Sans', sans-serif;
+}
+
+a {
+    color: var(--accent);
+}
+
+/*Login*/
+
+.logotipo-desktop {
+    
+    background-image: url(../../img/aseguradora-solidaria/logotipo.svg);
+    
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/aseguradora-solidaria/logotipo.svg);
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__extra .kt-login__link {
+    color: var(--accent);
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: var(--primary);
+    font-weight: 900;
+}
+
+.form-group .ms-label {
+    color: var(--primary) !important;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.btn-guardar-info, .btn-success {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    
+}
+
+.btn-guardar-info:hover, .btn-success:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--primary)
+}
+
+.btn.btn-outline-secondary {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--primary)
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+}
+
+#reporte:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+#hs-g .cont-icon {
+    background-color: var(--primary);
+}
+
+#hs-g:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+.divider-medismart {
+    display: none;
+}
+
+.logo-convenios {
+    display: none;
+}
+
+.iniciales {
+    background-color: var(--accent);
+}
+
+.check-aceptacion a {
+    color: var(--accent);
+}
+/* Im�genes Login */
+.img1 {
+    background-image: url(../../img/aseguradora-solidaria/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/aseguradora-solidaria/login/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/aseguradora-solidaria/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/aseguradora-solidaria/login/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/aseguradora-solidaria/login/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/aseguradora-solidaria/login/960x978.jpg);
+}
+
+.body-home {
+    background-image: url(../../img/aseguradora-solidaria/fondo-home.svg), linear-gradient(180deg, var(--primary) 100%, var(--primary) 100%) !important;
+    background-position: right 100%;
+    background-attachment: fixed;
+}
+
+.menu-top .item-menu-top i,
+.menu-top .label-menu {
+    color: var(--primary);
+}
+
+.menu-top .item-menu-top:hover i, .menu-top .item-menu-top:hover .label-menu {
+    color: var(--secondary)
+}
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--primary)
+}
+
+.kt-menu__item:hover a, .kt-menu__item:hover i {
+    color: var(--secondary) !important;
+}
+
+.accesible-btn button {
+    color: var(--secondary);
+    border: 1px solid var(--secondary);
+}
+
+    .accesible-btn button:hover {
+        background-color: var(--primary);
+        border-color: var(--primary)
+    }
+
+.busqueda-profesionales {
+    border: 2px solid var(--secondary);
+}
+    .busqueda-profesionales i {
+        color: var(--secondary)
+    }
+    .busqueda-profesionales .btn-outline-primary {
+        color: var(--secondary)
+    }
+
+.caja-especialidad.active {
+    background-color: var(--primary);
+}
+
+.caja-especialidad {
+    background-color: var(--secondary);
+}
+
+.inner-especialidad strong {
+    color: var(--primary)
+}
+
+.step.active .step-icon {
+    background-color: var(--primary);
+}
+
+.stepper {
+    background-image: url(../../img/aseguradora-solidaria/fondo-banner2.svg);
+}
+
+    .stepper .flecha {
+        color: var(--primary)
+    }
+
+    .stepper img {
+        border-color: rgba(18, 67, 114, .3)
+    }
+
+.step.active .label-step {
+    color: var(--primary)
+}
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: var(--tertiary)
+}
+
+.caja-profesional .fecha-atencion {
+    color: var(--secondary)
+}
+
+.front-fecha-atencion {
+    border: 1px solid rgba(35,33, 114, .3)
+}
+
+    .front-fecha-atencion strong:before {
+        color: var(--secondary);
+        font-weight: 900;
+    }
+
+.especialidad-profesional {
+    color: var(--tertiary)
+}
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+
+.top-banner {
+    background-image: url(../../img/aseguradora-solidaria/fondo-banner.svg);
+}
+
+.top-cargas {
+    background-image: url(../../img/aseguradora-solidaria/fondo-banner2.svg);
+}
+    .top-banner img {
+        border-color: rgba(255, 255, 255, .3)
+    }
+    .top-banner .legend {
+        color: var(--secondary)
+    }
+
+.top-cargas img {
+    border-color: rgba(148, 163, 177, .5);
+}
+
+.text-warning {
+    color: var(--accent) !important;
+}
+
+/*Sala espera*/
+
+#reporte {
+    display: none;
+}
+
+
+.alerta-sala {
+    background-color: var(--accent);
+}
+
+#panelEstado.cont-alerta-sala .alerta-sala {
+    background-color: var(--primary);
+}
+
+.hotspot-icon {
+    color: var(--accent);
+}
+
+    .hotspot-icon .cont-icon {
+        background-color: var(--light);
+    }
+
+    .hotspot-icon .cont-icon i {
+        color: var(--primary);
+    }
+
+    .hotspot-icon:hover .cont-icon {
+        background-color: var(--accent);
+        
+    }
+        .hotspot-icon:hover .cont-icon i {
+            color: var(--light);
+        }
+
+        .cont-icon.hotspot-redes {
+            background-color: var(--primary);
+        }
+
+.cont-icon.hotspot-redes i {
+    color: var(--light);
+}
+
+
+.toolbar-option {
+    color: var(--primary)
+}
+
+.toolbar-option.active {
+    color: var(--secondary)
+}
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--light);
+    color: var(--primary);
+    text-shadow: none;
+}
+
+.alerta-sala.mensaje-mobile {
+    background-color: var(--primary)
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--light)
+}
+
+.cont-btn-panel .btn-atencion, .cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+    .cont-btn-panel .btn-atencion:hover, .cont-btn-vc .btn-atencion:hover {
+        background-color: rgba(237, 110, 0, 0.1);
+        color: var(--primary);
+    }
+
+.hotspot-icon {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+    .hotspot-icon i {
+        text-shadow: none;
+    }
+
+    .hotspot-icon:hover {
+        color: #FFF;
+    }
+
+@media (max-width: 668px) {
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+    .top-banner.top-cargas .legend {
+        font-size: 2rem;
+        font-weight: 700;
+    }
+    .top-cargas {
+        background-image: none;
+    }
+    .card.card-carga {
+        margin-top: 0;
+    }
+}
+
+@media screen and (max-width: 640px) and (min-width: 376px) {
+    .body-home {
+        background-size: contain;
+        background-image: url(none), linear-gradient(180deg, var(--primary) 100%, var(--primary) 100%) !important;
+    }
+}
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/aseguradora-solidaria/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/aseguradora-solidaria/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/aseguradora-solidaria/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/aseguradora-solidaria/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/aseguradora-solidaria/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/aseguradora-solidaria/login/548x850.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/aseguradora-solidaria/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/aseguradora-solidaria/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/aseguradora-solidaria/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/aseguradora-solidaria/login/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/aseguradora-solidaria/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/aseguradora-solidaria/login/960x978.jpg);
+    }
+}

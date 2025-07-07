@@ -1,0 +1,173 @@
+﻿@model WebMVC.Models.HomeViewModel
+@{
+    ViewData["Title"] = "Home";
+    Layout = "_LayoutContralor";
+    
+}
+
+@section PageStyles  {
+    <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper" style="padding-top:30px;">
+
+    <!-- begin:: Header -->
+    <div id="kt_header" class="kt-header kt-grid kt-grid--ver  kt-header--fixed ">
+
+        <!-- begin: Header Menu -->
+        <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn"><i class="la la-close"></i></button>
+        <div class="kt-header-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_header_menu_wrapper">
+            <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile  kt-header-menu--layout- ">
+                <ul class="kt-menu__nav ">
+                    <li class="kt-menu__item  kt-menu__item--active " aria-haspopup="true"><span class="kt-menu__link-text">Hola Juan Lazo, a continuación se muestra tu agenda del mes.</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- end: Header Menu -->
+        <!-- begin:: Header Topbar -->
+        <div class="kt-header__topbar">
+
+        </div>
+
+        <!-- end:: Header Topbar -->
+    </div>
+
+    <!-- end:: Header -->
+    <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+
+        <!-- begin:: Subheader -->
+        <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+            <div class="kt-container  kt-container--fluid ">
+                <div class="kt-subheader__main">
+                    <h3 class="kt-subheader__title">
+                    </h3>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- end:: Subheader -->
+        <!-- begin:: Content -->
+        <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+            <!--Begin::Dashboard 7-->
+            <!--Begin::Row-->
+            <div class="row">
+                <div class="col-md-8 order-lg-1 order-xl-1">
+                    <!--begin::Portlet-->
+                    <div class="kt-portlet" id="kt_portlet">
+                        <div class="kt-portlet__body">
+                            <div id="kt_calendar"></div>
+                        </div>
+                    </div>
+                    <!--end::Portlet-->
+
+                </div>
+                <div class="col-md-4 order-lg-1 order-xl-1">
+
+                    <!--Begin::Portlet-->
+                    <div class="kt-portlet kt-portlet--height-fluid">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title">
+                                    Hoy
+                                </h3>
+                            </div>
+
+                        </div>
+                        <div class="kt-portlet__body">
+                            <div class="kt-scroll" data-scroll="true" @*data-height="75vh" data-mobile-height="300"*@>
+
+                                <!--Begin::Timeline 3 -->
+                                <div class="kt-timeline-v2">
+                                    <div id="kt-timeline-v2__items" class="kt-timeline-v2__items  kt-padding-top-25 kt-padding-bottom-30">
+
+                                        @*
+                                            <div class="kt-timeline-v2__item">
+                                                <span class="kt-timeline-v2__item-time">10:00</span>
+                                                <div class="kt-timeline-v2__item-cricle">
+                                                    <i class="fa fa-genderless kt-font-danger"></i>
+                                                </div>
+                                                <div class="kt-timeline-v2__item-text  kt-padding-top-5">
+                                                    Amaro Sanchez   &nbsp;  <a href="@Url.Action("Atencion")" type="button" class="btn btn-label-brand btn-bold btn-sm">Ir a la Atención</a>
+                                                </div>
+                                            </div>
+
+                                            <div class="kt-timeline-v2__item">
+                                                <span class="kt-timeline-v2__item-time">11:00</span>
+                                                <div class="kt-timeline-v2__item-text  kt-padding-top-5" style="margin-right :10px !important">
+                                                    &nbsp; &nbsp; &nbsp; Disponible
+                                                </div>
+                                            </div>
+                                        *@
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--End::Timeline 3 -->
+                        </div>
+                    </div>
+
+                    <!--End::Portlet-->
+                </div>
+
+            </div>
+
+            <!--End::Row-->
+            <!--End::Dashboard 7-->
+        </div>
+
+        <!-- end:: Content -->
+    </div>
+
+    <!-- begin:: Footer -->
+    <div class="kt-footer  kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" id="kt_footer">
+        <div class="kt-container  kt-container--fluid ">
+            <div class="kt-footer__copyright">
+                2020&nbsp;&copy;&nbsp;<a href="#" target="_blank" class="kt-link">Medical</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- end:: Footer -->
+</div>
+
+<!--<button onclick="playAudio()" type="button">Play Audio</button>
+<button onclick="pauseAudio()" type="button">Pause Audio</button>-->
+
+<audio id="myAudio">
+    <source src="~/metronic_demo7/assets/media/demo/sonido.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+@section PageScripts {
+    <script src="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>
+    @*<script src="~/metronic_demo7/assets/js/pages/components/calendar/basicMedicoMedico.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>*@
+    @*<script src="~/metronic_demo7/assets/js/pages/dashboard.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>*@
+}
+
+@section Scripts {
+    <script>
+        var x = document.getElementById("myAudio");
+
+        function playAudio() {
+            x.play();
+        }
+
+        function pauseAudio() {
+            x.pause();
+        }
+    </script>
+    <script type="module">
+        import { init } from '../../js/Contralor/index.js?rnd=@NumeroRandom.GetRandom()';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+}
+
+

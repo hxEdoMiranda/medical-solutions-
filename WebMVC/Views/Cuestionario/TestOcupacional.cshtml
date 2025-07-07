@@ -1,0 +1,181 @@
+﻿@using Microsoft.Extensions.Configuration
+@using System
+@model WebMVC.Models.CuestionarioOcupacional
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Configuracion";
+    Layout = "_LayoutPaciente";
+    var index = 0;
+
+}
+
+
+@{
+    ViewData["idEntidad"] = ViewBag.uid;
+    ViewData["uid"] = int.Parse(ViewBag.uid);
+}
+@{
+    ViewData["view"] = Roles.Paciente;
+}
+
+<link href="~/css/Medismart/stepper-form.css" rel="stylesheet" type="text/css" />
+
+<div class="cont-home">
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+
+        <!--MedismartBASE-->
+        <div class="container">
+            <div class="row">
+
+                <div class="box_ocupacional035 test-medicina-ocupacional">
+                    <div class="col-12 col-md-12 col-lg-12 p-0">
+                        <h1>@ViewBag.Condiciones.Titulo</h1>
+                        <div class="cont-card">
+                            <div class="header-test">
+                                <div class="stepper-test">
+                                    @foreach (var step in @Model.Preguntas)
+                                    {
+                                        if (@ViewBag.Condiciones.Titulo == "Test Psicológico")
+                                        {
+                                            <div id="steps_@(index + 1)" class="step">
+                                                <div class="num-step">  @(index = index + 1)</div>
+                                                <div class="divider-step"></div>
+                                            </div>
+                                            @if (index == Math.Ceiling((double)@Model.Preguntas.Count/10))
+                                            {
+                                                break;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <div id="steps_@(index + 1)" class="step">
+                                                <div class="num-step">  @(index = index + 1)</div>
+                                                <div class="divider-step"></div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            @{index = 0;}
+                            <div id="btnHome035" class="card card-test">
+                                <div id="div-ocupacional" class="card-body">
+                                    <h3>
+                                        <small>Instrucciones</small>
+                                        Condiciones para realizar el Test
+                                    </h3>
+                                    @foreach (var item in ViewBag.Condiciones.Condiciones)
+                                    {
+                                        if (@ViewBag.Condiciones.Titulo == "Test Psicológico")
+                                        {
+                                            { index = index + 1; }
+                                            <div class="icon-caja-test">
+                                                <div class="legend-icon">
+                                                    <span class="number">@(index)</span>@item.Condicion
+                                                </div>
+
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            { index = index + 1; }
+                                            <div class="icon-caja-test">
+                                                <div class="icon">
+                                                    <img src="@(item.Asset_url)" />
+                                                </div>
+                                                <div class="legend-icon">
+                                                    <span class="number">@(index)</span>@item.Condicion
+                                                </div>
+
+                                            </div>
+                                        }
+                                    }
+
+
+                                </div>
+                            </div>
+                            @if (@ViewBag.Condiciones.Titulo == "Test de Audiometria")
+                            {
+                                <div class="contenedor-test">
+                                    <h2>
+                                        <small>Medicina Ocupacional</small>
+                                        @ViewBag.Condiciones.Titulo
+                                    </h2>
+                                    <div id="div-preguntas-ocupacional" class="cont-preguntas"></div>
+                                    <div class="init-test">
+                                        <div class="icon-init-test">
+                                            <img src="~/img/medicina-ocupacional/icon-audio-not.svg" id="icon-test-audiometria" alt="" />
+                                        </div>
+
+                                        <button type="submit" id="SiguienteOcupacional" class="btn btn-success btn-guardar-info">Comenzar</button>
+                                    </div>
+                                </div>
+                            }
+                            @if (@ViewBag.Condiciones.Titulo == "Test Visual")
+                            {
+                                <div class="contenedor-test">
+                                    <h2>
+                                        <small>Medicina Ocupacional</small>
+                                        @ViewBag.Condiciones.Titulo
+                                    </h2>
+                                    <div id="div-preguntas-ocupacional" class="cont-preguntas"></div>
+                                    <div class="init-test">
+                                        <div class="icon-init-test">
+                                            <img src="~/img/medicina-ocupacional/icon-ojo.svg" id="icon-test-visiometria" alt="" />
+                                        </div>
+
+                                        <button type="submit" id="SiguienteOcupacional" class="btn btn-success btn-guardar-info">Comenzar</button>
+                                    </div>
+                                </div>
+                            }
+                            @if (@ViewBag.Condiciones.Titulo == "Test Psicológico")
+                            {
+                                <div id="contenedor-psico" class="contenedor-test">
+                                    <h2>
+                                        <small>Medicina Ocupacional</small>
+                                        @ViewBag.Condiciones.Titulo
+                                    </h2>
+                                    <div id="div-preguntas-ocupacional" class="cont-preguntas" style="width: 100%;"></div>
+                                    <div class="init-test">
+                                        <div class="icon-init-test">
+                                            <img src="~/img/medicina-ocupacional/icon-psicologico.svg" id="icon-test-psicologia" alt="" />
+                                        </div>
+
+                                        <button type="submit" id="SiguienteOcupacional" class="btn btn-success btn-guardar-info">Comenzar</button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/Usuario/config.js?9rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script type="module">
+        function guardarRespuestas(idPregunta, respuesta) {
+            console.log(idPregunta, respuesta);
+        }
+        import { init} from '../../js/Cuestionario/registro-ocupacional.js?rnd=@NumeroRandom.GetRandom()';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+
+            var uid = @ViewBag.uid;
+
+            window.uid = uid;
+             var idCliente = '@ViewBag.idCliente';
+            window.idCliente = idCliente;
+            window.host = '@ViewBag.HostURL';
+
+        })()
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+}
+

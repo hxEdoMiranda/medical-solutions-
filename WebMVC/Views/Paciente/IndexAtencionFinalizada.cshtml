@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Paciente";
+    Layout = string.Empty;
+    var LogoEmpresa = @ViewBag.LogoEmpresa ?? "https://medical.medismart.live/img/isotipo.svg";
+}
+
+<link href="~/metronic_demo7/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+
+<br/>
+<br/>
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid mt-5">
+    <div class="row">
+        <div class="col text-center">
+            <a href="#">
+                <img alt="Logo" src="@LogoEmpresa" width="15%" />
+            </a>
+            <br />
+            <br />
+            <h1 class="mt-3">Esta atención no está disponible o la URL no es válida.</h1>
+            <a type="button" class="btn btn-primary" href="/" data-dismiss="modal">Volver</a>
+        </div>
+    </div>
+</div>
+

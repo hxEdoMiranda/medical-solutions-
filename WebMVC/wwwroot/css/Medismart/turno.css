@@ -1,0 +1,1114 @@
+﻿// Medismart/turno.css
+/*Fila Única new*/
+.mensaje-superior {
+    display: none;
+}
+
+.control-atencion {
+    max-width: 690px !important;
+    width: 100%;
+    margin: auto;
+    /* margin-right: 262px;*/
+}
+
+    .control-atencion.turnero-desktop {
+        /* margin-right: 300px;*/
+    }
+
+.menu-top.menu-top-turnero {
+    margin-left: 0;
+}
+
+
+.fila-unica {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    /*height: 65px;*/
+    border-right: 1px solid rgba(255,255,255, .5);
+    max-width: 690px !important;
+}
+
+    .fila-unica.alerta-sala-new {
+        margin-left: auto;
+        margin-right: auto;
+        width: auto;
+        height: auto;
+        padding: 0 6px;
+        gap: 6px;
+        background-color: #022E3A;
+        border-right: none;
+        max-width: 690px !important;
+        border-radius: 10px;
+    }
+
+        .fila-unica.alerta-sala-new .titulo-fila {
+            font-size: 16px;
+        }
+
+        .fila-unica.alerta-sala-new .container-fila-tiempo {
+            /*width: 100%;
+            max-width: 210px;*/
+        }
+
+            .fila-unica.alerta-sala-new .container-fila-tiempo .dato-fila:last-child {
+                margin-right: 0;
+            }
+
+.divBtnTurno .btn.btn-success.btnMantenerTurno {
+    float: right;
+}
+
+.divBtnTurno .btn.btn-outlinbe-danger.btnDeleteTurno {
+    border-color: red;
+    color: red;
+}
+
+.titulo-fila {
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+    .titulo-fila i {
+        font-size: 20px;
+        margin-right: .5rem;
+    }
+
+.tiempo-atencion, .posicion-fila, .titulo-fila {
+    /*display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 2rem;
+    height: 50px;
+    padding: 10px;*/
+}
+
+.posicion-fila {
+    /*border-right: none;
+    padding-right: 0;*/
+}
+
+.dato-fila {
+    /*font-size: 25px;
+    font-weight: 700;
+    margin-right: 1rem;*/
+}
+
+@media (max-width: 1024px) {
+
+
+    .texto_timer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: .5rem !important;
+    }
+
+    .divBtnTurno .btn.btn-success.btnMantenerTurno {
+        float: right;
+        padding: 0.625rem 1.5rem !important;
+    }
+
+    .modal-turno b {
+        font-size: 15px;
+    }
+}
+
+.leyenda-fila {
+    /* font-size: 10px;
+    text-transform: uppercase;
+    width: 108px;
+    text-align: left;
+    line-height: 1;*/
+}
+
+    .leyenda-fila span {
+        display: block;
+    }
+
+.posicion-fila .leyenda-fila {
+    /*border-right: 1px solid rgba(255,255,255,.5);
+    width: auto;
+    padding-right: 10px;*/
+}
+
+.disclaimer-fila-unica {
+    max-width: 800px !important;
+}
+
+.alerta-sala.minSalaEspera {
+    width: 25% !important;
+}
+
+
+
+
+@media (max-width: 991.98px) {
+    .titulo-sala {
+        top: 10rem;
+        left: 3rem;
+        text-shadow: 1px 1px 2px #000;
+        width: auto !important;
+    }
+
+        .titulo-sala small {
+            font-size: 2rem;
+        }
+
+    .cont-revistas-desk {
+        display: none !important;
+    }
+
+    .cont-revistas-mobile {
+        display: flex !important;
+    }
+
+    .sala-espera-mobile .alerta-sala {
+        width: 100%;
+        margin-top: 3rem;
+        display: block;
+        padding: 1rem;
+    }
+
+        .sala-espera-mobile .alerta-sala.mensaje-mobile {
+            margin-top: 0;
+        }
+
+            .sala-espera-mobile .alerta-sala.mensaje-mobile p {
+                font-size: .9rem;
+            }
+
+    .sala-espera-mobile .titulo-fila {
+        display: block;
+        border-right: none;
+        height: auto;
+    }
+
+    .sala-espera-mobile .tiempo-atencion,
+    .sala-espera-mobile .posicion-fila {
+        width: auto !important;
+        border-right: none;
+        height: auto;
+        display: inline-block;
+        --width: 48%;
+        margin-top: .5rem;
+        padding-right: 0;
+    }
+
+    .sala-espera-mobile .titulo-fila {
+        font-size: 1rem;
+        padding-right: 0;
+        width: 100%;
+        border-bottom: 1px solid rgba(255,255,255,.3);
+        padding-bottom: .5rem;
+        text-align: center;
+    }
+
+        .sala-espera-mobile .titulo-fila i {
+            font-size: 1rem;
+            margin-right: .2rem;
+        }
+
+    .sala-espera-mobile .dato-fila {
+        font-size: 1.6rem;
+        text-align: left;
+    }
+
+    .sala-espera-mobile .dato-fila,
+    .sala-espera-mobile .leyenda-fila {
+        margin-right: .5rem;
+    }
+
+    .sala-espera-mobile .tiempo-atencion {
+        padding-right: .5rem;
+        margin-right: .5rem;
+        border-right: 1px solid rgba(255,255,255,.3);
+    }
+
+    .sala-espera-mobile .posicion-fila .leyenda-fila {
+        width: 56px;
+    }
+}
+
+.container-fila-tiempo {
+    /*background-color: rgba(41,136,145,1);
+    border-radius: 10px;
+    display: flex;
+    max-width: 190px;
+    margin: 0px auto;
+    margin-top: 10px;
+    width: 400px;*/
+}
+
+.btn-control-atencion #btnModalDeleteTurno {
+    width: 100%;
+    margin-top: 0;
+    /*width: 120px;
+    height: 40px;
+    margin-top: 0;*/
+}
+
+
+
+.btn-control-atencion #btnGoHome {
+    width: 100%;
+    margin-top: 0;
+    /*width: 142px;
+    height: 40px;
+    margin-top: 5px;*/
+    background-color: rgba(29,167,12,1);
+}
+
+.btn-control-atencion #btnIrSalaEspera {
+    width: 100%;
+    margin-top: 0;
+    /* width: 120px;
+    height: 40px;
+    margin-top: 5px;*/
+    background-color: rgba(29,167,12,1);
+}
+
+.btn-control-atencion {
+    background-color: #FFF;
+    border-radius: 10px;
+    margin-top: 0;
+    /*width: 500px;
+    height: 50px;
+    margin: 10px;
+    margin-right: 350px;*/
+}
+
+/*Modal conservar hora*/
+#modalConservaTurno {
+    margin-top: 250px;
+}
+
+#modal-ConservaTurno {
+    border-radius: 50px;
+    width: 350px;
+}
+
+    #modal-ConservaTurno .cont-texto-conservaturno {
+        margin-top: 60px;
+    }
+
+
+
+/*Cancelar ingreso sala modal*/
+
+#modalCancelarIngresoSala {
+    margin-top: 250px;
+}
+
+#modal-cancelarIngresoSala {
+    border-radius: 50px;
+    width: 350px;
+}
+
+
+
+    #modal-cancelarIngresoSala .cont-texto-cancelarturno {
+        margin-top: 60px;
+    }
+
+#imgModalAbandonar {
+    border-radius: 200px;
+    width: 150px;
+    display: block;
+}
+
+.divBtnTurno {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.control-atencion {
+    position: relative;
+}
+
+
+.time-ingreso-sala {
+    background-color: white;
+    border-radius: 10px;
+    width: 100%;
+    /* height: 50px; */
+    margin: 10px;
+    /* max-width: 520px; */
+}
+
+.texto_timer {
+    /* text-align: center; */
+    /* vertical-align: middle; */
+    color: #1da70c;
+    margin-top: 0;
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
+}
+
+.alerta-sala-new .btn-control-atencion {
+    margin: 0 auto !important;
+    max-width: 316px;
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    padding: 6px;
+    border-radius: 5px;
+}
+
+    .alerta-sala-new .btn-control-atencion .btn {
+        font-size: .775rem;
+        padding: 0.625rem 1rem !important;
+    }
+
+.icon-btn i {
+    font-size: 24px;
+}
+
+.icon-btn {
+    font-size: 12px;
+    background-color: transparent;
+}
+
+
+.menu-turnero {
+    flex-wrap: wrap;
+}
+
+/*Atenciones Panel*/
+
+
+#drop-mensajes-turno {
+    border-radius: 16px 0px 0px 0px;
+    padding: 24px 16px;
+    background-color: #044253;
+    max-width: 320px;
+}
+
+    #drop-mensajes-turno .titulo-notificaciones {
+        margin: 0;
+        /*margin-bottom: 32px;*/
+        font-size: 12px;
+    }
+
+    #drop-mensajes-turno .caja-atencion-home {
+        padding-bottom: 0;
+    }
+
+    #drop-mensajes-turno .atencion-toolbar.atencion-proxima-toolbar {
+        margin-bottom: 0;
+        background-color: #C4ECF0;
+    }
+
+    #drop-mensajes-turno .cont-atencion-proxima {
+        background-color: #186276;
+    }
+
+    #drop-mensajes-turno .caja-atencion-home {
+        padding: 0;
+    }
+
+    #drop-mensajes-turno .caja-atencion-home, #drop-mensajes-turno .nombre-profesional {
+        color: #D1E0E4;
+        text-align: left;
+    }
+
+    #drop-mensajes-turno .titulo-profesional {
+        text-align: left;
+        font-size: 12px;
+    }
+
+    #drop-mensajes-turno .nombre-profesional {
+        margin: 0;
+        width: 230px !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+        #drop-mensajes-turno .nombre-profesional:hover {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: unset;
+        }
+
+    #drop-mensajes-turno .cont-aviso > div {
+        width: 100%;
+    }
+
+    #drop-mensajes-turno .nombre-profesional {
+        width: 100% !important;
+    }
+
+    #drop-mensajes-turno .datos-fecha {
+        margin-bottom: 0;
+    }
+
+    #drop-mensajes-turno .header-aviso-atencion::before {
+        display: inline-block;
+        font-family: "Font Awesome 5 Pro";
+        font-weight: 300;
+        content: "\f073";
+        margin-right: 8px;
+    }
+
+    #drop-mensajes-turno .data-atencion {
+        padding: 16px;
+    }
+
+    #drop-mensajes-turno i {
+        color: #0282A6;
+        font-size: 16px;
+    }
+
+    #drop-mensajes-turno .atencion-proxima-toolbar a:first-child,
+    #drop-mensajes-turno .atencion-proxima-toolbar a:first-child i {
+        color: #EB5757;
+    }
+
+    #drop-mensajes-turno .atencion-proxima-toolbar a {
+        display: flex;
+        flex-direction: column-reverse;
+        color: #0282A6;
+    }
+
+        #drop-mensajes-turno .atencion-proxima-toolbar a:hover,
+        #drop-mensajes-turno .atencion-proxima-toolbar a:hover i {
+            color: #FFAF36;
+        }
+
+
+    #drop-mensajes-turno .atencion-proxima-toolbar {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    #drop-mensajes-turno.dropdown-menu.dropdown-menu-xl {
+        width: 320px;
+        transform: translate3d(-112px, 53px, 0px) !important;
+        height: calc(100vh - 67px);
+    }
+
+.body-home #drop-mensajes-turno.dropdown-menu.dropdown-menu-xl {
+    width: 320px;
+    transform: translate3d(-80px, 53px, 0px) !important;
+    height: calc(100vh - 67px);
+}
+
+#drop-mensajes-turno .header-notificaciones h1 {
+    color: #FFF;
+}
+
+#drop-mensajes-turno .header-notificaciones {
+    display: flex;
+    justify-content: space-between;
+    align-content: flex-start;
+}
+
+#drop-mensajes-turno .btn-close {
+    background-color: transparent;
+    padding: 0;
+    height: auto;
+    margin-top: 0;
+    margin-right: 1rem;
+}
+
+    #drop-mensajes-turno .btn-close i {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 32px;
+        margin-bottom: 0;
+    }
+
+
+/*Modals Anular, Confirmar, Reagendar*/
+
+.modal-atenciones .modal-body {
+    background-color: #186276;
+    color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px 8px 0px 0px;
+    width: 100% !important;
+    max-width: 540px !important;
+}
+
+.modal-atenciones .modal-atenciones .modal-content {
+    border-radius: 8px !important;
+}
+
+.modal-atenciones .modal-footer {
+    justify-content: space-between;
+}
+
+.modal .modal-content {
+    border-radius: 18px !important;
+    border: none;
+}
+
+
+.modal-dialog.dialog-atenciones {
+    border-radius: 8px;
+    width: 90%;
+    max-width: 540px;
+    margin: auto;
+    margin-top: 20%;
+}
+
+#modalReagendar {
+    margin: auto;
+    /*margin-top: 20%;*/
+}
+
+.modal-atenciones .btn-close {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    background-color: transparent;
+    color: rgba(255,255,255, .8)
+}
+
+.modal-atenciones #imgModalAbandonar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+}
+
+.modal-atenciones .modal-body {
+    display: flex;
+    gap: 16px;
+}
+
+
+.modal-atenciones .data-modal {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-atenciones .fecha_modal {
+    font-size: 16px;
+}
+
+    .modal-atenciones .fecha_modal i {
+        font-size: 18px;
+    }
+
+.modal-atenciones .btn-close i {
+    font-size: 32px;
+}
+
+.modal-atenciones .medico_modal {
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.modal-atenciones .especialidad_modal {
+    font-size: 16px;
+}
+
+.modalCancelarIngresoSala p {
+    font-size: 18px;
+    margin-top: 50px;
+}
+
+.divBtnTurno .btn-success {
+    background-color: #1DA70C;
+    border-color: #1DA70C;
+}
+
+
+#drop-mensajes-turno .mensaje-no-atencion {
+    background-color: transparent;
+    flex-direction: column;
+    border: none;
+}
+
+    #drop-mensajes-turno .mensaje-no-atencion i {
+        font-size: 48px;
+    }
+
+    #drop-mensajes-turno .mensaje-no-atencion i {
+        margin-bottom: 16px;
+    }
+
+    #drop-mensajes-turno .mensaje-no-atencion h1 {
+        margin: auto;
+        margin-bottom: 32px;
+    }
+
+
+    #drop-mensajes-turno .mensaje-no-atencion h1,
+    #drop-mensajes-turno .mensaje-no-atencion i {
+        color: rgba(255,255,255,.8);
+    }
+
+    #drop-mensajes-turno .mensaje-no-atencion i {
+        display: block;
+        margin: auto;
+        margin-bottom: 2rem;
+    }
+
+    #drop-mensajes-turno .mensaje-no-atencion:hover {
+        box-shadow: none;
+    }
+
+.doc-turno {
+    margin: auto;
+}
+
+.modal-turno b {
+    font-size: 18px;
+}
+
+.modal-dialog.dialog-atenciones.dialog-reagendar {
+    border-radius: 8px;
+    width: 90%;
+    max-width: 720px;
+    margin: auto;
+    margin-top: 5%;
+}
+
+@media (max-width: 1024px) {
+
+
+    .texto_timer {
+        margin-top: 0 !important;
+        text-align: left;
+    }
+
+        .texto_timer .segundos {
+            top: 0;
+        }
+
+    .time-ingreso-sala {
+        margin: 0 !important;
+        /* height: 40px;*/
+    }
+
+    .form-group.time-ingreso-sala {
+        margin-bottom: 0 !important;
+    }
+
+    .control-atencion {
+        margin-right: 0;
+    }
+
+    .modal-turno b {
+        text-align: center;
+    }
+
+    #drop-mensajes-turno .mensaje-no-atencion h1 {
+        text-align: center;
+        margin-bottom: 2rem;
+        margin-top: 1rem;
+    }
+
+    .modal-atenciones .modal-body {
+        padding-top: 2rem;
+    }
+
+    .modal-dialog.dialog-atenciones {
+        margin-top: 20%;
+    }
+
+    .modal-atenciones .medico_modal {
+        font-size: 18px;
+        font-weight: 900;
+    }
+
+    #modalReagendar {
+        margin-top: 3%;
+    }
+
+        #modalReagendar:has(.modal-dialog.dialog-atenciones.dialog-reagendar) {
+            margin-top: 0;
+        }
+
+    .container-fila-tiempo {
+        justify-content: space-evenly;
+    }
+
+    #drop-mensajes-turno.dropdown-menu.dropdown-menu-xl {
+        width: 320px;
+        transform: translate3d(-150px, 53px, 0px) !important;
+        /*transform: translate3d(-196px, 53px, 0px) !important;*/
+        height: calc(100vh - 67px);
+    }
+
+        #drop-mensajes-turno.dropdown-menu.dropdown-menu-xl.turnero-on {
+            transform: translate3d(-139px, 53px, 0px) !important;
+        }
+
+
+    .turnero-mobile {
+        display: none;
+    }
+
+    .fila-unica.alerta-sala-new {
+        /* height: 56px;*/
+        padding: 10px;
+        width: 94%;
+    }
+
+        .fila-unica.alerta-sala-new .container-fila-tiempo {
+            margin: 0 !important;
+            height: 46px;
+            width: 100%;
+        }
+
+
+    .alerta-sala-new .btn-control-atencion {
+        max-width: 130px;
+        height: 46px;
+    }
+
+    .container-fila-tiempo {
+        padding: .5rem;
+    }
+
+        .container-fila-tiempo .posicion-fila .leyenda-fila {
+            border-right: none;
+            width: auto;
+        }
+
+    .icon-btn:nth-of-type(2), .icon-btn:nth-of-type(2) i {
+        color: #1DA70C;
+    }
+
+    .container-fila-tiempo .tiempo-atencion,
+    .container-fila-tiempo .posicion-fila,
+    .container-fila-tiempo .titulo-fila {
+        height: auto;
+        padding: 0 8px;
+        gap: 0;
+        justify-content: center;
+    }
+
+
+    .container-fila-tiempo .posicion-fila {
+        border-right: 1px solid rgba(255,255,255,.3);
+        max-width: 50%;
+        padding-right: 24px;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding: 0;
+    }
+
+    .container-fila-tiempo .tiempo-atencion {
+        padding-left: 8px;
+    }
+
+
+    .container-fila-tiempo .posicion-fila .leyenda-fila {
+        padding-right: 0;
+        margin-top: 0;
+        font-size: 11px;
+        text-transform: none;
+    }
+
+    .container-fila-tiempo .dato-fila {
+        margin-right: auto !important;
+        margin-left: auto;
+        font-size: 16px !important;
+    }
+
+    .tiempo-atencion .d-lg-none {
+        font-size: 11px;
+        margin-top: -4px;
+        width: 100%;
+    }
+
+    .fila-unica.alerta-sala-new .titulo-fila {
+        text-align: center;
+    }
+
+        .fila-unica.alerta-sala-new .titulo-fila i {
+            margin-right: 0;
+        }
+
+        .fila-unica.alerta-sala-new .titulo-fila span {
+            display: none !important;
+        }
+
+    .tiempo-atencion, .posicion-fila {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .btn-control-atencion {
+    }
+
+        .btn-control-atencion button {
+            width: 100%;
+            color: #E15241;
+        }
+
+            .btn-control-atencion button i {
+                color: #E15241;
+                font-size: 18px;
+            }
+
+            .btn-control-atencion button:last-child,
+            .btn-control-atencion button:last-child i {
+                color: #1DA70C;
+            }
+
+        .btn-control-atencion:hover i, .btn-control-atencion:hover button {
+            color: #FFAF36;
+        }
+
+    .tiempo-atencion, .posicion-fila, .titulo-fila {
+        /*height: auto;*/
+    }
+
+    .body-home #drop-mensajes-turno.dropdown-menu.dropdown-menu-xl {
+        transform: translate3d(-140px, 53px, 0px) !important;
+    }
+
+    .fila-unica.alerta-sala-new .titulo-fila {
+        margin-left: .75rem;
+        margin-right: .75rem;
+    }
+
+    .container-fila-tiempo .posicion-fila {
+    }
+}
+
+
+
+.time-ingreso-sala .segundos {
+    font-weight: 700 !important;
+    font-size: 25px !important;
+    float: left !important;
+    margin: 5px !important;
+}
+
+.time-ingreso-sala .texto_medicoingresa {
+    /*float: left;*/
+    margin: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    margin: 0;
+    align-items: center;
+    margin-left: 1rem;
+    display: flex;
+}
+
+
+
+.turnero-desktop .time-ingreso-sala .btnCancelaTurno {
+    /* float: right; */
+    margin: 10px;
+    font-weight: 700;
+}
+
+.turnero-mobile .time-ingreso-sala .btnCancelaTurno {
+    margin: 10px;
+    font-weight: 700;
+    float: left;
+    color: red;
+}
+
+.turnero-desktop .time-ingreso-sala .btnVolverTurno {
+    /* float: right; */
+    margin: 10px;
+    font-weight: 700;
+}
+
+.turnero-mobile .time-ingreso-sala .btnVolverTurno {
+    margin: 10px;
+    font-weight: 700;
+    float: left;
+    color: #1da70c;
+}
+
+.turnero-mobile .time-ingreso-sala .texto_medicoingresa {
+    float: left;
+    margin: 10px;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+
+.turnero-mobile .time-ingreso-sala .segundos {
+    font-weight: 700 !important;
+    font-size: 17px !important;
+    float: left !important;
+    margin: 5px !important;
+}
+
+
+/*Btn Modal*/
+.modalConservaTurno label.btn, .modalConservaTurno input.btn, .modalConservaTurno button.btn {
+    cursor: pointer;
+    width: 48%;
+    padding: 1rem !important;
+}
+
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+    /*.control-atencion {
+            margin-right: 133px;
+        }
+        
+            .control-atencion.turnero-desktop {
+                margin-right: 50px;
+            */
+
+    .body-home #drop-mensajes-turno.dropdown-menu.dropdown-menu-xl {
+        width: 320px;
+        transform: translate3d(-80px, 53px, 0px) !important;
+        height: calc(100vh - 67px);
+    }
+}
+
+div #modalBodyConservaTurno img {
+    float: left;
+}
+
+#modalBodyConservaTurno .col-12 {
+    display: flex;
+    align-items: center;
+}
+
+    #modalBodyConservaTurno .col-12 p {
+        padding: 10px 0px 0 10px;
+    }
+
+.btnMantenerTurno {
+    /* width: 120px;
+    height: 40px;
+    margin-top: 5px;*/
+    background-color: rgba(29,167,12,1);
+    color: white;
+}
+
+@media screen and (max-device-width: 1200px) {
+
+    .fila-unica.alerta-sala-new {
+        max-width: 584px !important
+    }
+
+        .fila-unica.alerta-sala-new .titulo-fila span {
+            display: none;
+        }
+
+    .body-home .fila-unica.alerta-sala-new {
+        max-width: 600px !important;
+    }
+}
+
+.btnEntrarSala {
+    background-color: rgba(29,167,12,1);
+}
+
+.status-atencion .leyenda {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: .5rem;
+    background-color: #044253;
+    border-radius: 0 10px 0 10px;
+    font-size: 10px;
+}
+
+.tiempo-atencion-new {
+    /* padding-left: 1rem;*/
+    padding-right: 1rem;
+    padding-left: 1rem;
+    margin-left: 0;
+    width: 100%;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+
+#horaFila-desk-new {
+    /*padding-top: .3rem;
+    padding-top: 0;*/
+    width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    .modal-ConservaTurno {
+        margin: 0 auto;
+    }
+
+    .btnDeleteTurno {
+        width: 120px;
+    }
+
+    .btnMantenerTurno {
+        width: 120px;
+    }
+
+    .btnCancelarIngreso {
+        width: 120px;
+    }
+
+    .btnEntrarSala {
+        width: 120px;
+    }
+}
+
+@media screen and (max-device-width: 1200px) {
+    #horaFila-desk-new {
+        padding-top: 0;
+    }
+}
+
+.container-fila-tiempo {
+    display: flex;
+    max-width: 190px;
+    /*padding: .65rem 1rem;*/
+    padding: .65rem 0;
+    justify-content: space-evenly;
+}
+
+    .container-fila-tiempo .posicion-fila {
+        display: flex;
+        width: 54%;
+        /*justify-content: center;*/
+        align-items: center;
+    }
+
+        .container-fila-tiempo .posicion-fila::after {
+            content: '';
+            display: block;
+            width: 1px;
+            background-color: rgba(255,255,255,.3);
+            height: 32px;
+        }
+
+
+    .container-fila-tiempo .tiempo-atencion {
+        width: 40%;
+    }
+
+    .container-fila-tiempo .dato-fila {
+        font-size: 22px;
+        font-weight: 700;
+        width: 100%;
+        min-width: 30px;
+    }
+
+.posicion-fila .leyenda-fila {
+    margin-left: .5rem;
+    margin-right: 1rem;
+    font-size: 10px;
+}
+
+.fila-unica.alerta-sala-new .titulo-fila {
+    margin-left: .75rem;
+}
+
+
+.container-fila-tiempo .alerta-sala-new .btn-control-atencion {
+    border-radius: 5px !important;
+}
+
+@media (max-width: 1024px) {
+    .container-fila-tiempo .posicion-fila {
+        width: 38%;
+    }
+}

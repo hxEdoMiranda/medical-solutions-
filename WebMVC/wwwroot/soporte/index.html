@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<script src="https://meet.medismart.live/external_api.js" async></script>
+	<style>html, body, #jaas-container { height: 100%; }</style>
+	<script type="text/javascript">
+		window.onload = () => {
+			const api = new JitsiMeetExternalAPI("meet.medismart.live", {
+				roomName: "vpaas-magic-cookie-9d7fdc72b03e46a4b563afb7e77d35a0/SampleAppDueCareersDestroyPrimarily",
+				parentNode: document.querySelector('#jaas-container')
+			});
+		}
+	</script>
+</head>
+<body>
+	<div id="jaas-container" />
+</body>
+</html>

@@ -1,0 +1,754 @@
+﻿@model WebMVC.Models.AtencionViewModel
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Paciente";
+    Layout = "_LayoutPaciente";
+    var classColum = "col-lg-6 col-xl-5";
+    var classColum1 = "col-xl-6 offset-xl-1";
+    var classColummHistorial = "col-12 col-md-6 col-xl-4 mb-3";
+
+    @if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+    {   classColummHistorial = "col-12 col-md-auto col-xl-auto mb-3";
+        classColum="col-lg-10 col-xl-10 align-self-center";
+        classColum1="col-lg-10 col-xl-10  align-self-center";
+    }
+    @if (ViewBag.HostURL.ToString().Contains("vivetuseguro.wedoctorsmx."))
+    {
+        classColum = "col-lg-5 col-xl-5";
+        classColum1 = "col-lg-7 col-xl-7";
+        classColummHistorial = "col-12 col-md-4 col-xl-4 mb-3";
+    }
+
+    var hiddenAchs = string.Empty;
+    bool isAchs = false;
+    @if(ViewBag.HostURL.ToString().Contains("achs."))
+    {
+        hiddenAchs = "hidden";
+        isAchs = true;
+    }
+
+}
+
+@section PageStyles  {
+    <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css">
+    
+    
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    @switch(ViewBag.idCliente)
+    {
+        case "148":  <link href="~/css/colmena/colmena.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />;
+        break;
+        case "176":  <link href="~/css/vidacamara/vidacamara.css" rel="stylesheet" type="text/css" />;
+        break;
+        case "204":  <link href="~/css/claro/claro.css" rel="stylesheet" type="text/css" />;
+        break;
+
+    }
+     @if(ViewBag.HostURL.ToString().Contains("vidasecurity.") ){
+         <link href="~/css/vidasecurity/vidasecurity.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+     }
+}
+
+@if(isAchs) {
+    <style scoped>
+        .btn-atencion-accion {
+            display: none;
+        }
+    </style>
+}
+
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+    <!--Begin::App-->
+
+
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+        
+            <div class="mensaje-mobile d-none">
+                @*<span class="saludo-usuario">¡Hola  Josefa!</span> Que tengas un excelente día.*@
+
+            </div>
+            
+                
+                
+                
+                @if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+                {
+                    <div class="top-banner_scotiabank">
+                          <img src="~/img/scotiabank/home/doctora.png" alt="Doctora" class="order-1 order-md-2">
+                         <h1 class="legend order-2 order-md-1"><span metadata="pacienteHola">¡Hola,  </span> 
+                             <span class="saludo-usuario text-warning text-capitalize fuente-accesible" id="saludoPaciente"></span>!
+                             <span metadata="pacienteHola2">¿En qué te podemos ayudar?.</span></h1> 
+                     </div>
+                }else if(ViewBag.idCliente == "108"){
+                        <div class="top-banner justify-content-between">
+                            <h1 class="legend order-2 order-md-1 fuente-accesible">
+                            <span class="legend-primera-frase fuente-accesible" metadata="homeHola">¡Hola,  </span>
+                            <span class="saludo-usuario text-warning text-capitalize fuente-accesible" id="saludoPaciente"></span>! 
+                            <span metadata="homeHola2" class="saludo-ayuda-usuario">¿en qué te podemos ayudar?</span>
+                            </h1>
+                            <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+                        </div>
+                }
+
+        else @if (ViewBag.HostURL.ToString().Contains("prevenciononcologica.") || ViewBag.HostURL.ToString().Contains("masproteccionsalud."))
+        {
+
+                 <div class="col-12">
+                    <div class="saludo_box_inner">
+                        <img src="~/img/cajalosandes/iconos/home/icon_hello.svg" alt="telemedicina">
+                        <h1 class="legend order-2 order-md-1"><span metadata="pacienteHola">Hola,  </span> 
+                            <span class="saludo-usuario text-warning text-capitalize fuente-accesible" id="saludoPaciente"></span>!
+                            <span metadata="saludoPaciente">¿en qué te podemos ayudar?</span>
+                        </h1>
+                    </div>
+                 </div>
+                }else
+                {
+                    <div class="col-md-12">
+                        <div class="top-banner banner_topsc justify-content-between">
+                            <h1 class="legend order-2 order-md-1"><span metadata="pacienteHola">¡Hola  </span><span class="saludo-usuario text-warning text-capitalize" id="saludoPaciente"></span>! <span metadata="pacienteHola2">¿En qué te podemos ayudar?</span></h1>
+                            <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+                        </div>
+                    </div>
+                }
+    </div>
+
+    <div class="kt-grid kt-grid_sc kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app cardif-desktop">
+
+        <!--Begin:: App Aside Mobile Toggle-->
+        <button class="kt-app__aside-close" id="kt_user_profile_aside_close">
+            <i class="la la-close"></i>
+        </button>
+        <!--End:: App Aside Mobile Toggle-->
+
+        <div class="@(classColum)">
+            <!--Begin:: App Aside-->
+            @if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia.") || ViewBag.HostURL.ToString().Contains("prevenciononcologica.") || ViewBag.HostURL.ToString().Contains("masproteccionsalud.") || ViewBag.HostURL.ToString().Contains("saludtumundoseguro.") || ViewBag.HostURL.ToString().Contains("vivetuseguro."))
+            {
+                <h3 class="mb-3 titulo-seccion" metadata="indexProxAtencion">Tu próxima atención</h3>
+            }           
+            else
+            {
+                 <h3 class="mb-3 titulo-seccion" metadata="indexProxAtencion">Próximas Atenciones Telemedicina</h3>
+            }
+           
+            <!--begin:: Widgets/Applications/User/Profile1-->
+            <!--Begin:: Aviso Atención-->
+            <div class="caja-atencion mensaje-no-atencion" id="divSinAtenciones" hidden>
+                <div class="d-flex">
+                    @if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia."))
+                    {
+                        
+                        <img src="~/img/scotiabank/iconos/proxima-atencion.svg" alt="Icono No Atención">
+                    }
+                    else
+                    {
+                        <img src="~/img/icono-atencion.svg" alt="Icono No Atención">
+                    }
+                    
+                    
+                    <h1><span  metadata="indexProxAtencionInfo">Aún no tienes </span><strong metadata="indexProxAtencionInfo2">atenciones agendadas.</strong>  </h1>
+                </div>
+
+                <a href="/Paciente/Agendar" class="btn btn-primary btn-sm ml-auto" metadata="indexAgendar" @hiddenAchs>Agendar</a>
+            </div>
+            <div id="atenciones"></div> <!--atenciones hoy-->
+            <div class="tab-pane active" id="kt_widget2_tab1_content"></div><!--atenciones próximas-->
+        </div>
+
+        <div class="@(classColum1)">
+            <!--Begin:: App Content-->
+            
+            <div class="header-atenciones" style="color:white !important">
+                @if (ViewBag.HostURL.ToString().Contains("clinicamundoscotia.") || ViewBag.HostURL.ToString().Contains("saludtumundoseguro.") || ViewBag.HostURL.ToString().Contains("vivetuseguro."))
+                {
+                     <h3 class="mt-5 mt-lg-0 titulo-seccion" metadata="indexHistorial">
+                    Atenciones agendadas
+                    </h3>
+                } 
+                else if (ViewBag.HostURL.ToString().Contains("prevenciononcologica.") || ViewBag.HostURL.ToString().Contains("masproteccionsalud.")){
+                <h3 class="mb-3 titulo-seccion" metadata="indexProxAtencion">Atenciones agendadas</h3>
+                }  
+                else
+                {
+                    <h3 class="mt-5 mt-lg-0 titulo-seccion" metadata="indexHistorial">
+                    Historial de Atenciones
+                    </h3>
+                }
+
+                @if (ViewBag.idCliente == "148")
+                {
+                    <a id="atencionesPreviasColmena" class="btn btn-primary btn-sm">Atenciones Previas al 01-10-2021</a>
+                }
+            </div>
+
+            <!--Lista de Atenciones-->
+            <!--Start:: Filtro Diagnostico-->
+            <div class="row d-none">
+
+                <div class="col col-md-7">
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="addon-wrapping"><i class="fal fa-file-alt" aria-hidden="true"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Buscar diagnóstico" aria-label="Buscar diagnóstico" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-info" type="button" id="button-addon2"><i class="fal fa-search" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto ml-auto">
+                    <button type="button" class="btn btn-outline-info btn-sm">Nombre <i class="fal fa-chevron-down" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-outline-info btn-sm">Fecha <i class="fal fa-chevron-down" aria-hidden="true"></i></button>
+                </div>
+            </div>
+
+            <!--End:: Filtro Diagnostico-->
+
+
+            <div class="row">
+
+                @foreach (var historialAtencion in Model.HistorialAtenciones)
+                {
+
+                    if (historialAtencion.NSP == false)
+                    {
+                        var cl = "";
+                        var fecha = "";
+
+                        @if (historialAtencion.FechaText !=null && historialAtencion.FechaText.Replace("/", "-") == DateTime.Today.ToShortDateString())
+                        {
+                            cl = "success";
+                            fecha = "Hoy";
+                        }
+                        else
+                        {
+                            cl = "primary";
+                            fecha = historialAtencion.FechaText;
+                        }
+
+                <div class="@classColummHistorial">
+                    
+                        <div class="caja-atencion caja-atencion-historial container-fluid">
+                            <div class="inner-card-historial">
+
+                                <div class="cont-aviso row align-items-center">
+                                    <div class="col-12">
+                                        <span class="header-aviso-atencion"><i class="fal fa-calendar-alt"></i> @fecha</span>
+                                    </div>
+                                    <div class="col-12 col-md-12 pr-0">
+                                        <a href="../InformeAtencion/@historialAtencion.Id">
+
+                                            <div class="data-atencion data-historial">
+                                                <span class="nombre-profesional"> @historialAtencion.NombreMedico</span>
+                                                <span class="titulo-profesional">  @historialAtencion.Especialidad</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-12" @hiddenAchs>
+                                        <a href="../InformeAtencion/@historialAtencion.Id">
+                                            <div class="datos-diagnostico">
+                                                <small>Diagnóstico</small>
+                                                <div class="diagnostico">@historialAtencion.PatologiasString </div>
+                                            </div>
+                                        </a>
+                                            @{
+                                                var recetaElectronica = false;
+                                                var archivoMedikit = Model.Archivo.FirstOrDefault(x => x.nombreArchivo == "Medikit.pdf");
+                                            }
+                                        @if (Model.Archivo != null && Model.Archivo.ToList().Count > 0)
+                                        {
+                                            if (ViewBag.recetaElectronica == true)
+                                            {
+                                                recetaElectronica = true;
+                                            }
+                                            <div class="certificados mt-4">
+                                                <h3 class="titulo-card-farmacia">
+                                                    Certificados
+                                                </h3>
+
+                                                <div class="archivos-atencion">
+                                                        @if (archivoMedikit != null)
+                                                        {
+                                                            <ul>
+                                                            @if (archivoMedikit.nombreArchivo == "Medikit.pdf" && archivoMedikit != null && historialAtencion.statusMedikit == "Correcto")
+                                                            {
+                                                                <li>
+                                                                    <div class="tipo-archivo">
+                                                                        @archivoMedikit.nombreArchivo
+                                                                    </div>
+                                                                    <button onclick="location.href='@archivoMedikit.url'" class="btn-archivo">
+                                                                        <i class="fal fa-file-pdf"></i>
+                                                                    </button>
+                                                                </li>
+                                                            }
+                                                            </ul>
+                                                        }
+                                                </div>
+                                                @foreach (var archivo in Model.Archivo.ToList().Where(file => file.IdEntidadAsociada == historialAtencion.Id))
+                                                {
+                                                    <div class="archivos-atencion">
+                                                        <ul>
+                                                            @{
+                                                                var rutaDescargaArchivo = Configuration["ServicesUrl"] + "/agendamientos/archivo/DescargarArchivo?id=" + archivo.idenc;
+
+                                                                }
+                                                                @if (archivo.Estado != "E")
+                                                                {
+                                                                    <li>
+                                                                        @if (recetaElectronica)
+                                                                        {
+                                                                            <div class="tipo-archivo">
+                                                                                @archivoMedikit.nombreArchivo
+                                                                            </div>
+                                                                            <button onclick="location.href='@archivoMedikit.url'" class="btn-archivo">
+                                                                                <i class="fal fa-file-pdf"></i>
+                                                                            </button>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <div class="tipo-archivo">
+                                                                                @archivo.Nombre
+                                                                            </div>
+                                                                            <button onclick="location.href='@rutaDescargaArchivo'" class="btn-archivo">
+                                                                                <i class="fal fa-file-pdf"></i>
+                                                                            </button>
+                                                                        }
+                                                                    </li>
+                                                                }
+                                                               @* else
+                                                                {
+                                                                    <li>
+                                                                        <div class="tipo-archivo">
+                                                                            @archivo.Nombre
+                                                                        </div>
+                                                                    </li>
+                                                                }*@
+
+                                                        
+                                                            </ul>
+                                                        </div>
+                                                    }
+                                         </div>
+                                        }
+
+
+                                    </div>
+                                </div>
+                            </div>
+                                </div>
+
+                            
+
+                        </div>
+                    }
+
+                }
+
+                <div class="col-12 d-none">
+
+                    <!-- Paginator -->
+
+                    <div class="pagination">
+                        <ul class="links">
+                            <li class="first-link">
+                                <a href="#">
+                                    <i class="fa fa-angle-left"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    01
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    02
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    03
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    04
+                                </a>
+                            </li>
+                            <li class="last-link">
+                                <a href="#">
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--Lista de Atenciones-->
+
+
+
+
+            <!--end:: Widgets/Tasks -->
+            <!--End:: App Content-->
+        </div>
+
+    </div>
+    <div class="accesible-tools-desktop d-none">
+        <div class="accesible-btn">
+            <button id="increase-font-desk">A+</button>
+            <button id="normal-font-desk">A</button>
+            <button id="decrease-font-desk">A-</button>
+        </div>
+    </div>
+    <!--End::App-->
+</div>
+<div class="modal fade" id="modal-validacion" tabindex="-1" aria-labelledby="modal-validacion" data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            @*<div class="modal-header">
+                    <h5 class="modal-title" id=""></h5>
+                    <button type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>*@
+            <div class="modal-validacion">
+                <h4 class="mt-2" id="nombreUsuario"></h4>
+                <p>
+                    Por favor, necesitamos que valides tu mail y teléfono para continuar. La información de salud será enviada por el médico al correo que decidas.
+                </p>
+
+                <p style="font-weight:bold">
+                    ¿Estos son tus datos de contacto? Por favor modifícalos si lo consideras necesario :
+                </p>
+
+                <div class="container-fluid">
+
+                    <div class="row align-items-center datos-validacion">
+                        @*<div class="col-1 col-lg-auto">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" id="labelRadioValidacion2" name="customRadio" value="Medical" class="custom-control-input">
+                                    <label class="custom-control-label" for="labelRadioValidacion2"></label>
+                                </div>
+                            </div>*@
+                        <div class="col-11 col-lg-6">
+                            <label for="">Correo Electrónico</label>
+                            <input type="text" class="form-control" id="correoMedical" required />
+                        </div>
+                        <div class="col-11 col-sm-6 col-lg pt-lg-0">
+                            <label for="">Teléfono</label>
+                            <input type="text" class="form-control" id="telefonoMedical" required />
+                        </div>
+                        @*<div class="col-7 col-sm-5 col-lg-auto pt-5 pt-lg-4 pl-0">
+                                <a href="#" class="btn btn-outline-danger btn-xs mr-1">
+                                    <i class="fal fa-trash"></i>
+                                </a>
+                                <a href="#" class="btn btn-outline-primary btn-xs">
+                                    <i class="fal fa-pen"></i>
+                                </a>
+                            </div>*@
+                    </div>
+                </div>
+
+                <div class="container-fluid py-2">
+                    <div class="row">
+                        @*<div class="col">
+                                *En caso de pérdida de conexión, porfavor vuelve a ingresar desde la sucursal digital o la aplicación.
+                            </div>*@
+                    </div>
+                </div>
+                <div class="container-fluid py-2">
+                    @*<div class="row">
+                            <div class="col" style="font-size: .9rem">
+
+                                <input type="checkbox" id="checkTerminos" />
+                                Acepto los  <a style="font-weight: bold" href="http://medical.medismart.live/Terminosycondiciones/TERMINOSYCONDICIONES.pdf" target="_blank">Términos y Condiciones </a> en la prestación de servicios telemédicos y las Políticas de Seguridad de la Información de Medical Solutions.
+                            </div>
+                        </div>*@
+
+                    <div class="cont-btns mt-4" style="text-align :right">
+                        @*<a href="#" class="btn btn-outline-secondary btn-sm btn-validacion">Nuevo correo / fono</a>*@
+                        <button type="button" id="btnConfirmarTerminos" class="btn btn-primary btn-sm btn-validacion">Guardar e ir a agendar</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modals-->
+
+
+<div class="modal fade" id="modalAnulacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-aviso">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>¿Vas a anular tu atención?</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="cont-aviso-modal">
+
+
+                    <p class="mb-4">
+                        Al anular tu atención perderás la hora reservada con el profesional.
+                    </p>
+
+                    <!--Aviso-->
+
+
+
+                    <div class="cont-aviso-atencion">
+                        <a href="#" class="
+" id="" data-id="">
+
+                            <div class="aviso-atencion container-fluid mt-2">
+                                <div class="cont-aviso row h-100 align-items-center">
+                                   
+                                    @if (@ViewBag.HostURL.ToString().Contains("saludtumundoseguro."))
+                                    {
+                                        <div class="col-md-3 cont-foto-profesional">
+
+                                            <img id="fotoMedicoModal" alt="image" class="foto-profesional" style="height:150px;width:150px;">
+                                        </div>
+                                    } else
+                                    {
+                                        <div class="col-md-3 cont-foto-profesional d-none d-md-block">
+
+                                            <img id="fotoMedicoModal" alt="image" class="foto-profesional" style="height:150px;width:150px;">
+                                        </div>
+                                    }
+                                    <div class="col-md-5">
+                                        <div class="data-atencion">
+                                            <span class="header-aviso-atencion"><i class="fal fa-calendar-alt"></i> <span>Próxima Atención</span></span>
+                                            <span class="nombre-profesional" id="nombreProfesionalModal"></span>
+                                            <span class="titulo-profesional" id="tituloMedicoModal"></span>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="datos-fecha">
+                                            <span class="fecha-atencion" id="fechaAtencionModal"></span>
+                                            <span class="hora-atencion" id="horaAtencionModal"><span class="text-uppercase"></span></span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!--Fin Aviso-->
+
+                </div>
+
+            </div>
+            <div class="modal-footer footer-aviso">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Volver</button>
+                <button type="button" id="btnAnular" class="btn btn-danger btn-sm">Anular Atención</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="modalConfirmacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-aviso">
+        <div class="modal-content">
+            <div class="modal-header modal-header-aviso">
+                <h2>¿Confirmas tu atención?</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="cont-aviso-modal">
+
+
+                    <p class="m-0">
+                        Usarás la hora agendada con  <strong id="nombreProfesionalConfirma"></strong>
+                        <br />  de  <strong id="tituloMedicoConfirma"></strong>
+                        en el siguiente horario:
+                    </p>
+
+                    <div class="datos-fecha" style="float: none">
+                        <span class="fecha-atencion" id="fechaAtencionConfirma"></span>
+                        <span class="hora-atencion text-center" id="horaAtencionConfirma"></span>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer footer-aviso">
+                @*<button type="button" id="btnReagenda" class="btn btn-secondary btn-sm" data-dismiss="modal">No, deseo reagendar</button>*@
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Volver</button>
+                <button type="button" id="btnConfirma" class="btn btn-primary btn-sm">Si, confirmo</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalReagendar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-aviso modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4><span id="nombreprofesional"></span></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="">
+
+                    <div class="row">
+                        <div class="col-md-12 mb-4 mb-lg-0 col-lg-12">
+
+                            <!-- Reserva Hora -->
+
+                            <div class="caja-reserva">
+                                <div class="container-fluid">
+                                    <h4>Reagendar Hora</h4>
+                                    <p>
+                                        Selecciona si deseas en la mañana o en la tarde
+                                    </p>
+                                    <hr class="mb-4" />
+                                    <div class="row">
+                                        <div class="col-12 col-md-6 mb-4 mb-lg -0 calendario">
+
+                                            <!--Tags-->
+
+                                            <div class="kt-section__content kt-section__content--solid text-center mb-4" id="btnHorario">
+                                                @*<button type="button" class="btn btn-brand btn-elevate btn-pill btn-am" id="btnManana">Mañana</button>&nbsp;
+                                                    <button type="button" class="btn btn-brand btn-elevate btn-pill btn-pm" id="btnTarde">Tarde</button>*@
+                                            </div>
+
+                                            <!--Tags-->
+                                            <!--Date Picker-->
+
+                                            <div class="col-lg-12" id="rowDatePicker">
+
+                                            </div>
+                                            <div class="col-lg-12 mt-3">
+                                                Si no encuentras hora con el médico que seleccionaste no te preocupes, puedes anular esta hora y agendar una nueva con otro médico. Si tienes dudas no dudes en contáctarnos.
+                                            </div>
+                                            @*<div class="cont-datepicker" id="kt_datepicker_6">
+                                                </div>*@
+
+                                            <!--Date Picker-->
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="seleccion-horas">
+                                                <div class="header-seleccion-horas" id="headerSeleccion">
+                                                </div>
+                                                <div class="body-seleccion-horas">
+                                                    <div class="body-seleccion-horas">
+                                                        <ul class="lista-horas" id="listaHoras">
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Reserva Hora -->
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer footer-aviso">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Volver</button>
+                <div id="btnConf"></div>
+                @*<button type="button" class="btn btn-success btn-sm" id="btnConfirmarHora">Confirmar Hora</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end:: Page -->
+<!-- begin::Scrolltop -->
+<div id="kt_scrolltop" class="kt-scrolltop">
+    <i class="fa fa-arrow-up"></i>
+</div>
+
+<!--<button onclick="playAudio()" type="button">Play Audio</button>
+<button onclick="pauseAudio()" type="button">Pause Audio</button>-->
+
+<audio id="myAudio">
+    <source src="~/metronic_demo7/assets/media/demo/sonido.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+@section PageScripts {
+
+    <script src="~/metronic_demo7/assets/js/pages/crud/forms/widgets/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+   
+}
+@section Scripts {
+
+    <script src="~/signal/signalr.min.js"></script>
+    <script>
+        var x = document.getElementById("myAudio");
+
+        function playAudio() {
+            x.play();
+        }
+
+        function pauseAudio() {
+            x.pause();
+        }
+    </script>
+    <script type="module">
+        var historial = true;
+        window.historial = historial;
+        import { init } from '../../js/Paciente/index.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+            console.log(@ViewBag.Mensaje);
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+            var externo = '@ViewBag.externo';
+            window.externo = externo;
+            var idCliente = @ViewBag.idCliente;
+            window.idCliente = idCliente;
+            var host = '@ViewBag.HostURL';
+            window.host = host;
+        })()
+    </script>
+
+    @*<script src="~/js/Paciente/index.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>*@
+    <script src="~/js/modal.js"></script>
+    <script src="~/js/moment.js"></script>
+    <script src="~/js/accesible.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    
+}

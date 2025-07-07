@@ -1,0 +1,131 @@
+.modal-validacion {
+    max-width: 702px;
+    width: 100%;
+    padding: 2rem;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+    .modal-validacion label {
+        display: block;
+        font-weight: 700;
+        color: #666;
+    }
+
+    .modal-validacion .form-group {
+        margin-bottom: .5rem;
+    }
+
+    .modal-validacion .cont-btn-valida .btn {
+        display: inline-block;
+        padding: .4rem 1rem !important;
+        box-shadow: none;
+    }
+
+        .modal-validacion .cont-btn-valida .btn i {
+            font-weight: 700;
+        }
+
+    .modal-validacion .cont-btns {
+        display: flex;
+    }
+
+        .modal-validacion .cont-btns .btn {
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+            .modal-validacion .cont-btns .btn:last-child {
+                margin-left: auto;
+            }
+
+.cont-alerta-sala {
+    position: absolute;
+    z-index: 50;
+    left: 0;
+    right: 0;
+    top: 1rem;
+    text-align: center;
+    pointer-events: none;
+    display: flex;
+}
+
+.alerta-sala {
+    width: 100%;
+    max-width: 700px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #FFF;
+    font-size: 1rem;
+    text-align: center;
+    padding: 1.4rem;
+    position: relative;
+    margin: 0 auto;
+    border-radius: .5rem;
+}
+
+.alerta-sala-new {
+    height: 60px;
+    margin-left: 265px;
+    width: 800px;
+}
+
+.alerta-sala p {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.alerta-sala .icono-alerta {
+    position: absolute;
+    top: .5rem;
+    right: 1rem;
+    cursor: pointer;
+}
+
+.datos-validacion {
+    padding: 2rem 0;
+    border-bottom: 1px solid #DDD;
+}
+
+/*Modals*/
+
+.modal-dialog.modal-100 {
+    height: 100% !important;
+}
+
+    .modal-dialog.modal-100 .modal-content {
+        height: auto;
+        min-height: 100%;
+        border-radius: 0;
+    }
+
+
+
+@media (max-width: 992px) {
+    .modal-validacion .cont-btns {
+        display: block;
+    }
+
+    .btn-validacion {
+        display: block !important;
+    }
+
+    .datos-validacion .btn-xs {
+        padding: 0.625rem 1.6rem !important;
+    }
+}
+
+
+#panelEstado.cont-alerta-sala {
+    z-index: 50;
+    position: relative;
+    bottom: 6rem;
+    top: auto;
+    display: none !important;
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+    #panelEstado.cont-alerta-sala {
+        bottom: 3rem !important;
+        top: auto !important;
+    }
+}

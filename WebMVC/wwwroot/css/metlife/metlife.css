@@ -1,0 +1,1467 @@
+/*Metlife*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap');
+
+
+/*Estilos Globales*/
+
+:root {
+    --primary: #36276F;
+    --secondary: #333333;
+    --tertiary: #111;
+    --accent: #45BBC9;
+    --light: #FFF;
+    --font-family: 'Mulish', sans-serif;
+}
+
+/*body {
+     font-family: var(--font-family) !important;
+}*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-family) !important;
+}
+
+#drop-mensajes-turno {
+    background-color: var(--primary);
+}
+
+/*Login*/
+.logotipo-desktop {
+    background-image: url(../../img/metlife/logotipo-login.png);
+    max-width: 290px;
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/metlife/logotipo-login.png);
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: var(--primary);
+    font-weight: 900;
+}
+
+.form-group .ms-label {
+    color: var(--tertiary) !important;
+}
+
+.smart-check {
+    display: none !important;
+}
+
+.cont-medicina-preventiva .opcion-interior.primera-opcion {
+    border-right: none !important;
+}
+
+div.antecedentes-medicos .form-check-input {
+    margin: auto;
+    position: relative;
+    top: -3px;
+    left: 3px;
+}
+
+.ant-medicos {
+    justify-content: start !important;
+}
+
+.form-check-input {
+    position: relative;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: -1.25rem;
+}
+
+.pregunta-antecedente {
+    display: inline-block;
+    width: 190px;
+    text-align: left !important;
+}
+
+.btn-primary {
+    background-color: #36276F;
+    border-color: #36276F;
+}
+
+.form-control {
+    margin-left: 10px !important;
+}
+
+.caja-profesional img {
+    border: 1px solid #D1EBEF !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.logo-modal-ped {
+    width: 110px;
+    height: 65px;
+}
+
+.divider-medismart {
+    display: flex !important;
+    margin-bottom: 2rem;
+}
+
+.logo-convenios {
+    /* display: none;*/
+    margin-bottom: 2rem;
+}
+
+/* Imagenes Login */
+.img1 {
+    background-image: url(../../img/metlife/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/metlife/login/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/metlife/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/metlife/login/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/metlife/login/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/metlife/login/960x978.jpg);
+}
+
+.body-home {
+    background: #0090DA;
+    background-image: url(../../img/metlife/vigilado.svg), linear-gradient(180deg, #36276F 34.9%, #45BBC9 99.48%) !important;
+    background-repeat: no-repeat, no-repeat, repeat;
+    background-position: 1% 96%, 98% 80%, 0 0;
+    background-attachment: fixed;
+}
+
+.body-home:has(.prehome__plan) {
+    background: #0090DA;
+    background-image: url(../../img/positivav2/fondo-vertical.svg), url(../../img/metlife/logotipo-medismart-c.png), linear-gradient(180deg, #0061A0 3.12%, #0090DA 33.85%);
+    background-repeat: no-repeat, no-repeat, repeat;
+    background-position: 0 96%, 98% 80%, 0 0;
+    background-attachment: fixed;
+}
+
+.body-home .logo-home img {
+    width: 455px;
+    height: 80px !important;
+}
+
+.body-home .menu-top .item-menu-top:hover i,
+.body-home .menu-top .item-menu-top:hover .label-menu,
+.body-home .menu-top .item-menu-top:hover .label-menu-pac {
+    color: var(--accent) !important;
+}
+
+.body-home .cont-card h1 {
+    max-width: 127px;
+}
+
+.top-banner .legend {
+    font-weight: 500;
+    font-family: 'Roboto', 'Mulish', sans-serif;
+}
+
+.menu-top .item-menu-top i,
+.menu-top .label-menu,
+.menu-top .label-menu-pac {
+    color: #36276F;
+}
+
+.menu-top .item-menu-top:hover i,
+.menu-top .item-menu-top:hover .label-menu,
+.menu-top .item-menu-top:hover .label-menu-pac {
+    color: var(--secondary) !important;
+}
+
+.body-home .swal2-container.swal2-center.swal2-shown {
+    background-color: rgb(0 0 0 / 40%);
+    backdrop-filter: blur(1px);
+}
+
+.body-home .swal2-modal input#aceptaTerminos {
+    border: #555 !important;
+    width: 36px;
+    height: 36px;
+
+}
+
+.swal2-popup .swal2-title {
+    color: #48465b;
+}
+
+.mi-clase-css {
+    margin-top: 30px !important;
+}
+
+.kt-menu__item a,
+.kt-menu__item i,
+.kt-menu__item a .ms-label-menu {
+    color: #36276F;
+}
+
+.kt-menu__item:hover a,
+.kt-menu__item:hover i,
+.kt-menu__item:hover a .ms-label-menu {
+    color: var(--secondary) !important;
+}
+
+.kt-menu__item a .ms-label-menu .accesible-btn button {
+    color: var(--secondary);
+    border: 1px solid var(--secondary);
+}
+
+/* Botones de Accesibilidad > Layout Home */
+
+.accesible-btn.letras-home button {
+    border: 1px solid #36276F;
+    color: #fff;
+    background-color: #36276F;
+}
+
+.accesible-btn.letras-home button:hover {
+    background-color: var(--primary);
+    border-color: var(--primary)
+}
+
+/* Botones de Accesibilidad > Layout Paciente */
+
+.accesible-btn.letras-triage button {
+    border: 1px solid #45BBC9;
+    color: #37276E;
+    background-color: #45BBC9;
+}
+
+.accesible-btn.letras-triage button:hover {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+}
+
+.cont-caja-especialidad {
+    min-height: 58px;
+}
+
+.busqueda-profesionales {
+    border: none;
+    background-color: var(--accent);
+    min-height: 58px;
+}
+
+.busqueda-profesionales i {
+    color: var(--light)
+}
+
+.busqueda-profesionales .btn-outline-primary {
+    color: var(--secondary)
+}
+
+.caja-especialidad.active,
+.caja-especialidad:hover {
+    background-color: #36276F;
+}
+
+.caja-especialidad {
+    background-color: var(--primary);
+    display: flex;
+    padding: .5rem 1rem;
+}
+
+.inner-especialidad img {
+    max-width: 42px;
+}
+
+.inner-especialidad strong {
+    color: var(--light)
+}
+
+.step.active .step-icon {
+    background-color: #36276F;
+}
+
+.stepper {
+    background-image: url(../../img/metlife/fondo-banner2.svg);
+}
+
+.stepper .flecha {
+    color: var(--primary)
+}
+
+.stepper img {
+    border-color: #45BBC9;
+}
+
+.step.active .label-step {
+    color: var(--primary)
+}
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: #8C94B0;
+}
+
+.caja-profesional .fecha-atencion {
+    color: #387FA0;
+}
+
+.front-fecha-atencion {
+    border: 1px solid #D1EBEF;
+}
+
+.front-fecha-atencion strong:before {
+    color: #65BECB;
+    font-weight: 900;
+}
+
+.especialidad-profesional {
+    color: #8C94B0;
+}
+
+
+
+.body-home .swal2-modal .check-aceptacion {
+    border-top: none;
+}
+
+.body-home .swal2-modal {
+    width: 90% !important;
+    max-width: 680px;
+    border-radius: 16px;
+}
+
+.body-home .swal2-modal .container-check {
+    display: flex;
+    justify-content: space-around;
+    padding: 0 32px;
+    column-gap: 16px;
+    /*    background: lightgreen;*/
+}
+
+.body-home .swal2-modal .container-check label {
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 1.3;
+    letter-spacing: 0.6px;
+    text-align: left;
+}
+
+
+.body-home .swal2-modal .container-check label {
+    color: #000;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    margin-top: 2rem;
+    line-height: 1.3;
+    letter-spacing: 0.6px;
+}
+
+.body-home .swal2-modal .container-check .politica {
+    color: #36276F;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    text-decoration-line: underline;
+}
+
+.body-home .swal2-modal .container-titulo .check-modal {
+    width: 47px;
+    height: 44px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.body-home .swal2-modal .titulo-tratamiento {
+    margin: auto 0;
+    color: #FFF;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.6px;
+
+}
+
+.form-check-label {
+    border-radius: 5px;
+    border: none;
+    background: #FFF;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.body-home .swal2-modal {
+    padding: 0;
+}
+
+.body-home .swal2-modal .swal2-content {
+    width: auto;
+    max-width: 100%;
+    margin: 0;
+}
+
+.body-home .swal2-modal .container-titulo {
+    background-color: #45BBC9;
+    border-radius: 16px 16px 0 0;
+    display: flex;
+    padding: 24px;
+    border: 1px solid #45BBC9;
+    justify-content: center;
+    column-gap: 1rem;
+}
+
+.body-home .swal2-modal .swal2-styled.swal2-confirm {
+    color: #fff;
+    background: #330474;
+    width: 235px;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 20px !important;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    line-height: 100%;
+}
+
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+
+.btn-volver-plan {
+    display: none !important;
+}
+
+/*.container-fluid, .container-sm, .container-md, .container-lg, .container-xl {
+    
+    background-image: url(../../img/positivav2/fondo-vertical.svg), url(../../img/metlife/logotipo-medismart-d.svg);
+    background-repeat: no-repeat, no-repeat, repeat;
+    background-position: 2rem 96%, 98% 80%, 0 0;
+    background-attachment: fixed;
+}*/
+
+.top-banner {
+    background-image: url(../../img/metlife/fondo-banner.svg);
+}
+
+.top-banner img {
+    border: none !important;
+}
+
+.top-banner .legend {
+    color: var(--secondary)
+}
+
+.banner_topsc .legend .text-warning {
+    color: var(--primary) !important;
+}
+
+.top-banner.banner_topsc {
+    background-image: url(../../img/metlife/fondo-banner2.svg);
+}
+
+.text-warning {
+    color: #45BBC9 !important;
+}
+
+.menu-top .item-menu-top .logotipo-mobile {
+    margin: 10px 0 0 0;
+}
+
+/*Sala espera*/
+
+.titulo-sala {
+    width: auto;
+}
+
+.hotspot-icon .cont-icon {
+    background-color: #fff;
+    color: var(--primary);
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: var(--primary);
+}
+
+.cont-icon.hotspot-redes {
+    background-color: #000;
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+}
+
+.btn-guardar-info,
+.btn-success {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-guardar-info:hover,
+.btn-success:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--primary)
+}
+
+.btn.btn-outline-secondary {
+    background-color: var(--light);
+    border-color: var(--primary);
+    color: var(--primary)
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+}
+
+#reporte:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+#hs-g .cont-icon {
+    background-color: var(--primary);
+}
+
+#hs-g:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+.toolbar-option {
+    color: #36276F
+}
+
+.toolbar-option.active {
+    color: var(--secondary)
+}
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--tertiary)
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--secondary)
+}
+
+.btn-sala:hover {
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion,
+.cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion:hover,
+.cont-btn-vc .btn-atencion:hover {
+    background-color: rgba(237, 110, 0, 0.1);
+    color: var(--primary);
+}
+
+.hotspot-icon {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.hotspot-icon i {
+    text-shadow: none;
+}
+
+.hotspot-icon:hover {
+    color: #FFF;
+}
+
+/*Layout Paciente*/
+.kt-aside__brand-logo a {
+    display: block;
+    width: 69px;
+    height: 41px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-top: 3px;
+    background-position: top left;
+}
+
+/*Paciente > Wow Styles*/
+
+/*.wow, .wow__title {
+    width: 90%;
+}*/
+
+.wow__historial .tarjeta__seccion * {
+    color: var(--primary) !important;
+}
+
+.wow__tarjeta.tarjeta--atencion {
+    border: 1px solid var(--primary);
+}
+
+
+.wow .tag.active {
+    background-color: var(--primary) !important;
+    color: #fff !important;
+}
+
+.wow__title h2,
+.wow__historial .tarjeta__title,
+.wow__historial .tarjeta__fecha,
+.tarjeta__profesional a {
+    color: var(--primary) !important;
+}
+
+
+.wow small {
+    color: var(--accent) !important;
+}
+
+.wow__tab.active {
+    color: var(--primary);
+    border-bottom: 3px solid var(--primary);
+}
+
+.tag-descarga {
+    border: 1px solid var(--accent) !important;
+    color: var(--primary) !important;
+}
+
+/*Examenes > custom styles > Start*/
+
+.exam-container-atenciones {
+    column-gap: 2rem;
+}
+
+.exam-titulo,
+.exam-subtitulo,
+.exam-nom-dr {
+    color: var(--primary);
+}
+
+.exam-subtitulo {
+    margin-bottom: 1rem;
+}
+
+.exam-ultima-atencion,
+.exam-atencion-anterior {
+    background: #fff;
+    border: 1px solid #28458E;
+}
+
+.exam-nom-dr {
+    opacity: 1;
+    text-transform: capitalize;
+}
+
+.exam-subtitulo-tarj {
+    align-items: center;
+    gap: 3px;
+}
+
+.exam-examenes h2,
+.exam-cont-examacia-online h2:first-child:not(.exam-letra-12) {
+    color: var(--accent);
+    font-weight: 900;
+    letter-spacing: 0.6px;
+}
+
+.exam-ticket {
+    width: 16px;
+    margin: 0;
+    padding: 0 !important;
+    font-weight: 700;
+}
+
+
+/*Examenes > custom styles > End*/
+
+
+
+.tarjeta--atencion,
+.tarjeta--examenes,
+.tarjeta--smartcheck,
+.tarjeta--teledoc {
+    background-image: url(../../img/metlife/icono-atencion.svg) !important;
+}
+
+
+
+
+
+/*Prehome*/
+
+.prehome__card {
+    padding: 3rem 2rem;
+}
+
+.prehome__plans {
+    height: auto;
+}
+
+.prehome__plan {
+    width: 100%;
+    padding: 0;
+}
+
+/*Condicional para insertar logo medismart semitrasparente en prehome Metlife:*/
+
+
+/*.prehome__plan:has(button#id-pre-home-0) {
+order: 1 !important;
+background-color: red;
+}*/
+
+.prehome__plan ul {
+    list-style-image: url('../../img/metlife/metlife-prehome--bullet.svg');
+    list-style-position: inside;
+    margin-top: 32px;
+    /*height: 350px;*/
+    font-size: 16px;
+    max-height: none;
+}
+
+.prehome__plan li {
+    font-size: 14px;
+    color: #000;
+    font-weight: 600;
+}
+
+.prehome__title {
+    color: #FFF;
+    display: none;
+}
+
+.kt-login__extra.registro {
+    display: none;
+}
+
+.logo-convenios.convenioChile+hr {
+    display: none;
+}
+
+.kt-login.kt-login--v3.kt-login--signin .kt-login__signin .titulo-card-farmacia {
+    text-align: center;
+}
+
+/*@media (max-width: 991.98px) {
+    .prehome__plans {
+        height: auto;
+    }
+
+    .container-titulo {
+        min-width: 357px !important;
+    }
+
+  
+}*/
+
+
+
+.falp-modal-contenedor {
+    display: flex;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 32px;
+    width: 660px;
+    height: 354px;
+    background-image: url(../../img/metlife/dr-modal.png);
+    background-repeat: no-repeat, repeat;
+    background-position: 4% 2rem, 0;
+    flex-direction: row;
+}
+
+.modal-paciente .modal-content {
+    margin: auto;
+    margin-top: 8rem;
+    border: none;
+    padding: 5px 32px;
+}
+
+.falp-modal-contenedor-titulos {
+    padding: 2rem 0rem 0rem 14rem;
+}
+
+.falp-modal-dr {
+    height: 23rem;
+    width: 29rem;
+}
+
+.falp-modal-logo {
+    padding: 1rem 0rem 1rem 0rem;
+}
+
+.farm-metlife {
+    display: none !important;
+}
+
+.farm-glory {
+    display: none !important;
+}
+
+
+.falp-modal-contenedor-imagen {
+    padding: 0rem;
+}
+
+.falp-modal-titulo-uno {
+    color: #004E91;
+    font-family: Mulish;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    padding-bottom: 0.5rem;
+}
+
+
+.falp-modal-titulo-dos {
+    color: #004E91;
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    padding-bottom: 0.5rem;
+}
+
+
+/*Estilos Mario 05112023*/
+
+#kt_footer {
+    display: none;
+}
+
+.footer-metlife {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-metlife.footer-agendamiento {
+    display: flex;
+    width: calc(100% - 100px);
+    margin-left: 100px;
+}
+
+.footer-metlife .accesible-tools-desktop {
+    margin: auto;
+}
+
+.body-home:has(.prehome__plan) .footer-metlife {
+    margin-top: 10rem;
+}
+
+.body-home:has(.prehome__plan) .footer-metlife .accesible-tools-desktop {
+    display: none;
+}
+
+
+
+.letras {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 2rem;
+}
+
+.letras .terminos {
+    display: flex;
+    align-items: baseline;
+    margin-top: auto;
+    /*text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);*/
+    color: var(--light);
+}
+
+.letras .accesible-tools-desktop {
+    margin-top: auto;
+}
+
+.letras .accesible-tools-desktop .accesible-btn {
+    margin-top: auto;
+    margin-left: 0;
+}
+
+.letras .disclaimer,
+.letras .anio {
+    color: #FFF;
+    margin-top: auto;
+    /*text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);*/
+}
+
+.letras .disclaimer {
+    margin-left: 3rem;
+}
+
+.prehome__plan h2 {
+    font-weight: 900;
+    font-size: 20px;
+    color: var(--primary);
+}
+
+.prehome__plan {
+    border-right: none;
+    max-width: none;
+}
+
+.prehome__plan li {
+    border-bottom: 1px solid rgba(196, 196, 196, 0.70);
+    padding: .5rem 0;
+}
+
+.prehome__plan li:last-child {
+    border-bottom: none;
+}
+
+.prehome__plan .caracteristicas__plan {
+    font-size: 14px;
+    font-weight: 700;
+    border-right: 1px solid #DDD;
+    height: auto;
+    min-height: 440px;
+}
+
+.prehome__plan .caracteristicas__plan li {
+    max-width: 260px;
+    margin: auto;
+}
+
+.prehome__plan:last-child .caracteristicas__plan {
+    border-right: none;
+}
+
+.caracteristicas__plan .item {
+    display: inline-block;
+}
+
+.caracteristicas__plan small {
+    display: block;
+    font-size: 12px;
+}
+
+.header-plan img {
+    margin: auto;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+
+.prehome__plan:nth-of-type(1) .btn,
+.prehome__plan:nth-of-type(3) .btn {
+    display: none;
+}
+
+.label-caja-especialidad .d-block {
+    display: none !important;
+}
+
+.footer-metlife.footer-agendamiento .letras {
+    background-color: #FFF;
+}
+
+
+.footer-metlife.footer-agendamiento .letras .terminos,
+.footer-metlife.footer-agendamiento .letras .disclaimer,
+.footer-metlife.footer-agendamiento .letras .anio {
+    color: var(--primary);
+    text-shadow: none;
+}
+
+.footer-metlife.footer-agendamiento .letras .disclaimer {
+    margin-left: 0
+}
+
+.footer-metlife.footer-agendamiento .letras .disclaimer span {
+    display: inline-block;
+    margin-right: 2rem;
+    font-weight: 700;
+}
+
+.tabset>label {
+    color: var(--primary)
+}
+
+.tabset>input:checked+label {
+    border-color: transparent;
+    border-top-color: var(--accent);
+    border-right-color: var(--accent);
+    border-bottom: 1px solid #fff;
+    margin-bottom: -1px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.tabset>label::after {
+    background: var(--accent)
+}
+
+.tab-panel {
+    border-top: 1px solid var(--accent);
+}
+
+.titulo-servicio {
+    color: #656C97;
+}
+
+#tab_perfil .card {
+    border: 1px solid transparent;
+}
+
+.columna-datos-contacto {
+    border-left: 1px solid transparent;
+}
+
+.card .form-group label,
+.card .form-group-input label,
+.card-profile h3 {
+    color: var(--primary);
+}
+
+.mensaje-anura.atencion-inmediata p,
+.mensaje-anura.atencion-inmediata img {
+    display: none;
+}
+
+.atencion-inmediata {
+    background-image: none;
+}
+
+.mensaje-anura {
+    padding-left: 0;
+}
+
+.mensaje-anura.atencion-inmediata::after {
+    display: block;
+    content: '';
+    width: 100%;
+    max-width: 402px;
+    height: 300px;
+    background-image: url(../../img/metlife/foto-triage.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: auto;
+}
+
+
+.toolbar-anura {
+    justify-content: flex-end;
+}
+
+.toolbar-anura button {
+    max-width: 212px;
+    margin-right: 6rem;
+}
+
+.toolbar-anura button:first-child {
+    display: none;
+}
+
+.container-fluid.caja-base.caja-confirmacion-hora {}
+
+.caja-base {
+    border: 1px solid #45BBC9;
+}
+
+.kt-header--fixed:not(.kt-subheader--fixed) .kt-header {
+    border-bottom: 1px solid rgba(153, 153, 153, .5) !important;
+}
+
+.ms-aside {
+    border-right: 1px solid rgba(153, 153, 153, .5) !important;
+}
+
+.prehome.single-plan {
+    max-width: 1180px;
+}
+
+.prehome__card button {
+    margin: auto;
+}
+
+.caja-confirmacion-hora .mensaje-anura {
+    /*display: none;*/
+}
+
+.mensaje-anura.atencion-agendable img {
+    display: none;
+}
+
+.mensaje-anura p {
+    display: none;
+}
+
+.mensaje-anura.atencion-agendable {
+    background-image: none;
+}
+
+.icon-confirma {
+    color: var(--primary);
+}
+
+.caja-confirmacion-hora .mensaje-anura::after {
+    display: block;
+    content: '';
+    width: 100%;
+    max-width: 402px;
+    height: 300px;
+    background-image: url(../../img/metlife/foto-triage.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: auto;
+}
+
+.formulario-confirma-hora h1 {
+    color: #36276F;
+}
+
+.toolbar-anura .btn-block+.btn-block {
+    background: #45BBC9;
+    border-color: #45BBC9
+}
+
+.formulario-confirma-hora .header-formulario i {
+    display: none;
+}
+
+/*Sala de espera*/
+#hs-b,
+#contacto,
+#facebook,
+#instagram,
+#reporte {
+    display: none;
+}
+
+.cont-icon img {
+    max-width: 60px;
+    margin-top: 0;
+}
+
+.hotspot-icon .cont-icon i {
+    color: var(--light)
+}
+
+.sala-espera-mobile .card-sala:nth-of-type(3n) {
+    margin-bottom: 4rem;
+    margin-top: 10rem;
+}
+
+
+.body-home .card-plan .costo,
+.body-home .card-plan .pronto-card,
+.body-home .card-plan .atencion-24,
+.body-home .card-plan .preferente {
+    background-color: #45BBC9;
+    color: #000;
+    font-weight: 700;
+}
+
+.body-home .card-plan .atencion-24 {
+    display: flex;
+}
+
+#tab3+label {
+    display: none;
+}
+
+.tag-smartcheck {
+    display: none !important;
+}
+
+.cont-antecedentes-medicos .form-check-label {
+    border: none;
+}
+
+.card-m {
+    padding: 12px !important;
+}
+
+.cont-medicina-preventiva .lista-examenes .item-lista-examenes label {
+    width: 49%;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    padding: 0.5rem 0 0.5rem 0;
+    margin-top: 0;
+}
+
+@media (max-width: 668px) {
+    .body-home .logo-home a:has(img) {
+        width: 50%;
+    }
+
+    .body-home .logo-home a img {
+        width: 100% !important;
+    }
+
+    .body-home .swal2-popup {
+        width: 96%;
+    }
+
+    /*Modal Tratamiento de datos - Smartphones*/
+
+    .body-home .swal2-modal .titulo-tratamiento,
+    .body-home .swal2-modal .container-check label,
+    .body-home .swal2-modal .swal2-styled.swal2-confirm {
+        font-size: 14px !important;
+    }
+
+    .body-home .swal2-modal .container-check label {
+        text-align: justify;
+    }
+
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+
+    .prehome__plans {
+        height: auto;
+    }
+
+    .container-titulo {
+        min-width: 357px !important;
+    }
+
+    .top-banner .legend {
+        text-align: left;
+        font-size: 1.3rem;
+    }
+
+    .kt-grid.kt-grid--hor:not(.kt-grid--desktop):not(.kt-grid--desktop-and-tablet):not(.kt-grid--tablet):not(.kt-grid--tablet-and-mobile):not(.kt-grid--mobile)>.kt-grid__item.kt-grid__item--fluid,
+    .kt-grid.kt-grid--hor:not(.kt-grid--desktop):not(.kt-grid--desktop-and-tablet):not(.kt-grid--tablet):not(.kt-grid--tablet-and-mobile):not(.kt-grid--mobile)>.kt-grid__item.kt-grid__item--fluid {
+        background-image: none !important;
+
+    }
+
+    /*Modal Tratamiento de datos*/
+    .body-home .swal2-popup .swal2-content img {
+        width: 40px !important;
+    }
+
+    .body-home .container-titulo {
+        padding: 1rem;
+        width: 100%;
+        min-width: 0 !important;
+    }
+
+    .body-home .titulo-tratamiento {
+        font-size: 16px;
+        font-weight: bold;
+        font-family: 'Inter', sans-serif;
+    }
+
+    /*    Examenes de laboratorio*/
+
+    .cont-component {
+        max-width: 80vw;
+        margin: 60px auto;
+    }
+
+    .exam-container-atenciones {
+        flex-direction: column;
+        row-gap: 40px;
+    }
+
+
+}
+
+@media (min-width: 768px) {
+
+    .col-md {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/metlife/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/metlife/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/metlife/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/metlife/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/metlife/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/metlife/login/548x850.jpg);
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1151px) {
+    label {
+        color: #000;
+        font-family: 'Inter', sans-serif;
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-align: justify;
+        margin-top: 2rem;
+    }
+
+    .fuente-accesible {
+        font-size: 21px;
+    }
+}
+
+@media (max-width: 1024px) {
+
+    .container-check {
+        gap: 2rem;
+    }
+
+    .titulo-tratamiento {
+        margin-left: 0;
+    }
+
+    .prehome__plan .caracteristicas__plan {
+        border-right: none;
+    }
+
+    .prehome__plan {
+        border-bottom: none;
+    }
+
+    .prehome__plan .caracteristicas__plan {
+        min-height: auto;
+        padding: 0;
+        margin-top: 0;
+        padding-left: 7rem;
+    }
+
+    .prehome__plan .header-plan {
+        display: flex;
+        align-items: center;
+    }
+
+    .prehome__plan .caracteristicas__plan li {
+        max-width: none;
+    }
+
+    .body-home .logo-home img {
+        width: 156px !important;
+        margin-bottom: 0;
+    }
+
+    .letras {
+        flex-direction: column;
+    }
+
+    .letras .disclaimer {
+        margin-left: 4rem;
+    }
+
+    .terminos a {
+        margin-left: 0;
+    }
+
+    .header-plan img {}
+
+    .accesible-tools-desktop .accesible-btn {
+        justify-content: center;
+    }
+
+    .footer-metlife.footer-agendamiento {
+        display: flex;
+        width: 100%;
+        margin-left: 0;
+        padding-bottom: 8rem;
+    }
+
+    .cont-steps {
+        margin-top: 4rem;
+    }
+
+    .sala-espera-mobile img {
+        margin-top: -100px;
+    }
+
+    .sala-espera-mobile .btn-sala .cont-icon img {
+        max-width: 40px;
+        margin-top: 0;
+    }
+
+    .body-home {
+        background: #0090DA;
+        background-image: url(../../img/positivav2/fondo-vertical.svg), url(../../img/metlife/fondo-home.svg), linear-gradient(180deg, #0061A0 3.12%, #0090DA 33.85%);
+        background-repeat: no-repeat, no-repeat, repeat;
+        background-position: 2rem 96%, 98% 65%, 0 0;
+        background-attachment: fixed;
+        /*background-size: auto, 50%, 100%;*/
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/metlife/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/metlife/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/metlife/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/metlife/login/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/metlife/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/metlife/login/960x978.jpg);
+    }
+}

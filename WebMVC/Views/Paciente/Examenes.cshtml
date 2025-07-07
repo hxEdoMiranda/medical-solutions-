@@ -1,0 +1,455 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    ViewData["Title"] = "Exámenes";
+    Layout = "_LayoutPaciente";
+
+}
+
+@section PageStyles  {
+    <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+    <div class="cont-component">
+        <div class="exam-header">
+            <h1 class="exam-titulo">EXÁMENES</h1>
+            <div class="exam-btnes-encabezado">
+            @{
+                var todos = ViewBag.filter == "todos" ? "active" : "mes";
+                var mes = ViewBag.filter == "mes" ? "active" : "mes";
+                var año = ViewBag.filter == "año" ? "active" : "mes";
+            }
+            <a class="exam-boton-encabezado @todos" href="@Url.Action("Examenes", "Paciente", new { page = 1, filter = "todos" })">Todos</a>
+            <a class="exam-boton-encabezado @mes" href="@Url.Action("Examenes", "Paciente", new { page = 1, filter = "mes" })">Úlltimo mes</a>
+            <a class="exam-boton-encabezado @año" href="@Url.Action("Examenes", "Paciente", new { page = 1, filter = "año" })">Último año</a>
+            </div>
+        </div>
+    @if (ViewBag.historialAtencionesExamenes.Count != 0)
+    {
+        
+    
+        <div class="exam-container-atenciones">
+            <div class="exam-contenedor-ultimo">
+            
+                <h3 class="exam-subtitulo">Última Atención</h3>
+                <div class="exam-container-ultima-atencion">
+                @{
+                    DateTime fechaActualPrincipal = DateTime.Now;
+                    DateTime fechaAtencionPrincipal = ViewBag.historialAtencionesExamenes[0].FechaCreacion;
+                    int diferenciaDiasPrincipal = (int)(fechaActualPrincipal - fechaAtencionPrincipal).TotalDays;
+                }
+                    <div class="exam-ultima-atencion">
+
+                    <div class="header-icono-fecha">
+                        <p class="exam-fecha-tarj">
+                                <img src="~/img/examenes/calendario.png" />
+                            @if (ViewBag.historialAtencionesExamenes[0].FechaCreacion != null)
+                            {
+                                @ViewBag.historialAtencionesExamenes[0].FechaCreacion.ToShortDateString()
+                            }
+                            else
+                            {
+                                @ViewBag.historialAtencionesExamenes[0].Fecha.ToShortDateString()
+                            }
+                           
+                            12:00
+                        </p>
+                        <img src="~/img/examenes/icono-exam.png" />
+
+                        </div>
+                      
+                        <div class="exam-seccion-dr">
+                        <h2 class="exam-nom-dr interlineado">@ViewBag.historialAtencionesExamenes[0].NombrePaciente</h2>
+                        <h3 class="exam-subtitulo-tarj interlineado">@ViewBag.historialAtencionesExamenes[0].Especialidad</h3>
+                        </div>
+                       
+                        <div class="exam-examenes mt-5">
+                            <h2 class="exam-subtitulo-tarj">Exámenes</h2>
+                            <ul class="exam-lista-items">
+                            @foreach (var examns in ViewBag.examenesAtenciones)
+                            {
+                                @if (ViewBag.historialAtencionesExamenes[0].Id == examns.IdAtencion)
+                                {
+                                    <li class="exam-subtitulo-tarj interlineado text-align-li">
+                                            @if (ViewBag.HostURL.ToString().Contains("metlife."))
+                                            {
+                                                <img class="exam-ticket" src="~/img/metlife/check.png">
+                                            }
+                                            else {
+                                            <img class="exam-ticket" src="~/img/examenes/check.png">
+                                            }
+                                        @{
+                                            int posicionInicial = 0;
+                                            int posicionFinal = 35;
+                                            int subcadena;
+                                            if (examns.Nombre.Length >= posicionFinal)
+                                            {
+                                                subcadena = posicionFinal;
+                                            }
+                                            else
+                                            {
+                                                subcadena = examns.Nombre.Length;
+                                            }
+                                        }
+                                        @examns.Nombre.Substring(0, subcadena)
+                                    </li>
+                                }     
+                            }
+                            </ul>
+                        @if (diferenciaDiasPrincipal > 120)
+                        {
+                            <div class="exam-receta-no-vigente">
+                                <p class="exam-recetanovigente interlineado">Exámenes no vigentes</p>
+                            </div>
+                        }
+                        </div>
+                        <div class="exam-cont-examacia-online">
+                            <h2 class="exam-subtitulo-tarj mb-3">exámenes en línea</h2>
+                            <div class="exam-container-examazon">
+                            <img src="~/img/examenes/logo-labsmart.png" alt="">
+                                <div class="text-container-examazon interlineado">
+                                    <h2 class="exam-subtitulo-tarj exam-letra-12">Compra en nuestra red de exámenes</h2>
+                                    <h3 class="exam-subtitulo2-tarj interlineado exam-letra-12">
+                                        ¡Recibe tus medicamentos en un click!
+                                    </h3>
+                                
+                                @if (diferenciaDiasPrincipal > 120)
+                                            {
+                                    <button class="exam-btn-tarj" onclick="openModalRenovar(@ViewBag.historialAtencionesExamenes[0].Id, @ViewBag.historialAtencionesExamenes[0].IdEspecialidad)"> <h5 class="reserva">RENOVAR ORDEN MEDICA</h5> </button>
+                                            }
+                                            else
+                                            {
+                                    <button class="exam-btn-tarj" onclick="redirectAtencion(@ViewBag.historialAtencionesExamenes[0].Id)"> <h5 class="reserva">COTIZAR EXÁMENES</h5> </button>
+                                            }
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="exam-contendor-anteriores">
+                <h3 class="exam-subtitulo">Atenciones Anteriores</h3>
+                <div class="exam-container-atenciones-anteriores">
+                    @foreach (var atencion in Model)
+                            {
+                             
+                    
+                    <div class="exam-atencion-anterior">
+                        @{
+                            DateTime fechaActual = DateTime.Now;
+                            DateTime fechaAtencion = atencion.FechaCreacion;
+                            int diferenciaDias = (int)(fechaActual - fechaAtencion).TotalDays;
+                        }
+                    <div class="header-icono-fecha">
+                        <p class="exam-fecha-tarj">
+
+                                    <img src="~/img/examenes/calendario.png" alt="">@atencion.FechaCreacion.ToShortDateString()
+                        </p>
+                        <img src="~/img/examenes/icono-exam.png" />
+                    </div>
+                        <div class="exam-profesional">
+                            <h2 class="exam-nom-dr interlineado">@atencion.NombrePaciente</h2>
+                            <h3 class="exam-subtitulo-tarj interlineado">@atencion.Especialidad</h3>
+                        </div>
+                        
+                        <div class="exam-contenedor-ver-medicamento">
+                            <div class="exam-btn-tarjeta-ver-medicamento">
+                                <div class="exam-contenedor-btn-ver-medicamento">
+                                    <div class="exam-container-img-ojo">
+                                        <div class="exam-img-ojo">
+                                        <img src="~/img/examenes/ojo.png" alt="">
+                                            @{
+                                                List<Examenes> viewDataExam = ViewBag.examenesAtenciones;
+                                                var examenesData = viewDataExam.FindAll(x => x.IdAtencion == atencion.Id).ToList();
+                                            }
+                                            <button class="exam-btn-blanco" id="@atencion.Id" onclick="viewListItems('@atencion.Id')" data-obj='@Html.Raw(Json.Serialize(examenesData))'>
+                                            Ver Exámenes
+                                            </button>
+                                        </div>
+                                        @if(diferenciaDias > 120){
+                                            <div class="exam-receta-no-vigente">
+                                                <p class="exam-recetanovigente interlineado">Exámenes no vigentes</p>
+                                            </div>
+                                            }         
+                                    </div>
+                                    <div class="exam-container-btn-tarjeta-dos">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="exam-container-btn-cotizar">
+                            
+                            @if (diferenciaDias > 120)
+                                            {
+                                    <button class="exam-btn-tarj" onclick="openModalRenovar(@atencion.Id, @atencion.IdEspecialidad)">RENOVAR ORDEN</button>
+                                            }
+                                            else
+                                            {
+                                    <button class="exam-btn-tarj btn-blue-color" onclick="redirectAtencion(@atencion.Id)">COTIZAR EXÁMENES</button>
+                                            }
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="farm-navegador">
+            @if (Model.PageNumber > 1)
+            {
+                <a href="@Url.Action("Examenes", "Paciente", new { page = Model.PageNumber - 1, filter = ViewBag.filter })" class="farm-navegador-item">&lt;</a>
+            }
+            <a href="@Url.Action("Examenes", "Paciente", new { page = 1, filter = ViewBag.filter })" class="farm-navegador-item">Inicio</a>
+            @for (int i = Model.PageNumber - 1; i <= Model.PageNumber + 1; i++)
+            {
+                if (i > 0 && i <= Model.PageCount)
+                {
+                    if (i == Model.PageNumber)
+                    {
+                        <a class="farm-navegador-item">@i</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Examenes", "Paciente", new { page = i, filter = ViewBag.filter })" class="farm-navegador-item">@i</a>
+                    }
+                }
+            }
+            <a href="@Url.Action("Examenes", "Paciente", new { page = Model.PageCount, filter = ViewBag.filter })" class="farm-navegador-item">Fin</a>
+            @if (Model.PageNumber < Model.PageCount)
+            {
+                <a href="@Url.Action("Examenes", "Paciente", new { page = Model.PageNumber + 1, filter = ViewBag.filter })" class="farm-navegador-item">&gt;</a>
+            }
+        </div>
+    }
+    else
+    {
+        <p>No tienes ningun examen en este momento</p>
+    }
+</div>
+
+    <div class="modal modal-paciente fade" id="modalActualizacionPaciente" data-backdrop="static" name="kt_modal_crear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl kt-grid kt-grid--hor kt-grid--root kt-login kt-login--v3 kt-login--signin" role="document" id="kt_login">
+            @*
+            <div class="modal-content">
+            *@
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>-->
+                    <br />
+                </div>
+                <div class="container-fluid">
+                    <ul>
+
+                        <li>Exámen 1</li>
+                        <li>Exámen 2</li>
+                        <li>Exámen 3</li>
+                        <li>Exámen 4</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ @*modal informativo al iniciar el componente pero en vidasecurity*@
+    <div class="modal fade" id="modal-exam-dom" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        <div class="modal-content">
+            
+                <h5 class="text-center pt-4" id="modalTitle" style="color: #676767; font-weight:700; font-size: 24px">¡Recuerda!</h5>
+               
+            
+            <div class="modal-body text-center">
+                <p style="color: #87898E; font-size: 16px;">Los exámenes a domicilio no poseen reembolso en línea.
+Pueden ser reembolsados a través del sitio de Vida Security.</p>
+            </div>
+            <div class="modal-footer justify-content-center pt-4 pb-4">
+                <button type="button" class="btn" style="background-color:#3772FF; color: white; width: 20rem; border-radius: 10px;" onclick="closeModal()">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*fin modal informativo al iniciar el componente pero en vidasecurity*@
+
+@*</body>
+</html>*@
+@section Scripts{
+
+
+    
+    @*modal informativo al iniciar el componente de examenes a domicilio*@
+
+    @if (ViewBag.HostURL.ToString().Contains("vidasecurity.medismart"))
+    {
+        <script>
+            function openModalInformative() {
+                $('#modal-exam-dom').modal('show');
+            }
+            
+            function closeModal() {
+                $('#modal-exam-dom').modal('hide');
+            }
+ 
+        openModalInformative();
+    </script>
+    }
+    <script type="module">
+        import { saludoPaciente } from '../js/shared/info-user.js?rnd=@NumeroRandom.GetRandom()';
+        import { putAgendarMedicosHoras } from '../js/apis/agendar-fetch.js';
+        window.onload = saludoPaciente();
+        window.AgendarMedicos = putAgendarMedicosHoras;
+    </script>
+        @if(ViewBag.historialAtencionesExamenes.Count != 0){
+        <script type="text/javascript">
+        
+            function redirectAtencion(idAtencion){
+            window.location.href = location.origin + "/ResumenAtencionCustom?idAtencion=" + idAtencion;
+            }
+        function openModalRenovar(idAtencion, idEspecialidad) {
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success btn-bg-green',
+                        cancelButton: 'btn btn-outline-danger'
+                    },
+                    buttonsStyling: false
+                })
+                swalWithBootstrapButtons.fire({
+                    title: '<strong style="width: 39em; text-align:start; color:#0282A6">Te informamos</strong>',
+                    html:
+                        '<p style="text-align: initial;">¡Hola ' + '@ViewBag.historialAtencionesExamenes[0].NombrePaciente' + '! , Te informamos que tus exámenes tienen una vigencia de 6 meses.<br><br> ' +
+                        ' Para garantizar tu seguridad y comprobar que recibas el tratamiento adecuado, es necesario que ' +
+                        '<strong style="color:#0282A6;">tengas una atención inmediata un médico general para renovar tu examen médico.</strong></p > ',
+                    showCloseButton: true,
+                    showCancelButton: true,
+                    focusConfirm: false,
+                    confirmButtonText:
+                        'IR A LA ATENCION',
+                    cancelButtonText:
+                        'AHORA NO',
+                    reverseButtons: true
+                }).then(async function(result){
+                    if(result.hasOwnProperty('value')){
+                    if (result.value == true) {
+                        if (idEspecialidad == 1) {
+                            var idConvenio = 0;
+                            var sessionPlataforma = 'MEDISMART';
+                            if (idCliente == 148) {
+                                sessionPlataforma = 'COLMENA';
+                            }
+
+
+                            switch (idCliente) {
+                                case 0:
+                                    sessionPlataforma = 'MEDISMART';
+                                    if ("@ViewBag.codigoTelefono".includes("CO")) {
+                                        sessionPlataforma = "COLOMBIA_DIRECTO";
+                                        idCliente = window.idClienteSesion;
+                                    }
+                                    else if ("@ViewBag.codigoTelefono".includes("MX")) {
+                                        sessionPlataforma = "MEXICO_DIRECTO";
+                                        idCliente = window.idClienteSesion;
+                                    }
+                                    else if ("@ViewBag.codigoTelefono".includes("PE")) {
+                                        sessionPlataforma = "PERU_DIRECTO";
+                                        idCliente = window.idClienteSesion;
+                                    }
+                                    else if ("@ViewBag.codigoTelefono".includes("EC")) {
+                                        sessionPlataforma = "ECUADOR_DIRECTO";
+                                        idCliente = window.idClienteSesion;
+                                    }
+                                    break;
+                                case 148:
+                                    window.location.href = url;
+                                    break;
+                                case 108:
+                                    sessionPlataforma = "MEDISMART";
+                                    break;
+                                case 204:
+                                    sessionPlataforma = "MEDISMART";
+                                    break;
+                                case 244:
+                                    sessionPlataforma = "MEDISMART";
+                                    break;
+                                case 236:
+                                    sessionPlataforma = "MEDISMART";
+                                    break;
+                                case 241:
+                                    sessionPlataforma = "MEDISMART";
+                                    break;
+                                case 206:
+                                    sessionPlataforma = "COLOMBIA_DIRECTO";
+                                    break;
+                                case 255:
+                                    sessionPlataforma = "AECSA";
+                                    break;
+                                case 256:
+                                    sessionPlataforma = "RAPPI";
+                                    break;
+                                default:
+                                    sessionPlataforma = 'MEDISMART';
+                                    break;
+
+                            }
+                            let agendar = {
+                                id: 0,
+                                idBloqueHora: 596,
+                                idPaciente: parseInt(uid),
+                                IdMedicoHora: 189086,
+                                Estado: 'P',
+                                idCliente: parseInt(idCliente),
+                                idEspecialidadFilaUnica: parseInt(idEspecialidad),
+                                idSesionPlataformaExterna: sessionPlataforma
+                            };
+                            let valida = await window.AgendarMedicos(agendar, 0, uid);
+
+                            if (valida !== 0) {
+                                var url = `/Paciente/Agenda_3?idMedicoHora=${valida.infoAtencion.idHora}&idMedico=${valida.infoAtencion.idMedico}&idBloqueHora=${valida.atencionModel.idBloqueHora}&fechaSeleccion=${valida.infoAtencion.fecha}&hora=${valida.infoAtencion.horaDesdeText}&horario=True&idAtencion=${valida.infoAtencion.idAtencion}&m=1&r=1&c=${idConvenio}&tipoatencion=I&especialidad=${idEspecialidad}`
+                                window.location.href = url;
+                            }
+                        } else {
+                            window.location.href = location.origin + "/Paciente/Agendar"
+                        }
+                    }
+                    }
+                    
+                })
+            }
+            function viewListItems(data){
+                var obj = $('#' + data).data('obj');
+                var listHtml = '<ul style="text-align: initial; ">';
+                obj.forEach((data) => {
+                listHtml += '<li style="text - align: initial; ">' + data.nombre + '</li>'
+                });
+                listHtml += '</ul>';
+                Swal.fire({
+                    title: '<strong style="color:#0282A6"><u>EXAMENES</u></strong>',
+                    html: listHtml,
+                    showCloseButton: true,
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                })
+            }
+        </script>
+        <script>
+            @*scroll dentro de div con mousewheel*@
+            $('.exam-ultima-atencion').bind('mousewheel', function (e) {
+
+                $(this).scrollTop($(this).scrollTop() - e.originalEvent.wheelDeltaY);
+
+                //prevent page fom scrolling
+                return false;
+
+            });
+        </script>
+        }
+}

@@ -1,0 +1,752 @@
+.body-home .logo-home a.wallet_iconhome img {
+    width: 50%;
+    color: #b4dae4;
+    margin: 0 auto;
+    margin-bottom: .5rem;
+    display: flex;
+}
+
+.logo-card {
+    max-width: 15%;
+    /*display: flex;*/
+    float: right;
+}
+
+    .logo-card.logo-santander {
+        max-width: 28%;
+        margin-top: 0.4rem;
+    }
+
+.lblCard {
+    color: #FFF !important;
+}
+
+.cardFechaCvv {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    padding-left: 12px;
+    padding-left: unset;
+}
+
+input:focus-visible {
+    outline: none;
+}
+.wallet_box .box_wallet {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+   /* height: calc(100vh - 100px);*/
+}
+
+.wallet_box .w01_box {
+    display: inline-block;
+    width: 50%;
+    border-right: 1px solid #DDD;
+}
+
+.wallet_box .w02_box {
+    display: inline-block;
+    width: 100%;
+    padding: 2rem;
+    background: #fff;
+}
+
+.wallet_box .wallet {
+    background: #F0F0F0;
+    width: 100%;
+    padding: 30px 80px;
+    border-bottom: 1px solid #DDD;
+}
+
+.wallet_box .transactions {
+    background: #FAFAFA;
+    width: 100%;
+    padding: 30px 80px;
+    border-bottom: 1px solid #D9D9D9;
+}
+
+    .wallet_box .wallet h2, .wallet_box .transactions h2 {
+        color: #646C9A;
+        font-size: 24px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+    }
+
+        .wallet_box .wallet h2::before {
+            content: "";
+            background-image: url(../../img/pasarelapago/icon_billetera.svg);
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-right: 15px;
+        }
+
+        .wallet_box .transactions h2::before {
+            content: "";
+            background-image: url(../../img/pasarelapago/icon_transacciones.svg);
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-right: 15px;
+        }
+
+.wallet_box .wallet p {
+    color: #646C9A;
+    font-size: 18px;
+}
+
+.wallet_box .credit_debitcards {
+    background-color: #E7F6FD;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+    .wallet_box .credit_debitcards h2 {
+        color: #646C9A;
+        font-size: 20px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        text-align: left;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+    }
+
+        .wallet_box .credit_debitcards h2::before {
+            content: "";
+            background-image: url(../../img/pasarelapago/icon_cards.svg);
+            width: 70%;
+            height: 30px;
+            display: inline-block;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position-x: right;
+        }
+
+    .wallet_box .credit_debitcards p {
+        color: #646C9A;
+        font-size: 18px;
+    }
+
+.wallet_box .cards_poweredby p {
+    font-size: 14px !important;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+    .wallet_box .cards_poweredby p::after {
+        content: "";
+        background-image: url(../../img/pasarelapago/mercadopago.png);
+        width: 107px;
+        height: 47px;
+        display: inline-block;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position-x: right;
+        margin-left: 15px;
+    }
+
+.wallet_box .w02_box .credit_cta {
+    display: flex;
+    /*gap: 50%;*/
+    border-bottom: 1px solid #DDD;
+    border-top: 1px solid #DDD;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    .wallet_box .w02_box .credit_cta button#SiguienteHome {
+        background-color: #1DC9B7;
+        padding: 0.2rem 0.9rem !important;
+        height: 50px;
+    }
+
+.wallet_box .w02_box .credit_cta_show {
+    display: flex;
+    gap: 50%;
+    border-bottom: 1px solid #DDD;
+    border-top: 1px solid #DDD;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+}
+
+    .wallet_box .w02_box .credit_cta_show button#SiguienteHome {
+        background-color: #1DC9B7;
+        padding: 0.2rem 0.9rem !important;
+        height: 50px;
+    }
+
+button#form-checkout__submit {
+    /*background-color: #1DC9B7;
+    padding: 0.2rem 0.9rem !important;
+    height: 50px;
+    color: #fff;
+    border-radius: 5px;
+    /*width: 25%;*/
+}
+
+.wallet_box .box_addcards {
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #DDD;
+    border-top: 1px solid #DDD;
+}
+
+    .wallet_box .box_addcards h2 {
+        color: #646C9A;
+        font-size: 20px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+    }
+
+    .wallet_box .box_addcards .tarjetas_ok {
+        margin: 1rem 0;
+    }
+
+    .wallet_box .box_addcards h3 {
+        color: #646C9A;
+        font-size: 16px;
+    }
+
+    .wallet_box .box_addcards .credit_ctabox {
+        display: flex;
+        justify-content: space-between;
+        gap: 10rem;
+    }
+
+    .wallet_box .box_addcards .item01 {
+        /*width: 65%;*/
+    }
+
+    .wallet_box .box_addcards .cards_addimage {
+        /*width: 35%;*/
+    }
+
+.credit_ctabox div#form-checkout__cardNumber, .credit_ctabox div#form-checkout__expirationDate, .credit_ctabox div#form-checkout__securityCode, input#form-checkout__cardholderName, input#form-checkout__identificationNumber, input#form-checkout__cardholderEmail, select#form-checkout__identificationType {
+    margin: 0 0 20px 0;
+    height: calc(1.5em + 1.3rem + 2px);
+    background: #F4F0F0;
+    padding: 5px;
+    color: #0b0b0b;
+    width: -webkit-fill-available;
+    font-size: 16px;
+    border: 0px;
+}
+
+.credit_ctabox input#cardNumber {
+    color: #646C9A;
+}
+
+.credit_ctabox .date_code {
+    display: flex;
+    gap: 20px;
+}
+
+.credit_ctabox .box_date, .credit_ctabox .box_code {
+    display: flex;
+    flex-direction: column;
+}
+
+.credit_ctabox .checkbox_text {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+
+    .credit_ctabox .checkbox_text label {
+        font-size: 14px;
+        color: #646C9A;
+        margin-left: 5px;
+        opacity: 1;
+    }
+
+.credit_ctabox .save_dates a#manejoDatosMS {
+    color: #646C9A;
+    text-decoration: underline;
+    font-size: 14px;
+}
+
+.credit_card-chip {
+    max-width: 12%;
+    float: right;
+    margin-right: 5%;
+}
+
+.addcards_box {
+    /*background: #646c9a;*/
+    background: linear-gradient(to bottom, #4B4B78, #646c9a);
+    border-radius: 14px;
+    width: 380px;
+    display: block;
+    /*margin: 0px auto 20px;*/
+    padding: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    -webkit-box-shadow: -11px 6px 11px 0px rgb(0 0 0 / 10%);
+    -moz-box-shadow: -11px 6px 11px 0px rgb(0 0 0 / 10%);
+    box-shadow: -11px 6px 11px 0px rgb(0 0 0 / 10%);
+    font-size: 14px;
+}
+    .addcards_box.card-preview {
+        height: 224px;
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+    .card-preview img {
+        max-width: 60px;
+        margin-bottom: auto;
+    }
+
+    .addcards_box label {
+        color: #646C9A !important;
+        opacity: 1;
+    }
+
+
+    .addcards_box .cardnumber, .addcards_box input.input.name, .addcards_box input.input.toleft.ccv {
+        display: block;
+        font-size: 15px;
+        margin-bottom: 8px;
+        border: 0;
+        background: transparent;
+    }
+
+
+.cards_adddelete {
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #DDD;
+    border-top: 1px solid #DDD;
+}
+.save_cta {
+    padding: 2rem 0;
+    display: flex;
+    justify-content: flex-end;
+}
+.cards_boxdelete {
+    display: flex;
+    /*gap: 50%;*/
+    border-bottom: 1px solid #DDD;
+    border-top: 1px solid #DDD;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    background: #F6F6F6;
+    justify-content: space-between;
+}
+
+.delete_card h2 {
+    color: #646C9A;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: right;
+}
+
+.delete_card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.checkbox_delete {
+    display: flex;
+    align-items: center;
+    /*justify-content: space-evenly;*/
+    justify-content: flex-end;
+}
+
+    .checkbox_delete label {
+        margin-left: .5rem;
+    }
+
+    .delete_items {
+        margin-top: auto;
+    }
+.delete_button {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+    .delete_button button {
+        background-color: transparent;
+        color: #646C9A;
+        font-size: 14px;
+    }
+
+
+        .delete_button button::before {
+            content: "";
+            background-image: url(../../img/pasarelapago/icon_delete.svg);
+            width: 15px;
+            height: 20px;
+            display: inline-block;
+            background-size: 100%;
+            background-repeat: no-repeat;
+            margin-right: 15px;
+        }
+.cards_boxdelete .addcards_box img  {
+    display: block;
+    margin-bottom: auto;
+}
+
+.addcards_box img {
+
+}
+
+.credit_cta .btn {
+    padding: 10px 40px !important;
+}
+
+.modal-seguridad, .modal-tarjeta-agregada {
+    max-width: 556px;
+    width: 100%;
+    margin: auto;
+    margin-top: 2rem;
+}
+
+.modal-quitar-metodo h2, .modal-quitar-metodo h3 {
+    text-align: center;
+    font-weight: 700;
+}
+
+.modal-quitar-metodo img {
+    margin: 2rem auto;
+    margin-bottom:45px;
+    display: block;
+}
+
+.modal-quitar-metodo .modal-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+    .modal-quitar-metodo .modal-footer .btn-default:hover {
+        color: #ffffff;
+        background: #D8D8D8;
+        border-color: #D8D8D8;
+    }
+
+    .modal-seguridad h1 {
+        font-weight: 800;
+        font-size: 20px;
+        margin-bottom: 0;
+    }
+
+.modal-seguridad .modal-footer, .modal-tarjeta-agregada .modal-footer {
+    border-top: none;
+}
+
+.modal-seguridad .modal-header, .modal-tarjeta-agregada .modal-header {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.modal-tarjeta-agregada h1 {
+    font-size: 24px;
+    margin: 0;
+    height: auto;
+}
+
+.modal-tarjeta-agregada h1 img {
+    display: inline-block;
+    width: 40px;
+    margin: 0;
+}
+
+.modal-tarjeta-agregada img{
+    width: 80px;
+    height: 80px;
+    margin-bottom: 3rem;
+    margin-top: 3rem;
+}
+
+.modal-tarjeta-agregada .modal-body {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0;
+}
+
+.modal-tarjeta-agregada .btn {
+    max-width: 246px;
+    margin: auto;
+    width: 90%;
+}
+
+
+
+@media screen and (max-width: 640px) and (min-width: 375px) {
+
+    .cont-home.wallet_box {
+        position: relative;
+        top: 2rem;
+    }
+
+    .wallet_box .box_wallet {
+        margin-top: 0.5rem;
+    }
+
+    .wallet_box .credit_debitcards {
+        padding: 30px 20px;
+    }
+}
+
+
+@media (max-width: 1024px) {
+    .wallet_box .box_wallet {
+        flex-direction: column;
+        margin-top: 8rem;
+    }
+
+    .wallet_box .transactions, .wallet_box .wallet {
+        padding: 30px 20px;
+    }
+
+        .wallet_box .wallet p {
+            font-size: 14px;
+        }
+
+        .wallet_box .wallet h2, .wallet_box .transactions h2 {
+            font-size: 18px;
+        }
+
+    .wallet_box .credit_debitcards h2::before {
+        width: 30%;
+    }
+
+    .wallet_box .credit_debitcards p {
+        font-size: 14px;
+    }
+
+    .addcards_box {
+        /*margin: auto;*/
+        width: 100%;
+        margin-bottom: 2rem;
+        /*height: 160px;*/
+        height: auto;
+    }
+
+        .addcards_box label {
+            margin-top: 2rem;
+        }
+
+            .addcards_box label:last-child {
+                margin-top: 0;
+            }
+
+    .wallet_box .credit_debitcards {
+        margin-bottom: 0;
+    }
+
+    .delete_card {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+        .delete_card h2 {
+            margin: 0;
+            font-size: 14px;
+            width: 40%;
+        }
+
+        .delete_card h3 {
+            width: 60%;
+        }
+
+        .delete_card h2, .delete_card h3 {
+            margin-bottom: 1rem;
+        }
+
+    .checkbox_delete, .delete_button {
+        justify-content: flex-start;
+    }
+
+    .delete_items {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .delete_button {
+        margin-top: 0;
+    }
+
+
+        .delete_button button::before {
+            margin-right: .5rem;
+            width: 14px;
+        }
+
+    .wallet_box .box_addcards .credit_ctabox {
+        gap: 1rem;
+    }
+
+    .wallet_box .wallet {
+        border-bottom: none;
+    }
+
+    .wallet_box .w02_box .credit_cta {
+        border-top: none;
+        border-bottom: none;
+        margin: 0 auto;
+    }
+
+    .wallet_box .transactions {
+        border-bottom: none;
+    }
+
+    .wallet_box .box_addcards {
+        padding: 2rem;
+    }
+
+    .delete_button button {
+        display: flex;
+        align-items: center;
+    }
+}
+
+@media all and (max-width: 640px) and (min-width: 375px) {
+    /*
+        Estilos CSS para Mantener la proporcion ancho/alto de la
+        tarjeta de credito en dispositivos moviles:
+    */
+    .cards_boxdelete {
+        padding: 1.5rem;
+    }
+    .addcards_box {
+        width: 100%;
+        height: 55vw;
+        margin-bottom: 2rem;
+        font-size: 1rem;
+    }
+
+        .addcards_box.cardFechaCvv {
+            margin-top: 2rem;
+        }
+
+        .addcards_box label {
+            margin-top: 0;
+        }
+
+        .addcards_box.image-Card label {
+            width: 80%;
+            margin-top: 2%;
+            color: #FFF !important;
+        }
+
+    .delete_card h3 {
+        margin-bottom: 1rem;
+        text-align: left !important;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .delete_card.delete_items {
+        flex-direction: column;
+        align-items: unset;
+    }
+        .delete_card.delete_items.checkbox_delete {
+            justify-content: flex-start;
+        }
+
+        .delete_card.delete_items.checkbox_delete label {
+            margin-left: 0;
+        }
+        .delete_card.delete_items.delete_button {
+            justify-content: flex-end;
+        }
+}
+@media screen and (max-width: 1280px) {
+    .wallet_box .box_wallet {
+        display: flex;
+        width: 100%;
+        margin: 2rem auto 0;
+        flex-direction: column;
+        height: auto;
+    }
+    .wallet_box .w01_box {
+        width: 100%;
+    }
+    .wallet_box .w02_box {
+        padding: 0;
+    }
+    .wallet_box .w02_box .credit_cta {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+    }
+        .wallet_box .w02_box .credit_cta .btn-primary {
+            width: 90%;
+            margin: 2rem auto;
+            font-size: 1rem;
+            padding: 1.5rem 2.5rem !important;
+        }
+
+    .wallet_box .box_addcards .credit_ctabox {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+    .wallet_box .box_addcards .item01 {
+        width: 100%;
+    }
+    .wallet_box .box_addcards .cards_addimage {
+        width: 100%;
+    }
+
+    .cards_boxdelete {
+        flex-direction: column;
+    }
+    .checkbox_delete {
+        display: flex;
+        align-items: baseline;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+    .wallet_box .box_addcards .tarjetas_ok {
+        margin: 2rem 0;
+    }
+    .credit_ctabox .date_code {
+        display: flex;
+        gap: 0px;
+        flex-direction: column;
+    }
+
+    .wallet_box .box_wallet {
+        margin-top: 0;
+    }
+}
+
+@media ( min-width: 1368px) and ( max-width: 1920px) {
+        .wallet_box .wallet p {
+            font-size: 16px;
+        }
+
+    .wallet_box .credit_debitcards p {
+        font-size: 16px;
+    }
+    .wallet_box .wallet h2, .wallet_box .transactions h2 {
+        font-size: 20px;
+    }
+
+    .wallet_box .credit_debitcards h2 {
+        font-size: 20px;
+    }
+}
+
+

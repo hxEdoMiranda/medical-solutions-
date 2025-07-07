@@ -1,0 +1,157 @@
+/*Perfil Usuario*/
+
+
+.pregunta-antecedente {
+    display: inline-block;
+    width: calc(100% - 90px);
+    text-align: left !important;
+}
+
+.pregunta-modal {
+    width: calc(100% - 140px);
+}
+
+#divAvatar {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.card-profile {
+    border: 1px solid #C4ECF0;
+    padding: 32px;
+    border-radius: 8px;
+
+}
+
+.card.card-profile {
+    max-width: 100%;
+}
+
+    .card-profile h3 {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 32px;
+    }
+
+
+.cont-guardar-info {
+    text-align: right;
+    padding-top: 2rem;
+}
+
+.btn-guardar-info {
+}
+
+.cont-form-beneficiario {
+    margin: auto;
+    max-width: 880px;
+}
+
+
+/* Foto Perfil*/
+
+.cont-foto-perfil {
+    position: relative;
+    margin: 4rem 0;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.foto-perfil {
+    min-width: 150px;
+    min-height: 150px;
+    max-width: 250px;
+    max-height: 250px;
+    width: 100%;
+    background-color: #C4c4c4;
+    border-radius: 50%;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.icono-editar-perfil {
+    position: absolute;
+    color: #FFF !important;
+    width: 40px !important;
+    height: 40px !important;
+    background-color: #3BC1CD !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    top: auto !important;
+    right: 2% !important;
+    bottom: -5% !important;
+    cursor: pointer;
+    transition: all .3s ease-out;
+    position: absolute;
+}
+
+    .icono-editar-perfil:hover {
+        background-color: #0081A4 !important;
+    }
+
+    .icono-editar-perfil i {
+        font-size: 18px !important;
+        color: #FFF !important;
+    }
+
+.columna-datos-contacto {
+    
+}
+
+.condiciones-validacion-clave {
+    font-size: 14px;
+}
+
+.cont-cambio-clave.kt-portlet .kt-portlet__head {
+    border-bottom: none;
+}
+
+.cont-antecedentes-medicos.kt-portlet .kt-portlet__head {
+    border-bottom: none;
+}
+
+.kt-portlet .kt-portlet__head .kt-portlet__head-label .kt-portlet__head-title {
+    color: #646C9A;
+}
+
+#kt_dropzone_fotoavatar {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#kt_dropzone_fotoavatar h3 {
+    margin-bottom: 0;
+    text-align: center;
+    padding: 1rem;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+
+}
+
+@media (max-width: 991.98px) {
+    .configuracion-paciente .titulo-servicio {
+        margin-top: 8rem;
+        margin-bottom: 0;
+    }
+
+}
+
+
+@media only screen and (min-width: 1025px) {
+    .columna-datos-contacto {
+        border-left: 1px solid #DDD;
+    }
+}

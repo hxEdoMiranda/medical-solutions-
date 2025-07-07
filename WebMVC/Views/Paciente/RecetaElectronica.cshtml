@@ -1,0 +1,76 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@model WebMVC.Models.AtencionViewModel
+@{
+    ViewData["Title"] = "Exámenes";
+    Layout = "_LayoutPaciente";
+
+}
+<style type="text/css">
+   
+    .reserva-exitosa {
+        margin: 3rem auto;
+        padding: 60px 0 0 0;
+        border-radius: 40px;
+        background: #fff;
+        box-sizing: border-box;
+    }
+
+
+    .reserva-exitosa--ilustracion img {
+        display: block;
+        width: 90%;
+    }
+
+    .reserva-exitosa--texto {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        gap: 2rem;
+    }
+
+</style>
+
+<div class="container reserva-exitosa">
+    <div class="row d-flex">
+        <div class="col-sm-6 reserva-exitosa--ilustracion">
+
+            @if (ViewBag.HostURL.Contains("vivetuseguro"))
+            {
+                <img src="../../img/vivetuseguro/receta.svg" alt="Receta Electrónica">
+            } else
+            {
+                <img src="../../img/mexico/essilor/essilor-reserva-exitosa.svg" alt="Reserva Exitosa">
+            }
+            
+        </div>
+        <div class="col-sm-6 reserva-exitosa--texto">
+            <h2>A través de tu receta electrónica puedes acceder a antibióticos y medicamentos OTC (No psicotrópicos, ni controlados)</h2>
+            <p>
+                La receta electrónica que sea emitida desde una video consulta es aceptada en las siguientes farmacias:
+            </p>
+            <ul>
+                <li>Farmacias Benavides</li>
+                <li>Walmart</li>
+                <li>Medimonth</li>
+                <li>Farmacias Unión</li>
+                <li>Farmacias Zapotlán</li>
+                <li>Farmatodo</li>
+                <li>Farmacias San Francisco de Asís</li>
+                <li>Farmacia Santa Cruz de Morelia</li>
+                <li>Farmacentro </li>
+                <li>Supermercados HEB </li>
+                <li>Vitau</li>
+                <li>Farmalisto</li>
+                <li>Farmacias ABC </li>
+                <li>Farmazone</li>
+                <li>Soriana</li>
+                <li>FarmaLeal</li>
+                <li>Farmacias San Javier</li>
+                <li>Sanborns</li>
+                <li>Farmacias del Ahorro (excepción en CDMX y México)</li>                 
+            </ul>
+           
+        </div>
+    </div>
+</div>

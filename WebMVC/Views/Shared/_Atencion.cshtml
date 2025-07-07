@@ -1,0 +1,641 @@
+﻿@model WebMVC.Models.AtencionViewModel
+
+@{
+    ViewData["idEntidad"] = Model.Atencion.Id;
+    ViewData["codEntidad"] = Entidades.ATENCIONES;
+    ViewData["uid"] = int.Parse(ViewBag.uid);
+
+   
+}
+
+<style>
+    .kt-timeline-v2:before {
+        content: '';
+        position: absolute;
+        left: 2rem;
+        width: 0.214rem;
+        top: 5px;
+        bottom: 5px;
+        height: calc(100% - 5px);
+        background-color: #E7E9F5;
+    }
+</style>
+<!-- end:: Subheader -->
+<!-- begin:: Content -->
+@{
+    var hidden = "d-none";
+    if (ViewData["view"].Equals(Roles.Medico) || ViewData["view"].Equals(Roles.Invitado))
+        hidden = "";
+
+    ViewData["especialidad"] = Model.Atencion.Especialidad;
+}
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid medismart-atencion @hidden" id="cont-vc">
+
+    <!--Begin::Dashboard 7-->
+    <!--Begin::Row-->
+
+    <div class="row">
+        <div class="col-12 col-md-8 p-0 mt-3 mt-md-0">
+            @Html.Hidden("uid", (object)ViewBag.uid)
+            @Html.Hidden("rol", ViewData["view"])
+            @Html.HiddenFor(m => m.Atencion.Id)
+            @Html.HiddenFor(m => m.Atencion.InicioAtencion)
+            @Html.HiddenFor(m => m.Atencion.SolicitaFirma)
+            @Html.HiddenFor(m => m.Atencion.IdMedicoFirmante)
+            @Html.HiddenFor(m => m.Atencion.IdCliente)
+            <div id="videos" class="video-container" style="display:block">
+
+                <div id="overlay" class="overlay-video text-center">
+
+                    <!-- start. Avatar Profesional -->
+
+                    <div class="avatar-profesional d-none">
+                        <div class="img-pro">
+                            <img src="" alt="" id="img-prof">
+                            <span id="inicial" class=" d-none nombre-profesional"></span>
+                        </div>
+                        <div class="nombre-profesional" id="nombre-profesional">
+
+                        </div>
+                        <div class="especialidad" id="especialidad">
+
+                        </div>
+                    </div>
+
+                    <!-- end. Avatar Profesional -->
+
+                    <div class="message-connect">
+
+
+                        @if (ViewData["view"].Equals(Roles.Medico))
+                        {
+                            <h4 id="overlay_text">Esperando al paciente...</h4>
+                        }
+                        else if (ViewData["view"].Equals(Roles.Invitado))
+                        {
+                            <h4 id="overlay_text">Esperando al paciente...</h4>
+                        }
+                        else
+                        {
+                            <h4 id="overlay_text">Esperando al médico...</h4>
+                        }
+                    </div>
+
+                    <div class="cont-btn">
+
+                        @if (ViewData["view"].Equals(Roles.Paciente))
+                        {
+                            <a id="btnSalirVC" @*asp-controller="Paciente" asp-action="Index"*@ class="btn btn-icon btn-light btn-circle btn-lg"><i class="far fa-door-open"></i></a>
+                        }
+                        @if (ViewData["view"].Equals(Roles.Medico))
+                        {
+                            <a id="btnSalirVCMedico" asp-controller="Medico" asp-action="Index" class="btn btn-icon btn-light btn-circle btn-lg"><i class="far fa-door-open"></i></a>
+                        }
+                        @if (ViewData["view"].Equals(Roles.Invitado))
+                        {
+                            <a id="btnSalirVCMedico" asp-controller="Invitado" asp-action="Index" class="btn btn-icon btn-light btn-circle btn-lg"><i class="far fa-door-open"></i></a>
+                        }
+                        <button id="btnMic" type="button" class="btn btn-icon btn-light btn-circle btn-lg"><i class="far fa-microphone-alt"></i></button>
+                        <button id="btnCamera" type="button" class="btn btn-icon btn-light btn-circle btn-lg"><i class="far fa-video"></i></button>
+                    </div>
+                </div>
+                <div id="subscriber">
+                    <div id="contentVisitor" class="contentVisitor"></div>
+                </div>
+                <div id="publisher">
+                    <div id="avatarPublisher" class="d-none"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-12 col-md-4 order-2 order-lg-1 my-4 my-lg-0">
+            <!--<div style="overflow-y: scroll; height:80vh">-->
+            <div class="cont-widgets">
+                <!--Begin::Portlet-->
+                <div class="kt-portlet body-widgets">
+                    <div id="divChat" style="display:none">
+                        <div class="kt-portlet__head text-center">
+
+                            <!--Titulo Chat-->
+
+                            <div class="titulo-chat">
+                                <div class="user-chat">
+                                    <span class="nombre-profesional" id="headName"></span>
+                                    <div class="status-profesional online"></div> <div class="leyenda-status">En Línea</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="kt-portlet__body card-body h-100">
+                            <div class="scroll scroll-pull" id="scroll" style="overflow: auto;" data-height="375" data-mobile-height="300">
+
+                                <!-- Chat -->
+
+                                <div class="cont-chat" id="divContChat">
+
+
+                                </div>
+
+                                <!-- end Chat -->
+                                <!--begin::Messages-->
+                                <div class="messages" id="divMensaje">
+
+                                    <!--fin mensaje in-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-portlet__foot align-items-center">
+                            <!--begin::Compose-->
+                            <div id="txtMsj">
+                                <textarea class="form-control border-0 p-0" id="mensaje" rows="2" placeholder="Escribe..."></textarea>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="mr-3 d-none">
+
+                                </div>
+                                <div class="d-flex align-items-center justify-content-end chat-tools mt-3">
+                                    <div class="kt_chat__tools d-none">
+
+                                        <a href="#"><i class="flaticon2-photograph"></i></a>
+                                        <a href="#"><i class="flaticon2-photo-camera"></i></a>
+                                    </div>
+
+                                    <button type="button" id="btnEnviar" class="btn btn-brand btn-md btn-upper btn-bold kt-chat__reply">Responder</button>
+                                </div>
+                            </div>
+                            <!--begin::Compose-->
+                        </div>
+                        <!--end::Footer-->
+                    </div>
+
+
+                    <div id="divArchivos" style="display:none">
+                        <partial name="~/Views/Shared/_ArchivosAdjuntos.cshtml" model="Model.Atencion.Archivos" view-data="ViewData" />
+                    </div>
+                    <div id="divHistorial" style="display:none">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title">
+                                    Historial atenciones
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div class="kt-portlet__body">
+                            @if (Model.HistorialAtenciones.Count == 0)
+                            {
+                                <div id="pnlHistorial" class="align-self-center" style="display:block">
+                                    <div class="row">
+                                        <div class="col-lg-12 kt-align-center">
+                                            <img src="~/metronic_demo7/assets/media/sinResultado.PNG" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <h5>No existen atenciones anteriores</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="kt-timeline-v2">
+                                    <div class="kt-timeline-v2__items  kt-padding-top-25 kt-padding-bottom-30">
+                                        @foreach (var historialAtencion in Model.HistorialAtenciones)
+                                        {
+                                            <div class="kt-timeline-v2__item">
+                                                <div class="kt-timeline-v2__item-cricle" style="left:0">
+                                                    <i class="fa fa-genderless kt-font-danger"></i>
+                                                </div>
+                                                @if (ViewData["view"].Equals(Roles.Medico) || ViewData["view"].Equals(Roles.Invitado))
+                                                {
+                                                    
+                                                    <div class="kt-timeline-v2__item-text  kt-padding-top-5 item-historial" style="padding: 0.35rem 0 0 1.6rem;">
+                                                        @historialAtencion.FechaText @historialAtencion.HoraDesdeText.Substring(0, @historialAtencion.HoraDesdeText.LastIndexOf(":")) <br> Dr/a. @historialAtencion.NombreMedico<br>
+                                                        @historialAtencion.Especialidad <br>  @historialAtencion.DiagnosticoMedico <br>   @historialAtencion.PatologiasString<br><a href="/Medico/InformeAtencion?idAtencion=@historialAtencion.Id" target="_blank" type="button" class="btn btn-label-brand btn-bold btn-sm btn-informe">ver Informe</a>
+                                                    </div>
+                                                }
+                                                else if (ViewData["view"].Equals(Roles.Paciente))
+                                                {
+                                                    <div class="kt-timeline-v2__item-text  kt-padding-top-5">
+                                                        @historialAtencion.FechaText @historialAtencion.HoraDesdeText.Substring(0, @historialAtencion.HoraDesdeText.LastIndexOf(":")) con Dr/a. @historialAtencion.NombreMedico   &nbsp;  <a href="/Paciente/InformeAtencion/@historialAtencion.Id" target="_blank" type="button" class="btn btn-label-brand btn-bold btn-sm btn-informe">ver Informe</a>
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
+
+                                    </div>
+                                </div>
+                            }
+                            <!--Begin::Timeline 3 -->
+                            <!--End::Timeline 3 -->
+                        </div>
+                    </div>
+                    @if (ViewData["view"].Equals(Roles.Medico) || ViewData["view"].Equals(Roles.Invitado))
+                    {
+                        <div id="divReporteEnfermeria" style="display:none">
+                            <div class="kt-portlet__head">
+                                <div class="kt-portlet__head-label">
+                                    <h3 class="kt-portlet__head-title">
+                                        Historial reporte enfermería
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <div class="kt-portlet__body">
+                                @if (Model.reporteEnfermeriaList.Count == 0)
+                                {
+                                    <div id="pnlReporteEnfermeria" class="align-self-center" style="display:block">
+                                        <div class="row">
+                                            <div class="col-lg-12 kt-align-center">
+                                                <img src="~/metronic_demo7/assets/media/sinResultado.PNG" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <h5>No existen reportes anteriores</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="kt-timeline-v2">
+                                        <div class="kt-timeline-v2__items  kt-padding-top-25 kt-padding-bottom-30">
+                                            @foreach (var reporteEnfermeria in Model.reporteEnfermeriaList)
+                                            {
+                                                <div class="kt-timeline-v2__item">
+                                                    <div class="kt-timeline-v2__item-cricle" style="left:0">
+                                                        <i class="fa fa-genderless kt-font-danger"></i>
+                                                    </div>
+                                                    <div class="kt-timeline-v2__item-text  kt-padding-top-5" style="padding: 0.35rem 0 0 1.6rem;">
+                                                        @reporteEnfermeria.FechaCreacion.ToString().Substring(0, 10)<br> Enf. @reporteEnfermeria.NombreProfesional<br>
+                                                        <br><a href="/Medico/InformeEnfermeria?id=@reporteEnfermeria.Id" target="_blank" type="button" class="btn btn-label-brand btn-bold btn-sm">ver Reporte</a>
+                                                    </div>
+
+                                                </div>
+                                            }
+
+                                        </div>
+                                    </div>
+                                }
+                                <!--Begin::Timeline 3 -->
+                                <!--End::Timeline 3 -->
+                            </div>
+                        </div>
+                    }
+                    @if (ViewData["view"].Equals(Roles.Medico) || ViewData["view"].Equals(Roles.Invitado))
+                    {
+                        <div id="divReporte">
+                            @Html.HiddenFor(m => m.Atencion.IdPaciente)
+                            <div class="kt-portlet__head" id="contentLabel">
+                                <div class="kt-portlet__head-label">
+                                    <h3 class="kt-portlet__head-title">
+                                        Reporte Médico
+                                    </h3>
+                                </div>
+                                @*<div class="kt-portlet__head-label">
+                        <button class="btn btn-success"><i class="fa fa-refresh"></i></button>
+                    </div>*@
+                            </div>
+                            <div class="kt-portlet__body">
+                                <div class="mb-2">
+                                    <label class="" style="font-weight:bold">Paciente acepta consentimiento informado</label>
+                                    <input type="checkbox" class="" name="consentimiento" id="consentimiento" />
+                                </div>
+                                <div class="mb-2">
+                                    <label class="" style="font-weight:bold">Atención No Realizada</label>
+                                    <input type="checkbox" class="" name="nsp" id="nsp" />
+                                </div>
+                                <div class="mb-4" id="divNSP">
+
+                                    <ul class="lista-nsp d-none" id="listaNSP">
+                                        <li>
+                                            <input type="radio" class="btn-check" name="motivosNSP" id="pacienteNoSePresenta" value="1">
+                                            <label class="btn btn-secondary" for="pacienteNoSePresenta">Paciente no se presenta</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" class="btn-check" name="motivosNSP" id="problemasConexion" value="2">
+                                            <label class="btn btn-secondary" for="problemasConexion">Problemas de conexión</label>
+
+                                        </li>
+                                        <li>
+
+                                            <input type="radio" class="btn-check" name="motivosNSP" id="errorAgendamiento" value="3">
+                                            <label class="btn btn-secondary" for="errorAgendamiento">Error agendamiento</label>
+
+                                        </li>
+                                        <li>
+                                            <input type="radio" class="btn-check" name="motivosNSP" id="incidenciaPaciente" value="4">
+                                            <label class="btn btn-secondary" for="incidenciaPaciente">Incidencia con paciente</label>
+
+                                        </li>
+                                        <li>
+                                            <input type="radio" class="btn-check" name="motivosNSP" id="noAceptaConsentimiento" value="5">
+                                            <label class="btn btn-secondary" for="noAceptaConsentimiento">No Acepta Consentimiento</label>
+
+                                        </li>
+                                    </ul>
+
+                                    <label style="font-weight:bold">Justifique Atención No Realizada</label>
+                                    <input class="form-control" type="text" id="DescripcionNSP" name="DescripcionNSP">
+                                </div>
+                                <label>
+                                    Motivo de Consulta del Paciente : <span id="triageObservacionReporte">@Model.Atencion.TriageObservacion</span><br /><br />
+                                    Antecedentes Médicos : <span id="antecedentesMedicoReporte">@Model.Atencion.AntecedentesMedicos</span>
+                                </label>
+                                @if (Model.Atencion.SospechaCovid19)
+                                {
+                                    <label style="font-weight:500; color:red" class="mt-3">Paciente con sospecha COVID-19</label>
+                                }
+                                <hr>
+                                <div class="form-group">
+                                    <label style="font-weight:bold">Anamnesis/ Hipótesis diagnostica</label>
+                                    <textarea class="form-control" rows="3" name="DiagnosticoMedico">@Model.Atencion.DiagnosticoMedico</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-weight:bold">Diagnóstico CIE-10</label>
+                                    <div class="typeahead">
+                                        <input class="form-control" id="input_codigo" type="text" dir="ltr">
+                                    </div>
+                                    <div class="form-text text-muted">Ingrese mínimo 3 carácteres y seleccione una opción</div>
+                                </div>
+                                <ul id="listaEnfermedad">
+                                    @foreach (Patologias patologias in Model.Atencion.Patologias)
+                                    {
+                                        <li data-id="@patologias.Id">@patologias.Codigo - @patologias.Nombre &nbsp;<a href="javascript:;"><i class="kt-menu__link-icon flaticon2-delete"></i></a></li>
+                                    }
+                                </ul>
+                                <div class="form-group">
+                                    <label style="font-weight:bold">Exámenes</label>
+                                    <div class="typeahead">
+                                        <input class="form-control" id="input_codigoExamen" type="text" dir="ltr">
+                                    </div>
+                                    <div class="form-text text-muted">Ingrese mínimo 3 carácteres y seleccione una opción</div>
+                                </div>
+                                <ul id="listaTipoExamen">
+                                    @foreach (Examenes examenes in Model.Atencion.Examenes)
+                                    {
+                                        <li data-id="@examenes.Id">@examenes.Nombre &nbsp;<a href="javascript:;"><i class="kt-menu__link-icon flaticon2-delete"></i></a></li>
+                                    }
+                                </ul>
+                                <div class="form-group">
+                                    <label style="font-weight:bold">Otros Exámenes</label>
+                                    <textarea class="form-control" rows="2" name="ExamenMedico">@Model.Atencion.ExamenMedico</textarea>
+                                </div>
+                                <!--Medicamentos-->
+                                <div class="form-group">
+                                    <label style="font-weight:bold">Medicamentos</label>
+                                    <div class="typeahead">
+                                        <input class="form-control" id="input_codigoMedicamento" type="text" dir="ltr">
+                                    </div>
+                                    <div class="form-text text-muted">Ingrese mínimo 3 carácteres y seleccione una opción</div>
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-weight:bold">Posología</label>
+                                    <textarea class="form-control" rows="2" name="" id="posologia"></textarea>
+                                </div>
+                                <p>Para ingresar medicamentos y posología a la lista debe presionar el botón agregar</p>
+                                <div class="mb-2" style="text-align:right;">
+                                    <button class="btn btn-warning" id="btnGuardarMedicamento">Agregar medicamento</button>
+                                </div>
+                                <ul id="listaMedicamentos">
+                                    @foreach (Medicamentos medicamentos in Model.Atencion.Medicamentos)
+                                    {
+                                        <li data-id="@medicamentos.Id">@medicamentos.PrincipioActivo&nbsp; @medicamentos.PresentacionFarmaceutica&nbsp;@medicamentos.Posologia&nbsp;<a href="javascript:;"><i class="kt-menu__link-icon flaticon2-delete"></i></a></li>
+                                    }
+                                </ul>
+                                <div class="form-group">
+                                    <label style="font-weight:bold">Medicamentos</label>
+                                    <textarea class="form-control" rows="2" name="MedicamentosMedico">@Model.Atencion.MedicamentosMedico</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-weight:bold">Indicaciones</label>
+                                    <textarea class="form-control" rows="2" name="TratamientoMedico">@Model.Atencion.TratamientoMedico</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-weight:bold">Certificado Médico</label>
+                                    <textarea class="form-control" rows="2" name="CertificadoMedico">@Model.Atencion.CertificadoMedico</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-weight:bold">Control</label>
+                                    <textarea class="form-control" rows="2" name="ControlMedico">@Model.Atencion.ControlMedico</textarea>
+                                </div>
+                                <div class="form-group">
+                                        <label style="font-weight:bold">Observación Profesional (no visible para paciente)</label>
+                                        <textarea class="form-control" rows="2" name="Observaciones">@Model.Atencion.Observaciones</textarea>
+                                 </div>
+                                
+                                @if (Model.Atencion.IdEspecialidadDestino != 0)
+                                {
+                                    <div class="form-group">
+                                        <label style="font-weight:bold">Derivar a Especialista</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            @if (Model.Atencion.InfoDerivacion == "" || Model.Atencion.InfoDerivacion == null)
+                                            {
+                                                <div class="mb-2 lg-6">
+                                                    <button class="btn btn-xs btn-brand" id="btnDerivar">Derivar a Especialista</button>
+                                                </div>
+                                            }
+
+                                            <div class="mb-2 lg-6 ml-5">
+                                                <label style="font-weight:bold" id="infoDeriva">@Model.Atencion.InfoDerivacion</label>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                }
+                                @{
+                                    var textoGuardar = "Previsualizar";
+                                    var classTexto = "btn-atencion";
+                                    var classIcon = "fal fa-eye";
+                                    if (ViewData["view"].Equals(Roles.Invitado) || Model.Atencion.Peritaje)
+                                    {
+                                        textoGuardar = "Guardar";
+                                        classTexto = "btn-warning";
+                                        classIcon = "";
+                                    }
+                                }
+
+
+                                @if (Model.Atencion.AtencionDirecta)
+                                {
+                                    <div class="mb-2 d-flex justify-content-between" id="divBtnFirma">
+                                        <button id="btnSolicitarFirma" type="button" class="btn-atencion btn--warning mt-3 mt-lg-0"><i class="fal fa-eye"></i> <span>Solicitar Firma</span></button>
+                                        <button id="btnGuardar" type="button" class="btn @classTexto mt-3 mt-lg-0"><i class="@classIcon"></i> <span>@textoGuardar</span></button>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="mb-2" style="text-align:right;">
+                                        <button id="btnGuardar" type="button" class="btn @classTexto  mt-3 mt-lg-0"><i class="@classIcon"></i> <span>@textoGuardar</span></button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+
+                    @if (ViewData["view"].Equals(Roles.Medico) || ViewData["view"].Equals(Roles.Invitado))
+                    {
+                        <div id="divAntecedentesMedicos" style="display:none">
+
+                            <div class="kt-portlet__head">
+                                <div class="kt-portlet__head-label">
+                                    <h3 class="kt-portlet__head-title">
+                                        Antecedentes Médicos
+                                    </h3>
+                                </div>
+                            </div>
+                            <form id="form_edit_am" class="kt-form kt-form--label-right">
+                                <div class="kt-portlet__body">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="kt-widget kt-widget--user-profile-1 mb-0 pb-0">
+                                                <div class="form-group">
+                                                    <div class="col-12 col-md mb-4 mb-md-0">
+                                                        <label class="form-label">Alergias</label>
+                                                        @Html.TextAreaFor(m => m.fichaPaciente.Alergias, new { @class = "form-control", type = "text", id = "Alergias", name = "Alergias" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-12 col-md mb-4 mb-md-0">
+                                                        <label class="form-label">Medicamentos</label>
+                                                        @Html.TextAreaFor(m => m.fichaPaciente.Medicamentos, new { @class = "form-control", type = "text", id = "Medicamentos" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-12 col-md mb-4 mb-md-0">
+                                                        <label class="form-label">Enfermedades</label>
+                                                        @Html.TextAreaFor(m => m.fichaPaciente.Enfermedades, new { @class = "form-control", type = "text", id = "Enfermedades" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-12 col-md mb-4 mb-md-0">
+                                                        <label class="form-label">Cirugías</label>
+                                                        @Html.TextAreaFor(m => m.fichaPaciente.Cirugias, new { @class = "form-control", type = "text", id = "Cirugias" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-12 col-md mb-1 mb-md-0">
+                                                        <label class="form-label">Hábitos</label>
+                                                        @Html.TextAreaFor(m => m.fichaPaciente.Habitos, new { @class = "form-control", type = "text", id = "Habitos" })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="kt-portlet__foot">
+                                    <div class="kt-form__actions">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6 col-lg-9 offset-lg-3 text-right">
+                                                <button type="submit" id="btn_guardar_am" class="btn btn-success btn-block">Guardar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    }
+                </div>
+                <!--End::Portlet-->
+            </div>
+        </div>
+
+
+        <div class="col-12 order-1 order-md-2">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-md-8">
+                        <div class="cont-btn-vc">
+                            @if (ViewData["view"].Equals(Roles.Paciente) && Model.Atencion.IdCliente != 148)
+                            {
+                                <button id="volverSalaEspera" class="btn-atencion" type="button" title="Volver a Sala de Espera"><i class="fal fa-long-arrow-left"></i> <span class="fuente-accesible">Sala de Espera</span></button>
+                            }
+                                <button id="reload" class="btn-atencion" type="button" title="Recargar Atención"><i class="fal fa-sync"></i> <span class="fuente-accesible">Recargar Atención</span></button>
+
+                                @if (ViewData["view"].Equals(Roles.Medico) || ViewData["view"].Equals(Roles.Invitado))
+                                {
+                                    @*<button id="btnSolicitarFirma" type="button" class="btn-atencion btn--warning mt-3 mt-lg-0"><i class="fal fa-eye"></i> <span>Solicitar Firma</span></button>*@
+                                    <button class="btn-atencion" type="button" title="Invitar Contactos" id="btnInvitar" hidden><i class="fal fa-user-plus"></i> <span>Invitar Contactos</span></button>
+                                    <button id="panel_reporte" type="button" class="btn-atencion ml-2 mt-3 mt-lg-0"><i class="fal fa-file-alt"></i> <span>Reporte Médico</span></button>
+                                    <button id="panel_reporteEnfermeria" type="button" class="btn-atencion ml-2 mt-3 mt-lg-0"><i class="fal fa-file-alt"></i> <span>Reporte Enfermería</span></button>
+                                    @*<button id="btnGuardar" type="button" class="btn-atencion mt-3 mt-lg-0"><i class="fal fa-eye"></i> <span>Previsualizar</span></button>*@
+                                }
+                            </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="cont-btn-panel">
+                            <button id="panel_archivos" class="btn-atencion" type="button" title="Adjuntos"><i class="fal fa-paperclip"></i> <span class="fuente-accesible">Adjuntos</span></button>
+                            @if (ViewData["view"].Equals(Roles.Paciente) && Model.Atencion.IdCliente == 1)
+                            {
+                                <button id="panel_historial" class="btn-atencion d-none" type="button" title="Historial"><i class="fal fa-history"></i> <span class="fuente-accesible">Historial</span></button>
+                            }
+                            else
+                            {
+                                <button id="panel_historial" class="btn-atencion" type="button" title="Historial"><i class="fal fa-history"></i> <span class="fuente-accesible">Historial</span></button>
+                            }
+                            @if (ViewData["view"].Equals(Roles.Medico) || ViewData["view"].Equals(Roles.Invitado))
+                            {
+                                <button id="panel_antecedentes_medicos" class="btn-atencion" type="button" title="Historial"><i class="fal fa-history"></i> <span>Antecedentes Médicos</span></button>
+                            }
+                            <button id="panel_chat" href="javascript:void(0)" class="btn-atencion btn-chat ml-auto" type="button" title="Chat"><i class="fal fa-comments"></i> <span class="fuente-accesible">Chat</span> </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-videollamada d-none">
+
+                <a id="panel_chat" href="javascript:void(0)" type="button" class="btn btn-label-brand btn-bold btn-sm d-none d-lg-inline-block">Chat</a>
+
+
+                <!--<a id="panel_archivos" href="javascript:void(0)" type="button" class="btn btn-success"><i class="flaticon2-file"></i>Archivos adjuntos</a>-->
+
+                <button id="panel_archivos" type="button" class="btn btn-outline-hover-primary d-none d-md-block btn-sm"><i class="fal fa-file-alt"></i> Archivos adjuntos</button>
+
+
+                <!--<a id="panel_historial" href="javascript:void(0)" type="button" class="btn btn-success"><i class="flaticon2-search"></i>Historial de atenciones</a>-->
+
+                <button id="panel_historial" type="button" class="btn btn-outline-hover-primary btn-sm d-none d-md-block"><i class="fal fa-history"></i> Historial de Atenciones</button>
+
+                @if (ViewData["view"].Equals(Roles.Medico))
+                {
+
+                    <!--<a id="panel_reporte" href="javascript:void(0)" type="button" class="btn btn-success"><i class="flaticon2-edit"></i>Reporte Médico</a>-->
+                    <button id="panel_reporte" type="button" class="btn btn-outline-hover-primary btn-sm"><i class="fal fa-file-alt"></i> Reporte Médico</button>
+
+                }
+
+                @if (ViewData["view"].Equals(Roles.Medico))
+                {
+
+                    <!--<a id="panel_reporte" href="javascript:void(0)" type="button" class="btn btn-success"><i class="flaticon2-edit"></i>Reporte Médico</a>-->
+                    <button id="panel_antecedentes_medicos" type="button" class="btn btn-outline-hover-primary btn-sm"><i class="fal fa-file-alt"></i> Antecedentes Médicos</button>
+
+                }
+                <!--<button id="reload" type="button" class="btn btn-dark"><i class="flaticon2-refresh"></i>Volver a cargar</button>-->
+                <button id="reload" type="button" class="btn btn-outline-hover-primary btn-sm"><i class="fal fa-sync"></i>Recargar</button>
+
+                @if (ViewData["view"].Equals(Roles.Medico))
+                {
+                    @*<button id="btnGuardar" type="button" class="btn btn-warning">Guardar</button>*@
+                    <button id="btnGuardar" type="button" class="btn btn-brand">Previsualizar</button>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+<input type="hidden" id="headName2" />
+
+
+
+

@@ -1,0 +1,32 @@
+/*Caja archivo*/
+
+.caja-archivo {
+    background-color: #FFF;
+    color: #666;
+    border: 1px solid rgba(59, 193, 205, 0.3);
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 1rem;
+    transition: all .3s ease-out;
+    font-weight: 700;
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.25);
+}
+
+.header-caja-archivo {
+    margin-bottom: 1rem;
+}
+
+.header-caja-archivo i {
+    font-size: 24px !important;
+    margin-right: .5rem;
+}
+
+.header-caja-archivo a, .header-caja-archivo i {
+    color: #FFAF36;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.header-caja-archivo a {
+    font-size: 1rem !important;
+}

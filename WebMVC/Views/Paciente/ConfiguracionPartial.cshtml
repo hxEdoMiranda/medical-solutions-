@@ -1,0 +1,336 @@
+﻿@using Microsoft.Extensions.Configuration
+@using System.Security.Claims;
+@model WebMVC.Models.PersonasViewModel
+@inject IConfiguration Configuration
+@{
+    ViewBag.layoutPaciente = 0;
+}
+@{
+    var codigoTelefono = ((ClaimsIdentity)User.Identity).GetSpecificClaim("CodigoTelefono");
+
+}
+<div class="tabset" style="font-size: 16px;">
+    <!-- Tab 1 -->
+    <input type="radio" name="tabset" id="tab1" aria-controls="tab_perfil" checked>
+    <label for="tab1">Datos Personales</label>
+    <!-- Tab 2 -->
+    <input type="radio" name="tabset" id="tab2" aria-controls="tab_antMedico">
+    <label for="tab2">Antecedentes Médicos</label>
+    <!-- Tab 3 -->
+    @if (!ViewBag.HostURL.ToString().Contains("programabb.") && !ViewBag.HostURL.ToString().Contains("uoh.")) //HACER Q EL TAB APAREZCA SI LA EMPRESA ADMITE CARGAS O NO
+    {
+        <input type="radio" name="tabset" id="tab3" aria-controls="tab_cargas">
+        <label for="tab3" >Administrador de Beneficiarios</label>
+    }
+   <!-- Tab 4 -->
+    @if (!ViewBag.HostURL.ToString().Contains("zurich.") && !ViewBag.HostURL.ToString().Contains("programabb."))
+    {
+        <input type="radio" name="tabset" id="tab4" aria-controls="tab_pass">
+        <label for="tab4" >Contraseña</label>
+    }
+  <div class="tab-panels">
+     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid configuracion-paciente">
+        <section id="tab_perfil" class="tab-panel">
+                    <h1 class="titulo-servicio">Perfil</h1>
+                    <!--Begin::App-->
+                <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+
+                    <!--Begin:: App Aside Mobile Toggle-->
+                    <button class="kt-app__aside-close" id="kt_user_profile_aside_close">
+                        <i class="la la-close"></i>
+                    </button>
+                    <!--End:: App Aside Mobile Toggle-->
+                    <!--End:: App Aside Mobile Toggle-->
+
+
+
+                    <div class="col-lg-12 px-0 px-md-2">
+                        <partial name="~/Views/Shared/_PerfilPacientePartial.cshtml" model="Model" view-data="ViewData" />
+                        <br />
+            @*          <partial name="~/Views/Shared/_ConfigAccountClientVC.cshtml" model="Model" view-data="ViewData" />
+            *@
+                    </div>
+                    
+
+                </div>
+        </section>
+
+        <section id="tab_antMedico" class="tab-panel">
+
+                    <div class="col-lg-6 px-0 px-md-2" style=" margin: 0 auto;">
+                        <div>
+                            <div class="kt-portlet cont-antecedentes-medicos mb-4">
+                                <div class="kt-portlet__head">
+                                    <div class="kt-portlet__head-label">
+                                        <h3 class="kt-portlet__head-title" metadata="configuracionAntMedicos">Antecedentes Médicos</h3>
+                                    </div>
+
+                                </div>
+                                <form id="form_edit_am" class="kt-form kt-form--label-right">
+                                    <div class="kt-portlet__body pb-0">
+                                        <div class="kt-section kt-section--first pb-0 mb-0">
+                                            <div class="kt-section__body">
+                                                <p class="configuracionAntMedicosInfTexto" metadata="configuracionAntMedicosInf">Para una mejor atención te pedimos completar las siguientes preguntas acerca de tu estado de salud:</p>
+                                                <div class="row pt-3">
+                                                    <div class="col-lg-12">
+                                                        <div class="kt-widget kt-widget--user-profile-1 mb-0 pb-0 antecedentes-medicos">
+                                                            <div class="form-group">
+                                                                <div class="col-12 col-md mb-4 mb-md-0 px-0 ant-medicos">
+                                                                    <label class="form-label font-weight-bold pregunta-antecedente" metadata="configuracionAlergias">¿Alergias?</label>
+                                                                    <label class="form-check-label mr-4" for="flexRadioDefault1" metadata="configuracionAlergiasSi">
+                                                                        Sí
+                                                                    </label>
+                                                                    <input class="form-check-input" type="radio" name="radioAlergia" id="radioAlergia1" value="true" />
+
+                                                                    <label class="form-check-label ml-3 mr-4" for="flexRadioDefault2" metadata="configuracionAlergiasNo">
+                                                                        No
+                                                                    </label>
+                                                                    <input class="form-check-input" type="radio" name="radioAlergia" id="radioAlergia2" value="false">
+                                                                    @Html.TextAreaFor(m => m.Alergias, new { @class = "form-control d-none", type = "text", placeholder = "Anota los medicamentos, animales u otros que te provoquen alergia.", id = "Alergias", name = "Alergias" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                            <div class="col-12 col-md mb-4 mb-md-0 px-0 ant-medicos">
+                                                                    <label class="form-label font-weight-bold pregunta-antecedente" metadata="configuracionEnfermedades">¿Enfermedades?</label>
+                                                                    <label class="form-check-label mr-4" for="flexRadioDefault1" metadata="configuracionEnfermedadesSi">
+                                                                        Sí
+                                                                    </label>
+                                                                    <input class="form-check-input" type="radio" name="radioEnfermedad" id="radioEnfermedad1" value="true">
+
+                                                                    <label class="form-check-label ml-3 mr-4" for="flexRadioDefault2" metadata="configuracionEnfermedadesNo">
+                                                                        No
+                                                                    </label>
+                                                                    <input class="form-check-input" type="radio" name="radioEnfermedad" id="radioEnfermedad2" value="false">
+                                                                    @Html.TextAreaFor(m => m.Enfermedades, new { @class = "form-control d-none", type = "text", id = "Enfermedades", placeholder = "Anota las enfermedades que padeces." })
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                            <div class="col-12 col-md mb-4 mb-md-0 px-0 ant-medicos">
+                                                                    <label class="form-label font-weight-bold pregunta-antecedente" metadata="configuracionMedicamentos">¿Medicamentos?</label>
+                                                                    <label class="form-check-label mr-4" for="flexRadioDefault1" metadata="configuracionMedicamentosSi">
+                                                                        Sí
+                                                                    </label>
+                                                                    <input class="form-check-input" type="radio" name="radioMedicamento" id="radioMedicamento1" value="true">
+
+                                                                    <label class="form-check-label ml-3 mr-4" for="flexRadioDefault2" metadata="configuracionMedicamentosNo">
+                                                                        No
+                                                                    </label>
+                                                                    <input class="form-check-input" type="radio" name="radioMedicamento" id="radioMedicamento2" value="false">
+                                                                    @Html.TextAreaFor(m => m.Medicamentos, new { @class = "form-control d-none", type = "text", id = "Medicamentos", placeholder = "Anota los medicamentos que utilizas." })
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                            <div class="col-12 col-md mb-4 mb-md-0 px-0 ant-medicos">
+                                                                    <label class="form-label font-weight-bold pregunta-antecedente" metadata="configuracionCirugias">¿Cirugías previas?</label>
+                                                                    <label class="form-check-label mr-4" for="flexRadioDefault1" metadata="configuracionCirugiasSi">
+                                                                        Sí
+                                                                    </label>
+                                                                    <input class="form-check-input" type="radio" name="radioCirugia" id="radioCirugia1" value="true">
+
+                                                                    <label class="form-check-label ml-3 mr-4" for="flexRadioDefault2" metadata="configuracionCirugiasNo">
+                                                                        No
+                                                                    </label>
+                                                                    <input class="form-check-input" type="radio" name="radioCirugia" id="radioCirugia2" value="false">
+                                                                    @Html.TextAreaFor(m => m.Cirugias, new { @class = "form-control d-none", type = "text", id = "Cirugias", placeholder = "Anota las cirugías que se te han realizado." })
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                            <div class="col-12 col-md mb-1 mb-md-0 px-0 ant-medicos">
+                                                                    <label class="form-label font-weight-bold pregunta-antecedente" metadata="configuracionDrugs">¿Tabaco, alcohol, drogas?</label>
+                                                                    <label class="form-check-label mr-4" for="flexRadioDefault1" metadata="configuracionDrugsSi">
+                                                                        Sí
+                                                                    </label>
+                                                                    <input class="form-check-input" type="radio" name="radioHabito" id="radioHabito1" value="true">
+
+                                                                    <label class="form-check-label ml-3 mr-4" for="flexRadioDefault2" metadata="configuracionDrugsNo">
+                                                                        No
+                                                                    </label>
+                                                                    <input class="form-check-input" type="radio" name="radioHabito" id="radioHabito2" value="false">
+                                                                    @Html.TextAreaFor(m => m.Habitos, new { @class = "form-control d-none", type = "text", id = "Habitos", placeholder = "Anota el hábito." })
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="kt-portlet__foot">
+                                        <div class="kt-form__actions">
+                                            <div class="row">
+                                                <div class="col-12 ml-md-auto col-md-auto">
+                                                    <button type="submit" id="btn_guardar_am" class="btn btn-success btn-block" metadata="configuracionGuardar">Guardar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+
+        </section>
+            @{
+                var textoErrorCarga = "Tu perfil no cuenta con permisos para administrar cargas.";
+            }
+        @if (!ViewBag.HostURL.ToString().Contains("programabb.") && !ViewBag.HostURL.ToString().Contains("uoh.")) //HACER Q EL TAB APAREZCA SI LA EMPRESA ADMITE CARGAS O NO
+        {
+           
+                    @if (ViewBag.HostURL.ToString().Contains("bice.medismart"))
+                    {
+                        textoErrorCarga = "Tu perfil no cuenta con permisos para administrar cargas";
+                    }
+                    <section id="tab_cargas" class="tab-panel ">
+
+                <div class=" col-lg-6 px-0 px-md-2" style=" margin: 0 auto;" id="cont-cargas"></div>
+                    <div class=" col-lg-6 px-0 px-md-2" style=" margin: 0 auto;" id="cont-cargas"><div id="msjErrorCarga" style="text-align-last:center"><b>Oooops! <br /><br /> @textoErrorCarga</b></div></div>
+            </section>                        
+        }
+        <section id="tab_pass" class="tab-panel" >
+                    <div class="col-lg-6 px-0 px-md-2" style=" margin: 0 auto;">
+                       <partial name="~/Views/Shared/_ConfigAccount.cshtml" model="Model" view-data="ViewData" />
+                </div>
+        </section>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!--Modal ASINAR CARGA-->
+
+<div class="modal fade" id="modalNewCarga" data-backdrop="static" name="modalNewCarga" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="titulo_modal_newcargas" metadata="layoutModTerms">INGRESA TU CARGA </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <form id="formNewCarga">
+                    <input type="hidden" id="idCliente_newCarga" value="" />   
+                    <input type="hidden" id="idAction_newCarga" value="" />
+                    <input type="hidden" id="idUserCarga_actual" value="" />
+                    <div class="col-auto">
+                        <label class="sr-only" for="rut">Rut</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend col-4">
+                                <div class="input-group-text col-12" id="titulo_identidad">
+                                    RUT
+                                </div>
+                            </div>
+
+                            <input type="text" class="form-control col-8" id="rut_addCarga" name="rut_addCarga" placeholder="12856985-9" required="">
+                        </div>
+                    </div>
+
+                    <div class="col-auto ">
+                        <label class="sr-only" for="nombre">Nombre</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend col-4 ">
+                                <div class="input-group-text col-12">NOMBRE</div>
+                            </div>
+                            <input type="text" class="form-control col-8 " id="nombre_addCarga" name="nombre_addCarga"  required="">
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <label class="sr-only" for="apellido">Apellido</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend col-4">
+                                @if (ViewBag.HostURL.ToString().Contains("bonnahealth.") || ViewBag.HostURL.ToString().Contains("ajg.medismart.") || ViewBag.HostURL.ToString().Contains("aecsa.") || ViewBag.HostURL.ToString().Contains("rappi.") || ViewBag.HostURL.ToString().Contains("bu.") || ViewBag.HostURL.ToString().Contains("gallagher.") || codigoTelefono == "CO")
+                                {
+                                    <div class="input-group-text col-12">PRIMER APELLIDO</div>
+                                }
+                                <div class="input-group-text col-12">APELLIDO PATERNO</div>
+                            </div>
+                            <input type="text" class="form-control col-8" id="apellidoPaterno_addCarga" name="apellidoPaterno_addCarga" required="">
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <label class="sr-only" for="apellido">Apellido</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend col-4">
+                                @if (ViewBag.HostURL.ToString().Contains("bonnahealth.") || ViewBag.HostURL.ToString().Contains("ajg.medismart.") || ViewBag.HostURL.ToString().Contains("aecsa.") || ViewBag.HostURL.ToString().Contains("rappi.") || ViewBag.HostURL.ToString().Contains("bu.") || ViewBag.HostURL.ToString().Contains("gallagher.") || codigoTelefono == "CO")
+                                {
+                                    <div class="input-group-text col-12">SEGUNDO APELLIDO</div>
+                                }
+                                <div class="input-group-text col-12">APELLIDO MATERNO</div>
+                            </div>
+                            <input type="text" class="form-control col-8" id="apellidoMaterno_addCarga" name="apellidoMaterno_addCarga" required="">
+                        </div>
+                    </div>
+
+                    <div class="col-auto">
+                        <label class="sr-only" for="fecha">Fecha nacimiento</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend col-4">
+                                <div class="input-group-text col-12">FEC. NACIMIENTO</div>
+                            </div>
+                            <input type="date" class="form-control col-8" id="fecha_addCarga" name="fecha_addCarga" min="1900-01-01" onfocusout="if(this.value.length>10){ this.value=this.value.substr(0, this.value.length - 1);}" max="2024-12-30" required="">
+                        </div>
+                    </div>
+
+                    <div class="col-auto">
+                        <label class="sr-only" for="telefono">Teléfono</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend col-4">
+                                <div class="input-group-text col-12">
+                                    <div style="width:50%; text-align:left">TELÉFONO</div>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control col-8" id="telefono_addCarga" name="telefono_addCarga" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" placeholder="" required="">
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <label class="sr-only" for="email">Email</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend col-4">
+                                <div class="input-group-text col-12">EMAIL</div>
+                            </div>
+                            <input type="email" class="form-control col-8" id="correo_addCarga" name="correo_addCarga" placeholder="" required="">
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <label class="sr-only" for="direccion">Dirección</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend col-4">
+                                <div class="input-group-text col-12">DIRECCIÓN</div>
+                            </div>
+                            <input type="text" class="form-control col-8" id="direccion_addCarga" name="direccion_addCarga"  required="">
+                        </div>
+                    </div>
+
+                    <div class="col-auto">
+                        <label class="sr-only" for="genero">Género</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend col-4">
+                                <div class="input-group-text col-12">GÉNERO</div>
+                            </div>
+                            <select class="form-control col-8" id="genero_addCarga" name="genero_addCarga" required="">
+                                <option selected="selected" value="0">Seleccionar</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                            </select>
+                        </div>
+                    </div>
+
+                
+                <div class="modal-footer">
+                        <button type="submit" class="btn btn-success btn-guardar-cargas" >Guardar</button>
+                </div>
+                 </form>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+

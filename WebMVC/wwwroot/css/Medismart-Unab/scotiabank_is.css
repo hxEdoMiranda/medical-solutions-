@@ -1,0 +1,9 @@
+﻿.kt-login.kt-login--v3.kt-login--signin .kt-login__signin {display: contents!important;}
+.kt-login.kt-login--v3 .kt-login__wrapper {margin: 0 auto 0 auto!important;}
+.kt-footer {padding: 0 0 20px 0!important;}
+.logotipo-img { margin: 1rem auto 1rem !important;}
+/*.kt-login__container .accesible-tools { margin-top: 0.8rem!important; margin-bottom: 0.8rem!important;}*/
+.login-footer .terminos {margin-bottom:0px!important}
+/*.logo-convenios {justify-content: center;display: flex;}*/
+.form-group {margin-bottom: 0.8rem!important;}
+.kt-header--fixed.kt-aside--minimize .kt-header {padding: 1rem 0!important;}

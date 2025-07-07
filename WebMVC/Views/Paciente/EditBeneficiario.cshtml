@@ -1,0 +1,105 @@
+﻿@using Microsoft.Extensions.Configuration
+@model WebMVC.Models.PersonasViewModel
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Configuracion";
+    Layout = "_LayoutPaciente";
+
+}
+
+
+@{
+    ViewData["idEntidad"] = ViewBag.idEdit;
+    ViewData["codEntidad"] = Entidades.FOTO_PERFIL;
+    //ViewData["uid"] = ViewBag.idCliente;
+}
+@{
+    ViewData["view"] = Roles.Paciente;
+}
+
+@section Styles  {
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/metronic_demo7/assets/plugins/select2/select2.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" />
+    <link href="~/metronic_demo7/assets/plugins/bootstrap-select/css/bootstrap-select.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" />
+}
+
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+    <!--Begin::App-->
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+
+        <!--Begin:: App Aside Mobile Toggle-->
+        <button class="kt-app__aside-close" id="kt_user_profile_aside_close">
+            <i class="la la-close"></i>
+        </button>
+        <!--End:: App Aside Mobile Toggle-->
+        <!--End:: App Aside Mobile Toggle-->
+
+        <div class="col-lg-12">
+            <partial name="~/Views/Shared/_PerfilPacienteCargas.cshtml" model="Model" view-data="ViewData" />
+        </div>
+        @*<div class="col-lg-4">
+                <partial name="~/Views/Shared/_ConfigAccount.cshtml" model="Model" view-data="ViewData" />
+
+            </div>*@
+    </div>
+    <!--div cambiar contraseña en admin-->
+    <!--<partial name="~/Views/Shared/_ConfigAccount.cshtml" model="Model" view-data="ViewData" />-->
+</div>
+
+
+
+
+
+<div class="modal fade" id="kt_modal_3" name="kt_modal_3" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-xs" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <div class="form-group">
+                    <label class="kt-form__label">Ingrese password</label>
+                    <input type="password" class="form-control" id="password" name="password" autocomplete="new-password">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrar" data-dismiss="modal">Volver</button>
+                <button id="btnConfirmar" type="button" class="btn btn-brand">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section Scripts {
+    <script src="~/metronic_demo7/assets/plugins/select2/select2.js?rnd=@NumeroRandom.GetRandom()"></script>
+    <script src="~/metronic_demo7/assets/js/pages/components/extended/sweetalert2.js?rnd=@NumeroRandom.GetRandom()"></script>
+    <script src="~/js/Usuario/config_Admin.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/Shared/archivos-FotoPerfil.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+     <script type="text/javascript">
+            (function () {
+            $('.select2').select2();
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+            var idEdit = @ViewBag.idEdit;
+            window.idEdit = idEdit;
+            var host = '@ViewBag.HostURL';
+            window.host = host;
+            var idCliente = '@ViewBag.idCliente';
+            window.idCliente = idCliente;
+            window.Titulo = '@ViewBag.Titulo';
+            window.isContacto = '@ViewBag.isContacto';
+        })()
+    </script>
+    <script type="module">
+        import { init } from '../../js/Paciente/config-cargas.js?rnd=@NumeroRandom.GetRandom()';
+        init(@Html.Raw(Json.Serialize(Model)), @Html.Raw(Json.Serialize(@ViewBag.idEdit)),@Html.Raw(Json.Serialize(@ViewBag.uid)),@Html.Raw(Json.Serialize(@ViewBag.idCliente)),@Html.Raw(Json.Serialize(@ViewBag.editState)))
+    </script>
+   
+}

@@ -1,0 +1,58 @@
+﻿<div class="toma-examenes-cardif">
+
+        <!--start..Scotiabank-->
+
+        <div class="asesorias-scotiabank">
+                <div class="cont-ilustracion">
+
+                
+                </div>
+                <div class="cont-asesorias">
+                    <h1>
+                        <small>No te quedes con dudas.</small>
+                        Te ayudamos a entender tus coberturas de salud. 
+                    </h1>
+                    <p>
+                        Comunícate con nuestro Centro de Atención y podrás resolver todas tus dudas sobre GES (Garantías Explícitas de Salud) y 
+                        CAEC (Cobertura Adicional para Enfermedades Catastróficas). Descubre cómo activar estas coberturas y qué enfermedades están cubiertas.
+                    </p>
+                    <p>Contáctanos directamente pinchando acá:</p>
+                    <div class="container-fluid cont-btn">
+                    <div class="row">
+                    @if (ViewBag.HostURL.Contains("clinicamundoscotia."))
+                    {
+                        <div class="col-12 col-md-auto">
+                            <a id="btnCallAsistencia" class="btn btn-primary">LLAMAR</a>
+
+                            <small>Llamarás directamente al <br /> +56 226565826</small>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-12 col-md-auto">
+                            <a id="btnCallAsistencia" class="btn btn-primary">LLAMAR</a>
+
+                            <small>Llamarás directamente al <br /> @ViewBag.Numero</small>
+                        </div>
+                    }
+                    @if (!ViewBag.HostURL.Contains("masproteccionsalud.") && !ViewBag.HostURL.Contains("clinicamundoscotia."))
+                    {
+                        <div class="col-12 col-md-auto">
+                            <!--  <button class="btn btn-primary">Videollamada</button>-->
+                            <button class="btn btn-primary" onclick="location.href='/Paciente/Agendar?tipo=suscripcion&tipoEspecialidad=orientacion'">VIDEOLLAMADA</button>
+
+                        </div>
+                    }
+                        
+                    </div>
+                
+                </div>
+                </div>
+            
+        </div>
+
+    <!--end::Scotiabank-->
+
+
+    
+   </div>

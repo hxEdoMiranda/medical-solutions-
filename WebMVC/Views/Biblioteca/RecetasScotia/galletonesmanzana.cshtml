@@ -1,0 +1,96 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+
+    <section class="container-fluid note-section library featured" id="nota3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    
+                    <div class="cont-titulo-receta">
+                        <div class="cont-logo">
+                            <img src="~/img/scotiabank/recetas/logo.svg" alt="" />
+                    <h1 class="title-section">
+                         Galletones de manzana
+                    </h1>
+                        </div>
+                    <img src="~/img/scotiabank/recetas/food.png" alt="" />
+                    
+                    </div>
+                    
+                    
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <h2 class="subtitulo-receta">
+                        Ingredientes:
+                    </h2>
+
+                    <ol>
+                        <li>250 grs de avena</li>
+                        <li>250 grs de harina de avena (avena molida)</li>
+                        <li>2 huevos</li>
+                        <li>150 grs de frutos secos</li>
+                        <li>1 cdta de aceite</li>
+                        <li>1 manzana rallada</li>
+                        <li>1 cdta de canela</li>
+
+                    </ol>
+                   
+                    <h2 class="subtitulo-receta">
+                        Preparación
+                    </h2>
+                    <ol>
+                     <li>Juntar la avena con la harina de avena</li>
+                     <li>Agregar frutos secos, huevos, aceite, manzana rallada y canela</li>
+                     <li>Mezclamos</li>
+                     <li>La mezcla la ponemos en papel film, en forma de cilindro y la ponemos en el congelador 10 minutos</li>
+                     <li>Sacamos la masa del congelador, retiramos el film y cortamos la masa acm de grosor</li>
+                     <li>Colocar las masas en el horno de 8 a 9 minutos a 180 grados</li>
+                     <li>Esperar que se enfríen para consumir</li>
+                     <li>Guardar en bolsa de papel o envase de vidrio</li>
+                    </ol>
+                   
+                     
+                    
+                    <p>
+                        <a href="@Url.Action("Descargar", new { file = ViewBag.codigoNota})">
+                            Descargar PDF
+                        </a>
+                        
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}

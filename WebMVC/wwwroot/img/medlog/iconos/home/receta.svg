@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="37.1875"
+   height="45.6875"
+   viewBox="0 0 37.1875 45.6875"
+   fill="none"
+   version="1.1"
+   id="svg843"
+   sodipodi:docname="receta-2.svg"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs847" />
+  <sodipodi:namedview
+     id="namedview845"
+     pagecolor="#ffffff"
+     bordercolor="#111111"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="7.1090691"
+     inkscape:cx="20.255817"
+     inkscape:cy="49.584551"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg843" />
+  <path
+     id="path839"
+     style="color:#000000;fill:#302f7b;stroke-linejoin:round;-inkscape-stroke:none"
+     d="M 3.71875,0 C 2.733057,0 1.786788,0.392899 1.089844,1.089844 0.392899,1.786788 0,2.733057 0,3.71875 v 38.25 c 0,0.985693 0.392899,1.931962 1.089844,2.628906 0.696944,0.696945 1.643213,1.089844 2.628906,1.089844 h 29.75 c 0.985668,0 1.931953,-0.393064 2.628906,-1.089844 0.696945,-0.696944 1.089844,-1.643213 1.089844,-2.628906 v -29.75 a 1.5939044,1.5939044 0 0 0 -0.466797,-1.126953 l -10.625,-10.625 A 1.5939044,1.5939044 0 0 0 24.96875,0 Z m 0,3.1875 H 24.308594 L 34,12.878906 V 41.96875 c 0,0.141504 -0.0562,0.274946 -0.15625,0.375 C 33.743505,42.44397 33.610079,42.5 33.46875,42.5 h -29.75 C 3.577246,42.5 3.443804,42.4438 3.34375,42.34375 3.243696,42.243696 3.1875,42.110254 3.1875,41.96875 v -38.25 c 0,-0.141504 0.0562,-0.274946 0.15625,-0.375 C 3.443804,3.243696 3.577246,3.1875 3.71875,3.1875 Z M 10.09375,17 A 1.593745,1.593745 0 0 0 8.5,18.59375 1.593745,1.593745 0 0 0 10.09375,20.1875 h 17 A 1.593745,1.593745 0 0 0 28.6875,18.59375 1.593745,1.593745 0 0 0 27.09375,17 Z m 0,8.5 A 1.593745,1.593745 0 0 0 8.5,27.09375 1.593745,1.593745 0 0 0 10.09375,28.6875 h 17 A 1.593745,1.593745 0 0 0 28.6875,27.09375 1.593745,1.593745 0 0 0 27.09375,25.5 Z" />
+</svg>

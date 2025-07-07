@@ -1,0 +1,790 @@
+/*CLaro*/
+
+
+:root {
+    --primary-color: #DA291C;
+    --secondary-color: #3C3C3C;
+    --tertiary-color: #FF7415;
+    --accent-color: #FF7415;
+    --background-ui: #F7F7F7;
+    --light-color: #FFF;
+    --orange: #ED8B00;
+    --dark-color: #262630;
+    --hover-color: #B52217;
+    --transition: all .3s ease-out;
+}
+
+
+
+
+.logotipo-desktop {
+    background-image: url(../../img/claro/logo-claro-club.svg);
+    max-width: 300px;
+}
+
+.logotipo-img {
+    background-position: left top;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: var(--secondary-color);
+}
+
+.form-group .ms-label {
+    color: var(--secondary-color) !important;
+    text-align: left;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+    .btn-primary:hover {
+        background-color: var(--hover-color);
+        border-color: var(--hover-color);
+    }
+
+    .btn-guardar-info, .btn-success {
+        background-color: var(--primary);
+        border-color: var(--primary);
+        
+    }
+    
+    .btn-guardar-info:hover, .btn-success:hover {
+        background-color: var(--secondary);
+        border-color: var(--secondary);
+        color: var(--primary)
+    }
+    
+    .btn.btn-outline-secondary {
+        background-color: var(--secondary);
+        border-color: var(--secondary);
+        color: var(--primary)
+    }
+    
+    #reporte .cont-icon {
+        background-color: var(--primary);
+    }
+    
+    #reporte:hover .cont-icon {
+        background-color: var(--secondary);
+    }
+    
+    #hs-g .cont-icon {
+        background-color: var(--primary);
+    }
+    
+    #hs-g:hover .cont-icon {
+        background-color: var(--secondary);
+    }
+
+
+    .divider-medismart {
+        display: none;
+    }
+
+
+    .logo-convenios {
+        justify-content: center;
+    }
+
+.logo-convenios .webpay,
+.logo-convenios .fonasa {
+    display: none;
+}
+
+        .logo-convenios .medismart img {
+            width: 200px;
+        }
+
+
+        .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .kt-login__extra .kt-login__link {
+            color: var(--secondary-color);
+        }
+
+.kt-login.kt-login--v3.kt-login--forgot .kt-login__forgot {
+    max-width: 430px;
+    margin: auto;
+}
+
+.forgot-claro {
+    min-height: 243px;
+}
+
+
+.btn-valida-codigo {
+    box-shadow: none;
+    background-color: var(--light-color);
+    color: var(--primary-color);
+    text-transform: none;
+    font-weight: 700;
+    transition: var(--transition);
+}
+
+    .btn-valida-codigo:hover {
+        background-color: #E0E0E0;
+
+    }
+
+.modal .modal-content .modal-header .close:hover {
+    color: var(--secondary-color);
+}
+
+.titulo-modal {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+
+    .modal-footer .btn-primary:not(:disabled):not(.disabled):active,
+    .modal-footer .btn-primary:not(:disabled):not(.disabled).active,
+    .show > .modal-footer .btn-primary.dropdown-toggle {
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
+    }
+
+
+    .modal-footer .btn-primary:focus, .modal-footer .btn-primary.focus {
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
+    }
+
+.modal-crear-cuenta label {
+    font-weight: 700;
+    color: var(--secondary-color)
+}
+
+.form-control:focus {
+    border-color: var(--primary-color)
+}
+/* Im�genes Login */
+.img1 {
+    background-image: url(../../img/claro/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/claro/login/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/claro/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/claro/login/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/claro/login/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/claro/login/960x978.jpg);
+}
+
+.cont-banner-login {
+    width: 100%;
+    max-width: 340px;
+    margin: auto;
+}
+
+.cont-banner-login img {
+    width: 100%;
+}
+
+
+    /*Home*/
+
+
+.top-banner {
+    background-image: url(../../img/claro/fondo-banner.svg);
+}
+
+.top-banner img {
+    border: 3px solid #ED948D;
+}
+
+.body-home .accesible-btn button {
+    border: 1px solid #DA291C;
+    color: #DA291C;
+}
+.accesible-btn button:hover {
+    background-color: #9F0E0E;
+    color: #FFF;
+}
+
+.accesible-btn button {
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+
+.titulo-dropdown {
+    color: var(--secondary-color);
+}
+
+.btn-consentimiento {
+    margin-top: 4rem;
+}
+
+.menu-top .label-menu {
+    color: var(--secondary-color)
+}
+
+
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--primary-color)
+}
+
+.ms-label-menu {
+    color: var(--secondary-color);
+}
+
+.titulo-servicio {
+    color: #666;
+}
+
+.busqueda-profesionales {
+    border: 2px solid #DDD;
+    margin-left: 0;
+}
+
+    .busqueda-profesionales i {
+        color: var(--primary-color)
+    }
+
+    .busqueda-profesionales .dropdown .btn {
+        color: var(--secondary-color)
+    }
+
+.caja-profesional,
+.caja-reserva,
+.perfil-profesional,
+.caja-base,
+.kt-portlet {
+    border: 1px solid #DDD;
+}
+
+.cont-btn-panel .btn-atencion, .cont-btn-vc .btn-atencion {
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+    .cont-btn-panel .btn-atencion:hover, .cont-btn-vc .btn-atencion:hover {
+        background-color: rgba(218,41,28, .1);
+        color: var(--primary-color);
+    }
+
+cont-btn-panel {
+    padding: 1rem 0;
+}
+/*Footer*/
+.body-home .footer-home {
+    margin-top: 2rem;
+}
+
+
+.caja-profesional {
+    transition: var(--transition) !important;
+}
+/*Agenda
+
+
+.iniciales {
+    background-color: var(--primary-color);
+}
+
+
+
+    .stepper .flecha {
+        color: var(--primary-color)
+    }
+
+
+
+
+.caja-reserva .btn-am {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.caja-reserva .btn-pm {
+    background-color: var(--orange);
+    border-color: var(--orange);
+}
+
+.hora.disponible .detalle-hora {
+    color: var(--secondary-color)
+}
+
+.mensaje-superior .inner-mensaje.hoy {
+    background-color: var(--accent-color)
+}
+
+.aviso-atencion.hoy {
+    background-color: var(--accent-color)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary-color)
+}
+
+.top-banner .legend {
+    color: var(--secondary-color);
+}
+
+
+.titulo-seccion {
+    color: var(--secondary-color)
+}
+
+.caja-atencion {
+    border: 1px solid var(--light-color)
+}
+
+    .caja-atencion .titulo-profesional,
+    .caja-atencion .fecha-atencion,
+    .caja-atencion .hora-atencion {
+        color: var(--secondary-color)
+    }
+
+    .caja-atencion .header-aviso-atencion,
+    .caja-atencion .header-aviso-atencion i {
+        color: var(--orange)
+    }
+
+.datos-diagnostico {
+    color: var(--secondary-color)
+}
+
+
+.atencion-toolbar.atencion-proxima-toolbar {
+    border-top: 1px solid #DDD;
+}
+
+.datos-diagnostico {
+    border-top: 1px dashed rgba(255, 116, 21, .5);
+}
+
+.cont-aviso-modal strong,
+.cont-aviso-modal .datos-fecha .fecha-atencion {
+    color: var(--secondary-color)
+}
+
+.atencion-toolbar.atencion-proxima-toolbar {
+    margin-top: 1rem;
+}
+
+.selector-horas i {
+    color: var(--secondary-color)
+}
+
+.check-aceptacion {
+    border-top: 1px solid #DDD;
+}
+
+    .check-aceptacion a {
+        color: var(--accent-color);
+    }
+
+.cont-volver .btn.btn-outline-secondary {
+    background-color: var(--light-color)
+}
+
+.mensaje-confirmacion.caja-base {
+    border: 1px solid rgba(255,116,21, .3);
+}
+
+.body-home .footer-home .footer-cliente {
+    display: block;
+}
+
+
+/*Perfil
+
+.kt-portlet .kt-portlet__head .kt-portlet__head-label .kt-portlet__head-title {
+    color: var(--secondary-color);
+}
+
+.kt-portlet .kt-portlet__head {
+    border-bottom: 1px solid rgba(255,116, 21,.5)
+}
+
+kt-form__actions .btn-success {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+*/
+/*Sala de espera*/
+.hotspot-icon .cont-icon {
+    background-color: rgba(31, 20, 16, 0.9);
+    transition: all .3s ease-out;
+}
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: rgba(14,15,24,.8);
+}
+
+
+.sala-espera-mobile img {
+    margin-top: -12px;
+}
+
+
+#reporte .cont-icon {
+    background-color: var(--secondary-color);
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: rgba(31, 20, 16, 1);
+}
+
+
+/*Sala espera mobile*/
+
+.menu-top .item-menu-top i {
+    color: var(--primary-color);
+}
+
+.menu-top .item-menu-top:hover i {
+    color: #FFAF36;
+}
+
+.body-home .menu-top .item-menu-top i {
+    /* color: #FFF !important;*/
+}
+
+.toolbar-option i {
+    color: var(--primary-color) !important;
+}
+
+.toolbar-option {
+    color: var(--secondary-color) !important;
+}
+
+.sala-espera-mobile .card-sala:nth-of-type(4n) {
+    justify-content: space-between;
+}
+/*Logotipo Mobile*/
+.logotipo-mobile {
+    background-image: url(../../img/claro/logo-claro-club.svg);
+}
+
+.logotipo-img {
+    background-position: center;
+    margin-bottom: 1rem;
+}
+
+
+/*Login Custom*/
+
+.kt-login__signin {
+    min-height: 0;
+    margin-bottom: 4rem;
+}
+
+.box-claro {
+    padding: 2rem;
+    text-transform: uppercase;
+    border: 1px solid #DF8680;
+    margin: 2rem auto;
+    border-radius: 10px;
+    color: var(--secondary-color);
+}
+
+.mensaje-cuenta {
+    margin-bottom: 2rem;
+}
+
+.mensaje-cuenta h4 {
+    font-size: 16px;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+}
+
+    .mensaje-cuenta h4 small {
+        font-size: 16px;
+        color: var(--secondary-color);
+        display: block;
+        
+        text-transform: none;
+        margin-top: .5rem;
+    }
+
+.kt-login__divider {
+    display: none;
+}
+
+
+/*Atencion
+
+.cont-btn-panel .btn-atencion, .cont-btn-vc .btn-atencion {
+    border: 1px solid var(--orange);
+    color: var(--orange);
+}
+
+    .cont-btn-panel .btn-atencion:hover, .cont-btn-vc .btn-atencion:hover {
+        color: var(--orange);
+        background-color: rgba(255,116,21,.1);
+    }
+/*
+    .caja-base {
+    border: 1px solid var(--light-color)
+}
+
+    .stepper-sv .step-icon {
+    background-color: var(--secondary-color);
+}
+
+.stepper-sv .titulo-step,
+.stepper-sv .label-step {
+    color: var(--secondary-color);
+}*/
+
+/*
+@media (max-width: 1024px) {
+    .toolbar-option {
+        color: var(--accent-color)
+    }
+
+    .stepper {
+        background-image: none;
+    }
+
+    .body-home .footer-home {
+        margin-top: 4rem;
+    }
+}
+
+@media (min-width: 1025px) {
+    .kt-header--fixed:not(.kt-subheader--fixed) .kt-header {
+        border: 1px solid var(--light-color) !important;
+    }
+
+    .ms-aside {
+        border: 1px solid var(--light-color) !important;
+    }
+}
+    */
+
+.kt-login.kt-login--v3 .kt-login__wrapper {
+    margin-top: 3rem;
+}
+
+@media screen and (min-device-width: 1025px) {
+    .cont-banner-login {
+        display: none;
+    }
+}
+
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    #imgLogin {
+        position: fixed;
+    }
+
+    .cont-banner-login {
+        display: none;
+    }
+
+    .img1 {
+        background-image: url(../../img/claro/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/claro/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/claro/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/claro/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/claro/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/claro/login/548x850.jpg);
+    }
+
+}
+
+
+@media screen and (max-device-width: 1024px) {
+    .kt-header-menu .servicio,
+    .menu-top .servicio {
+        display: none !important;
+    }
+
+    .top-banner .legend {
+        text-align: left;
+        font-size: 2.4rem;
+    }
+}
+
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+    #imgLogin {
+        position: fixed;
+    }
+
+    .kt-login__signin {
+        margin-bottom: 1.5rem;
+    }
+
+    .img1 {
+        background-image: url(../../img/claro/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/claro/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/claro/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/claro/login/960x978.jpg);
+    }
+    .img5 {
+        background-image: url(../../img/claro/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/claro/login/960x978.jpg);
+    }
+}
+
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi) {
+
+}
+
+.opcion-ayuda a {
+    color: var(--primary-color);
+}
+
+.titulo-notificaciones {
+    color: var(--secondary-color);
+}
+
+.alert.alert-outline-success {
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+.menu-top .item-menu-top:hover .label-menu {
+    color: #ffb822 !important;
+}
+
+
+.menu-top .item-menu-top i� {
+    color: var(--primary-color);
+}
+
+menu-top .item-menu-top:hover i {
+    color: #FFAF36 !important;
+}
+
+.menu-top .item-menu-top .opcion-ayuda i {
+    color: var(--primary-color);
+}
+
+.menu-top .item-menu-top .opcion-ayuda i {
+    color: var(--primary-color);
+}
+
+.opcion-ayuda a:hover {
+    color: #FFAF36;
+}
+
+/*Servicio*/
+.servicio {
+    display: block;
+    text-align: center;
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    width: 260px;
+    margin: 0 auto;
+    margin-top: 2rem;
+    line-height: 1.4;
+}
+
+.body-home .menu-top .servicio {
+    color: var(--light-color);
+    font-weight: 500;
+    border: 1px solid rgba(255,255,255,.5);
+    border-radius: 1rem;
+    padding: .25rem 1rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: auto !important;
+    max-width: 340px;
+}
+
+.kt-header-menu {
+    height: auto;
+    padding-top: 1rem;
+}
+
+.kt-header-menu .servicio {
+    color: var(--primary-color);
+    font-weight: 500;
+    border: 1px solid rgba(218,41,8,.5);
+    border-radius: 1rem;
+    padding: .25rem 1rem;
+    margin-left: auto;
+    margin-right: 1rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: auto !important;
+    max-width: 340px;
+}
+
+.mensaje-superior {
+    margin-left: auto;
+}
+
+.menu-top {
+    max-width: 540px;
+}
+
+.card-carga {
+    width: 300px;
+    margin: auto;
+}
+.menu-top .label-menu-pac {
+    color: var(--secondary-color);
+}
+
+.body-home .menu-top .item-menu-top i, .body-home .menu-top .item-menu-top .label-menu {
+    width: 100%;
+}
+
+.body-home .menu-top {
+
+}
+    .body-home .menu-top .item-menu-top {
+        width: 130px !important;
+    }
+
+@media (max-width: 1024px) {
+    .body-home .menu-top .item-menu-top {
+        width: auto !important;
+    }
+
+    .body-home #drop-mensajes-turno.dropdown-menu.dropdown-menu-xl {
+        transform: translate3d(-174px, 53px, 0px) !important;
+    }
+}

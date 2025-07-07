@@ -1,0 +1,706 @@
+/* Agendar */
+
+.peru {
+    flex-wrap: nowrap;
+    width: 50%;
+}
+
+.busqueda-profesionales {
+    /*max-width: 420px;*/
+    padding: .7rem 1rem;
+    width: 100%;
+    min-width: 270px;
+    max-width: 300px;
+    /*box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    margin-bottom: 2rem;*/
+    border-radius: 8px;
+    background-color: #FFF;
+    /*border: 2px solid rgba(59, 193, 205, 0.3);*/
+    display: flex;
+    align-items: center;
+    border: 2px solid #3BC1CD;
+    margin-left: 1rem;
+}
+
+    .busqueda-profesionales i {
+        font-size: 2.8rem;
+        display: inline-block;
+        margin-right: 1rem;
+        color: #3BC1CD;
+    }
+
+    .busqueda-profesionales h2 {
+        font-size: 1.375rem;
+        color: #FFAF36;
+        font-weight: 500;
+        display: none;
+    }
+
+.busqueda-profesionales .dropdown .btn {
+    width: 100% !important;
+    text-align: left;
+    border: none;
+    font-weight: 700;
+    font-size: 11px;
+}
+
+    .busqueda-profesionales .dropdown .btn.dropdown-toggle:after {
+        float: right !important;
+        margin-top: .5rem;
+    }
+
+    .busqueda-profesionales .dropdown .dropdown-menu {
+        width: 100% !important;
+    }
+
+.show > .btn-outline-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #3BC1CD;
+    border-color: #3BC1CD;
+}
+
+.busqueda-profesionales .btn {
+    /*padding: 0.625rem 1rem !important*/
+    padding: 0.625rem !important
+}
+
+.busqueda-profesionales img {
+    width: 100px;
+    height: 100px;
+}
+.busqueda-comunas {
+    /*max-width: 420px;*/
+    padding: .7rem 1rem;
+    width: 100%;
+    min-width: 270px;
+    max-width: 300px;
+    /*box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    margin-bottom: 2rem;*/
+    border-radius: 8px;
+    background-color: #FFF;
+    /*border: 2px solid rgba(59, 193, 205, 0.3);*/
+    display: flex;
+    align-items: center;
+    border: 2px solid #3BC1CD;
+    margin-left: 1rem;
+}
+
+    .busqueda-comunas i {
+        font-size: 2.8rem;
+        display: inline-block;
+        margin-right: 1rem;
+        color: #3BC1CD;
+    }
+
+    .busqueda-comunas h2 {
+        font-size: 1.375rem;
+        color: #FFAF36;
+        font-weight: 500;
+        display: none;
+    }
+
+    .busqueda-comunas .dropdown .btn {
+        width: 100% !important;
+        text-align: left;
+        border: none;
+        font-weight: 700;
+        font-size: 11px;
+    }
+
+        .busqueda-comunas .dropdown .btn.dropdown-toggle:after {
+            float: right !important;
+            margin-top: .5rem;
+        }
+
+    .busqueda-comunas .dropdown .dropdown-menu {
+        width: 100% !important;
+    }
+
+.busqueda-regiones {
+    /*max-width: 420px;*/
+    padding: .7rem 1rem;
+    width: 100%;
+    min-width: 270px;
+    max-width: 300px;
+    /*box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    margin-bottom: 2rem;*/
+    border-radius: 8px;
+    background-color: #FFF;
+    /*border: 2px solid rgba(59, 193, 205, 0.3);*/
+    display: flex;
+    align-items: center;
+    border: 2px solid #3BC1CD;
+    margin-left: 1rem;
+}
+
+    .busqueda-regiones i {
+        font-size: 2.8rem;
+        display: inline-block;
+        margin-right: 1rem;
+        color: #3BC1CD;
+    }
+
+    .busqueda-regiones h2 {
+        font-size: 1.375rem;
+        color: #FFAF36;
+        font-weight: 500;
+        display: none;
+    }
+
+    .busqueda-regiones .dropdown .btn {
+        width: 100% !important;
+        text-align: left;
+        border: none;
+        font-weight: 700;
+        font-size: 11px;
+    }
+
+        .busqueda-regiones .dropdown .btn.dropdown-toggle:after {
+            float: right !important;
+            margin-top: .5rem;
+        }
+
+    .busqueda-regiones .dropdown .dropdown-menu {
+        width: 100% !important;
+    }
+.busqueda-servicios {
+    /*max-width: 420px;*/
+    padding: .7rem 1rem;
+    width: 100%;
+    min-width: 270px;
+    max-width: 300px;
+    /*box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    margin-bottom: 2rem;*/
+    border-radius: 8px;
+    background-color: #FFF;
+    /*border: 2px solid rgba(59, 193, 205, 0.3);*/
+    display: flex;
+    align-items: center;
+    border: 2px solid #3BC1CD;
+    margin-left: 1rem;
+}
+
+    .busqueda-servicios i {
+        font-size: 2.8rem;
+        display: inline-block;
+        margin-right: 1rem;
+        color: #3BC1CD;
+    }
+
+    .busqueda-servicios h2 {
+        font-size: 1.375rem;
+        color: #FFAF36;
+        font-weight: 500;
+        display: none;
+    }
+
+    .busqueda-servicios .dropdown .btn {
+        width: 100% !important;
+        text-align: left;
+        border: none;
+        font-weight: 700;
+        font-size: 11px;
+    }
+
+        .busqueda-servicios .dropdown .btn.dropdown-toggle:after {
+            float: right !important;
+            margin-top: .5rem;
+        }
+
+    .busqueda-servicios .dropdown .dropdown-menu {
+        width: 100% !important;
+    }
+.show > .btn-outline-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #3BC1CD;
+    border-color: #3BC1CD;
+}
+
+.busqueda-comunas .btn {
+    padding: 0.625rem 1rem !important
+}
+
+.busqueda-comunas img {
+    width: 100px;
+    height: 100px;
+}
+
+.busqueda-regiones .btn {
+    padding: 0.625rem 1rem !important
+}
+
+.busqueda-regiones img {
+    width: 100px;
+    height: 100px;
+}
+.busqueda-servicios .btn {
+    padding: 0.625rem 1rem !important
+}
+
+.busqueda-servicios img {
+    width: 100px;
+    height: 100px;
+}
+
+.icon-confirma {
+    font-size: 8rem;
+    color: #FFAF36;
+}
+
+.leyenda-date-picker {
+    font-size: .8rem;
+    padding: 1rem 0;
+    width: 265px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.leyenda-date-color {
+    font-size: .8rem;
+    padding: 1rem 0;
+    width: 265px;
+    margin: 0 auto;
+    text-align: left;
+}
+.cont-volver {
+    width: 200px;
+    padding: 1rem;
+}
+
+.cont-banner img {
+    display: block;
+    margin: 0 auto;
+    border-radius: .5rem;
+    cursor: pointer;
+    width: 100%;
+    height: auto;
+    max-width: 325px;
+}
+
+
+@media (max-width: 1024px) {
+
+    .peru {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    .busqueda-profesionales img {
+        width: 64px;
+        height: 64px;
+    }
+
+    .busqueda-comunas img {
+        width: 64px;
+        height: 64px;
+    }
+
+    .busqueda-regiones img {
+        width: 64px;
+        height: 64px;
+    }
+
+    .busqueda-servicios img {
+        width: 64px;
+        height: 64px;
+    }
+    .cont-volver {
+        margin: 0 auto;
+    }
+
+    #visorInforme {
+        height: 450px;
+        overflow-y: auto;
+    }
+}
+
+
+/* Caja Especialidad*/
+
+
+.cont-caja-especialidad {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.caja-especialidad {
+    /*max-width: 300px;
+    min-width: 280px;*/
+    min-width: 260px;
+    width: 100%;
+    color: #FFF;
+    font-weight: 700;
+    font-size: 1rem;
+    display: inline-block;
+    border-radius: .5rem;
+    padding: .8rem 1rem;
+    /*padding-left: 2.5rem;*/
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-right: 1rem;
+    transition: all .3s ease-out;
+    background-color: #3BC1CD;
+    max-width: 300px;
+}
+
+/*  .caja-especialidad:first-child {
+        width: 270px;
+    }*/
+
+    .caja-especialidad:last-child {
+        margin-right: 0;
+    }
+
+    .inner-especialidad {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+    }
+
+        .inner-especialidad img {
+            max-width: 32px;
+            margin-right: 1rem;
+        }
+
+        .inner-especialidad strong {
+            color: yellow;
+        }
+
+    .caja-especialidad i {
+        font-size: 2.4rem;
+        margin-right: 1rem;
+    }
+
+.especialista {
+    /*background-color: #3BC1CD;*/
+}
+
+.veterinario {
+    background-color: #0081A4;
+}
+
+.presencial {
+    background-color: #326BAB;
+}
+
+.caja-especialidad:hover {
+    background-color: #033B4A;
+}
+
+.caja-especialidad.active {
+    background-color: #F2994A;
+    /*border: 3px solid #aa6222;*/
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.25);
+}
+
+.caja-busqueda {
+    min-width: calc(100% - 40px);
+}
+
+    .caja-busqueda .dropdown .dropdown-item,
+    .caja-busqueda .dropdown .dropdown-item:hover {
+        color: #069;
+    }
+
+.caja-busqueda-comunas {
+    min-width: calc(100% - 40px);
+}
+
+    .caja-busqueda-comunas .dropdown .dropdown-item,
+    .caja-busqueda-comunas .dropdown .dropdown-item:hover {
+        color: #069;
+    }
+
+.caja-busqueda-regiones {
+    min-width: calc(100% - 40px);
+}
+
+    .caja-busqueda-regiones .dropdown .dropdown-item,
+    .caja-busqueda-regiones .dropdown .dropdown-item:hover {
+        color: #069;
+    }
+.caja-busqueda-servicios {
+    min-width: calc(100% - 40px);
+}
+
+    .caja-busqueda-servicios .dropdown .dropdown-item,
+    .caja-busqueda-servicios .dropdown .dropdown-item:hover {
+        color: #069;
+    }
+
+@media (max-width: 1024px) {
+    .cont-caja-especialidad {
+        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    .caja-especialidad, .busqueda-profesionales {
+        width: 100%;
+        display: block;
+        margin: 0 auto 1rem !important;
+    }
+
+        .caja-especialidad {
+            width: auto;
+            min-width: 0;
+            flex-grow: 1;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            border-radius: 1rem;
+        }
+
+        .caja-especialidad i {
+            margin-right: 0;
+            font-size: 2.8rem;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 1rem;
+        }
+        .inner-especialidad {
+            display: inline-block;
+            text-align: center;
+        }
+
+        .busqueda-profesionales {
+            max-width: none;
+        }
+
+        .busqueda-profesionales {
+            display: flex;
+            max-width: 320px;
+        }
+
+    .busqueda-profesionales i {
+        margin-right: 1rem;
+    }
+
+    .caja-especialidad, .busqueda-comunas {
+        width: 100%;
+        display: block;
+        margin: 0 auto 1rem !important;
+        max-width: 146px;
+    }
+
+    .busqueda-comunas {
+        max-width: none;
+    }
+
+    .busqueda-comunas {
+        display: flex;
+    }
+
+        .busqueda-comunas i {
+            margin-right: 1rem;
+        }
+    caja-especialidad, .busqueda-regiones {
+        width: 100%;
+        display: block;
+        margin: 0 auto 1rem !important;
+    }
+
+    .busqueda-regiones {
+        max-width: none;
+    }
+
+    .busqueda-regiones {
+        display: flex;
+    }
+
+        .busqueda-regiones i {
+            margin-right: 1rem;
+        }
+
+    caja-especialidad, .busqueda-servicios {
+        width: 100%;
+        display: block;
+        margin: 0 auto 1rem !important;
+    }
+
+    .busqueda-servicios {
+        max-width: none;
+    }
+
+    .busqueda-servicios {
+        display: flex;
+    }
+
+        .busqueda-servicios i {
+            margin-right: 1rem;
+        }
+    .label-caja-especialidad {
+        display: block;
+        text-align: center;
+        width: 60px;
+        margin: 0 auto;
+        font-size: 10px;
+    }
+
+    .label-caja-especialidad small {
+        display: none !important;
+    }
+}
+
+/*Calendario*/
+
+
+/*.datepicker tbody tr > td.day.active {
+    background: #3BC1CD;
+    background: #5867dd;
+}
+
+.datepicker tbody tr > td.day.today {
+    color: #3BC1CD;
+}
+
+/*.datepicker tbody tr > td.day.today {
+    background: #3BC1CD !important;
+}
+
+.datepicker tbody tr > td.active.day {
+    background: #5867dd;
+}*/
+
+.calendario .today.active.day {
+    background: #0081A4 !important;
+}
+
+.calendario .datepicker tbody tr > td.day.active {
+    background: #3BC1CD;
+}
+
+    .calendario .datepicker tbody tr > td.day.active.diaActivo {
+        background: #0081A4 !important;
+    }
+/*
+.calendario .datepicker tbody tr > td.day.active {
+    background: red;
+}
+
+.calendario .datepicker tbody tr > td.active.day {
+    background: green;
+}*/
+
+
+
+.btn-outline-primary:not(:disabled):not(.disabled):active,
+.btn-outline-primary:not(:disabled):not(.disabled).active,
+.show > .btn-outline-primary.dropdown-toggle {
+    color: #0081A4;
+    background-color: #FFF;
+    border-color: #FFF;
+}
+
+.btn.btn-outline-primary.dropdown-toggle.itemEspecialidad:hover {
+    background-color: #FFF !important;
+    border-color: #FFF !important;
+    color: #3BC1CD !important;
+}
+
+.btn.btn-outline-primary.dropdown-toggle.itemLocalidades:hover {
+    background-color: #FFF !important;
+    border-color: #FFF !important;
+    color: #3BC1CD !important;
+}
+
+.btn.btn-outline-primary.dropdown-toggle.itemRegiones:hover {
+    background-color: #FFF !important;
+    border-color: #FFF !important;
+    color: #3BC1CD !important;
+}
+
+.btn.btn-outline-primary.dropdown-toggle.itemServicios:hover {
+    background-color: #FFF !important;
+    border-color: #FFF !important;
+    color: #3BC1CD !important;
+}
+
+
+
+
+.selector-activo .btn-outline-primary:not(:disabled):not(.disabled):active,
+.selector-activo .btn-outline-primary:not(:disabled):not(.disabled).active,
+.show > .btn-outline-primary.dropdown-toggle {
+    color: #0081A4;
+    background-color: #FFF;
+    border-color: #FFF;
+}
+
+.selector-activo .btn.btn-outline-primary.dropdown-toggle.itemEspecialidad:hover {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    color: #3BC1CD !important;
+}
+
+.selector-activo .btn.btn-outline-primary.dropdown-toggle.itemLocalidades:hover {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    color: #3BC1CD !important;
+}
+.selector-activo .btn.btn-outline-primary.dropdown-toggle.itemRegiones:hover {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    color: #3BC1CD !important;
+}
+
+.selector-activo .btn.btn-outline-primary.dropdown-toggle.itemServicios:hover {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    color: #3BC1CD !important;
+}
+
+
+.cont-jornadas {
+    margin-bottom: 1rem;
+}
+
+
+.titulo-servicio {
+    font-size: 2.2rem;
+    margin-top: 2rem;
+
+}
+
+
+.label-especialidades {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .leyenda-date-color {
+        width: 100%;
+    }
+    .titulo-servicio {
+        margin-top: 1.2rem;
+        font-size: 1.8rem;
+    }
+    
+}
+
+.selector-activo {
+    animation-name: selector-activo;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    background-color: rgba(159,193,205,0);
+}
+
+
+/*Animaci�n selector de comunas y servicio*/
+@keyframes selector-activo {
+    0% {
+        background-color: rgba(159,193,205,0);
+    }
+
+    25% {
+        background-color: rgba(159,193,205,.5);
+    }
+
+    100% {
+        background-color: rgba(159,193,205,0);
+    }
+}
+
+.label-especialidades {
+    display: none;
+}

@@ -1,0 +1,650 @@
+/* Unab Styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap');
+
+
+:root {
+    --primary-color: #145C96;
+    --secondary-color: #058CCE;
+    --tertiary-color: #03111F;
+    --accent-color: #E81E2B;
+    --light-color: #FFF;
+    --dark-color: #333;
+    --base-font-size: 16px;
+    --background-ui: #E5E5E5;
+    --menu-color: #364F6B;
+    --transition: all .3s ease-out;
+}
+
+
+/****************************/
+
+body {
+    font-family: 'Mulish', sans-serif;
+}
+
+
+a {
+    /*color: var(--primary-color) !important;*/
+}
+
+
+.body-home {
+    background: #058CCE;
+    background-image: url(../../img/unab/isotipo-fondo.png), linear-gradient(180deg, #0081a4 0%, rgba(10, 51, 84, 1) 100%);
+    background-repeat: no-repeat;
+    background-position: 120% bottom;
+    background-attachment: fixed;
+}
+
+
+/*Login*/
+
+.head-crear-usuario {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    border-top: 1px solid rgba(19,99, 152, .3);
+    padding-top: 1rem;
+}
+
+    .head-crear-usuario h4 {
+        color: var(--primary-color);
+    }
+
+    .btn-secondary {
+        color: var(--primary-color);
+    }
+
+.btn-secondary:hover {
+    color: var(--light-color);
+    background-color: var(--primary-color);
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15%;
+}
+
+.logo-convenios {
+    gap: 1rem;
+    justify-content: space-between;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+.logotipo-desktop,
+.logotipo-mobile {
+    background-image: url(../../img/unab/logo.png)
+}
+
+
+.logotipo-mobile {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    height: 80px;
+}
+
+.menu-top .item-menu-top .logotipo-mobile {
+    margin-top: 0;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--light-color);
+}
+
+.img1 {
+    background-image: url(../../img/unab/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/unab/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/unab/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/unab/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/unab/960x978.jpg);
+}
+
+
+.img6 {
+    background-image: url(../../img/unab/960x978.jpg);
+}
+
+
+/*Home*/
+
+.body-home .logo-home img {
+    width: 71px;
+}
+/*Agendar*/
+.busqueda-profesionales {
+    border: 2px solid var(--secondary-color);
+}
+
+    .busqueda-profesionales i {
+        color: var(--secondary-color);
+    }
+
+    .nombre-profesional {
+        color: var(--primary-color)
+    }
+
+    .nombre-profesional small {
+        color: var(--tertiary-color);
+    }
+
+.especialidad-profesional {
+    color: var(--tertiary-color);
+}
+
+.front-fecha-atencion strong:before {
+    color: var(--secondary-color);
+    font-size: 11px;
+}
+
+.caja-profesional {
+    border: 1px solid rgba(5, 140, 206, 0.3);
+}
+
+    .caja-profesional .titulo-profesional {
+        color: var(--tertiary-color);
+    }
+
+.especialista {
+    background-color: var(--secondary-color);
+}
+
+.veterinario {
+    background-color: var(--primary-color);
+}
+
+.caja-profesional .fecha-atencion {
+
+}
+.dropdown .btn-outline-primary {
+    color: var(--secondary-color);
+}
+
+.hora-top {
+    color: var(--secondary-color)
+}
+
+.hora.disponible .detalle-hora {
+    color: var(--secondary-color)
+}
+
+
+.carga-archivos h3 {
+    color: var(--secondary-color)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary-color)
+}
+
+.front .btn-agendar, .btn-primary {
+  
+}
+
+}
+/*Menu*/
+
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--primary-color) !important;
+    border: 1px solid red;
+}
+
+.kt-aside-menu-wrapper .kt-grid__item kt-grid__item--fluid {
+    border: 1px solid red;
+}
+
+
+.menu-top .label-menu {
+    color: var(--primary-color);
+}
+/*Accesible*/
+.accesible-btn button {
+    border: 1px solid var(--secondary-color);
+    color: var(--primary-color);
+}
+
+/*Wikidoc*/
+
+.home-library .bg-library {
+    background-color: var(--primary-color)
+}
+
+
+/*Historial*/
+
+.mensaje-no-atencion .btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.kt-aside--minimize .kt-aside-menu .kt-menu__nav > 
+.kt-menu__item.kt-menu__item--here a, 
+.kt-aside--minimize 
+.kt-aside-menu 
+.kt-menu__nav > 
+.kt-menu__item.kt-menu__item--active a {
+
+    color: var(--primary-color);
+
+}
+
+.kt-aside--minimize .kt-aside-menu .kt-menu__nav >
+.kt-menu__item.kt-menu__item--here a i,
+.kt-aside--minimize
+.kt-aside-menu
+.kt-menu__nav >
+.kt-menu__item.kt-menu__item--active a i {
+    color: var(--primary-color);
+}
+
+.menu-top .item-menu-top i {
+    color: var(--primary-color);
+}
+
+.accesible-btn button:hover {
+    background-color: var(--primary-color);
+}
+
+.caja-atencion .header-aviso-atencion {
+    color: var(--secondary-color);
+}
+
+
+/*Sala de Espera*/
+
+.hotspot-icon {
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.6);
+}
+
+    .hotspot-icon .cont-icon i,
+    .hotspot-icon:hover .cont-icon i {
+        text-shadow: none;
+    }
+
+    .hotspot-icon .cont-icon {
+        background-color: var(--light-color);
+    }
+
+.sala-espera-mobile {
+    /*margin-top: 3rem;*/
+    justify-content: center;
+}
+
+.sala-espera-mobile img {
+    width: 100%;
+    object-fit: cover;
+    margin-top: 0;
+    height: 100%;
+}
+
+.btn-sala .cont-icon img {
+    width: 80%;
+    object-fit: contain;
+    max-height: 80%;
+}
+
+.btn-consentimiento {
+    display: none;
+}
+
+.sala-espera-mobile .card-sala:nth-of-type(3n) {
+    margin-top: 12rem;
+}
+
+    .sala-espera-mobile .btn-sala .cont-icon {
+        background-color: #FFF;
+        overflow: hidden;
+    }
+
+.alerta-sala {
+    background-color: rgba(0, 0, 0, .9);
+}
+
+.sala-espera-mobile.sala-espera-consalud.sala-espera-inmediata .alerta-sala {
+    margin-bottom: 3rem;
+    margin-top: 4rem;
+}
+
+.sala-espera-mobile.sala-espera-consalud.sala-espera-inmediata .card-media {
+    justify-content: space-between
+}
+
+.sala-espera-mobile.sala-espera-consalud.sala-espera-inmediata .card-function {
+    margin-top: 0;
+    max-width: 100%;
+    /*flex-wrap: wrap;*/
+}
+
+#ingreso-m {
+    /*margin-top: 2rem;*/
+}
+
+.powered {
+    /*padding-top: 3rem;*/
+    margin-bottom: 0;
+}
+
+@media (max-width: 1024px) {
+    .top-banner .legend {
+        text-align: left;
+    }
+}
+
+/************Nuevo Login****************/
+
+.login-container {
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    align-items: center;
+    
+    
+    display: flex;
+    justify-content: flex-end;
+    background-image: url(../../img/unab/fondo-login.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: center;
+}
+
+    .login-container a {
+        color: var(--primary-color)
+    }
+
+        .login-container a:hover {
+            color: red;
+        }
+
+
+.login-box {
+    width: 100%;
+    /*min-height: 80%;*/
+    max-width: 660px;
+    height: auto;
+    margin: 2rem 140px;
+    border-radius: 3rem;
+    background-color: #D2E9F6;
+}
+
+.body-login {
+    padding: 3rem 76px;
+}
+
+.form-group .ms-label {
+    text-transform: uppercase;
+    font-weight: 700 !important;
+    color: #0081A4 !important;
+}
+
+.body-login h1 {
+    text-transform: uppercase;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    font-size: 24px;
+}
+
+.header-login {
+    background-color: #136398;
+    padding: 1.5rem 1rem;
+    border-radius: 3rem 3rem 0 0;
+}
+
+    .header-login .logo {
+        max-width: 145px;
+        width: 100%;
+        min-height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .header-login .logo img {
+        max-width: 110px;
+    }
+
+    .header-login .logo:last-child {
+        max-width: 190px;
+        border-left: 1px solid rgba(255,255,255, .3);
+    }
+
+.cont-logos-login {
+    display: flex;
+    width: 100%;
+    max-width: 368px;
+    align-items: center;
+    margin: auto;
+    gap: 1rem;
+}
+
+.btn-toolbar {
+    margin-top: 2rem;
+}
+
+
+/*Iconos sala de espera*/
+
+.titulo-sala {
+    display: none;
+}
+
+#reporte,
+#contacto,
+#facebook,
+#instagram {
+    display: none;
+}
+
+
+.hotspot-icon .cont-icon {
+    width: 150px;
+    height: 150px;
+    padding: 1rem;
+    border-radius: 32px;
+    background-color: white !important;
+}
+
+    .hotspot-icon .cont-icon img {
+        object-fit: contain;
+        max-height: 100%;
+        max-width: 100px;
+    }
+
+
+.sala-medismart #hs-a {
+    left: 48%;
+    top: 64%;
+}
+
+
+.sala-medismart #hs-b {
+    top: 30%;
+    left: 60%;
+}
+
+
+.sala-medismart #hs-c {
+    left: 36%;
+    top: 30%;
+}
+
+
+.sala-medismart #hs-d {
+    left: 48%;
+    top: 30%;
+}
+
+.sala-medismart #hs-e {
+    left: 56%;
+}
+
+.sala-medismart #tubeUnab {
+    left: 60%;
+    top: 64%;
+}
+
+.sala-medismart #agendaUnab {
+    left: 72%;
+    top: 30%;
+}
+
+.sala-medismart #noticiasUnab {
+    left: 36%;
+    top: 64%;
+}
+
+
+
+
+
+@media (max-width: 991.98px) {
+    .body-login {
+        padding: 3rem;
+    }
+
+        .body-login h1 {
+            font-size: 22px;
+        }
+
+    .login-box {
+        max-height: none;
+        margin: 1rem;
+        height: auto;
+    }
+
+    .header-login .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-valida-codigo {
+        font-size: 12px;
+        text-transform: none;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    #ingreso-m .cont-icon {
+        background-color: #e52521 !important;
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+
+
+    #btnAbandonarAtencion {
+        top: 64%;
+    }
+    
+    .sala-medismart #hs-g {
+        top: 64%;
+        left: 78% !important;
+    }
+
+    .hotspot-icon .cont-icon {
+        width: 120px;
+        height: 120px;
+        background-color: white !important;
+    }
+
+    #hs-g .cont-icon {
+        background-color: #e52521 !important;
+    }
+
+    /*Iconos*/
+    .sala-medismart #hs-a {
+        left: 50%;
+        top: 64%;
+    }
+
+
+    .sala-medismart #hs-b {
+        top: 26%;
+        left: 64%;
+    }
+
+
+    .sala-medismart #hs-c {
+        left: 36%;
+        top: 26%;
+    }
+
+
+    .sala-medismart #hs-d {
+        left: 50%;
+        top: 26%;
+    }
+
+    .sala-medismart #hs-e {
+        left: 56%;
+    }
+
+    .sala-medismart #tubeUnab {
+        left: 64%;
+        top: 64%;
+    }
+
+    .sala-medismart #agendaUnab {
+        left: 78%;
+        top: 26%;
+    }
+
+    .sala-medismart #noticiasUnab {
+        left: 36%;
+        top: 64%;
+    }
+
+
+}
+
+@media (min-width: 1920px) {
+    .hotspot-icon .cont-icon {
+        width: 150px;
+        height: 150px;
+        background-color: white !important;
+    }
+
+    .sala-medismart #hs-g {
+        left: 72%;
+        top: 64%;
+    }
+}
+
+#hs-g.hotspot-icon .cont-icon {
+    background-color: #e52521 !important;
+}
+
+.sala-medismart #hs-g {
+    left: 72%;
+    top: 64%;
+}
+
+.modal-footer {
+    margin-top: 0rem !important;
+    width: 100% !important;
+}
+
+.titulo-modal {
+    font-size: 2rem;
+}
+.columna-examenes {
+    display: none;
+}
+.columna-medicamentos {
+    display: none;
+}
+/*Login Profesional*/

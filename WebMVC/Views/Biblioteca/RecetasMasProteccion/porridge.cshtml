@@ -1,0 +1,101 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+    <section class="container-fluid note-section library featured" id="nota3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="cont-titulo-receta">
+                        <div class="cont-logo">
+                            <img src="~/img/cajalosandes/recetas/logo.svg" alt="" />
+                            <h1 class="title-section">
+                                Porridge
+                            </h1>
+                        </div>
+                        <img src="~/img/scotiabank/recetas/food.png" alt="trufa_chocolate" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <h2 class="subtitulo-receta">
+                        Ingredientes:
+                    </h2>
+
+                    <ol>
+                        <li>1 taza de leche descremada o 1 vaso de agua.</li>
+                        <li>½ taza de avena.</li>
+                        <li>1 taza de fruta picada.</li>
+                        <li>1 cda de Chía (Opcional)</li>
+                        <li>Canela a gusto (Opcional)</li>
+                    </ol>
+                   
+                    <h2 class="subtitulo-receta">
+                        Preparación
+                    </h2>
+                    <ol>
+                        
+                        <li>Lava las frutas.
+                        <li>Comienza calentando un sartén con un poco de aceite de oliva y agrega la cebolla, pimentón y zanahoria y sofríe hasta que esté todo dorado y la cebolla más transparente.</li>
+                        <li>En un bowl agregar las lentejas junto al agua y muélelas con un tenedor, no importa si quedan lentejas enteras. Luego agrega el sofrito de verduras, condimenta y agrega la harina para aglutinar la mezcla.</li>
+                        <li>Forma bolitas y lleva al horno precalentado a 180º C por 15 a 20 minutos. Una vez listas, acompañalas con salsa de tomate.</li>
+                        <li>Agrega canela a gusto.</li>
+                        <li>Sírvelo.</li>
+                    </ol>
+                    
+                    <h2 class="subtitulo-receta">
+                        Tips
+                    </h2>
+                    <ol>
+
+                        <li>Mientras más tiempo remojes la avena, más denso quedará tu Porridge.</li>
+                         <li>Puedes utilizar fruta de estación picada o mermelada sin azúcar.</li>
+                         <li>Mientras más tiempo dejes la fruta en el Porridge, más jugo soltará.</li>
+                         <li>Intenta variar los sabores de la fruta, las semillas y del topping como por ejemplo dátiles, plátano, canela, mantequilla de maní, almendras, linaza, chía, etc.</li>
+                        <li>Sirve como colación, ya que es fácil de transportar y consumir. Puedes mezclarlo todo, o prepararlo por capas.</li>
+
+                     
+                    </ol>
+                   
+                     
+                    
+                    <p>
+                        <a href="@Url.Action("Descargar", new { file = ViewBag.codigoNota})">
+                            Descargar PDF
+                        </a>
+                        
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}

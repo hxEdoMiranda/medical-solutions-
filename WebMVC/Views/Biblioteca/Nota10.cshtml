@@ -1,0 +1,146 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+
+    <section class="container-fluid note-section library featured" id="nota10">
+        <div class="container">
+            <div class="row">
+                <div class="col-auto">
+                    <div class="cont-icons">
+                        <div class="icon account-type">
+                            <i class="fal fa-heart"></i>
+                        </div>
+                        <div class="icon">
+                            <i class="fal fa-file-alt"></i>
+                        </div>
+                    </div>
+
+                    <h1 class="title-section">
+                        Prevención del cáncer de cuello uterino: Vacunas y citologías
+                    </h1>
+                    
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    
+                    <p>
+                        El cáncer de cuello uterino es una enfermedad que afecta a miles de mujeres en todo el mundo. Sin embargo, 
+                        es una enfermedad que se puede prevenir en gran medida a través de la vacunación y el seguimiento regular con citologías. 
+                        En este blog, hablaremos en detalle cómo estas dos estrategias son esenciales para la prevención de esta enfermedad devastadora.
+
+                    </p> <br />
+                    <strong>
+                        ¿Qué es el cáncer de cuello uterino?
+                        </strong>
+                    <p>
+                        El cáncer de cuello uterino, también conocido como cáncer cervical, se desarrolla en las células del cuello del útero. 
+                        Es causado principalmente por la infección persistente con el virus del papiloma humano (VPH). El VPH es una infección 
+                        de transmisión sexual común que puede llevar al desarrollo de lesiones precancerosas y, finalmente, al cáncer de cuello 
+                        uterino si no se trata adecuadamente.
+                    </p><br />
+                    <strong>
+                        La importancia de la vacunación contra el VPH
+                    </strong>
+                    <p>
+                        Una de las formas más efectivas de prevenir el cáncer de cuello uterino es a través de la vacunación contra el VPH. 
+                        Estas vacunas están diseñadas para proteger contra los tipos de VPH que son más propensos a causar cáncer, así como contra otros tipos de VPH que pueden causar verrugas genitales.
+
+                    </p><br />
+                    <p>
+                        ¿Quiénes deben vacunarse? La vacunación contra el VPH se recomienda para niñas y niños en la adolescencia, 
+                        generalmente entre los 11 y 12 años. Cuanto antes se administre la vacuna, mejor será la protección. Sin embargo, 
+                        también se puede administrar a personas hasta los 26 años si no se han vacunado anteriormente.
+
+                    </p>
+                    <p>
+                        <strong>Efectividad de la vacuna:</strong> Las vacunas contra el VPH son altamente efectivas y han demostrado reducir 
+                        significativamente el riesgo de cáncer de cuello uterino y otras enfermedades relacionadas con el VPH.
+                    </p><br />
+                    <strong>
+                        El papel fundamental de las citologías
+                    </strong>
+                    <p>
+                        Además de la vacunación, las citologías son una herramienta crucial en la prevención y detección temprana del 
+                        cáncer de cuello uterino. Estos exámenes consisten en tomar una muestra de células cervicales para evaluar si hay 
+                        cambios anormales que podrían indicar la presencia de lesiones precancerosas o cáncer.
+
+                    </p>                
+                    
+                    <ol>
+                        <br />
+                        <li>
+                            <strong>Frecuencia de las citologías:</strong> Se recomienda que las mujeres comiencen a realizarse citologías 
+                            aproximadamente a los 21 años. La frecuencia de estos exámenes puede variar según la edad y el historial médico 
+                            de la paciente, pero generalmente se realizan cada tres años.
+
+                        </li>
+                        <br />
+                        <li>
+                            <strong>Resultados anormales:</strong> Si se encuentran resultados anormales en la citología, esto no significa necesariamente que tengas cáncer de cuello uterino. Puede indicar cambios precancerosos que pueden ser tratados antes de que se conviertan en cáncer.
+
+                        </li>                        
+                                                                  
+                    </ol>                   
+                    <br />
+                    
+                    <p>
+                        La prevención del cáncer de cuello uterino es una responsabilidad compartida entre las mujeres y sus proveedores de 
+                        atención médica. La vacunación contra el VPH y las citologías son herramientas poderosas para evitar esta enfermedad devastadora. 
+                        La educación es  fundamental para que las mujeres tomen medidas para proteger su salud cervical y reducir el riesgo de cáncer de 
+                        cuello uterino.
+
+                    </p> <br />                   
+                    
+                    <p>
+                        Si tienes preguntas o preocupaciones, no dudes en hablar con nuestros médicos, quienes te guiarán en la mejor estrategia 
+                        de prevención según tu situación particular.<strong> ¡La prevención salva vidas!</strong>
+
+                    </p>
+
+                    <div class="cont-btnNota7">
+                        <button class="btn btn-primary" onclick="location.href='/Paciente/Agendar?tipo=suscripcion'">Agendar cita</button>
+                    </div>
+                   
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+                    </div>
+                    
+
+                    <partial name="~/Views/Biblioteca/_ColumnasNotas.cshtml" model="Model" view-data="ViewData" />
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}

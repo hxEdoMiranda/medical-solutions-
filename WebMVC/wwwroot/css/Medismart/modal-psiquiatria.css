@@ -1,0 +1,81 @@
+/*Modal Psiquiatria*/
+
+/*.swal2-container.swal2-center.swal2-shown {
+	display: none !important;
+}*/
+
+#modal-psiquiatria .modal-dialog {
+	max-width: 615px !important;
+}
+
+#modal-psiquiatria .modal-content {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    padding: 2rem;
+    height: 300px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#modal-psiquiatria .modal-content .modal-description {
+	display: flex;
+    flex-direction: column;
+	padding-left: 1rem;
+}
+
+#modal-psiquiatria .modal-content .modal-description p {
+	color: #868686;
+	font-family: Mulish;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+	margin-bottom: 1rem;
+}
+
+#modal-psiquiatria .modal-footer {
+	justify-content: end;
+}
+
+#modal-psiquiatria .modal-footer .btn.btn-primary {
+	display: inline-flex;
+	padding: 8px 14px;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+
+	border-radius: 8px;
+	border: 1px solid #37A0AD;
+	background-color: #37A0AD;
+
+	transition:  all 0.2s ease-in-out;
+
+	
+}
+
+#modal-psiquiatria .modal-footer .btn.btn-primary:hover,
+#modal-psiquiatria .modal-footer .btn.btn-primary:focus {
+	background-color: #0081A4;
+	/* Shadow/xs */
+	box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+}
+
+@media (max-width:668px) {
+	#modal-psiquiatria .modal-content {
+	    width: 92%;
+	    display: flex;
+	    flex-direction: column;
+	    height: fit-content !important;
+	}
+
+	#modal-psiquiatria .modal-content img {
+		margin-bottom: 1rem;
+		width: 30%;
+	}
+
+	#modal-psiquiatria .modal-content .modal-description p {
+		text-align: center;
+	}
+}

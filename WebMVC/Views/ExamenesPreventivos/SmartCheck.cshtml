@@ -1,0 +1,118 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_LayoutPaciente";
+    var urlSmartcheck = Configuration["ServiceUrlSmartcheck"];
+}
+
+
+<!--Vista 1-->
+
+
+<div class="container-fluid cont-medicina-preventiva">
+  <div class="breadcrumb-medismart">
+        Home > <strong>Smart Check</strong>
+    </div>
+    @*
+    <h2>Smart Check</h2> 
+    <div class="row">
+        <div class="col-12 col-md">
+            <div class="opcion-interior">
+                <img src="~/img/medicina-preventiva/icon-smartcheck.svg" alt="Smart Check">
+                <h2>Smart Check</h2> <!--aqui va anura-->
+                <p style="margin:auto; margin-bottom: 1em;">Smart Check de signos vitales es un exámen realizado con ayuda de la I.A. en nuestra plataforma</p>
+                <button class="btn btn-primary btn-block" id="btnAnura">
+                    Comenzar
+                </button>
+            </div>
+        </div>
+    </div>*@
+    <div class="smartcheck-new">
+
+        <div class="smartcheck-img">
+            <img src="~/img/medicina-preventiva/imagen-puntitos.jpg" alt="Smart Check" />
+        </div>
+
+        <div class="smartcheck-info">
+            <div class="smart-title-icon">
+                <img src="~/img/medicina-preventiva/icono-smart-degrade.svg" alt="Smart Check icon" />
+                 <div class="title">
+                    <h1 class="degradado-horizontal">¡Cuida de tu Salud</h1>
+                    <h1 class="degradado-horizontal">con SmartCheck!</h1>
+                 </div>
+            </div>
+            <div class="smartcheck-description mt-4">
+                <p>
+                    Conocer tus datos vitales te permite tener un chequeo más completo 
+                    y efectivo con tu médico ,garantizando una atención de salud óptima.
+                </p>
+            </div>
+            <div class="smartcheck-cam-act mt-4">
+                <img src="~/img/medicina-preventiva/icono-cam-act.svg" alt="Smart Check icon" />
+                <p>
+                    <span>Activa la cámara de tu dispositivo y mantente quieto durante 30 segundos</span>
+                    para iniciar la medición automática de tus signos vitales.
+                </p>
+            </div>
+            <div class="smartcheck-cam-act mt-4">
+                <img src="~/img/medicina-preventiva/icono-smart-result.svg" alt="Smart Check icon" />
+                <p>
+                    <span> Obtén tus resultados</span>
+                    en un reporte intuitivo que te permitirá conocer tu condición
+                    actual y puedes contar con una evaluación médica más integral.
+                </p>
+            </div>
+            <div class="smartcheck-cam-act mt-3">
+                <img src="~/img/medicina-preventiva/icono-smart-calendar.svg" alt="Smart Check icon" />
+                <p>
+                    <span>Atención Inmediata:</span>
+                     Te recomendamos buscar atención inmediata con un médico general para revisar tus resultados.                 
+                </p>
+            </div>
+            <div class="dotted-line mt-4"></div>
+            <div class="smartcheck-check mt-4">
+                <input type="checkbox" id="terminosCheckbox" />
+                <p>*He leído y Acepto los términos y consentimiento informado de Smartcheck.</p>
+            </div>
+            <div class="btn-smartcheck mt-4">
+                <button id="btnAnura">COMENZAR</button>
+            </div>          
+        </div>
+    </div>
+</div>
+
+<!--end:: Vsita 1-->
+<!--Vista 2-->
+@section Scripts {
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="module">
+        import { init } from '../../js/Paciente/examenes-preventivos-index.js?rnd=${@NumeroRandom.GetRandom()}';
+        init()
+    </script>
+    <script type="text/javascript">
+
+        // Obtén el checkbox y el botón
+        var checkbox = document.getElementById("terminosCheckbox");
+        var btnAnura = document.getElementById("btnAnura");
+
+        btnAnura.disabled = true;
+
+        checkbox.addEventListener("change", function () {
+            if (checkbox.checked) {
+                btnAnura.disabled = false;
+            } else {
+                btnAnura.disabled = true;
+            }
+        });
+
+        var urlSmartcheck = '@urlSmartcheck';
+        window.urlSmartcheck = urlSmartcheck;
+    </script>
+}
+

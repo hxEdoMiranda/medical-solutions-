@@ -1,0 +1,119 @@
+/* Main Medismart */
+/* Medismart Styles*/
+@import 'general.css?2';
+@import 'login.css?2';
+@import 'header.css?2';
+@import 'cards.css?2';
+@import 'inicio.css?2';
+@import 'caja-atencion.css?2';
+@import 'caja-archivo.css?2';
+@import 'mediaqueries.css?2';
+@import 'agendar.css?2';
+@import 'perfil.css?2';
+/*@import 'videoconsulta.css';*/
+@import 'lista-archivos.css?2';
+@import 'caja-profesional.css?3';
+@import 'stepper.css?2';
+@import 'perfil-profesional.css?2';
+@import 'formulario-agendamiento.css?2';
+@import 'reserva-hora.css?2';
+@import 'confirmacion-hora.css?2';
+@import 'mensaje-confirmacion-hora.css?2';
+@import 'notificaciones.css?2';
+@import 'medicamentos.css?2';
+
+/*Sala de espera*/
+
+@import 'sala-espera.css?3';
+@import 'modal-validacion.css?4';
+@import 'sala-espera-mobile.css?2';
+@import 'panel-sala.css';
+@import 'sala-archivos.css';
+
+
+
+/*Home*/
+
+@import 'home.css?rnd=2';
+
+
+/*Accesibilidad*/
+
+@import 'accesible.css?2';
+
+
+/*Carrusel*/
+
+@import 'carrusel.css?2';
+
+
+/*Asistencia*/
+@import 'asistencia.css';
+
+/*Tooltip*/
+
+@import 'tooltip.css?2';
+
+/*Cargas*/
+@import 'lista-cargas.css?2';
+
+/*Biblioteca*/
+
+@import 'biblioteca.css?2';
+@import 'contenidos-biblioteca.css?2';
+
+
+
+/*Farmacias*/
+
+@import 'farmacias.css?2';
+
+/*FAQ - Tutoriales */
+@import 'FAQ.css';
+
+
+/*Resumen atencion*/
+
+@import 'resumen-atencion.css';
+
+/*Footer*/
+@import 'footer.css?2';
+
+/*Ex�menes Preventivos*/
+
+@import 'examenes-preventivos.css?2';
+
+
+/*AsistenciaTomaExamenes*/
+
+@import 'asistencia_toma_examenes.css?2';
+
+/*Incidencias*/
+
+@import 'scotiabank_is.css?2';
+
+
+/*Invitado*/
+
+@import 'invitado.css?2';
+
+
+/*Medicina Ocupacional*/
+
+@import 'medicina-ocupacional.css?2';
+
+
+/*Smartcheck*/
+@import 'smartcheck.css?2';
+
+/*Medicina Preventiva*/
+@import 'medicina-preventiva.css?2';
+
+/*MomentoWOW*/
+@import 'wow.css?2';
+
+/*Estilos Tablet*/
+@import 'tablet-fixes.css';
+
+/*Panel Lateral Sala Espera*/
+@import 'panel-lateral-medios.css?2';

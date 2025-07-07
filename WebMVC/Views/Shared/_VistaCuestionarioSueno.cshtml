@@ -1,0 +1,179 @@
+﻿@using Microsoft.Extensions.Configuration;
+@using WebMVC.Models;
+@model WebMVC.Models.AtencionViewModel
+@{
+}
+<style>
+    .view_cuestionario span{
+        font-weight:600
+    }
+</style>
+<div class="view_cuestionario">
+    <div class="form-group ps-form-group">
+        <div class="col">
+            <span id="Hora_Acostarse">Durante el último mes, ¿cuál ha sido, normalmente, su hora de acostarse?</span>
+            <br />
+            <p>@Model.cuestionarioSueno.hora_Acostarse</p>
+        </div>
+        <br>
+        <div class="col">
+            <span id="Tiempo_Dormirse">
+                Tiempo en dormir:
+            </span>
+            <br/>
+            <p>@Model.cuestionarioSueno.tiempo_Dormirse</p>
+        </div>
+        <br>
+        <div class="col">
+            <span id="Hora_Levantarse">
+                Durante el último mes, ¿a qué hora se ha levantado habitualmente por la
+                mañana?
+            </span>
+            <p>@Model.cuestionarioSueno.hora_Levantarse</p>
+        </div>
+        <br>
+        <div class="col">
+            <span id="Horas_Dormidas">
+                ¿Cuántas horas calcula que habrá dormido verdaderamente cada noche durante
+                el último mes?
+            </span>
+            <p>@Model.cuestionarioSueno.horas_Dormidas</p>
+        </div>
+        <br>
+        <div class="col">
+            <h5>
+                Durante el último mes, cuántas veces ha tenido usted problemas para
+                dormir a causa de:
+            </h5>
+            <!-- 5 a -->
+            <span id="problemas_dormir_primera_media_hora">
+                No poder concliliar el sueño en la primera media hora:
+            </span>
+            <br>
+            <p>@Model.cuestionarioSueno.Problemas_Dormir.primera_media_hora</p>
+            <br>
+            <!-- 5 b -->
+            <span id="problemas_dormir_despertar_noche_madrugada">
+                Despertarse durante la noche o de madrugada:
+            </span>
+            <br>
+            <p>@Model.cuestionarioSueno.Problemas_Dormir.despertar_noche_madrugada</p>
+            <br>
+            <!-- 5 c -->
+            <span id="problemas_dormir_levantarse_ir_servicio">
+                Tener que levantarse para ir al servicio:
+            </span>
+            <br>
+            <p>@Model.cuestionarioSueno.Problemas_Dormir.levantarse_ir_servicio</p>
+            <br>
+            <!-- 5 d -->
+            <span id="problemas_dormir_no_respirar_bien">
+                No poder respirar bien:
+            </span>
+            <br>
+            <p>@Model.cuestionarioSueno.Problemas_Dormir.no_respirar_bien</p>
+            <br>
+            <!-- 5 e -->
+            <span id="problemas_dormir_toser_roncar">
+                Toser o roncar ruidosamente:
+            </span>
+            <br>
+            <p>@Model.cuestionarioSueno.Problemas_Dormir.toser_roncar</p>
+            <br>
+            <!-- 5 f -->
+            <span id="problemas_dormir_sentir_frio">
+                Sentir frío:
+            </span>
+            <br>
+            <p>@Model.cuestionarioSueno.Problemas_Dormir.sentir_frio</p>
+            <br>
+            <!-- 5 g -->
+            <span id="problemas_dormir_sentir_calor">
+                Sentir demasiado calor:
+            </span>
+            <br>
+            <p>@Model.cuestionarioSueno.Problemas_Dormir.sentir_calor</p>
+            <br>
+            <!-- 5 h -->
+            <span id="problemas_dormir_pesadillas_malos_suenos">
+                Tener pesadillas o malos sueños:
+            </span>
+            <br>
+            <p>@Model.cuestionarioSueno.Problemas_Dormir.pesadillas_malos_suenos</p>
+            <br>
+            <!-- 5 i -->
+            <span id="problemas_dormir_sufrir_dolores">
+                Sufrir dolores:
+            </span>
+            <br>
+            <p>@Model.cuestionarioSueno.Problemas_Dormir.sufrir_dolores</p>
+            <br>
+            <!-- 5 j -->
+            <span id="problemas_dormir_otras_razones_text">
+                Otras razones:
+            </span>
+            @{
+                if (Model.cuestionarioSueno.Problemas_Dormir.otras_razones.ContainsKey("razon") && Model.cuestionarioSueno.Problemas_Dormir.otras_razones.ContainsKey("resultado"))
+                {
+                    <br>
+                    <span>@Model.cuestionarioSueno.Problemas_Dormir.otras_razones.GetValueOrDefault("razon","")</span>
+                    <br>
+                    <p>@Model.cuestionarioSueno.Problemas_Dormir.otras_razones.GetValueOrDefault("resultado","")</p>
+                }else{
+                    <p> Sin otras razones</p>
+                }
+            }
+            <br>
+        </div>
+        <br>
+        <div class="col">
+            <span id="Calidad_Sueno">
+                Durante el último mes, ¿cómo valoraría en conjunto, la calidad de su
+                sueño?
+            </span>
+            <br>
+            <p>@Model.cuestionarioSueno.calidad_Sueno</p>
+            <br>
+        </div>
+        <br>
+        <div class="col">
+            <span id="Medicinas_Dormir">
+                Durante el último mes, ¿cuántas veces habrá tomado medicinas (por su
+                cuenta o recetadas por el médico) para dormir?
+            </span>
+            <br>
+            <p>@Model.cuestionarioSueno.medicinas_Dormir</p>
+            <br>
+        </div>
+        <br>
+        <div class="col">
+            <span id="Somnolencia_Actividades">
+                Durante el último mes, ¿cuántas veces ha sentido somnolencia mientras
+                conducía, comía o desarrollaba alguna otra actividad?
+            </span>
+            <br>
+            <p>@Model.cuestionarioSueno.somnolencia_Actividades</p>
+            <br>
+        </div>
+        <br>
+        <div class="col">
+            <span id="Animos_Realizar_Actividades">
+                Durante el último més, ¿ha representado para usted mucho problema el
+                tener ánimos para realizar alguna de las actividades detalladas en la
+                pregunta anterior?
+            </span>
+            <br>
+            <p>@Model.cuestionarioSueno.animos_Realizar_Actividades</p>
+            <br>
+        </div>
+        <br>
+        <div class="col">
+            <span id="Dormir_Acompanado">
+                ¿Duerme usted solo o acompañado?
+            </span>
+            <br>
+            <p>@Model.cuestionarioSueno.dormir_Acompanado</p>
+            <br>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,360 @@
+﻿@{
+    ViewData["Title"] = "Administrador";
+    Layout = "_LayoutAdmin";
+    
+}
+
+@section PageStyles  {
+    <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+<!-- end:: Aside -->
+<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper" style="padding-top:30px;">
+    <!-- begin:: Header -->
+    <div id="kt_header" class="kt-header kt-grid kt-grid--ver  kt-header--fixed ">
+
+        <!-- begin: Header Menu -->
+        <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn"><i class="la la-close"></i></button>
+        <div class="kt-header-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_header_menu_wrapper">
+            <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile  kt-header-menu--layout- ">
+                <ul class="kt-menu__nav ">
+                    <li class="kt-menu__item  kt-menu__item--active " aria-haspopup="true"><span class="kt-menu__link-text">Hola Juan Lazo, a continuación se muestra tu agenda del mes.</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- end: Header Menu -->
+        <!-- begin:: Header Topbar -->
+        <div class="kt-header__topbar">
+
+        </div>
+
+        <!-- end:: Header Topbar -->
+    </div>
+    <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+
+        <!-- begin:: Subheader -->
+        <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+            <div class="kt-container  kt-container--fluid ">
+                <div class="kt-subheader__main">
+                    <h3 class="kt-subheader__title">
+                        <button class="kt-subheader__mobile-toggle kt-subheader__mobile-toggle--left" id="kt_subheader_mobile_toggle"><span></span></button>
+                        Agendar Atención
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- end:: Subheader -->
+        <!-- begin:: Content -->
+        <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+            <!--Begin::App-->
+            <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+
+                <!--Begin:: App Aside Mobile Toggle-->
+                <button class="kt-app__aside-close" id="kt_user_profile_aside_close">
+                    <i class="la la-close"></i>
+                </button>
+                <!--End:: App Aside Mobile Toggle-->
+
+                <div class="col-xl-6">
+                    <!--Begin:: App Aside-->
+                    <!--begin:: Widgets/Applications/User/Profile1-->
+                    <div class="kt-portlet kt-portlet--height-fluid-">
+                        <div class="kt-portlet__head  kt-portlet__head--noborder">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title">
+                                    Médico
+                                </h3>
+                            </div>
+
+                        </div>
+                        <div class="kt-portlet__body kt-portlet__body--fit-y">
+
+                            <!--begin::Widget -->
+                            <div class="kt-widget kt-widget--user-profile-1">
+                                <div>
+                                    <select class="form-control">
+                                        <option>Seleccionar Especialidad</option>
+                                        <option>Medicina General</option>
+                                        <option>Pediatria</option>
+                                    </select>
+
+                                </div>
+
+                                <div>
+                                    <br>
+                                    <input class="form-control" type="date" value="2020-03-19" id="example-date-input">
+
+                                </div>
+
+                                <div>
+                                    <br>
+                                    <select class="form-control">
+                                        <option>Seleccionar Hora</option>
+                                        <option>9:00</option>
+                                        <option>9:15</option>
+                                        <option>9:30</option>
+                                        <option>9:45</option>
+                                        <option>10:00</option>
+
+                                    </select>
+
+                                </div>
+
+                                <div>
+                                    <br>
+                                    <select class="form-control">
+                                        <option>Seleccionar Médico</option>
+                                        <option>Juan Lazo</option>
+                                        <option>Pedro Farias</option>
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                            <!--begin:: Widgets/New Users-->
+                            <div class="kt-portlet kt-portlet--tabs kt-portlet--height-fluid">
+                                <div class="kt-portlet__head">
+                                    <div class="kt-portlet__head-label">
+                                        <h3 class="kt-portlet__head-title">
+                                            Médicos disponibles
+                                        </h3>
+                                    </div>
+
+                                </div>
+                                <div class="kt-portlet__body">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="kt_widget4_tab1_content">
+                                            <div class="kt-widget4">
+                                                <div class="kt-widget4__item">
+                                                    <div class="kt-widget4__pic kt-widget4__pic--pic">
+                                                        <img src="assets/media/users/100_4.jpg" alt="">
+                                                    </div>
+                                                    <div class="kt-widget4__info">
+                                                        <a href="#" class="kt-widget4__username">
+                                                            Ana Medina
+                                                        </a>
+                                                        <p class="kt-widget4__text">
+                                                            9:00
+                                                        </p>
+                                                    </div>
+                                                    <a href="#" class="btn btn-sm btn-label-brand btn-bold">Seleccionar</a>
+                                                </div>
+                                                <div class="kt-widget4__item">
+                                                    <div class="kt-widget4__pic kt-widget4__pic--pic">
+                                                        <img src="assets/media/users/100_14.jpg" alt="">
+                                                    </div>
+                                                    <div class="kt-widget4__info">
+                                                        <a href="#" class="kt-widget4__username">
+                                                            Pedro Farias
+                                                        </a>
+                                                        <p class="kt-widget4__text">
+                                                            9:00
+                                                        </p>
+                                                    </div>
+                                                    <a href="#" class="btn btn-sm btn-label-brand btn-bold">Seleccionar</a>
+                                                </div>
+                                                <div class="kt-widget4__item">
+                                                    <div class="kt-widget4__pic kt-widget4__pic--pic">
+                                                        <img src="assets/media/users/100_11.jpg" alt="">
+                                                    </div>
+                                                    <div class="kt-widget4__info">
+                                                        <a href="#" class="kt-widget4__username">
+                                                            Amaro Gomez
+                                                        </a>
+                                                        <p class="kt-widget4__text">
+                                                            9:15
+                                                        </p>
+                                                    </div>
+                                                    <a href="#" class="btn btn-sm btn-label-brand btn-bold">Seleccionar</a>
+                                                </div>
+
+                                                <div class="kt-widget4__item">
+                                                    <div class="kt-widget4__pic kt-widget4__pic--pic">
+                                                        <img src="assets/media/users/100_4.jpg" alt="">
+                                                    </div>
+                                                    <div class="kt-widget4__info">
+                                                        <a href="#" class="kt-widget4__username">
+                                                            Ana Medina
+                                                        </a>
+                                                        <p class="kt-widget4__text">
+                                                            9:15
+                                                        </p>
+                                                    </div>
+                                                    <a href="#" class="btn btn-sm btn-label-brand btn-bold">Seleccionar</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--end:: Widgets/New Users-->
+                        </div>
+                    </div>
+                    <!--end:: Widgets/Applications/User/Profile1-->
+                    <!--End:: App Aside-->
+                </div>
+
+                <div class="col-xl-6">
+                    <!--Begin:: App Aside-->
+                    <!--begin:: Widgets/Applications/User/Profile1-->
+                    <div class="kt-portlet kt-portlet--height-fluid-">
+                        <div class="kt-portlet__head  kt-portlet__head--noborder">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title">
+                                    Paciente
+                                </h3>
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="kt-portlet__body kt-portlet__body--fit-y">
+
+
+                            <div class="kt-widget kt-widget--user-profile-1">
+                                <div class="kt-widget__head">
+                                    <div class="kt-input-icon kt-input-icon--left">
+                                        <input type="text" class="form-control" placeholder="Buscar..." id="txtTags">
+                                        <span class="kt-input-icon__icon kt-input-icon__icon--left">
+                                            <span><i class="la la-search"></i></span>
+                                        </span>
+                                    </div>
+
+
+                                </div>
+                                <br>
+                                <div class="kt-widget__head">
+
+                                    <div class="kt-widget__content" style="padding:0px">
+                                        <div class="kt-widget__section">
+                                            <a href="#" class="kt-widget__username">
+                                                Marcela Reyes
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="kt-widget__body">
+                                    <div class="kt-widget__content">
+                                        <div class="kt-widget__info">
+                                            <span class="kt-widget__label">Rut:</span>
+                                            <a href="#" class="kt-widget__data">19.252.125-5</a>
+                                        </div>
+
+                                        <div class="kt-widget__info">
+                                            <span class="kt-widget__label">Fecha nacimiento:</span>
+                                            <a href="#" class="kt-widget__data">01-02-1995</a>
+                                        </div>
+
+                                        <div class="kt-widget__info">
+                                            <span class="kt-widget__label">Teléfono:</span>
+                                            <a href="#" class="kt-widget__data">+569 99970883</a>
+                                        </div>
+
+                                        <div class="kt-widget__info">
+                                            <span class="kt-widget__label">Correo:</span>
+                                            <a href="#" class="kt-widget__data">antinia.reyes@medical.com</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div style="padding:10px; text-align:right">
+                                    <hr>
+                                    <a href="#" type="button" class="btn btn-brand" onclick="alert('Esta seguro de AGENDAR')">AGENDAR</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--end:: Widgets/Applications/User/Profile1-->
+                    <!--End:: App Aside-->
+                </div>
+
+
+            </div>
+
+            <!--End::App-->
+        </div>
+
+        <!-- end:: Content -->
+    </div>
+
+
+
+    <!-- begin:: Footer -->
+    <div class="kt-footer  kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" id="kt_footer">
+        <div class="kt-container  kt-container--fluid ">
+            <div class="kt-footer__copyright">
+                2020&nbsp;&copy;&nbsp;<a href="#" target="_blank" class="kt-link">Medical</a>
+            </div>
+            <!--<div class="kt-footer__menu">
+                <a href="http://keenthemes.com/metronic" target="_blank" class="kt-footer__menu-link kt-link">About</a>
+                <a href="http://keenthemes.com/metronic" target="_blank" class="kt-footer__menu-link kt-link">Team</a>
+                <a href="http://keenthemes.com/metronic" target="_blank" class="kt-footer__menu-link kt-link">Contact</a>
+            </div>-->
+        </div>
+    </div>
+
+    <!-- end:: Footer -->
+</div>
+
+
+<!-- end:: Page -->
+<!-- begin::Scrolltop -->
+<div id="kt_scrolltop" class="kt-scrolltop">
+    <i class="fa fa-arrow-up"></i>
+</div>
+
+<!--<button onclick="playAudio()" type="button">Play Audio</button>
+<button onclick="pauseAudio()" type="button">Pause Audio</button>-->
+
+<audio id="myAudio">
+    <source src="assets/media/demo/sonido.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<!-- end::Scrolltop -->
+<!-- begin::Global Config(global config for global JS sciprts) -->
+@section PageScripts {
+    <script src="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>
+
+}
+
+@section Scripts {
+    <script>
+        var x = document.getElementById("myAudio");
+
+        function playAudio() {
+            x.play();
+        }
+
+        function pauseAudio() {
+            x.pause();
+        }
+    </script>
+    <script type="module">
+        import { init } from '../../js/Admin/index.js?rnd=@NumeroRandom.GetRandom()';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+
+            var uid = @ViewBag.uid;
+
+            window.uid = uid;
+        })()
+    </script>
+
+}

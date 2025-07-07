@@ -1,0 +1,267 @@
+﻿@model WebMVC.Models.HomeViewModel
+
+@{
+    ViewData["Title"] = "Administrador Centro Clinico";
+    Layout = "~/Views/Shared/_LayoutCentroClinico.cshtml";
+
+    string invitadosText = "Invitar Profesionales Asociados";
+    bool invitadosChecked = false;
+    string hostURL = ViewBag.HostURL.ToString();
+    if (hostURL.Contains("unabactiva.") || hostURL.Contains("activa.unab.") || hostURL.Contains("uoh."))
+    {
+        invitadosText = "Invitar a Profesionales";
+        invitadosChecked = true;
+    }
+
+    var hiddenAchs = string.Empty;
+    if (hostURL.Contains("achs."))
+    {
+        hiddenAchs = "hidden";
+    }
+}
+
+@section PageStyles  {
+    <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+    @section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/metronic_demo7/assets/plugins/select2/select2.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" />
+    <link href="~/metronic_demo7/assets/plugins/bootstrap-select/css/bootstrap-select.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" />
+}
+
+    <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+        <!--Begin::Dashboard 7-->
+        <!--Begin::Row-->
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <!--begin::Portlet-->
+                <div class="kt-portlet kt-portlet--last kt-portlet--head-lg kt-portlet--responsive-mobile" id="kt_page_portlet">
+                    <div class="kt-portlet__head kt-portlet__head--lg">
+                        <div class="kt-portlet__head-label">
+                            <h3 class="kt-portlet__head-title">
+                                <span class="kt-portlet__head-icon">
+                                    <i class="flaticon2-schedule"></i>
+                                </span>
+                                <h3 class="kt-portlet__head-title">
+                                    Crear, modificar y eliminar AGENDA Centro Clinico: "<span id="TituloConvenio"></span>"
+                                </h3>
+                            </h3>
+                        </div>
+                        <div class="kt-portlet__head-toolbar">
+                            <div class="input-group">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-warning d-none" id="btnEliminarAgenda">
+                                        Eliminar Agenda
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="input-group col-lg-9">
+                                <input type="text" id="correoProfesional" class="form-control" /> &nbsp;&nbsp;
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-brand" id="btnEnviarAgenda">
+                                        Enviar Agenda
+                                    </button>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="kt-portlet__body">
+                        @Html.Hidden("idProfesionalHidden", (object)ViewBag.uid)
+                        @Html.Hidden("nombreProfesional", "")
+                        <input type="hidden" id="duracionAtencionProfesionalId" />
+                        <input type="hidden" id="duracionAtencionProfesionalMin" />
+                        <div id="kt_calendar"></div>
+                    </div>
+                </div>
+            </div>
+
+
+            @*
+
+        <div class="col-md-12 order-lg-1 order-xl-1">
+        <div class="kt-portlet" id="kt_portlet">
+        <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+        <span class="kt-portlet__head-icon">
+        <i class="flaticon2-schedule"></i>
+        </span>
+        <h3 class="kt-portlet__head-title">
+        Crear, modificar y eliminar AGENDA
+        </h3>
+        </div>
+        </div>
+        <div class="kt-portlet__body">
+
+        </div>
+        </div>
+        </div>*@
+        </div>
+
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="modalDatosConvenio" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Características de la agenda para el convenio "<span id="NombreConvenio"></span>"</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" @hiddenAchs>
+                    <div class="row">
+                        <input type="hidden" id="hiddenIdProfesional" />
+                        <input type="hidden" id="hiddenFechaInicio" />
+                        <input type="hidden" id="hiddenFechaFechaFin" />
+                        <div class="col-12 col-md-12 mb-12">
+                            <label class="form-label">Tipo agenda</label>
+                            @Html.DropDownList("TipoAgenda", Enumerable.ToList(Model.tipoAgenda).Select(x => new SelectListItem { Text = x.Detalle.ToString(), Value = x.Id.ToString() }), new { @class = "form-control" })
+                        </div>
+                        <div class="col-12 col-md-12 mb-12">
+                            <label class="form-label">Modelo atención</label>
+                            @if (Model.convenio.IdModeloAtencion == 3)
+                        {
+                            @Html.DropDownList("ModeloAtencion", Enumerable.ToList(Model.modeloAtencion).Where(x => x.Id != 3).Select(x => new SelectListItem { Text = x.Detalle.ToString(), Value = x.Id.ToString() }), new { @class = "form-control" })
+                        }
+                        else if (Model.convenio.IdModeloAtencion == 2)
+                        {
+                            @Html.DropDownList("ModeloAtencion", Enumerable.ToList(Model.modeloAtencion).Where(x => x.Id == 2).Select(x => new SelectListItem { Text = x.Detalle.ToString(), Value = x.Id.ToString() }), new { @class = "form-control" })
+                        }
+                        else
+                        {
+                            @Html.DropDownList("ModeloAtencion", Enumerable.ToList(Model.modeloAtencion).Where(x => x.Id == 1).Select(x => new SelectListItem { Text = x.Detalle.ToString(), Value = x.Id.ToString() }), new { @class = "form-control" })
+                        }
+
+                    </div>
+                    <div class="col-12 col-md-12 mb-12">
+                        <label class="form-label">Zona horaria</label>
+                        @Html.DropDownList("ZonaHoraria", Model.ZonasHorarias(), new { @class = "form-control m-input", style = "text-transform: uppercase", id = "ZonaHoraria" })
+                    </div>
+                    <div class="col-12 col-md-12 mb-12">
+                        <label class="form-label">Minutos Atencion</label>
+                        @Html.DropDownList("IdDuracionTiempo", Model.IdDuracionTiempo(hostURL), new { @class = "form-control m-input", style = "text-transform: uppercase", id = "IdDuracionTiempo" })
+                    </div>
+                    <div class="col-12 col-md-12 mb-12 mt-2">
+                        <label class="form-label mr-5">@invitadosText</label>
+                        <input class="form-check-input" type="checkbox" id="profesionalesAsociados" checked="@invitadosChecked" />
+                    </div>
+
+                    <div id="div-combo-profesionales-asociados" class="col-12 col-md-12 mb-12 mt-2" @(invitadosChecked ? "" : "style=\"display: none;\"")>
+                        <label class="form-label">Seleccione Profesional</label>
+                        <select
+                            name="combo-profesionales-asociados"
+                            id="combo-profesionales-asociados"
+                            class="form-control show-tick ms select2"
+                            multiple
+                            data-placeholder="Seleccione">
+                        </select>
+                    </div>
+
+                    @*<div class="form-group row mb-2" id="divProfesionalesAsociados">
+                    <label class="col-xl-4 col-lg-3 col-form-label">Asociar Profesional</label>
+                    <div class="col-lg-8 col-xl-8 validate">
+                    <div class="input-group">
+                    <select name="profesionalesAsociados" id="profesionalesAsociados" class="form-control show-tick ms select2" multiple data-placeholder="Select"></select>
+                    </div>
+                    </div>
+                    </div>*@
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnCrearAgendaConvenioCentroClinico" class="btn btn-primary">Crear agenda</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--modal eliminar agenda-->
+<div class="modal fade" id="modalEliminarAgenda" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Agenda</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <input type="hidden" id="hiddenIdProfesional" />
+                    <input type="hidden" id="hiddenFechaInicio" />
+                    <input type="hidden" id="hiddenFechaFechaFin" />
+                    <div class="col-12 col-md-12 mb-12">
+                        <label class="form-label">Fecha</label>
+                        <input id="fecha" type="date" class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-12 mb-12">
+                        <label class="form-label">Hora Desde</label>
+                        <input type="time" id="horaDesde" class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-12 mb-12">
+                        <label class="form-label">Hora Hasta</label>
+                        <input type="time" id="horaHasta" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnEliminar" class="btn btn-danger">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<button onclick="playAudio()" type="button">Play Audio</button>
+<button onclick="pauseAudio()" type="button">Pause Audio</button>-->
+
+<audio id="myAudio">
+    <source src="~/metronic_demo7/assets/media/demo/sonido.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+@section PageScripts {
+    <script src="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>
+    @*<script src="~/metronic_demo7/assets/js/pages/components/calendar/basicMedicoMedico.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>*@
+    @*<script src="~/metronic_demo7/assets/js/pages/dashboard.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>*@
+    }
+
+    @section Scripts {
+    <script src="~/signal/signalr.min.js"></script>
+
+    <script src="~/metronic_demo7/assets/plugins/select2/select2.js?rnd=@NumeroRandom.GetRandom()"></script>
+    <script>
+        var x = document.getElementById("myAudio");
+
+        function playAudio() {
+            x.play();
+        }
+
+        function pauseAudio() {
+            x.pause();
+        }
+    </script>
+    <script type="module">
+        import { init } from '../../js/CentroClinico/crearAgendaCentroClinico.js?rnd=${@NumeroRandom.GetRandom()}';
+
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+            (function() {
+                $('.select2').select2();
+                var uid = @ViewBag.uid;
+                var idCentroClinico = @ViewBag.idCentroClinico;
+                window.uid = uid;
+                window.idCentroClinico = idCentroClinico;
+            })()
+
+        $(function() {
+            $('[data-toggle="popover"]').popover({ trigger: "hover" })
+        })
+    </script>
+}

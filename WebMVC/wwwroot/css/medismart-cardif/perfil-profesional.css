@@ -1,0 +1,287 @@
+/* Perfil Profesional */
+
+.perfil-profesional {
+    border-radius: 10px;
+    padding: 2rem;
+    border: 1px solid rgba(59, 193, 205, 0.5);
+    /*width: 450px;*/
+    color: #666;
+    background-color: #FFF;
+}
+
+.perfil-profesional .nombre-profesional {
+    font-weight: 900;
+    word-wrap: normal;
+    max-width: 100%;
+}
+
+.perfil-profesional .header-perfil {
+    display: flex;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.perfil-profesional h3 {
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+.perfil-profesional .foto-profesional {
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin: 0;
+    margin-right: 1rem;
+    border-radius: 50px;
+}
+
+    .perfil-profesional .titulo-profesional {
+        max-width: 100%;
+        font-size: 1rem;
+        line-height: 1;
+        font-weight: 700;
+        color: #8A94B3;
+    }
+
+    .valor-consulta {
+        border-top: 1px dashed rgba(59, 193, 205, 0.5);
+        padding-top: 1rem;
+        padding-bottom: 0;
+        text-align: right;
+        color: #0081A4;
+        font-weight: 700;
+    }
+.valor-consulta .valor {
+    font-size: 1.875rem;
+}
+
+.valor-consulta .label-valor {
+    font-size: 0.8rem;
+    margin-right: .5rem;
+}
+
+.label-valor small {
+    font-size: 1.25rem;
+}
+.cont-convenios {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.img-convenio {
+    width: 48%;
+}
+
+.cont-convenios img {
+    max-width: 115px;
+    width: 40%;
+    height: auto;
+    display: inline-block;
+    border-radius: 0;
+    border: none;
+}
+
+.lista-certificaciones {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.lista-certificaciones li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.img-list {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #666;
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.nota-valor {
+    font-size: 11px;
+    display: block;
+    font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+    .perfil-profesional {
+        margin-bottom: 2rem;
+    }
+}
+
+.back .perfil-profesional {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+/*Tarjeta Atencion Fonasa*/
+
+.atencion-fonasa {
+    
+}
+
+    .atencion-fonasa .front .front-fecha-atencion,
+    .particular-fonasa .front .front-fecha-atencion {
+        bottom: 6.4rem;
+        font-size: 14px;
+    }
+
+    .atencion-fonasa .front .especialidad-profesional {
+        position: static;
+        margin: auto;
+        display: block;
+    }
+
+    .atencion-fonasa .front .especialidad-profesional::after {
+        display: block;
+        content: '';
+        width: 100%;
+        height: 60px;
+        background-image: url(../../img/fonasa/atencion-fonasa.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    .atencion-fonasa.particular .front .especialidad-profesional::after {
+        background-image: url(../../img/fonasa/atencion-particular.svg);
+    }
+
+    .atencion-fonasa .card-body {
+        padding-bottom: 0;
+    }
+
+    .atencion-fonasa .atencion-particular {
+        display: none;
+    }
+
+    .atencion-fonasa .data-atencion {
+        margin: 0;
+    }
+
+    .atencion-fonasa .cont-data {
+        flex-direction: column;
+    }
+    .atencion-fonasa .valor-consulta {
+        border-top: none;
+        text-align: center;
+        display: block;
+        /* position: absolute;*/
+        inset: auto 0 2rem 0;
+    }
+
+    .atencion-fonasa .back .valor-consulta {
+        /* display: none;*/
+    }
+
+
+    .atencion-fonasa .fonasa-atencion,
+    .atencion-fonasa .particular-atencion {
+        color: #F2994A;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        position: absolute;
+        bottom: 2.5rem;
+        left: 0;
+        right: 0;
+        text-align: center;
+    }
+
+    .atencion-fonasa .btn.btn-primary {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 0;
+        right: 0;
+        width: 83%;
+        margin: auto;
+    }
+
+    .atencion-fonasa .back .btn.btn-primary {
+        position: static;
+        max-width: 228px;
+        width: 100%;
+    }
+
+
+        @media (max-width: 1024px) {
+            .perfil-profesional .titulo-profesional {
+        
+    }
+
+    .nombre-profesional > .titulo-profesional {
+        /* display: none;*/
+    }
+
+    .nombre-profesional .d-block {
+        display: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .back {
+        display: none;
+    }
+
+    .flipped .front {
+        display: none;
+    }
+
+    .flipped .back {
+        display: block;
+    }
+
+    .flipped .back .perfil-profesional {
+        margin-bottom: 0;
+    }
+
+    .atencion-fonasa .front .especialidad-profesional,
+    .atencion-fonasa-particular .front .especialidad-profesional {
+        padding-left: 0;
+    }
+
+    .atencion-fonasa .front .especialidad-profesional::after {
+        background-position: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .atencion-fonasa.particular .front .especialidad-profesional::after {
+        background-position: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .caja-profesional .cont-data {
+        width: 80%;
+    }
+
+    .atencion-fonasa .card-body {
+        min-height: 260px;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .atencion-fonasa .back .btn.btn-primary {
+        position: static;
+        margin: auto;
+        width: 100%;
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+    .front-fecha-atencion strong {
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,94 @@
+﻿@using Microsoft.Extensions.Configuration
+@model WebMVC.Models.PersonasViewModel
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Configuracion";
+    Layout = "_LayoutPaciente";
+
+}
+
+
+@{
+    ViewData["idEntidad"] = ViewBag.uid;
+    ViewData["uid"] = int.Parse(ViewBag.uid);
+}
+@{
+    ViewData["view"] = Roles.Paciente;
+}
+
+@section Styles  {
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/css/Mexico/mexico.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    
+}
+
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid configuracion-paciente">
+    <!--Begin::App-->
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+
+        <!--Begin:: App Aside Mobile Toggle-->
+        <button class="kt-app__aside-close" id="kt_user_profile_aside_close">
+            <i class="la la-close"></i>
+        </button>
+        <!--End:: App Aside Mobile Toggle-->
+        <!--End:: App Aside Mobile Toggle-->
+
+        <div class="box_inner_nom035 box_medicina-ocupacional">
+                <div class="box_img_medicina-ocupacional"></div>
+                <div class="box_inner_text">
+                    <h2>¿Qué es el Test de Salud Ocupacional?</h2>
+                    <p>
+                        Tu salud y cuidado es importante, con este cuestionario podremos identificar si has estado expuesto a acontecimientos traumáticos severos y
+                        acompañarte con la evaluación de un médico laboral.
+
+                    </p>
+                     <h3>Realiza los 3 Test + Atención Médica </h3>
+                <div class="iconos-inicio__medicina-ocupacional">
+
+                    <div class="icono-inicio__medicina-ocupacional">
+                        <img src="~/img/medicina-ocupacional/icon-audiometria.svg" alt="Icono" />
+                        <label class="text-center-card">Test de Audiometría</label>
+                    </div>
+
+                    <div class="icono-inicio__medicina-ocupacional">
+                        <img src="~/img/medicina-ocupacional/icon-visual.svg" alt="Icono" />
+                        <label class="text-center-card">Test Visual</label>
+                    </div>
+
+                    <div class="icono-inicio__medicina-ocupacional">
+                        <img src="~/img/medicina-ocupacional/icon-psicologia.svg" alt="Icono" />
+                        <label class="text-center-card">Test Psicológico</label>
+                    </div>
+
+                    <div class="icono-inicio__medicina-ocupacional">
+                        <img src="~/img/medicina-ocupacional/icon-laboral.svg" alt="Icono" />
+                        <label class="text-center-card">Medicina Laboral</label>
+                    </div>
+
+                </div>
+                    <button class="btn btn-primary btn-block btn-sm" onclick="location.href='/Cuestionario/RegistroDatosPaciente?ocupacional=1'" id="SiguienteHome">Comenzar con los test</button>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/Usuario/config.js?9rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script type="text/javascript">
+        (function () {
+
+            var uid = @ViewBag.uid;
+
+            window.uid = uid;
+             var idCliente = '@ViewBag.idCliente';
+            window.idCliente = idCliente;
+            window.host = '@ViewBag.HostURL';
+
+        })()
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    
+}
+

@@ -1,0 +1,132 @@
+/*FAQ*/
+
+:root {
+    --primary-color: #3BC1CD;
+    --secondary-color: #8A94B3;
+    --tertiary-color: #0282A6;
+    --gray-color: #666;
+    --accent-color: #FF7415;
+    --light-color: #FFF;
+    --hover-color: #0282A6;
+    --transition: all .3s ease-out;
+}
+
+
+.cardFAQ {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 100%;
+    border-radius: 5px;
+}
+
+    .cardFAQ:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    .cardFAQ h4 {
+        font-family: 'Mulish';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 20px;
+        color: #0282A6;
+    }
+
+.verinfo {
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 12px;
+    line-height: 15px;
+    color: #3BC1CD;
+}
+
+
+imgFAQ {
+    border-radius: 5px 5px 0 0;
+}
+
+.containerFAQ {
+    padding: 16px 12px;
+}
+
+btnCerrarModal {
+    color: #0282A5;
+    margin-top: -250px;
+    width: 10px;
+    position: relative;
+    right: -645px;
+}
+
+.btnCerrarModal :hover {
+    background-color: transparent;
+}
+
+.btnCerrarModalMed {
+    color: #0282A5;
+    margin-top: -250px;
+    width: 10px;
+    position: relative;
+    right: -645px;
+}
+
+    .btnCerrarModalMed :hover {
+        background-color: transparent;
+    }
+
+/*NUEVOS ESTILOS */
+
+.accordion-button:not(.collapsed) {
+    color: #0885A7;
+    background-color: #fff;
+    font-weight: 800;
+    box-shadow: none;
+}
+
+.accordion-button {
+    font-weight: 800;
+    color: #0885A7;
+    border-radius: 5px;
+}
+
+.accordion-item {
+    margin-bottom: 10px;
+    border: 1px solid #7CD0D8 !important;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.accordion-body {
+    color: #8A94B3;
+}
+
+button.accordion-button.collapsed {
+    box-shadow: none;
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url(../../img/FAQ/chevrondown.svg);
+    transform: var(--bs-accordion-btn-icon-transform);
+}
+
+.accordion-button::after {
+    background-image: url(../../img/FAQ/chevrondown.svg);
+    transition: var(--bs-accordion-btn-icon-transition);
+}
+
+.column2 img {
+    width: 100%;
+}
+
+/* 
+    Ajuste del ancho de la fila que contiene las tarjetas (cardFAQ) en
+    dispositivos moviles en orientacion vertical
+*/
+
+@media (max-width: 420px) {
+    .row > .tutoriales-grid {
+        width: 92vw !important;
+    }
+}

@@ -1,0 +1,282 @@
+﻿@model WebMVC.Models.Atenciones
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Agendar";
+    Layout = "_LayoutPaciente";
+
+}
+
+@section PageStyles  {
+    <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+    <!--Begin::App-->
+    <!-- Start:: Stepper-->
+    <!-- Stepper -->
+    <div class="stepper pay_box">
+        <div class="init-step"></div>
+        <div class="cont-steps">
+            <!-- Step1 -->
+            <div class="step passed">
+                <div class="step-icon">
+                    <i class="fal fa-user-md"></i>
+                </div>
+                <div class="label-step">
+                    Atención
+                </div>
+            </div>
+
+            <i class="fas fa-chevron-right flecha"></i>
+
+            <!-- Step3 -->
+            <div class="step active">
+                <div class="step-icon">
+                    <i class="fal fa-check-circle"></i>
+                </div>
+                <div class="label-step">
+                    Confirmación
+                </div>
+            </div>
+        </div>
+       
+    </div>
+
+
+    <!-- Mensaje confirmación Hora -->
+    <!-- Mensaje final Hora -->
+    @if (Model.PagoAprobado)
+    {
+        <div class="container caja-base mensaje-confirmacion">
+            <div class="row">
+                <div class="col">
+                    <div class="mensaje">
+                        <div class="header-mensaje">
+                            @{
+                                var baseL = @Configuration["ServicesUrl"];
+                                var logo = "~/img/logotipo.png";
+                                if (Model.RutaVirtual != null)
+                                {
+                                    logo = baseL + Model.RutaVirtual;
+                                }
+                                var textoMarca = "Medismart.live";
+                                if (Model.TextoMarca != null)
+                                {
+                                    textoMarca = Model.TextoMarca;
+                                }
+
+                            }
+                            <img src="@logo" class="logotipo" alt="">
+                            <i class="fal fa-check-circle d-none"></i>
+                        </div>
+
+                        @if (ViewBag.idCliente == 148)
+                        {
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="fuente-accesible">
+                                            Estimado(a) <strong>@Model.NombrePaciente</strong>: Te agradecemos por confiar en <strong>@textoMarca</strong>
+                                        </p>
+                                        <p class="fuente-accesible">
+                                            Recuerda que las recetas, certificados y otros documentos, llegarán a tu correo electrónico tras finalizar la atención.
+                                            También estarán disponibles en la sección  <strong>Atenciones.</strong>
+                                        </p>
+                                    </div>
+                                    <div class="col-12 order-last">
+                                        <div class="cont-icon-confirma">
+                                            <i class="fal fa-check-circle icon-confirma"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else if (ViewBag.idCliente == 108)
+                        {
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12">
+
+                                        <p class="fuente-accesible">
+                                            Estimado(a) <strong>@Model.NombrePaciente</strong>: 
+                                            ¡Felicitaciones! Tu pago ha sido procesado correctamente, te agradecemos por confiar en 
+                                            <strong>Salud Protección</strong>
+                                        </p>
+                                        <p class="fuente-accesible">
+                                            Recuerda que las recetas, certificados y otros documentos, llegarán a tu correo electrónico tras finalizar la atención
+                                            y también estarán disponibles en la sección  <strong>Atenciones</strong> de la página de Salud Protección.
+                                        </p>
+                                        <br>
+                                        <p>
+                                            No olvides agendar tu examen a través del siguiente
+                                            <a href="https://wa.me/573102209620?text=Agendar%20mi%20examen"
+                                       target="_blank">
+                                                <i class="fab fa-whatsapp"></i> WhatsApp <i class="fal fa-long-arrow-right ml-auto"></i>
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div class="col-12 order-last">
+                                        <div class="cont-icon-confirma">
+                                            <i class="fal fa-check-circle icon-confirma"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="container-fluid">
+                                <div class="row">
+
+                                    <div class="col-lg-2">
+                                        <div class="cont-icon-confirma_ev">
+                                            <i class="fal fa-check-circle icon-confirma"></i>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="col-lg-10">
+                                        <p class="fuente-accesible">
+                                            Estimado(a) <strong>@Model.NombrePaciente</strong> : <br><br>
+                                            ¡Felicitaciones! Tu pago ha sido procesado correctamente, te agradecemos por confiar en <strong>@textoMarca</strong> <br><br>
+                                      
+                                            Recuerda que las formulas, certificados y otros documentos, llegarán a tu correo electrónico tras finalizar la atención
+                                            y también estarán disponibles en la sección  <strong>Atenciones</strong> de la página de Medismart.
+                                        </p>
+                                        <br>
+                                        <p>
+                                            No olvides agendar tu examen a través del siguiente
+                                            <a href="https://wa.me/573102209620?text=Agendar%20mi%20examen"
+                                       target="_blank">
+                                                <i class="fab fa-whatsapp"></i> WhatsApp <i class="fal fa-long-arrow-right ml-auto"></i>
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 offset-md-2">
+                    <button class="btn btn-primary btn-block btn-sm" id="volverInicio">
+                        Volver al Inicio
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+
+        <div class="container caja-base mensaje-confirmacion">
+            <div class="row">
+                <div class="col">
+                    <div class="mensaje">
+                        <div class="header-mensaje">
+                            @{
+                                var baseL = @Configuration["ServicesUrl"];
+                                var logo = "~/img/logotipo.png";
+                                if (Model.RutaVirtual != null)
+                                {
+                                    logo = baseL + Model.RutaVirtual;
+                                }
+                                var textoMarca = "Medismart.live";
+                                if (Model.TextoMarca != null)
+                                {
+                                    textoMarca = Model.TextoMarca;
+                                }
+
+                            }
+                            <img src="@logo" class="logotipo" alt="">
+                        </div>
+                           <div class="container-fluid">
+                                <div class="row">
+
+                                    <div class="col-lg-2">
+                                        <div class="cont-icon-confirma_ev">
+                                            <i class="fal fa-exclamation-triangle"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-10">
+                                        <h3 class="text-danger my-3">Pago no procesado</h3>
+                                        <p class="fuente-accesible">
+                                            Estimado(a): <strong>@Model.NombrePaciente</strong> : <br><br> 
+                                            El pago de tus exámenes no ha sido procesado correctamente, te agradecemos por confiar en la plataforma de <strong>@textoMarca</strong> <br><br>
+    
+                                             Te recordamos que, a través de <strong>@textoMarca</strong>, podrás acceder al registro de la transacción, citas agendadas, documentación médica y realizar otras gestiones.
+                                        </p>                                     
+                                    </div>
+                                </div>
+                            </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 offset-md-2">
+                    <button class="btn btn-primary btn-block btn-sm" id="volverInicio">
+                        Volver al Inicio
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+
+
+
+</div>
+<div class="modal fade" id="modalBono" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tituloBono"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="modalBodyBono">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrarConsentimiento" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- begin::Scrolltop -->
+<div id="kt_scrolltop" class="kt-scrolltop">
+    <i class="fa fa-arrow-up"></i>
+</div>
+
+<!-- end::Scrolltop -->
+<!-- begin::Global Config(global config for global JS sciprts) -->
+@section Scripts {
+
+    <script src="~/signal/signalr.min.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/confirmarPagoPayzen.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+             var idCliente = @ViewBag.idCliente;
+            window.idCliente = idCliente;
+            var uid = @ViewBag.uid;
+
+            window.uid = uid;
+           var tipoatencion = '@ViewBag.tipoatencion';
+            window.tipoatencion = tipoatencion;
+        })()
+    </script>
+}

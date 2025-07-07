@@ -1,0 +1,1231 @@
+/*La Araucana*/
+
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');*/
+
+
+/*Global*/
+:root {
+    --primary: #00539B;
+    --secondary: #103A60;
+    --tertiary: #111;
+    --accent: #FFA500;
+    --light: #fff;
+    --dark: #262626;
+    --font-family: 'Mulish', sans-serif;
+}
+
+body {
+    /* font-family: var(--font-family) !important;*/
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-family) !important;
+}
+
+
+.menu-top .label-menu-pac {
+    color: var(--secondary);
+}
+
+/*Login*/
+.logotipo-desktop {
+    background-image: url(../../img/la-araucana/logotipo.jpg);
+    width: 300px;
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/la-araucana/logotipo.jpg);
+}
+
+.container-fluid.container-login {
+    background-color: #fff;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper {
+    background-color: #fff;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: black;
+    font-weight: 400 !important;
+    font-size: 36px;
+    padding: 16px 0 0 0;
+}
+
+.form-group .ms-label {
+    color: black !important;
+}
+
+a#kt_login_forgot {
+    color: var(--primary);
+}
+
+button#kt_login_signin_submit {
+    background-color: var(--primary);
+    border: none;
+    color: var(--light);
+    font-weight: bold;
+}
+
+button#kt_login_signin_submit:hover,
+button#kt_login_signin_submit:focus,
+button#kt_login_signin_submit:active {
+    background-color: var(--dark);
+}
+
+.divider-medismart {
+    display: flex !important;
+    margin-bottom: 2rem;
+}
+
+.logo-convenios {
+    /* display: none;*/
+    margin-bottom: 2rem;
+    justify-content: space-between !important;
+}
+
+/* Imágenes Login */
+.img1 {
+    background-image: url(../../img/la-araucana/login/960x978.jpg) !important;
+}
+
+.img2 {
+    background-image: url(../../img/la-araucana/login/960x978.jpg) !important;
+}
+
+.img3 {
+    background-image: url(../../img/la-araucana/login/960x978.jpg) !important;
+}
+
+.img4 {
+    background-image: url(../../img/la-araucana/login/960x978.jpg) !important;
+}
+
+.img5 {
+    background-image: url(../../img/la-araucana/login/960x978.jpg) !important;
+}
+
+.img6 {
+    background-image: url(../../img/la-araucana/login/960x978.jpg) !important;
+}
+
+.body-home {
+    background: linear-gradient(180deg, rgba(0, 81, 147, 1) 0%, rgba(19, 145, 255, 1) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom right;
+}
+
+.body-home .logo-home img {
+    width: 235px;
+}
+
+.body-home a#btnOrientacion .pronto {
+    /*visibility: hidden;*/
+    display: none;
+}
+
+.body-home span#saludoPaciente {
+    color: #79c1ff !important;
+}
+
+.top-banner .legend {
+    font-weight: 500;
+}
+
+.menu-top .item-menu-top i,
+.menu-top .label-menu {
+    color: #006079;
+}
+
+.menu-top .item-menu-top:hover i,
+.menu-top .item-menu-top:hover .label-menu {
+    color: var(--accent) !important;
+}
+
+.kt-menu__item a,
+.kt-menu__item i {
+    color: var(--primary)
+}
+
+.kt-menu__item a .ms-label-menu {
+    color: var(--tertiary)
+}
+
+.kt-menu__item:hover a,
+.kt-menu__item:hover i {
+    color: var(--secondary) !important;
+}
+
+.accesible-btn {
+    justify-content: center;
+}
+
+.accesible-btn button {
+    color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+.accesible-btn button:hover {
+    background-color: var(--primary);
+}
+
+.body-home .footer-home {
+    margin: 0 auto 2rem auto;
+}
+
+/*SweetAlert2 > autorizacion datos */
+
+.body-home .swal2-container.swal2-center.swal2-shown {
+    background: rgba(0, 0, 0, 50%);
+
+}
+
+.body-home .swal2-header {
+    justify-content: start;
+    align-items: start;
+}
+
+.body-home img.swal2-image {
+    margin: 0 !important;
+
+}
+
+button.swal2-confirm.swal2-styled {
+    width: 100%;
+    background-color: #00539B !important;
+}
+
+button.swal2-confirm.swal2-styled:hover {
+
+}
+
+/*Agendar*/
+
+.busqueda-profesionales {
+    border: none;
+    background-color: #e6f2f6;
+    padding: .8rem 1rem;
+    min-height: 62px;
+    max-height: 62px;
+}
+
+.busqueda-profesionales .caja-busqueda {
+    max-width: 100%;
+}
+
+/*Custom select styles:*/
+.btn.btn-outline-primary.dropdown-toggle.itemEspecialidad:hover,
+.btn.btn-outline-primary.dropdown-toggle.itemEspecialidad:active {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    color: var(--primary) !important;
+}
+
+.busqueda-profesionales i {
+    color: var(--accent)
+}
+
+.busqueda-profesionales .custom-icon {
+    margin: 0;
+    max-width: 32px;
+}
+
+/*.busqueda-profesionales .btn-outline-primary */
+.busqueda-profesionales #especialidades {
+    color: var(--primary);
+    font-size: 1rem;
+    text-wrap: wrap;
+    height: 62px;
+    letter-spacing: unset;
+}
+
+.busqueda-profesionales #especialidades option {
+    font-weight: 700;
+}
+
+.caja-especialidad.active {
+    background-color: var(--primary);
+}
+
+.caja-especialidad {
+    background-color: var(--secondary);
+    min-height: 62px;
+    max-height: 62px;
+}
+
+.inner-especialidad strong {
+    color: var(--light)
+}
+
+.step.active .step-icon {
+    background-color: var(--primary);
+}
+
+.stepper {
+    background-image: url(../../img/la-araucana/fondo-banner2.svg);
+}
+
+.stepper .flecha {
+    color: #7F25C6
+}
+
+.stepper img {
+    border-color: var(--primary)
+}
+
+.step.active .label-step {
+    color: #7F25C6
+}
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional {
+    border: 1px solid rgba(0, 83, 155, 0.6);
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional,
+.especialidad-profesional,
+.caja-profesional .fecha-atencion {
+    color: #013948;
+}
+
+.caja-profesional .front-fecha-atencion {
+    border: 1px solid #013948;
+}
+
+.caja-profesional .front-fecha-atencion strong:before {
+    color: #013948;
+    font-weight: 900;
+}
+
+.caja-profesional .front .btn-agendar {
+    background-color: #013948;
+    color: #fff;
+    transition: all 0.1s ease-in-out;
+}
+
+.caja-profesional .front .btn-agendar:hover,
+.caja-profesional .front .btn-agendar:active,
+.caja-profesional .front .btn-agendar:focus {
+    background-color: #379cd7 !important;
+}
+
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+
+.top-banner {
+    background-image: url(../../img/la-araucana/fondo-banner.svg);
+}
+
+.top-banner img {
+    border-color: rgba(255, 255, 255, .3)
+}
+
+.top-banner .legend {
+    color: var(--secondary)
+}
+
+.banner_topsc .legend .text-warning {
+    color: var(--primary) !important;
+}
+
+.top-banner.banner_topsc {
+    background-image: url(../../img/la-araucana/fondo-banner2.svg);
+}
+
+.text-warning {
+    color: var(--light) !important;
+}
+
+.menu-top .item-menu-top .logotipo-mobile {
+    width: 110px !important;
+   
+}
+
+/*Sala espera*/
+.hotspot-icon .cont-icon {
+    background-color: var(--primary)
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: var(--accent);
+}
+
+/*.cont-icon.hotspot-redes {
+    background-color: var(--secondary);
+}*/
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+}
+
+#hs-g .cont-icon {
+    background-color: var(--secondary);
+}
+
+#hs-g:hover .cont-icon {
+    background-color: var(--primary);
+}
+
+.toolbar-option {
+    color: var(--primary)
+}
+
+.toolbar-option.active {
+    color: var(--secondary)
+}
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--tertiary)
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--secondary)
+}
+
+.btn-sala:hover {
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion,
+.cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion:hover,
+.cont-btn-vc .btn-atencion:hover {
+    background-color: rgba(237, 110, 0, 0.1);
+    color: var(--primary);
+}
+
+.hotspot-icon {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.hotspot-icon i {
+    text-shadow: none;
+}
+
+.hotspot-icon:hover {
+    color: #FFF;
+}
+
+
+
+
+/*Prehome*/
+
+.prehome__plans {
+    height: 450px;
+}
+
+.prehome__plan {
+    width: 100%;
+    padding: 0;
+}
+
+.prehome__plan ul {
+    list-style-image: url('../../img/la-araucana/bullet.svg');
+
+    margin-top: 32px;
+    height: 350px;
+    font-size: 16px;
+}
+
+.prehome__title {
+    color: #FFF;
+}
+
+.kt-login__extra.registro {
+    display: none;
+}
+
+.logo-convenios.convenioChile+hr {
+    display: none;
+}
+
+.kt-login.kt-login--v3.kt-login--signin .kt-login__signin .titulo-card-farmacia {
+    text-align: center;
+}
+
+
+
+
+
+@media (max-width: 668px) {
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+
+    .body-home .logo-home img {
+        width: 138px;
+        top: 8px;
+        left: 6px;
+        position: relative;
+    }
+
+    .top-banner .legend {
+        text-align: left;
+        font-size: 1.3rem;
+    }
+
+    /*    Agendar > */
+    .busqueda-profesionales {
+        background-color: #fff;
+    }
+
+    .cont-caja-especialidad {
+        flex-direction: column;
+        justify-content: start;
+        gap: 0;
+        margin-bottom: 10px;
+    }
+
+    .caja-especialidad {
+        max-width: unset !important;
+        margin-bottom: 10px !important;
+    }
+
+    .inner-especialidad {
+        display: flex;
+    }
+
+    .inner-especialidad .label-caja-especialidad {
+        width: 100%;
+        font-size: 1rem;
+        text-align: left;
+        letter-spacing: 0.6px;
+    }
+
+    .busqueda-profesionales #especialidades {
+        letter-spacing: 0.6px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .prehome__plans {
+        height: auto;
+    }
+}
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/la-araucana/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/la-araucana/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/la-araucana/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/la-araucana/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/la-araucana/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/la-araucana/login/548x850.jpg);
+    }
+
+    .body-home .logo-home img {
+        width: 200px !important;
+    }
+
+    .body-home .top-banner .legend {
+        text-align: left;
+        font-size: 24px;
+        color: #FFF;
+        margin-left: 7%
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/la-araucana/login/960x978.jpg) !important;
+    }
+
+    .img2 {
+        background-image: url(../../img/la-araucana/login/960x978.jpg) !important;
+    }
+
+    .img3 {
+        background-image: url(../../img/la-araucana/login/960x978.jpg) !important;
+    }
+
+    .img4 {
+        background-image: url(../../img/la-araucana/login/960x978.jpg) !important;
+    }
+
+    .img5 {
+        background-image: url(../../img/la-araucana/login/960x978.jpg) !important;
+    }
+
+    .img6 {
+        background-image: url(../../img/la-araucana/login/960x978.jpg) !important;
+    }
+}
+
+@media (max-width: 1024px) {
+
+    /*Login - mobile*/
+    div#kt_login {
+        background-color: #fff;
+    }
+
+    .kt-login__logo.mb-0.d-md-none.d-block.text-center.cont-logo-mobile {
+        background-color: #fff !important;
+        border-bottom: 1px solid #ebedf2;
+    }
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+        font-size: 24px;
+    }
+
+    .cont-caja-especialidad {
+        flex-wrap: nowrap;
+    }
+
+    .inner-especialidad {
+        display: flex;
+        text-align: left;
+        justify-content: left;
+        align-items: center;
+    }
+
+    .label-caja-especialidad {
+        width: auto;
+        text-align: left;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+@media (max-width: 1024px) and (orientation: portrait) {
+    .caja-especialidad {
+        max-width: 50%;
+        margin: 0;
+    }
+}
+
+.titulo-servicio{
+    color: var(--primary) !important;
+}
+
+/*Prehome*/
+
+
+
+.prehome__title {
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 42px;
+    font-weight: 900;
+    color: #FFF;
+}
+
+.prehome {
+    width: 100%;
+    max-width: 1200px;
+    margin: 3rem auto;
+    /*margin-top: 6rem;*/
+}
+
+.prehome__card {
+    border-radius: 28px;
+    background-color: #fff;
+    padding: 2rem 0;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.prehome__plan {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    flex-shrink: 1;
+    margin: 0 auto;
+    padding: 0 .5rem;
+    max-width: 320px;
+    width: 100%;
+    height: 100%;
+    border-right: 1px solid #F5F5F5;
+}
+
+    .prehome__plan h2 {
+        text-align: center;
+        font-weight: 700;
+        width: 70%;
+        margin: 0 auto;
+        font-size: 22px;
+        /*margin-top: 3rem;*/
+    }
+
+    .prehome__plan ul {
+        list-style-image: url('../../img/prehome/bullet-araucana.svg');
+        padding-left: 30px;
+        padding-right: 30px;
+        margin-top: 32px;
+        min-height: 250px;
+        max-height: 300px;
+        overflow: hidden;
+        overflow-y: auto;
+        width: 100%;
+    }
+
+    .prehome__plan li {
+        margin-bottom: 16px;
+        font-size: 16px;
+    }
+
+.prehome__plans {
+    display: flex;
+    justify-content: space-evenly;
+    /*gap: 1rem;
+    height: 350px;*/
+    height: 400px;
+}
+
+.prehome__plan .btn {
+    /*max-width: 108px;*/
+    margin: auto auto 0;
+}
+
+.prehome__plan:last-child {
+    border-right: none;
+}
+
+
+/*Scrollbar*/
+
+/*Scroll columna paciente*/
+
+/* Track */
+
+.prehome__plan ul::-webkit-scrollbar-track,
+.prehome__plan ul::-webkit-scrollbar-track {
+    background: rgba(80, 80, 80, 0.2);
+}
+
+
+/* Handle */
+.prehome__plan ul::-webkit-scrollbar-thumb,
+.prehome__plan ul::-webkit-scrollbar-thumb {
+    background: var(--primary);
+}
+
+    /* Handle on hover */
+   
+
+.prehome.single-plan {
+    max-width: 600px;
+}
+
+
+.prehome.double-plan {
+    max-width: 800px;
+}
+
+.prehome.multiple-plan {
+    max-width: 1200px;
+}
+
+
+@media (max-width: 991.98px) {
+
+   
+
+    .prehome__title {
+        font-size: 24px;
+    }
+
+    .prehome__card {
+        margin: auto;
+        width: 90%;
+    }
+
+    .prehome__plan {
+        border-right: none;
+        border-bottom: 1px solid #F5F5F5;
+        padding-top: 0;
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+    }
+
+        .prehome__plan ul {
+            height: auto;
+        }
+
+        .prehome__plan:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .prehome__plan li {
+            font-size: 16px;
+        }
+
+
+    .prehome__plans {
+        flex-direction: column;
+        height: auto !important;
+        max-height: none;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .prehome__title {
+        width: 92%;
+        margin: 0 auto;
+    }
+
+  
+}
+
+.cont-buho {
+    background-color: #011C4B;
+    padding: 1rem 2rem 1rem 1rem;
+    border-radius: 5px;
+    max-width: 8rem;
+}
+
+.buho-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+    margin: auto;
+    gap: 1rem;
+}
+
+.buoh {
+    display: flex;
+    flex-direction: column;
+ 
+}
+
+.title-buho {
+    font-weight: bold;
+    font-size: 12px;
+    color: black;
+    width: 100%;
+    
+}
+
+.title-b {
+    font-weight: bold;
+    font-size: 12px;
+    color: black;
+}
+
+.title-buho u{
+    padding: 0;
+}
+
+
+.modal-content-araucana {
+    min-width: 1040px !important;
+}
+
+.buttons-info-araucana {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+}
+
+    .buttons-info-araucana button {
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        border: 2px solid var(--secondary);
+        padding: 2rem 1rem 2rem 1rem;
+        border-radius: 10px;
+        width: 48%;
+        background-color: var(--light);
+        box-shadow: 0px 3px 4px -3px rgba(0, 0, 0, 2);
+        color: var(--secondary);
+        font-weight:bold;
+        font-size: 16px;
+        
+    }
+
+.modal-header-araucana {
+    background-image: url(../../img/la-araucana/login/header-modal.jpg);
+    border-radius: 20px 20px 0 0;
+    background-size: cover;
+}
+
+.close-araucana span{
+    color: white !important;
+}
+
+.araucana-title{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.araucana-title-content {
+    display: flex;
+    justify-content: center;
+}
+
+.araucana-title-content img{
+    font-size: 10px;
+}
+
+#exampleModalLabel {
+    color: var(--light) !important;
+    font-size: 20px;
+}
+
+.araucana-title {
+    color: var(--light) !important;
+}
+
+.beneficios-info{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    width: 45%;
+    margin: auto;
+}
+
+
+
+.info-araucana {
+    background-color: #ebf1f6;
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    flex-direction: column;
+}
+
+
+.beneficio-table-info {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 1rem;
+}
+
+.beneficios-info div{
+
+}
+
+.enc-1 {
+   
+    background-color: #00539B;
+    border-radius: 20px 0 0 0;
+}
+
+.enc-2 {
+    background-color: #0069B4;
+}
+
+.enc-3 {
+    background-color: #379CD7;
+    border-radius: 0 20px 0 0;
+}
+
+.tabla-beneficio {
+    width: 60%;
+    border-right: 20px;
+}
+
+.custom-table {
+    width: 100%;
+}
+
+    .custom-table tbody {
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.35);
+
+    }
+
+.title-table th{
+   
+    padding: 2rem 0.2rem 2rem 0.2rem !important;
+    text-align: center;
+    font-size: 18px;
+    color: var(--light);
+}
+
+
+.tabla-beneficio td{
+    font-size: 11.5px;
+    padding: 0.5rem 0.2rem 0.5rem 0.2rem;
+    border: 1px solid grey;
+    color: black;
+    border-radius: 0 0 10px 10px;
+  
+}
+
+.en-linea{
+    border-radius: 0 0 0 10px !important;
+}
+
+.smartcheck {
+    border-radius: 10px 0 0 0 !important;
+}
+
+
+.info-araucana{
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+
+.info-araucana-caja {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+    .info-araucana-caja h2 {
+        color: #00539B;
+    }
+
+    .info-araucana-caja img {
+        height: 40px;
+    }
+
+    
+
+    .info-araucana ul li{
+        text-align: left !important ;
+    }
+
+.ingreso-info{
+    display: flex;
+    flex-direction: row;
+    min-width: 100%;
+    padding: 2rem;
+    gap:1rem;
+    
+}
+
+.ingreso-info-1 {
+    display: flex;
+    flex-direction: column;
+    width: 51%;
+    border-right: 1px solid #ccc;
+    padding: 1rem;
+}
+
+.ingreso-info-2 {
+    display: flex;
+    flex-direction: column;
+    width: 51%;
+    padding: 1rem;
+}
+
+
+
+.container-radius {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.circle {
+    width: 50px;
+    height: 50px;
+    background-color: #00539B;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    font-size: 15px;
+    color: white;
+}
+
+.line {
+    width: 2px;
+    height: 45px;
+    background-color: #000;
+}
+
+
+.ingreso-info-1-circles {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.contenedor-info-circles{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+}
+
+.caja-info-circles {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    gap:1rem;
+    width: 100%
+}
+
+    .caja-info-circles div {
+        display: flex;
+        justify-content: center;
+        align-content:center;
+        align-items:center;
+        background-color: #ebf1f6;
+        padding:2rem;
+        height: 60px;
+        width: 60px;
+    }
+
+
+.contenedor-info-circles{
+
+}
+
+
+#caja-media{
+    margin-top:1.2rem;
+    margin-bottom:1.2rem;
+}
+
+.redireccion-ingresa{
+    display: flex;
+    flex-direction:column;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .beneficio-table-info {
+        flex-direction: column;
+    }
+    .beneficios-info{
+        width: 100%;
+    }
+
+    .modal-content-araucana {
+        min-width: 100px !important;
+    }
+
+    #content{
+        max-height:250px;
+        overflow-y: scroll;
+    }
+
+    .tabla-beneficio {
+        width: 100%;
+    }
+
+    .beneficios-mobil h4 {
+        color: #00539B;
+    }
+
+    .beneficios-mobil{
+        text-align: left;
+        color: black;
+    }
+
+        .beneficios-mobil ul {
+            margin-right: 2.5rem;
+        }
+
+
+    .ingreso-info {
+        display: flex;
+        flex-direction: column;
+        min-width: 100%;
+         padding: 0rem; 
+         gap: 0rem; 
+    }
+
+    .caja-info-circles {
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        padding: 0.5rem;
+        gap: 1rem;
+        width: 70vw;
+    }
+
+    .ingreso-info-1 {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        border-right: 1px solid #ccc;
+        padding: 0rem;
+        border: none;
+    }
+}
+
+.caja-beneficios-mobil {
+    display: flex;
+    flex-direction: column;
+}
+
+.beneficios-mobil {
+    display: flex;
+    flex-direction: column;
+}
+
+.li-beneficio-list{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+
+      
+}

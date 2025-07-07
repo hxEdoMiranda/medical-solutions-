@@ -1,0 +1,104 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+
+    <section class="container-fluid note-section library featured" id="nota3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    
+                    <div class="cont-titulo-receta">
+                        <div class="cont-logo">
+                            <img src="~/img/cajalosandes/recetas/logo.svg" alt="" />
+                    <h1 class="title-section">
+                        Pinchos de pollo con manzana
+                    </h1>
+                        </div>
+                    <img src="~/img/cajalosandes/recetas/pinchos-pollo.png" alt="" />
+                    
+                    </div>
+                    
+                    
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <h2 class="subtitulo-receta">
+                        Ingredientes:
+                    </h2>
+
+                    <ol>
+                        
+                        <li> 100 gr pechuga pollo</li>
+                        <li> 1 manzana</li>
+                        <li> 1 c/c de cúrcuma</li>
+                        <li> 1 c/c de curry</li>
+                        <li> 1 c/s de aceite de oliva extra virgen</li>
+                        <li> Sal</li>
+                        
+                    </ol>
+                   
+                    <h2 class="subtitulo-receta">
+                        Paso a paso:
+                    </h2>
+                    <ol>
+                        <li> Lavar los Mezclar en un bol el aceite de oliva, la cúrcuma, el curri y un poco de sal.</li>
+                        <li> Añadir el pollo cortado a tacos y remover hasta que quede todo impregnado.</li>
+                        <li> Pelar la manzana y cortarla a tacos de una medida similar al pollo.</li>
+                        <li> Colocar en un pincho dos tacos de pollo intercalados con dos tacos de manzana.</li>
+                        <li> Repetir la operación con los otros pinchos.</li>
+                        <li> Dorar los pinchos en una sartén a fuego medio para que no se quemen, con un poco de aceite
+                         oliva virgen, por todos los lados.</>
+                        <li> Cuando adquieran color, añadir dos cucharadas soperas de agua y tapar la sartén para que
+                        acaben de cocer a fuego lento durante 4-5 minutos aproximadamente.</li>
+                        <li> Dejar reposar y servir. También se puede hacer sin especias, eliminando el punto 1 y 2 de la
+                        elaboración o añadiendo otras según guste.</li>
+                        <li>*Receta apta para pacientes con los siguientes síntomas: la falta de apetito, diarrea, nauseas y vómitos.</li>
+                        
+
+                      
+
+                    </ol>
+                   
+                     
+                    
+                    <p>
+                        <a href="@Url.Action("DescargarCaja", new { file = ViewBag.codigoNota})">
+                            Descargar PDF
+                        </a>
+                        
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}

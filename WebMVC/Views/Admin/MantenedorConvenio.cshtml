@@ -1,0 +1,269 @@
+﻿@{
+    ViewData["Title"] = "Administrador";
+    Layout = "_LayoutAdmin";
+    
+}
+@using Microsoft.Extensions.Configuration
+@model WebMVC.Models.AdminConvenios
+@inject IConfiguration Configuration
+@{
+    ViewData["idEntidad"] = ViewBag.idEdit;
+    ViewData["codEntidad"] = Entidades.FOTO_CONVENIO;
+    //ViewData["uid"] = ViewBag.idCliente;
+}
+@section Styles  {
+    <link href="~/metronic_demo7/assets/plugins/select2/select2.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" />
+    <link href="~/metronic_demo7/assets/plugins/bootstrap-select/css/bootstrap-select.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" />
+}
+
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+    <!--Begin::App-->
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+
+        <!--Begin:: App Aside Mobile Toggle-->
+        <button class="kt-app__aside-close" id="kt_user_profile_aside_close">
+            <i class="la la-close"></i>
+        </button>
+        <!--End:: App Aside Mobile Toggle-->
+        <!--End:: App Aside Mobile Toggle-->
+
+        <div class="col-lg-12">
+            <div class="kt-portlet">
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">Mantenedor de convenio</h3>
+                    </div>
+
+                </div>
+                <form id="form_edit_convenio" class="kt-form kt-form--label-right">
+                    <div class="kt-portlet__body">
+                        <div class="kt-section kt-section--first mb-0">
+                            <div class="kt-section__body">
+
+                                <div class="row">
+                                    <div class="col-md">
+
+                                        <!--Nuevo layout de formulario-->
+
+                                        <div class="form-group row mb-4">
+                                            <div class="col-6 col-md mb-12 mb-md-0">
+                                                <label class="form-label">Nombre convenio</label>
+                                                @Html.TextBoxFor(m => m.convenios.Nombre, new { @class = "form-control", type = "text" })
+                                                @*@Html.TextBoxFor(m => m.Nombre, new { @class = "form-control", maxlength = "50", required = "required" })*@
+                                            </div>
+
+                                            <div class="col-6 col-md mb-12 mb-md-0">
+                                                <div id="divSeleccionProfesional">
+                                                    <label class="form-label">&nbsp;</label>
+                                                    <div class="col-10">
+                                                        <div class="form-group row mb-4 ">
+                                                            <button type="button" id="modalEspecialidad" class="btn btn-brand btn-elevate btn-icon-sm pull-right">
+                                                                <i class="fas fa-plus"></i>
+                                                                Especialidad
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-12">
+                                    <h5 class="label-title mb-4">Tipificación de convenio</h5>
+                                    <div class="form-group row mb-4 ">
+                                        <div class="col-12 col-md-4 mb-4">
+                                            <label class="form-label">Modelo Atención</label>
+                                            @Html.DropDownListFor(model => model.convenios.IdModeloAtencion, Enumerable.ToList(Model.modeloAtencion).Select(x => new SelectListItem { Text = x.Detalle.ToString(), Value = x.Id.ToString() }), new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-12 col-md-4 mb-4">
+                                            <label class="form-label">Regla de pago</label>
+                                            @Html.DropDownListFor(model => model.convenios.IdReglaPago, Enumerable.ToList(Model.reglaPago).Select(x => new SelectListItem { Text = x.Detalle.ToString(), Value = x.Id.ToString() }), new { @class = "form-control" })
+                                        </div>
+                                        <div class="col-12 col-md-4 mb-4">
+                                            <label class="form-label">Valor</label>
+                                            @Html.TextBoxFor(m => m.convenios.ValorReglaPago, new { @class = "form-control", type = "text" })
+                                        </div>
+
+                                        @*<div class="col-12 col-md-4 mb-4">
+                                                <label class="form-label">Regla de servicio</label>
+                                                @Html.DropDownListFor(model => model.convenios.IdReglaServicio, Enumerable.ToList(Model.reglaServicio).Select(x => new SelectListItem { Text = x.Detalle.ToString(), Value = x.Id.ToString() }), new { @class = "form-control" })
+                                            </div>*@
+                                        <div class="col-12 col-md-4 mb-4">
+                                            <label class="form-label">Fecha de Inicio</label>
+                                            @Html.TextBoxFor(m => m.convenios.FechaInicio, "{0:dd/MM/yyyy}", new { @class = "form-control datepicker col-lg-12", type = "text", style = "width: 100% !important;" })
+                                        </div>
+                                        <div class="col-12 col-md-4 mb-4">
+                                            <label class="form-label">Fecha de Termino</label>
+                                            @Html.TextBoxFor(m => m.convenios.FechaTermino, "{0:dd/MM/yyyy}", new { @class = "form-control datepicker col-lg-12", style = "width: 100% !important;" })
+                                        </div>
+                                        <div class="col-12 col-md-4 mb-4">
+                                            <label class="form-label">Estado</label>
+                                            @Html.DropDownListFor(m => m.convenios.Estado, Model.ObtenerEstado(), new { @class = "form-control", required = "required" })
+                                        </div>
+                                        <div class="col-12 col-md-4 mb-4">
+                                            <label class="form-label">Código Convenio</label>
+                                            @Html.TextBoxFor(m => m.convenios.CodConvenio, new { @class = "form-control", type = "text" })
+                                        </div>
+                                        <div class="col-12 col-md-4 mb-4">
+                                            <label class="form-label">URL</label>
+                                            @Html.TextBoxFor(m => m.convenios.UrlConvenio, new { @class = "form-control", type = "text" })
+                                        </div>
+                                        <div class="col-12 col-md-4 mb-4">
+                                            <label class="form-label">Texto marca</label>
+                                            @Html.TextBoxFor(m => m.convenios.TextoMarca, new { @class = "form-control", type = "text" })
+                                        </div>
+                                        <div class="col-12 col-md-4 mb-4">
+                                            <label class="form-label">Atencion directa</label>
+                                            @Html.CheckBoxFor(m => m.convenios.AtencionDirecta, new { @class = "" })
+                                        </div>
+                                        <div class="col-12 col-md-4 mb-4">
+                                            <label class="form-label">Teleperitaje</label>
+                                            @Html.CheckBoxFor(m => m.convenios.Teleperitaje, new { @class = "" })
+                                        </div>
+
+                                        <div class="col-12 col-md-4 mb-4">
+                                            <label class="form-label">Imagen&nbsp;&nbsp;(Imagen en formato JPG o JPEG y medidas 250px de ancho y 60px de alto)</label>
+                                            <div class="">
+                                                <div class="col-md-auto" style="text-align-last: center;">
+                                                    <div class="row">
+                                                        <div class="col-lg-12 mb-4">
+                                                            <div class="row">
+
+                                                                @Html.HiddenFor(m => m.convenios.TempID)
+                                                                @Html.HiddenFor(m => m.convenios.FechaCreacion)
+                                                                @Html.HiddenFor(m => m.convenios.FechaModifica)
+
+                                                                @Html.HiddenFor(m => m.convenios)
+                                                                @Html.Hidden("idEntidad", ViewData["idEntidad"])
+                                                                @Html.Hidden("codEntidad", ViewData["codEntidad"])
+                                                                @Html.Hidden("uid", (object)ViewBag.uid)
+                                                                <div class="col-lg-4 col-xl-12 text-center">
+                                                                    <div class="kt-avatar kt-avatar--outline" id="kt_user_avatar">
+                                                                        @{
+                                                                            var img1 = (object)ViewBag.uid + ".jpg";
+
+                                                                        }
+                                                                        <div id="divAvatar" style="height: 80px;width: 300px;background-repeat: no-repeat;" class=" dropzone accessibility-issue__headerkt-avatar__holder cont-avatar">
+                                                                            <div class="form-group row" id="cargaFoto" style="display: none">
+                                                                                <div class="dropzone dropzone-default dropzone-brand brand-zone-medismart" id="kt_dropzone_fotoavatar" style="height:200px;">
+                                                                                    <div class="dropzone-msg dz-message medismart-dopzone needsclick">
+                                                                                        <h3 class="dropzone-msg-title">Arrastra una imagen aquí si deseas cambiarla.</h3>
+                                                                                        <span class="dropzone-msg-desc">Archivos seleccionados se <strong>guardarán</strong> automáticamente.</span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="Cambiar foto">
+                                                                            <i class="fa fa-pen"></i>
+
+                                                                        </label>
+                                                                        <span class="kt-avatar__cancel" data-toggle="kt-tooltip" title="" data-original-title="Cancel avatar">
+                                                                            <i class="fa fa-times"></i>
+                                                                        </span>
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!--end:: Nuevo layout de formulario-->
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="kt-portlet__foot">
+                        <div class="kt-form__actions">
+                            <div class="row float-lg-right pb-3">
+                                <div class="text-right mr-3">
+                                    <a href="/Admin/ListaConvenios" type="button" id="btnVolver" class="btn btn-warning btn-block">Volver</a>
+                                </div>
+                                <div class="text-right">
+                                    <button type="submit" id="btn_guardar_convenio" class="btn btn-success btn-block">Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        @*<div class="col-lg-4">
+                <partial name="~/Views/Shared/_ConfigAccount.cshtml" model="Model" view-data="ViewData" />
+
+            </div>*@
+    </div>
+</div>
+<!--Modal próximas atenciones pacientes-->
+<div class="modal fade" id="kt_modal_3" name="kt_modal_3" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-la" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Selección Especialidad</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="kt-portlet__body kt-portlet__body--fit" id="modalBody">
+                <div class="col-12 mt-5">
+
+                    <div class="form-group row mb-4 ">
+                        <div class="col-12 col-md-6 mb-4">
+                            <h5 class="label-title mb-4">Tipo Profesional</h5>
+                            @*@Html.DropDownList("tipoProfesional", Model.TipoProfesionales(), new { @class = "form-control", required = "required" })*@
+                        <select class="form-control" id="tipoProfesional" name="tipoProfesional">
+                            <option value="0">Seleccionar Tipo Profesional</option>
+                        </select>
+                        </div>
+                        <div id="divContenedor" class="col-lg-12 row" style="height: 450px;overflow: auto;overflow-x: hidden;">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrar" data-dismiss="modal">Volver</button>
+                @*<button id="btnFinalizar" type="button" class="btn btn-brand">Finalizar</button>*@
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section Scripts {
+    <script src="~/metronic_demo7/assets/plugins/select2/select2.js?rnd=@NumeroRandom.GetRandom()"></script>
+    <script src="~/metronic_demo7/assets/js/pages/components/extended/sweetalert2.js?rnd=@NumeroRandom.GetRandom()"></script>
+    <script src="~/metronic_demo7/assets/js/pages/custom/user/profile.js?rnd=@NumeroRandom.GetRandom()"></script>
+    
+    <script src="~/js/Shared/archivos-logoConvenio.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script type="module">
+        import { init } from '../../js/Admin/create-mantenedor-convenio.js?rnd=@NumeroRandom.GetRandom()';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+           $('.select2').select2();
+        (function () {
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+            var idEdit = @ViewBag.idEdit;
+             window.idEdit = idEdit;
+        })()
+    </script>
+}

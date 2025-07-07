@@ -1,0 +1,583 @@
+﻿@model WebMVC.Models.FacturacionViewModel
+@using Microsoft.Extensions.Configuration
+@using System.Globalization
+@inject IConfiguration Configuration
+
+@{
+    ViewData["Title"] = "Paciente";
+    Layout = "_LayoutPaciente";
+    var baseUrlServices = Configuration["ServicesUrl"];
+}
+
+<!-- WOW -->
+
+<div class="wow wow__resumen" id="DivWowResumen">
+    <div class="wow__title">
+        <h2 class="wow__title_text">
+            Facturación Suscripción
+        </h2>@*
+        <button class="btn btn-outline-primary wow__btn_descargarResumen">
+        Descargar Resumen
+        </button>*@
+    </div>
+    <div class="wow__container wow__resumen">
+        <!-- Tabs -->
+
+        <div class="wow__tabs">
+            <div class="wow__menu-tabs">
+                @*<div class="wow__tab tab-antecedentes">Planes</div>*@
+            </div>
+            <!-- Container Tabs -->
+            <!-- Antecedentes -->
+
+            <div class="wow__container-tab tab--antecedentes">
+                <!-- Tab Content -->
+                <div class="tab-content">
+                    <!-- Tab Header -->
+
+                    <div class="tab-content__header">
+                        @Html.Hidden("uid", (object)ViewBag.uid)
+
+                    </div>
+
+                    <!-- Tab Header -->
+                    <!-- Tab Body -->
+                    <div class="tab-content__body">
+                        <div class="prehome__plan didi-a-plan">
+                            @{
+                                var item = @ViewBag.Especialidades[0];
+                                var identificadorDidi = (item.Identificador.Replace("DIDI-", "").Replace("-A", " A").Replace("-B", " B"));
+
+                            }
+                            <h2 class="identificadorDidi">@(identificadorDidi)</h2>
+                            <div class="st_didi">
+                                <h2 class="subtitleValorDidi">$@(@ViewBag.Especialidades[0].Valor)<span> MXN / Mes</span></h2>
+                            </div>
+                            @if (item.CantCargas > 0)
+                            {
+                                <h3 class="cargas_didi">Titular + @(item.CantCargas) Cargas</h3>
+                            }
+                            <ul class="lista-especialidades facturacion">
+                                @foreach (var esp in item.Especialidades)
+                                {
+                                    var images = new Dictionary<string, string>
+                                {
+                                { "Medicina General", "medicina-general.svg" },
+                                { "Psicología Adulto", "psicologia.svg" },
+                                { "Nutrición y Dietética", "nutricion.svg" }
+                                };
+                                    <li>
+                                        @if (images.ContainsKey(esp))
+                                        {
+                                            <img src="@Url.Content("~/img/didi/prehome/" + images[esp])" alt="@esp" />
+                                        }
+                                        @esp
+                                    </li>
+                                }
+                                <li>
+                                    <img src="@Url.Content("~/img/didi/prehome/cotizador.svg")" alt="Cotizador de fármacos" /> Cotizador de fármacos
+                                </li>
+                                <li>
+                                    <img src="@Url.Content("~/img/didi/prehome/farmacias.svg")" alt="Farmacia Online" /> Farmacia Online
+                                </li>
+                                <li>
+                                    <img src="@Url.Content("~/img/didi/prehome/examenes.svg")" alt="Exámenes a Domicilio" /> Exámenes a Domicilio
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Tab Body -->
+                </div>
+                <!-- Tab Content -->
+            </div>
+        </div>
+        <!-- Tabs -->
+        <!-- Lista -->
+        <div class="wow__lista" id="divLista">
+            <!-- Header Lista -->
+
+            <div class="wow__lista-header">
+                <div class="wow__lista-title">
+                    @*Tu Lista*@
+                </div>
+            </div>
+            <!-- Header Lista -->
+            <!-- Body Lista -->
+            <div class="wow__lista-body" id="wowListaBody">
+                <div class="wow__lista-item" id="DivExamenes">
+                    <div class="wow__lista-item-header" id="DivTituloExamenes">
+                        <div class="wow__lista-item-title">
+                            DETALLE
+                        </div>
+                    </div>
+                    <div class="wow__lista-item-body">
+                        <div class="wow__subitem" id="listadoExamenes">
+                            <div id="examenes-list" class="wow__subitem-check">
+                                <input type="checkbox" id="idFacturaEsp" class="checkbox" name="@item.IdCliente" value="@item.Valor">
+                                <label for="item">@identificadorDidi</label>
+                            </div>
+                            <div class="wow__subitem-price">
+                                <div class="price">
+                                    $@String.Format("{0:n0}", Convert.ToDecimal(@item.Valor)).Replace(",",".")
+                                    <small class="old-price" style="display: none">
+                                        $@String.Format("{0:n0}", Convert.ToDecimal(@item.Valor)).Replace(",",".")
+                                    </small>
+                                </div>
+                            </div>
+                            <input type="hidden" id="@item.IdCliente" value="@item.Valor">
+
+                            <input type="hidden" id="@item.IdCliente" value="@item.Valor">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Totales -->
+
+                <div class="wow__totales" id="divTotalAPagar">
+                    <div class="wow__total" hidden>
+                        <div class="wow__total-label subtotal-label">Subtotal</div>
+                        <div class="wow__total-price" id="subTotalSinOferta">$@item.Valor</div>
+                    </div>
+                    <div class="wow__total descto-medismart" hidden>
+                        <div class="wow__total-label wow__descuento-medismart">Descuento Medismart</div>
+                        <div class="wow__total-price" id="descuentoMedismart">$@item.Valor</div>
+                    </div>
+                    <div class="wow__total final">
+                        <div class="wow__total-label total-label" id="totalLabel">Total a pagar</div>
+                        <div class="wow__total-price" id="totalPrice">$@item.Valor</div>
+                        <div hidden id="totalPriceCarro">@item.Valor</div>
+                    </div>
+                </div>
+
+                <!-- Totales -->
+                <!-- Botones Domicilio -->
+                <div class="wow__domicilio" id="divDomicilio" hidden>
+                    <button class="btn btn-outline-primary">
+                        <div class="label-domicilio">
+                            <img src="~/img/wow/moto.svg" alt="" />
+                            <span class="label-despacho">
+                                Despacho a domicilio
+                            </span>
+                            <span id="precio-despacho" class="precio precio-despacho">
+                                $ 0
+                            </span>
+                        </div>
+                    </button>
+                    <button class="btn btn-outline-primary" hidden>
+                        <div class="label-domicilio">
+                            <img src="~/img/wow/tienda.svg" alt="" />
+                            <span class="label-despacho">
+                                Retiro en tienda
+                            </span>
+                            <span class="precio precio-despacho">
+                                $ 0
+                            </span>
+                        </div>
+                    </button>
+                </div>
+                <!-- Botones Domicilio -->
+                <!-- Body Lista -->
+                <!-- Footer Lista -->
+                <div class="wow__lista-footer">
+                    @*    @if (Model.DatosTarjetasMercadoPago.tarjetas.Count <= 0)
+                    {
+                    <div id="msjSinTarjetasWallet">
+                    <div class="wow__title-msg-card">
+                    <span>Paga con tu Billetera</span>
+                    </div>
+                    <div class="wow__parrafo-msg-card" hidden>
+                    <p>Gana un 5% de descuento de tu lista  con tu primera compra</p>
+                    </div>
+                    <div class="wow__border-msg-card">
+                    <div class="wow__subtitle-msg-card">
+                    <img src="~/img/wow/alert-triangle.svg" />
+                    Asocia tu tarjeta a la billetera. ¡Aprovecha los beneficios de Medismart!
+                    </div>
+                    <div class="btn btn-secondary wow__btn-msg-card" id="buttonAddCardWC">Agregar Tarjeta y Pagar</div>
+                    </div>
+                    <div class="wow__total-final-card">
+                    <div class="wow__total-fc-label total-label">Total a pagar</div>
+                    <div class="wow__total-fc-price" id="totalPriceMP"></div>
+                    </div>
+                    <div id="loaderPagosWC" class="wow__loader-pagos-wc" style="display: none;"></div>
+                    </div>
+                    }*@
+                    <button id="pagarButton" class="btn btn-primary hideButton">Pagar</button>
+                    <div class="otrosBotones">
+                        <button id="pagarlista" class="btn btn-primary" hidden>Pagar Online</button>
+                        <button id="buttonpagos" class="btn btn-primary" hidden>Pagar con Mercado Pago</button>
+                        <button id="buttonsuscripcionModal" class="btn btn-primary">Suscribirme</button>
+                    </div>
+                </div>
+                <!-- Footer Lista -->
+                </>
+
+                <div id="loaderPagos" class="wow__loader-pagos" style="display: none;"></div>
+                <!-- Lista -->
+
+            </div>
+            <!-- Modal direcciones -->
+            <div class="modal fade wow-modal_dir" id="dynamic-modal-div" name="dynamic-modal-div" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true" style="">
+                <div class="modal-dialog modal-xl" role="document">
+                    <div class="modal-content wow_modal-content">
+                        <div id="dynamic-modal"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Loader Pago Final
+            <div id="loader" class="wow-loader__pago" style="display: none;">
+                <img id"doctor" src="~/img/momento-wow/facedoc.png" class="docW ow"/>
+                <div class="wow-loading__pago"></div>
+                <div class="wow-loading__pago-message">
+                    <p>Estamos confirmando tu pago</p>
+                </div>
+            </div>-->
+            @*Loader Redirección
+            <div id="loaderIni" class="wow-loader__pago" style="display: none;">
+            <img id"doctor" src="~/img/momento-wow/facedoc.png" class="docWow"/>
+            <div class="wow-loading__pago"></div>
+            <div class="wow-loading__pago-message">
+            <p>Estamos redirigiéndote a la página de pago</p>
+            </div>
+            </div>*@
+            @*Loader Redirección*@
+            <div class="modal fade" id="loaderIni" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-wow">
+                    <div class="modal-content">
+                        <div class="modal-body">
+
+                            <div class="wow_message-loader">
+                                <img id"doctor" src="~/img/momento-wow/facedoc.png" />
+
+                                <div class="message">
+
+                                    Estamos redirigiéndote a la página de pago...
+                                </div>
+                                <div class="wow-loading__pago"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="loaderCar" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-wow">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="wow_message-loader">
+                                <img id"doctor" src="~/img/momento-wow/facedoc.png" />
+                                <div class="message">
+                                    Estamos iniciando el proceso de compra...
+                                </div>
+                                <div class="wow-loading__pago"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="loaderCarBack" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-wow">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="wow_message-loader">
+                                <img id"doctor" src="~/img/momento-wow/facedoc.png" />
+                                <div class="message">
+                                    Espera un momento por favor...
+                                </div>
+                                <div class="wow-loading__pago"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*Loader Agendamiento
+            <div id="loaderInterc" class="wow-loader__pago" style="display: none;">
+            <img id"doctor" src="~/img/momento-wow/facedoc.png" class="docWow"/>
+            <div class="wow-loading__pago"></div>
+            <div class="wow-loading__pago-message" hidden>
+            </div>
+            </div>*@
+            @*Loader Agendamiento*@
+            <div class="modal fade" id="loaderInterc" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-wow">
+                    <div class="modal-content">
+                        <div class="modal-body">
+
+                            <div class="wow_message-loader">
+                                <img id"doctor" src="~/img/momento-wow/facedoc.png" />
+
+                                <div class="message">
+
+                                    Estamos generando tu interconsulta...
+                                </div>
+                                <div class="wow-loading__pago"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modalCorreoMP" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-wow wow-mp">
+                    <div class="modal-content content-mailmp">
+                        <div class="modal-body body-mp">
+                            <button id="btnCerrarModalPago" type="button" data-dismiss="modal" class="btn-guardar-info wow__cerrar_pago cerrar-mp">
+                                <i class="fal fa-times"></i>
+                            </button>
+                            <div class="wow_message-loader-mail">
+                                <img id"doctor" src="~/img/momento-wow/facedoc.png" />
+                                <div class="message-title">
+                                    ¡Ten en cuenta!
+                                </div>
+                            </div>
+                            <div class="message-correo">
+                                Este es tu correo electrónico registrado en nuestra plataforma <b>@Model.fichaPaciente.Correo</b>, copialo y utilízalo a la hora de realizar la suscripción para agilizar el proceso.
+                                <input type="text" id="txtCorreo" value="@Model.fichaPaciente.Correo" style="display: none;" />
+                                <button id="btnCopiarCorreo" class="btn btn-secondary btn-copy__mail" title="Copiar dirección de correo electrónico">
+                                    <img id="imgCopiarCorreo" class="wow--img img_copy--mail" src="~/img/didi/copy-mail.svg" alt="Copiar" />
+                                </button>
+                            </div>
+
+                            <div class="btn-suscripcion-modal">
+                                <button id="buttonsuscripcion" class="btn btn-secondary">Continuar suscripción</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*Modal Suscripciones MercadoPago*@
+            <div class="modal fade" id="suscripcionesMP" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog modal-wow modal-suscripciones">
+                    <div class="modal-content">
+                        <div class="modal-body wow_body-suscripcion">
+                            <button id="btnCerrarModalPagoIFrame" type="button" data-dismiss="modal" class="btn-guardar-info wow__cerrar_pago">
+                                <i class="fal fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade modal-wow__modal-pagos" data-backdrop="static" id="modalGeneral" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-keyboard="false">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body modal__wow-gral" id="modalBodyGeneral">
+                            <div class="form-group row">
+                                <div class="btn-proveedor wow__pago-transbank" id="DivPagoTransBank" hidden></div>
+                                <div class="btn-proveedor wow__pago-mercadopago" id="DivPagoMercadoPago" hidden></div>
+                                <div class="proveedor_box">
+
+                                    <button id="btnCerrarModalPago" type="button" data-dismiss="modal" class="btn-guardar-info wow__cerrar_pago">
+                                        <i class="fal fa-times"></i>
+                                    </button>
+                                    <div class="box_addcards wow__resumen-addcard" id="DivPayment">
+                                        <h2 id="titleTarjetas" class="wow__text-select-pay">Seleccione su opción de pago</h2>
+                                        <div id="bannerTarjetas" class="tarjetas_ok"> <img src="~/img/pasarelapago/tarjetas_ok.png" /></div>
+                                        <div class="credit_ctabox">
+                                            <div class="item01">
+                                                @* <form id="form-checkout" >
+                                                <select type="text" id="form-checkout__cardId"></select>
+                                                <div id="form-checkout__securityCode-container" class="container"></div>
+                                                <input name="token" id="token" hidden>
+                                                <button>Enviar</button>
+                                                </form>
+                                                *@
+                                                <div id="paymentBrick_container"></div>
+                                            </div>
+                                        </div>
+                                        <!--Save-->
+                                    </div>
+                                    <!--cards-->
+                                </div>
+                                <div id="PagoTrasbank" class="wow__transbank-legend">
+                                </div>
+                                <div class="wow__agregar-tarjetas wow__form-addcard">
+                                    <button id="agregarTarjetaMP" class="btn btn-primary wow__btn-add">Agregar Tarjeta</button>
+                                </div>
+                                <div id="pagoNoProcesadoMP" class="wow__error-pago" style="display: none;">
+                                    <p>Tu pago no pudo ser procesado*</p>
+                                </div>
+                                <div class="box_addcards wow__add-newcard" id="DivAddCard" style="display: none;">
+                                    <h2>Agrega los datos de la tarjeta</h2>
+                                    <div class="tarjetas_ok"> <img src="~/img/pasarelapago/tarjetas_ok.png" /></div>
+
+                                    <div class="credit_ctabox">
+                                        <div class="item01">
+                                            <form id="form-checkout">
+                                                <!--Número de tarjeta-->
+                                                <h3>Número de tarjeta</h3>
+                                                <div id="form-checkout__cardNumber"></div>
+                                                <!--Número de tarjeta-->
+
+                                                <div class="date_code">
+                                                    <!--Fecha caducidad-->
+                                                    <div class="box_date">
+                                                        <h3>Fecha de caducidad (MM/AA)</h3>
+                                                        <div id="form-checkout__expirationDate"></div>
+                                                    </div>
+                                                    <!--Fecha caducidad-->
+                                                    <!--Codigoseguridad-->
+                                                    <div class="box_code">
+                                                        <h3>Código de seguridad (CVV)  <i class="fal fa-info-circle d-none"></i> </h3>
+                                                        <div id="form-checkout__securityCode"></div>
+                                                    </div>
+                                                    <!--Codigoseguridad-->
+                                                </div>
+                                                @if (ViewBag.codigoTelefono != "MX")
+                                                {
+                                                    <!--Tipo Documento tarjeta-->
+                                                    <h3>Tipo de identificación títular</h3>
+                                                    <select id="form-checkout__identificationType"></select>
+                                                    <!--Tipo Documento tarjeta-->
+                                                    <!--Númerodedocumento-->
+                                                    <h3>Número de documento</h3>
+                                                    <input type="text" id="form-checkout__identificationNumber" value=@Model.DatosTarjetasMercadoPago.identificador />
+                                                    <!--Númerodedocumento-->
+                                                }
+                                                <!--Titular tarjeta-->
+                                                <h3>Titular de la tarjeta</h3>
+                                                <input type="text" id="form-checkout__cardholderName" value=@Model.DatosTarjetasMercadoPago.nombreUser />
+                                                <!--Titular tarjeta-->
+                                                <!--E-mail-->
+                                                <h3>E-mail</h3>
+                                                <input type="email" id="form-checkout__cardholderEmail" value=@Model.DatosTarjetasMercadoPago.email />
+                                                <!--E-mail-->
+                                                <!--Autorización-->
+                                                @{
+                                                    var esCarga = 0;
+                                                    foreach (var i in Model.DatosTarjetasMercadoPago.tarjetas)
+                                                    {
+                                                        if (i.tarjetaCarga == 1)
+                                                        {
+                                                            esCarga = 1;
+                                                        }
+                                                    }
+                                                    if (esCarga != 1)
+                                                    {
+                                                        <div class="checkbox_text">
+                                                            <label><input id="sharedCard" type="checkbox" /> Autorizo compartir la tarjeta con mis cargas/beneficiarios</label>
+                                                        </div>
+                                                    }
+                                                }
+
+
+                                                <!--Autorización-->
+
+                                                <div class="save_dates">
+                                                    <a href="javascript:void(0);" id="manejoDatosMS" class="d-none d-lg-inline-block kt-widget4__title">Tus datos están seguros con nosotros</a>
+                                                </div>
+                                                <select id="form-checkout__issuer" hidden="hidden"></select>
+                                                <select id="form-checkout__installments" hidden="hidden"></select>
+
+                                                <!--Save-->
+                                                <div class="wow__footer-addform">
+                                                    <div class="save_cta">
+                                                        <button type="submit" class="btn btn-primary btn-submit__wow" id="form-checkout__submit">Guardar tarjeta</button>
+                                                    </div>
+                                                    <div class="back_cta">
+                                                        <button type="button" class="btn btn-primary btn-back__wow" id="btnFormBack">Regresar</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <!--CamposOcultos-->
+                                            <input type="hidden" id="iduser" value=@Model.DatosTarjetasMercadoPago.idUser />
+                                            <input type="hidden" id="CustomerId" />
+                                            <!--E-mail-->
+                                        </div>
+                                    </div>
+                                    <!--Save-->
+                                </div>
+                                <div class="modal-footer modal__wow-footer-pagos">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- end: WOW -->
+    </div>
+
+    <div class="wow__lista--sf" id="divListaSinFactura" style="visibility: hidden">
+        <!-- Header Lista -->
+        <div class="wow__lista-header">
+            <div class="wow__lista-title">
+                Sin facturas
+            </div>
+        </div>
+        <!-- Header Lista -->
+        <!-- Body Lista -->
+        <div class="wow__lista-body" id="wowListaBody">
+            <div class="wow__lista-item" id="DivExamenes">
+                <div class="wow__lista-item-header" id="DivTituloExamenes">
+                    <div class="wow__lista-item-title">
+                        En este momento no tienes facturas pendientes
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Loader Pago Final-->
+
+    <div class="modal fade" id="loaderSuscrip" tabindex="-1" aria-labelledby="exampleModalLabel" data-backdrop="static" aria-hidden="true">
+        <div class="modal-dialog modal-wow">
+            <div class="modal-content">
+                <div class="modal-body">
+
+                    <div class="wow_message-loader">
+                        <img id="doctor" src="~/img/momento-wow/facedoc.png" />
+
+                        <div class="message">
+
+                            Estamos confirmando tu pago...
+                        </div>
+                        <div class="wow-loading__pago"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+
+        <script src="https://sdk.mercadopago.com/js/v2"></script>
+        <script type="module">
+            import { init } from '../../js/Paciente/facturacion-suscripcion.js?rnd=${@NumeroRandom.GetRandom()}';
+            init(@Html.Raw(Json.Serialize(Model)))
+        </script>
+        <script type="module">
+            import { init } from '../../js/PasarelaPago/HomeWallet.js?rnd=@NumeroRandom.GetRandom()';
+            init(@Html.Raw(Json.Serialize(Model.DatosTarjetasMercadoPago)))
+        </script>
+        <script type="text/javascript">
+            (function () {
+                var servicesUrlPago = '@ViewBag.servicesUrlPago';
+                console.log(@ViewBag.Mensaje);
+                var uid = @ViewBag.uid;
+                window.uid = uid;
+                var externo = '@ViewBag.externo';
+                window.externo = externo;
+                var idCliente = @ViewBag.idCliente;
+                window.idCliente = idCliente;
+                var host = '@ViewBag.HostURL';
+                window.host = host;
+                var urlBase = '@ViewBag.urlBase'
+                window.urlBase = urlBase;
+                window.servicesUrl = '@ViewBag.servicesUrl';
+                window.totalDirecciones = '@ViewBag.totalDirecciones';
+                window.direccionExamenWOW = '@Html.Raw(ViewBag.direccionExamenWOW)';
+                window.servicesUrlPago = '@ViewBag.servicesUrlPago';
+                window.servicesUrlWeb = '@ViewBag.servicesUrlWeb';
+                window.codigoTelefono = '@ViewBag.codigoTelefono';
+                window.validaFactura = '@ViewBag.UltimaFactura';
+                window.publicKey = '@ViewBag.publicKey';
+                var model = @Html.Raw(Json.Serialize(Model));
+                window.modelVista = model;
+            })()
+        </script>
+    }

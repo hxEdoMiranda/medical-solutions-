@@ -1,0 +1,666 @@
+﻿@using Microsoft.Extensions.Configuration
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@inject IConfiguration Configuration
+@{
+}
+@model WebMVC.Models.AtencionViewModel
+
+@{
+    var urlSmartcheck = Configuration["ServiceUrlSmartcheck"];
+    ViewData["idEntidad"] = Model.Atencion.Id;
+    //ViewData["uid"] = int.Parse(ViewBag.uid);
+    ViewData["codEntidad"] = Entidades.ATENCIONES;
+    var formularioSuenoenfermera = false;
+    var programaSalud = false;
+    var tipeProgramaSalud = 0;
+    @if (ViewData["view"].Equals(Roles.Medico))
+    {
+        formularioSuenoenfermera = (Model.Atencion.HoraMedico.IdEspecialidad.ToString() == ViewBag.idFormularioEnfermera) && (Model.Atencion.IsProgramaSalud == true);
+        programaSalud = (Model.Atencion.HoraMedico.IdEspecialidad.ToString() == ViewBag.idFormularioEnfermera) && (Model.Atencion.IsProgramaSalud == true);
+        tipeProgramaSalud = (Model.programaSaludPaciente != null) ? Model.programaSaludPaciente.IdProgramaSalud : 0;
+    }
+    var hiddenNSP = "";
+    var hiddenBoxEspecial = "";
+    var hiddenUnab = "";
+    var hiddenUoh = "";
+    var tituloForm = "Reporte Médico";
+    var tituloAnamesis = formularioSuenoenfermera ? "Anamnesis/ hábitos/ antecedentes psicosociales y del entorno" : "Anamnesis/ Antecedentes/ Plan";
+    var tituloObservacionProf = formularioSuenoenfermera ? "Observaciones de hábitos / resultado del test" : "Observación Profesional (no visible para paciente)";
+    var iframeAnura = "";
+    var tituloDg = "Diagnóstico";
+    var hiddenPsico = "";
+    var hiddenPNutri = "";
+    var hiddenProgramaSalud = programaSalud ? "" : "hidden";
+    var hiddenPsicopedagogiaUnab = "";
+    var tituloOtrosEx = "Otros Exámenes";
+    var tituloCertificadoMedico = "Certificado Médico";
+    var tituloControl = "Control";
+    var isPsicopedagogiaUnab = false;
+    var isUnab = false;
+    var telefono = string.Empty;
+    var hiddenSueno = (programaSalud && tipeProgramaSalud == 2) ? "" : "hidden";
+    var hiddenCronico = (programaSalud && tipeProgramaSalud == 1) ? "" : "hidden";
+    var tituloReporteEnfermero = (programaSalud && tipeProgramaSalud == 2) ? "Reporte De Enfermería Clínica Del Sueño" : "Reporte De Enfermería Clínica Crónico";
+
+    // Obtener teléfono
+    if (!string.IsNullOrEmpty(Model.fichaPaciente.TelefonoMovil))
+    {
+        telefono = Model.fichaPaciente.TelefonoMovil ?? string.Empty;
+    }
+    else
+    {
+        if (!string.IsNullOrEmpty(Model.fichaPaciente.Telefono))
+        {
+            telefono = Model.fichaPaciente.Telefono ?? string.Empty;
+        }
+    }
+
+    var hiddeIncendio = "";
+
+
+
+    telefono.Replace(" ", string.Empty).Replace("+", string.Empty).Replace("(", string.Empty).Replace(")", string.Empty);
+
+    // Agregar código país (sólo Chile de momento)
+    if (telefono.Length == 9)
+    {
+        telefono = $"56{telefono}";
+    }
+
+    if (!ViewData["view"].Equals(Roles.Invitado))
+        iframeAnura = urlSmartcheck+"/smart_results/user/" + Model.Atencion.HoraMedico.IdPaciente;
+
+    if (ViewData["view"].Equals(Roles.Invitado))
+        hiddenNSP = "hidden";
+
+    var tituloIndicaciones = formularioSuenoenfermera ? "Plan" : "Indicaciones";
+    if (ViewBag.HostURL.ToString().Contains("unabactiva.") || ViewBag.HostURL.ToString().Contains("activa.unab."))
+    {
+        isUnab = true;
+        hiddenUnab = "hidden";
+        tituloForm = "Reporte de salud";
+        tituloAnamesis = "Anamnesis / Antecedentes";
+        tituloObservacionProf = "Observaciones de uso interno";
+        tituloIndicaciones = "Plan de manejo";
+
+        // Especialidad
+        string especialidad = Model.Atencion.HoraMedico?.Especialidad ?? Model.Atencion.Especialidad ?? string.Empty;
+        isPsicopedagogiaUnab = Util.RemoveAccent(especialidad).ToLower().Contains("psicopedagogia");
+
+        if (isPsicopedagogiaUnab)
+        {
+            tituloForm = "Reporte de Psicopedagogía";
+            tituloAnamesis = "Anamnesis / Antecedentes Psicopedagógicos";
+            tituloIndicaciones = "Acuerdos PSP";
+            tituloCertificadoMedico = "Sugerencias, derivaciones";
+            tituloControl = "Próxima sesión PSP";
+            hiddenPsicopedagogiaUnab = "hidden";
+        }
+    }
+    else if ((Model.Atencion.HoraMedico?.IdEspecialidad ?? Model.Atencion.IdEspecialidad) == 47) // psicologia
+    {
+        tituloForm = "Reporte de salud";
+        tituloAnamesis = "Anamnesis/ Antecedentes área Psicología";
+        tituloDg = "Diagnostico C10 con Snomed";
+        hiddenPsico = "hidden";
+        tituloOtrosEx = "Diagnóstico área psicológica";
+        tituloIndicaciones = "Indicaciones/Plan";
+    }
+    else if ((Model.Atencion.HoraMedico?.IdEspecialidad ?? Model.Atencion.IdEspecialidad) == 54) // nutricion y dietetica
+    {
+        tituloForm = "Reporte de salud";
+        tituloAnamesis = "Anamnesis/ Antecedentes nutricionales - Hábitos";
+        tituloDg = "Diagnostico C10 con Snomed";
+        hiddenPNutri = "hidden";
+        tituloOtrosEx = "Diagnóstico área nutricional";
+        tituloIndicaciones = "Plan/Indicaciones";
+
+    }
+    else if ((Model.Atencion.HoraMedico?.IdEspecialidad ?? Model.Atencion.IdEspecialidad) == 4) // pediatria
+    {
+        tituloAnamesis = "Anamnesis/ Antecedentes médicos/ Antecedentes familiares";
+        tituloDg = "Diagnostico C10 con Snomed";
+        tituloIndicaciones = "Indicaciones no farmacológicas";
+    }
+
+    var hiddenAchs = "";
+    if (ViewBag.HostURL.ToString().Contains("achs."))
+    {
+        hiddenAchs = "hidden";
+    }
+
+    if (ViewBag.boxEspecial == 1)
+    {
+        hiddenBoxEspecial = "hidden";
+        tituloIndicaciones = "Plan";
+    }
+
+    if (ViewBag.HostURL.ToString().Contains("uoh."))
+    {
+        tituloForm = "Reporte de Salud";
+        hiddenUoh = "hidden";
+        tituloObservacionProf = "Reporte de Salud";
+    }
+
+    var btnAchs = false;
+    if (ViewBag.HostURL.ToString().Contains("achs."))
+    {
+        hiddenBoxEspecial = string.Empty;
+        btnAchs = true;
+    }
+
+    var isOrientacion = Model.Atencion.HoraMedico != null && (Model.Atencion.HoraMedico.IdEspecialidad == 77 || btnAchs) ? 1 : 0;
+    if (isOrientacion == 1)
+        ViewData["codEntidad"] = Entidades.ATENCIONES_CERTIFICADOS;
+    else
+        ViewData["codEntidad"] = Entidades.ATENCIONES;
+
+    var hiddenComercial = "";
+    if (Model.Atencion.CodigoPais == "MX")
+    {
+        hiddenComercial = "hidden";
+    }
+}
+
+<style>
+    .kt-timeline-v2:before {
+        content: '';
+        position: absolute;
+        left: 2rem;
+        width: 0.214rem;
+        top: 5px;
+        bottom: 5px;
+        height: calc(100% - 5px);
+        background-color: #E7E9F5;
+    }
+
+    .kt-portlet__content {
+        height: 75vh;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+</style>
+    @Html.HiddenFor(m => m.Atencion.IdPaciente)
+    <div class="kt-portlet__head" id="contentLabel">
+        <div class="kt-portlet__head-label">
+            @if (formularioSuenoenfermera)
+            {
+                <h3 class="kt-portlet__head-title">
+                    @tituloReporteEnfermero
+                </h3>
+            }
+            else
+            {
+                <h3 class="kt-portlet__head-title">
+                    @tituloForm
+                </h3>
+            }
+        </div>
+    </div>
+
+    <div id="divReloj" class="box" hidden>
+        <h1 class="box" id="crono"></h1>
+    </div>
+
+
+    <div class="kt-portlet__body">
+        @if (Model.Atencion.IdCliente == 376 && Model.Atencion.HoraMedico.AtiendeHapp)
+        {
+            isOrientacion = 1;
+            <div class="mb-5" style="text-align: center;">
+                <a type="button" class="btn btn-success" href="https://teledoc.happlabs.cl/" target="_blank">Paciente Happ</a>
+            </div>
+        }
+        @if (isOrientacion == 0)
+        {
+            <div class="mb-2">
+                <label class="" style="font-weight:bold">Paciente acepta consentimiento informado</label>
+                <input type="checkbox" class="" name="consentimiento" id="consentimiento" />
+            </div>
+        }
+
+        <div class="mb-2" @hiddenNSP>
+            <label class="" style="font-weight:bold">Atención No Realizada</label>
+            <input type="checkbox" class="" name="nsp" id="nsp" />
+        </div>
+        <div class="mb-4" id="divNSP" @hiddenNSP>
+
+            <ul class="lista-nsp d-none" id="listaNSP">
+                <li>
+                    <input type="radio" class="btn-check" name="motivosNSP" id="pacienteNoSePresenta" value="1">
+                    <label class="btn btn-secondary" for="pacienteNoSePresenta">Paciente no se presenta</label>
+                </li>
+                <li>
+                    <input type="radio" class="btn-check" name="motivosNSP" id="problemasConexion" value="2">
+                    <label class="btn btn-secondary" for="problemasConexion">Problemas de conexión</label>
+
+                </li>
+                <li>
+
+                    <input type="radio" class="btn-check" name="motivosNSP" id="errorAgendamiento" value="3">
+                    <label class="btn btn-secondary" for="errorAgendamiento">Error agendamiento</label>
+
+                </li>
+                <li>
+                    <input type="radio" class="btn-check" name="motivosNSP" id="incidenciaPaciente" value="4">
+                    <label class="btn btn-secondary" for="incidenciaPaciente">Incidencia con paciente</label>
+
+                </li>
+                <li @hiddenUnab>
+                    <input type="radio" class="btn-check" name="motivosNSP" id="noAceptaConsentimiento" value="5">
+                    <label class="btn btn-secondary" for="noAceptaConsentimiento">No Acepta Consentimiento</label>
+
+                </li>
+            </ul>
+
+            <label style="font-weight:bold">Justifique Atención No Realizada</label>
+            <input class="form-control" type="text" id="DescripcionNSP" name="DescripcionNSP">
+        </div>
+
+        @if (Model.Atencion.CodigoPais == "CO")
+        {
+            <div id="atencion-datos-adicionales">
+                <hr style="width: 100%;">
+                <h5>Datos adicionales</h5>
+                <div class="form-group">
+                    <label id="lblNombreAcompanante" style="font-weight:bold">Acompañante</label>
+                    <input class="form-control" rows="3" value="@Model.Atencion.AtencionDatosAdicionales?.NombreAcompanante" name="nombreAcompanante" id="nombreAcompanante" />
+                </div>
+                <div class="form-group">
+                    <label id="lblTelefonoAcompanante" style="font-weight:bold">Tel. acompañante</label>
+                    <input class="form-control" rows="3" value="@Model.Atencion.AtencionDatosAdicionales?.TelefonoAcompanante" name="telefonoAcompanante" id="telefonoAcompanante" />
+                </div>
+                <div class="form-group">
+                    <label id="lblNombreResponsable" style="font-weight:bold">Responsable</label>
+                    <input class="form-control" rows="3" value="@Model.Atencion.AtencionDatosAdicionales?.NombreResponsable" name="nombreResponsable" id="nombreResponsable" />
+                </div>
+                <div class="form-group">
+                    <label id="lblTelefonoResponsable" style="font-weight:bold">Tel. responsable</label>
+                    <input class="form-control" rows="3" value="@Model.Atencion.AtencionDatosAdicionales?.TelefonoResponsable" name="telefonoResponsable" id="telefonoResponsable" />
+                </div>
+                <hr style="width: 100%;">
+            </div>
+        }
+
+        @if (isOrientacion == 0)
+        {
+            <label>
+                Motivo de Consulta del Paciente : <span id="triageObservacionReporte">@Model.Atencion.TriageObservacion</span><br /><br />
+                Antecedentes Médicos : <span id="antecedentesMedicoReporte">@Model.Atencion.AntecedentesMedicos</span>
+
+
+            </label>
+
+
+
+            <div class="form-group" id="divMotivoConsultaMedico" @(isPsicopedagogiaUnab ? string.Empty : hiddenUnab)>
+                <label style="font-weight:bold">Motivo de Consulta</label>
+                <textarea class="form-control" rows="2" id="motivoConsultaMedico" name="motivoConsultaMedico">@Model.Atencion.MotivoConsultaMedico</textarea>
+            </div>
+            @if (Model.Atencion.SospechaCovid19)
+            {
+                <label style="font-weight:500; color:red" class="mt-3">Paciente con sospecha COVID-19</label>
+            }
+            <hr>
+            <div class="form-group">
+                <label id="lblAlertAnamnesis" style="font-weight:bold">@tituloAnamesis</label>
+                <textarea class="form-control" rows="3" name="DiagnosticoMedico">@Model.Atencion.DiagnosticoMedico</textarea>
+                <div id="divAlertAnamnesis" class="form-text text-muted" @hiddenUnab @hiddenCronico @hiddenSueno>Digite la Anamnesis, seguido de los Antecedentes y finalmente el Plan de manejo.</div>
+            </div>
+
+            <div class="form-group">
+                <label style="font-weight:bold">@tituloDg</label>
+                <div class="typeahead">
+                    <input class="form-control" id="input_codigo" type="text" dir="ltr">
+                </div>
+                <div class="form-text text-muted">Ingrese mínimo 3 carácteres y seleccione una opción</div>
+            </div>
+            <ul id="listaEnfermedad">
+                @foreach (Patologias patologias in Model.Atencion.Patologias)
+                {
+                    <li data-id="@patologias.Id">@patologias.Codigo - @patologias.Nombre &nbsp;<a href="javascript:;"><i class="kt-menu__link-icon flaticon2-delete"></i></a></li>
+                }
+            </ul>
+
+            <div class="form-group" @(isPsicopedagogiaUnab ? string.Empty : "hidden")>
+                <label id="lblDiagnosticoPsicopedagogico" style="font-weight:bold">Diagnóstico Psicopedagógico</label>
+                <textarea class="form-control" rows="3" name="DiagnosticoPsicopedagogico">@Model.Atencion.DiagnosticoPsicopedagogico</textarea>
+            </div>
+
+            <div class="form-group" @(isPsicopedagogiaUnab ? string.Empty : "hidden")>
+                <label id="lblObjetivosDeLaSesion" style="font-weight:bold">Objetivos de la sesión</label>
+                <textarea class="form-control" rows="3" name="ObjetivosDeLaSesion">@Model.Atencion.ObjetivosDeLaSesion</textarea>
+            </div>
+            @if (!formularioSuenoenfermera)
+            {
+                <div class="form-group" @hiddenUnab @hiddenBoxEspecial @hiddenPsico @hiddenPsicopedagogiaUnab>
+                    <label style="font-weight:bold">Exámenes</label>
+                    <div class="typeahead">
+                        <input class="form-control" id="input_codigoExamen" type="text" dir="ltr">
+                    </div>
+                    <div class="form-text text-muted">Ingrese mínimo 3 carácteres y seleccione una opción</div>
+                </div>
+                <ul id="listaTipoExamen" @hiddenUnab @hiddenBoxEspecial @hiddenPsicopedagogiaUnab>
+                    @foreach (Examenes examenes in Model.Atencion.Examenes)
+                    {
+                        <li data-id="@examenes.Id">@examenes.Nombre &nbsp;<a href="javascript:;"><i class="kt-menu__link-icon flaticon2-delete"></i></a></li>
+                    }
+                </ul>
+            }
+
+            <div class="form-group" @hiddenUnab @hiddenBoxEspecial @hiddenPsicopedagogiaUnab>
+                <label style="font-weight:bold">@tituloOtrosEx</label>
+                <textarea class="form-control" rows="2" name="ExamenMedico">@Model.Atencion.ExamenMedico</textarea>
+            </div>
+            <!--Medicamentos-->
+            @if (ViewData["view"].Equals(Roles.Medico))
+            {
+                @if (Model.Atencion.HoraMedico.IdMedico != 1262655)
+                {
+                    hiddeIncendio = "hidden";
+                }
+            }
+            @if (!formularioSuenoenfermera)
+            {
+                <div class="form-group" @hiddeIncendio @hiddenUnab @hiddenBoxEspecial @hiddenPsico @hiddenPNutri>
+                    <label style="font-weight:bold">Medicamentos</label>
+                    <br>
+                    <div class="form-check form-check-inline" @hiddenComercial>
+                        <label class="form-check-label" for="inlineRadio2">Comercial &nbsp; </label>
+                        <input type="checkbox" class="" name="comercial" id="comercial" />
+                    </div>
+                    <div class="typeahead">
+                        <input class="form-control" id="input_codigoMedicamento" type="text" dir="ltr">
+                    </div>
+                    <div class="form-text text-muted">Ingrese mínimo 3 carácteres y seleccione una opción</div>
+                </div>
+
+                <div class="form-group" @hiddeIncendio @hiddenUnab @hiddenBoxEspecial @hiddenPsico @hiddenPNutri>
+                    <label style="font-weight:bold">Posología</label>
+                    <textarea class="form-control" rows="2" name="" id="posologia"></textarea>
+                </div>
+                <p @hiddeIncendio @hiddenUnab @hiddenBoxEspecial @hiddenPsico @hiddenPNutri>Para ingresar medicamentos y posología a la lista debe presionar el botón agregar</p>
+                <div class="mb-2" style="text-align:right;" @hiddeIncendio @hiddenUnab @hiddenBoxEspecial @hiddenPsico @hiddenPNutri>
+                    <button class="btn btn-warning" id="btnGuardarMedicamento">Agregar medicamento</button>
+                </div>
+                <ul id="listaMedicamentos" @hiddeIncendio @hiddenUnab @hiddenBoxEspecial @hiddenPsico @hiddenPNutri>
+                    @foreach (Medicamentos medicamentos in Model.Atencion.Medicamentos)
+                    {
+                        <li data-id="@medicamentos.Id">@medicamentos.PrincipioActivo&nbsp; @medicamentos.PresentacionFarmaceutica&nbsp;@medicamentos.Posologia&nbsp;<a href="javascript:;"><i class="kt-menu__link-icon flaticon2-delete"></i></a></li>
+                    }
+                </ul>
+            }
+
+            <div class="form-group" @hiddenBoxEspecial @hiddenPsico @hiddenPNutri @hiddenPsicopedagogiaUnab>
+                <label style="font-weight:bold">Medicamentos</label>
+                <textarea class="form-control" rows="2" name="MedicamentosMedico">@Model.Atencion.MedicamentosMedico</textarea>
+            </div>
+            @if (ViewBag.HostURL.ToString().Contains("unabactiva.") || ViewBag.HostURL.ToString().Contains("activa.unab."))
+            {
+                <div class="form-group" @hiddenPsicopedagogiaUnab>
+                    <label style="font-weight:bold">Exámenes</label>
+                    <textarea class="form-control" rows="2" name="ExamenMedico">@Model.Atencion.ExamenMedico</textarea>
+                </div>
+                <div class="form-group" @hiddenPsicopedagogiaUnab>
+                    <label style="font-weight:bold">Certificado Médico</label>
+                    <textarea class="form-control" rows="2" name="CertificadoMedico">@Model.Atencion.CertificadoMedico</textarea>
+                </div>
+            }
+
+            <!--INTERCONSULTA-->
+            @if (formularioSuenoenfermera)
+            {
+                @if (ViewBag.activaDerivacion == 1 && (!ViewBag.HostURL.ToString().Contains("unabactiva.") && !ViewBag.HostURL.ToString().Contains("activa.unab.")))
+                {
+                    <div class="form-group" @hiddenBoxEspecial>
+                        <label style="font-weight:bold">Derivación profesional</label>
+                        <div class="typeahead">
+                            @foreach (var es in Model.especialidades)
+                            {
+                                <input type="checkbox" id="@("especialidad-"+es.Id)" name="@("especialidad")" value="@es.Id">
+                                <label for="@(es.Id +"-especialidad")"> @es.Nombre</label>
+
+                                <br>
+                            }
+                        </div>
+                    </div>
+                    <ul class="d-none" id="listaEspecialidades" @hiddenBoxEspecial>
+                        @if (Model.Atencion.EspecialidadDerivacion != null)
+                        {
+                            <li data-id="@Model.Atencion.EspecialidadDerivacion.Id">@Model.Atencion.EspecialidadDerivacion.Codigo - @Model.Atencion.EspecialidadDerivacion.Nombre &nbsp;<a href="javascript:;"><i class="kt-menu__link-icon flaticon2-delete"></i></a></li>
+                        }
+                    </ul>
+
+                }
+
+            }
+            @if (!formularioSuenoenfermera)
+            {
+                @if (ViewBag.activaDerivacion == 1 && (!ViewBag.HostURL.ToString().Contains("unabactiva.") && !ViewBag.HostURL.ToString().Contains("activa.unab.")))
+                {
+                    <div class="form-group" @hiddenBoxEspecial>
+                        <label style="font-weight:bold">Derivación profesional</label>
+                        <div class="typeahead">
+                            <input class="form-control" id="input_codigo_especialidad" type="text" dir="ltr">
+                        </div>
+                        <div class="form-text text-muted">Ingrese mínimo 3 carácteres y seleccione una opción</div>
+                    </div>
+                    <ul class="d-none" id="listaEspecialidades" @hiddenBoxEspecial>
+                        @if (Model.Atencion.EspecialidadDerivacion != null)
+                        {
+                            <li data-id="@Model.Atencion.EspecialidadDerivacion.Id">@Model.Atencion.EspecialidadDerivacion.Codigo - @Model.Atencion.EspecialidadDerivacion.Nombre &nbsp;<a href="javascript:;"><i class="kt-menu__link-icon flaticon2-delete"></i></a></li>
+                        }
+                    </ul>
+
+                }
+            }
+
+            <div class="form-group">
+                <label style="font-weight:bold">@tituloIndicaciones</label>
+                <textarea class="form-control" rows="2" name="TratamientoMedico">@Model.Atencion.TratamientoMedico</textarea>
+            </div>
+            if (!formularioSuenoenfermera)
+            {
+                <div class="form-group" @(isPsicopedagogiaUnab ? string.Empty : hiddenUnab) @hiddenBoxEspecial @hiddenPsico @hiddenPNutri>
+                    <label style="font-weight:bold">@tituloCertificadoMedico</label>
+                    <textarea class="form-control" rows="2" name="CertificadoMedico">@Model.Atencion.CertificadoMedico</textarea>
+                </div>
+                @if (Model.Atencion.CodigoPais == "CO" || ViewBag.HostURL.ToString().Contains("gallagher.") || ViewBag.HostURL.ToString().Contains("ajg.medismart.") || ViewBag.HostURL.ToString().Contains("rappi.") || ViewBag.HostURL.ToString().Contains("aecsa.") || ViewBag.HostURL.ToString().Contains("bonnahealth."))
+                {
+                    <div class="form-group" id="divIncapacidadMedica">
+                        <label style="font-weight:bold">Incapacidad Médica</label>
+                        <textarea class="form-control" rows="2" name="IncapacidadMedica" readonly>@Model.Atencion.IncapacidadMedica</textarea>
+                        <div class="row">
+                            <div class="w-30 p-2">
+                                <label style="font-weight:bold">Inicia:</label>
+                                <input type="date" id="FechaInicioCertificado" class="form-control" value="@string.Format("{0:yyyy-MM-dd}", @Model.Atencion.FechaInicioCertificado)" />
+                            </div>
+                            <div class="w-20 p-2">
+                                <label style="font-weight:bold">Días:</label>
+                                <input type="number" class="form-control" id="DiasCertificado" min="0" max="500" />
+                            </div>
+                            <div class="w-30 p-2">
+                                <label style="font-weight:bold">Termina:</label>
+                                <input type="date" id="FechaTerminaCertificado" class="form-control" value="@string.Format("{0:yyyy-MM-dd}", @Model.Atencion.FechaTerminaCertificado)" disabled />
+                            </div>
+                            <div class="w-15 p-2 col align-self-end">
+                                <a class="btn btn-light-danger" id="borrarIncapacidad">
+                                    <i class="icon-2x text-dark-50 flaticon2-cancel"></i><br />
+                                    Borrar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="form-group" @(isUnab ? string.Empty : hiddenBoxEspecial)>
+                    <label style="font-weight:bold">@tituloControl</label>
+                    <textarea class="form-control" rows="2" name="ControlMedico">@Model.Atencion.ControlMedico</textarea>
+                </div>
+
+            }
+            if (Model.Atencion.IsProgramaSalud == true)
+            {
+                <hr style="width: 100%;">
+                <h5> Recurrencia </h5>
+                <div class="recurrencia mb-3 mt-3">
+                    <div class="recurrencia-form">
+                        <h5>Repetir cada: </h5>
+                        <input type="number" min="0" class="form-control r-input" id="cantidad" />
+                        <select id="periodo" class="form-control">
+                            <option value="S">Semanal</option>
+                            <option value="Q">Quincenal</option>
+                            <option value="M">Mensual</option>
+                        </select>
+                        <h5>Cantidad A: </h5>
+                        <input type="number" min="0" id="topes" class="form-control r-input" />
+                    </div>
+                </div>
+                <div class="d-flex mt-2 mb-2" style="justify-content:center">
+                    <button class="btn btn-warning" id="btnRecurrencia">Guardar Recurrencia</button>
+                </div>
+
+                <hr style="width: 100%;">
+
+            }
+
+            <!-- derivacion prof para unab-->
+            @if (ViewBag.activaDerivacion == 1 && (ViewBag.HostURL.ToString().Contains("unabactiva.") || ViewBag.HostURL.ToString().Contains("activa.unab.")))
+            {
+                <div class="form-group" @hiddenPsicopedagogiaUnab>
+                    <label style="font-weight:bold">Derivación profesional</label>
+                    <div class="typeahead">
+                        <input class="form-control" id="input_codigo_especialidad" type="text" dir="ltr">
+                    </div>
+                </div>
+                <ul class="d-none" id="listaEspecialidades">
+                    @if (Model.Atencion.EspecialidadDerivacion != null)
+                    {
+                        <li data-id="@Model.Atencion.EspecialidadDerivacion.Id">@Model.Atencion.EspecialidadDerivacion.Codigo - @Model.Atencion.EspecialidadDerivacion.Nombre &nbsp;<a href="javascript:;"><i class="kt-menu__link-icon flaticon2-delete"></i></a></li>
+                    }
+                </ul>
+
+            }
+            <div class="form-group" @(isUnab ? string.Empty : hiddenBoxEspecial)>
+                <label style="font-weight:bold">@tituloObservacionProf</label>
+                <textarea class="form-control" rows="2" name="Observaciones">@Model.Atencion.Observaciones</textarea>
+            </div>
+            <div class="form-group" hidden>
+                <label style="font-weight:bold">link pharol (oculto para todos)</label>
+                <textarea class="form-control" rows="2" name="linkpharol">@Model.Atencion.LinkPharol</textarea>
+            </div>
+            @if (Model.Atencion.IdEspecialidadDestino != 0 && Model.Atencion.HoraMedico.IdEspecialidad == 47)
+            {
+                <div class="form-group">
+                    <label style="font-weight:bold">Derivar a Especialista</label>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        @if (Model.Atencion.InfoDerivacion == "" || Model.Atencion.InfoDerivacion == null)
+                        {
+                            <div class="mb-2 lg-6">
+                                <button class="btn btn-xs btn-brand" id="btnDerivar">Derivar a Especialista</button>
+                            </div>
+                        }
+
+                        <div class="mb-2 lg-6 ml-5">
+                            <label style="font-weight:bold" id="infoDeriva">@Model.Atencion.InfoDerivacion</label>
+                        </div>
+
+
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="form-group" @hiddenBoxEspecial @hiddenAchs>
+                <label style="font-weight:bold">Observación Profesional (no visible para paciente)</label>
+                <textarea class="form-control" rows="2" name="Observaciones">@Model.Atencion.Observaciones</textarea>
+            </div>
+        }
+        @{
+            var textoGuardar = "Previsualizar";
+            var classTexto = "btn-atencion";
+            var classIcon = "fal fa-eye";
+            if (ViewData["view"].Equals(Roles.Invitado) || Model.Atencion.Peritaje)
+            {
+                textoGuardar = "Guardar";
+                classTexto = "btn-warning";
+                classIcon = "";
+            }
+            else @if (isOrientacion == 1)
+            {
+                textoGuardar = "Finalizar Atención";
+                classTexto = "btn-warning";
+            }
+        }
+
+        @if (isOrientacion == 1)
+        {
+            <div class="mb-2" style="text-align:right;">
+                <button id="btnGuardarOrientacion" type="button" class="btn @classTexto  mt-3 mt-lg-0"> <span>@textoGuardar</span></button>
+                <button id="btnGuardar" hidden type="button" class="btn @classTexto mt-3 mt-lg-0"><i class="@classIcon"></i> <span>@textoGuardar</span></button>
+            </div>
+        }
+        else if (btnAchs)
+        {
+            <div class="mb-2" style="text-align:right;">
+                <button id="btnGuardarAchs" type="button" class="btn @classTexto  mt-3 mt-lg-0"> <span>@textoGuardar</span></button>
+                <button id="btnGuardar" hidden type="button" class="btn @classTexto mt-3 mt-lg-0"><i class="@classIcon"></i> <span>@textoGuardar</span></button>
+            </div>
+        }
+        else
+        {
+
+            @if (Model.Atencion.AtencionDirecta)
+            {
+                <div class="mb-2 d-flex justify-content-between" id="divBtnFirma">
+                    <button id="btnSolicitarFirma" type="button" class="btn-atencion btn--warning mt-3 mt-lg-0"><i class="fal fa-eye"></i> <span>Solicitar Firma</span></button>
+                    <button id="btnGuardar" type="button" class="btn @classTexto mt-3 mt-lg-0"><i class="@classIcon"></i> <span>@textoGuardar</span></button>
+                </div>
+            }
+            else
+            {
+                <div class="mb-2" style="text-align:right;">
+                    <button id="btnGuardar" type="button" class="btn @classTexto  mt-3 mt-lg-0"><i class="@classIcon"></i> <span>@textoGuardar</span></button>
+                </div>
+            }
+        }
+    </div>
+<style>
+    .box {
+        height: 60px;
+        width: 120px;
+        font: bold 1.6em dotum, "lucida sans", arial;
+        align-content: center;
+        border-radius: 9px;
+    }
+
+</style>
+
+@section Scripts {
+    <script src="~/js/Usuario/config.js?9rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/config.js?rnd=@NumeroRandom.GetRandom()';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+            var idEdit = @ViewBag.idEdit;
+            window.idEdit = idEdit;
+            var idCliente = '@ViewBag.idCliente';
+            window.idCliente = idCliente;
+            var isPsicopedagogiaUnab = @isPsicopedagogiaUnab.ToString().ToLower();
+            window.isPsicopedagogiaUnab = isPsicopedagogiaUnab;
+        })()
+    </script>
+    <script src="~/js/Paciente/atencion-box.js" type="module"></script>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}

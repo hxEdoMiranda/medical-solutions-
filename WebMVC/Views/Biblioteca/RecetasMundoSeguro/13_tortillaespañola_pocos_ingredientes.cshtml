@@ -1,0 +1,84 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Biblioteca Digital";
+    Layout = "_LayoutPaciente";
+
+}
+
+<div class="fade-in note">
+    <section class="container-fluid note-section library featured" id="nota3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="cont-titulo-receta">
+                        <div class="cont-logo">
+                            <img src="~/img/cencosud/vida-sana/tortillaespanola.png" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  
+
+    <section class="container-fluid main note-content">
+        <div class="container inner-section">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <h2 class="subtitulo-receta">
+                        Ingredientes 5 - 6 porciones:
+                    </h2>
+
+                    <ol>
+                        <li>6 papas.</li>
+                        <li>1 cebolla cortada en pluma.</li>
+                        <li>1 diente de ajo.</li>
+                        <li>7 huevos. </li>
+                        <li>Aceite de oliva.</li>
+                        <li>Condimentos.</li>
+                    </ol>
+
+                    <h2 class="subtitulo-receta">
+                        Preparación
+                    </h2>
+                    <ol>
+                        <li>Pelar las papas y cortarlas en lonjas delgadas, secarlas muy bien. </li>
+                        <li>Calentar el aceite en una olla o sartén con tapa y agregar las papas junto a la cebolla y el ajo. Cocinar revolviendo por un par de minutos, tapar y cocinar 15 a 20 minutos o hasta que las papas estén blandas y levemente doradas. </li>
+                        <li>Poner la mezcla de papas sobre un colador y dejar escurrir hasta que estén frías.</li>
+                        <li>Mezclar los huevos con una cuchara de palo, aliñar con condimentos.</li>
+                        <li>Agregar la mezcla de papas y revolver hasta integrar todo muy bien.</li>
+                        <li>Calentar un sartén. Cuando el sartén esté bien caliente agregar la mezcla de huevos con las papas. </li>
+                        <li>Cocinar a hasta que los bordes estén cuajados (8 minutos aprox.) y luego dar vuelta la tortilla, ayudándose con un plato. Cocinar la tortilla por el otro lado, hasta que se sienta el centro cuajado.</li>
+                        <li>Poner la tortilla en un plato y servir inmediatamente.</li>
+                    </ol>
+                   
+                    <p>
+                        <a href="@Url.Action("DescargarCenco", new { file = ViewBag.codigoNota})">
+                            Descargar receta
+                        </a>
+                        
+                    </p>
+                </div>
+                <div class="col-12 col-md-auto sidebar sidebar-nota">
+                    <div class="cont-icon-bar">
+                        <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/splide.min.js"></script>
+    <script src="~/js/carrusel.js"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/loguso.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+
+}
+

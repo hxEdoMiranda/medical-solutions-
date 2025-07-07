@@ -1,0 +1,106 @@
+﻿@using Microsoft.Extensions.Configuration
+@model WebMVC.Models.PersonasViewModel
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Configuracion";
+    Layout = "_LayoutPaciente";
+    var urlAgendar = "";
+    if (@ViewBag.horaEspecialidad.IdMedico > 0)
+        urlAgendar = "/Paciente/Agenda_2" + "?idMedico=" + @ViewBag.horaEspecialidad.IdMedico + "&fechaPrimeraHora=" + DateTime.Parse(@ViewBag.horaEspecialidad.Fecha.ToString()).ToString("yyyy-MM-dd") + "T00:00:00&m=" + @ViewBag.horaEspecialidad.IdModeloAtencion + "&r=" + @ViewBag.horaEspecialidad.IdReglaPago + "&c=" + @ViewBag.horaEspecialidad.IdConvenio + "&especialidad=" + 1;
+}
+
+
+@{
+    ViewData["idEntidad"] = ViewBag.uid;
+    ViewData["uid"] = int.Parse(ViewBag.uid);
+}
+@{
+    ViewData["view"] = Roles.Paciente;
+}
+
+@section Styles  {
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/css/Mexico/mexico.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    
+}
+
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid configuracion-paciente">
+    <!--Begin::App-->
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+
+        <!--Begin:: App Aside Mobile Toggle-->
+        <button class="kt-app__aside-close" id="kt_user_profile_aside_close">
+            <i class="la la-close"></i>
+        </button>
+        <!--End:: App Aside Mobile Toggle-->
+        <!--End:: App Aside Mobile Toggle-->
+
+        <div class="box_inner_nom035 box_medicina-ocupacional">
+                <div class="box_img_medicina-ocupacional"></div>
+                <div class="box_inner_text">
+                    <h2>Medicina Laboral</h2>
+                    <p>
+                        Haz concluido con éxito tus cuestionarios de salud, te invitamos a agendar tu cita con el médico laboral.
+
+                    </p>
+                    <div class="cajaInfoMedico">
+                        <div class="card caja-profesional no-flip card-informe">
+                            <div class="front">
+                                <div class="card-body">
+                                    <img src="@(ViewBag.urlBase + ViewBag.horaEspecialidad.FotoPerfil)" />
+                                    <div class="cont-data">
+                                        <div class="data-atencion">
+                                            <span class="header-aviso-atencion"><i class="fal fa-calendar-alt" aria-hidden="true"></i><span>Próxima Atención</span></span>
+                                            <span class="nombre-profesional">
+                                                <span class="titulo-profesional">@ViewBag.horaEspecialidad.PrefijoProfesional</span><span>
+                                                    @ViewBag.horaEspecialidad.NombreMedico @ViewBag.horaEspecialidad.ApellidoPaternoMedico @ViewBag.horaEspecialidad.ApellidoMaternoMedico
+                                                </span><small>@ViewBag.horaEspecialidad.AlmaMater</small>
+                                            </span>
+                                            <span class="especialidad-profesional fuente-accesible">@ViewBag.horaEspecialidad.Especialidad</span>
+                                            <div class="calificacion">
+                                                <i class="fas fa-star positiva" aria-hidden="true"></i><i class="fas fa-star positiva" aria-hidden="true"></i><i class="fas fa-star positiva" aria-hidden="true"></i>
+                                                <i class="fas fa-star positiva" aria-hidden="true"></i><i class="fas fa-star positiva" aria-hidden="true"></i>
+                                            </div>
+
+                                        </div>
+                                        <div class="caja-opciones">
+                                            <a href="#"><i class="fal fa-search" aria-hidden="true"></i></a><a href="#"><i class="fal fa-calendar-alt" aria-hidden="true"></i></a>
+                                        </div>
+                                        <span class="d-block fecha-atencion front-fecha-atencion"><strong>@ViewBag.horaEspecialidad.HoraDesdeText - @ViewBag.horaEspecialidad.FechaText HRS</strong></span>
+                                    </div>
+                                    <button id="agendarOcupacional" class="btn btn-primary btn-block btn-sm my-2 btn-agendar">Agendar</button>
+                                    <a href='@urlAgendar' class="btn btn-outline-primary btn-block btn-sm my-2 btn-agendar">Ver más horarios disponibles</a>
+                                </div>
+
+                            </div>
+                            <!--<div class="back"></div>-->
+                        </div>
+
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/Usuario/config.js?9rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script type="text/javascript">
+        (function () {
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+             var idCliente = '@ViewBag.idCliente';
+            window.idCliente = idCliente;
+            window.host = '@ViewBag.HostURL';
+
+        })()
+    </script>
+    <script type="module">
+        import { init } from '../../js/Cuestionario/agendar-ocupacional.js?rnd=@NumeroRandom.GetRandom()';
+        init(@Html.Raw(Json.Serialize(ViewBag.horaEspecialidad)))
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    
+}
+

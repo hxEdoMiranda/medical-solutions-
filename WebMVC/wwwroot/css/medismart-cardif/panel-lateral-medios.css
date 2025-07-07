@@ -1,0 +1,410 @@
+/* Paneles Sala de Espera */
+:root {
+    --primary: #3BC1CD;
+    --secondary: #0081A4;
+    --tertiary: #333;
+    --grey: 111;
+    --accent: #FFAF36;
+    --light: #FFF;
+    --font-family: "Mulish", sans-serif;
+    --transition: all ease-out .3s;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--secondary);
+}
+
+.backdrop-panel {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.8);
+    z-index: 99;
+}
+
+/* Panel Medios */
+.panel-medios {
+    background-color: #fff;
+    border-radius: 32px 0px 0px 0px;
+    width: 100%;
+    height: calc(100vh - 80px);
+    max-width: 1104px;
+    position: fixed;
+    top: 80px;
+    right: 0;
+    padding: 102px 86px;
+    /*padding: 43px 86px;*/
+    box-shadow: 0px 10px 24px 10px rgba(0, 0, 0, 0.25);
+    z-index: 100;
+    opacity: 1;
+    transition: all .6s ease-out;
+}
+
+    .panel-medios.close-panel {
+        right: -2400px;
+        opacity: 0;
+        transition: all .6s ease-out;
+    }
+
+
+    .panel-medios__header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 34px;
+    }
+
+.panel-medios__body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    max-height: 660px;
+    overflow-y: auto;
+}
+
+/*Scroll Panel Body*/
+
+/* width */
+    .panel-medios__body::-webkit-scrollbar {
+        width: 6px;
+    }
+
+/* Track */
+    .panel-medios__body::-webkit-scrollbar-track {
+        display: flex;
+        justify-content:center;
+        background: rgba(2, 92, 116, 0.2);
+        width: 6px;
+        height: 80px;
+        border-radius: 8px;
+    }
+
+
+/* Handle */
+    .panel-medios__body::-webkit-scrollbar-thumb {
+        background: rgba(2, 92, 116, 0.5);
+        transition: all .3s ease-out;
+        border-radius: 8px;
+        transition: all .1s ease-out;
+    }
+
+    /* Handle on hover */
+        .panel-medios__body::-webkit-scrollbar-thumb:hover {
+            background: rgba(59, 193, 205, 0.6);
+        }
+
+
+.panel-medios__title {
+    font-size: 32px;
+    color: var(--secondary);
+    text-transform: uppercase;
+    margin: 0;
+    font-weight: 400;
+}
+
+.panel-medios__title .btn-return {
+    
+}
+
+.panel-medios__title strong {
+    font-weight: 900;
+}
+
+.panel-medios__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 28px;
+    width: 28px;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--tertiary);
+    transition: var(--transition);
+}
+
+    .panel-medios__close:hover {
+        color: var(--accent);
+    }
+
+    .panel-medios__close i {
+        font-size: 32px;
+    }
+
+.panel-medios.panel--expanded {
+    display: none;
+}
+
+.panel-medios .cont-videos {
+    height: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+    flex-wrap: wrap;
+    max-height: 660px;
+}
+
+.panel-medios .contenedor-video,
+.panel-medios  iframe {
+    width: 100%;
+    min-height: 600px;
+}
+/* Medios */
+.medio {
+    display: flex;
+    flex-direction: column;
+    /*min-width: 220px;*/
+    /*background-color: #111;*/
+    border-radius: 20px;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 260px;
+    height: 250px;
+    border: 2px solid var(--grey);
+    margin-bottom: 1rem;
+}
+
+    .medio:hover {
+        filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.5));
+    }
+
+.medio__data {
+    padding: 16px;
+    /* background-color: #111;*/
+    background: linear-gradient(96.4deg, #0282A6 24.62%, #0027B3 91.02%);
+    border-radius: 0 0 16px 16px;
+    height: 80px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.medio__img {
+    height: 118px;
+    -o-object-fit: contain;
+    /*object-fit: contain;*/
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 16px 16px 0px 0px;
+    height: 240px;
+}
+.medio--revista .medio__img {
+    height: 100%;
+    border-radius: 16px;
+   
+}
+
+    .medio__img img {
+        width: 100%;
+        height: 167px;
+    }
+
+.medio--revista .medio__img img {
+    height: 280px;
+}
+
+.medio__titulo {
+    font-weight: 900;
+    color: #FFF;
+    width: 100%;
+}
+
+    .medio__titulo small {
+        display: block;
+        font-size: 12px;
+        font-weight: 400;
+        text-transform: uppercase;
+        margin-top: 9px;
+        color: #FFF;
+    }
+
+
+.medio--juego .medio__data {
+    height: 56px;
+    margin-top: auto;
+}
+/*Tipos de Medio*/
+.medio--revista {
+    height: 280px;
+    width: 240px;
+    min-width: 0;
+}
+
+    .medio--revista img {
+        -o-object-fit: cover;
+        object-fit: cover;
+        overflow: hidden;
+        border-radius: 16px;
+    }
+
+.medio--video  {
+    width: 254px;
+    height: 178px;
+}
+
+    .medio--video .medio__titulo {
+        color: #0282A6;
+        font-weight: 700;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: #FFF;
+    }
+
+    .medio--video .medio__data {
+        /* background-color: #DDD;*/
+        background: linear-gradient(96.4deg, #0282A6 24.62%, #0027B3 91.02%);
+        border-radius: 0px 0px 8px 8px;
+        height: 100%;
+        height: 56px;
+        margin-top: auto;
+    }
+
+    .medio--video .medio__img img {
+        margin-top: -10%;
+    }
+
+    .medio-container {
+        background-color: var(--grey);
+        border-radius: 16px;
+        height: calc(100% - 90px);
+    }
+
+    .medio-container iframe {
+        width: 100%;
+        height: 100%;
+    }
+
+
+    /*Cont Medios*/
+
+    ..cont-videos {
+        gap: .5rem;
+    }
+
+
+.contenedor-media {
+   
+}
+
+
+
+
+/**
+ * ----------------------------------------
+ * animation slide-in-right
+ * ----------------------------------------
+ */
+
+.slide-in-right {
+    -webkit-animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+
+@-webkit-keyframes slide-in-right {
+    0% {
+        -webkit-transform: translateX(1000px);
+        transform: translateX(1000px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-right {
+    0% {
+        -webkit-transform: translateX(1000px);
+        transform: translateX(1000px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 1024px) {
+    .panel-medios {
+        padding: 32px;
+        top: 0;
+        border-radius: 0;
+        height: 100vh;
+        gap: 8px;
+        padding: 105px 86px;
+    }
+
+    .panel-medios__title {
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+    }
+
+        .panel-medios__title .btn.btn-return {
+            padding: 0 !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            height: 40px;
+            width: 40px;
+            margin-right: .5rem;
+        }
+
+        .panel-medios__title .btn.btn-return i {
+            
+        }
+
+    .medio--revista {
+        height: 180px;
+        width: 46%
+    }
+
+    .medio--video, .medio--juego {
+        width: 96%;
+        margin-bottom: 0;
+    }
+    .panel-medios__body {
+       max-height: calc(100vh - 122px);
+    }
+
+
+}
+
+
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+    .panel-medios__body {
+        max-height: 385px;
+        justify-content:center;
+    }
+    .panel-medios .contenedor-video, .panel-medios iframe {
+        min-height: 0;
+        height: 584px;
+    }
+
+    .panel-medios {
+        padding: 43px 86px;
+    }
+
+    .medio {
+  
+        width: 199px;
+        height: 176px;
+    
+    }
+
+}
+
+    /*# sourceMappingURL=panel.css.map */

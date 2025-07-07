@@ -1,0 +1,94 @@
+@{
+    var disableSelector = "";
+    if (ViewBag.HostURL.Contains("clinicamundoscotia."))
+    {
+        disableSelector = "disabled";
+    }
+}
+<div class="cont-icon-bar">
+    <partial name="~/Views/Biblioteca/_IconBar.cshtml" model="Model" view-data="ViewData" />
+    <div class="dropdown-bar">
+        <span>Filtrar por</span>
+
+        <div class="dropdown dropdown-biblioteca">
+
+
+            @if(ViewBag.HostURL.ToString().Contains("prevenciononcologica."))
+        {
+             <button @disableSelector class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Todos los temas
+            </button>
+         }
+
+          else
+            {
+
+
+            <button @disableSelector class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fal fa-file-alt"></i> Todos los temas
+            </button>
+            }
+
+            
+            @if (ViewBag.HostURL.Contains("clinicamundoscotia."))
+            {
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">    
+                    <a class="dropdown-item js-filter" value="Todos los temas" data-tema="0">Todos los temas</a>
+                    <a class="dropdown-item js-filter" value="Notas" data-tema="1">Notas</a>
+                    <a class="dropdown-item js-filter" value="Salud del adulto" data-tema="2">Calendario actividades</a>
+                   
+                </div>
+            }else if (ViewBag.HostURL.Contains("prevenciononcologica."))
+            {
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">    
+                    <a class="dropdown-item js-filter" value="Todos los temas" data-tema="0">Todos los temas</a>
+                    <a class="dropdown-item js-filter" value="Notas" data-tema="1">Vida Sana</a>
+                </div>
+            }
+            else if (ViewBag.HostURL.Contains("masproteccionsalud."))
+            {
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item js-filter" value="Todos los temas" data-tema="0">Todos los temas</a>
+                    <a class="dropdown-item js-filter" value="Notas" data-tema="1">Vida Sana</a>
+                </div>
+            }
+            else if (ViewBag.HostURL.Contains("saludtumundoseguro."))
+            {
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item js-filter" value="Todos los temas" data-tema="0">Todos los temas</a>
+                    <a class="dropdown-item js-filter" value="Recetas Bajo Costo" data-tema="1">Recetas Bajo Costo</a>
+                    <a class="dropdown-item js-filter" value="Recetas Pocos Ingredientes" data-tema="2">Recetas con Pocos Ingredientes</a>
+                </div>
+            }
+            else
+            {
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">    
+                    <a class="dropdown-item js-filter" value="Todos los temas" data-tema="0">Todos los temas</a>
+                    <a class="dropdown-item js-filter" value="Salud Mental" data-tema="1">Salud Mental</a>
+                    <a class="dropdown-item js-filter" value="Salud del adulto" data-tema="3">Salud del adulto</a>
+                    <a class="dropdown-item js-filter" value="Salud del ni&ntilde;o" data-tema="8">Salud del ni&ntilde;o</a>
+                    <a class="dropdown-item js-filter" value="Salud del adulto mayor" data-tema="5">Salud del adulto mayor</a>
+                    <a class="dropdown-item js-filter" value="Salud de la mujer" data-tema="4">Salud de la mujer</a>
+                    <a class="dropdown-item js-filter" value="Veterinaria" data-tema="9">Veterinaria</a>
+                    <a class="dropdown-item js-filter" value="Urgencias" data-tema="2">Urgencias</a>
+                    <a class="dropdown-item js-filter" value="Bienestar" data-tema="6">Bienestar </a>
+                    <a class="dropdown-item js-filter" value="Nutrición" data-tema="7">Nutrici&oacute;n</a>
+                </div>
+            }
+           
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {   
+    <script src="~/js/Biblioteca/biblioteca.js"></script>
+}
+
+<style>
+    .is-hidden {
+    display: none;
+}
+
+</style>

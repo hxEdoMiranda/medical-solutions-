@@ -1,0 +1,518 @@
+﻿@using Microsoft.Extensions.Configuration
+@model WebMVC.Models.FichaMedicoViewModel
+@inject IConfiguration Configuration
+
+@{
+    ViewData["Title"] = "Agendar";
+    Layout = "_LayoutPaciente";
+
+}
+
+@section PageStyles  {
+    <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+}
+@{
+    DateTime fechaAtencion;
+    var cultura = new System.Globalization.CultureInfo("es-ES");
+}
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <style>
+        /*.swal2-styled.swal2-cancel{
+                position: absolute !important;
+                left: 75px !important;
+            }
+            .swal2-styled.swal2-confirm {
+                    position: absolute !important;
+                    right: 50px !important;
+        }*/
+
+    </style>
+}
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+    <!--Begin::App-->
+    <div class="accesible-tools d-none">
+        <div class="accesible-btn">
+            <button id="increase-font">A+</button>
+            <button id="normal-font">A</button>
+            <button id="decrease-font">A-</button>
+        </div>
+    </div>
+    <!-- Start:: Stepper-->
+    <!-- Stepper -->
+    @{
+        var hiddenDirecta = "";
+        var hiddenAgenda = "hidden";
+        if (ViewBag.tipoatencion != "I")
+        {
+            hiddenDirecta = "hidden";
+            hiddenAgenda = "";
+        }
+       
+    }
+    <div class="stepper" @hiddenAgenda>
+        <div class="init-step"></div>
+        <div class="cont-steps">
+            <!-- Step1 -->
+            <div class="step passed">
+                <div class="step-icon">
+                    <i class="fal fa-user-md"></i>
+                </div>
+                <div class="label-step fuente-accesible">
+                    Selección
+                </div>
+            </div>
+
+            <i class="fas fa-chevron-right flecha"></i>
+
+            <!-- Step2 -->
+            <div class="step passed">
+                <div class="step-icon">
+                    <i class="fal fa-calendar-edit"></i>
+                </div>
+                <div class="label-step fuente-accesible">
+                    Agendamiento
+                </div>
+            </div>
+
+            <i class="fas fa-chevron-right flecha"></i>
+
+            <!-- Step3 -->
+            <div class="step active">
+                <div class="step-icon">
+                    <i class="fal fa-check-circle"></i>
+                </div>
+                <div class="label-step fuente-accesible">
+                    Confirmación
+                </div>
+            </div>
+        </div>
+        <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+    </div>
+
+
+
+
+    <div class="stepper stepper-sv" @hiddenDirecta>
+        <div class="init-step"></div>
+        <div class="cont-steps">
+           
+            <!-- Step3 -->
+            <div class="step">
+                <div class="titulo-step">
+                    Triage Médico
+                </div>
+                <div class="step-icon">
+                    <i class="fal fa-check-circle"></i>
+                </div>
+                <div class="label-step fuente-accesible">
+                    Etapa 1 de 1
+                </div>
+            </div>
+        </div>
+        <img src="~/img/doctor-circle.png" alt="image" class="rounded-circle order-1 order-md-2">
+    </div>
+    <!-- Stepper -->
+    <!-- End:: Stepper-->
+    <!-- Mensaje confirmación Hora -->
+
+    @{
+        var visibleCajaNormal = "";
+        var visibleCajaDirecta = "hidden";
+        var hiddenDisclaimer = "hidden";
+        var resta = 0;
+        if (ViewBag.tipoatencion == "I")
+        {
+            visibleCajaNormal = "hidden";
+            visibleCajaDirecta = "";
+        }
+    }
+
+<div class="container caja-base mensaje-confirmacion">
+
+<div class="row caja-pago-normal" @visibleCajaNormal>
+    <div class="col-12 col-md-6 col-lg-5">
+        <!-- Caja Profesional -->
+        <div class="card caja-profesional">
+            <img id="fotoProfesional" src=""
+                 class="card-img-top"
+                 alt="Foto Médico"/>
+            <div class="card-body">
+                <div class="cont-data">
+                    <div class="data-atencion">
+                        <span class="header-aviso-atencion">
+                            <i class="fal fa-calendar-alt"></i> Próxima
+                            Atención
+                        </span>
+
+                        <span class="nombre-profesional">
+                            <span class="titulo-profesional">@Model.personasDatos.PrefijoDetalle</span>
+                            @Model.personas.Nombre <br/>@Model.personas.ApellidoPaterno @Model.personas.ApellidoMaterno
+                            <small>@Model.personasDatos.AlmaMater - @Model.personasDatos.NumeroRegistro</small>
+                        </span>
+                        <span class="titulo-profesional">@Model.personasDatos.Especialidad</span>
+                        <div class="calificacion2 mb-2">
+                            <i class="fas fa-star positiva"></i>
+                            <i class="fas fa-star positiva"></i>
+                            <i class="fas fa-star positiva"></i>
+                            <i class="fas fa-star positiva"></i>
+                            <i class="fas fa-star positiva"></i>
+                        </div>
+                        <span class="d-block fecha-atencion">
+                                        @if (DateTime.TryParse(@Model.FechaAtencion, out fechaAtencion))
+                                        {
+                                            <strong>@fechaAtencion.ToString("dd MMM yyyy", cultura)</strong>
+                                        }
+                        </span>
+                        <span class="d-block hora-atencion">@Model.HorarioText </span>
+                    </div>
+                </div>
+            </div>
+            <!-- Caja Profesional -->
+        </div>
+    </div>
+    <div class="col">
+        <div class="mensaje">
+            <div class="header-mensaje">
+                @*<img src="~/img/logotipo.png" class="logotipo" alt="">*@
+                @{
+                    var baseL = @Configuration["ServicesUrl"];
+                    var logo = "~/img/logotipo.png";
+                    if (ViewBag.logoConvenio != null)
+                    {
+                        logo = baseL + ViewBag.logoConvenio;
+                    }
+
+
+                }
+                <img src="@logo" class="logotipo" alt="">
+
+            </div>
+
+            <div class="fuente-accesible">
+
+
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col">
+
+                            <h3 class="title-voucher">
+                                <i class="fal fa-calendar-check"></i>
+                                       Tu Próxima Atención
+                                    </h3>
+                                    <p>
+                                        Hemos confirmado la disponibilidad del profesional y la hora seleccionada.
+                                    </p>
+                                <div class="hora-confirmacion">
+                                        @if (DateTime.TryParse(@Model.FechaAtencion, out fechaAtencion))
+                                        {
+                                            <strong>@fechaAtencion.ToString("dd MMM yyyy", cultura)</strong>
+                                            <p>a las</p>  
+                                            <strong>@Model.HorarioText</strong >
+                                        }
+                                        else
+                                            {
+                                                                        // Si la conversión falla, mostramos un mensaje de error
+                                                <strong>Fecha inválida</strong>
+                                            }
+                                        
+                                </div>
+                                
+                            <p>¡Ir al Pago!</p>
+
+                            @if (ViewBag.idCliente == "148" && Model.ValorizacionExcepciones != null)
+                            {
+                                <div class="mt-3 linea-voucher">
+                                    Valor Consulta
+                                    <span class=""><strong> @Html.Raw("$ " + String.Format(System.Globalization.CultureInfo.CreateSpecificCulture("es-CO"), "{0:N0}", Convert.ToDecimal(@Model.ValorizacionExcepciones.ValorConsulta)))</strong></span>
+                                </div>
+                                <div class="linea-voucher">
+
+                                    Bonificación Plan de Salud
+                                    <span class="">- <strong> @Html.Raw("$ " + String.Format(System.Globalization.CultureInfo.CreateSpecificCulture("es-CO"), "{0:N0}", Convert.ToDecimal(@Model.ValorizacionExcepciones.ValorCobertura)))</strong></span>
+
+                                </div>
+                                @if (Model.ValorizacionExcepciones.TipoProducto == 0)
+                                {
+
+                                    hiddenDisclaimer = "";
+                                }
+                                else
+                                {
+                                    resta = (Model.ValorizacionExcepciones.ValorConsulta - Model.ValorizacionExcepciones.ValorCobertura);
+                                    <div class="linea-voucher">
+                                        Bonificación Producto Adicional
+                                        <span class="">- <strong> @Html.Raw("$ " + String.Format(System.Globalization.CultureInfo.CreateSpecificCulture("es-CO"), "{0:N0}", Convert.ToDecimal(resta)))</strong></span>
+                                    </div>
+                                }
+                                <div class="linea-voucher total">
+                                    <div class="total-legend">
+                                        Valor a pagar (copago)
+                                    </div>
+                                    <div class="total-valor">
+                                        <span class=""><strong>$ </strong> <strong id="valorAtencion"> @Html.Raw(String.Format(System.Globalization.CultureInfo.CreateSpecificCulture("es-CO"), "{0:N0}", Convert.ToDecimal(@Model.ValorizacionExcepciones.ValorAtencion)))</strong></span>
+                                    </div>
+
+                                </div>
+                                <p class="mt-4" @hiddenDisclaimer>
+                                    @* <strong>Esta consulta podría haber sido gratuita si tuvieras contratado nuestro producto adicional&nbsp;<span>Doctor Online.&nbsp;</span> Para más información ingresa a <a href="www.colmena.cl" style="color: #0074ca;">www.colmena.cl</a></strong>*@
+                                </p>
+                                <br/>
+                            }
+                            else
+                            {
+                                <div class="linea-voucher total">
+                                    <div class="total-legend">
+                                        Valor de la consulta
+                                    </div>
+                                    <div class="total-valor">
+                                        <span class="valor-consulta"><small>$</small> <span id="valorAtencion"></span></span>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                        <div class="col-auto d-none">
+                            <i class="fal fa-check-circle icon-confirma"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<!--Atencion Directa-->
+<div class="row" @visibleCajaDirecta>
+    <div class="col-12 col-md-auto icono-voucher">
+    @if (ViewBag.idCliente == "148"){
+        <img src="~/img/colmena/icono-voucher.svg" alt="" class="img-voucher">
+    }
+        
+    else{
+        <i class="fal fa-user-md"></i>
+    }
+      
+
+        <h3 class="mt-5 label-atencion">
+            <strong class="mt-2">Atención Directa</strong>
+
+        </h3>
+
+    </div>
+    <div class="col">
+        <div class="mensaje">
+            <div class="header-mensaje">
+                @*<img src="~/img/logotipo.png" class="logotipo" alt="">*@
+                @{
+                    var baseLa = @Configuration["ServicesUrl"];
+                    var logoa = "~/img/logotipo.png";
+                    if (ViewBag.logoConvenio != null)
+                    {
+                        logoa = baseLa + ViewBag.logoConvenio;
+                    }
+
+
+                }
+                <img src="@logoa" class="logotipo" alt="">
+
+            </div>
+            <div class="fuente-accesible">
+
+
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                                <div class="col">
+                        @if (ViewBag.idCliente == "148" && Model.ValorizacionExcepciones != null)
+                        {
+                               
+
+                                <h3 class="title-voucher">
+                                    <i class="fal fa-calendar-check"></i> Confirma la reserva para tu atención
+                                </h3>
+                                <div class="linea-voucher">
+                                    Valor Consulta Particular
+
+                                    <span class=""><strong> @Html.Raw("$ " + String.Format(System.Globalization.CultureInfo.CreateSpecificCulture("es-CL"), "{0:N0}", Convert.ToDecimal(@Model.ValorizacionExcepciones.ValorConsulta)))</strong></span>
+                                </div>
+                                <div class="linea-voucher">
+                                    Bonificación Plan de Salud
+                                    <span class="">- <strong> @Html.Raw("$ " + String.Format(System.Globalization.CultureInfo.CreateSpecificCulture("es-CL"), "{0:N0}", Convert.ToDecimal(@Model.ValorizacionExcepciones.ValorCobertura)))</strong></span>
+
+                                </div>
+                                @if (Model.ValorizacionExcepciones.TipoProducto == 0)
+                                {
+
+                                    hiddenDisclaimer = "";
+                                }
+                                else
+                                {
+                                    resta = (Model.ValorizacionExcepciones.ValorConsulta - Model.ValorizacionExcepciones.ValorCobertura);
+                                    <div class="linea-voucher">
+                                        Bonificación Producto Adicional
+
+                                        <span class="">- <strong> @Html.Raw("$ " + String.Format(System.Globalization.CultureInfo.CreateSpecificCulture("es-CL"), "{0:N0}", Convert.ToDecimal(resta)))</strong></span>
+
+                                    </div>
+                                }
+                                <div class="linea-voucher total">
+                                    <div class="total-legend">
+                                        Valor a pagar (copago)
+                                    </div>
+
+
+                                    <div class="total-valor"><strong>$ </strong><strong id="valorAtencionDirecta"> @Html.Raw(String.Format(System.Globalization.CultureInfo.CreateSpecificCulture("es-CL"), "{0:N0}", Convert.ToDecimal(@Model.ValorizacionExcepciones.ValorAtencion)))</strong></div>
+
+                                </div>
+                                <p class="mt-4" @hiddenDisclaimer>
+                                    @*<strong>Esta consulta podría haber sido gratuita si tuvieras contratado nuestro producto adicional&nbsp;<span>Doctor Online.&nbsp;</span> Para más información ingresa a <a href="www.colmena.cl">www.colmena.cl</a></strong>*@
+                                </p>
+                                <br/>
+                            
+                               
+                        }
+                                else {
+                                         bool fonasa = Convert.ToBoolean(ViewBag.isFonasa);
+                                        resta = (Model.especialidad.MontoTotal - Model.especialidad.MontoTotalCopago);
+                                        @if(fonasa){
+                                       
+
+                                            <h3 class="title-voucher">
+                                                <i class="fal fa-calendar-check"></i> Confirma la reserva para tu atención
+                                            </h3>
+                                            <div class="linea-voucher">
+                                                Valor Consulta Fonasa
+
+                                                <span class=""><strong> @Html.Raw("$ " + String.Format(System.Globalization.CultureInfo.CreateSpecificCulture("es-CL"), "{0:N0}", Convert.ToDecimal(@Model.especialidad.MontoTotal)))</strong></span>
+                                            </div>
+                                            <div class="linea-voucher">
+                                                Bonificación Plan de Salud
+                                                <span class="">- <strong> @Html.Raw("$ " + String.Format(System.Globalization.CultureInfo.CreateSpecificCulture("es-CL"), "{0:N0}", Convert.ToDecimal(resta)))</strong></span>
+
+                                            </div>
+                                            <div class="linea-voucher total">
+                                                <div class="total-legend">
+                                                    Valor a pagar (copago)
+                                                </div>
+
+
+                                                <div class="total-valor"><strong>$ </strong><strong id="valorAtencionDirecta"> @Html.Raw(String.Format(System.Globalization.CultureInfo.CreateSpecificCulture("es-CL"), "{0:N0}", Convert.ToDecimal(@Model.especialidad.MontoTotalCopago)))</strong></div>
+
+                                            </div>
+                                            }
+                                        else{
+                                       
+                                            <h3 class="title-voucher">
+                                                <i class="fal fa-calendar-check"></i> Confirma la reserva para tu atención
+                                            </h3>
+                                            <div class="linea-voucher total">
+                                                <div class="total-legend">
+                                                    Valor Particular
+                                                </div>
+
+
+                                                <div class="total-valor"><strong>$ </strong><strong id="valorAtencionDirecta"> @Html.Raw(String.Format(System.Globalization.CultureInfo.CreateSpecificCulture("es-CL"), "{0:N0}", Convert.ToDecimal(@Model.personasDatos.ValorAtencion)))</strong></div>
+
+                                            </div>
+                                            <p class="mt-4" @hiddenDisclaimer>
+                                                @*<strong>Esta consulta podría haber sido gratuita si tuvieras contratado nuestro producto adicional&nbsp;<span>Doctor Online.&nbsp;</span> Para más información ingresa a <a href="www.colmena.cl">www.colmena.cl</a></strong>*@
+                                            </p>
+                                            <br />
+                                      
+                                       
+                                        }
+                            
+                                }
+                       
+                        <div class="col-auto d-none">
+                            <i class="fal fa-check-circle icon-confirma"></i>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col offset-lg-8">
+        <button class="btn btn-primary btn-block btn-sm" id="btnConfirmar">
+           Confirmar y  Pagar
+        </button>
+    </div>
+</div>
+</div>
+    <input type="hidden" id="correoUsuario" />
+    <input type="hidden" id="genero" />
+    <input type="hidden" id="fechaNacimiento" />
+</div>
+
+
+<!-- begin::Scrolltop -->
+<div id="kt_scrolltop" class="kt-scrolltop">
+    <i class="fa fa-arrow-up"></i>
+</div>
+
+<!-- end::Scrolltop -->
+<!-- begin::Global Config(global config for global JS sciprts) -->
+@section PageScripts {
+    <script src="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
+
+}
+
+@section Scripts {
+
+    <script src="~/signal/signalr.min.js"></script>
+    
+    <script src="~/js/accesible.js"></script>
+    <script type="text/javascript">
+        (function () {
+            var uid = @ViewBag.uid;
+            var idMedico = @ViewBag.idMedico;
+            var idMedicoHora = @ViewBag.idMedicoHora;
+            var idBloqueHora = @ViewBag.idBloqueHora;
+            var fechaSeleccion = '@ViewBag.fechaSeleccion';
+            var fechaText = '@ViewBag.fechaText';
+            var host = '@ViewBag.HostURL';
+            var horaText = '@ViewBag.horaText';
+            var horario = @ViewBag.horario.ToString().ToLower();
+            var idAtencion = @ViewBag.idAtencion.ToString().ToLower();
+            var valorAtencion = @ViewBag.valorAtencion;
+            var checkAnura = @ViewBag.checkAnura;
+            var m = '@ViewBag.m';
+            var r = '@ViewBag.r';
+            var c = '@ViewBag.c';
+            var idCliente = @ViewBag.idCliente;
+            window.idCliente = idCliente;
+            window.uid = uid;
+            window.host = host;
+            window.idMedico = idMedico;
+            window.idMedicoHora = idMedicoHora;
+            window.idBloqueHora = idBloqueHora;
+            window.fechaSeleccion = fechaSeleccion;
+            window.fechaText = fechaText;
+            window.horaText = horaText;
+            window.horario = horario;
+            window.idAtencion = idAtencion;
+            window.valorAtencion = valorAtencion;
+            window.m = m;
+            window.r = r;
+            window.c = c;
+            window.checkAnura = checkAnura;
+           var tipoatencion = '@ViewBag.tipoatencion';
+            window.tipoatencion = tipoatencion;
+        })()
+    </script>
+    <script type="module">
+
+        import { init } from '../../js/Paciente/agenda_4.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+}

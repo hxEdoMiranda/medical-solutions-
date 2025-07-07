@@ -1,0 +1,100 @@
+﻿@model WebMVC.Models.CuestionarioResponseModel
+@{
+    ViewData["Title"] = "Cuestionario";
+    Layout = "_LayoutPaciente";
+}
+
+@section Styles  {
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/css/Mexico/mexico.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid configuracion-paciente">
+
+    <div id="loaderNom35">
+    </div>
+    
+        <div class="form_nom035">
+            <!--Icono+Texto-->
+            <div class="test_nom035">
+                
+                @if (@ViewBag.cuestionarioBH==1)
+                {
+                    <div class="icontest_inner"><img src="~/img/mexico/nom035_icon01.svg" alt="Acontecimiento Traumático"></div>
+                }
+                else if(@ViewBag.cuestionarioBH==2)
+                {
+                    <div class="icontest_inner"><img src="~/img/mexico/nom035_icon02.svg" alt="Entorno Organizacional"></div>
+                }
+                else
+                {
+                    <div class="icontest_inner"><img src="~/img/mexico/nom035_icon03.svg" alt="Entorno Organizacional"></div>
+                }
+                <h1 class="fuente-accesible" id="TituloEncuesta">@ViewBag.tituloEncuesta</h1>
+                
+             <div class="form-group porcentaje_test">
+                <label class="form-label">0</label>
+                <progress  class="colorpro" id="file" max="100" value="0"> </progress>
+                <label class="form-label">100%</label>
+            </div>
+                <p>
+                    No existen respuestas correctas o incorrectas, lo importante <br>es que respondas todas las preguntas con sinceridad. 
+                </p>
+                <p>
+                Recuerda disponer de aproximadamente 20 minutos.
+                </p>
+                <div class="guia_nom035">Selecciona una respuesta en cada fila</div>
+            </div>
+    </div>
+            <div id="divPreguntas">
+            </div>
+
+    <div class="form_nom035">
+        <div class="row">
+            <div class="col cont-guardar-info">
+                <button type="button" id="RegresarP" class="btn btn-secondary btn-block" metadata="configuracionGuardarPerfil" style="display: none;">Regresar</button>
+
+            </div>
+            <div class="col cont-guardar-info">
+                <button type="button" id="SiguienteP" class="btn btn-success btn-block" metadata="configuracionGuardarPerfil">Siguiente</button>
+            </div>
+        </div>
+    </div>
+
+
+    
+    </div>
+
+@section Scripts {
+    <script src="~/js/Usuario/config.js?9rnd=@NumeroRandom.GetRandom()" type="module"></script>
+
+    <script type="module">
+        import { init } from '../../js/Cuestionario/registro-cuestionario.js?rnd=@NumeroRandom.GetRandom()';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+
+    <script type="text/javascript">
+        (function () {
+
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+            var idCliente = '@ViewBag.idCliente';
+            window.idCliente = idCliente;
+            window.host = '@ViewBag.HostURL';
+            var idCuestionario = parseInt('@ViewBag.idCuestionario');
+            window.idCuestionario = idCuestionario;
+            var idUsuarioBH = parseInt('@ViewBag.idUsuarioBH');
+            window.idUsuarioBH = idUsuarioBH;
+            var idUsuario = parseInt('@ViewBag.idUsuario');
+            window.idUsuario = idUsuario;
+            var idCuestionarioPersona = parseInt('@ViewBag.idCuestionarioPersona');
+            window.idCuestionarioPersona = idCuestionarioPersona;
+            var cuestionarioBH = parseInt('@ViewBag.cuestionarioBH');
+            window.cuestionarioBH = cuestionarioBH;
+
+        })()
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+}
+

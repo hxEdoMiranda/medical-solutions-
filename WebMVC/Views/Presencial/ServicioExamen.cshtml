@@ -1,0 +1,545 @@
+﻿@model WebMVC.Models.AtencionViewModel
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Paciente";
+    Layout = "_LayoutPaciente";
+
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;500&display=swap" rel="stylesheet">
+    <title>Landing</title>
+</head>
+
+<body>
+    <div class="abc-content">
+        <div class="abc-img">
+            <!-- <img src="./assets/img/imagen_1.jpg" alt=""> -->
+
+
+        </div>
+        <div class="abc-info">
+            <div class="abc-title-icon">
+
+                @if (@ViewBag.HostURL.ToString().Contains("bcf-corona.medismart"))
+                {
+                    <img src="~/img/corona/bcf-medica-presencial/svg/icon-smart-examenes.svg" alt="icono" />
+
+                } else
+                {
+                    
+                <img src="~/img/abc/bcf-medica-presencial/svg/icon-smart-examenes.svg" alt="icono" />
+                }
+                <div class="abc-title">
+                    <h3> BCF Consulta </h3>
+                    <h3> de Exámenes Presenciales  </h3>
+                </div>
+            </div>
+            <div class="abc-title-dos">
+                @if (@ViewBag.HostURL.ToString().Contains("bcf-corona.medismart"))
+                {
+                    <img src="~/img/corona/bcf-medica-presencial/svg/users-medical-red.svg" alt="icono" />
+
+                }else
+                {
+                    
+                <img src="~/img/abc/bcf-medica-presencial/svg/users-medical-red.svg" alt="icono" />
+                }
+
+
+                <p>Elige la especialidad médica que quieres asistir</p>
+            </div>
+
+           
+                <div class="abc-select-service">
+                    <select class="abc-select-custom" id="abc-select">
+                    @if (!@ViewBag.HostURL.ToString().Contains("bcf-corona.medismart"))
+                    {
+                        <option value="otorrinolaringologia">Otorrinolaringología Preventivo o de Rutina</option>
+                        <option value="examen_cuello_uterino">
+                            Oncológico Preventivo Cáncer Cervico-uterino Examen
+                            Papanicolau (PAP)
+                        </option>
+                        <option value="electro_cardiograma">Cardiología: Exámen preventivo o chequeo de rutina</option>
+                        <option value="ecotomografia">SET DE EXÁMENES DE MATERNIDAD Y EMBARAZO PRESENCIAL</option>
+                    }
+                      
+                        <option value="imagenologia">SERVICIO IMAGENOLOGIA: RADIOGRAFIAS</option>
+                    </select>
+                </div>
+            
+          
+            <div id="text-especialitie">
+            </div>
+
+            <div class="abc-par-select">
+                <div class="abc-par-uno">
+                    <div class="abc-par-uno-title">
+
+                        @if (!@ViewBag.HostURL.ToString().Contains("bcf-corona.medismart"))
+                        {
+                            <img src="~/img/abc/bcf-medica-presencial/svg/icon-check-abc.svg" alt="icono-user" />
+
+                        } else
+                        {
+                            
+                        <img src="~/img/corona/bcf-medica-presencial/svg/icon-check-abc.svg" alt="icono-user" />
+                        }
+                        @if (@ViewBag.HostURL.ToString().Contains("abcdin.medismart."))
+                        {
+                            <h4>Eventos Totales</h4>
+
+                        }
+                        else
+                        {
+
+                            <h4>Eventos Disponibles</h4>
+                        }
+
+
+                       
+                    </div>
+                    <div class="abc-select-abc" id="abc-select-evento">
+                        <div class="tooltip-box" id="tooltip-box-id">
+                            <div class="tooltip-arrow"></div>
+
+                        </div>
+                        <div class="abc-eventos" id="id_eventos">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="abc-par-uno">
+                    <div class="abc-par-uno-title">
+                        @if (!@ViewBag.HostURL.ToString().Contains("bcf-corona.medismart"))
+                        {
+                            <img src="~/img/abc/bcf-medica-presencial/svg/icon-user.svg" alt="icono-user" />
+
+                        } else
+                        {
+                            
+                        <img src="~/img/corona/bcf-medica-presencial/svg/icon-user.svg" alt="icono-user" />
+                        }
+
+                        <h4>Selecciona tu previsión</h4>
+                    </div>
+
+                    <div class="abc-select-abc">
+                        <select class="abc-select-prevision-evento" id="abc-select-prevision">
+
+                            <option value="">SELECCIONA TU PREVISIÓN</option>
+                            <option value="isapre">ISAPRE</option>
+                            <option value="fonasa-a">FONASA A</option>
+                            <option value="fonasa-B-a-D">FONASA B a D</option>
+                            <option value="ffaa">FFAA</option>
+                            <option value="capredena">CAPREDENA</option>
+                            <option value="sin-prevision">SIN PREVISIÓN</option>
+                            <option value="particular">PARTICULAR</option>
+
+                            
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    @*MODAL ISAPRE*@
+    <div id="modalIsapre" class="modal-bfc">
+        <div class="modal-bfc-content">
+            <div class="modal-bfc-header">
+                <img src="~/img/abc/bcf-medica-presencial/svg/check-verde.svg" alt="icono" />
+                <span class="close-modal-bfc">&times;</span>
+
+            </div>
+
+            <h5>Prevision ISAPRE o FONASA B a D</h5>
+            <p>
+                Para utilizar el servicio, comunícate directamente con el centro médico de tu elección.
+                Asegúrate de que disponga del sistema i-med y que tenga convenio con tu Isapre o Fonasa.
+                De esta manera, te podrás validar fácilmente mediante tu huella digital al momento de asistir a tu atención,
+                con copago  <b>costo $0</b>
+            </p>
+
+            <button class="close-modal-bfc" id="boton-confirmar">CONFIRMAR</button>
+        </div>
+    </div>
+
+    @*MODAL FONASA*@
+    <div id="modalFonasa" class="modal-bfc">
+        <div class="modal-bfc-content">
+            <div class="modal-bfc-header">
+                <img src="~/img/abc/bcf-medica-presencial/svg/check-verde.svg" alt="icono" />
+                <span class="close-modal-bfc">&times;</span>
+
+            </div>
+
+            <h5>Prevision ISAPRE o FONASA B a D</h5>
+            <p>
+                Para utilizar el servicio, comunícate directamente con el centro médico de tu elección.
+                Asegúrate de que disponga del sistema i-med y que tenga convenio con tu Isapre o Fonasa.
+                De esta manera, te podrás validar fácilmente mediante tu huella digital al momento de asistir a tu atención,
+                con copago  <b>costo $0</b>
+            </p>
+
+            <button class="close-modal-bfc" id="boton-confirmar">CONFIRMAR</button>
+        </div>
+    </div>
+
+    @*MODAL OTRAS PREVISIONES*@
+    <div id="modalOtras" class="modal-bfc">
+
+        <div class="modal-bfc-content">
+            <div class="modal-bfc-header">
+                <img src="~/img/abc/bcf-medica-presencial/svg/check-verde.svg" alt="icono" />
+                <span class="close-modal-bfc">&times;</span>
+
+            </div>
+
+            <h5>Otras Coberturas</h5>
+            <p>
+                Los Beneficiarios sin previsión, particular, Capredena o Fuerzas Armadas o Fonasa A, 
+                deberán contactarse al teléfono <b>+@(ViewBag.HostURL.ToString().Contains("bcf-corona") ? 56223512517 : 56223512641)</b> para solicitar la atención médica detallada en el cuadro de
+                prestaciones. Después de realizar la solicitud, el beneficiario será contactado y derivado a un prestador 
+                en convenio, con  <b>con costo</b> para el cliente.
+            </p>
+
+            <button class="close-modal-bfc" id="boton-confirmar">CONFIRMAR</button>
+        </div>
+    </div>
+    <!--Scripts -->
+    @{
+        if (!@ViewBag.HostURL.ToString().Contains("bcf-corona"))
+        {
+
+            <script>
+
+                const select = document.getElementById('abc-select-prevision');
+                const modalIsapre = document.getElementById('modalIsapre');
+                const modalFonasa = document.getElementById('modalFonasa');
+                const modalOtras = document.getElementById('modalOtras');
+
+                select.addEventListener('change', function () {
+                    if (select.value === 'isapre') {
+                        modalIsapre.style.display = 'block';
+                    } else if (select.value === 'fonasa-B-a-D') {
+                        modalFonasa.style.display = 'block';
+                    } else if (select.value === 'fonasa-a' || select.value === 'ffaa' || select.value === 'capredena' || select.value === 'sin-prevision' || select.value === 'particular') {
+                        modalOtras.style.display = 'block';
+                    }
+                });
+
+                document.querySelectorAll('.close-modal-bfc').forEach(closeButton => {
+                    closeButton.addEventListener('click', function () {
+                        modalIsapre.style.display = 'none';
+                        modalFonasa.style.display = 'none';
+                        modalOtras.style.display = 'none';
+                    });
+                });
+
+                const tooltipContainer = document.getElementById('abc-select-evento');
+                const tooltipBox = tooltipContainer.querySelector('.tooltip-box');
+
+                tooltipContainer.addEventListener('mouseover', function () {
+                    tooltipBox.style.display = 'block';
+                });
+
+                tooltipContainer.addEventListener('mouseout', function () {
+                    tooltipBox.style.display = 'none';
+                });
+
+
+                const especialidadesExamenes = [
+                    {
+                        "especialidad-name": "ecotomografia",
+                        "especialidad-text":
+                            `<p><span></span>
+                                        <div class="text-especialitie-exams">
+
+                                        <p><i class="fal fa-check-circle"></i><span> Ecotomografía Obstétrica</span>  (código Fonasa, ISAPRES 04-04-002). </p>
+                                        <p><i class="fal fa-check-circle"></i><span> Examen de sangre:</span> HIV, incluye toma de muestra sangre. </p>
+                                        <p><i class="fal fa-check-circle"></i><span> Examen de sangre:</span> VDRL, incluye toma de muestra sangre. </p>
+                                        <p><i class="fal fa-check-circle"></i><span> Examen de sangre:</span> Curva Tolerancia a la Glucosa (solo para embarazadas que será solicitado por su médico entre la semana 25 o 26 aprox.). Incluye toma de muestra sangre. No incluye la glucosa que el centro médico entrega y se paga aparte.</p>
+                                        <p><i class="fal fa-check-circle"></i><span> Examen de Orina:</span> Urocultivo, Recuento colonias y Antibiograma (detecta si hay infección urinaria). </p>
+                                         </p>
+                                         </div>
+                                         <p><span>Monto máximo evento:</span> 100% cobertura copago Fonasa, Isapres o Prestación.</p>`,
+                        "especialidad-img": '/img/abc/bcf-medica-presencial/img/examenes_presencial/ecotomografia.jpg',
+                        "cantidad-ev-anuales": '<h6>1 Eventos Anuales</h6>',
+                        "texto-cantidad-ev": '1 Eventos como límite único y combinado para el grupo familiar'
+                    },
+                    {
+                        "especialidad-name": "electro_cardiograma",
+
+
+                        "especialidad-text": `<p> Entrega la realización del  <span>Examen de Electrocardiograma de Reposo adulto (E.C.G):</span> La Asistencia coordinará la realización de este examen que permite el estudio de arritmias y grafica la actividad cardiaca. Incluye informe del especialista en Cardiología. El examen se coordinará de forma ambulatoria y en horario hábil. Disponible para adultos,
+                                        y en caso de niños menores de 15 años se reserva el servicio de atención siempre que el Prestador de Salud (clínica o centro médico)
+                                        lo realice en la ciudad requerida.</p>
+                                        <br/>
+                                        <p><span>Monto máximo evento:</span> 100% cobertura copago Fonasa, Isapres o Prestación.</p>`,
+                        "especialidad-img": '/img/abc/bcf-medica-presencial/img/examenes_presencial/electro_cardiograma.jpg',
+                        "cantidad-ev-anuales": '<h6>2 Eventos Anuales</h6>',
+                        "texto-cantidad-ev": '2 Eventos como límite único y combinado para el grupo familiar'
+                    },
+                    {
+                        "especialidad-name": "otorrinolaringologia",
+                        "especialidad-text": `<p> Entrega exámenes de apoyo preventivo de otorrinolaringología a elección, como lo es:</p>
+                                            <div class="text-especialitie-exams">
+                                                    <p><i class="fal fa-check-circle"></i> <span>Radiografía Cavidades Perinasales</span></p>
+                                                    <p><i class="fal fa-check-circle"></i> <span>Audiometría o Impedanciometría</span> </p>
+                                            </div>
+                                                <p>Los exámenes se coordinarán de forma ambulatoria y en horario hábil.</p>
+                                                  <br/>
+                                        <p><span>Monto máximo evento:</span> 100% cobertura copago Fonasa, Isapres o Prestación.</p>
+                                                `,
+                        "especialidad-img": '/img/abc/bcf-medica-presencial/img/examenes_presencial/otorrinolaringologia.jpg',
+                        "cantidad-ev-anuales": '<h6>2 Eventos Anuales</h6>',
+                        "texto-cantidad-ev": '2 Eventos como límite único y combinado para el grupo familiar'
+                    },
+                    {
+                        "especialidad-name": "examen_cuello_uterino",
+                        "especialidad-text": `<p><span>Examen médico que previene y detecta alteraciones o lesiones del cuello-uterino</span>,
+                                        siendo un examen fundamental para prevenir este tipo de enfermedades y cáncer cérvico-uterino.
+                                        El examen se coordinará de forma ambulatoria y en horario hábil. Requiere orden médica de su médico tratante.</p>
+                                        <br/>
+                                            <p><span>Monto máximo evento:</span> 100% cobertura copago Fonasa, Isapres o Prestación.</p>
+                                        `,
+                        "especialidad-img": '/img/abc/bcf-medica-presencial/img/examenes_presencial/examen_cuello_uterino.jpg',
+                        "cantidad-ev-anuales": '<h6>2 Eventos Anuales</h6>',
+                        "texto-cantidad-ev": '2 Eventos como límite único y combinado para el grupo familiar'
+                    },
+                    {
+                        "especialidad-name": "imagenologia",
+                        "especialidad-text": `<p>
+                                                <div class="text-especialitie-exams">
+                                                    <p><i class="fal fa-check-circle"></i> <span>Radiografía de Tórax Frontal y Lateral</span></p>
+                                                <p><i class="fal fa-check-circle"></i> <span>Radiografía Columna Lumbar o Lumbosacra</span> </p>
+                                                    <p><i class="fal fa-check-circle"></i> <span>Radiografía Cavidades Perinasales</span> </p>
+                                                    <p><i class="fal fa-check-circle"></i> <span>Radiografía Pelvis, Cadera o Coxofemoral</span> </p>
+                                                    <p><i class="fal fa-check-circle"></i> <span>Radiografía de Hombro (izq. o der.)</span> </p>
+                                                    <p><i class="fal fa-check-circle"></i> <span>Radiografía de Fémur (izq. o der.)</span> </p>
+                                                    <p><i class="fal fa-check-circle"></i> <span>Radiografía de Pierna (izq. o der.)</span> </p>
+                                                    <p><i class="fal fa-check-circle"></i> <span>Radiografía de Pie (izq. o der.)</span> </p>
+                                                    <p><i class="fal fa-check-circle"></i> <span>Radiografía de Costilla</span> </p>
+                                                    <p><i class="fal fa-check-circle"></i> <span>Radiografía de Esternón Frontal y Lateral</span> </p>
+                                                    <p><i class="fal fa-check-circle"></i> <span>Radiografía de Brazo o Antebrazo (izq. o der.)</span> </p>
+                                                    <p><i class="fal fa-check-circle"></i> <span>Radiografía de Muñeca (izq. o der.)</span> </p>
+                                                    <p><i class="fal fa-check-circle"></i> <span>Radiografía de Mano (izq. o der.)</span> </p>
+                                                    <p><i class="fal fa-check-circle"></i> <span>Radiografía de Rodilla (izq. o der.)</span> </p>
+                                                    <p><i class="fal fa-check-circle"></i> <span>Radiografía de Codo (izq. o der.)</span> </p>
+                                                    <p><i class="fal fa-check-circle"></i> <span>Radiografía de Dedos (izq. o der.)</span> </p>
+                                            </div>
+
+                                                </p>
+                                                <p>Monto máximo por evento: <span>Ilimitado</span>
+                                                `,
+                        "especialidad-img": '/img/abc/bcf-medica-presencial/img/examenes_presencial/imagenologia.jpg',
+                        "cantidad-ev-anuales": '<h6>3 Eventos Anuales</h6>',
+                        "texto-cantidad-ev": '3 Eventos como límite único y combinado para el grupo familiar'
+                    },
+
+                ];
+
+                const url = window.location.href;
+
+                const urlParams = new URL(url);
+                console.log('urlParams', urlParams)
+                const especialidadParam = urlParams.searchParams.get('servicio');
+                console.log({ especialidadParam })
+
+                if (especialidadParam) {
+                    document.getElementById('abc-select').value = especialidadParam;
+
+
+
+
+                    //if (!window.host.includes("bcf-corona.")) {
+
+                    //    console.log('entro en el if de corona')
+
+                    //} else {
+
+                    //    console.log('entro en el else ')
+
+                    //}
+
+                    const especialidadSeleccionada = especialidadesExamenes.find(especialidad => especialidad["especialidad-name"] === especialidadParam);
+
+
+
+                    if (especialidadSeleccionada) {
+                        document.getElementById('text-especialitie').innerHTML = especialidadSeleccionada["especialidad-text"];
+
+                        const imagenDiv = document.querySelector('.abc-img');
+                        imagenDiv.innerHTML = `<img src="${especialidadSeleccionada["especialidad-img"]}" alt="">`;
+
+                        document.getElementById('tooltip-box-id').innerHTML = especialidadSeleccionada["texto-cantidad-ev"];
+
+                        document.getElementById('id_eventos').innerHTML = especialidadSeleccionada["cantidad-ev-anuales"];
+                    }
+                }
+
+                const selectEspecialitie = document.getElementById('abc-select');
+
+
+                selectEspecialitie.addEventListener('change', function () {
+                    const selectedOption = this.value;
+
+                    const especialidadSeleccionada = especialidadesExamenes.find(especialidad => especialidad["especialidad-name"] === selectedOption);
+
+                    if (especialidadSeleccionada) {
+                        document.getElementById('text-especialitie').innerHTML = especialidadSeleccionada["especialidad-text"];
+
+                        document.getElementById('tooltip-box-id').innerHTML = especialidadSeleccionada["texto-cantidad-ev"];
+
+                        document.getElementById('id_eventos').innerHTML = especialidadSeleccionada["cantidad-ev-anuales"];
+
+                        const imagenDiv = document.querySelector('.abc-img');
+                        imagenDiv.innerHTML = `<img src="${especialidadSeleccionada["especialidad-img"]}" alt="">`;
+                    }
+                });
+
+            </script>
+        }
+        else
+        {
+            <script>
+
+                const select = document.getElementById('abc-select-prevision');
+                const modalIsapre = document.getElementById('modalIsapre');
+                const modalFonasa = document.getElementById('modalFonasa');
+                const modalOtras = document.getElementById('modalOtras');
+
+                select.addEventListener('change', function () {
+                    if (select.value === 'isapre') {
+                        modalIsapre.style.display = 'block';
+                    } else if (select.value === 'fonasa-B-a-D') {
+                        modalFonasa.style.display = 'block';
+                    } else if (select.value === 'fonasa-a' || select.value === 'ffaa' || select.value === 'capredena' || select.value === 'sin-prevision' || select.value === 'particular') {
+                        modalOtras.style.display = 'block';
+                    }
+                });
+
+                document.querySelectorAll('.close-modal-bfc').forEach(closeButton => {
+                    closeButton.addEventListener('click', function () {
+                        modalIsapre.style.display = 'none';
+                        modalFonasa.style.display = 'none';
+                        modalOtras.style.display = 'none';
+                    });
+                });
+
+                const tooltipContainer = document.getElementById('abc-select-evento');
+                const tooltipBox = tooltipContainer.querySelector('.tooltip-box');
+
+                tooltipContainer.addEventListener('mouseover', function () {
+                    tooltipBox.style.display = 'block';
+                });
+
+                tooltipContainer.addEventListener('mouseout', function () {
+                    tooltipBox.style.display = 'none';
+                });
+
+
+                const especialidadesExamenes = [
+
+                    {
+                        "especialidad-name": "imagenologia",
+                        "especialidad-text": `<p>
+                                                            <div class="text-especialitie-exams">
+                                                                <p><i class="fal fa-check-circle"></i> <span>Radiografía de Tórax Frontal y Lateral</span></p>
+                                                            <p><i class="fal fa-check-circle"></i> <span>Radiografía Columna Lumbar o Lumbosacra</span> </p>
+                                                                <p><i class="fal fa-check-circle"></i> <span>Radiografía Cavidades Perinasales</span> </p>
+                                                                <p><i class="fal fa-check-circle"></i> <span>Radiografía Pelvis, Cadera o Coxofemoral</span> </p>
+                                                                <p><i class="fal fa-check-circle"></i> <span>Radiografía de Hombro (izq. o der.)</span> </p>
+                                                                <p><i class="fal fa-check-circle"></i> <span>Radiografía de Fémur (izq. o der.)</span> </p>
+                                                                <p><i class="fal fa-check-circle"></i> <span>Radiografía de Pierna (izq. o der.)</span> </p>
+                                                                <p><i class="fal fa-check-circle"></i> <span>Radiografía de Pie (izq. o der.)</span> </p>
+                                                                <p><i class="fal fa-check-circle"></i> <span>Radiografía de Costilla</span> </p>
+                                                                <p><i class="fal fa-check-circle"></i> <span>Radiografía de Esternón Frontal y Lateral</span> </p>
+                                                                <p><i class="fal fa-check-circle"></i> <span>Radiografía de Brazo o Antebrazo (izq. o der.)</span> </p>
+                                                                <p><i class="fal fa-check-circle"></i> <span>Radiografía de Muñeca (izq. o der.)</span> </p>
+                                                                <p><i class="fal fa-check-circle"></i> <span>Radiografía de Mano (izq. o der.)</span> </p>
+                                                                <p><i class="fal fa-check-circle"></i> <span>Radiografía de Rodilla (izq. o der.)</span> </p>
+                                                                <p><i class="fal fa-check-circle"></i> <span>Radiografía de Codo (izq. o der.)</span> </p>
+                                                                <p><i class="fal fa-check-circle"></i> <span>Radiografía de Dedos (izq. o der.)</span> </p>
+                                                        </div>
+
+                                                            </p>
+                                                            <p>Monto Máximo por evento ($): <span>100% cobertura copago Isapre, Fonasa o Prestación.</span>
+                                                            `,
+                        "especialidad-img": '/img/corona/bcf-medica-presencial/img/examenes_presencial/imagenologia.jpg',
+                        "cantidad-ev-anuales": '<h6>2 Eventos Anuales</h6>',
+                        "texto-cantidad-ev": '2 (dos) Eventos en total anual como límite único y combinado para el grupo familiar.'
+                    },
+
+                ];
+
+                const url = window.location.href;
+
+                const urlParams = new URL(url);
+                console.log('urlParams', urlParams)
+                const especialidadParam = urlParams.searchParams.get('servicio');
+                console.log({ especialidadParam })
+
+                if (especialidadParam) {
+                    document.getElementById('abc-select').value = especialidadParam;
+
+
+                    const especialidadSeleccionada = especialidadesExamenes.find(especialidad => especialidad["especialidad-name"] === especialidadParam);
+
+
+
+                    if (especialidadSeleccionada) {
+                        document.getElementById('text-especialitie').innerHTML = especialidadSeleccionada["especialidad-text"];
+
+                        const imagenDiv = document.querySelector('.abc-img');
+                        imagenDiv.innerHTML = `<img src="${especialidadSeleccionada["especialidad-img"]}" alt="">`;
+
+                        document.getElementById('tooltip-box-id').innerHTML = especialidadSeleccionada["texto-cantidad-ev"];
+
+                        document.getElementById('id_eventos').innerHTML = especialidadSeleccionada["cantidad-ev-anuales"];
+                    }
+                }
+
+                const selectEspecialitie = document.getElementById('abc-select');
+
+
+                selectEspecialitie.addEventListener('change', function () {
+                    const selectedOption = this.value;
+
+                    const especialidadSeleccionada = especialidadesExamenes.find(especialidad => especialidad["especialidad-name"] === selectedOption);
+
+                    if (especialidadSeleccionada) {
+                        document.getElementById('text-especialitie').innerHTML = especialidadSeleccionada["especialidad-text"];
+
+                        document.getElementById('tooltip-box-id').innerHTML = especialidadSeleccionada["texto-cantidad-ev"];
+
+                        document.getElementById('id_eventos').innerHTML = especialidadSeleccionada["cantidad-ev-anuales"];
+
+                        const imagenDiv = document.querySelector('.abc-img');
+                        imagenDiv.innerHTML = `<img src="${especialidadSeleccionada["especialidad-img"]}" alt="">`;
+                    }
+                });
+
+            </script>
+        }
+    }
+    </body>
+</html>

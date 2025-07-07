@@ -1,0 +1,144 @@
+﻿@model WebMVC.Models.AgendaViewModel
+@{
+    Layout = "_LayoutAdmin";
+
+}
+@{
+    ViewData["Title"] = "AgendaAdmin";
+}
+
+@section PageStyles  {
+    <link href="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+@section Styles  {
+    <link href="~/css/Home/index.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <style>
+        .fc-timegrid-event {
+            position: absolute !important;
+            top: 0;
+            bottom: 1px;
+            left: 0;
+            right: 0;
+        }
+
+        .fc-agendaWeek-view tr {
+            height: 50px !important;
+        }
+    </style>
+}
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+    <!--Begin::Dashboard 7-->
+    <!--Begin::Row-->
+    <div class="row">
+        <div class="col-md-4 order-lg-1 order-xl-1">
+
+            <div class="kt-portlet kt-portlet--tabs kt-portlet--height-fluid">
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                            Ingresar datos de atención
+                        </h3>
+                    </div>
+
+                </div>
+                <div class="kt-portlet__body">
+
+                    <!--begin::Widget -->
+                    <div class="kt-widget kt-widget--user-profile-1">
+                        <div>
+                            <select class="form-control" id="centro">
+                                <option value="0">Seleccionar Centro</option>
+                            </select>
+
+                        </div>
+
+                        <div>
+                            <br>
+                            <select class="form-control" id="especialidades">
+                                <option value="0">Seleccionar Especialidad</option>
+                            </select>
+
+                        </div>
+
+                        <div>
+                            <br>
+                            <select class="form-control" id="medicos" name="medicos">
+                                <option value="0">Seleccionar Médico</option>
+                            </select>
+
+                        </div>
+
+                       
+                    </div>
+
+                    <!--begin:: Widgets/New Users-->
+                    <!--end:: Widgets/New Users-->
+                </div>
+            </div>
+
+            <!--End::Portlet-->
+        </div>
+
+        <div class="col-md-8 order-lg-1 order-xl-1">
+            <div class="kt-portlet" id="kt_portlet">
+                <div class="kt-portlet__body">
+                    <div id="kt_calendar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<!--<button onclick="playAudio()" type="button">Play Audio</button>
+<button onclick="pauseAudio()" type="button">Pause Audio</button>-->
+
+<audio id="myAudio">
+    <source src="~/metronic_demo7/assets/media/demo/sonido.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+@section PageScripts {
+    <script src="~/metronic_demo7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>
+    @*<script src="~/metronic_demo7/assets/js/pages/components/calendar/basicMedicoMedico.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>*@
+    @*<script src="~/metronic_demo7/assets/js/pages/dashboard.js?rnd=@NumeroRandom.GetRandom()" type="text/javascript"></script>*@
+}
+
+@section Scripts {
+    <script src="~/signal/signalr.min.js"></script>
+   
+    <script>
+        var x = document.getElementById("myAudio");
+
+        function playAudio() {
+            x.play();
+        }
+
+        function pauseAudio() {
+            x.pause();
+        }
+    </script>
+    <script type="module">
+        import { init } from '../../js/Admin/agenda-cliente.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+            var idAtencion = @ViewBag.idAtencion;
+            window.idAtencion = idAtencion;
+            var idCliente = @ViewBag.idCliente;
+            window.idCliente = idCliente;
+            var idHoraMedico = @ViewBag.idHoramedico;
+            window.idHoraMedico = idHoraMedico;
+            var typeAgenda = "@ViewBag.typeAgenda";
+            window.typeAgenda = typeAgenda;
+        })()
+    </script>
+}

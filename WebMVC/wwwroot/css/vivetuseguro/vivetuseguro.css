@@ -1,0 +1,5978 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;500;700&display=swap');
+
+:root {
+    --step--2: clamp(0.91rem, calc(0.77rem + 0.72vw), 1.28rem);
+    --step--1: clamp(1.09rem, calc(0.90rem + 0.99vw), 1.60rem);
+    --step-0: clamp(1.31rem, calc(1.04rem + 1.34vw), 2.00rem);
+    --step-1: clamp(1.58rem, calc(1.21rem + 1.80vw), 2.50rem);
+    --step-2: clamp(1.89rem, calc(1.41rem + 2.41vw), 3.13rem);
+    --step-3: clamp(2.27rem, calc(1.63rem + 3.20vw), 3.91rem);
+    --step-4: clamp(2.72rem, calc(1.88rem + 4.22vw), 4.88rem);
+    --step-5: clamp(3.27rem, calc(2.16rem + 5.54vw), 6.10rem);
+    --primary-color: #209CD4;
+    --secondary-color: #302F7B;
+    --tertiary-color: var(--secondary-color);
+    --fourth-color: #564B52;
+    --accent-color: #F5BE0B;
+    --light-color: #FFF;
+    --dark-color: #333;
+    --font-family: 'Nunito', sans-serif;
+    --base-font-size: 16px;
+    --background-ui: #E5E5E5;
+    --menu-color: #364F6B;
+    --transition: all .3s ease-out;
+    --vive-tuseguro-gris: #564B52;
+    --vive-tuseguro-morado: #302F7B;
+    --vive-tuseguro-azul: #209CD4;
+}
+
+body {
+    font-family: var(--font-family);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family: var(--font-family);
+    font-weight: 700;
+}
+
+/* Vive Tu Seguro */
+/* Im�genes Login */
+.img1 {
+    background-image: url(../../img/vivetuseguro/login/960x978.jpg) !important;
+}
+
+.img2 {
+    background-image: url(../../img/vivetuseguro/login/960x978.jpg) !important;
+}
+
+.img3 {
+    background-image: url(../../img/vivetuseguro/login/960x978.jpg) !important;
+}
+
+.img4 {
+    background-image: url(../../img/vivetuseguro/login/960x978.jpg) !important;
+}
+
+.img5 {
+    background-image: url(../../img/vivetuseguro/login/960x978.jpg) !important;
+}
+
+.img6 {
+    background-image: url(../../img/vivetuseguro/login/960x978.jpg) !important;
+}
+
+/* Imagenes Login */
+input[type=checkbox] {
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(1);
+    /* IE */
+    -moz-transform: scale(1);
+    /* FF */
+    -webkit-transform: scale(1);
+    /* Safari and Chrome */
+    -o-transform: scale(2);
+    /* Opera */
+    transform: scale(1);
+    padding: 10px;
+}
+
+.item-menu-top i:before {
+    /* color: #d2ebf6;*/
+    color: var(--secondary-color);
+}
+
+.menu-top .item-menu-top i {
+    line-height: 1.4;
+    margin-bottom: 0;
+}
+
+.body-home .menu-top .item-menu-top i {
+    line-height: 1.5;
+}
+
+
+i#icon-atenciones.fal.fa-calendar::before {
+    color: var(--secondary-color) !important;
+}
+
+.menu-top .label-menu {
+    margin-right: auto;
+}
+
+.kt-login__container .accesible-tools .accesible-btn button {
+    text-align: left !important;
+}
+
+.active {
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+.cda .typeahead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.typeahead a.remove_field {
+    text-transform: uppercase;
+    font-weight: 800;
+    color: red;
+    font-style: inherit;
+}
+
+
+.card_box {
+    display: flex;
+    align-items: baseline;
+    flex-direction: row !important;
+}
+
+.text-muted {
+    margin: 5px 0px;
+    font-size: 12px !important;
+    font-style: italic;
+}
+
+.mobile {
+    display: none !important;
+}
+
+#imgLogin {
+    height: 100vh;
+    width: 42vw !important;
+    background-repeat: no-repeat;
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+.logotipo-desktop {
+    max-width: 430px;
+    background-image: url(../../img/scotiabank/logos/logo_mundoscotia.svg) !important;
+    height: 98px !important;
+}
+
+div#btn-agregar a {
+    padding: 0.625rem 3.5rem !important;
+}
+
+.message-user {
+    margin-top: 3rem;
+}
+
+/* Logo */
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    font-size: 30px !important;
+    color: #209CD4 !important;
+
+}
+
+.cont-caja-especialidad img,
+.busqueda-profesionales img {
+    width: 40px;
+    height: auto;
+}
+
+.bkg_vivetuseguro {
+    background-image: url(../../img/vivetuseguro/home/bkg_home.jpg) !important;
+}
+
+p {}
+
+ul,
+ol {
+    text-align: justify;
+}
+
+hr {
+    border-top: #8A94B3 !important;
+}
+
+.kt-login__head {
+    display: flex;
+    justify-content: flex-start !important;
+}
+
+.kt-form .form-group .ms-label {
+    color: #209CD4 !important;
+    text-transform: inherit !important;
+    font-size: 17px !important;
+
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-form .form-control {
+    height: 45px;
+    border: 1px solid var(--secondary-color) !important;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    background: rgba(235, 237, 242, 0.4);
+}
+
+a#kt_login_forgot {
+    color: var(--secondary-color) !important;
+    text-decoration: underline !important;
+}
+
+.calendario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* button */
+
+
+.dropdown-biblioteca .btn-secondary {
+
+    padding-left: 5.5rem !important;
+}
+
+.caja-especialidad.active {
+    background-color: var(--secondary-color) !important;
+    color: var(--light-color);
+}
+
+.caja-especialidad:hover {
+    color: var(--light-color);
+    background-color: var(--secondary-color);
+}
+
+.inner-especialidad:hover strong {
+    color: var(--light-color);
+}
+
+.inner-especialidad strong {
+    color: var(--secondary-color);
+}
+
+button#kt_login_signin_submit.btn-primary {
+    width: 40%;
+    margin: 0 !important;
+    text-transform: capitalize;
+}
+
+.hora.disponible small {
+    background-color: var(--vive-tuseguro-azul);
+    color: #FFF;
+    display: flex;
+    justify-content: center;
+    padding: 0.625rem 6.5rem;
+    font-size: 1.0rem;
+}
+
+.hora.disponible .detalle-hora {
+    color: var(--vive-tuseguro-morado);
+}
+
+.selector-horas i {
+    font-size: 18px;
+    color: var(--vive-tuseguro-morado);
+}
+
+.caja-reserva .btn-pm {
+    background-color: #FFF;
+    border: 1px solid var(--vive-tuseguro-morado);
+    color: var(--vive-tuseguro-morado);
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.caja-reserva .btn-am {
+    background-color: var(--vive-tuseguro-azul);
+    border-color: var(--vive-tuseguro-azul);
+    color: #FFF;
+    display: flex;
+    justify-content: center;
+    padding: 0 2rem 0 2rem !important;
+}
+
+.btn-primary {
+    background-color: var(--vive-tuseguro-azul) !important;
+    color: #FFF !important;
+}
+
+.titulo-data-horario {
+    padding: 1rem;
+    margin: 0 0 1rem 0;
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--vive-tuseguro-morado);
+    border: 1px solid var(--vive-tuseguro-morado)
+}
+
+.horario .hora-top {
+    margin-right: 0.5rem;
+    color: var(--vive-tuseguro-morado);
+}
+
+.kt-login__actions.mt-0 {
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    justify-content: flex-end;
+}
+
+button#kt_login_forgot_submit.btn-primary,
+button#kt_login_forgot_cancel {
+    width: 98%;
+    margin: 40px auto 0 !important;
+}
+
+button#kt_login_forgot_cancel {
+    border: 2px solid #f5be0b;
+    color: #f5be0b;
+    border-radius: 10px;
+    height: 40px !important;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.invalid-feedback {
+    color: #ff0000 !important;
+    padding-left: 0 !important;
+}
+
+.alert.alert-success {
+    background: #d4a40b !important;
+    border: 1px solid #d4a40b !important;
+    color: #ffffff;
+    font-size: 12px;
+}
+
+.btn-brand {
+    background-color: #f5be0b !important;
+    border-color: #f5be0b !important;
+    color: #ffffff;
+}
+
+.kt-reset__password .alert.alert-danger .alert-close i {
+    color: #e81e2b;
+    font-size: 14px !important;
+}
+
+.kt-login__divider {
+    margin-top: 0px !important;
+}
+
+.kt-login__extra {
+    margin-bottom: 8px !important;
+    border-top: 1px solid #C8C8C8 !important;
+    margin-top: 20px !important;
+}
+
+.fuente-accesible span {
+    color: #8A94B3;
+    font-size: 15px;
+}
+
+.titulo-dropdown,
+.titulo-notificaciones {
+    color: #f5be0b !important;
+}
+
+
+span#fechaTextInfo {
+    color: var(--secondary-color);
+    font-size: 13px;
+}
+
+
+a#kt_login_account {
+    color: var(--secondary-color);
+}
+
+.leyenda-date-picker {
+    font-size: .9rem !important;
+    margin: 0 !important;
+    text-align: left !important;
+}
+
+.library {
+    background-color: #ffffff !important;
+}
+
+.accesible-btn button {
+    width: 40px !important;
+    height: 40px !important;
+    border: 1px solid #E30000 !important;
+    font-weight: 700 !important;
+    font-size: 1.5rem !important;
+    border-radius: 0 !important;
+    color: #E30000 !important;
+    transition: all .3s ease-out !important;
+    background-color: #FFF !important;
+}
+
+.logo-convenios {
+    display: flex;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-top: 100px !important;
+    gap: 20px;
+}
+
+.alert.alert-danger .alert-close i {
+    color: #EB5757;
+}
+
+.kt-header--fixed:not(.kt-subheader--fixed) .kt-header {
+    box-shadow: none !important;
+    border-bottom: 0px solid rgba(0, 0, 0, 0) !important;
+}
+
+.logo-convenios img {
+    width: auto !important;
+    height: auto;
+}
+
+.kt-login__wrapper {
+    background: #f5be0b;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    width: 740px !important;
+    margin: 100px auto !important;
+    background: #ffffff;
+    padding: 40px;
+}
+
+.login-footer .terminos {
+    justify-content: space-evenly !important;
+    margin-bottom: 2rem !important;
+    display: flex !important;
+}
+
+.login-footer .terminos a {
+    display: inline-block;
+    margin-left: 0;
+    color: var(--secondary-color);
+}
+
+.logotipo {
+    width: 100%;
+    height: auto;
+}
+
+a#kt_login_forgot {
+    color: rgba(8, 31, 65, 0.5) !important;
+    text-decoration: none !important;
+    font-weight: bold;
+}
+
+.box_form {
+    width: 435px;
+    margin: 0 auto;
+    display: block;
+}
+
+/* End Imagenes Login */
+/******************************/
+/* Home */
+
+.title_cajaasistencia {
+    margin-top: 5rem;
+    font-size: 23px !important;
+    font-weight: bold;
+    margin: 100px 0 0 0;
+    color: #209CD4 !important;
+}
+
+div#kt_wrapper {
+    background-color: white;
+    margin-top: 0;
+}
+
+
+
+.header-top {
+    display: block !important;
+}
+
+.container_cajadelosandes {
+    display: block
+}
+
+.container_cajadelosandes h1 {
+    color: var(--vive-tuseguro-gris);
+}
+
+.cont-card_cajanades {
+    display: flex;
+    background: var(--primary-color);
+    padding: 30px 1rem;
+    border-radius: 20px;
+    width: 94%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    max-width: 1098px;
+    margin: auto;
+}
+
+.card_cajanades_box {
+    padding: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    flex-direction: row;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 704px;
+    justify-content: flex-start;
+}
+
+.body-home .cont-card .card {
+    border-radius: 15px !important;
+    width: 200px !important;
+    width: 100%;
+    height: 170px !important;
+    margin: 1rem !important;
+}
+
+.fa-calendar{
+    display: none !important;
+}
+
+.atenciones-vive {
+    display: none !important;
+}
+
+.saludo_box {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    gap: 30px;
+    margin: 30px 0px;
+}
+
+.saludo_box_inner {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    gap: 30px;
+    margin: 15rem 0 5rem 0;
+}
+
+.saludo_box_inner span {
+    color: #209CD4;
+}
+
+.body-home {
+    background-image: none;
+
+}
+
+
+.body-home .logo-home {
+    padding: 1rem 0;
+    box-shadow: 0px 2px 5px rgb(157 157 157 / 20%);
+    z-index: 1000;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.logo-home img {
+    width: 75% !important;
+    padding: 5px !important;
+}
+
+.body-home .menu-top {
+    padding: 0 30px;
+}
+
+.body-home .cont-card h1 {
+    color: var(--secondary-color) !important;
+    font-size: 18px;
+    margin: 0px;
+}
+
+h1.fuente-accesible small {
+    font-size: 15px;
+    color: var(--secondary-color) !important;
+    text-transform: capitalize;
+
+    font-weight: 600;
+}
+
+div#item-alertas a img,
+div#item-ayuda a img,
+div#item-salir img {
+    width: auto;
+    padding: 5px;
+}
+
+.menu-top .item-menu-top {
+    text-align: center;
+}
+
+.mensaje-superior label {
+    margin-bottom: 0px !important;
+    font-weight: bold;
+    text-transform: initial;
+}
+
+.item-menu-top .label-menu {
+    color: var(--secondary-color) !important;
+    font-weight: bold;
+    font-size: 12px !important;
+    text-transform: uppercase !important;
+}
+
+.mensaje-superior .inner-mensaje {
+    padding: 1rem;
+    border: 2px solid var(--secondary-color) !important;
+    border-radius: 15px !important;
+    margin-right: 0rem;
+    animation-name: anima-mensaje;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    box-shadow: none !important;
+    text-transform: uppercase;
+    display: block;
+}
+
+.mensaje-superior {
+    color: var(--secondary-color) !important;
+    bottom: initial !important;
+    top: 2.5rem;
+    position: fixed;
+    z-index: 999;
+    display: flex;
+    right: 18rem;
+    /*right: 14rem;*/
+}
+
+.container_sbh,
+.container_cda,
+.container_cda_inner {
+    padding: 20px 0;
+    width: 100%;
+}
+
+.container_cda_inner {
+    margin-top: 95px;
+    background-color: #F2F2F2;
+    width: 100%;
+    display: none;
+}
+
+
+
+container_sbh {
+    background-color: #f4f4f5;
+}
+
+.container_cda {
+    background-color: #F2F2F2;
+    box-shadow: 0px 2px 2px rgb(157 157 157 / 20%);
+}
+
+.top-banner {
+    margin-bottom: 0px !important;
+}
+
+.top-banner_cda {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background-image: none !important;
+}
+
+.top-banner_cda h1 {
+    font-size: 24px !important;
+    color: #696969 !important;
+    margin-left: 0px !important;
+    font-weight: 500;
+    margin-bottom: 0px;
+}
+
+.top-banner img {
+    width: 94px !important;
+    height: auto;
+    border: 5px solid var(--primary) !important;
+}
+
+.sub-header-vive {
+    display: flex;
+    justify-content: center;
+    align-content: center !important;
+    align-content: center !important;
+    padding-top: 2rem;
+    margin: auto;
+}
+
+.sub-header-vive p{
+    font-size: 25px;
+}
+
+.top-banner .legend,
+.top-banner .legend_2 {
+    font-weight: bold !important;
+    font-size: 30px !important;
+    color: #209cd4 !important;
+    margin-left: 0px !important;
+}
+
+.text-warning {
+    color: var(--vive-tuseguro-gris) !important;
+}
+
+.top-banner p {
+    font-size: 15px;
+    color: var(--secondary-color);
+}
+
+.cont-card_scotiabank {
+    max-width: 1026px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: max(1rem, 2rem, 3rem);
+    justify-content: center;
+}
+
+.card_scotiabank {
+    width: 280px;
+    border-radius: 5px;
+    cursor: pointer;
+    background: linear-gradient(to right, #8358DD 27%, #67bce1 27%, #67bce1 27%);
+}
+
+.card-sbbody {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.card-sbbody h1 {
+    font-size: 15px !important;
+    font-weight: 700;
+    margin: 0 0 0 20px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+
+.container.accesible_cajadelosandes {
+    width: auto;
+}
+
+.accesible_cajadelosandes h2 {
+    font-size: var(--step-0) !important;
+    font-weight: bold;
+    margin: 100px 85px;
+}
+
+.card_scotiabank img {
+    width: 24%;
+    padding-right: 5px;
+}
+
+.body-home .footer_cajadelosandes {
+    width: 100%;
+    position: static;
+    text-align: center;
+}
+
+/*.footer_cajadelosandes {
+    width: calc(100% - 100px);
+    position: static;
+    bottom: 0;
+    right: 0;
+    left: 100px;
+    z-index: 800;
+    text-align: center;
+}*/
+
+.box_sbfooter {
+    display: flex;
+    justify-content: space-between;
+    color: var(--fourth-color);
+    padding: 0;
+    /*font-weight: bold;*/
+    align-items: center;
+    width: 94%;
+    max-width: 1086px;
+    margin: auto;
+    margin-bottom: 3rem;
+}
+
+.box_sbfooter .copy {
+    width: 100%;
+    max-width: 260px;
+    display: flex;
+}
+
+.box_sbfooter a {
+    font-weight: 500;
+    color: var(--tertiary-color);
+}
+
+.footer_cajadelosandes_logos {
+    width: calc(100% - 100px);
+    background-color: #ffffff;
+    padding: 30px 30px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    /*position: absolute;
+    bottom: auto;*/
+    border-bottom: 24px solid var(--vive-tuseguro-gris);
+    margin-left: 100px;
+    margin-top: auto;
+}
+
+.body-home .footer_cajadelosandes_logos {
+    padding: 30px 100px;
+    width: 100%;
+    margin-left: 0;
+}
+
+.footer_contlogos img {
+    width: 173px;
+}
+
+.footer_contlogos img:first-child {
+    border-right: 1px solid #666;
+}
+
+.footer_contlogos img:nth-child(2) {
+    width: 188px;
+}
+
+.footer_contlogos {
+    max-width: 726px;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.call {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.call h4 {
+    font-size: 17px;
+    font-weight: bold;
+    color: var(--secondary-color);
+    margin: 5px 0px 0px 0px;
+}
+
+.call img {
+    width: 5%;
+}
+
+.copy {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 260px;
+}
+
+.accesible_cajadelosandes .accesible-tools {
+    display: block;
+    margin: 3rem 0;
+}
+
+.body-home .accesible_cajadelosandes .accesible-tools {
+    margin: 0 auto;
+}
+
+.accesible_cajadelosandes .accesible-btn button {
+    border: 0.2rem solid #209CD4 !important;
+    color: #209CD4 !important;
+    background-color: #FFF !important;
+}
+
+.toolbar-cargas a.btn-icon.btn-info {
+    background-color: transparent !important;
+    color: #209CD4 !important;
+}
+
+.toolbar-cargas {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+    width: 100%;
+    border-top: 1px solid #CDC9CC;
+    padding-top: 5px;
+}
+
+.toolbar-cargas span {
+    padding: 5px;
+}
+
+.swal2-icon.swal2-warning {
+    border-color: #209CD4 !important;
+    color: #209CD4 !important;
+    align-items: flex-end;
+}
+
+.body-home .menu-top {}
+
+/* End Home */
+/******************************/
+/* Paciente */
+.modal-header.modal-header-aviso {
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
+.top-cargas h1.legend.order-2.order-md-1 {
+    margin-left: 0px !important;
+    font-size: 23px !important;
+    font-weight: bold;
+    color: #209CD4 !important;
+}
+
+.front-fecha-atencion {
+    margin: 0 1rem !important;
+}
+
+div#kt_aside_brand {
+    display: none;
+}
+
+div#kt_aside {
+    margin-top: 50px;
+}
+
+.check-aceptacion {
+    border-top: 1px solid #d5d3d4 !important;
+    display: flex;
+    align-items: baseline;
+}
+
+.perfil-profesional {
+    /*background: #F5F5F5 !important;
+    border: 0px !important;*/
+}
+
+label>input[type="checkbox"]+*::before {
+    content: "";
+    display: inline-block;
+    vertical-align: bottom;
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.3rem;
+    border-radius: 10%;
+    border-style: solid;
+    border-width: 0.1rem;
+    border-color: gray !important;
+    flex-shrink: 0;
+}
+
+
+
+div#kt_header {
+    padding: 30px -1px !important;
+    border: 0px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 800;
+    height: fit-content;
+    box-shadow: 0px 2px 5px rgb(157 157 157 / 20%) !important;
+}
+
+.iniciales {
+    background-color: #0090d7 !important;
+    position: absolute;
+    width: 50px !important;
+    height: 50px !important;
+}
+
+
+
+.stepper {
+    /*display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;*/
+    /*height: 165px !important;*/
+    /*background-image: none !important;
+    background-repeat: no-repeat !important;
+    background-position: unset !important;
+    background-color: transparent !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    margin-bottom: 4rem !important;
+    margin-top: 8rem !important;*/
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    background-image: url(../../img/fondo-banner.svg) !important;
+    background-repeat: repeat-x;
+    background-position: left 10px;
+    margin-bottom: 2.5rem;
+    margin-top: 2.5rem;
+}
+
+.stepper {
+    margin-bottom: 2rem !important;
+    margin-top: 8rem !important;
+    background-image: none;
+}
+
+.stepper .init-step {
+    width: 100px;
+    display: none;
+}
+
+.stepper img {
+    display: flex;
+}
+
+.stepper .flecha {
+    display: none
+}
+
+.kt-grid > .kt-grid__item {
+    max-width: 100%;
+    margin-top: 2rem;
+}
+
+.cont-steps {
+    width: 50% !important;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly !important;
+    background-color: white !important;
+    margin: 0 auto;
+    max-width: 1100px;
+}
+
+.stepper img {
+    width: 100px;
+    height: 100px;
+    border: 3px solid #302F7B;
+}
+
+.cont-steps img {
+    display: block;
+}
+
+.step {
+    display: flex;
+    gap: 1.5rem;
+    flex-direction: column;
+    text-align: center;
+}
+
+.step.active .step-icon {
+    background-color: var(--secondary-color) !important;
+}
+
+.cont-steps img {
+    max-width: 100% !important;
+    width: 30px;
+    border: 0px !important;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.label-step {
+    color: var(--fourth-color) !important;
+    font-size: 12px !important;
+    text-transform: uppercase;
+    font-weight: bold !important;
+    min-width: 142px;
+}
+
+.step.active .label-step {
+    color: var(--secondary-color) !important;
+    font-weight: bold !important;
+    font-size: 12px !important;
+}
+
+.titulo-servicio {
+    font-size: 32px !important;
+    font-weight: bold;
+    margin: 0;
+    color: var(--secondary-color) !important;
+}
+
+.cont-caja-especialidad {
+    display: flex;
+    align-items: center;
+    height: 52px;
+}
+
+.body-home .page-subtitle {
+    color: #209cd4 !important;
+}
+
+.caja-especialidad {
+    min-width: 260px;
+    width: 100%;
+    color: var(--secondary-color);
+    font-weight: 700;
+    font-size: 1rem;
+    display: flex !important;
+    border-radius: 5px !important;
+    padding: 0.5rem !important;
+    padding-left: 0;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-right: 0 !important;
+    transition: all .3s ease-out;
+    justify-content: center;
+    border: 2px solid var(--secondary-color);
+    background-color: var(--light-color);
+}
+
+.cda_mobile {
+    display: flex !important;
+    width: 100% !important;
+    align-items: center !important;
+    justify-content: center;
+    gap: 20px !important;
+}
+
+.medicina-general {
+    background-color: var(--light-color);
+    margin-right: 1rem !important;
+}
+
+.busqueda-profesionales i {
+    color: var(--secondary-color);
+}
+
+.caja-especialidad.especialista,
+.caja-especialidad.veterinario {
+    /*background-color: #8358DD !important;*/
+    display: none !important;
+}
+
+.inner-especialidad {
+    display: flex !important;
+    width: 100% !important;
+    align-items: center !important;
+    justify-content: center;
+    /*gap: 20px !important;*/
+}
+
+.busqueda-profesionales {
+    padding: 0.6rem !important;
+    width: 100%;
+    min-width: 280px !important;
+    max-width: 300px;
+    border-radius: 5px !important;
+    background-color: #FFF;
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--secondary-color) !important;
+    margin-left: 0 !important;
+    height: 52px;
+}
+
+.busqueda-profesionales .dropdown .btn {
+    width: 100% !important;
+    border: none;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    letter-spacing: 0px;
+    color: var(--secondary-color) !important;
+    padding: 0 !important;
+}
+
+.caja-busqueda {
+    min-width: 220px !important;
+    width: 100%;
+}
+
+.kt-header--fixed .kt-wrapper {
+    padding-top: 0px !important;
+}
+
+.formulario-confirma-hora h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #209CD4 !important;
+    margin-bottom: 25px;
+}
+
+.formulario-confirma-hora .header-formulario {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #CCCCCC !important;
+    padding: 10px 0px;
+}
+
+.modal-header h3,
+.kt-section__body h5 {
+    color: #209CD4 !important;
+}
+
+label.form-label.font-weight-bold.pregunta-antecedente.pregunta-modal {
+    color: var(--secondary-color);
+}
+
+
+/*.kt-menu__item--here img {width: 70%!important;margin: 0 auto;}*/
+.kt-menu__item--here img {
+    width: 55% !important;
+    margin: 0 auto;
+}
+
+.ms-label-menu {
+    font-size: 10px !important;
+    letter-spacing: 0px;
+    text-align: center;
+    color: var(--secondary-color);
+}
+
+.kt-menu__item a,
+.kt-menu__item i {
+    color: var(--secondary-color) !important;
+}
+
+.kt-menu__nav .accesible-btn button,
+.kt-aside-menu {
+    background-color: #f7f7f7 !important;
+}
+
+.accesible-btn button {
+    border: 1px solid #209CD4 !important;
+    color: #209CD4 !important;
+    border-radius: 5px !important;
+}
+
+div#kt_aside_menu_wrapper,
+.kt-aside--minimize .kt-aside-menu .kt-menu__nav {
+    background: #F7F7F7;
+}
+
+.ms-link-icon {
+    font-size: 30px !important;
+}
+
+.kt-aside--minimize .kt-aside-menu .kt-menu__nav>.kt-menu__item {
+    margin-bottom: 40px !important;
+}
+
+.selector-horas i {
+    color: var(--secondary-color) !important;
+}
+
+/* EndPaciente */
+/******************************/
+/* PacienteAgenda */
+
+.cont-form-beneficiario {
+    margin: auto;
+    max-width: 880px;
+    margin-top: 8rem !important;
+}
+
+.swal2-styled.swal2-confirm {
+    border: 0;
+    border-radius: 5px !important;
+    background: initial;
+    background-color: var(--primary-color) !important;
+}
+
+.swal2-icon.swal2-question::before {
+    content: "?";
+    color: #209CD4;
+    line-height: 75px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.swal2-icon.swal2-question {
+    border-color: #209CD4;
+    color: #209CD4;
+}
+
+.swal2-popup .swal2-content {
+    color: var(--secondary-color) !important;
+}
+
+.caja-base {
+    background-color: #FFF;
+    color: var(--secondary-color) !important;
+
+    padding: 2rem !important;
+}
+
+.formulario-confirma-hora .header-formulario p {
+    margin-bottom: 0;
+    font-weight: 500;
+    letter-spacing: 0px !important;
+    text-align: left;
+    font-size: 18px !important;
+    color: #666;
+}
+
+.caja-confirmacion-hora p {
+    font-size: 1.1rem !important;
+    font-weight: bold;
+}
+
+.header-formulario .fa-check-circle:before {
+    content: "\f058";
+    /*color: #209CD4;*/
+}
+
+.cont-icon-confirma img.d-lg-inline-block {
+    /*width: 9%;*/
+    max-width: 72px;
+    margin-bottom: 2rem;
+}
+
+.cont-confirmacion .col.col-lg-6 {
+    flex: 1;
+    max-width: 100%;
+}
+
+.header-formulario i {
+    color: #8358DD !important;
+    font-size: 3rem;
+}
+
+.dropzone.dropzone-default.dropzone-brand {
+    border-color: var(--secondary-color) !important;
+}
+
+.saludo_box_inner img {
+    width: 5%;
+}
+
+.btn.btn-outline-secondary {
+    /*color: #fff !important;
+    background-color: #F5BE0B !important;
+    font-size: 14px !important;
+    border-radius: 5px !important;
+    font-weight: 700 !important;
+    letter-spacing: 5px;*/
+    background-color: var(--light-color);
+    color: var(--secondary-color);
+}
+
+.toolbar-anura .btn.btn-primary {
+    color: #666666 !important;
+    border-color: #E2E5EC !important;
+    background-color: var(--light-color) !important;
+}
+
+.toolbar-anura .btn.btn-primary:hover {
+    color: var(--light-color) !important;
+    border-color: #E2E5EC !important;
+    background-color: var(--secondary-color) !important;
+}
+
+.toolbar-anura .btn.btn-outline-primary {
+    background-color: var(--primary-color) !important;
+    color: var(--light-color) !important;
+}
+
+.toolbar-anura .btn.btn-outline-primary:hover {
+    background-color: var(--light-color) !important;
+    color: var(--secondary-color) !important;
+}
+
+button#btnAceptar {
+    /* width: 70%;*/
+}
+
+button#btnCancelarAtencion {}
+
+button#btnCancelarAtencion:hover {
+    color: var(--light-color);
+}
+
+.btn.btn-outline-secondary:hover {
+    background-color: var(--secondary-color) !important;
+}
+
+
+.checkmark {
+    background-color: #a72424;
+}
+
+
+.card-body button.btn.btn-primary.btn-block.btn-sm.my-2.btn-agendar {
+    font-weight: bold !important;
+    font-size: 15px !important;
+
+}
+
+.btn-agendar {
+    margin: 0 auto;
+    max-width: 90% !important;
+}
+
+
+
+
+.caja-profesional .front .btn-primary {
+    color: #fff !important;
+    background-color: var(--primary-color) !important;
+    font-size: 14px !important;
+    border-radius: 5px !important;
+    border: 1px solid var(--primary-color) !important;
+    width: 88%;
+    margin: 0 auto;
+}
+
+.btn-primary {
+    /* color: #fff !important;
+    background-color: #F5BE0B !important;
+    font-size: 14px !important;
+    border-radius: 5px !important;
+    font-weight: 700 !important;
+    border: 1px solid #F5BE0B !important;
+    margin: 0 auto;*/
+    background-color: var(--primary-color);
+    color: var(--light-color);
+}
+
+.stepper-sv .titulo-step {
+    color: #209CD4 !important;
+    font-weight: 800 !important;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem !important;
+    font-size: 14px !important;
+}
+
+.step-icon {
+    width: 60px !important;
+    height: 60px !important;
+    background-color: #209CD4 !important;
+    color: #FFF;
+    border-radius: 50% !important;
+    margin: 0 auto;
+    margin-bottom: 0 !important;
+    font-size: 2.5rem !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stepper-sv .step {
+    display: block;
+}
+
+.carga-archivos h3 {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #666;
+}
+
+.caja-confirmacion-hora .mensaje-anura p {
+    font-weight: 500;
+    font-size: 24px !important;
+    font-family: var(--font-family);
+}
+
+.formulario-confirma-hora .header-formulario i {
+    color: var(--secondary-color) !important;
+}
+
+.box_step {
+    text-align: left;
+}
+
+.stepper-sv .label-step {
+    text-align: center !important;
+    color: #209CD4 !important;
+    text-transform: uppercase;
+    margin: 15px 0px;
+}
+
+.dropzone.dropzone-default .dropzone-msg-desc {
+    color: #209CD4 !important;
+    font-size: 1rem !important;
+}
+
+.check-aceptacion a {
+    color: var(--secondary-color);
+    text-decoration: underline;
+    font-weight: 800;
+}
+
+h3.dropzone-msg-title.fuente-accesible::before {
+    content: "\f055";
+    display: block;
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 300;
+    font-size: 30px;
+}
+
+.caja-reserva {
+    transition: all ease-out .3s;
+    background-color: #fff;
+    margin: 0 auto;
+    color: #209CD4 !important;
+    /*border: 1px solid rgba(86, 75, 82, 0.2) !important;*/
+    border-radius: 10px !important;
+    padding: 2rem !important;
+}
+
+.check-aceptacion label {
+    font-size: 0.9rem;
+    display: block;
+    padding-left: 1.5rem;
+    color: #666666;
+}
+
+.perfil-profesional .text-right label {
+    /*color: var(--secondary-color);
+    font-weight: 600;*/
+    margin-left: .5rem;
+}
+
+.text-right {
+    text-align: right !important;
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
+    flex-wrap: wrap;
+    align-content: flex-end;
+    flex-direction: row;
+}
+
+.caja-reserva h4.fuente-accesible {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #8A94B3 !important;
+}
+
+p {
+    color: #656565;
+}
+
+.btn.btn-pill {
+    /*border-radius: 5px !important;*/
+}
+
+.cont-jornadas {
+    margin: auto;
+    margin-bottom: 1rem;
+    width: 66%;
+}
+
+.calendario .active {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: var(--light-color) !important;
+}
+
+button#btnTarde,
+button#btnManana {
+    width: 48%;
+    background-color: var(--light-color);
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+
+
+.indica-dia.actual {
+    background: rgb(0 129 164) !important;
+}
+
+.leyenda-date-color {
+    line-height: 25px !important;
+}
+
+.titulo-data-horario {
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+    border-radius: 0.5rem;
+    padding: 0.8rem !important;
+}
+
+.data-horario .rango-horario {
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+}
+
+.titulo-data-horario {
+    font-size: 1rem;
+    display: block;
+    font-weight: bold !important;
+}
+
+.hora-top {
+    color: var(--secondary-color) !important;
+    font-weight: 900;
+}
+
+.estado-hora small {}
+
+.lista-horas .hora {
+    border-top: 1px solid rgba(32, 156, 212, 0.3) !important;
+}
+
+.perfil-profesional .header-perfil {
+    flex-direction: row !important;
+}
+
+.perfil-profesional .titulo-profesional {
+    /* color: var(--secondary-color) !important;*/
+}
+
+.nombre-profesional {
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    /* color: var(--secondary-color) !important;*/
+}
+
+.card {
+    max-width: 560px;
+    color: var(--secondary-color) !important;
+    border-radius: 10px !important;
+    background-color: #ffffff !important;
+    border: 1px solid var(--primary-color) !important;
+}
+
+.caja-profesional .titulo-profesional {
+    /*color: var(--secondary-color) !important;*/
+}
+
+.caja-profesional img {
+    border: 1px solid rgba(59, 193, 205, 0) !important;
+}
+
+.card-body .fecha-atencion strong {
+    font-weight: 900 !important;
+    color: #209CD4;
+}
+
+.front-fecha-atencion strong:before {
+    color: #209CD4 !important;
+    font-style: initial;
+    font-weight: 700;
+}
+
+.caja-profesional .fecha-atencion {
+    color: #209CD4 !important;
+    /*border: 1px solid #209CD4;*/
+    /*border-radius: 8px;
+    text-align: center;*/
+    padding: .5rem 0;
+}
+
+.especialidad-profesional {
+    color: var(--secondary-color) !important;
+}
+
+.hora.disponible small,
+.hora.ocupado small {
+    background-color: var(--primary-color);
+    border-radius: 32px;
+    font-weight: 500;
+    padding: .25rem .5rem;
+    width: 120px;
+    margin-left: auto;
+}
+
+.hora.ocupado small {
+    background-color: #DDD;
+    color: #999;
+}
+
+.hora.disponible .detalle-hora {
+    color: var(--secondary-color);
+    font-size: 1.8rem;
+    font-weight: 700;
+
+}
+
+.hora.seleccionado small {
+    background-color: var(--secondary-color);
+    color: var(--light-color);
+    padding: .25rem .5rem !important;
+    width: 120px;
+    margin-left: auto;
+}
+
+.hora.seleccionado .detalle-hora {
+    color: #c4c4c4 !important;
+}
+
+.mensaje-superior .inner-mensaje.pronto,
+.mensaje-superior .inner-mensaje.hoy {
+    color: var(--secondary-color) !important;
+    background-color: #ffffff !important;
+}
+
+.kt-header.kt-grid.kt-grid--ver.kt-header--fixed.ms-header {
+    border: 0px !important;
+}
+
+.cont-toma-examenes.lab-blanco {
+    /*margin-top: 10rem;*/
+    margin: auto;
+    margin-top: 13rem;
+    gap: 3rem;
+}
+
+.mensaje-confirmacion strong {
+    color: #209CD4 !important;
+}
+
+.card-body strong {
+    font-weight: bold !important;
+}
+
+.mensaje-confirmacion.caja-base {
+    padding: 2rem 2rem;
+    max-width: 914px;
+    background: var(--light-color);
+    border: 0px;
+}
+
+.mensaje-confirmacion p {
+    font-size: 1.25rem;
+    text-align: left !important;
+}
+
+.cont-icon-confirma .fa-check-circle:before {
+    content: "\f058";
+    color: #209CD4;
+}
+
+.container.caja-base.mensaje-confirmacion .caja-profesional {
+    background-color: #fff !important;
+    border: 1px solid #DDD;
+    font-weight: 900;
+}
+
+.kt-portlet {
+    color: var(--secondary-color) !important;
+    border: 1px solid rgba(86, 75, 82, 0.2) !important;
+    border-radius: 10px !important;
+}
+
+.card .form-group label,
+.card .form-group-input label {
+    color: var(--secondary-color) !important;
+}
+
+.icono-editar-perfil {
+    background-color: #209CD4 !important;
+}
+
+.mensaje-confirmacion button#volverInicio {
+    font-size: 14px !important;
+    padding: 0.625rem 0.9rem !important;
+}
+
+.cont-farmacias {
+    margin: auto;
+    max-width: 1600px;
+    margin-top: 100px;
+}
+
+.card-farmacia .especialidad {
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--secondary-color);
+}
+
+.card-farmacia.ultima-atencion {
+    max-width: 450px;
+    background-color: #209CD4;
+}
+
+.card-farmacia.ultima-atencion .fecha-atencion {
+    color: #FFF !important;
+}
+
+.card-farmacia.ultima-atencion .inner-card-farmacia .header-card-farmacia .nombre-profesional {
+    color: white !important;
+}
+
+.card-farmacia.ultima-atencion .nombre-profesional,
+.card-farmacia.ultima-atencion .especialidad,
+.card-farmacia.ultima-atencion .titulo-card-farmacia,
+.card-farmacia.ultima-atencion .subtitulo-card-farmacia {
+    color: #eeeeee !important;
+}
+
+.header-card-farmacia {
+    border-bottom: 1px dashed #dadada;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    height: 118px;
+    overflow-y: auto;
+}
+
+.card-farmacia .fecha-atencion {
+    font-size: 14px;
+    color: var(--secondary-color) !important;
+    text-align: left;
+    margin-bottom: 1rem;
+    font-weight: 700 !important;
+}
+
+.card-profile h3,
+.kt-portlet .kt-portlet__head .kt-portlet__head-label .kt-portlet__head-title {
+    font-weight: 800 !important;
+    color: var(--secondary-color) !important;
+}
+
+.cont-aviso-modal .datos-fecha .fecha-atencion {
+    color: #209CD4 !important;
+    margin-right: 15px;
+}
+
+span#horaAtencionConfirma {
+    color: var(--secondary-color);
+}
+
+.cont-aviso-modal .datos-fecha {
+    margin: 0 auto;
+    margin-top: 2rem;
+    width: auto !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.modal-header.modal-header-aviso h2 {
+    font-size: 23px !important;
+    color: var(--secondary-color) !important;
+    font-weight: 700 !important;
+    margin: 0 auto;
+}
+
+.cont-aviso-modal strong {
+    color: #209CD4 !important;
+}
+
+.titulo-seccion {
+    color: var(--secondary-color) !important;
+}
+
+.ms-label-menu::before {
+    display: inline-block;
+    content: "";
+    border-top: 0.1rem solid #999999;
+    width: 5rem;
+    margin: 0 1rem;
+    transform: translateY(2rem);
+}
+
+.ms-label-menu {
+    /*line-height: 10px !important;*/
+    line-height: 1.2 !important;
+}
+
+.kt-grid.kt-grid_sc.kt-grid--desktop.kt-grid--ver.kt-grid--ver-desktop.kt-app {
+    display: flex;
+    flex-direction: row;
+}
+
+.top-banner_scotiabank {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    height: 165px !important;
+    background-color: #f4f4f5;
+    margin-bottom: 4rem;
+    margin-top: 8rem;
+    gap: 30px;
+    flex-direction: row-reverse;
+    padding: 0px 20px
+}
+
+.top-banner_scotiabank h1 {
+    font-weight: bold;
+    font-size: var(--step-0);
+    color: var(--secondary-color);
+}
+
+h3.mb-3.titulo-seccion,
+.header-atenciones h3.mt-5.mt-lg-0.titulo-seccion {
+    color: var(--secondary-color) !important;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    font-size: var(--step-0) !important;
+}
+
+h3.mb-3.titulo-seccion::before,
+.header-atenciones h3.mt-5.mt-lg-0.titulo-seccion::before {
+    content: "";
+    display: block;
+    background-image: url(/img/scotiabank/iconos/icon_proximatencion.svg);
+    height: 50px;
+    width: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.aviso-atencion {
+    background-color: #209CD4 !important;
+    color: #FFF;
+    border: 1px solid #209CD4 !important;
+    border-radius: 10px 10px 0px 0px !important;
+    transition: all .3s ease-out;
+    height: 100%;
+    padding: 1rem !important;
+}
+
+.aviso-atencion .data-atencion .nombre-profesional {
+    text-align: left;
+    color: #FFF !important;
+    font-size: 18px !important;
+}
+
+a.btn-atencion {
+    color: #209CD4 !important;
+    font-weight: 700 !important;
+    letter-spacing: 3px;
+}
+
+.caja-atencion {
+    border: 1px solid rgba(59, 193, 205, 0.3);
+}
+
+.atencion-toolbar.atencion-proxima-toolbar {
+    margin-top: 1rem;
+    border-top: 1px solid rgba(86, 75, 82, 0.2) !important;
+}
+
+.caja-atencion .header-aviso-atencion,
+.caja-atencion .header-aviso-atencion i {
+    color: var(--secondary-color) !important;
+}
+
+.caja-atencion .fecha-atencion {
+    color: var(--secondary-color) !important;
+    font-size: var(--step-0) !important;
+}
+
+.caja-atencion .hora-atencion {
+    color: var(--secondary-color) !important;
+}
+
+.cont-confirmacion .cont-icon-confirma {
+    text-align: left !important;
+}
+
+.caja-atencion .status-atencion {
+    background-color: #e30000 !important;
+    color: #ffffff !important;
+}
+
+.card.card-profile {
+    color: var(--secondary-color) !important;
+    border: 1px solid rgba(86, 75, 82, 0.2) !important;
+    border-radius: 10px !important;
+    background-color: #fff !important;
+    max-width: 100% !important
+}
+
+h1.legend.order-2.order-md-1.fuente-accesible span {
+    font-size: var(--step-0);
+}
+
+.mensaje-superior .inner-mensaje.ahora {
+    color: var(--secondary-color) !important;
+    background-color: #ffffff !important;
+}
+
+.title-section-biblioteca {
+    font-size: var(--step-1) !important;
+    font-weight: 500;
+    color: #209CD4;
+    max-width: 348px;
+}
+
+.title-section-biblioteca span {
+    font-weight: 700;
+    display: block;
+    text-transform: uppercase
+}
+
+.cont-title p {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    color: var(--secondary-color) !important;
+    font-size: 15px !important;
+    text-align: left
+}
+
+.home-library .bg-library {
+    background-color: #8358DD;
+}
+
+.inner-btn {
+    background-color: var(--primary-color) !important;
+}
+
+.inner-btn:hover {
+    background-color: #BC9000 !important;
+}
+
+.btn-icon:hover {
+    color: #bc9000 !important;
+}
+
+.btn-icon {
+    color: var(--primary-color) !important;
+}
+
+.icon-bar .btn-icon {
+    color: var(--secondary-color) !important;
+}
+
+.dropdown-biblioteca {
+    background-image: url(../../img/vivetuseguro/iconos/icon_vida.svg) !important;
+    background-size: 10% !important;
+}
+
+.stepper .flecha {
+    color: #e30000 !important;
+}
+
+.dropdown-biblioteca .btn-secondary {
+    border: 2px solid var(--primary-color) !important;
+    color: var(--primary-color) !important;
+}
+
+.swal2-icon.swal2-success [class^=swal2-success-line] {
+    background-color: #209CD4 !important;
+}
+
+.swal2-icon.swal2-success .swal2-success-ring {
+    border: 0.25em solid #209CD4 !important;
+}
+
+.swal2-icon.swal2-info {
+    border-color: #209CD4 !important;
+    color: #209CD4 !important;
+    display: flex;
+    align-items: flex-end;
+}
+
+.nav-tabs.nav-tabs-line.nav-tabs-line-brand.nav.nav-tabs .nav-link:hover,
+.nav-tabs.nav-tabs-line.nav-tabs-line-brand.nav.nav-tabs .nav-link.active,
+.nav-tabs.nav-tabs-line.nav-tabs-line-brand a.nav-link:hover,
+.nav-tabs.nav-tabs-line.nav-tabs-line-brand a.nav-link.active {
+    color: #209CD4;
+    border-bottom: 1px solid #209CD4;
+}
+
+.nav-tabs.nav-tabs-line.nav-tabs-line-brand.nav-tabs-line-2x,
+.nav-tabs.nav-tabs-line.nav-tabs-line-brand.nav-tabs-line-3x {
+    border-bottom-color: rgb(245 190 11 / 30%);
+}
+
+
+
+.item-menu-top .dropdown-menu {
+    border: 1px solid rgba(86, 75, 82, 0.2) !important;
+}
+
+.titulo-dropdown {
+    color: #f5be0b !important;
+}
+
+.opcion-ayuda a {
+    color: var(--secondary-color) !important;
+}
+
+.dropzone.dropzone-default .dropzone-msg-title {
+    text-align: center !important;
+}
+
+.order-last {
+    order: 0;
+}
+
+div#checks .check-aceptacion a,
+a#consentimiento {
+    color: var(--secondary-color) !important;
+}
+
+.fuente-accesible span#fechaTextInfo,
+.fuente-accesible span#bloqueHoraText {
+    font-size: 18px;
+    color: var(--secondary-color);
+    font-weight: 900;
+}
+
+.kt-menu__item:hover a,
+.kt-menu__item:hover i {
+    color: var(--secondary-color) !important;
+}
+
+.body-home .fecha-atencion {
+    text-align: center;
+    color: #209CD4 !important;
+    width: 192px;
+    margin-top: 18px;
+}
+
+.body-home .btn-icon.danger {
+    color: var(--secondary-color) !important;
+}
+
+.body-home .label-confirma-atencion {
+    background: #f5be0b;
+    border-radius: 0 0.5rem;
+    color: #FFF;
+    text-align: center;
+    width: 192px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 0.9rem;
+    padding: 0.3rem;
+    text-transform: uppercase;
+}
+
+.body-home .iconos-atencion {
+    width: 25rem !important
+}
+
+.body-home .btn-icon {
+    margin: 0 0.4rem !important;
+    font-weight: 700;
+}
+
+.btn-outline-primary {
+    color: #666666 !important;
+    border-color: #E2E5EC !important;
+}
+
+.carga-archivos {
+    border-left: 1px solid rgba(59, 193, 205, 0.0) !important;
+}
+
+.body-home .btn-icon .leyenda-icono {
+    font-size: 0.9rem !important;
+}
+
+.body-home .datos-atencion {
+    color: var(--secondary-color);
+}
+
+.btn_volver button#btnCerrar {
+    display: flex;
+    gap: 8px;
+}
+
+.btn_volver button#btnCerrar::before {
+    content: "";
+    background-image: url(../../img/scotiabank/iconos/icon_volver.svg) !important;
+    height: 30px;
+    width: 30px;
+    display: block;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.card-content .title-card,
+.card-content .tags {}
+
+.condiciones-validacion-clave ul {
+
+    padding: 0 15px;
+}
+
+.btn {}
+
+.file-select::before {
+    display: contents !important;
+}
+
+.btn-info {
+    background-color: #aaa !important;
+    border-color: #aaa !important;
+}
+
+.btn-warning {
+    background-color: #F5BE0B !important;
+    border-color: #F5BE0B !important;
+    color: #ffffff !important;
+}
+
+select#motivoConsulta:hover {
+    background-color: #FFF !important;
+    border-color: #FFF !important;
+    color: #615152 !important;
+}
+
+/* Ajuste */
+.kt-container {
+    padding: 0px;
+}
+
+/*
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+    */
+/* Ajuste */
+
+
+
+/*************************Links Generales********************************/
+
+html a:hover,
+html a:active,
+html a:focus,
+body a:hover,
+body a:active,
+body a:focus {
+    /*text-decoration: underline !important;*/
+}
+
+/**********************************************************************/
+
+
+body {
+    background-color: #FFF !important;
+    font-family: var(--font-family), sans-serif !important;
+}
+
+.btn-info:focus,
+.btn-info.focus {
+    box-shadow: none;
+}
+
+.text-danger {
+    color: #E30000 !important;
+}
+
+/*Stepper*/
+.step::after {
+    /*content: '';
+    display: inline-block;
+    width: 47%;
+    background-color: #C4C4C4;
+    height: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    top: -84px;
+    left: 105px;*/
+}
+
+.step:last-child::after {
+    display: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color) !important;
+    transition: all .3s ease-out;
+}
+
+.body-home .accesible_cajadelosandes .accesible-btn {
+    gap: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.body-home .accaccesible_cajadelosandes .accesible-btn button {
+    border-radius: 0 !important;
+}
+
+
+.front-fecha-atencion {
+    border: 1px solid #209CD4;
+}
+
+.iniciales-usuario {
+    display: flex;
+    align-items: center;
+}
+
+.iniciales-usuario .foto-usuario img {
+    padding: 0 !important;
+    width: 100% !important;
+    object-fit: cover;
+}
+
+.iniciales-usuario #nombreCompleto,
+#nombreCompleto {
+    font-size: 20px;
+
+    color: var(--secondary-color);
+}
+
+.logo-home>a {
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+}
+
+.kt-login__container .accesible-tools .accesible-btn button {
+    color: #3BC1CD !important;
+    border-color: #3BC1CD !important;
+    border-radius: 0 !important;
+}
+
+.convenioChile {
+    display: none;
+}
+
+.cont-informe {
+    margin-top: 12rem;
+}
+
+.card-informe {
+    border: 1px solid #ABA5A9;
+}
+
+.cont-caja-especialidad-scotiabank {
+    display: block;
+}
+
+.toolbar-option {
+    color: var(--primary-color);
+}
+
+
+
+/*Asistencia Toma Ex�menes*/
+.cont-toma-examenes {
+    max-width: 1200px;
+}
+
+.cont-toma-examenes .card {
+    padding: 30px;
+    border: 1px solid #ABA5A9;
+    max-width: 450px;
+}
+
+.cont-toma-examenes #form label {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--fourth-color) !important;
+    margin: 10px;
+}
+
+.typeahead .form-control.tt-input {
+    border: 1px solid #E2E5EC;
+    color: #495057;
+    font-size: 16px;
+}
+
+.file-select::before {
+    color: #209CD4;
+}
+
+.icon_input {
+    position: relative;
+    right: auto;
+    bottom: 27px;
+    display: block;
+    left: 90%;
+}
+
+.cont-ilustracion {
+    width: 364px;
+    height: 280px;
+    background-image: url(../../img/vivetuseguro/examenes/ilustracion_cda.svg);
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: contain;
+    margin: 50px auto 0 auto;
+}
+
+.cont-toma-examenes .cda #form label {
+    color: #209CD4 !important;
+}
+
+.acontent_box .acontent_ti {
+    align-items: flex-start;
+}
+
+.box_tex {
+    margin-top: 2rem;
+}
+
+.acontent_box .box_tex {
+    max-width: 800px;
+}
+
+.acontent_box .acontent_ti h2 {
+    font-size: var(--step-0);
+    font-weight: 900;
+    color: #8358DD;
+    max-width: 415px;
+}
+
+.acontent_box .acontent_ti h2 span {
+    display: none;
+}
+
+.acontent_box .acontent_ti h2 br {
+    display: none;
+}
+
+.acontent_box .acontent_ti h2::before {
+    content: '�Estamos contigo!';
+    display: block;
+    color: var(--secondary-color);
+    font-weight: 400;
+    display: none;
+}
+
+.acontent_box .box_tex p {
+    color: var(--secondary-color);
+    font-size: 18px;
+}
+
+.nota-asistencia .btn {
+    width: auto;
+}
+
+.nota-asistencia .btn-primary {
+    background-color: #E30000;
+    border-color: #E30000;
+    font-weight: 700;
+    font-size: 20px;
+    transition: all .3s ease-out;
+    width: 245px;
+    font-size: var(--step-0);
+}
+
+.nota-asistencia .btn-primary:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+
+.nota-asistencia small.data-asistencia {
+    color: var(--secondary-color);
+    font-size: 14px;
+}
+
+.typaehead .icon-input {
+    display: none !important;
+}
+
+
+.card-box .typeahead {
+    max-width: 370px;
+}
+
+.nota-asistencia .col-md-6 {
+    text-align: center;
+    width: auto;
+    max-width: 256px;
+}
+
+.nota-asistencia .col-md-6 small {
+    max-width: 196px;
+    margin: auto;
+    margin-top: 32px;
+    text-align: center;
+}
+
+/*Descuentos Farmacia*/
+
+.tabla-valores-sb {
+    width: 100%;
+    /*max-width: 850px;*/
+}
+
+.tabla-valores-sb tr {
+    border-bottom: 1px solid #DDD;
+}
+
+.tabla-valores-sb tr:last-child {
+    border-bottom: none;
+}
+
+.tabla-valores-sb td {
+    /* font-size: 25px;*/
+    font-size: var(--step--1);
+    color: var(--secondary-color);
+    line-height: 1.8;
+}
+
+.tabla-valores-sb b {
+    font-weight: 700;
+}
+
+.toma-examenes-cardif {
+    max-width: 1450px;
+    margin-top: 180px;
+    margin-left: 127px;
+}
+
+.cont-toma-examenes .card .form-control {
+    max-width: 100%;
+}
+
+.toma-examenes-cardif p {
+    width: 100%;
+}
+
+.toma-examenes-cardif p b {
+    font-size: var(--step--1);
+    font-weight: 700;
+    color: var(--secondary-color);
+    /*max-width: 850px;*/
+    display: block;
+}
+
+.toma-examenes-cardif .titulo-toma-examenes {
+    display: none;
+}
+
+.toma-examenes-cardif .cont-ilustracion {
+    width: 607px;
+    height: 607px;
+    background-image: url(../../img/scotiabank/farmacia/ilustracion.svg);
+    background-size: contain;
+}
+
+.toma-examenes-cardif .col-md-auto img {
+    display: none;
+}
+
+.toma-examenes-cardif .cont-mensaje h1 {
+    /*font-size: 40px;*/
+    font-size: var(--step-1);
+    font-weight: 400;
+    color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    /* max-width: 880px;*/
+    font-weight: 400;
+}
+
+.toma-examenes-cardif .cont-mensaje h1 img {
+    width: 102px;
+    height: 102px;
+    margin: 20px;
+}
+
+.toma-examenes-cardif .cont-mensaje h1 small {
+    display: none;
+}
+
+.toma-examenes-cardif .cont-mensaje small:first-child {
+    /* display: none;*/
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    display: block;
+    border-top: 1px solid #DDD;
+    padding-top: 32px;
+    /*max-width: 850px;*/
+}
+
+.toma-examenes-cardif .nota-asistencia {
+    width: auto;
+    margin-top: 32px;
+    /*max-width: 380px*/
+}
+
+.toma-examenes-cardif .nota-asistencia .btn {
+    width: 100%;
+    max-width: 444px;
+    margin: auto;
+}
+
+.data-asistencia+.row {
+    /*max-width: 850px;*/
+}
+
+.toma-examenes-cardif .nota-asistencia .data-asistencia {
+    max-width: 285px;
+    display: block;
+    margin: auto;
+    margin-top: 2rem;
+}
+
+.toma-examenes-cardif .toolbar-farmacia {
+    /*max-width: 850px;*/
+    margin: auto;
+}
+
+.toma-examenes-cardif .row .nota-asistencia:last-child .data-asistencia {
+    max-width: 260px;
+}
+
+/*Agendamiento*/
+
+/*Sala de Espera*/
+#hs-g .cont-icon {
+    background-color: transparent;
+}
+
+.hotspot-icon .cont-icon img {
+    width: 55%;
+}
+
+.titulo-sala {
+    display: none;
+}
+
+#reporte {
+    display: none;
+}
+
+.cont-consentimiento-informado {
+    display: none !important;
+}
+
+
+.hotspots .fondo-sala {
+    height: calc(100vh - 161px);
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.cont-alerta-sala {
+    display: none;
+}
+
+.mx-vivetuseguro {
+    width: 100%;
+    font-size: 13px;
+}
+
+
+.cont-icon.hotspot-redes {
+    background-color: #8358DD;
+}
+
+.hotspot-icon:hover .cont-icon {
+    /*background-color: var(--secondary-color);*/
+}
+
+#contVolver {
+    display: block !important;
+}
+
+/*Hotspots*/
+.hotspot-icon {
+    background: var(--primary-color);
+    border-radius: 10px;
+    width: 180px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    filter: drop-shadow(0px 3.70668px 12.9734px rgba(0, 0, 0, 0.35));
+    transition: all .3s ease-out;
+    border: 4px solid transparent;
+}
+
+
+.hotspot-icon .cont-icon {
+    background: transparent;
+    border-radius: 0;
+    height: auto;
+}
+
+.hotspot-icon .cont-icon i {
+    font-size: 5.5rem;
+}
+
+.hotspot-icon:hover {
+    border: 4px solid #f7f7f7;
+    color: #FFF;
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: transparent;
+    transform: none;
+}
+
+
+
+.sala-medismart #hs-c {
+    left: 33%;
+    top: 40%
+}
+
+.sala-medismart #hs-d {
+    left: 45%;
+    top: 40%
+}
+
+.sala-medismart #hs-e {
+    left: 57%;
+    top: 40%
+}
+
+.hotspot-icon#btnAbandonarAtencion,
+.hotspot-icon#hs-g {
+    top: 40%;
+    background-color: rgba(255, 255, 255, .9);
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    color: #209CD4;
+}
+
+a#contacto,
+a#facebook,
+a#instagram {
+    background: #209CD4;
+}
+
+.hotspot-icon#btnAbandonarAtencion .cont-icon i,
+.hotspot-icon#hs-g .cont-icon i {
+    font-size: 4.5rem;
+}
+
+.hotspot-icon#btnAbandonarAtencion .cont-icon,
+.hotspot-icon#hs-g .cont-icon {
+    font-size: 20px;
+    margin-bottom: 0;
+}
+
+.hotspot-icon#btnAbandonarAtencion:hover,
+.hotspot-icon#hs-g:hover {
+    background-color: #135776;
+    color: #FFF;
+}
+
+.modal-header h4 {
+    color: #209CD4;
+}
+
+.sala-medismart #hs-b {
+    top: 90%;
+    left: 5%;
+}
+
+.swal2-icon.swal2-warning.swal2-animate-warning-icon {
+    color: #209CD4 !important;
+    border-color: #209CD4 !important;
+    display: flex !important;
+    align-items: flex-end;
+}
+
+.sala-medismart #hs-g {
+    left: 80%
+}
+
+
+.hotspot-icon#hs-b {
+    width: 350px;
+    height: 56px;
+    text-align: center;
+    color: var(--fourth-color);
+    background-color: rgba(255, 255, 255, .7);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 16px;
+    padding: 1rem 2rem;
+    border: 1px solid var(--fourth-color);
+}
+
+.hotspot-icon#hs-b:hover {
+    background-color: #209cd4;
+    color: #FFF;
+    border: 0px;
+}
+
+.hotspot-icon#hs-b .cont-icon {
+    width: auto;
+    margin-bottom: 0;
+}
+
+.hotspot-icon#hs-b .cont-icon i {
+    font-size: 30px;
+    margin-right: .5rem;
+}
+
+/*Iconos redes sociales*/
+
+.hotspot-icon#contacto,
+.hotspot-icon#facebook,
+.hotspot-icon#instagram {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.hotspot-icon#contacto i,
+.hotspot-icon#facebook i,
+.hotspot-icon#instagram i {
+    font-size: 24px;
+}
+
+.cont-icon.hotspot-redes {
+    width: auto;
+    margin-bottom: 0;
+}
+
+#cont-vc {
+    margin-top: 15rem;
+}
+
+.cont-btn-panel .btn-atencion,
+.cont-btn-vc .btn-atencion {
+    background-color: #209CD4;
+    border-color: #209CD4;
+    color: #FFF;
+}
+
+.cont-btn-panel .btn-atencion:hover,
+.cont-btn-vc .btn-atencion:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: #FFF;
+}
+
+#volverSalaEspera {
+    background-color: #F5BE0B;
+    color: #FFF;
+    border-color: #F5BE0B;
+}
+
+.modal .modal-content .modal-header .modal-title {
+    font-weight: 900;
+    color: #8757CD;
+}
+
+#listaBeneficiarios .card {
+    width: 287px;
+    margin-bottom: 1rem;
+    /*min-width: 287px;*/
+    /*height: 416px;*/
+}
+
+/*Vida Sana*/
+
+.library-videos {
+    margin-top: 8rem;
+}
+
+
+.library-videos .titulo-seccion {
+    padding-left: 2rem;
+}
+
+
+
+.charla-thumb-1 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(var(--secondary-color)), to(rgb(245 190 11 / 80%))), url(../../biblioteca/charlas/charla1/thumb.jpg) !important;
+}
+
+.nota-thumb-1 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#209cd4), to(rgb(32 156 212 / 80%))), url(../../biblioteca/notas/nota1/thumb.jpg);
+}
+
+.nota-thumb-2 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#209cd4), to(rgb(32 156 212 / 80%))), url(../../biblioteca/notas/nota2/thumb.jpg);
+}
+
+.nota-thumb-3 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#209cd4), to(rgb(32 156 212 / 80%))), url(../../biblioteca/notas/nota3/thumb.jpg);
+}
+
+.charla-thumb-2 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(var(--secondary-color)), to(rgb(245 190 11 / 80%))), url(../../biblioteca/charlas/charla2/thumb.jpg);
+}
+
+.charla-thumb-3 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(var(--secondary-color)), to(rgb(245 190 11 / 80%))), url(../../biblioteca/charlas/charla3/thumb.jpg);
+}
+
+.capsula-thumb-4 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(var(--secondary-color)), to(rgb(245 190 11 / 80%))), url(../../biblioteca/capsulas/capsula4/thumb.jpg);
+}
+
+.nota-thumb-6 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(var(--secondary-color)), to(rgb(245 190 11 / 80%))), url(../../biblioteca/notas/nota6/thumb.jpg);
+}
+
+
+.capsula-thumb-5 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#209cd4), to(rgb(32 156 212 / 80%))), url(../../biblioteca/capsulas/capsula5/thumb.jpg);
+}
+
+.capsula-thumb-8 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#209cd4), to(rgb(32 156 212 / 80%))), url(../../biblioteca/capsulas/capsula8/thumb.jpg);
+}
+
+.capsula-thumb-12 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(var(--secondary-color)), to(rgb(245 190 11 / 80%))), url(../../biblioteca/capsulas/capsula12/thumb.jpg);
+}
+
+
+.capsula-thumb-1 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(var(--secondary-color)), to(rgb(245 190 11 / 80%))), url(../../biblioteca/capsulas/capsula1/thumb.jpg);
+}
+
+.capsula-thumb-9 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(var(--secondary-color)), to(rgb(245 190 11 / 80%))), url(../../biblioteca/capsulas/capsula9/thumb.jpg);
+}
+
+
+.capsula-thumb-2 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#209cd4), to(rgb(32 156 212 / 80%))), url(../../biblioteca/capsulas/capsula2/thumb.jpg);
+}
+
+.nota-thumb-5 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#209cd4), to(rgb(32 156 212 / 80%))), url(../../biblioteca/notas/nota5/thumb.jpg);
+}
+
+.capsula-thumb-7 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(var(--secondary-color)), to(rgb(245 190 11 / 80%))), url(../../biblioteca/capsulas/capsula7/thumb.jpg);
+}
+
+.capsula-thumb-11 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#209cd4), to(rgb(32 156 212 / 80%))), url(../../biblioteca/capsulas/capsula11/thumb.jpg);
+}
+
+.capsula-thumb-3 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#209cd4), to(rgb(32 156 212 / 80%))), url(../../biblioteca/capsulas/capsula3/thumb.jpg);
+}
+
+.nota-thumb-4 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(var(--secondary-color)), to(rgb(245 190 11 / 80%))), url(../../biblioteca/notas/nota4/thumb.jpg);
+}
+
+.capsula-thumb-6 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#209cd4), to(rgb(32 156 212 / 80%))), url(../../biblioteca/capsulas/capsula6/thumb.jpg);
+}
+
+.capsula-thumb-10 {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(var(--secondary-color)), to(rgb(245 190 11 / 80%))), url(../../biblioteca/capsulas/capsula10/thumb.jpg);
+}
+
+
+
+.card-library.featured:hover,
+.card-library:hover {
+    background-image: url(), linear-gradient(to bottom, var(--secondary-color), var(--secondary-color)) !important;
+    background-size: 200px 200px, cover;
+}
+
+.card-library.featured:hover,
+.card-library:hover {
+    background-image: url(), linear-gradient(to bottom, #bc9000, #bc9000);
+    background-size: 200px 200px, cover;
+}
+
+
+
+.note-section h1,
+.note-section p {
+    color: #FFF;
+}
+
+/*Adicionales*/
+.cont-cargas #btnBuscar {
+    width: 120px;
+    color: #fff !important;
+    background-color: #f5be0b !important;
+    font-size: 14px !important;
+    border-radius: 5px !important;
+    font-weight: 700 !important;
+    border: 1px solid #f5be0b !important;
+    padding: 0;
+}
+
+.cont-cargas #btnBuscar i {
+    display: none;
+}
+
+.data-carga i {
+    font-size: 14px;
+    color: #209CD4 !important;
+}
+
+.data-carga .nombre {
+    font-size: var(--step--2);
+    font-weight: 900;
+    min-height: 80px;
+}
+
+.data-carga .nombre small {
+    font-size: 18px;
+}
+
+.card-carga .icon i {
+    color: #209cd4;
+}
+
+.toolbar-cargas .btn-icon.btn-danger {
+    color: #EB5757 !important;
+    font-family: var(--font-family);
+    background-color: transparent !important;
+}
+
+.toolbar-cargas .btn-icon.btn-info {
+    color: #8358DD !important;
+    font-family: var(--font-family);
+}
+
+
+.data-carga .email,
+.data-carga .fono,
+.data-carga .movil {
+    /*text-transform: none;
+    text-align: center;*/
+}
+
+/*Historial*/
+
+#atenciones .atencion-toolbar {
+    justify-content: flex-start;
+    gap: 0;
+}
+
+.datos-fecha .fecha-atencion {
+    margin-right: 20px;
+    padding-right: 20px;
+    border-right: 2px solid #FFF;
+}
+
+.datos-fecha .fecha-atencion,
+.datos-fecha .hora-atencion {
+    text-align: left;
+    width: auto;
+    display: inline-block;
+    margin-top: 32px;
+    line-height: 1;
+}
+
+.kt-grid.kt-grid_sc.kt-grid--desktop.kt-grid--ver.kt-grid--ver-desktop.kt-app {
+    padding: 0rem 2rem !important;
+}
+
+.caja-atencion-historial span.header-aviso-atencion {
+    font-size: 15px;
+}
+
+.aviso-atencion .titulo-profesional {
+    border-bottom: 1px solid #FFF;
+    padding: 0;
+    margin-bottom: 20px;
+    margin-top: 20px;
+
+}
+
+#atenciones .atencion-toolbar .btn-atencion:nth-of-type(1) {
+    color: #fff !important;
+    background-color: #EB5757;
+    letter-spacing: 4px;
+}
+
+.caja-atencion-historial {
+    max-width: 314px;
+}
+
+.caja-atencion-historial .header-aviso-atencion,
+.caja-atencion-historial .header-aviso-atencion i {
+    color: var(--secondary-color) !important
+}
+
+.datos-diagnostico {
+    color: #209CD4 !important;
+    border-top: none;
+}
+
+.caja-atencion .titulo-profesional {
+    color: var(--secondary-color);
+    font-weight: 700;
+}
+
+.titulo-card-farmacia,
+.subtitulo-card-farmacia {
+    color: #209CD4 !important;
+}
+
+/*Resumen Atencion*/
+
+h3.mb-3.titulo-seccion.titulo-informe {
+    color: #8358DD !important;
+    font-size: var(--step--1) !important;
+}
+
+.titulo-seccion.titulo-informe::before {
+    display: none !important;
+}
+
+.item-resumen .nombre-paciente,
+.item-resumen .nombre-profesional,
+.item-resumen .especialidad,
+.item-resumen .rut-paciente {
+    text-transform: uppercase;
+    color: var(--secondary-color) !important;
+    font-weight: 700 !important;
+}
+
+.info-resumen {
+    font-size: 16px;
+    color: var(--secondary-color) !important;
+}
+
+.legend-resumen {
+    color: #8358DD
+}
+
+.leyenda-proveedor a {
+    color: #209cd4;
+}
+
+.item-resumen {
+    border-bottom: 1px solid var(--secondary-color)
+}
+
+.archivos-atencion ul li {
+    color: #8358DD;
+    border-bottom: 1px solid var(--secondary-color)
+}
+
+.card-informe h4 {
+    color: var(--secondary-color);
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+
+.columna-examenes h3.mb-3.titulo-seccion {
+    color: #8358DD !important;
+    font-size: var(--step--1) !important;
+}
+
+
+.columna-examenes h3.mb-3.titulo-seccion::before {
+    display: none;
+}
+
+
+
+
+
+/*Header top especial*/
+.kt-header-menu {
+    margin-left: 0;
+}
+
+.header-top {
+    display: inline-block;
+    height: 47px;
+    width: 215px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('../../img/vivetuseguro/home/logo_proteccion.svg');
+    margin-right: 57px;
+    cursor: pointer;
+}
+
+
+/*Asesorias Scotiabank*/
+.cont-ilustracion_cda {
+    width: 364px;
+    height: 280px;
+    background-image: url(../../img/vivetuseguro/examenes/ilustracion_cda02.svg);
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: contain;
+    margin: 50px 0;
+}
+
+.asesorias-cda {
+    max-width: 1400px;
+    display: flex;
+    align-items: center;
+    gap: 85px;
+}
+
+.toma-examenes-cardif {
+    margin-left: 0;
+}
+
+.asesorias-cda .cont-asesorias {
+    max-width: 800px;
+}
+
+.asesorias-cda .cont-ilustracion {
+    width: 364px;
+    height: 280px;
+    background-image: url(../../img/vivetuseguro/examenes/ilustracion_cda.svg);
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: contain;
+    margin: 50px auto 0 auto;
+}
+
+.asesorias-cda .cont-ilustracion img {
+    width: 100%;
+    height: auto;
+}
+
+.asesorias-cda .cont-asesorias {
+    font-size: var(--step--2);
+}
+
+.asesorias-cda .cont-asesorias h1 {
+    font-size: var(--step-0);
+    font-weight: 700;
+    color: #209CD4 !important;
+    margin-bottom: 3.75rem;
+    margin-top: 3.75rem;
+}
+
+.asesorias-cda_box {
+    display: flex;
+    gap: 20px;
+}
+
+.asesorias-cda .cont-asesorias p {
+    margin-bottom: 3.75rem;
+}
+
+.asesorias-cda .cont-asesorias h1 small {
+    display: block;
+    margin-bottom: 16px;
+    font-weight: 400;
+    color: var(--secondary-color);
+}
+
+.asesorias-cda .cont-btn {
+    padding: 0;
+}
+
+.asesorias-cda .cont-btn {
+    padding-left: 0;
+}
+
+.asesorias-cda .cont-btn .row {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.asesorias-cda .cont-btn small {
+    display: block;
+    color: var(--secondary-color);
+    margin-top: 20px;
+    text-align: center;
+}
+
+.asesorias-cda .cont-btn .btn {
+    display: block;
+    margin: auto;
+    width: 230PX;
+}
+
+.top-cargas {
+    margin-top: 10rem;
+}
+
+.top-cargas img {
+    display: none;
+}
+
+/*Wikidoc - Vida Sana*/
+
+.library {
+    margin-top: 6rem;
+}
+
+
+.configuracion-paciente .titulo-servicio {
+    margin-bottom: 24px;
+    margin-top: 10rem;
+    font-size: 28px;
+    padding-left: 2rem;
+}
+
+.configuracion-paciente .card.card-profile {
+    min-height: 910px;
+}
+
+/*Scrollbar*/
+/*Scroll columna paciente*/
+/* Track */
+.columna-paciente::-webkit-scrollbar-track,
+.columna-archivos::-webkit-scrollbar-track {
+    background: rgba(80, 80, 80, 0.2);
+}
+
+
+/* Handle */
+.columna-paciente::-webkit-scrollbar-thumb,
+.columna-archivos::-webkit-scrollbar-thumb {
+    background: #67bce1;
+}
+
+/* Handle on hover */
+.columna-paciente::-webkit-scrollbar-thumb:hover,
+.columna-archivos::-webkit-scrollbar-thumb:hover {
+    background: #67bce1;
+}
+
+/*Certificados*/
+
+
+
+/* Track */
+.certificados::-webkit-scrollbar-track {
+    background: rgba(80, 80, 80, 0.2);
+}
+
+
+/* Handle */
+.certificados::-webkit-scrollbar-thumb {
+    background: #67bce1;
+}
+
+/* Handle on hover */
+.certificados::-webkit-scrollbar-thumb:hover {
+    background: #67bce1;
+}
+
+/*Medicamentos*/
+
+/* Track */
+.lista-medicamentos::-webkit-scrollbar-track {
+    background: rgba(80, 80, 80, 0.2);
+}
+
+
+/* Handle */
+.lista-medicamentos::-webkit-scrollbar-thumb {
+    background: #67BCE1;
+}
+
+/* Handle on hover */
+.lista-medicamentos::-webkit-scrollbar-thumb:hover {
+    background: #67bce1;
+}
+
+.cont-aviso-modal .aviso-atencion #fechaAtencionModal {
+    color: rgba(255, 255, 255, .8) !important;
+}
+
+.reserva-exitosa {
+    /*    margin-top: 3rem !important;*/
+    padding: 5rem 0 0 0 !important;
+}
+
+
+
+.reserva-exitosa--texto {
+    align-items: start !important;
+}
+
+.reserva-exitosa--texto h2 {
+    font-size: 2rem;
+    color: var(--primary-color)
+}
+
+.reserva-exitosa--texto ul {
+    padding-left: 1rem;
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+
+
+/*************************Mediaqueries********************************/
+
+@media (max-width: 991.98px) {
+
+    /*Login*/
+
+    .logo-convenios {
+        margin-top: 0 !important;
+        flex-wrap: wrap;
+        justify-content: center !important;
+    }
+
+    .logo-convenios .logotipo {
+        width: 50%;
+        text-align: center;
+    }
+
+    .logotipo img {
+        width: 100% !important;
+        max-width: 124px;
+    }
+
+
+    .logotipo:first-child img {
+        max-width: 78px;
+    }
+
+    .logotipo:nth-of-type(2n) img {
+        max-width: 104px;
+    }
+
+    .logotipo:nth-of-type(3n) img {
+        max-width: 124px !important;
+    }
+
+
+    button #kt_login_signin_submit.btn-primary {
+        display: inline-block;
+    }
+
+
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head {
+        margin-top: 30px !important;
+    }
+
+    .cont-logo-mobile {
+        height: 100vh;
+        background-color: #FFF;
+        background-image: url('../../img/scotiabank/login/bannerlogin_01.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 0 83px;
+        margin-top: 0 !important;
+        width: 100%;
+        margin: 1rem auto 1rem;
+        margin-top: 0;
+    }
+
+    .logotipo-img {
+        margin: 1rem auto 1rem !important;
+    }
+
+    .acontent_box {
+        margin: 0 0 40px 0;
+    }
+
+    .logotipo-mobile {
+        background-image: url('../../img/vivetuseguro/logos/logo_mobile.png') !important;
+        background-size: auto !important;
+    }
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+        font-size: 22px !important;
+    }
+
+    .kt-form .form-group .ms-label {
+        font-size: 12px !important;
+    }
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+        width: 100% !important;
+    }
+
+    button#kt_login_signin_submit.btn-primary,
+    button#kt_login_forgot_submit.btn-primary {
+        border-radius: 4px !important;
+        font-size: 14px !important;
+        width: 100%;
+        max-width: 200px;
+        height: auto !important;
+    }
+
+    button#kt_login_forgot_submit.btn-primary,
+    button#kt_login_forgot_cancel {
+        margin-top: 22px !important;
+    }
+
+    button#kt_login_forgot_cancel {
+        border-radius: 4px;
+        font-size: 14px;
+        height: auto;
+        max-width: 200px;
+        letter-spacing: 0;
+        height: auto !important;
+    }
+
+    .container-login {
+        position: absolute;
+        top: 272px;
+    }
+
+    button#kt_login_signin_submit.btn-primary {
+        width: 145px;
+        height: auto !important;
+        margin: 0;
+        margin-top: 0 !important;
+    }
+
+    .kt-login__extra {
+        border-top: none !important;
+    }
+
+    .row.kt-login__extra_02.align-items-center.mt-0 {
+        margin-top: 27px !important;
+    }
+
+    /*Home*/
+
+    .iniciales-usuario {
+        display: none;
+    }
+
+    .top-banner {
+        /*height: 97px;*/
+        margin: 0 auto;
+        width: 100%;
+        height: unset;
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+    }
+
+    div#item-alertas a img,
+    div#item-ayuda a img,
+    div#item-salir img {
+        margin-bottom: 0;
+        width: 3rem !important;
+    }
+
+    i#icon-atenciones.fal.fa-calendar::before {
+        color: var(--secondary-color) !important;
+        padding-top: 2.5px;
+    }
+
+    .menu-top .item-menu-top i {
+        font-size: 2rem;
+    }
+
+    #drop-mensajes.dropdown-menu.dropdown-menu-xl {
+        transform: translate3d(-220px, 49px, 0px) !important;
+    }
+
+    .body-home .menu-top {
+        max-width: 250px;
+    }
+
+    .menu-top .item-menu-top {
+        min-width: 35px;
+    }
+
+    .logo-home>a {
+        padding-left: 10px;
+    }
+
+    .logo-home img {
+        width: 100% !important;
+    }
+
+    .cont-card_scotiabank .card-scotiabank {
+        width: 100% !important;
+    }
+
+    .mensaje-superior {
+        display: none;
+    }
+
+    .body-home .top-banner .legend {
+        text-align: left;
+        font-size: 18px !important;
+        margin-top: 2rem;
+    }
+
+    .top-banner img {
+        margin: 0;
+        width: 75px !important;
+        height: 100%;
+    }
+
+    .kt-header__topbar img {
+        width: auto;
+    }
+
+    .kt-header__topbar.menu-top.ml-auto img {
+        width: auto !important;
+    }
+
+    .top-banner p {
+        display: none;
+    }
+
+    .body-home .logo-home img {
+        margin-bottom: 0;
+    }
+
+    div#item-alertas a img,
+    div#item-ayuda a img,
+    div#item-salir img {
+        margin-bottom: 0;
+    }
+
+    .accesible_cajadelosandes h2 {
+        margin: 28px 0;
+        font-size: 18px;
+        color: #8358DD;
+    }
+
+    .card_scotiabank img {
+        width: 43px;
+        margin-bottom: 0;
+    }
+
+    .cont-card_scotiabank {
+        gap: 12px;
+        justify-content: center;
+    }
+
+    .card-sbbody h1 {
+        font-size: 14px !important;
+        width: 100%;
+        text-align: center;
+        margin-left: auto;
+    }
+
+    .card-sbbody h1 small {
+        display: none !important;
+    }
+
+    .card_scotiabank {
+        background: linear-gradient(to right, #8358DD 24%, #67bce1 17%, #67bce1 27%);
+        border-radius: 6px;
+    }
+
+    .footer_scotiabank_logos {
+        display: none;
+    }
+
+    .footer_cajadelosandes {
+        display: block;
+    }
+
+    .footer_cajadelosandes .container {
+        display: none;
+    }
+
+    .footer_cajadelosandes_logos {
+        padding: 1rem 1rem;
+        flex-direction: column;
+        border-bottom: 1rem solid var(--tertiary-color);
+        display: none;
+    }
+
+    .footer_cajadelosandes_logos .call {
+        margin-top: 2rem;
+    }
+
+    .footer_contlogos img {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+
+    .footer_contlogos {
+        flex-direction: column;
+    }
+
+    /*Agendamiento*/
+    div#kt_header {
+        bottom: auto;
+        top: 0;
+        background: none;
+        padding: 0 !important;
+    }
+
+    select#motivoConsulta {
+        width: 100%;
+    }
+
+    .btn.btn-outline-secondary {
+        margin: 15px 0px;
+    }
+
+    #kt_content {
+        /*display: none;*/
+    }
+
+    .menu-top .item-menu-top .logotipo-mobile {
+        width: 180px !important;
+        background-position: center;
+        background-size: contain !important;
+    }
+
+    .powered:first-child {
+        display: none;
+    }
+
+    .stepper {
+        margin-top: 6rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .caja-base {
+        width: 90%;
+        margin-bottom: 5rem;
+    }
+
+    .step {
+        flex-direction: column;
+        max-width: 120px;
+    }
+
+    .cont-steps img {
+        max-width: 32px !important;
+        width: 100%;
+        height: auto !important;
+        border: 0px !important;
+    }
+
+    .busqueda-profesionales img {
+        width: 30px !important;
+    }
+
+    select#especialidades {
+        font-size: 10px !important;
+        /*text-align: center;*/
+    }
+
+    .cont-toma-examenes {
+        margin-top: 80px;
+        margin-left: 0px;
+        max-width: 1200px;
+    }
+
+    .cont-toma-examenes .card {
+        padding: 20px;
+        max-width: 360px;
+    }
+
+    .typeahead .twitter-typeahead {
+        display: block !important;
+        width: auto;
+    }
+
+    .card_box {
+        flex-direction: row;
+    }
+
+    .form-control {
+        height: 40px;
+    }
+
+    .typeahead .twitter-typeahead input#input_codigoRegion {
+        width: 100%;
+    }
+
+    .cont-ilustracion {
+        display: none;
+    }
+
+    .asesorias-scotiabank {
+        flex-direction: column;
+    }
+
+    .toma-examenes-cardif .cont-ilustracion {
+        max-width: 607px;
+        height: 235px;
+        width: 98%;
+    }
+
+    .asesorias-scotiabank .cont-ilustracion {
+        display: block;
+    }
+
+    .asesorias-scotiabank .cont-btn small {
+        margin-top: 16px;
+        margin-bottom: 32px;
+    }
+
+    .toma-examenes-cardif {
+        margin-top: 80px;
+        margin-bottom: 40px;
+    }
+
+    .home-library,
+    .library {
+        margin-top: 35px;
+    }
+
+    .nota-asistencia .btn {
+        width: 240px;
+    }
+
+    h3.mb-3.titulo-seccion::before,
+    .header-atenciones h3.mt-5.mt-lg-0.titulo-seccion::before {
+        display: none;
+    }
+
+    .header-atenciones {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .top-banner_scotiabank {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .caja-atencion-historial {
+        max-width: 354px;
+    }
+
+    .toma-examenes-cardif {
+        margin-left: 0px !important;
+    }
+
+    .nota-asistencia {
+        padding-top: 15px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nota-asistencia .col-md-6 small {
+        max-width: initial;
+        margin: auto;
+        margin-top: 16px;
+        margin-bottom: 32px;
+        text-align: center;
+    }
+
+    .titulo-notificaciones {
+        font-size: 1.2rem;
+        text-align: left;
+        padding: 1rem;
+        margin: 1rem 0;
+        color: #E30000;
+        font-weight: 700;
+    }
+
+    /*Perfil*/
+
+    .configuracion-paciente .titulo-servicio {
+        margin-bottom: 0;
+    }
+
+    .card.card-profile {
+        padding: 0px;
+        margin-top: 80px;
+    }
+
+    .kt-portlet {
+        width: 90%;
+        margin: auto;
+    }
+
+    .caja-especialidad {
+        min-width: 0;
+        max-width: 120px;
+        height: 88px;
+        margin-right: auto !important;
+    }
+
+    .cont-caja-especialidad {
+        justify-content: flex-start !important;
+    }
+
+    .inner-especialidad {
+        flex-direction: column;
+        gap: 10px !important;
+    }
+
+    .caja-especialidad img {
+        width: 30px;
+        height: auto;
+    }
+
+    /*Tarjetas agendamiento*/
+
+    .fonasa-atencion {
+        display: none;
+    }
+
+    .atencion-fonasa .front .nombre-profesional::after {
+        display: none;
+    }
+
+    .front-fecha-atencion {
+        border: none;
+    }
+
+    .front-fecha-atencion {
+        margin: 0 1rem !important;
+    }
+
+    .cajaInfoMedico .card {
+        margin-top: 12px;
+        padding-top: 18px;
+        padding-bottom: 18px;
+        background-color: #FFF !important;
+    }
+
+    .caja-profesional .cont-data {
+        width: 210px;
+    }
+
+
+    /*Atencion Inmediata*/
+
+
+    .cont-btn-panel .btn-atencion {
+        width: 100%;
+        margin: 10px 0px;
+    }
+
+    .dropzone.dropzone-default .dropzone-msg-title {
+        text-align: center;
+    }
+
+    h3.dropzone-msg-title.fuente-accesible::before {
+        text-align: center;
+        margin-bottom: 24px;
+    }
+
+    /*Sala de espera*/
+
+    .sala-espera-mobile.sala-espera-consalud .alerta-sala {
+        display: none;
+    }
+
+    .sala-espera-mobile.sala-espera-consalud .alerta-sala:last-child {
+        display: none;
+    }
+
+    .powered {
+        display: none;
+    }
+
+    .sala-espera-mobile img {
+        margin-top: -140px;
+        height: 100%;
+    }
+
+    #reporte-m {
+        display: none;
+    }
+
+    .cont-fondo-mobile {
+        height: 100vh;
+        max-height: none;
+    }
+
+    .terminos {
+        display: none;
+    }
+
+    .body-home .terminos {
+        width: auto !important;
+    }
+
+    .toolbar-bottom-mobile {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    .sala-espera-mobile .btn-sala {
+        border-radius: 5px;
+        filter: drop-shadow(3.89132px 3.89132px 7.78263px rgba(0, 0, 0, 0.25));
+        background-color: var(--secondary-color);
+        height: 100px;
+        text-shadow: none;
+        border: 2px solid transparent;
+        text-transform: uppercase;
+    }
+
+    .sala-espera-mobile .btn-sala:hover {
+        border: 2px solid #FFF;
+    }
+
+    .sala-espera-mobile .btn-sala .cont-icon {
+        background-color: transparent;
+        font-size: 3rem;
+        margin-bottom: 10px;
+    }
+
+    .btn-sala .cont-icon {
+        height: auto;
+    }
+
+
+    .sala-espera-mobile .card-sala.card-media {
+        justify-content: space-around;
+        margin-top: 18rem;
+    }
+
+
+    .sala-espera-mobile .card-sala.card-function {
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .sala-espera-mobile .btn-sala#wsp-m,
+    .sala-espera-mobile .btn-sala#ingreso-m {
+        height: 82px;
+        height: 82px;
+        color: #209CD4;
+        background-color: #FFF;
+        border-radius: 50%;
+        font-weight: bold;
+        font-size: 10px;
+        letter-spacing: 0;
+    }
+
+    .sala-espera-mobile .btn-sala#wsp-m i,
+    .sala-espera-mobile .btn-sala#ingreso-m i {
+        color: var(--primary-color);
+        font-size: 2.4rem;
+    }
+
+    .sala-espera-mobile .btn-sala#wsp-m .cont-icon,
+    .sala-espera-mobile .btn-sala#ingreso-m .cont-icon {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .sala-espera-mobile .btn-sala#wsp-m {
+        order: 1;
+    }
+
+    .sala-espera-mobile .btn-sala#ingreso-m {
+        order: 2;
+    }
+
+    /*Historial*/
+    .atencion-toolbar.atencion-proxima-toolbar {
+        margin-top: 0;
+    }
+
+    .cont-cargas #btnBuscar {
+        width: 100%;
+    }
+
+    .caja-atencion {
+        max-width: 314px;
+    }
+
+    .inner-card-historial .certificados {
+        display: none;
+    }
+
+    .inner-card-historial .data-atencion .nombre-profesional {
+        color: var(--secondary-color) !important;
+        font-weight: 500 !important;
+    }
+
+    .caja-atencion-historial .inner-card-historial .header-aviso-atencion,
+    .caja-atencion-historial .inner-card-historial .header-aviso-atencion i {
+        color: var(--secondary-color) !important;
+        font-size: 12px;
+    }
+
+    .datos-diagnostico small {
+        display: none;
+    }
+
+    /*Resumen de Atenci�n*/
+
+    .cont-informe {
+        margin-top: 6rem;
+    }
+
+
+
+    .card-informe.informe {
+        padding: 2rem 1rem;
+    }
+
+    .card-informe informe .row {
+        margin-right: -1rem;
+        margin-left: -1rem;
+    }
+
+    .card-informe.informe .container-fluid {
+        padding: 0
+    }
+
+
+
+    .info-resumen .nombre-profesional {
+        font-size: 16px !important;
+    }
+
+    .info-resumen {
+        font-size: 16px;
+        color: var(--secondary-color) !important;
+    }
+
+
+    /*Farmacias*/
+
+    .btn-proveedor {
+        border: 1px solid #ABA5A9;
+    }
+
+    /*Mensaje Confirmacion*/
+
+    .mensaje-confirmacion .card.caja-profesional {
+        background-color: transparent !important;
+        border: none !important;
+    }
+
+    .caja-base.mensaje-confirmacion {
+        margin: 2rem auto 0 auto;
+        width: 92vw;
+    }
+
+    .cont-icon-confirma .icon-confirma {
+        display: block;
+        margin-top: 36px;
+        margin-bottom: 36px;
+        text-align: center;
+        font-size: 4rem;
+        color: #8358DD;
+    }
+
+    #kt_widget2_tab1_content .caja-atencion {
+        max-width: none;
+    }
+
+    /*Adicionales*/
+
+    #listaBeneficiarios .card.card-carga {
+        width: 100% !important;
+    }
+
+    .data-carga .nombre {
+        font-size: 18px;
+    }
+
+    form#form_edit_perfil .card-body {
+        padding: 0px;
+    }
+
+    form#form_edit_perfil {
+        padding: 24px;
+    }
+
+    .buscador-beneficiarios {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .body-home .menu-top {
+        width: auto;
+        gap: 0;
+    }
+
+    .datos-fecha .fecha-atencion,
+    .datos-fecha .hora-atencion {
+        margin-top: 8px;
+    }
+
+    /*Paciente*/
+    .cardif-desktop {
+        flex-direction: column !important;
+        margin: 1rem 0 0 0;
+    }
+
+    /*Receta Electronica*/
+    .reserva-exitosa {
+        width: 90vw !important;
+        padding: 0 !important;
+    }
+}
+
+
+
+@media only screen and (min-width: 360px) {
+
+    div#menu-accesible .kt-header__topbar-wrapper img,
+    .dropdown.item-menu-top.d-md-none {
+        display: none;
+    }
+
+    .kt-header__topbar.menu-top.ml-auto img {
+        width: 40px !important;
+    }
+
+    div#item-alertas a img,
+    div#item-ayuda a img,
+    div#item-salir img {
+        width: 40px;
+    }
+
+    .menu-top {
+        gap: 1rem;
+    }
+
+    .body-home .logo-home img {
+        width: 100%;
+    }
+
+    .logotipo_mobile_cda {
+        width: 189px;
+        height: 60px;
+    }
+
+    .menu-top {
+        justify-content: flex-start;
+    }
+
+    .kt-header__topbar-wrapper img {
+        padding: 0px;
+        margin: 0px;
+        margin-left: 0px;
+        width: 30px;
+    }
+
+    .logotipo_mobile_cda {
+        margin-left: 0px;
+    }
+}
+
+
+
+@media only screen and (device-width : 414px) {
+
+    div#menu-accesible .kt-header__topbar-wrapper img,
+    .dropdown.item-menu-top.d-md-none {
+        display: none;
+    }
+
+    .d-inline-block.d-lg-none.item-menu-top {
+        margin-right: 30px;
+    }
+
+    .cont-logo-mobile h1 {
+        font-size: 2.0rem;
+        width: 63%;
+        padding: 50px 0 50px 0;
+    }
+}
+
+.copy {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 260px;
+}
+
+
+.cont-medicina-preventiva {
+    margin-top: 8rem;
+}
+
+@media (max-width: 668px) {
+
+    div#kt_wrapper {
+        margin-top: 13% !important;
+    }
+
+    .top-banner .legend,
+    .top-banner .legend_2 {
+        font-weight: bold !important;
+        font-size: 30px !important;
+        color: #209cd4 !important;
+        margin-left: 0px !important;
+    }
+
+
+    .card-sala.card-media .cont-icon img {
+        height: auto;
+        margin: 0px auto;
+        width: 70%;
+    }
+
+    .card-sala.card-function img {
+        height: auto;
+        width: 60%;
+        margin: 5px auto;
+    }
+
+    .card-function .btn-sala span {
+        line-height: 11px;
+    }
+
+    div#menu-accesible .kt-header__topbar-wrapper img,
+    .dropdown.item-menu-top.d-md-none {
+        display: none;
+    }
+
+    .step,
+    .step.active {
+        height: 110px;
+    }
+
+    .step::after {
+        top: -70px !important;
+    }
+
+    .caja-profesional .cont-data {
+        width: 80%;
+    }
+
+    .label-step {
+        min-width: 125px;
+    }
+
+    .cont-aviso {
+        cursor: pointer;
+        text-align: justify;
+    }
+
+    #atenciones .atencion-toolbar {
+        justify-content: flex-start;
+        /*gap: 95px;*/
+    }
+
+    #atenciones .atencion-toolbar .btn-atencion {
+        flex-direction: column;
+        font-size: 11px;
+    }
+
+    a.btn-atencion {
+        letter-spacing: 0;
+    }
+
+    .btn-atencion i {
+        margin-right: 0;
+        font-size: 18px;
+    }
+
+    #atenciones .atencion-toolbar .btn-atencion:nth-of-type(1) {
+        color: #EB5757 !important;
+        background-color: transparent;
+        letter-spacing: 0;
+    }
+
+    .d-inline-block.d-lg-none.item-menu-top {
+        margin-right: 10px;
+    }
+
+    .cda .typeahead {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .cda .card_box {
+        display: flex;
+        align-items: baseline;
+        flex-direction: column !important;
+    }
+
+    .cda .typeahead .twitter-typeahead {
+        display: block !important;
+        width: 100%;
+    }
+
+
+    .typeahead a.remove_field {
+        font-style: inherit;
+        width: 100%;
+    }
+
+    .saludo_box_inner img {
+        width: 15%;
+    }
+
+
+    .cont-asesorias {
+        width: 90%;
+    }
+
+    .asesorias-cda {
+        gap: 15px;
+    }
+
+    .cont-ilustracion_cda {
+        margin: 0px 0 50px 0;
+    }
+
+    .toma-examenes-cardif {
+        margin-top: 2rem;
+    }
+
+    .asesorias-cda .cont-asesorias h1 {
+        margin-bottom: 1rem;
+    }
+
+    .asesorias-cda_box,
+    .asesorias-cda {
+        flex-direction: column !important;
+    }
+
+    div#divEspecialidadCajaOncologia {
+        background-color: #F5BE0B;
+    }
+
+    .caja-especialidad img {
+        width: 45px
+    }
+
+    .cda_mobile {
+        align-items: center !important;
+        justify-content: center;
+        gap: 10px !important;
+        flex-direction: column;
+    }
+
+    .caja-especialidad {
+        min-width: 0;
+        max-width: 115px;
+        height: 115px;
+        margin: 0 0 1rem 0 !important;
+    }
+
+    li.kt-menu__item.kt-menu__item--submenu.kt-menu__item--submenu-fullheight.kt-menu__item--open.kt-menu__item--here {
+        display: none;
+    }
+
+    a.toolbar-option.text-center.active {
+        display: block;
+    }
+
+    .cont-caja-especialidad {
+        justify-content: center;
+        margin: 2rem 0 0 0;
+    }
+
+    .cont-toma-examenes {
+        margin-top: 32px !important;
+    }
+
+    .cont-toma-examenes.lab-blanco .card{
+        margin-top: 1rem;
+    }
+
+    #buttonPagos {
+        margin-top: 2rem;
+        width: inherit;
+        margin: 1rem auto 0 auto;
+    }
+
+    .saludo_box_inner {
+        margin: 2rem 0 5rem 0;
+    }
+
+    .header-atenciones {
+        align-items: center;
+        justify-content: flex-start;
+        display: flex;
+    }
+
+    .kt-grid.kt-grid_sc.kt-grid--desktop.kt-grid--ver.kt-grid--ver-desktop.kt-app {
+        display: flex;
+        flex-direction: column;
+        padding: 0 !important;
+    }
+
+    .container.caja-base.mensaje-confirmacion .caja-profesional {
+        background-color: #f5f5f5 !important;
+        border: 1px solid whitesmoke !important;
+    }
+
+
+    .caja-base,
+    .perfil-profesional {
+        width: 100%;
+        margin-bottom: 5rem;
+    }
+
+    .titulo-servicio {
+        margin: 0px 0 !important;
+    }
+
+    .stepper,
+    .title_cajaasistencia {
+        margin-top: 2rem !important;
+    }
+
+    .busqueda-profesionales {
+        /*min-width: 375px !important;
+        justify-content: center;*/
+        max-width: none;
+    }
+
+    select#especialidades {
+        font-size: 15px !important;
+        padding-left: 1rem !important;
+    }
+
+    .logotipo_mobile_cda {
+        background-image: url(../../img/vivetuseguro/home/logo_proteccion.svg) !important;
+        width: 190px;
+        height: 60px;
+        display: block;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .container_cda_inner {
+        margin-top: 60px;
+    }
+
+    .bkg_vivetuseguro {
+        background-image: url(../../img/vivetuseguro/home/bkg_home_mobile.jpg) !important;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position-y: 100px;
+        margin-top: 0px;
+    }
+
+    .saludo_box {
+        margin: 100px 0px 0px 0px;
+        align-items: flex-start;
+        gap: 7px;
+    }
+
+    .saludo_box img {
+        width: 50px;
+    }
+
+    .saludo_box h1.legend.order-2.order-md-1 {
+        font-size: 21px;
+    }
+
+    .top-banner_cda h1 {
+        text-align: center;
+        margin-bottom: 0;
+    }
+
+    span.leyenda-card-home.d-md-none.fuente-accesible {
+        display: none;
+    }
+
+    .body-home .cont-card .card {
+        width: 100% !important;
+        height: 80px !important;
+        margin: 1rem 0px !important;
+    }
+
+    .cont-card .card img {
+        width: 50px !important;
+        height: 50px !important;
+    }
+
+    .body-home .cont-card h1 {
+        display: block !important;
+        text-align: initial;
+    }
+
+    .cont-card h1 {
+        max-width: initial !important;
+    }
+
+    h1.fuente-accesible small {
+        text-align: left;
+    }
+
+    .kt-grid.kt-grid--ver:not(.kt-grid--desktop):not(.kt-grid--desktop-and-tablet):not(.kt-grid--tablet):not(.kt-grid--tablet-and-mobile):not(.kt-grid--mobile) {
+        flex-direction: column;
+    }
+
+    .step {
+        flex-direction: column;
+        max-width: 140px;
+    }
+
+    .mobile {
+        display: block !important;
+    }
+
+    .container-login {
+        border-bottom-left-radius: 2rem;
+        border-bottom-right-radius: 2rem;
+    }
+
+    .kt-grid__item.kt-grid__item--fluid.kt-grid.kt-grid--hor {
+        background: white;
+    }
+
+    .cont-logo-mobile {
+        background-color: #f5be0b;
+        background-image: url(none);
+    }
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+        width: 100% !important;
+        padding: 0px;
+    }
+
+    .box_form {
+        width: auto;
+    }
+
+    .kt-login__wrapper {
+        background: transparent;
+    }
+
+    .container-login {
+        background-color: #ffffff !important;
+    }
+
+    .logotipo {
+        height: auto;
+        margin-top: 0rem !important;
+    }
+
+    .logo-convenios.convenioScotiabank img {
+        padding: 0px 5px;
+    }
+
+    .logo-convenios.convenioScotiabank {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        margin-bottom: 20px;
+    }
+
+    .logo-convenios .logotipo {
+        width: auto;
+    }
+
+    .logotipo:first-child img,
+    .logotipo:nth-of-type(2n) img,
+    .logotipo:nth-of-type(3n) img {
+        max-width: max-content !important;
+    }
+
+    .kt-login__container .accesible-tools {
+        margin-top: 1.5rem !important;
+        margin-bottom: 1.5rem !important;
+        border-bottom: 2px solid #DDDDDD;
+        padding: 20px 0;
+    }
+
+    .kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+        margin: 50px auto !important;
+    }
+
+    button#kt_login_forgot_cancel,
+    button#kt_login_signin_submit.btn-primary,
+    button#kt_login_forgot_submit.btn-primary {
+        max-width: 294px;
+    }
+
+    .top-banner_cda h1 {
+        font-size: 23px !important;
+    }
+
+    .top-banner_cda {
+        padding: 0 20px;
+    }
+
+
+    .cont-logo-mobile h1 {
+        color: #fff;
+        padding: 50px 0 0 0;
+        font-size: 2.0rem;
+        font-weight: 600;
+    }
+
+    .body-home .logo-home img {
+        margin-bottom: 0;
+        max-width: 175px;
+        min-width: 130px;
+        width: 100%;
+        height: auto;
+    }
+
+    .body-home .menu-top {
+        padding: .5rem;
+    }
+
+    .kt-login__container .accesible-tools .accesible-btn button {
+        text-align: left !important;
+    }
+
+    /*LoginMobile*/
+
+
+    .lista-horas .hora {
+        border-top: none !important;
+    }
+
+    .lista-horas {
+        border-top: 1px solid rgb(227 0 0 / 14%) !important;
+    }
+
+    .inner-btn {
+        margin: 0.8rem auto !important;
+    }
+
+    a.js-filterable {
+        width: 100%;
+    }
+
+    .cont-cards {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .card_scotiabank img {
+        width: 48px !important;
+    }
+
+    .asesorias-scotiabank {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .label-caja-especialidad {
+        width: 100% !important;
+    }
+
+    .pull-right {
+        width: 20px;
+    }
+
+    .step::after {
+        width: 40px;
+        min-width: 0;
+        position: relative;
+        top: -80px;
+        left: 55px;
+    }
+
+    h1.legend_2.order-2.order-md-1 {
+        font-size: 18px !important;
+        margin-top: 3rem !important;
+    }
+
+    .top-banner_scotiabank {
+        margin-top: 6rem;
+    }
+
+    .home-library,
+    .library {
+        margin-top: 0px !important;
+    }
+
+    .cont-steps {
+        text-align: center;
+    }
+
+    .stepper.stepper-scotiabank {
+        width: 100% !important;
+        /*display: inline-flex !important;*/
+    }
+
+    .cont-medicina-preventiva {
+        margin-top: 2rem;
+    }
+
+    .cont-medicina-preventiva .opcion-interior {
+        border-top: 1px solid #eee;
+        padding: 2rem 0 2rem 0;
+    }
+
+    .cont-medicina-preventiva .opcion-interior img {
+        max-width: 100px;
+        padding: 0;
+        margin: 1rem auto;
+    }
+
+    .cont-medicina-preventiva .opcion-interior .btn {
+        max-width: 70vw;
+    }
+
+    .cont-toma-examenes .cont-ilustracion {
+        display: block;
+    }
+
+    .kt-grid__item.kt-grid__item--fluid.kt-grid.kt-grid--hor {
+        background: transparent !important;
+    }
+
+/*    Paciente > Configuracion*/
+    .configuracion-paciente .titulo-servicio {
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 1080px) {
+    .cont-card .card {
+        width: 175px !important;
+        background-color: red;
+    }
+
+
+}
+
+
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    #imgLogin {
+        position: fixed;
+    }
+
+    .cont-banner-login {
+        display: none;
+    }
+
+    #drop-mensajes.dropdown-menu.dropdown-menu-xl {
+        transform: translate3d(-220px, 53px, 0px) !important;
+    }
+
+    .img1 {
+        background-image: url(../../img/scotiabank/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/scotiabank/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/scotiabank/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/scotiabank/login/548x850.jpg);
+    }
+}
+
+
+
+
+
+@media not all and (min-resolution:3251.2dpcm) {
+    @supports (-webkit-appearance: none) {
+        /*.step::after {
+            top: -46px;
+            left: 90px;
+        }*/
+    }
+}
+
+
+
+@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
+    /*.step::after {
+        top: -85px;
+        left: 90px;
+    }*/
+}
+
+
+
+
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+
+    .accesible_cajadelosandes h2 {
+        margin: 100px 0 24px 0;
+    }
+
+    /*Img Login*/
+    #imgLogin {
+        background-size: contain;
+    }
+
+    .img1 {
+        background-image: url(../../img/scotiabank/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/scotiabank/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/scotiabank/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/scotiabank/login/960x978.jpg);
+    }
+
+    /*Adicionales*/
+
+    #listaBeneficiarios .card {
+        min-width: 0;
+        width: auto;
+    }
+
+
+    .kt-aside--minimize .kt-aside-menu .kt-menu__nav {
+        margin-top: 2rem;
+        overflow-x: hidden;
+    }
+
+    .mensaje-superior {
+        /*max-width: 300px;*/
+        max-width: 390px;
+        margin-right: 0px;
+    }
+
+
+    div#kt_header {
+        padding: 10px 5px !important
+    }
+
+    .header-top {
+        margin: 20px;
+    }
+
+    .toma-examenes-cardif {
+        margin-top: 6rem;
+        margin-left: 4rem;
+        margin-top: 130px;
+    }
+
+    .toma-examenes-cardif .nota-asistencia .btn {
+        font-size: 11px !important;
+    }
+
+    .cont-toma-examenes {
+        margin-top: 100px;
+        margin-left: 32px;
+        max-width: 1050px;
+    }
+
+    .cont-toma-examenes .card {
+        /*max-width: 400px;
+            margin-right: 55px;
+            margin-top: 0px;*/
+    }
+
+    .cont-toma-examenes .card .form-control {}
+
+    .toma-examenes-cardif .cont-ilustracion {
+        width: 380px;
+    }
+
+    .cont-toma-examenes .cont-ilustracion {
+        height: 260px;
+    }
+
+    .cont-toma-examenes .acontent_box {
+        width: 100%;
+        /*margin-top: 50px;*/
+        margin-top: 0;
+    }
+
+    /*Sala de espera*/
+
+    .hotspot-icon#btnAbandonarAtencion,
+    .hotspot-icon#hs-g {
+        width: 120px;
+        height: 120px;
+    }
+
+    .hotspot-icon#btnAbandonarAtencion .cont-icon i,
+    .hotspot-icon#hs-g .cont-icon i {
+        font-size: 3.5rem;
+    }
+
+    .hotspot-icon {
+        font-size: 16px;
+        width: 120px;
+        height: 160px;
+    }
+
+    .hotspot-icon .cont-icon i {
+        font-size: 3.5rem;
+    }
+
+    .hotspot-icon#hs-b {
+        font-size: 16px;
+        width: 260px;
+    }
+
+    .sala-medismart #hs-b {
+        top: 85%;
+    }
+
+    #contacto {
+        left: 76%;
+    }
+
+    #facebook {
+        left: 83%;
+    }
+
+    .sala-medismart #hs-d {
+        left: 46%;
+    }
+
+
+    .sala-medismart #hs-e {
+        left: 59%;
+    }
+
+    .sala-medismart #hs-c {
+        top: 38%
+    }
+
+    .sala-medismart #hs-d {
+        top: 38%
+    }
+
+    .sala-medismart #hs-e {
+        top: 38%
+    }
+
+    .hotspot-icon#btnAbandonarAtencion,
+    .hotspot-icon#hs-g {
+        top: 38%;
+    }
+
+    /*Asesorias Scotiabank*/
+    .asesorias-cda {
+        margin-top: 60px;
+        align-items: flex-start;
+    }
+
+    /*Vida Sana*/
+
+    .main .inner-section {
+        padding-top: 32px;
+    }
+
+    .main .inner-section {
+        margin-top: 0;
+    }
+
+    .toma-examenes-cardif {
+        margin-top: 90px
+    }
+
+    /*Footer*/
+    .kt-aside--minimize .kt-aside-menu .kt-menu__nav {
+        /* max-height: 80vh;*/
+    }
+
+    .header-aviso-atencion {
+        display: none;
+    }
+
+    .modal-aviso .aviso-atencion .datos-fecha {
+        justify-content: flex-start;
+    }
+
+    .configuracion-paciente .titulo-servicio {
+        margin-top: 8rem;
+    }
+
+    .cont-medicina-preventiva {
+        margin-top: 4rem;
+    }
+
+    .col-md-9.mb-4.mb-lg-0.col-lg-8 .caja-reserva {
+        height: 648px !important;
+    }
+}
+
+
+@media screen and (min-device-width: 1920px) {
+
+    /*Home*/
+    div#btn-agregar a {
+        padding: 0.625rem 7.5rem !important;
+    }
+
+    .dropdownAgendada drop-mensajes.dropdown-menu.dropdown-menu-xl {
+        transform: translate3d(-100px, 53px, 0px) !important;
+    }
+
+    #drop-mensajes.dropdown-menu.dropdown-menu-xl {
+        transform: translate3d(-100px, 53px, 0px) !important;
+    }
+
+    .datepicker {
+        width: 355px;
+        padding: 10px;
+    }
+
+    .kt-login__wrapper {
+        display: block;
+        min-height: 100%;
+    }
+
+    .container-login {
+        background: #f5be0b;
+    }
+
+    .asesorias-cda {
+        max-width: 1400px;
+        display: flex;
+        align-items: center;
+        gap: 85px;
+        margin: 90px 0 0 0;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+
+    div#kt_aside {
+        margin-top: 90px;
+    }
+
+
+    .container_cda_inner {
+        margin-top: 106px;
+    }
+
+    .stepper {
+        margin-top: 13rem !important;
+        margin-bottom: 6rem !important;
+    }
+
+    .footer_scotiabank_logos {
+        bottom: auto;
+    }
+
+    .caja-busqueda {
+        width: 100%;
+    }
+
+    .cont-caja-especialidad {
+        max-width: 1342px;
+        justify-content: flex-start;
+    }
+
+    .caja-especialidad {
+        max-width: 435px;
+        margin: 0 .5rem !important;
+        height: 52px
+    }
+
+    .caja-especialidad:last-child {}
+
+    .accesible_cajadelosandes h2 {
+        margin: 100px 85px !important;
+    }
+
+    .cont-caja-especialidad .busqueda-profesionales {
+        /*min-width: 435px !important;*/
+    }
+
+    /*Adicionales*/
+
+    .cont-form-beneficiario {
+        margin-top: 10rem;
+    }
+
+    #atenciones .atencion-toolbar {
+        justify-content: space-between;
+        flex-direction: row;
+        /*gap: 95px;*/
+    }
+
+    .cont-aviso-modal .datos-fecha {}
+
+    /*Receta Electronica*/
+    .reserva-exitosa {
+        padding: 9rem 0 0 0 !important;
+    }
+
+}
+
+.btn-atencion {
+    flex-direction: row;
+}
+
+/*Fix Icono Psicolog�a Agendamiento*/
+.cont-caja-especialidad img,
+.busqueda-profesionales img {
+    width: 40px;
+    max-width: none;
+}
+
+
+/*Fix Resumen Atenci�n 19082022*/
+
+.card-informe {
+    border: 1px solid #209CD4;
+}
+
+.cont-informe {
+    margin-top: 16rem;
+}
+
+.legend-resumen {
+    color: #209CD4
+}
+
+h3.mb-3.titulo-seccion.titulo-informe {
+    color: var(--secondary-color) !important;
+}
+
+.columna-examenes h3.mb-3.titulo-seccion {
+    color: var(--secondary-color) !important;
+}
+
+.archivos-atencion ul li {
+    color: #989898;
+}
+
+.archivos-atencion .btn-archivo i {
+    color: #EB5757
+}
+
+
+/*Recetas*/
+
+.cont-titulo-receta h1 {
+    color: #209CD4;
+    text-shadow: none;
+    font-size: 40px;
+    border-bottom: 5px solid #F5BE0B;
+    width: auto;
+}
+
+.cont-titulo-receta .cont-logo img {
+    display: none;
+}
+
+.cont-titulo-receta .cont-logo {
+    background-image: url(../../img/vivetuseguro/recetas/logo.svg);
+    background-repeat: no-repeat;
+    height: auto;
+    width: 100%;
+    margin: auto;
+    margin-left: 0;
+    background-position: 0 0;
+    display: flex;
+    align-items: flex-end;
+    min-height: 112px;
+}
+
+
+
+.note-content .subtitulo-receta {
+    margin-top: 3rem;
+    color: #209CD4
+}
+
+.note-content .subtitulo-receta+ol,
+.note-content .subtitulo-receta+ul {
+    font-size: 16px;
+}
+
+.note-content p a {
+    font-weight: 900;
+    color: #777;
+    font-size: 16px;
+    display: block;
+    margin-top: 3rem;
+}
+
+#nota3.note-section.featured {
+    background-image: url(../../img/vivetuseguro/recetas/top-receta.jpg);
+    margin-top: 14rem;
+}
+
+.cont-titulo-receta {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main.note-content .inner-section {
+    padding-top: 0;
+}
+
+@media (max-width: 668px) {
+
+    .cont-titulo-receta img {
+        display: none;
+    }
+
+    .note-content .subtitulo-receta:first-child {
+        margin-top: 0;
+    }
+
+    #nota3.note-section.featured {
+        height: auto;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    .cont-titulo-receta .cont-logo {
+        height: auto;
+        min-height: 148px;
+        max-width: 320px;
+    }
+
+    .cont-titulo-receta h1 {
+        font-size: 32px;
+        text-shadow: none;
+    }
+
+    .featured .card-content .date {
+        text-align: left;
+    }
+
+    .card-content .date {
+        text-align: left;
+    }
+/*    Paciente > Configuracion*/
+
+    .cont-foto-perfil {
+        position: inherit;
+        margin: 2rem auto !important;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+}
+
+#drop-mensajes {
+    /*background-color:#209CD4 ;*/
+}
+
+.cont-steps {
+    align-items: center;
+    max-width: 640px;
+}
+
+.linea-stepper {
+    height: 1px;
+    border: none !important;
+    max-width: 116px;
+    margin: auto;
+    background-color: #C4c4c4 !important;
+    width: 100%;
+    margin-top: 32px;
+    margin-top: 24px;
+}
+
+/*Menu fix height*/
+
+.kt-aside .kt-aside-menu .kt-menu__nav>.kt-menu__item {
+    height: auto;
+}
+
+.kt-aside--minimize .kt-aside-menu .kt-menu__nav>.kt-menu__item {
+    margin-bottom: 0;
+}
+
+.ms-label-menu {
+    margin-top: 6px;
+}
+
+.ms-label-menu::before {
+    border-top: none;
+    display: none;
+}
+
+.kt-aside--minimize .kt-aside-menu .kt-menu__nav>.kt-menu__item.kt-menu__item--here {
+    margin-bottom: 0 !important;
+}
+
+.kt-menu__item--here img {
+    margin-top: 6px;
+}
+
+.kt-aside .kt-aside-menu .kt-menu__nav>.kt-menu__item>.kt-menu__link {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #C6C6C6;
+    width: 90%;
+    margin: auto;
+}
+
+.kt-aside--minimize .kt-aside-menu .kt-menu__nav .accesible-tools {
+    margin-top: 30px;
+}
+
+
+.sala-espera-mobile {
+    padding-top: 0;
+}
+
+.confirmacion-los-andes {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 668px) {
+    .linea-stepper {
+        margin-left: -2rem;
+        margin-right: -2rem;
+        max-width: 30px;
+    }
+
+    .cont-steps {
+        width: 100% !important;
+        margin-bottom: 3rem;
+    }
+
+    /*    Receta Electronica*/
+    .reserva-exitosa {
+        padding: 0 !important;
+    }
+
+    .reserva-exitosa--texto {
+        gap: 1rem !important;
+    }
+
+    .reserva-exitosa--ilustracion {
+        margin-bottom: 32px;
+    }
+}
+
+#kt_wrapper.bkg_cajalosandes {
+    background-image: none !important;
+    background-color: #f2f2f2 !important;
+}
+
+.modal-footer .btn-primary {
+    margin: 0;
+}
+
+.btn-outline-success {
+    color: #F5BE0B;
+    border-color: #F5BE0B;
+}
+
+.modal-atenciones .modal-body {
+    background-color: #209CD4;
+}
+
+.form-label {
+    color: var(--secondary-color);
+}
+
+.slide-wiki {
+    display: none;
+}
+
+.wp_box {
+    border-bottom: none;
+}
+
+.wp_box h3 {
+    margin-bottom: 0;
+    color: var(--secondary-color);
+}
+
+.form-check-input {
+    margin-left: 0;
+}
+
+
+.configuracion-paciente .form-check-input {
+    margin-left: .5rem;
+}
+
+
+#concierge-chat.cont-chat {
+    display: none;
+}
+
+.body-home .cont-card .card img {
+    max-width: 100px;
+    margin: auto;
+    margin-bottom: 2rem;
+}
+
+.body-home .container {
+    max-width: 1098px;
+}
+
+.menu-top .label-menu-pac {
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+
+@media (max-width: 1024px) {
+
+    div#kt_wrapper {
+        margin-top: 9% !important;
+    }
+
+    .aviso-atencion .data-atencion {
+        margin-left: 0;
+    }
+
+    .btn.btn-outline-secondary,
+    .btn.btn-primary {
+        letter-spacing: 0;
+    }
+
+
+    .cont-icon-confirma img.d-lg-inline-block {
+        width: 50px;
+        display: block;
+        margin: auto;
+    }
+
+    .cont-icon-confirma {
+        order: 2;
+        margin-top: 38px;
+        margin-bottom: 22px;
+    }
+
+    .mensaje-superior {
+        display: none;
+    }
+
+    .aviso-atencion .titulo-profesional {
+        display: block;
+        border-bottom: none;
+        margin-top: 0;
+        margin-bottom: 3px;
+    }
+
+    .aviso-atencion .titulo-profesional:before {
+        display: inline-block;
+        content: "\f0f1";
+        font-family: "Font Awesome 5 Pro";
+        margin-right: .5rem;
+        color: rgba(255, 255, 255, .5);
+    }
+
+    .modal-aviso .aviso-atencion .datos-fecha {
+        justify-content: flex-start;
+    }
+
+    .data-atencion .header-aviso-atencion {
+        display: none;
+    }
+
+    .img_modal.caja-profesional {
+        display: none;
+    }
+
+
+    .btnAhoraNo {
+        width: auto;
+    }
+
+
+    #btnHorario {
+        display: flex;
+        width: 100%;
+    }
+
+    .modal-aviso .caja-reserva {
+        border: none !important;
+        padding: 0 !important;
+    }
+
+    #modalReagendar {
+        margin-top: 0;
+    }
+
+    #modalReagendar .modal-body {
+        padding: 0 !important;
+    }
+
+    #modalReagendar .data-horario {
+        padding: 0 !important
+    }
+
+    #modalReagendar .modal-header {
+
+        border-bottom: none;
+    }
+
+    #modalReagendar .modal-header h4 {
+        font-size: 22px;
+    }
+
+    .modalControlAtencionAgendadaConfirma .btnConfirmaAtencionx {
+        width: auto;
+        font-size: 11px !important;
+        padding: 0.625rem 1.5rem !important;
+    }
+
+    .foto-perfil {
+        width: 150px;
+        height: 150px;
+    }
+
+    .configuracion-paciente .titulo-servicio {
+        margin-top: 40px !important;
+    }
+
+    .card.card-profile {
+        margin-top: 18px;
+    }
+
+    .cont-form-beneficiario {
+        margin-top: 2rem !important;
+    }
+
+    .card-profile h3 {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .body-home .cont-card .card {
+        max-width: none !important;
+    }
+
+    #kt_wrapper.bkg_cajalosandes {
+        background-image: url('../../img/vivetuseguro/home/bkg_home_mobile.jpg') !important;
+        margin-top: 0 !important;
+        background-position-y: 95px;
+    }
+
+    .body-home .cont-card .card img {
+        margin-bottom: 0 !important;
+    }
+
+    .body-home .cont-card {
+        width: 100%;
+    }
+
+    .body-home .cont-card .card img {
+        max-width: 50px !important;
+        margin-right: .5rem !important;
+    }
+
+    .card_cajanades_box {
+        gap: 0;
+    }
+
+    .body-home .powered,
+    .body-home .powered strong {
+        display: none;
+    }
+
+    .body-home {
+        margin-top: 1rem;
+    }
+
+    .body-home .cont-card h1 {
+        font-size: 16px;
+    }
+
+    .body-home .cont-card .card img {
+        margin: 0;
+    }
+
+    .configuracion-paciente .card.card-profile {
+        min-height: auto;
+        margin: 1rem auto;
+        width: 90%;
+    }
+
+    .cont-caja-especialidad {
+        height: auto;
+    }
+
+    .stepper {
+        margin-top: 8rem !important;
+    }
+}
+
+.hotspots img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.indica-dia.actual {
+    background: var(--vive-tuseguro-morado)
+}
+
+/*menu lateral*/
+#vs-home {
+    color: red !important;
+}
+
+#drop-mensajes-turno {
+    background-color: var(--secondary-color);
+}
+
+#drop-mensajes-turno .mensaje-no-atencion i {
+    color: var(--light-color);
+}
+
+
+#divSinAtenciones i:before,
+.btn-close.btn-close-agendada i:before {
+    color: var(--light-color) !important;
+}
+
+
+.cont-medicina-preventiva .opcion-interior .btn {
+    max-width: 300px;
+}
+
+.cont-medicina-preventiva .opcion-interior p {
+    font-size: 18px;
+    width: 100%;
+    max-width: 460px;
+    margin: 2rem auto;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+}
+
+.card-medicina-preventiva .btn-outline-primary {
+
+    background-color: var(--light-color);
+    color: var(--secondary-color) !important;
+    border: 1px solid var(--secondary-color);
+}
+
+.card-medicina-preventiva .btn-outline-primary:hover {
+    background-color: var(--secondary-color);
+    color: var(--light-color) !important;
+    border: 1px solid var(--secondary-color);
+}
+
+/*Examenes*/
+
+.acontent_box .acontent_ti h2,
+.acontent_box .box_tex p {
+    font-family: var(--font-family) !important;
+}
+
+.cont-medicina-preventiva .breadcrumb-medismart {
+    margin-bottom: 32px;
+}
+
+.cont-medicina-preventiva .breadcrumb-medismart strong {
+    color: var(--secondary-color) !important;
+}
+
+
+.cont-toma-examenes.lab-blanco .card {
+    border: 1px solid #AAA5A8 !important;
+}
+
+.cont-toma-examenes.lab-blanco .acontent_ti h2 {
+    color: var(--fourth-color);
+    font-size: 20px;
+}
+
+.cont-toma-examenes.lab-blanco .box_tex p {
+    text-align: justify;
+}
+
+.cont-toma-examenes.lab-blanco .box_tex p:first-child {
+    color: var(--primary-color) !important;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 26px;
+    margin: 1rem auto !important;
+}
+
+#buttonPagos {
+    margin-top: 2rem;
+}
+
+.acontent_ti img {
+    width: 300px;
+}
+
+.cont-medicina-preventiva .titulo-examenes-preventivos {
+    color: var(--secondary-color) !important;
+    font-size: 22px;
+}
+
+
+
+#divSinHorasDisponibles img {
+    max-width: 60px;
+}
+
+.cont-medicina-preventiva .opcion-interior.primera-opcion {
+    border-right: none;
+}
+
+.cont-medicina-preventiva .opcion-interior img {
+    max-width: 100px;
+}
+
+.cont-chequeos .col-12.col-md:first-child {
+    border-right: 1px solid var(--primary-color);
+}
+
+.stepper img {
+    height: auto;
+}
+
+.wow.wow__resumen {
+    margin-top: auto;
+}
+
+.wow__lista-footer button {
+    max-width: 450px;
+    width: 92%;
+}
+
+.wow.wow__resumen:has(.wow__lista) .wow__tabs {
+    background-image: url(../../img/vivetuseguro/orden-examen.png) !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 1rem;
+}
+
+.wow.wow__resumen:has(.wow__lista) {
+    margin: auto;
+    margin-top: 10rem;
+    margin-bottom: 0;
+    max-width: 820px;
+}
+
+.cont-toma-examenes.lab-blanco .card_box {
+    max-width: 396px;
+}
+
+.configuracion-paciente .btn-success {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.opcion-asistente-virtual {
+    display: none;
+}
+
+.cont-medicina-preventiva .opcion-interior.restricciones .btn {
+    max-width: 400px;
+    margin-top: 2rem;
+    margin-left: 0;
+}
+
+.cont-medicina-preventiva .opcion-interior.restricciones ul li {
+    margin-bottom: 1rem;
+}
+
+.cont-medicina-preventiva .opcion-interior.restricciones {
+    height: auto;
+}
+
+.cont-medicina-preventiva .opcion-interior.restricciones i {
+    font-size: 32px;
+}
+
+.header-opcion-interior {
+    margin-bottom: auto;
+}
+
+.cont-medicina-preventiva .opcion-interior.restricciones h2 {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.cont-medicina-preventiva .header-opcion-interior {
+    margin-bottom: 2rem;
+}
+
+.cont-medicina-preventiva .lista-examenes .item-lista-examenes {
+    align-items: flex-start;
+}
+
+/* Estilos para el contenedor de selecciones */
+.selection-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Estilos para las opciones seleccionadas */
+.selected-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 12px;
+}
+
+.selected-option {
+    background-color: #f2f2f2;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.remove-option {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.col-md-9.mb-4.mb-lg-0.col-lg-8 .caja-reserva {
+    height: 648px;
+}
+
+#drop-mensajes-turno .cont-atencion-proxima {
+    background-color: var(--light-color);
+}
+
+#drop-mensajes-turno .caja-atencion-home,
+#drop-mensajes-turno .nombre-profesional {
+    color: var(--secondary-color);
+}
+
+#drop-mensajes-turno .atencion-toolbar.atencion-proxima-toolbar {
+    background-color: #EEE;
+}
+
+#drop-mensajes-turno .atencion-proxima-toolbar a {
+    color: var(--secondary-color);
+}
+
+.body-home .card-atencion {
+    max-width: 1028px;
+}
+
+.data-atencion .titulo-profesional {
+    display: block;
+}
+
+.data-atencion .header-aviso-atencion {
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+#drop-mensajes-turno .btn-close {
+    margin: auto;
+    margin-right: 1rem;
+}
+
+.caja-atencion-home.container-fluid.cont-atencion-proxima .data-atencion .header-aviso-atencion {
+    text-align: left;
+}
+
+.cont-cambio-clave {
+    display: none;
+}

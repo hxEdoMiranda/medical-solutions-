@@ -1,0 +1,55 @@
+﻿<div class="toma-examenes-cardif">
+
+        <!--start..Cencosud-->
+
+        <div class="asesorias-cencosud">
+        <div class="cont-asesorias">
+            <h1 class="d-md-none">
+                <small>¿Conoces tu cobertura de salud?</small>
+                Te ayudamos a entender tus coberturas de salud.
+            </h1>
+        </div>
+        
+                <div class="cont-ilustracion">
+
+                
+                </div>
+                <div class="cont-asesorias">
+                    <h1 class="d-none d-md-block">
+                <small>¿Conoces tu cobertura de salud?</small>
+                        Te ayudamos a entender tus coberturas de salud. 
+                    </h1>
+                    <p>
+                        Comunícate con nuestro Centro de Atención y podrás resolver todas tus dudas sobre 
+                        GES (Garantías Explícitas de Salud) y CAEC (Cobertura Adicional para Enfermedades Catastróficas). 
+                        Descubre cómo activar estas coberturas y qué enfermedades están cubiertas.
+                    </p>
+                    <p>Contáctanos directamente pinchando acá:</p>
+                    <div class="container-fluid cont-btn">
+                    <div class="row">
+                        <div class="col-6 col-md-auto">
+                        <a id="btnCallAsistencia" class="btn btn-primary">LLAMAR</a>
+
+                        <small>Llamarás directamente al <br /> +56 2 21234567 @ViewBag.Numero</small>
+                        </div>
+                        
+                    @if (!ViewBag.HostURL.Contains("masproteccionsalud.") && !ViewBag.HostURL.Contains("clinicamundoscotia."))
+                    {
+                        <div class="col-6 col-md-auto">
+                            <!--  <button class="btn btn-primary">Videollamada</button>-->
+                            <button class="btn btn-primary" onclick="location.href='/Paciente/Agendar?tipo=suscripcion&tipoEspecialidad=orientacion'">VIDEOLLAMADA</button>
+
+                        </div>
+                    }
+                    </div>
+                
+                </div>
+                </div>
+            
+        </div>
+
+    <!--end::Cencosud-->
+
+
+    
+   </div>

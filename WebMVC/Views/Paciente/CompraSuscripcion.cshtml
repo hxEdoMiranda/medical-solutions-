@@ -1,0 +1,126 @@
+﻿@model WebMVC.Models.AtencionViewModel
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+@{
+    ViewData["Title"] = "Paciente";
+    Layout = "_LayoutPaciente";
+}
+@section Styles {
+<link href="~/css/didi/didi.css?ver=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+<!-- WOW -->
+
+<div class="wow">
+    <div class="wow__title">
+        <h2>
+        </h2>@*
+        <button class="btn btn-outline-primary">
+        Descargar Boleta
+        </button>*@
+    </div>
+    <div class="wow__container">
+        <!-- Tabs -->
+        <!-- Tabs -->
+        <!-- Lista -->
+        <div class="wow__lista_compra">
+            <!-- Body Lista -->
+            <div class="wow__lista-body_compra" hidden>
+                <!-- Exámenes -->
+                <div class="tituloCompra">
+                    <img src="/img/check-circle.svg" class="imgCircleCheck" />
+                    <h2 class="titleCompra">COMPRA EXITOSA</h2>
+                </div>
+                @if (Model.OrderAttention != null && Model.OrderAttention.Items_details.Where(x => x.Category == 4).Count() > 0)
+                {
+                    <div class="wow__lista-item" id="listaExamen">
+                        <div class="wow__lista-item-header">
+                            <div class="wow__lista-item-title">
+                                Exámenes a domicilio
+                            </div>
+                        </div>
+                        <div class="wow__lista-item-body">
+                            <div class="wow__subitem">
+                                @{
+                                    var item = @ViewBag.Especialidades[0];
+                                    var identificadorDidi = (item.Identificador.Replace("DIDI-", "").Replace("-A", " A").Replace("-B", " B"));
+                                }
+                                <div id="examenes-list" class="wow__subitem-check">
+                                    <label for="item">identificadorDidi</label>
+                                </div>
+                                <div class="wow__subitem-price">
+                                    <div class="price">
+                                        @*$ @String.Format("{0:n0}", Convert.ToDecimal(Model.OrderAttention.Items_details.Where(x => x.Product_id == ex.IdExamen).Select(x => x.Total_amount).ToList().FirstOrDefault())).Replace(",",".")*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+                <!-- Exámenes -->
+
+
+            </div>
+
+            <!-- Body Lista -->
+        </div>
+        <!-- Lista -->
+        <div class="d-flex">
+            <div class="buy__suscripcion wow__container-titulo-medico-compra">
+                <p class="tituloMedicoCompra">
+                    <b>¡Felicitaciones,</b> Tu compra se ha realizado con éxito!
+                </p>
+                <p class="textoMedicoCompra-sinimg">
+                    Te llegara un <b>mail confirmando </b>su nueva plataforma y se actualizará automaticamente.
+                </p>
+                <p class="textoMedicoCompra-sinimg">
+                    Para disfrutar de tu nuevo plan, por favor inicia sesión.
+                </p>
+                <div>
+                    <button id="salir" class="btn btn-primary compra__btn-inicio">
+                        <a asp-controller="Account" asp-action="Logout" asp-route-rol="Paciente" data-close="true">
+                            Iniciar sesión
+                        </a>
+                    </button>
+                </div>
+            </div>
+
+            <div class="imgMedicoCompra">
+                <img src="~/img/didi/medico.svg" class="imagenMedicoCompra__sm compra--medico" />
+                <i class="elipseSombra"></i>
+                @*<i class="elipseColor"></i>*@
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- end: WOW -->
+@section Scripts {
+    <script type="module">
+        import { init } from '../../js/Paciente/compra-custom.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+            console.log(@ViewBag.Mensaje);
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+            var externo = '@ViewBag.externo';
+            window.externo = externo;
+            var idCliente = @ViewBag.idCliente;
+            window.idCliente = idCliente;
+            var host = '@ViewBag.HostURL';
+            window.host = host;
+            window.servicesUrl = '@ViewBag.servicesUrl';
+            window.servicesUrlPago = '@ViewBag.servicesUrlPago';
+            window.publicKey = '@ViewBag.publicKey';
+            var model = @Html.Raw(Json.Serialize(Model));
+            window.modelVista = model;
+        })()
+    </script>
+}

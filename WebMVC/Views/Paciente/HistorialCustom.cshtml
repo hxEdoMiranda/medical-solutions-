@@ -1,0 +1,1153 @@
+@model WebMVC.Models.AtencionViewModel
+@using Microsoft.Extensions.Configuration
+@using System.Globalization
+@using WebMVC.Controllers
+@using System.Security.Claims;
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Exámenes";
+    Layout = "_LayoutPaciente";
+
+    var hiddenAchs = string.Empty;
+    bool isAchs = false;
+    @if (ViewBag.HostURL.ToString().Contains("achs."))
+    {
+        hiddenAchs = "hidden";
+        isAchs = true;
+    }
+
+    var _layout = new LayoutController(Configuration);
+    var host = Configuration["ServicesUrl"];
+    var urlSmartcheck = Configuration["ServiceUrlSmartcheck"];
+    var idCliente = ((ClaimsIdentity)User.Identity).GetSpecificClaim("primarysid");
+    var configEmpresa = await _layout.GetConfigEmpresa(host, Convert.ToInt32(idCliente));
+    var configEmpresaBtn = await _layout.GetEmpresaConfigById(host, Convert.ToInt32(idCliente));
+    var CodigoTelefono = ViewBag.codigoTelefono;
+}
+
+
+<script type="text/javascript">
+    (function () {
+        var puntajeSmart = '@ViewBag.'
+        window.urlBase = urlBase;
+    })
+</script>
+
+@if (isAchs)
+{
+    <style scoped>
+        .btn-atencion-accion {
+            display: none;
+        }
+    </style>
+}
+
+@section Styles  {
+    <link href="~/css/Medismart/smartcheck.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+
+<!-- WOW -->
+
+<div class="wow wow__historial">
+
+    <!-- Header Historial -->
+
+    <div class="wow__header">
+
+        <div class="wow__title">
+            
+                @if (idCliente == "627")
+                {
+                <h2>Historial VETERINARIO</h2>
+                }
+                else
+                {
+                    <h2>Historial MÉDICO</h2>
+                }
+
+            <div class="tags-historial">
+                <div class="tag tag-todos">Todos</div>
+                <div class="tag tag-atencion">Atención</div>
+                <div class="tag tag-examen">Exámenes Preventivos</div>
+                <div class="tag tag-smartcheck">Smartcheck</div>
+                <div class="tag tag-psalud" @ViewBag.visiblePacienteCronico>Programa Salud</div>
+                <div class="tag tag-test"  @ViewBag.visibleTestOcupacional>Test Ocupacional</div>
+            </div>
+        </div>
+
+        <div class="wow__toolbar">
+            <div class="buscador-historial">
+
+                @*  <input type="text" placeholder="Escribe tu búsqueda">
+
+                <select class="form-select" aria-label="Default select example">
+                <option value="1">Atención</option>
+                <option value="2">Exámenes Preventivos</option>
+                <option value="3" selected>Smartcheck</option>
+                </select>*@
+
+                @*<div class="tags-historial">
+                <div class="tag tag-todos">Todos</div>
+                <div class="tag tag-atencion">Atención</div>
+                <div class="tag tag-examen">Exámenes Preventivos</div>
+                <div class="tag tag-smartcheck">Smartcheck</div>
+                </div>*@
+
+            </div>
+        </div>
+    </div>
+
+    <div id="divMomentoWow" hidden>
+        @Html.TextBoxFor(m => configEmpresaBtn.MomentoWow, new { id = "momentoWow", type = "text"})
+    </div>
+    <!-- end:: Header Historial -->
+    <!-- Body Historial -->
+
+    <div class="wow__body">
+        <!-- tarjeta Atencion -->
+        <div class="contenedor_atencion">
+            @if (Model.HistorialAtenciones != null && Model.HistorialAtenciones.ToList().Count > 0)
+            {
+                @foreach (var historialAtencion in Model.HistorialAtenciones)
+                {
+                    DateTime fechaConvertida = DateTime.ParseExact(historialAtencion.FechaText, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    string mesNombre = fechaConvertida.ToString("MMMM", new CultureInfo("es-ES"));
+                    string fechaFormateada = fechaConvertida.ToString("dd 'de' MMMM 'de' yyyy", new CultureInfo("es-ES"));
+
+                    DateTime horaConvertida = DateTime.ParseExact(historialAtencion.HoraDesdeText, "HH:mm", CultureInfo.InvariantCulture);
+                    string horaExamen = horaConvertida.ToString("h:mm tt");
+
+                    {
+                        var cl = "";
+                        var fecha = "";
+                        var hora = "";
+                        var uri = "../InformeAtencion/" + historialAtencion.Id;
+
+                        @if (historialAtencion.IsProgramaSalud == true && Convert.ToInt32(Configuration["idEnfermeraFormulario"]) == historialAtencion.IdEspecialidad)
+                        {
+                            uri = "../programaSalud/ConfirmacionInterconsulta?idAtencion=" + @historialAtencion.Id;
+                        }
+                        else if ((!(string.IsNullOrEmpty(historialAtencion.IdConsultaTeledoc))))
+                        {
+                            uri = "#"; // "/Paciente/InformeTeledoc?idConsulta=" + historialAtencion.IdConsultaTeledoc+"&username="+historialAtencion.username;
+                        }
+                        else if (CodigoTelefono == "CL" && configEmpresaBtn.MomentoWow == true)
+                        {
+                            uri = "/ResumenAtencionCustom?idAtencion=" + historialAtencion.Id;
+                        }
+                        else
+                        {
+                            uri = "../InformeAtencion/" + @historialAtencion.Id;
+                        }
+
+                        @if (historialAtencion.FechaText.Replace("/", "-") == DateTime.Today.ToShortDateString())
+                        {
+                            cl = "success";
+                            fecha = "Hoy";
+                            hora = horaExamen;
+                        }
+                        else
+                        {
+                            cl = "primary";
+                            fecha = fechaFormateada.ToString();
+                            hora = horaExamen;
+                        }
+
+                        <div class="wow__tarjeta @(string.IsNullOrEmpty(historialAtencion.IdConsultaTeledoc)? "tarjeta--atencion":"tarjeta--teledoc")">
+                            <div class="tarjeta__header">
+                                <div class="tarjeta__title">
+                                    Informe de Atención
+
+                                </div>
+                            </div>
+                            <div class="tarjeta__body">
+                                <div class="tarjeta__fecha">
+                                    @fecha | @hora
+                                </div>
+
+
+
+                                <div class="tarjeta__profesional">
+                                    <a href="@uri">
+                                        <div class="data-atencion data-historial">
+                                            @historialAtencion.NombreMedico
+                                            <small class="tarjeta__especialidad">@historialAtencion.Especialidad</small>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="tarjeta__seccion">
+                                    <a href="@uri">
+                                        <div class="tarjeta__titulo-seccion">
+                                            Diagnóstico
+                                        </div>
+                                        <div class="tarjeta__seccion-content">
+                                            @if ((!(string.IsNullOrEmpty(historialAtencion.IdConsultaTeledoc))))
+                                            {
+                                                var archivo = Model.Archivo.FirstOrDefault(a => a.IdConsultaTeledoc == historialAtencion.IdConsultaTeledoc);
+
+                                                if (archivo != null)
+                                                {
+                                                    @archivo.diagnostico
+                                                }
+                                            }
+                                            else
+                                            {
+                                                @historialAtencion.PatologiasString
+                                            }
+
+                                        </div>
+                                    </a>
+                                </div>
+
+
+                                @if (Model.Archivo != null && Model.Archivo.ToList().Count > 0)
+                                {
+                                    <div class="tarjeta__seccion">
+                                        <div class="tarjeta__titulo-seccion">
+                                            Certificados
+                                        </div>
+                                        @{
+                                            var recetaElectronica = false;
+                                            var archivoMedikit = Model.Archivo.FirstOrDefault(x => x.nombreArchivo == "Medikit.pdf");
+                                        }
+                                        <div class="tarjeta__seccion-content">
+                                            @if (Model.Archivo != null)
+                                            {
+                                                if ((!(string.IsNullOrEmpty(historialAtencion.IdConsultaTeledoc))))
+                                                {
+                                                    var archivosDeHistorial = Model.Archivo.Where(a => a.IdConsultaTeledoc == historialAtencion.IdConsultaTeledoc);
+                                                    foreach (var archivo in archivosDeHistorial)
+                                                    {
+                                                        var rutaDescargaArchivo = "";
+                                                        if(archivo != null && archivo.Nombre != null)
+                                                        {
+                                                            if (archivo.Nombre.Contains("Informe"))
+                                                            {
+                                                                rutaDescargaArchivo = Configuration["ServicesUrl"] + "/reportes/reportes/getInformeAtencion?idAtencion=" + historialAtencion.Id;
+                                                            }
+                                                            else if (archivo.Nombre.Contains("Examen"))
+                                                            {
+                                                                rutaDescargaArchivo = Configuration["ServicesUrl"] + "/reportes/reportes/getExamenes?idAtencion=" + historialAtencion.Id;
+                                                            }
+                                                            else if (archivo.Nombre.Contains("Receta"))
+                                                            {
+                                                                rutaDescargaArchivo = Configuration["ServicesUrl"] + "/reportes/reportes/getReceta?idAtencion=" + historialAtencion.Id;
+                                                            }
+                                                            else
+                                                            {
+                                                                rutaDescargaArchivo = Configuration["ServicesUrl"] + "/agendamientos/archivo/DescargarArchivo?id=" + archivo.idenc;
+                                                            }
+                                                        }
+
+                                                        if (archivo.url != null)
+                                                        {
+                                                            if (archivo.Estado != "E")
+                                                            {
+                                                                <div class="tipo-archivo">
+                                                                    @* @if (archivo.Estado == null)
+                                                                    {
+                                                                        <a class="tag-descarga" target="_blank" href="@archivo.url">
+                                                                            <i class="fal fa-file-pdf"></i>
+                                                                            @archivo.nombreArchivo
+                                                                        </a>
+                                                                    } *@
+                                                                    @if (recetaElectronica && archivo.Nombre == "Receta.pdf" && archivoMedikit != null)
+                                                                    {
+                                                                        <div class="tipo-archivo">
+                                                                            @archivoMedikit.nombreArchivo
+                                                                        </div>
+                                                                        <button onclick="window.open('@archivoMedikit.url', '_blank')" class="btn-archivo">
+                                                                            <i class="fal fa-file-pdf"></i>
+                                                                        </button>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <a class="tag-descarga" target="_blank" href="@rutaDescargaArchivo">
+                                                                            <i class="fal fa-file-pdf"></i>
+                                                                            @archivo.Nombre
+                                                                        </a>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="tipo-archivo">
+                                                                    @archivo.Nombre
+                                                                </div>
+                                                            }
+                                                        }
+                                                    }
+                                                }
+
+                                                else
+                                                {
+                                                    @foreach (var archivo in Model.Archivo.ToList().Where(file => file.IdEntidadAsociada == historialAtencion.Id))
+                                                    {
+                                                      
+                                                        var rutaDescargaArchivo = "";
+                                                        if (archivo.Nombre.Contains("Informe"))
+                                                        {
+                                                            rutaDescargaArchivo = Configuration["ServicesUrl"] + "/reportes/reportes/getInformeAtencion?idAtencion=" + historialAtencion.Id;
+                                                        }
+                                                        else if (archivo.Nombre.Contains("Examen"))
+                                                        {
+                                                            rutaDescargaArchivo = Configuration["ServicesUrl"] + "/reportes/reportes/getExamenes?idAtencion=" + historialAtencion.Id;
+                                                        }
+                                                        else if (archivo.Nombre.Contains("Receta"))
+                                                        {
+                                                            rutaDescargaArchivo = Configuration["ServicesUrl"] + "/reportes/reportes/getReceta?idAtencion=" + historialAtencion.Id;
+                                                        }
+                                                        else
+                                                        {
+                                                            rutaDescargaArchivo = Configuration["ServicesUrl"] + "/agendamientos/archivo/DescargarArchivo?id=" + archivo.idenc;
+                                                        }
+                                                        @if (archivo.Estado != "E")
+                                                        {
+                                                            <div class="tipo-archivo">
+                                                                <a class="tag-descarga" target="_blank" href="@rutaDescargaArchivo"><i class="fal fa-file-pdf"></i> @archivo.Nombre</a>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="tipo-archivo">
+                                                                @archivo.Nombre
+                                                            </div>
+                                                        }
+                                                    }
+
+                                                }
+                                            }
+
+                                        </div>
+                                    </div>
+                                }
+                                <!-- Agregar el botón de Medismart o Teledoc -->
+                                @if (!string.IsNullOrEmpty(historialAtencion.IdConsultaTeledoc))
+                                {
+                                    <div class="button-with-image">
+
+                                        <img src="~/img/teledoc/icon-teledoc-min.svg" alt="Teledoc" runat="server"> Atención por Teledoc
+
+
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="button-with-image">
+                                        <a href="#" class="btn btn-bold btn-sm medismart-btn">Medismart</a>
+                                        <img src="~/img/isotipo.png" alt="Isotipo" runat="server">
+                                    </div>
+                                }
+
+
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
+        @*<!-- end:: tarjeta Atencion -->*@
+        <div class="contenedor_examen">
+            <!-- tarjeta Examenes -->
+            @if (Model.ArchivoExamenPreventivo != null && Model.ArchivoExamenPreventivo.ToList().Count > 0)
+            {
+                @foreach (var historialExamenPreventivo in Model.ExamenesPreventivos)
+                {
+                    DateTime fechaConvertida = historialExamenPreventivo.FechaSolicitud;
+                    string mesNombre = fechaConvertida.ToString("MMMM", new CultureInfo("es-ES"));
+                    string fechaFormateada = fechaConvertida.ToString("dd 'de' MMMM", new CultureInfo("es-ES"));
+
+                    <div class="wow__tarjeta tarjeta--examenes">
+                        <div class="tarjeta__header">
+                            <div class="tarjeta__title">
+                                Exámenes Preventivos
+                                <div class="tarjeta__icono">
+                                    <img src="" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tarjeta__body">
+                            <div class="tarjeta__fecha">
+                                @fechaFormateada | @historialExamenPreventivo.FechaSolicitud.ToString("t")
+                            </div>
+
+                            <div class="tarjeta__seccion">
+                                <div class="tarjeta__titulo-seccion">
+                                    Certificados
+                                </div>
+                                <div class="tarjeta__seccion-content">
+                                    @foreach (var archivo in Model.ArchivoExamenPreventivo.ToList().Where(file => file.IdEntidadAsociada == historialExamenPreventivo.Id))
+                                    {
+                                        var rutaDescargaArchivo = Configuration["ServicesUrl"] + "/agendamientos/archivo/DescargarArchivo?id=" + archivo.idenc;
+
+                                        @if (archivo.Estado != "E")
+                                        {
+                                            <div class="tipo-archivo tag-examen-prev">
+                                                <a class="tag-descarga " target="_blank" href="@rutaDescargaArchivo"><i class="fal fa-file-pdf"></i> @archivo.Nombre</a>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="tipo-archivo tag-examen-prev">
+                                                @archivo.Nombre
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+            }
+            else
+            {
+                <div id="examenes-list-tab" class="tab-list__check_examen">
+                    <h3 class="tab-content__title"></h3>
+                </div>
+                <h5>No tienes registrados exámenes preventivos.</h5>
+            }
+        </div>
+        <!-- end:: tarjeta Examenes -->
+
+        <div class="contenedor_smartcheck">
+            <!-- tarjeta Smartcheck -->
+            @if (ViewBag.historialCustomSmartcheck != null)
+            {
+                @foreach (var smartcheck in  ViewBag.historialCustomSmartcheck)
+                {
+                    var puntajeSalud1 = Convert.ToDouble(smartcheck["detail"]["health_score"]);
+                    var puntajeSalud = (Math.Truncate(puntajeSalud1 * 100) / 100);
+                    var fechaCheck = smartcheck["header"]["measurement_datetime"];
+
+                    var fecha = fechaCheck.ToString("M");
+                    var colorSmart = "";
+                    var hora = fechaCheck.ToString("t");
+                    var measurementID = (smartcheck["detail"]["identifier"]).ToString();
+                    @*var measurementIDF = measurementID.ToString();  *@   
+                    
+                    if (puntajeSalud >= 0 && puntajeSalud <= 16.65)
+                    {
+                        colorSmart = "rgba(225,82,65,1)";
+                    }
+                    else if (puntajeSalud >= 16.67 && puntajeSalud <= 33.3)
+                    {
+                        colorSmart = "rgba(226,148,143,1)";
+                    }
+                    else if (puntajeSalud >= 33.4 && puntajeSalud <= 66.6)
+                    {
+                        colorSmart = "rgba(249,236,161,1)";
+                    }
+                    else if (puntajeSalud >= 66.7 && puntajeSalud <= 83.35)
+                    {
+                        colorSmart = "rgba(55,180,93,1)";
+                    }
+                    else if (puntajeSalud >= 83.36 && puntajeSalud <= 100)
+                    {
+                        colorSmart = "rgba(36,115,60,1)";
+                    }
+                    var puntajeSalud2 = puntajeSalud.ToString("0.#");
+                    var smartcheckIndex = ViewBag.historialCustomSmartcheck.IndexOf(smartcheck); // obtener el índice
+
+                    <input type="hidden" id="calculoSmart-@smartcheckIndex" value=@puntajeSalud>
+                    <div class="wow__tarjeta tarjeta--smartcheck">
+                        <a class="link-smartcheck" target="_blank" href='@string.Format(urlSmartcheck+"/smart_results/{0}", measurementID)'></a>
+                        <div class="tarjeta__header">
+                            <div class="tarjeta__title">
+                                Smartcheck
+                                <div class="tarjeta__icono">
+                                    <img src="" alt="">                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tarjeta__body">
+                            <div class="tarjeta__fecha">
+                                @fecha | @hora
+                            </div>
+                            <div class="tarjeta__seccion">
+                                <div class="tarjeta__seccion-content">
+                                    <div class="wow__puntaje-smartcheck">
+
+                                        <div class="label-smartcheck">Indicador general de salud</div>
+                                        <div class="valor-puntaje-smartcheck">@puntajeSalud2 / 100</div>
+                                        <div class="grafico-smartcheck">
+                                            <div class="form-group">
+                                                <span id="puntoSmartcheckTodos-@smartcheckIndex" class="punto-smartcheck">
+                                                    <img class="wow__imagen-puntaje" src="/img/wow/arrow-down-smartcheck.svg">
+                                                </span>
+                                                <div class="divIndicador">
+                                                    &nbsp;
+                                                </div>
+                                                <span class="divCero">0</span><span class="divCien">100</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            }
+            else
+            {
+                <div id="examenes-list-tab" class="tab-list__check_examen">
+                    <h3 class="tab-content__title"></h3>
+                </div>
+                <h5>Aún tienes registradas pruebas de Smartcheck, no olvides realizarlas para tu próxima atención.</h5>
+            }
+            <!-- end:: tarjeta Smartcheck -->
+
+        </div>
+
+        <div class="contenedor_programaSalud">
+            <!-- tarjeta Programa Salud -->
+            @if (Model.HistorialAtenciones != null && Model.HistorialAtenciones.ToList().Count > 0)
+            {
+                @foreach (var historialAtencion in Model.HistorialAtenciones.Where(x => x.IsProgramaSalud == true))
+                {
+                    Console.WriteLine($"IsProgramaSalud: {historialAtencion.IsProgramaSalud}, IdPaciente: {historialAtencion.IdPaciente}");
+                    DateTime fechaConvertida = DateTime.ParseExact(historialAtencion.FechaText, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    string mesNombre = fechaConvertida.ToString("MMMM", new CultureInfo("es-ES"));
+                    string fechaFormateada = fechaConvertida.ToString("dd 'de' MMMM 'de' yyyy", new CultureInfo("es-ES"));
+
+                    DateTime horaConvertida = DateTime.ParseExact(historialAtencion.HoraDesdeText, "HH:mm", CultureInfo.InvariantCulture);
+                    string horaExamen = horaConvertida.ToString("h:mm tt");
+
+                    {
+                        var cl = "";
+                        var fecha = "";
+                        var hora = "";
+                        var uri = "../InformeAtencion/" + historialAtencion.Id;
+
+                        @if (historialAtencion.IsProgramaSalud == true && Convert.ToInt32(Configuration["idEnfermeraFormulario"]) == historialAtencion.IdEspecialidad)
+                        {
+                            uri = "../programaSalud/ConfirmacionInterconsulta?idAtencion=" + @historialAtencion.Id;
+                        }
+                        else if (CodigoTelefono == "CL" && configEmpresaBtn.MomentoWow == true)
+                        {
+                            uri = "/ResumenAtencionCustom?idAtencion=" + historialAtencion.Id;
+                        }
+                        else
+                        {
+                            uri = "../InformeAtencion/" + @historialAtencion.Id;
+                        }
+                        @if (historialAtencion.FechaText.Replace("/", "-") == DateTime.Today.ToShortDateString())
+                        {
+                            cl = "success";
+                            fecha = "Hoy";
+                            hora = horaExamen;
+                        }
+                        else
+                        {
+                            cl = "primary";
+                            fecha = fechaFormateada.ToString();
+                            hora = horaExamen;
+                        }
+
+                        <div class="wow__tarjeta tarjeta--atencion">
+                            <div class="tarjeta__header">
+                                <div class="tarjeta__title">
+                                    Informe de Atención Paciente Cronico
+                                    <div class="tarjeta__icono">
+                                        <img src="" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tarjeta__body">
+                                <div class="tarjeta__fecha">
+                                    <i class="fal fa-calendar"></i>
+                                    @fecha | @hora
+                                </div>
+                                <div class="tarjeta__profesional">
+                                    <a href="@uri">
+                                        <div class="data-atencion data-historial">
+                                            @historialAtencion.NombreMedico
+                                            <small class="tarjeta__especialidad">@historialAtencion.Especialidad</small>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="tarjeta__seccion">
+                                    <a href="@uri">
+                                        <div class="tarjeta__titulo-seccion">
+                                            Diagnóstico
+                                        </div>
+                                        <div class="tarjeta__seccion-content">
+                                            @historialAtencion.PatologiasString
+                                        </div>
+                                    </a>
+                                </div>
+                                @if (Model.Archivo != null && Model.Archivo.ToList().Count > 0)
+                                {
+                                    <div class="tarjeta__seccion">
+                                        <div class="tarjeta__titulo-seccion">
+                                            Certificados
+                                        </div>
+                                        <div class="tarjeta__seccion-content">
+                                            @foreach (var archivo in Model.Archivo.ToList().Where(file => file.IdEntidadAsociada == historialAtencion.Id))
+                                            {
+                                                var rutaDescargaArchivo = "";
+                                                if (archivo.Nombre.Contains("Informe"))
+                                                {
+                                                    rutaDescargaArchivo = Configuration["ServicesUrl"] + "/reportes/reportes/getInformeAtencion?idAtencion=" + historialAtencion.Id;
+                                                }
+                                                else if (archivo.Nombre.Contains("Examen"))
+                                                {
+                                                    rutaDescargaArchivo = Configuration["ServicesUrl"] + "/reportes/reportes/getExamenes?idAtencion=" + historialAtencion.Id;
+                                                }
+                                                else if (archivo.Nombre.Contains("Receta"))
+                                                {
+                                                    rutaDescargaArchivo = Configuration["ServicesUrl"] + "/reportes/reportes/getReceta?idAtencion=" + historialAtencion.Id;
+                                                }
+                                                else
+                                                {
+                                                    rutaDescargaArchivo = Configuration["ServicesUrl"] + "/agendamientos/archivo/DescargarArchivo?id=" + archivo.idenc;
+                                                }
+                                                @if (archivo.Estado != "E")
+                                                {
+                                                    <div class="tipo-archivo">
+                                                        <a class="tag-descarga" target="_blank" href="@rutaDescargaArchivo"><i class="fal fa-file-pdf"></i> @archivo.Nombre</a>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="tipo-archivo">
+                                                        @archivo.Nombre
+                                                    </div>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+            }
+            else
+            {
+                <div id="examenes-list-tab" class="tab-list__check_examen">
+                    <h3 class="tab-content__title"></h3>
+                </div>
+                <h5>No tienes atenciones registradas.</h5>
+            }
+             <!-- end:: tarjeta Programa Salud -->
+        </div>
+       
+       
+        <div class="contenedor_test" @ViewBag.visibleTestOcupacional>
+            @if (Model.TestOcupacionalResult != null && Model.TestOcupacionalResult.ToList().Count > 0)
+            {
+                <div class="tarjeta__seccion">
+                    <div class="tarjeta__titulo-seccion">
+                        Test Ocupacional
+                    </div>
+                    <div class="tarjeta__seccion-content">
+                        @foreach (var archivo in Model.TestOcupacionalResult.ToList())
+                        {
+                            DateTime fechaConvertida = archivo.Fecha;
+                            string mesNombre = fechaConvertida.ToString("MMMM", new CultureInfo("es-ES"));
+                            string fechaFormateada = fechaConvertida.ToString("dd 'de' MMMM", new CultureInfo("es-ES"));
+
+                            var rutaDescargaArchivo = Configuration["ServicesUrl"] + "/agendamientos/archivo/DescargarArchivo?id=" + archivo.idenc;
+
+                            <div class="wow__tarjeta tarjeta--examenes">
+                                <div class="tarjeta__header">
+                                    <div class="tarjeta__title">
+                                        TEST OCUPACIONALES
+                                        <div class="tarjeta__icono">
+                                            <img src="" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tarjeta__body">
+                                    <div class="tarjeta__fecha">
+                                        <i class="fal fa-calendar"></i>
+                                        @fechaFormateada | @archivo.Fecha.ToString("t")
+                                    </div>
+
+                                    <div class="tarjeta__seccion">
+                                        <div class="tarjeta__titulo-seccion">
+                                            Certificados
+                                        </div>
+                                        <div class="tarjeta__seccion-content">
+                                            @if (archivo.Estado != "E")
+                                            {
+                                                <div class="tipo-archivo">
+                                                    <a class="tag-descarga" target="_blank" href="@rutaDescargaArchivo"><i class="fal fa-file-pdf"></i> @archivo.Nombre</a>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="tipo-archivo">
+                                                    @archivo.Nombre
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div id="examenes-list-tab" class="tab-list__check_examen">
+                    <h3 class="tab-content__title"></h3>
+                </div>
+                <h5>No tienes registrados exámenes medicos.</h5>
+            }
+        </div>
+        <div class="contenedor-todos">
+
+            @if (Model.HistorialAtenciones != null && Model.HistorialAtenciones.ToList().Count > 0)
+            {
+                //var historialFiltrado = Model.HistorialAtenciones.Where(historialAtencion =>
+                //DateTime.ParseExact(historialAtencion.FechaText, "dd/MM/yyyy", CultureInfo.InvariantCulture) > DateTime.Now.AddMonths(-6))
+                //.OrderBy(historialAtencion => DateTime.ParseExact(historialAtencion.FechaText, "dd/MM/yyyy", CultureInfo.InvariantCulture));
+
+                @foreach (var historialAtencion in Model.HistorialAtenciones.OrderByDescending(h => h.Id))
+                {
+                    DateTime fechaConvertida = DateTime.ParseExact(historialAtencion.FechaText, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    string mesNombre = fechaConvertida.ToString("MMMM", new CultureInfo("es-ES"));
+                    string fechaFormateada = fechaConvertida.ToString("dd 'de' MMMM 'de' yyyy", new CultureInfo("es-ES"));
+
+                    DateTime horaConvertida = DateTime.ParseExact(historialAtencion.HoraDesdeText, "HH:mm", CultureInfo.InvariantCulture);
+                    string horaExamen = horaConvertida.ToString("h:mm tt");
+
+
+                    {
+                        var cl = "";
+                        var fecha = "";
+                        var hora = "";
+                        var uri = "../InformeAtencion/" + historialAtencion.Id;
+
+                        @if (historialAtencion.IsProgramaSalud == true && Convert.ToInt32(Configuration["idEnfermeraFormulario"]) == historialAtencion.IdEspecialidad)
+                        {
+                            uri = "../programaSalud/ConfirmacionInterconsulta?idAtencion=" + @historialAtencion.Id;
+                        }
+                        else  if ((!(string.IsNullOrEmpty(historialAtencion.IdConsultaTeledoc))))
+                        {
+                            uri = uri = "#"; //"/Paciente/InformeTeledoc?idConsulta=" + historialAtencion.IdConsultaTeledoc+"&username="+historialAtencion.username;
+                        }
+                        else if (CodigoTelefono == "CL" && configEmpresaBtn.MomentoWow == true)
+                        {
+                            uri = "/ResumenAtencionCustom?idAtencion=" + historialAtencion.Id;
+                        }
+                        else
+                        {
+                            uri = "../InformeAtencion/" + @historialAtencion.Id;
+                        }
+
+                        @if (historialAtencion.FechaText.Replace("/", "-") == DateTime.Today.ToShortDateString())
+                        {
+                            cl = "success";
+                            fecha = "Hoy";
+                            hora = horaExamen;
+                        }
+                        else
+                        {
+                            cl = "primary";
+                            fecha = fechaFormateada.ToString();
+                            hora = horaExamen;
+                        }
+
+                        <div class="wow__tarjeta @(string.IsNullOrEmpty(historialAtencion.IdConsultaTeledoc)? "tarjeta--atencion":"tarjeta--teledoc")">
+                            <div class="tarjeta__header">
+                                <div class="tarjeta__title">
+                                    Informe de Atención
+                                    <div class="tarjeta__icono">
+                                        <img src="" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tarjeta__body">
+                                <div class="tarjeta__fecha">
+
+                                    @fecha | @hora
+                                </div>
+                                <div class="tarjeta__profesional">
+                                    <a href="@uri">
+                                        <div class="data-atencion data-historial">
+                                            @historialAtencion.NombreMedico
+                                            <small class="tarjeta__especialidad">@historialAtencion.Especialidad</small>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="tarjeta__seccion">
+                                    <a href="@uri">
+                                        <div class="tarjeta__titulo-seccion">
+                                            Diagnóstico
+                                        </div>
+                                        <div class="tarjeta__seccion-content">
+                                            @if ((!(string.IsNullOrEmpty(historialAtencion.IdConsultaTeledoc))))
+                                            {
+                                                var archivo = Model.Archivo.FirstOrDefault(a => a.IdConsultaTeledoc == historialAtencion.IdConsultaTeledoc);
+
+                                                if (archivo != null)
+                                                {
+                                                    @archivo.diagnostico
+                                                }
+                                            }
+                                            else
+                                            {
+                                                @historialAtencion.PatologiasString
+                                            }
+
+                                        </div>
+                                    </a>
+                                </div>
+                                @if (Model.Archivo != null && Model.Archivo.ToList().Count > 0)
+                                {
+                                    <div class="tarjeta__seccion">
+                                        <div class="tarjeta__titulo-seccion">
+                                            Certificados
+                                        </div>
+                                        @{
+                                            var recetaElectronica = false;
+                                            var archivoMedikit = Model.Archivo.FirstOrDefault(x => x.nombreArchivo == "Medikit.pdf");
+                                        }
+                                        <div class="tarjeta__seccion-content">
+                                            @if (Model.Archivo != null)
+                                            {
+                                                if ((!(string.IsNullOrEmpty(historialAtencion.IdConsultaTeledoc))))
+                                                {
+                                                    var archivosDeHistorial = Model.Archivo.Where(a => a.IdConsultaTeledoc == historialAtencion.IdConsultaTeledoc);
+                                                    foreach (var archivo in archivosDeHistorial)
+                                                    {
+                                                        var rutaDescargaArchivo = "";
+                                                        if (archivo != null && archivo.Nombre != null)
+                                                        {
+                                                            if (archivo.Nombre.Contains("Informe"))
+                                                            {
+                                                                rutaDescargaArchivo = Configuration["ServicesUrl"] + "/reportes/reportes/getInformeAtencion?idAtencion=" + historialAtencion.Id;
+                                                            }
+                                                            else if (archivo.Nombre.Contains("Examen"))
+                                                            {
+                                                                rutaDescargaArchivo = Configuration["ServicesUrl"] + "/reportes/reportes/getExamenes?idAtencion=" + historialAtencion.Id;
+                                                            }
+                                                            else if (archivo.Nombre.Contains("Receta"))
+                                                            {
+                                                                rutaDescargaArchivo = Configuration["ServicesUrl"] + "/reportes/reportes/getReceta?idAtencion=" + historialAtencion.Id;
+                                                            }
+                                                            else
+                                                            {
+                                                                rutaDescargaArchivo = Configuration["ServicesUrl"] + "/agendamientos/archivo/DescargarArchivo?id=" + archivo.idenc;
+                                                            }
+                                                        }
+
+                                                        if (archivo.url != null)
+                                                        {
+                                                            if (archivo.Estado != "E")
+                                                            {
+                                                                <div class="tipo-archivo">
+                                                                    @if (archivo.Estado == null)
+                                                                    {
+                                                                        <a class="tag-descarga" target="_blank" href="@archivo.url">
+                                                                            <i class="fal fa-file-pdf"></i>
+                                                                            @archivo.nombreArchivo
+                                                                        </a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <a class="tag-descarga" target="_blank" href="@rutaDescargaArchivo">
+                                                                            <i class="fal fa-file-pdf"></i>
+                                                                            @archivo.Nombre
+                                                                        </a>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="tipo-archivo">
+                                                                    @archivo.Nombre
+                                                                </div>
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    @foreach (var archivo in Model.Archivo.ToList().Where(file => file.IdEntidadAsociada == historialAtencion.Id))
+                                                    {
+                                                        var rutaDescargaArchivo = "";
+                                                        if (archivo.Nombre.Contains("Informe"))
+                                                        {
+                                                            rutaDescargaArchivo = Configuration["ServicesUrl"] + "/reportes/reportes/getInformeAtencion?idAtencion=" + historialAtencion.Id;
+                                                        }
+                                                        else if (archivo.Nombre.Contains("Examen"))
+                                                        {
+                                                            rutaDescargaArchivo = Configuration["ServicesUrl"] + "/reportes/reportes/getExamenes?idAtencion=" + historialAtencion.Id;
+                                                        }
+                                                        else if (archivo.Nombre.Contains("Receta"))
+                                                        {
+                                                            rutaDescargaArchivo = Configuration["ServicesUrl"] + "/reportes/reportes/getReceta?idAtencion=" + historialAtencion.Id;
+                                                        }
+                                                        else
+                                                        {
+                                                            rutaDescargaArchivo = Configuration["ServicesUrl"] + "/agendamientos/archivo/DescargarArchivo?id=" + archivo.idenc;
+                                                        }
+                                                        @if (!(archivo.Nombre.Contains("Receta") && (archivoMedikit != null && archivoMedikit.statusMedikit == "Correcto")))
+                                                        {
+                                                            @if (archivo.Estado != "E")
+                                                            {
+                                                                <div class="tipo-archivo">
+                                                                    <a class="tag-descarga" target="_blank" href="@rutaDescargaArchivo">
+                                                                        <i class="fal fa-file-pdf"></i> @archivo.Nombre
+                                                                    </a>
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="tipo-archivo">
+                                                                    @archivo.Nombre
+                                                                </div>
+                                                            }
+                                                        }
+                                                    }
+                                                    @if (archivoMedikit != null && archivoMedikit.url != null)
+                                                    {
+                                                        <div class="tipo-archivo">
+                                                            <a class="tag-descarga" target="_blank" href="@archivoMedikit.url">
+                                                                <i class="fal fa-file-pdf"></i> @archivoMedikit.nombreArchivo
+                                                            </a>
+                                                        </div>
+                                                    }
+                                                    
+                                                }                                              
+                                            }
+
+                                        </div>
+                                    </div>
+                                }
+                                <!-- Agregar el botón de Medismart o Teledoc -->
+                                @if (!string.IsNullOrEmpty(historialAtencion.IdConsultaTeledoc))
+                                {
+                                    <div class="btn-teledoc">
+                                        <img src="~/img/teledoc/icon-teledoc-min.svg" alt="Teledoc" runat="server"> Atención por Teledoc
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="">
+                                        <a href="#" class="btn btn-bold btn-sm medismart-btn">Medismart</a>
+                                        <img src="~/img/isotipo.png" alt="Isotipo" runat="server">
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+            }
+
+            @if (Model.ArchivoExamenPreventivo != null && Model.ArchivoExamenPreventivo.ToList().Count > 0)
+            {
+                @foreach (var historialExamenPreventivo in Model.ExamenesPreventivos)
+                {
+                    DateTime fechaConvertida = historialExamenPreventivo.FechaSolicitud;
+                    string mesNombre = fechaConvertida.ToString("MMMM", new CultureInfo("es-ES"));
+                    string fechaFormateada = fechaConvertida.ToString("dd 'de' MMMM", new CultureInfo("es-ES"));
+
+                    <div class="wow__tarjeta tarjeta--examenes">
+                        <div class="tarjeta__header">
+                            <div class="tarjeta__title">
+                                Exámenes Preventivos
+                                <div class="tarjeta__icono">
+                                    <img src="" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tarjeta__body">
+                            <div class="tarjeta__fecha">
+                                @fechaFormateada | @historialExamenPreventivo.FechaSolicitud.ToString("t")
+                            </div>
+
+                            <div class="tarjeta__seccion">
+                                <div class="tarjeta__titulo-seccion">
+                                    Certificados
+                                </div>
+                                <div class="tarjeta__seccion-content">
+                                    @foreach (var archivo in Model.ArchivoExamenPreventivo.ToList().Where(file => file.IdEntidadAsociada == historialExamenPreventivo.Id))
+                                    {
+                                        var rutaDescargaArchivo = Configuration["ServicesUrl"] + "/agendamientos/archivo/DescargarArchivo?id=" + archivo.idenc;
+                                        @if (archivo.Estado != "E")
+                                        {
+                                            <div class="tipo-archivo tag-examen-prev">
+                                                <a class="tag-descarga " target="_blank" href="@rutaDescargaArchivo"><i class="fal fa-file-pdf"></i> @archivo.Nombre</a>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="tipo-archivo tag-examen-prev">
+                                                @archivo.Nombre
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+
+            }
+            @if (ViewBag.historialCustomSmartcheck != null)
+            {
+                @foreach (var smartcheck in ViewBag.historialCustomSmartcheck)
+                {
+                    var puntajeSalud1 = Convert.ToDouble(smartcheck["detail"]["health_score"]);
+                    var puntajeSalud = (Math.Truncate(puntajeSalud1 * 100) / 100);
+                    var fechaCheck = smartcheck["header"]["measurement_datetime"];
+                    var fecha = fechaCheck.ToString("M");
+                    var colorSmart = "";
+                    var hora = fechaCheck.ToString("t");
+                    var measurementID = (smartcheck["detail"]["identifier"]).ToString();
+                    @*var measurementIDF = measurementID.ToString();  *@
+
+                    if (puntajeSalud >= 0 && puntajeSalud <= 16.65)
+                    {
+                        colorSmart = "rgba(225,82,65,1)";
+                    }
+                    else if (puntajeSalud >= 16.67 && puntajeSalud <= 33.3)
+                    {
+                        colorSmart = "rgba(226,148,143,1)";
+                    }
+                    else if (puntajeSalud >= 33.4 && puntajeSalud <= 66.6)
+                    {
+                        colorSmart = "rgba(249,236,161,1)";
+                    }
+                    else if (puntajeSalud >= 66.7 && puntajeSalud <= 83.35)
+                    {
+                        colorSmart = "rgba(55,180,93,1)";
+                    }
+                    else if (puntajeSalud >= 83.36 && puntajeSalud <= 100)
+                    {
+                        colorSmart = "rgba(36,115,60,1)";
+                    }
+                    var puntajeSalud2 = puntajeSalud.ToString("0.#");
+                    var smartcheckIndex = ViewBag.historialCustomSmartcheck.IndexOf(smartcheck); // obtener el índice
+
+                    <input type="hidden" id="calculoSmart-@smartcheckIndex" value=@puntajeSalud>
+                    <div class="wow__tarjeta tarjeta--smartcheck">
+                        <a class="link-smartcheck" target="_blank" href='@string.Format(urlSmartcheck+"/smart_results/{0}", measurementID)'></a>
+                        <div class="tarjeta__header">
+                            <div class="tarjeta__title">
+                                Smartcheck
+                                <div class="tarjeta__icono">
+                                    <img src="" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tarjeta__body">
+                            <div class="tarjeta__fecha">
+                                @fecha | @hora
+                            </div>
+                            <div class="tarjeta__seccion">
+                                <div class="tarjeta__seccion-content">
+                                    <div class="wow__puntaje-smartcheck">
+
+                                        <div class="label-smartcheck">Indicador general de salud</div>
+                                        <div class="valor-puntaje-smartcheck">@puntajeSalud2 / 100</div>
+                                        <div class="grafico-smartcheck">
+                                            <div class="form-group">
+                                                <span id="puntoSmartcheckTodos-@smartcheckIndex" class="punto-smartcheck">
+                                                    <img class="wow__imagen-puntaje" src="/img/wow/arrow-down-smartcheck.svg">
+                                                </span>
+                                                <div class="divIndicador">
+                                                    &nbsp;
+                                                </div>
+                                                <span class="divCero">0</span><span class="divCien">100</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            }
+            @if (Model.TestOcupacionalResult != null && Model.TestOcupacionalResult.ToList().Count > 0)
+            {
+                <div class="tarjeta__seccion" @ViewBag.visibleTestOcupacional>
+                    <div class="tarjeta__titulo-seccion">
+                        Test Ocupacional
+                    </div>
+                    <div class="tarjeta__seccion-content">
+                        @foreach (var archivo in Model.TestOcupacionalResult.ToList())
+                        {
+                            DateTime fechaConvertida = archivo.Fecha;
+                            string mesNombre = fechaConvertida.ToString("MMMM", new CultureInfo("es-ES"));
+                            string fechaFormateada = fechaConvertida.ToString("dd 'de' MMMM", new CultureInfo("es-ES"));
+
+                            var rutaDescargaArchivo = Configuration["ServicesUrl"] + "/agendamientos/archivo/DescargarArchivo?id=" + archivo.idenc;
+
+                            <div class="wow__tarjeta tarjeta--examenes">
+                                <div class="tarjeta__header">
+                                    <div class="tarjeta__title">
+                                        TEST OCUPACIONALES
+                                        <div class="tarjeta__icono">
+                                            <img src="" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tarjeta__body">
+                                    <div class="tarjeta__fecha">
+                                        <i class="fal fa-calendar"></i>
+                                        @fechaFormateada | @archivo.Fecha.ToString("t")
+                                    </div>
+
+                                    <div class="tarjeta__seccion">
+                                        <div class="tarjeta__titulo-seccion">
+                                            Certificados
+                                        </div>
+                                        <div class="tarjeta__seccion-content">
+                                            @if (archivo.Estado != "E")
+                                            {
+                                                <div class="tipo-archivo">
+                                                    <a class="tag-descarga" target="_blank" href="@rutaDescargaArchivo"><i class="fal fa-file-pdf"></i> @archivo.Nombre</a>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="tipo-archivo">
+                                                    @archivo.Nombre
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            <!-- end:: tarjeta Smartcheck -->
+        </div>
+
+
+    </div>
+    <!-- end:: Body Historial -->
+
+
+</div>
+<!-- end: WOW -->
+
+<script type="module">
+        import { init } from '../../js/Paciente/historial-custom.js?rnd=${@NumeroRandom.GetRandom()}';
+    init()
+</script>
+
+
+
+@*<script type="module">
+        (function () {
+        window.historialCustomSmartcheck = @ViewBag.historialCustomSmartcheck;
+        })()
+</script>*@

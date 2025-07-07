@@ -1,0 +1,757 @@
+/*sunglass*/
+
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');*/
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+:root {
+    --primary: #000;
+    --secondary: #8EC5E2;
+    --tertiary: #111;
+    --accent: #8EC5E2;
+    --light: #FFF;
+    --font-family: 'Mulish', sans-serif;
+}
+
+body {
+    /* font-family: var(--font-family) !important;*/
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family) !important;
+}
+/*Login*/
+.logotipo-desktop {
+    background-image: url(../../img/sunglass/logotipo.svg) !important;
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/sunglass/logotipo.svg) !important;
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: var(--secondary);
+    font-weight: 900;
+}
+
+.form-group .ms-label {
+    color: var(--tertiary) !important;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.divider-medismart {
+    display: flex !important;
+    margin-bottom: 2rem;
+}
+
+.logo-convenios {
+    /* display: none;*/
+    margin-bottom: 2rem;
+}
+
+.prehome__plan h2 {
+    text-align: center;
+    font-weight: 700;
+    width: 70%;
+    margin: 0 auto;
+    color: var(--primary)
+    /* margin-top: 3rem; */
+}
+
+/* Imágenes Login */
+.img1 {
+    background-image: url(../../img/sunglass/login/960x978.jpg) !important;
+}
+
+.img2 {
+    background-image: url(../../img/sunglass/login/960x978.jpg) !important;
+}
+
+.img3 {
+    background-image: url(../../img/sunglass/login/960x978.jpg) !important;
+}
+
+.img4 {
+    background-image: url(../../img/sunglass/login/960x978.jpg) !important;
+}
+
+.img5 {
+    background-image: url(../../img/sunglass/login/960x978.jpg) !important;
+}
+
+.img6 {
+    background-image: url(../../img/sunglass/login/960x978.jpg) !important;
+}
+
+.body-home {
+    background-image: linear-gradient(178.94deg, #FFFFFF -19.14%, #000000 109.27%);
+    background-blend-mode: multiply;
+    /*background-position: right 90%;*/
+}
+
+    .body-home .logo-home img {
+        max-width: 163px;
+        width: 100%;
+    }
+
+    .top-banner .legend {
+        font-weight: 500;
+    }
+
+.menu-top .item-menu-top i,
+.menu-top .label-menu {
+    color: var(--primary);
+}
+
+.menu-top .label-menu-pac {
+    color: var(--primary);
+}
+
+.menu-top:hover .label-menu-pac {
+    color: var(--accent);
+}
+
+    .menu-top .item-menu-top:hover i, .menu-top .item-menu-top:hover .label-menu {
+        color: var(--accent) !important;
+    }
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--primary)
+}
+
+    .kt-menu__item a .ms-label-menu {
+        color: var(--tertiary)
+    }
+
+    .kt-menu__item:hover a, .kt-menu__item:hover i {
+        color: var(--secondary) !important;
+    }
+
+.accesible-btn button {
+    color: #333;
+    border: 1px solid var(--primary);
+}
+
+    .accesible-btn button:hover {
+        background-color: var(--primary);
+        border-color: var(--primary)
+    }
+
+    /*Modal opciones*/
+
+.modal-especialidad h1 {
+    font-weight: 700;
+    margin-bottom: 32px;
+    color: #111;
+}
+
+
+/*Calugas*/
+.body-home .card-plan .costo, .body-home .card-plan .pronto-card {
+    background-color: var(--primary);
+    color: var(--light);
+    border-radius: 0px 16px;
+}
+
+
+
+
+.busqueda-profesionales {
+    border: 2px solid var(--secondary);
+}
+    .busqueda-profesionales i {
+        color: var(--secondary)
+    }
+    .busqueda-profesionales .btn-outline-primary {
+        color: var(--secondary)
+    }
+
+.caja-especialidad.active {
+    background-color: var(--primary);
+}
+
+.caja-especialidad {
+    background-color: var(--secondary);
+}
+
+.inner-especialidad strong {
+    color: var(--light)
+}
+
+.step.active .step-icon {
+    background-color: var(--primary);
+}
+
+.stepper {
+    background-image: url(../../img/sunglass/fondo-banner2.svg);
+}
+
+    .stepper .flecha {
+        color: var(--primary)
+    }
+
+    .stepper img {
+        border-color: #999;
+    }
+
+.step.active .label-step {
+    color: var(--primary)
+}
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: #8F8F8F;
+}
+
+.caja-profesional .fecha-atencion {
+    color: var(--primary)
+}
+
+.front-fecha-atencion {
+    border: 1px solid var(--primary);
+}
+
+.calificacion .positiva {
+    color: var(--primary);
+}
+
+.front-fecha-atencion strong:before {
+    color: var(--primary);
+    font-weight: 900;
+}
+
+.especialidad-profesional {
+    color: #8F8F8F;
+}
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.cont-toma-examenes.lab-blanco .titulo-seccion {
+    color: var(--primary)
+}
+
+.top-banner {
+    background-image: url(../../img/sunglass/fondo-banner.svg);
+}
+    .top-banner img {
+        border-color: rgba(255, 255, 255, .3)
+    }
+    .top-banner .legend {
+        color: var(--secondary)
+    }
+
+.banner_topsc .legend .text-warning {
+    color: var(--primary) !important;
+}
+
+.top-banner.banner_topsc {
+    background-image: url(../../img/sunglass/fondo-banner2.svg);
+}
+
+.text-warning {
+    color: var(--light) !important;
+}
+
+.menu-top .item-menu-top .logotipo-mobile {
+    width: 110px !important;
+}
+/*Sala espera*/
+.hotspot-icon .cont-icon {
+    background-color: var(--primary)
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: #BABABA;
+    color: var(--primary);
+}
+
+.cont-icon.hotspot-redes {
+    background-color: #000;
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+}
+
+#hs-g .cont-icon {
+    background-color: var(--secondary);
+}
+
+#hs-g:hover .cont-icon {
+    background-color: var(--primary);
+}
+
+.toolbar-option {
+    color: var(--primary)
+}
+
+.toolbar-option.active {
+    color: var(--secondary)
+}
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--tertiary)
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--secondary)
+}
+
+.btn-sala:hover {
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion, .cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+    .cont-btn-panel .btn-atencion:hover, .cont-btn-vc .btn-atencion:hover {
+        background-color: rgba(237, 110, 0, 0.1);
+        color: var(--primary);
+    }
+
+.hotspot-icon {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+    .hotspot-icon i {
+        text-shadow: none;
+    }
+
+    .hotspot-icon:hover {
+        color: #FFF;
+    }
+
+@media (max-width: 668px) {
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+    .cont-toma-examenes.lab-blanco .acontent_box {
+        min-height: unset !important;
+    }
+
+}
+
+@media (max-width: 991.98px) {
+    .top-banner .legend {
+        text-align: left;
+        font-size: 1.3rem;
+    }
+
+    .box_tex .lux-parrafo {
+        margin-right: 0rem !important;
+    }
+}
+
+
+
+
+ @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/sunglass/login/548x850.jpg) !important;
+    }
+
+    .img2 {
+        background-image: url(../../img/sunglass/login/548x850.jpg) !important;
+    }
+
+    .img3 {
+        background-image: url(../../img/sunglass/login/548x850.jpg) !important;
+    }
+
+    .img4 {
+        background-image: url(../../img/sunglass/login/548x850.jpg) !important;
+    }
+
+    .img5 {
+        background-image: url(../../img/sunglass/login/548x850.jpg) !important;
+    }
+
+    .img6 {
+        background-image: url(../../img/sunglass/login/548x850.jpg) !important;
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/sunglass/login/960x978.jpg) !important;
+    }
+
+    .img2 {
+        background-image: url(../../img/sunglass/login/960x978.jpg) !important;
+    }
+
+    .img3 {
+        background-image: url(../../img/sunglass/login/960x978.jpg) !important;
+    }
+
+    .img4 {
+        background-image: url(../../img/sunglass/login/960x978.jpg) !important;
+    }
+
+    .img5 {
+        background-image: url(../../img/sunglass/login/960x978.jpg) !important;
+    }
+
+    .img6 {
+        background-image: url(../../img/sunglass/login/960x978.jpg) !important;
+    }
+}
+
+
+/*Prohome*/
+
+.prehome__plans {
+    height: 450px;
+}
+
+.prehome__plan {
+    width: 100%;
+    padding: 0;
+}
+
+.prehome__plan ul {
+    list-style-image: url('../../img/sunglass/bullet.svg');
+   
+    margin-top: 32px;
+    height: 350px;
+    font-size: 16px;
+}
+
+.prehome__title {
+    color: #FFF;
+}
+
+.kt-login__extra.registro {
+    display: none;
+}
+
+.logo-convenios.convenioChile + hr {
+    display: none;
+}
+
+.kt-login.kt-login--v3.kt-login--signin .kt-login__signin .titulo-card-farmacia {
+    text-align: center;
+}
+
+@media (max-width: 991.98px) {
+    .prehome__plans {
+        height: auto;
+    }
+
+    .cont-toma-examenes.lab-blanco .col-12.col-md-auto:first-child {
+        order: 1 !important;
+    }
+    .cont-toma-examenes.lab-blanco .table-responsive {
+        display:none;
+    }
+
+
+    .cont-toma-examenes.lab-blanco .acontent_box {
+        margin: 0 auto;
+        box-sizing: border-box;
+        background: #fff;
+        padding: 1.5rem;
+        border-radius: 7px;
+        min-height: 384px;
+    }
+    .cont-toma-examenes.lab-blanco .box_tex p {
+        text-align: left;
+    }
+
+}
+
+/* Essilor Plan > Asistencia Examenes */
+
+.cont-ilustracion {
+    width: 100%;
+    height: 364px;
+    background: transparent url(../../img/mexico/essilor/essilor-ilustracion.svg) no-repeat center;
+    /*background-image: url(../../img/mexico/essilor/essilor-ilustracion.svg);
+    background-repeat: no-repeat;
+    background-position: center;*/
+    background-size: contain;
+}
+
+.cont-toma-examenes.lab-blanco .card .form-group label,
+.cont-toma-examenes.lab-blanco .card .form-group-input label,
+.cont-toma-examenes.lab-blanco #btnAdd::before,
+.cont-toma-examenes.lab-blanco .acontent_ti h2,
+.cont-toma-examenes.lab-blanco .acontent_box .box_tex p {
+    color: #564B52;
+}
+.cont-toma-examenes.lab-blanco .box_tex p {
+    margin: 0 0 16px 0;
+}
+
+
+.cont-toma-examenes.lab-blanco .form-text.text-muted {
+    display: none;
+}
+.cont-toma-examenes.lab-blanco #btnAdd::before {
+    top: -2rem;
+    left: -1.5rem;
+}
+.cont-toma-examenes.lab-blanco .acontent_box .box_tex {
+    max-width: 330px;
+}
+    .cont-toma-examenes.lab-blanco .acontent_box .box_tex p {
+        text-align: justify;
+    }
+
+
+
+    .cont-toma-examenes.lab-blanco .acontent_box .acontent_ti {
+        max-height: 320px;
+    }
+
+.cont-toma-examenes.lab-blanco .acontent_ti h2, {
+    font-size: 37px;
+    font-family: 'Nunito', sans-serif !important;
+    font-weight: 400;
+}
+    .cont-toma-examenes.lab-blanco .acontent_ti h2 span {
+        color: #858585;
+        position: relative;
+        top: -16px;
+    }
+
+.cont-toma-examenes.lab-blanco .acontent_box .box_tex {
+    margin-top: 16px;
+}
+
+.cont-toma-examenes.lab-blanco .nota-asistencia {
+    margin-top: 1.25rem;
+}
+
+    .cont-toma-examenes.lab-blanco .nota-asistencia div:first-of-type {
+        text-align: center !important;
+        padding: 0;
+    }
+    .cont-toma-examenes.lab-blanco .nota-asistencia .btn {
+        width: 100% ;
+    }
+
+
+/* Essilor Plan > Examenes > Reserva Exitosa */
+    .reserva-exitosa {
+        margin: 3rem auto;
+        background-color: #fff;
+    } 
+
+.reserva-exitosa--ilustracion img {
+    display: block;
+    width: 90%;
+    max-width: 364px;
+}
+
+.reserva-exitosa--texto {
+
+}
+
+
+/* Estilos para el contenedor de selecciones */
+.selection-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Estilos para las opciones seleccionadas */
+.selected-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 12px;
+}
+
+.selected-option {
+    background-color: #f2f2f2;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.remove-option {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.modal-luxo-titulo {
+    color: #101828;
+    text-align: center;
+    font-family: Mulish;
+    font-size: 19.353px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 30.105px; /* 155.556% */
+}
+
+.img-modal-luxo {
+    width: 341px;
+    height: 206px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.modal-luxo-parrafo {
+    color: #475467;
+    text-align: center;
+    font-family: Mulish;
+    font-size: 15.052px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21.503px; /* 142.857% */
+}
+
+.modal-atenciones .modal-body {
+    background-color: #fff;
+    border-radius: 8px 8px 0px 0px;
+    width: 100% !important;
+    max-width: 720px !important;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.btn-outline-success {
+    color: #344054;
+    border-radius: 8.601px;
+    border: 1.075px solid #D0D5DD;
+    background: #FFF;
+    box-shadow: 0px 1.075px 2.15px 0px rgba(16, 24, 40, 0.05);
+}
+
+.modal-dialog.dialog-atenciones {
+    
+    max-width: 720px;
+    
+}
+
+.btn-light {
+    border-radius: 8.601px;
+    border: 1.075px solid #209CD4;
+    background: #209CD4;
+    box-shadow: 0px 1.075px 2.15px 0px rgba(16, 24, 40, 0.05);
+    color:  #FFF;
+    
+}
+
+.lux-parrafo {
+    color: #858585 !important;
+    font-family: Nunito !important;
+    font-size: 37px !important;
+    text-align: left !important;
+    font-weight: 400 !important;
+    margin-right: -10rem !important;
+}
+
+.lux-titulo {
+    color: #564B52 !important;
+    font-family: Nunito !important;
+    font-size: 37px !important;
+    font-weight: 400 !important;
+}
+
+.lux-p-2{
+
+    display: none !important;
+
+}
+
+
+
+.lux-contenedor-footer {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lux-p-footer {
+    color: #564B52;
+    text-align: justify;
+    font-family: Nunito;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 2rem !important;
+}
+
+.btn-agendar-examen {
+    border-radius: 4px;
+    border: 1px solid #3BC1CD;
+    background: #209CD4;
+    box-shadow: 4px 4px 16px 0px rgba(88, 103, 221, 0.25);
+    color: #F2F2F2;
+    width: 373px !important;
+    text-align: center;
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.subtitulo-btn {
+    color: #564B52;
+    font-family: Nunito;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.lux-btn-modal {
+    border-radius: 4px;
+    border: 1px solid #3BC1CD;
+    background: #209CD4;
+    box-shadow: 4px 4px 16px 0px rgba(88, 103, 221, 0.25);
+    color: #F2F2F2;
+    
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 125% */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.reserva-exitosa--texto {
+   
+    margin-top: auto !important;
+    margin-bottom: auto !important;
+}

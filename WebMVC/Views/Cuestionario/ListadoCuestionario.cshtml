@@ -1,0 +1,68 @@
+@using Microsoft.Extensions.Configuration
+@model WebMVC.Models.EmpresaEncuestaModel
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Configuracion";
+    Layout = "_LayoutPaciente";
+    var ocupacional = ViewBag.ocupacional;
+
+}
+
+
+@{
+    ViewData["idEntidad"] = ViewBag.uid;
+    ViewData["uid"] = int.Parse(ViewBag.uid);
+}
+@{
+    ViewData["view"] = Roles.Paciente;
+}
+
+@section Styles  {
+    <link href="~/css/Medismart/main.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+     <link href="~/css/Mexico/mexico.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    
+}
+
+<div class="cont-home">
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+        @if (ocupacional == 1)
+        {
+            <partial name="~/Views/Cuestionario/ContenidoMedicinaOcupacional.cshtml" model="Model" view-data="ViewData" />
+        }
+        else
+        {
+            <partial name="~/Views/Cuestionario/ContenidoNom.cshtml" model="Model" view-data="ViewData" />
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/Usuario/config.js?9rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/apis/nom035-fetch.js?9rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script type="module">
+        import { init  } from '../../js/Cuestionario/ListadoCuestionario.js?rnd=@NumeroRandom.GetRandom()';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+            var uid = @ViewBag.uid;
+            var Cuestionario1Avance = @ViewBag.Cuestionario1Avance;
+            var Cuestionario2Avance = @ViewBag.Cuestionario2Avance;
+            var Cuestionario3Avance = @ViewBag.Cuestionario3Avance;
+
+
+            window.uid = uid;
+            window.Cuestionario1Avance = Cuestionario1Avance;
+            window.Cuestionario2Avance = Cuestionario2Avance;
+            window.Cuestionario3Avance = Cuestionario3Avance;
+             var idCliente = '@ViewBag.idCliente';
+            window.idCliente = idCliente;
+            window.host = '@ViewBag.HostURL';
+            window.ocupacional = @ViewBag.ocupacional;
+        })()
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    
+}
+

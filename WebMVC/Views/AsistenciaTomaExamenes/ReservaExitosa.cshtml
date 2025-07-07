@@ -1,0 +1,64 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{
+    Layout = "_LayoutPaciente";
+}
+
+<style type="text/css">
+    
+/* Essilor Plan > Examenes > Reserva Exitosa */
+
+.reserva-exitosa {
+    margin: 3rem auto;
+    padding: 60px;
+    border-radius: 40px;
+    background: #FFF;
+} 
+
+
+.reserva-exitosa--ilustracion img {
+    display: block;
+    width: 90%;
+}
+
+.reserva-exitosa--texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 2rem;
+ 
+    margin-top: auto;
+    margin-bottom: auto;
+
+}
+
+</style>
+
+<div class="container reserva-exitosa">
+    <div class="row d-flex">
+        <div class="col-sm-6 reserva-exitosa--ilustracion">
+            <img src="../../img/mexico/essilor/essilor-reserva-exitosa.svg" alt="Reserva Exitosa">
+        </div>
+        <div class="col-sm-6 reserva-exitosa--texto">
+            <h2 style="width: 100%;" class="lux-examen-realizado">
+                Solicitud de examen realizada
+            </h2>
+            <p class="lux-parrafo-realizado">
+                ¡Gracias por solicitar tus estudios de laboratorio!
+            </p>
+            <p class="parrafo-lux-2">
+                En un <span class="lux-parrafo-realizado">máximo de 48 horas,</span> te enviaremos la orden de estudios a <span class="lux-parrafo-realizado">tu WhatsApp.</span>
+
+            </p>
+            <p class="parrafo-lux-2">
+                ¡Estamos comprometidos a brindarte resultados precisos y confiables para tu salud y bienestar!
+
+            </p>
+
+            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,572 @@
+/*falp*/
+
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');*/
+
+:root {
+    --primary: #004D80;
+    --secondary: #FFC800;
+    --tertiary: #111;
+    --button: #135193;
+    --accent: #EED484;
+    --light: #FFF;
+    --dark: #1C1C1A;
+    --font-family: 'Mulish', sans-serif;
+}
+
+body {
+    /* font-family: var(--font-family) !important;*/
+}
+
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family) !important;
+}
+/*Login*/
+.logotipo-desktop {
+    background-image: url(../../img/medlog/logotipo.png);
+}
+
+.logotipo-mobile {
+    background-image: url(../../img/medlog/logotipo.svg);
+}
+
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container {
+    margin-top: 15% !important;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head .kt-login__title {
+    color: var(--dark);
+    font-weight: 900;
+}
+
+.form-group .ms-label {
+    color: var(--tertiary) !important;
+}
+
+.kt-login.kt-login--v3 .kt-login__wrapper .kt-login__container .kt-login__head {
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-primary {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.btn-primary:hover {
+    border-color: var(--button);
+    color: var(--light) !important;
+}
+
+.divider-medismart {
+    display: flex !important;
+    margin-bottom: 2rem;
+}
+
+.logo-convenios {
+    /* display: none;*/
+    margin-bottom: 2rem;
+}
+
+/* Im�genes Login */
+.img1 {
+    background-image: url(../../img/medlog/login/960x978.jpg);
+}
+
+.img2 {
+    background-image: url(../../img/medlog/login/960x978.jpg);
+}
+
+.img3 {
+    background-image: url(../../img/medlog/login/960x978.jpg);
+}
+
+.img4 {
+    background-image: url(../../img/medlog/login/960x978.jpg);
+}
+
+.img5 {
+    background-image: url(../../img/medlog/login/960x978.jpg);
+}
+
+.img6 {
+    background-image: url(../../img/medlog/login/960x978.jpg);
+}
+
+.body-home {
+    background-image: linear-gradient(175.39deg, var(--accent) -7.56%, var(--accent) 1.84%, var(--accent) 96.27%);
+    background-blend-mode: multiply;
+    /*background-position: right 90%;*/
+}
+
+    .body-home .logo-home img {
+        width: 130px;
+    }
+
+    .top-banner .legend {
+        font-weight: 500;
+    }
+
+.menu-top .item-menu-top i,
+.menu-top .label-menu {
+    color: var(--dark)!important;
+}
+
+.menu-top .item-menu-top:hover i, .menu-top .item-menu-top:hover .label-menu {
+    color: var(--dark) !important;
+}
+.kt-menu__item a, .kt-menu__item i {
+    color: var(--primary)
+}
+
+.body-home .footer-home .terminos a {
+    color: var(--dark);
+    display: inline-block;
+    margin-left: 1rem;
+}
+
+.letras {
+    display: flex;
+    justify-content:center;
+}
+
+.top-banner {
+    display: flex;
+    width: 100%;
+    background-image: url(../../img/medlog/fondo-banner.svg ) !important;
+    background-repeat: repeat-x;
+    background-position: left center;
+    margin-bottom: 2.5rem;
+    margin-top: 2.5rem;
+}
+
+.copy {
+    color: var(--dark) !important;
+}
+
+    .kt-menu__item a .ms-label-menu {
+        color: var(--tertiary)
+    }
+
+    .kt-menu__item:hover a, .kt-menu__item:hover i {
+        color: var(--secondary) !important;
+    }
+
+.accesible-btn button {
+    color: var(--dark) !important;
+    border: 1px solid var(--dark);
+}
+
+    .accesible-btn button:hover {
+        background-color: var(--primary);
+        border-color: var(--primary)
+    }
+
+.busqueda-profesionales {
+    border: 2px solid var(--secondary);
+}
+    .busqueda-profesionales i {
+        color: var(--secondary)
+    }
+    .busqueda-profesionales .btn-outline-primary {
+        color: var(--secondary)
+    }
+
+.caja-especialidad.active {
+    background-color: var(--primary);
+}
+
+.caja-especialidad {
+    background-color: var(--secondary);
+}
+
+.inner-especialidad strong {
+    color: var(--light)
+}
+
+.step.active .step-icon {
+    background-color: #1C1C1A;
+}
+
+.stepper {
+    background-image: url(../../img/medlog/fondo-banner2.svg);
+}
+
+    .stepper .flecha {
+        color: #1C1C1A;
+    }
+
+    .stepper img {
+        border-color: #1C1C1A;
+    }
+
+.step.active .label-step {
+    color: #1C1C1A;
+}
+
+.mensaje-superior {
+    color: var(--secondary)
+}
+
+.caja-profesional .titulo-profesional,
+.nombre-profesional {
+    color: var(--tertiary)
+}
+
+.caja-profesional .fecha-atencion {
+    color: var(--secondary)
+}
+
+.front-fecha-atencion {
+    border: 1px solid rgba(35,33, 114, .3)
+}
+
+    .front-fecha-atencion strong:before {
+        color: var(--secondary);
+        font-weight: 900;
+    }
+
+.especialidad-profesional {
+    color: var(--tertiary)
+}
+.carga-archivos h3 {
+    color: var(--tertiary)
+}
+
+.mensaje-confirmacion strong {
+    color: var(--secondary)
+}
+
+.titulo-seccion {
+    color: var(--secondary)
+}
+/*.btn-primary {
+    background-color: var(--button) !important;
+    color: var(--light) !important;
+}*/
+
+
+.titulo-servicio {
+    font-size: 2.2rem;
+    margin-top: 2rem;
+    color: black;
+}
+
+.top-banner {
+    background-image: url(../../img/medlog/fondo-banner.svg);
+}
+    .top-banner img {
+        border-color: rgb(89 89 89 / 30%);
+    }
+    .top-banner .legend {
+        color: var(--dark) !important
+    }
+
+.banner_topsc .legend .text-warning {
+    color: var(--primary) !important;
+}
+
+.body-home .cont-card h1 {
+    font-size: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 1rem auto 2rem;
+    color: var(--dark);
+    max-width: 170px;
+    font-weight:800;
+}
+.top-banner.banner_topsc {
+    background-image: url(../../img/medlog/fondo-banner2.svg);
+}
+
+.text-warning {
+    color: var(--dark) !important;
+}
+
+.menu-top .item-menu-top .logotipo-mobile {
+    width: 110px !important;
+}
+/*Sala espera*/
+.hotspot-icon .cont-icon {
+    background-color: var(--dark)
+}
+
+.hotspot-icon:hover .cont-icon {
+    background-color: var(--accent);
+}
+
+.menu-top .label-menu-pac {
+   
+    color: var(--dark);
+   
+}
+
+#reporte {
+    display: none;
+}
+
+.cont-icon.hotspot-redes {
+    background-color: #000;
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+}
+
+.btn-guardar-info, .btn-success {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    
+}
+
+.btn-guardar-info:hover, .btn-success:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--primary)
+}
+
+.btn.btn-outline-secondary {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--primary)
+}
+
+#reporte .cont-icon {
+    background-color: var(--primary);
+}
+
+#reporte:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+#hs-g .cont-icon {
+    background-color: var(--primary);
+}
+
+#hs-g:hover .cont-icon {
+    background-color: var(--secondary);
+}
+
+.toolbar-option {
+    color: var(--primary)
+}
+
+.toolbar-option.active {
+    color: var(--secondary)
+}
+
+.sala-espera-mobile .btn-sala .cont-icon {
+    background-color: var(--tertiary)
+}
+
+.btn-sala:hover .cont-icon {
+    background-color: var(--secondary)
+}
+
+.btn-sala:hover {
+    color: var(--secondary);
+}
+
+.cont-btn-panel .btn-atencion, .cont-btn-vc .btn-atencion {
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+    .cont-btn-panel .btn-atencion:hover, .cont-btn-vc .btn-atencion:hover {
+        background-color: rgba(237, 110, 0, 0.1);
+        color: var(--primary);
+    }
+
+.hotspot-icon {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+    .hotspot-icon i {
+        text-shadow: none;
+    }
+
+    .hotspot-icon:hover {
+        color: #FFF;
+    }
+
+@media (max-width: 668px) {
+    .card.caja-profesional {
+        margin-top: 20px;
+    }
+
+    .stepper {
+        background-image: none;
+        margin-top: 4rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .top-banner .legend {
+        text-align: left;
+        font-size: 1.3rem;
+    }
+}
+
+
+ @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .img1 {
+        background-image: url(../../img/medlog/login/548x850.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/medlog/login/548x850.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/medlog/login/548x850.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/medlog/login/548x850.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/medlog/login/548x850.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/medlog/login/548x850.jpg);
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+
+    .img1 {
+        background-image: url(../../img/medlog/login/960x978.jpg);
+    }
+
+    .img2 {
+        background-image: url(../../img/medlog/login/960x978.jpg);
+    }
+
+    .img3 {
+        background-image: url(../../img/medlog/login/960x978.jpg);
+    }
+
+    .img4 {
+        background-image: url(../../img/medlog/login/960x978.jpg);
+    }
+
+    .img5 {
+        background-image: url(../../img/medlog/login/960x978.jpg);
+    }
+
+    .img6 {
+        background-image: url(../../img/medlog/login/960x978.jpg);
+    }
+}
+
+
+/*Prehome*/
+
+.prehome__plans {
+    height: 450px;
+}
+
+.prehome__plan {
+    width: 100%;
+    padding: 0;
+}
+
+    .prehome__plan ul {
+        list-style-image: url('../../img/medlog/bullet.svg');
+        margin-top: 32px;
+        height: 350px;
+        font-size: 16px;
+    }
+
+.prehome__title {
+    color: #FFF;
+}
+
+.kt-login__extra.registro {
+    display: none;
+}
+
+.logo-convenios.convenioChile + hr {
+    display: none;
+}
+
+.kt-login.kt-login--v3.kt-login--signin .kt-login__signin .titulo-card-farmacia {
+    text-align: center;
+}
+
+@media (max-width: 991.98px) {
+    .prehome__plans {
+        height: auto;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px)
+ {
+    .sala-espera-mobile img {
+        margin-top: -580px !important;
+    }
+}
+.falp-modal-contenedor {
+    display: flex;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 32px;
+    width: 660px;
+    height: 354px;
+    background-image: url(../../img/medlog/dr-modal.png);
+    background-repeat: no-repeat, repeat;
+    background-position: 4% 2rem, 0;
+    flex-direction: row;
+}
+
+.modal-paciente .modal-content {
+    margin: auto;
+    margin-top: 8rem;
+    border: none;
+    padding: 5px 32px;
+}
+
+.falp-modal-contenedor-titulos {
+    padding: 2rem 0rem 0rem 14rem;
+}
+
+.falp-modal-dr {
+    height: 23rem;
+    width: 29rem;
+}
+
+.falp-modal-logo {
+    padding: 1rem 0rem 1rem 0rem;
+}
+
+
+.falp-modal-contenedor-imagen {
+    padding: 0rem;
+}
+
+.falp-modal-titulo-uno {
+    color: #004E91;
+    font-family: Mulish;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    padding-bottom: 0.5rem;
+}
+
+
+.falp-modal-titulo-dos {
+    color: #004E91;
+    font-family: Mulish;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    padding-bottom: 0.5rem;
+}

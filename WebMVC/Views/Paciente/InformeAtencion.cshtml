@@ -1,0 +1,47 @@
+﻿@model WebMVC.Models.AtencionViewModel
+@{
+    ViewBag.Title = "Medical";
+    Layout = "_LayoutPaciente";
+    if (ViewBag.idCliente == "1")
+    {
+        Layout = "_LayoutExterno";
+
+    }
+    else if (ViewBag.HostURL.ToString().Contains("happ."))
+    {
+        Layout = "_LayoutExterno";
+    }
+    else if (ViewBag.HostURL.ToString().Contains("hlf."))
+    {
+        Layout = "_LayoutExterno";
+    }
+    ViewData["view"] = Roles.Paciente;
+}
+
+@section Styles  {
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+}
+
+<partial name="~/Views/Shared/_InformeAtencion.cshtml" model="Model" view-data="ViewData" />
+
+@section Scripts {
+
+    <script src="~/signal/signalr.min.js"></script>
+    <script src="~/js/Medico/informeatencion.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/Shared/archivos-adjuntos.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/hmac-sha256.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/enc-base64.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+         var uid = @ViewBag.uid;
+        window.uid = uid;
+       var idCliente = '@ViewBag.idCliente';
+       window.idCliente = idCliente;
+        })()
+    </script>
+    <script type="module">
+        import { init } from '../../js/Paciente/informeatencion-agendar.js?rnd=@NumeroRandom.GetRandom()';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+}

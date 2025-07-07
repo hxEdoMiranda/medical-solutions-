@@ -1,0 +1,334 @@
+﻿.acontent_box .acontent_ti h2 {
+    font-family: 'Mulish', Arial, sans-serif !important;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 37px;
+    color: #8A94B3;
+}
+
+.acontent_box .acontent_ti {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 16px;
+}
+
+    .acontent_box .acontent_ti h2 span {
+        font-weight: 500;
+    }
+
+.acontent_box .box_tex {
+    margin-top: 40px;
+}
+
+    .acontent_box .box_tex p {
+        font-family: 'Mulish', Arial, sans-serif !important;
+        font-weight: 400;
+        font-size: 18px;
+        color: #8A94B3;
+    }
+
+.nota-asistencia {
+    text-align: center;
+    margin-top: 55px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+    .nota-asistencia .btn {
+        width: 265px;
+    }
+
+.card {
+    border: 1px solid #e7e7e7;
+    /*padding: 30px;*/
+    border-radius: 8px;
+    max-width: 560px
+}
+
+    .card .form-control {
+        max-width: 370px
+    }
+
+    .card .form-group label,
+    .card .form-group-input label {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 18px;
+        color: #0081A4;
+        margin: 0.8rem 0;
+    }
+
+.box_card {
+    width: 560px;
+}
+
+    .box_card.form-group label {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 18px;
+        color: #0081A4;
+    }
+
+.file-select {
+    position: relative;
+    display: inline-block;
+    background: transparent;
+}
+
+    .file-select::before {
+        color: #3BC1CD;
+        display: flex;
+        align-items: center;
+        content: 'AGREGAR';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 10px;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+    .file-select input[type="file"] {
+        opacity: 0;
+        width: 200px;
+        height: 32px;
+        display: inline-block;
+    }
+
+#src-file1::before {
+    content: 'AGREGAR';
+}
+
+.card_box {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: row;
+}
+
+.text-muted {
+    margin: 0px;
+    font-size: 13px !important;
+}
+
+.card .tt-dataset.tt-dataset-codigos {
+    height: 140px;
+    overflow: overlay;
+    display: block;
+    width: 370px;
+}
+
+.icon_input {
+    position: relative;
+    right: -340px;
+    bottom: 27px;
+    display: block;
+}
+
+div#kt_header {
+    padding: 10px 0px;
+}
+
+.nota-asistencia small.data-asistencia {
+    width: 100%;
+    display: block;
+    margin: 10px 0px;
+}
+
+.cont-ilustracion {
+    width: 219px;
+    height: 151px;
+    background-image: url(../../img/scotiabank/examenes/ilustracion.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+@media (max-width: 668px) {
+    .card {
+        margin-top: 40px;
+    }
+
+        .card,
+        .card .form-control {
+            width: 100%;
+        }
+
+    .nota-asistencia {
+        margin-top: 0px !important;
+    }
+
+        .nota-asistencia .btn {
+            width: 100%;
+        }
+
+    .acontent_box .acontent_ti {
+        flex-direction: column;
+        margin-top: 25px;
+    }
+
+    .card_box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .typeahead .twitter-typeahead {
+        display: block !important;
+        width: 340px;
+    }
+
+    .icon_input {
+        right: -310px;
+    }
+
+    .file-select {
+        background: transparent !important;
+    }
+
+        .file-select::before {
+            position: relative;
+            bottom: 0;
+            margin: 10px 0;
+            background: transparent;
+        }
+
+    .acontent_ti img {
+        width: 100%;
+    }
+
+    a.remove_field {
+        margin: 10px 0px;
+        display: block;
+        text-align: left;
+        color: #EB5757;
+        font-weight: 600;
+        font-style: italic;
+    }
+
+    .acontent_box .box_tex {
+        margin-top: 0px;
+    }
+
+    .acontent_box .acontent_ti h2 {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .card .tt-dataset.tt-dataset-codigos {
+        width: 340px;
+    }
+}
+
+/*Lab Blanco*/
+
+.cont-toma-examenes.lab-blanco {
+    max-width: 1400px;
+    width: 90%;
+
+}
+
+    .cont-toma-examenes.lab-blanco .nota-asistencia {
+        margin-top: 0;
+    }
+
+
+    .cont-toma-examenes.lab-blanco .card {
+        padding: 2rem;
+    }
+
+.cont-toma-examenes.lab-blanco small {
+    font-size: 14px;
+}
+
+    .cont-toma-examenes.lab-blanco .acontent_ti h2 {
+        max-width: 600px;
+    }
+
+.cont-toma-examenes.lab-blanco .card_box {
+    max-width: 254px;
+}
+
+    .cont-toma-examenes.lab-blanco strong {
+        color: #0081A4;
+    }
+
+.cont-toma-examenes.lab-blanco .box_tex p {
+    text-align: left;
+}
+
+    .cont-toma-examenes.lab-blanco .cont-tabla {
+        margin: 4rem 0;
+    }
+
+    .cont-toma-examenes.lab-blanco table {
+        width: 100%;
+    }
+
+    .cont-toma-examenes.lab-blanco thead tr:first-child {
+        border-bottom: 2px solid #DDD;
+    }
+
+    .cont-toma-examenes.lab-blanco th {
+       text-align: right;
+       font-size: 11px;
+    }
+
+        .cont-toma-examenes.lab-blanco th:first-child {
+            text-align: left;
+        }
+
+        .cont-toma-examenes.lab-blanco td {
+            padding: .5rem;
+            text-align: right;
+        }
+
+    .cont-toma-examenes.lab-blanco tr {
+        border-bottom: 1px solid #DDD;
+    }
+
+        .cont-toma-examenes.lab-blanco tr td:first-child {
+            text-align: left;
+        }
+
+.cont-toma-examenes.lab-blanco tbody tr:nth-child(odd) {
+    background-color: #EEE;
+}
+
+        @media (max-width: 768px) {
+
+            .cont-toma-examenes.lab-blanco .acontent_box .acontent_ti h2 {
+                font-size: 18px;
+                line-height: 1.2;
+
+            }
+            .cont-toma-examenes.lab-blanco .box_tex p {
+                font-size: 14px;
+                text-align: center;
+            }
+
+            .cont-toma-examenes.lab-blanco th {
+                font-size: 10px;
+            }
+
+            .cont-toma-examenes.lab-blanco tbody tr:nth-child(odd) {
+                background-color: #FFF;
+            }
+
+            .cont-toma-examenes.lab-blanco  .data-asistencia {
+                margin-bottom: 2rem;
+            }
+            .cont-toma-examenes.lab-blanco .cont-ilustracion {
+                display: none;
+            }
+
+            .cont-toma-examenes.lab-blanco .card_box {
+                max-width: 100%;
+            }
+
+        }

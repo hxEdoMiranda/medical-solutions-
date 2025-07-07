@@ -1,0 +1,138 @@
+﻿@model WebMVC.Models.AtencionViewModel
+
+@{
+
+
+    ViewBag.Title = "Medical | Sitio Médicos";
+    Layout = "_Layout";
+    ViewData["view"] = Roles.Medico;
+
+
+
+
+}
+@section Styles  {
+    <link href="~/Toasty.js-master/assets/toasty-custom-styles.css" rel="stylesheet" />
+    <link href="~/Toasty.js-master/assets/prism/prism.css" rel="stylesheet" />
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link href="~/metronic_demo7/assets/plugins/select2/select2.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" />
+    <link href="~/metronic_demo7/assets/plugins/bootstrap-select/css/bootstrap-select.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" />
+    <style>
+        .swal2-styled2 {
+            border-left-color: #5D5D5D !important;
+            border-right-color: #5D5D5D !important;
+        }
+    </style>
+}
+
+
+<partial name="~/Views/Shared/_Atencion.cshtml" model="Model" view-data="ViewData" />
+
+
+<div class="modal fade" id="kt_modal_3" data-backdrop="static" name="kt_modal_3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Informe Médico</h5>
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    </button>*@
+            </div>
+            <div class="modal-body" id="modalBody">
+                @*<embed src="" id="visorInforme" type="application/pdf" width="100%" height="800px" />*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCerrar" data-dismiss="modal">Volver</button>        
+                <button id="btnFinalizar" type="button" class="btn btn-brand">Firmar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--Invitacion profesionales asociados-->
+
+<div class="modal fade" id="kt_modal_4" data-backdrop="static" name="kt_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-xs" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Invitar Profesionales asociados</h5>
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    </button>*@
+            </div>
+            <div class="modal-body" id="modalBody">
+                <div class="form-group row mb-2" id="divProfesionalesAsociados">
+                    <label class="col-xl-4 col-lg-3 col-form-label">Asociar Profesional</label>
+                    <div class="col-lg-8 col-xl-8 validate">
+                        <div class="input-group">
+                            <select name="profesionalesAsociados" id="profesionalesAsociados" class="form-control show-tick ms select2" multiple data-placeholder="Select"></select>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="form-group row mb-2 mt-5 pt-5">
+                    <div class="col-lg-12 col-xl-12">
+                        <div class="input-group">
+                            <label class="label text-warning">Sólo puede seleccionar 3 invitados para la llamada.</label>
+                        </div>
+                    </div>
+                </div>
+                @*<embed src="" id="visorInforme" type="application/pdf" width="100%" height="800px" />*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button id="btnConfirmarInvitados" type="button" class="btn btn-brand">Invitar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section Scripts {
+    <!--toasty js-->
+    <link href="~/Toasty.js-master/dist/toasty.css" rel="stylesheet" />
+    <script src="~/Toasty.js-master/dist/toasty.js"></script>
+    <script src="~/Toasty.js-master/assets/prism/prism.js"></script>
+    <!-------------------------------------------------------------------------------------------------->
+
+
+    <script src="~/opentok/opentok.min.js"></script>
+    <script src="~/signal/signalr.min.js"></script>
+
+    <script src="~/metronic_demo7/assets/js/pages/components/extended/sweetalert2.js?rnd=@NumeroRandom.GetRandom()"></script>
+    <script src="~/js/Shared/atencion.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/Shared/archivos-adjuntos.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/Shared/chat.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+
+    @*<script src="https://kit.fontawesome.com/f20b9dc261.js?rnd=@NumeroRandom.GetRandom()" crossorigin="anonymous"></script>*@
+    <script src="~/js/KitAwesome.js"></script>
+
+    <script src="~/metronic_demo7/assets/plugins/select2/select2.js?rnd=@NumeroRandom.GetRandom()"></script>
+
+    @*<script src="~/js/Medico/atencion.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>*@
+    <script type="module">
+        import { init } from '../../js/Medico/atencion.js?rnd=${@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+            (function () {
+                $('.select2').select2();
+            var uid = @ViewBag.uid;
+            window.uid = uid;
+        })()
+    </script>
+    <script>
+        // Warning before leaving the page (back button, or outgoinglink)
+        window.onbeforeunload = function () {
+            return "Seguro que quieres dejar la página, estas en medio de una atención?";
+            //if we return nothing here (just calling return;) then there will be no pop-up question at all
+            //return;
+        };
+    </script>
+    <script>
+        function goBack() {
+            return document.referrer;
+        }
+    </script>
+}
+

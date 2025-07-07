@@ -1,0 +1,153 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<div class="container-fluid cont-toma-examenes lab-blanco">
+
+    <h1 class="titulo-seccion d-md-none">Asistencia Exámenes</h1>
+
+    <div class="row">
+        <div class="col-12 col-md-auto">
+            <div class="card">
+                <form id="form">
+                    <div class="form-group-input" style="border-bottom: solid 2px #cdcbcba6;">
+                        <label for="exampleFormControlSelect1">Selecciona el (los) exámen(es) a agendar:</label>
+                    </div>
+                    <div class="form-group-input" id="seleccionExamen">
+
+                        <label for="exampleFormControlSelect1">Selecciona tu Examen:</label>
+                        <div class="card_box">
+
+                            @if (ViewBag.HostURL.Contains("essilorluxottica") || ViewBag.HostURL.Contains("vivetuseguro"))
+                            {
+                                <div class="typeahead" style="width: 100%;">
+                                    <input class="form-control" placeholder="Buscar por palabra clave" id="input_codigoExamen_0" type="text" dir="ltr" style="margin-bottom: 10px;">
+                                    <div class="selected-options">
+                                        <!-- Opciones seleccionadas se agregan aquí -->
+                                    </div>
+                                </div>
+
+                            }
+                            else
+                            {
+                                <div class="typeahead">
+                                    <input class="form-control" placeholder="Buscar por palabra clave" id="input_codigoExamen_0" type="text" dir="ltr">
+                                    <div class="form-text text-muted">Ingrese mínimo 3 carácteres y seleccione una opción</div>
+                                </div>
+                                <ul id="listaTipoExamen"></ul>
+                                <button id="btnAdd" class="file-select" />
+                            }
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Selecciona tu Estado:</label>
+                        <div class="typeahead">
+                            <select class="form-control" id="listaRegion" name="regiones">
+                                <option value="0">Seleccionar...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Selecciona tu Sucursal:</label>
+                        <div class="typeahead">
+                            <select class="form-control" id="listaComunas" name="comunas">
+                                <option value="0">Seleccionar...</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <div class="nota-asistencia">
+                    @*<div class="col-md-6">
+                    <button id="btnCallAsistencia" class="btn btn-primary">Llamar</button>
+                    <small class="data-asistencia">
+                    Llamarás directamente al <br />
+                    @ViewBag.Numero
+                    </small>
+                    </div>
+                    <div class="col-md-6">
+                    <button id="btnAsistencia" class="btn btn-primary">Videollamada</button>
+                    </div>*@
+                    <div hidden class="col-lg-12" style="text-align:right;">
+                        <button type="button" id="btnAgendar" class="btn btn-primary">Agendar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md">
+            <div class="acontent_box">
+                <div class="acontent_ti">
+                    @*<div class="cont-ilustracion">
+                    </div>*@
+                    @if (ViewBag.HostURL.Contains("vivetuseguro"))
+                    {
+                        <img src="~/img/vivetuseguro/examenes/foto.png" alt="..." class="d-none d-lg-block">
+                    }
+                    else if (ViewBag.HostURL.Contains("cardif.wedoctorsmx."))
+                    {
+                        <img src="~/img/cardifcolabomx/examenes/foto.png" alt="..." class="d-none d-lg-block">
+                    }
+                    else
+                    {
+                        <img src="~/img/mexico/essilor/essilor-ilustracion.svg" alt="..." class="d-none d-lg-block">
+                    }
+                    <h2>
+                        ¡Estamos contigo!
+                        <br /><br />
+                        <div class="box_tex" style="margin: 0%;">
+                            <p style="margin: 0%; color: #209CD4;">
+                                Te ayudamos a agendar tus exámenes médicos.
+                            </p>
+                            <br />
+                            <p style="margin: 0%;" class="">
+                                En nuestro Centro de Atención, podrás agendar de forma simple y rápida, tus exámenes médicos.
+                                Dinos qué fecha prefieres, el lugar que más te acomode para encontrar una hora y un laboratorio o centro médico, perfecto para tus necesidades.
+                            </p>
+                        </div>
+
+                    </h2>
+                </div>
+                @if (ViewBag.HostURL.Contains("vivetuseguro"))
+                {
+                    <div class="col-lg-12">
+                        <button type="button" id="buttonPagos" class="btn btn-primary">CONTINUAR Y PAGAR</button>
+                    </div>
+                } else
+                {
+                    <div class="col-lg-12" style="text-align:right;">
+                        <button type="button" id="buttonPagos" class="btn btn-primary">CONTINUAR Y PAGAR</button>
+                    </div>
+                }
+                
+                <div class="cont-tabla table-responsive">
+                </div>
+                @*<div class="nota-asistencia">
+                <div class="col-md-6">
+                <button id="btncallasistencia" class="btn btn-primary">llamar</button>
+                <small class="data-asistencia">
+                llamarás directamente al <br />
+                @viewbag.numero
+                </small>
+                </div>
+                <div class="col-md-6">
+                <button id="btnasistencia" class="btn btn-primary">videollamada</button>
+                </div>
+                <div class="col-lg-12" style="text-align:right;">
+                <button type="button" id="btnAgendar" class="btn btn-primary">Agendar</button>
+                </div>
+                </div>*@
+            </div>
+
+
+            @*<div class="col-12 col-md-6 nota-asistencia">
+            <button class="btn btn-primary" onclick="location.href='tel:56948042543'">Whatsapp</button>
+            <small>
+            Escribirás directamente al
+            +56 9 5369 4225
+            </small>
+            </div>*@
+
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,270 @@
+﻿@model WebMVC.Models.AtencionViewModel
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "_InformeAtencionPartial";
+
+}
+
+<link href="@Url.Content("~/css/Home/index.css")" rel="stylesheet" />
+<link href="@Url.Content("~/css/Shared/atencion.css")" rel="stylesheet" />
+
+<!-- end:: Subheader -->
+<!-- begin:: Content -->
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
+
+        <!--Begin:: App Aside Mobile Toggle-->
+        <button class="kt-app__aside-close" id="kt_user_profile_aside_close">
+            <i class="la la-close"></i>
+        </button>
+        <!--Begin::Section-->
+        <div class="col-xl-8">
+            <div class="kt-portlet">
+                <div class="kt-portlet__body kt-portlet__body--fit">
+                    <div class="row row-no-padding row-col-separator-xl">
+                        <div class="col-md-12 col-lg-12 col-xl-6">
+                            @Html.Hidden("uid", (object)ViewBag.uid)
+                            @Html.HiddenFor(m => m.Atencion.Id)
+                            <!--begin:: Widgets/Stats2-1 -->
+                            <div class="kt-widget1">
+                                <div class="kt-widget1__item">
+                                    <div class="kt-widget1__info">
+                                        <h3 class="kt-widget1__title">Paciente </h3>
+                                        <span class="kt-widget1__desc">@Model.fichaPaciente.nombreCompleto</span><br>
+                                        <span class="kt-widget1__desc">@Model.fichaPaciente.Identificador</span><br>
+                                        <span class="kt-widget1__desc">@Model.Atencion.InicioAtencion</span>
+                                    </div>
+                                    @if (Model.Atencion.NSP)
+                                    {
+                                        <div id="divNSP">
+                                            <div>
+                                                <label style="color:red;font-weight: bold;font-size: 14px;">Paciente No se presenta</label>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="kt-widget1__item">
+                                    <div class="kt-widget1__info">
+                                        <h3 class="kt-widget1__title">Diagnostico</h3>
+                                        <span class="kt-widget1__desc">@Model.Atencion.DiagnosticoMedico</span>
+                                    </div>
+                                </div>
+
+                                <div class="kt-widget1__item">
+                                    <div class="kt-widget1__info">
+                                        <h3 class="kt-widget1__title">Exámenes</h3>
+                                        <span class="kt-widget1__desc">
+                                            @Model.Atencion.ExamenMedico
+                                        </span><br>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="kt-widget1__item">
+                                    <div class="kt-widget1__info">
+                                        <h3 class="kt-widget1__title">Tratamiento</h3>
+                                        @foreach (var medicamento in Model.Atencion.Medicamentos)
+                                        {
+                                            <span class="kt-widget1__desc" style="white-space: pre-line;">
+                                                @medicamento.PrincipioActivo @medicamento.PresentacionFarmaceutica @medicamento.Posologia
+                                            </span><br>
+                                        }
+                                    </div>
+
+                                </div>
+
+                                <div class="kt-widget1__item">
+                                    <div class="kt-widget1__info">
+                                        <h3 class="kt-widget1__title">Control</h3>
+                                        <span class="kt-widget1__desc">
+                                            @Model.Atencion.ControlMedico
+                                        </span><br>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                            <!--end:: Widgets/Stats2-1 -->
+                        </div>
+                        <div class="col-md-12 col-lg-12 col-xl-6">
+
+                            <!--begin:: Widgets/Stats2-2 -->
+                            <div class="kt-widget1">
+                                <div class="kt-widget1__item">
+                                    <div class="kt-widget1__info">
+                                        <h3 class="kt-widget1__title">Profesional</h3>
+                                        <span class="kt-widget1__desc">@Model.Atencion.NombreMedico</span><br>
+                                        <span class="kt-widget1__desc">@Model.Atencion.Especialidad</span><br>
+                                    </div>
+
+                                </div>
+
+                                <div class="kt-widget1__item">
+                                    <div class="kt-widget1__info">
+                                        <h3 class="kt-widget1__title">Código o descripción</h3>
+                                        @foreach (var diagnostico in Model.Atencion.Patologias)
+                                        {
+                                            <span class="kt-widget1__desc">
+                                                @diagnostico.Nombre
+                                            </span><br>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="kt-widget1__item">
+                                    <div class="kt-widget1__info">
+                                        <h3 class="kt-widget1__title"> Certificado Médico</h3>
+                                        <span class="kt-widget1__desc">
+                                            @Model.Atencion.CertificadoMedico
+                                        </span><br>
+                                    </div>
+
+                                </div>
+
+                                <div class="kt-widget1__item">
+                                    <div class="kt-widget1__info">
+                                        <h3 class="kt-widget1__title">Medicamentos</h3>
+                                        <span class="kt-widget1__desc" style="white-space: pre-line;">
+                                            @Model.Atencion.MedicamentosMedico
+                                        </span><br>
+                                    </div>
+
+                                </div>
+                                <div class="kt-widget1__item">
+                                    <div class="kt-widget1__info">
+                                        <h3 class="kt-widget1__title">Examenes</h3>
+                                        @foreach (var examenes in Model.Atencion.Examenes)
+                                        {
+                                            <span class="kt-widget1__desc">
+                                                @examenes.Nombre
+                                            </span><br>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--end:: Widgets/Stats2-2 -->
+                        </div>
+                    </div>
+
+                    <div style="padding:10px; text-align:center">
+                        @if (ViewData["view"].Equals(Roles.Medico))
+                        {
+                            <button type="button" class="btn btn-brand" id="btnEnviarInforme">ENVIAR A PACIENTE</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4">
+            <div class="kt-portlet kt-portlet--tabs kt-portlet--height-fluid">
+
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                            Archivos
+                        </h3>
+                    </div>
+
+                </div>
+                <div class="kt-portlet__body">
+                    @if (Model.Atencion.Archivos.ToList().Count == 0)
+                    {
+                        <div id="pnlArchivos" class="align-self-center" style="display:block">
+                            <div class="row">
+                                <div class="col-lg-12 kt-align-center">
+                                    <img src="~/metronic_demo7/assets/media/sinResultado.PNG" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 text-center">
+                                    <h5>No existen archivos asociados a esta atención.</h5>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+
+                        <div id="lista_archivos" class="kt-widget4" style="height: 300px;overflow: auto; display:block">
+                            @if (ViewData["view"].Equals(Roles.Medico))
+                            {
+                                @foreach (var archivo in Model.Atencion.Archivos.Where(x => x.CodEntidadAsociada.Equals("ATENCIONES-INFORME")))
+                                {
+                                    <div class="kt-widget4__item">
+                                        <div class="kt-widget4__pic kt-widget4__pic--icon">
+                                            <i class="flaticon-doc" style="font-size: 2.5rem;"></i>
+                                        </div>
+                                        <div class="kt-widget4__info">
+                                            @{
+                                                var rutaDescargaArchivo = Configuration["ServicesUrl"] + "/agendamientos/archivo/DescargarArchivo?id=" + archivo.idenc;
+                                            }
+                                            @if (archivo.Estado != "E")
+                                            {
+
+                                                <a href="@rutaDescargaArchivo" target="_blank" class="kt-widget4__title" id="archivo">
+                                                    @archivo.Nombre
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <p style="text-decoration:line-through; margin-bottom:0px;font-weight: 500;color: #c3c6c8;font-size: 14px;" id="archivo">
+                                                    @archivo.Nombre
+                                                </p>
+                                            }
+                                            <p class="kt-widget4__text">
+                                                @archivo.Persona.nombreCompleto - @archivo.Fecha.ToString()
+                                            </p>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                @foreach (var archivo in Model.Atencion.Archivos)
+                                {
+                                    <div class="kt-widget4__item">
+                                        <div class="kt-widget4__pic kt-widget4__pic--icon">
+                                            <i class="flaticon-doc" style="font-size: 2.5rem;"></i>
+                                        </div>
+                                        <div class="kt-widget4__info">
+                                            @{
+                                                var rutaDescargaArchivo = Configuration["ServicesUrl"] + "/agendamientos/archivo/DescargarArchivo?id=" + archivo.idenc;
+                                            }
+                                            @if (archivo.Estado != "E")
+                                            {
+
+                                                <a href="@rutaDescargaArchivo" target="_blank" class="kt-widget4__title" id="archivo">
+                                                    @archivo.Nombre
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <p style="text-decoration:line-through; margin-bottom:0px;font-weight: 500;color: #c3c6c8;font-size: 14px;" id="archivo">
+                                                    @archivo.Nombre
+                                                </p>
+                                            }
+                                            <p class="kt-widget4__text">
+                                                @archivo.Persona.nombreCompleto - @archivo.Fecha.ToString()
+                                            </p>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                        </div>
+                    }
+
+
+                    <!--end::Widget -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end:: Content -->

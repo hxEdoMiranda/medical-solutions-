@@ -1,0 +1,222 @@
+/*Caja atencion*/
+
+.caja-atencion {
+    background-color: #FFF;
+    color: #666;
+    border: 1px solid rgba(59, 193, 205, 0.3);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    transition: all .3s ease-out;
+    height: 100%;
+    position: relative;
+}
+
+    .caja-atencion:hover {
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    .caja-atencion .datos-fecha {
+        margin-right: 0;
+        margin-bottom: 0;
+        max-width: none;
+    }
+
+    .caja-atencion .header-aviso-atencion {
+        margin-bottom: 1rem;
+        display: inline-block;
+        color: #3BC1CD;
+    }
+
+    .caja-atencion .fecha-atencion {
+        color: #0081A4;
+        font-weight: 700;
+        font-size: 24px;
+    }
+
+    .caja-atencion .header-aviso-atencion i {
+        color: #3BC1CD;
+    }
+
+    .caja-atencion .calificacion {
+        color: #3BC1CD;
+    }
+
+        .caja-atencion .calificacion .positiva {
+            color: #FFAF36;
+        }
+
+    .caja-atencion .data-atencion {
+        margin: 0;
+    }
+
+    .caja-atencion .calificacion::after {
+        display: none;
+    }
+
+    .caja-atencion .calificacion {
+        text-align: left;
+    }
+
+    .caja-atencion .nombre-profesional {
+        text-align: left;
+        margin: 0;
+    }
+
+    .caja-atencion .titulo-profesional {
+        text-align: left;
+        font-size: 1.1rem;
+        font-weight: 900;
+        color: #8A94B3;
+        max-width: 90%;
+    }
+
+    .caja-atencion .hora-atencion {
+        color: #0081A4;
+        font-size: 1.4rem;
+        font-weight: 900;
+        /*margin-bottom: 1rem;*/
+    }
+
+    .caja-atencion .nombre-profesional {
+        height: auto;
+    }
+
+/*Caja atenciones Home*/
+
+.caja-atencion-home {
+    background-color: #FFF;
+    color: #666;
+    border: 1px solid rgba(59, 193, 205, 0.3);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    transition: all .3s ease-out;
+    height: 100%;
+    position: relative;
+}
+
+/*Fin caja atenciones home*/
+
+/*Caja Historial*/
+
+.data-historial .nombre-profesional {
+    font-size: 18px;
+    text-transform: capitalize;
+}
+
+.datos-diagnostico {
+    font-size: 1rem;
+    font-weight: 900;
+    color: #0081A4;
+    text-transform: capitalize;
+    padding-top: .5rem;
+    border-top: 1px dashed #3BC1CD;
+    margin-left: -1rem;
+    margin-right: -1rem;
+}
+
+    .datos-diagnostico small {
+        text-transform: uppercase;
+        font-size: .8rem;
+        display: block;
+        font-weight: 700;
+        margin-left: 1rem;
+        margin-top: .5rem
+    }
+
+.diagnostico {
+    margin-right: 1rem;
+    margin-left: 1rem;
+    height: 60px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: left;
+}
+
+.data-atencion.data-historial {
+    margin-bottom: .5rem;
+}
+
+.caja-atencion-historial {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .caja-atencion-historial {
+        padding: 1rem 1rem;
+        margin-bottom: 0;
+    }
+
+        .caja-atencion-historial .diagnostico {
+            margin-right: 0;
+            text-align: left;
+            margin-left: 0;
+            height: auto;
+        }
+
+            .caja-atencion-historial .diagnostico small {
+                display: none;
+            }
+
+    .datos-diagnostico small {
+        margin-left: 0;
+        text-align: left;
+    }
+
+    .caja-atencion-historial .datos-diagnostico {
+        margin-top: 0;
+        font-weight: 500;
+        font-size: .8rem;
+        border-top: none;
+        margin-right: 0;
+        margin-left: 0;
+        padding-top: 0;
+    }
+
+    .diagnostico {
+        height: auto;
+        /*max-height: 60px;*/
+    }
+
+    .datos-diagnostico small {
+        margin-left: 0;
+    }
+
+    .data-atencion .data-historial .nombre-profesional {
+        font-size: 1rem !important;
+    }
+
+    .caja-atencion-historial .header-aviso-atencion {
+        margin-bottom: 0;
+    }
+
+        .caja-atencion-historial .header-aviso-atencion i {
+            display: none;
+        }
+
+    .caja-atencion .datos-fecha {
+        display: flex;
+        align-items: baseline;
+        /*justify-content: flex-end;*/
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+
+    .caja-atencion .fecha-atencion {
+        font-size: 1.625rem;
+    }
+
+    .caja-atencion .hora-atencion {
+        font-size: 1.6rem;
+        font-weight: 700;
+    }
+
+    .caja-atencion .calificacion {
+        display: none;
+    }
+}
+
+.certificados ul li:last-child {
+    border-bottom: none;
+}

@@ -1,0 +1,86 @@
+﻿@using Microsoft.Extensions.Configuration
+@model WebMVC.Models.PersonasViewModel
+@inject IConfiguration Configuration
+@{
+    ViewData["Title"] = "Configuracion";
+    Layout = "_LayoutPaciente";
+
+}
+
+
+@{
+    ViewData["idEntidad"] = ViewBag.uid;
+    ViewData["codEntidad"] = Entidades.FOTO_PERFIL;
+    ViewData["uid"] = int.Parse(ViewBag.uid);
+}
+@{
+    ViewData["view"] = Roles.Paciente;
+}
+
+@section Styles  {
+    <link href="~/css/Shared/atencion.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css">
+    <style>
+        .iti {
+            width: 100%;
+        }
+    </style>
+     @if(ViewBag.HostURL.ToString().Contains("vidasecurity.") ){
+         <link href="~/css/vidasecurity/vidasecurity.css?rnd=@NumeroRandom.GetRandom()" rel="stylesheet" type="text/css" />
+     }
+    
+}
+@if (ViewBag.HostUrl.Contains("clinicamundoscotia.") || ViewBag.HostUrl.Contains("saludtumundoseguro.") || ViewBag.HostUrl.Contains("masproteccionsalud.") || ViewBag.HostUrl.Contains("prevenciononcologica.") || ViewBag.HostUrl.Contains("saludproteccion.") || ViewBag.HostUrl.Contains("clini.") || ViewBag.HostUrl.Contains("doctoronline.") || ViewBag.HostUrl.Contains("unabactiva.") || ViewBag.HostUrl.Contains("vivetuseguro.wedoctorsmx."))
+{
+    <partial name="~/Views/Paciente/ConfiguracionPartialCardif.cshtml" model="Model" view-data="ViewData" />
+}
+else
+{
+    <partial name="~/Views/Paciente/ConfiguracionPartial.cshtml" model="Model" view-data="ViewData" />
+}
+
+
+        <div class="modal fade wow-modal_dir" id="dynamic-modal-div" name="dynamic-modal-div" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true" style="">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content wow_modal-content">
+                    <div id="dynamic-modal"></div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+    <script src="~/js/Usuario/config.js?9rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script src="~/js/Shared/archivos-FotoPerfil.js?rnd=@NumeroRandom.GetRandom()" type="module"></script>
+    <script type="module">
+        import { init } from '../../js/Paciente/config.js?rnd={@NumeroRandom.GetRandom()}';
+        init(@Html.Raw(Json.Serialize(Model)))
+    </script>
+    <script type="text/javascript">
+        (function () {
+
+            var uid = @ViewBag.uid;
+
+            window.uid = uid;
+            var idCliente = '@ViewBag.idCliente';
+            window.idCliente = idCliente;
+            window.host = '@ViewBag.HostURL';
+            window.codigoTelefono = '@ViewBag.codigoTelefono';
+            var model = @Html.Raw(Json.Serialize(Model));
+            window.modelVista = model;
+
+        })()
+    </script>
+    <script type="module">
+        import { initCarga } from '../../js/Paciente/verCargasNew.js?rnd=@NumeroRandom.GetRandom()';
+        initCarga(@Html.Raw(Json.Serialize(Model)), @Html.Raw(Json.Serialize(@ViewBag.idEdit)), @Html.Raw(Json.Serialize(@ViewBag.uid)), @Html.Raw(Json.Serialize(@ViewBag.idCliente)), @Html.Raw(Json.Serialize(@ViewBag.editState)))
+
+    </script>
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+}
+
